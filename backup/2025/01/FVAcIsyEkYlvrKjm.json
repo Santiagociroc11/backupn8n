@@ -1,0 +1,317 @@
+{
+  "active": true,
+  "connections": {
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "ESCRIBIR SHEET1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-14T02:56:03.988Z",
+  "id": "FVAcIsyEkYlvrKjm",
+  "meta": null,
+  "name": "[WHA] SHEETS-ESP1",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "whaapi-esp1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -560,
+        -40
+      ],
+      "id": "965367f8-1ad5-40a1-962f-a2aa62a752e2",
+      "name": "Webhook",
+      "webhookId": "22eb9d5b-c02b-4292-a8c5-1a54c30419cc"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1LhpPFQiUHSWiBy-Mf5HDXs7Skoc5WmmyjJgH0W0Yjck/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1LhpPFQiUHSWiBy-Mf5HDXs7Skoc5WmmyjJgH0W0Yjck/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "WHATSAPP"
+          ],
+          "schema": [
+            {
+              "id": "WHATSAPP",
+              "displayName": "WHATSAPP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ESTADO",
+              "displayName": "ESTADO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "INGRESO",
+              "displayName": "INGRESO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SOURCE URL",
+              "displayName": "SOURCE URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SOURCE ID",
+              "displayName": "SOURCE ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "IMAGE URL",
+              "displayName": "IMAGE URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "DIA",
+              "displayName": "DIA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "HORA",
+              "displayName": "HORA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "COMPRA",
+              "displayName": "COMPRA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "FECHA DE PAGO",
+              "displayName": "FECHA DE PAGO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "HORA DE PAGO",
+              "displayName": "HORA DE PAGO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9e15cfde-3fa5-4dfc-b824-b92ac0be4d1a",
+      "name": "ESCRIBIR SHEET1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -220,
+        -40
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "36d4e592-51b3-4fa6-b624-e08efb600018",
+              "name": "WHATSAPP",
+              "value": "={{ $json.body.whatsapp }}",
+              "type": "string"
+            },
+            {
+              "id": "4e6b00db-0a9b-4c36-ab57-9e9c6e5f5ed6",
+              "name": "ESTADO",
+              "value": "={{ $json.body.estado }}",
+              "type": "string"
+            },
+            {
+              "id": "20363b8a-0f96-4410-bed5-fd95cb480800",
+              "name": "INGRESO",
+              "value": "={{ $json.body.ingreso }}",
+              "type": "string"
+            },
+            {
+              "id": "8ef124cc-f269-4575-92f3-6bb8300e7f06",
+              "name": "FECHA DE PAGO",
+              "value": "={{ $json.body.pagado_at?$now.format('dd-MM-yyyy'):null }}",
+              "type": "string"
+            },
+            {
+              "id": "f0a1e6f9-4753-4350-904f-3b24cd99d2dd",
+              "name": "SOURCE URL",
+              "value": "={{ $json.body.source_url }}",
+              "type": "string"
+            },
+            {
+              "id": "e33e432a-dee7-4060-8064-175f95673597",
+              "name": "SOURCE ID",
+              "value": "={{ $json.body.source_id }}",
+              "type": "string"
+            },
+            {
+              "id": "12fe56f7-d763-47d7-b27c-564e47b031ee",
+              "name": "IMAGE URL",
+              "value": "={{ $json.body.image_url }}",
+              "type": "string"
+            },
+            {
+              "id": "41064e81-75b2-4da5-b43f-e33d2fa1c79f",
+              "name": "DIA",
+              "value": "={{ $json.body.ingreso?$now.format('dd-MM-yyyy'):null }}",
+              "type": "string"
+            },
+            {
+              "id": "68377a6e-17aa-40f4-9f7d-114c650013f3",
+              "name": "HORA",
+              "value": "={{ $json.body.ingreso?$now.format('HH:mm:ss'):null }}",
+              "type": "string"
+            },
+            {
+              "id": "292018d5-fedc-439a-9a52-521c78351cd4",
+              "name": "HORA DE PAGO",
+              "value": "={{ $json.body.pagado_at?$now.format('HH:mm:ss'):null }}",
+              "type": "string"
+            },
+            {
+              "id": "0c23ce2a-d609-4260-bbab-1dced6c60b07",
+              "name": "COMPRA",
+              "value": "={{ $json.body.pagado_at?1:0 }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ed389820-fb55-44bd-a06d-679aba083fa0",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -380,
+        -40
+      ]
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "axios/0.20.0",
+            "content-length": "119",
+            "accept": "application/json, text/plain, */*",
+            "content-type": "application/json;charset=utf-8",
+            "x-forwarded-for": "82.180.130.193",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "0f86eb816a4d",
+            "x-real-ip": "82.180.130.193",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "whatsapp": "573136298562",
+            "estado": "respondido",
+            "ingreso": 1736823666,
+            "source_url": "-",
+            "source_id": "-",
+            "image_url": "-"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/whaapi-esp1",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-01-14T03:26:35.000Z",
+  "versionId": "13ebf925-3055-4b6d-b0a4-9e39fab7af88"
+}
