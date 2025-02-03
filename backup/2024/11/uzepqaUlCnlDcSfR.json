@@ -1,0 +1,239 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-12T04:48:10.997Z",
+  "id": "uzepqaUlCnlDcSfR",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[Tool] EXTRACCIÓN DE NUMEROS",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "0180aa38-5e6e-4bdf-994d-430bf7941854",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        400,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "={{$('Edit Fields').all()[0].json.tablaBUSQUEDA}}",
+          "mode": "name"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "id": "40386289-dad5-407d-8f85-cc47706fd8cb",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        820,
+        340
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "steiUYgtMeBLjkId",
+          "name": "N8N"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://evolution.automscc.com/group/participants/JUAN CARLOS?groupJid={{$('Loop Over Items').all()[0].json.id}}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1f40fc7d-3f6f-426f-8eb7-01472364dbfa",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1320,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "0daa2e43-6c32-4607-8e4c-db27f4741749",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1040,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "{{ $('Code').all()[0].json.query }}",
+        "options": {}
+      },
+      "id": "3f44d550-777a-40c6-b99d-204a0ec4c91d",
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1800,
+        360
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "urz5Tdw0DcSlCZt3",
+          "name": "N8N NUMEROS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtiene la lista de participantes y el valor de 'grupo' del nodo anterior\nconst participants = items[0].json.participants;\nconst grupo = $('Loop Over Items').all()[0].json.id; // Cambia \"Loop Over Items\" por el nombre de tu nodo si es necesario\nconst tabla = $('Edit Fields').all()[0].json.tablaESCRITURA;\n\n// Construye los valores de cada fila\nconst values = participants.map(participant => {\n    // Extrae solo el número de teléfono eliminando el sufijo \"@s.whatsapp.net\"\n    const numero = participant.id.replace('@s.whatsapp.net', '');\n    return `('${numero}', '${grupo}', 'dentro', 'sin asesor')`;\n});\n\n// Crea la consulta SQL completa\nconst query = `\n    INSERT INTO ${tabla} (numero, grupo, estado, asesor) VALUES\n    ${values.join(', ')};\n`;\n\nreturn [{ json: { query } }];\n"
+      },
+      "id": "831ad9cd-f825-4e8f-8faf-6b3468eb6077",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1580,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b65d6732-57f1-4371-937d-121a4c4e98d0",
+              "name": "tablaBUSQUEDA",
+              "value": "gersson_vip_nuevos",
+              "type": "string"
+            },
+            {
+              "id": "3593ac3d-c45d-4558-acf5-2e55671afe53",
+              "name": "tablaESCRITURA",
+              "value": "numeros_vip_gersson",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "adb23986-b005-4912-99c4-6e6c69df6efa",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        620,
+        340
+      ]
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-11-28T23:06:40.000Z",
+  "versionId": "e7dfdd3e-db49-4a01-8f76-5f548142d16f"
+}
