@@ -1,0 +1,479 @@
+{
+  "active": true,
+  "connections": {
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Summarize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Summarize1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-20T02:39:13.400Z",
+  "id": "mbTmyH0DqHZWT8Fj",
+  "meta": null,
+  "name": "🟢 [TYPEBOT] REPORTES - PASTELERIA",
+  "nodes": [
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1v4fEvqnWfUsdtoFYieKAb6hMLNdzKDJAnyyI5byAlK0/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1v4fEvqnWfUsdtoFYieKAb6hMLNdzKDJAnyyI5byAlK0/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "FECHA INGRESO",
+              "lookupValue": "={{ $now.format('dd/MM/yyyy') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -260,
+        -40
+      ],
+      "id": "25dacbb0-d6e1-4621-a07c-357c8d2b977e",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "field": "whatsapp"
+            },
+            {
+              "field": "medio_at"
+            },
+            {
+              "field": "pagado_at"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1,
+      "position": [
+        220,
+        -40
+      ],
+      "id": "ce846928-9b03-4682-8df7-976477d02334",
+      "name": "Summarize"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "producto",
+                    "rightValue": "producto",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "TORTAS"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -20,
+        -40
+      ],
+      "id": "3ff939c4-15af-4444-9391-6223a63671af",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1v4fEvqnWfUsdtoFYieKAb6hMLNdzKDJAnyyI5byAlK0/edit?pli=1&gid=983351951#gid=983351951",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1v4fEvqnWfUsdtoFYieKAb6hMLNdzKDJAnyyI5byAlK0/edit?pli=1&gid=983351951#gid=983351951",
+          "mode": "url"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Day",
+              "lookupValue": "={{ $now.format('yyyy-MM-dd') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -260,
+        200
+      ],
+      "id": "b8d7b4ee-e03b-462a-b56d-25744093663b",
+      "name": "Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7eb06fd0-c633-4650-8da2-3cf8d84f9766",
+              "leftValue": "={{ $json[\"Campaign Name\"].toLowerCase() }}",
+              "rightValue": "postres",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "a2a69fea-737d-4990-a6bb-d7d980072258",
+              "leftValue": "={{ $json[\"Amount Spent\"] }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -40,
+        200
+      ],
+      "id": "a6cf57cc-de65-409c-b91e-3d1e624b5d9e",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "aggregation": "sum",
+              "field": "Amount Spent"
+            },
+            {
+              "aggregation": "sum",
+              "field": "Impressions"
+            },
+            {
+              "aggregation": "sum",
+              "field": "Unique Link Clicks"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1,
+      "position": [
+        200,
+        180
+      ],
+      "id": "27a7fb67-ba78-4825-ab7b-1ddd3b1cdf1e",
+      "name": "Summarize1"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        720,
+        80
+      ],
+      "id": "82c848c0-dfcd-470d-aeef-4ce4778e489e",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Entrada simulada (remplazada automáticamente por n8n)\nconst inputData = $input.first().json;\n\n// Extraer los valores del JSON de entrada\nconst usd = 4300;\nconst precio = 12900;\nconst conversaciones = parseInt(inputData.conversaciones, 10);\nconst pagosIniciados = parseInt(inputData[\"pagos iniciados\"], 10);\nconst pagos = parseInt(inputData.pagos, 10);\nconst producto = inputData.producto;\nconst amountSpent = parseFloat(inputData.sum_Amount_Spent)*usd;\nconst ventas = pagos*precio;\nconst ganancia = ventas - amountSpent\n\n// Cálculos\nconst roas = pagos > 0 ? ventas / amountSpent : 0; // Retorno sobre gasto publicitario\nconst costoPorConversacion = (amountSpent/usd) / conversaciones;\nconst costoPorPagoIniciado = pagosIniciados > 0 ? (amountSpent/usd) / pagosIniciados : 0;\nconst costoPorPago = pagos > 0 ? (amountSpent/usd) / pagos : 0;\nconst tasaPersuasion = conversaciones > 0 ? (pagosIniciados / conversaciones) * 100 : 0; // Conversaciones a pagos iniciados\nconst tasaConversion = pagos > 0 ? (pagos / conversaciones) * 100 : 0; // Pagos iniciados a pagos completos\nconst cpm = ((amountSpent/usd)/inputData.sum_Impressions)*1000\nconst ctr = (inputData.sum_Unique_Link_Clicks/inputData.sum_Impressions)*100\n\n// Generar el informe\nconst message = `🔴 Informe del día para el producto: *${producto}*\n\n- Total de conversaciones: ${conversaciones}.\n- Pagos iniciados: ${pagosIniciados}.\n- Pagos completados: ${pagos}.\n- Gasto total en campañas: $${amountSpent.toFixed(0)} COP / $${amountSpent/usd.toFixed(0)} USD.\n- Venta total: $${ventas.toFixed(0)}.\n- Ganancia/perdida: $${ganancia.toFixed(0)} \n- CPM: $${cpm.toFixed(2)}\n- CTR ${ctr.toFixed(2)}%\n\nCálculos:\n- ROAS: ${roas.toFixed(2)}.\n- Costo por conversación: $${costoPorConversacion.toFixed(2)}.\n- Costo por pago iniciado: $${costoPorPagoIniciado.toFixed(2)}.\n- Costo por pago completado: $${costoPorPago.toFixed(2)}.\n- Tasa de persuasión: ${tasaPersuasion.toFixed(2)}%.\n- Tasa de conversión: ${tasaConversion.toFixed(2)}%.`;\n\n// Retornar el informe como salida\nreturn {\n  json: {\n    message\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        80
+      ],
+      "id": "6aa5db9f-d69c-44db-9745-4b3587ceb732",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f65f2b6d-afbd-4be8-96b4-35d34f46ea20",
+              "name": "conversaciones",
+              "value": "={{ $json.count_whatsapp }}",
+              "type": "string"
+            },
+            {
+              "id": "802cbc3a-803f-4909-9317-130d2a2ed4ad",
+              "name": "pagos iniciados",
+              "value": "={{ $json.count_medio_at }}",
+              "type": "number"
+            },
+            {
+              "id": "9ad6974a-2f72-4d2e-aa6e-ddd845985899",
+              "name": "pagos",
+              "value": "={{ $json.count_pagado_at }}",
+              "type": "number"
+            },
+            {
+              "id": "d59086dd-b0ed-42ce-a10b-0c0e63963d65",
+              "name": "producto",
+              "value": "PASTELERIA",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        440,
+        -40
+      ],
+      "id": "8a66a5f0-ee61-481a-8f6c-07c7260729d4",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://evolution.automscc.com/message/sendText/santiago",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "120363369298676453@g.us"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.message }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1080,
+        80
+      ],
+      "id": "1ee21692-a365-43bd-8456-e54d5e625f44",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "59 11,17,23 * * *"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -540,
+        60
+      ],
+      "id": "459dc500-a20b-4340-8cf8-da13b47233b1",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-01-23T01:33:36.000Z",
+  "versionId": "d5ca8039-a98c-4629-b837-99963460b248"
+}
