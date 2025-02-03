@@ -1,0 +1,848 @@
+{
+  "active": false,
+  "connections": {
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Asignar datos CARRITO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Asignar datos TICKET",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "asignar datos COMPRA",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Asignar datos RECHAZADOS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request3": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asignar datos CARRITO": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "asignar datos COMPRA": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Enviar texto SIN MENCION",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asignar datos RECHAZADOS": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request4": {
+      "main": [
+        [
+          {
+            "node": "MAILERLITE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request5": {
+      "main": [
+        [
+          {
+            "node": "MAILERLITE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asignar datos TICKET": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-25T17:16:09.611Z",
+  "id": "H2AA5iWB42YgzRZS",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "WEBHOOK CERRADORES GERSSON",
+  "nodes": [
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "CART",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "CARRITO"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "bb92830a-473e-4eea-be99-613895b8d3ef",
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "PURCHASE_BILLET_PRINTED",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "TICKET"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "58cbfd42-520c-4408-b64c-bfcc89f08d2a",
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "PURCHASE_APPROVED",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "APROBADA"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "8fad3231-c87a-41f9-850b-9b2db22b39a4",
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "PURCHASE_CANCELED",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "RECHAZADOS"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "368691af-76b0-46bc-bd0c-4ad227301e92",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        520,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "98d33b2f-213d-47f2-a371-eea6200da8ea",
+              "name": "numero",
+              "value": "={{ $json.body.data.buyer.checkout_phone?$json.body.data.buyer.checkout_phone:null  }}",
+              "type": "string"
+            },
+            {
+              "id": "793c14fc-8fad-40ff-b61d-74b8303d8345",
+              "name": "nombre",
+              "value": "={{ $json.body.data.buyer.name?$json.body.data.buyer.name:null  }}",
+              "type": "string"
+            },
+            {
+              "id": "91dd8687-0c5f-4500-be93-273d95b33fad",
+              "name": "correo",
+              "value": "={{ $json.body.data.buyer.email?$json.body.data.buyer.email:null  }}",
+              "type": "string"
+            },
+            {
+              "id": "7ee4aa65-ac76-4c9b-bd0c-464aa8b1f419",
+              "name": "flujo",
+              "value": "compras",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "aeb8ca88-553d-4766-9677-cf6a5117cb91",
+      "name": "asignar datos COMPRA",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        800,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "98d33b2f-213d-47f2-a371-eea6200da8ea",
+              "name": "numero",
+              "value": "={{ $json.body.data.buyer.phone?$json.body.data.buyer.phone:null  }}",
+              "type": "string"
+            },
+            {
+              "id": "793c14fc-8fad-40ff-b61d-74b8303d8345",
+              "name": "nombre",
+              "value": "={{ $json.body.data.buyer.name?$json.body.data.buyer.name:null  }}",
+              "type": "string"
+            },
+            {
+              "id": "91dd8687-0c5f-4500-be93-273d95b33fad",
+              "name": "correo",
+              "value": "={{ $json.body.data.buyer.email?$json.body.data.buyer.email:null  }}",
+              "type": "string"
+            },
+            {
+              "id": "bc97ae8d-0182-4e22-967c-23a116480230",
+              "name": "flujo",
+              "value": "abandonados",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "45a48782-b474-4ffa-bf69-c70a7eca0078",
+      "name": "Asignar datos CARRITO",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        800,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://www.uchat.com.au/api/subscribers?phone=%2B{{ $json.numero }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer wotJVBUgJDmGjz4l0JCyToilK25AEHZTVPe1FRbMesI6THPVuRyuFTcL02W7"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f5476db6-da60-488b-81df-3fb182e1948b",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1520,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "83098b33-260f-4ea2-97ab-5c962a878dda",
+              "leftValue": "={{ $('HTTP Request2').all()[0].json.data }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "86f9a27b-6610-4895-8648-526defc8f4a0",
+      "name": "If5",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1700,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://www.uchat.com.au/api/subscriber/create",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer wotJVBUgJDmGjz4l0JCyToilK25AEHZTVPe1FRbMesI6THPVuRyuFTcL02W7"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "name",
+              "value": "={{ $('Code').first().json.nombre }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $('Code').first().json.numero }}"
+            },
+            {
+              "name": "gender",
+              "value": "male"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5d1c59e1-404b-49df-bdf8-b9dc27c43e07",
+      "name": "HTTP Request3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1920,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://www.uchat.com.au/api/subscriber/send-sub-flow",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer wotJVBUgJDmGjz4l0JCyToilK25AEHZTVPe1FRbMesI6THPVuRyuFTcL02W7"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "user_ns",
+              "value": "={{$('HTTP Request3').first().json.data.user_ns}}"
+            },
+            {
+              "name": "sub_flow_ns",
+              "value": "={{ $('Code').first().json.flujo }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5a8f06f9-3072-49e9-aff2-d45421cc5075",
+      "name": "HTTP Request4",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2140,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://www.uchat.com.au/api/subscriber/send-sub-flow",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer wotJVBUgJDmGjz4l0JCyToilK25AEHZTVPe1FRbMesI6THPVuRyuFTcL02W7"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "user_ns",
+              "value": "={{$('If5').first().json.data.first().user_ns}}"
+            },
+            {
+              "name": "sub_flow_ns",
+              "value": "={{ $('Code').first().json.flujo }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d288cf90-130e-4fd2-b98d-f7ddb45fba9e",
+      "name": "HTTP Request5",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2020,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const valores = {\n  numericos: {\n    abandonados: \"f129997s1063853\",\n    rechazados: \"f129997s1048609\",\n    compras: \"f129997s1049811\",\n    tickets: \"f129997s1053021\"\n  },\n  mailer: {\n    abandonados: \"112554445482493399\",\n    rechazados: \"112554438393071296\",\n    compras: \"112554427903116632\",\n    ticket: \"1\"\n  }\n};\n\nreturn {\n  json: {\n    numero: $json.numero,\n    nombre: $json.nombre,\n    correo: $json.correo,\n    flujo: valores.numericos[$json.flujo] || 0,\n    grupomailer: valores.mailer[$json.flujo] || 0\n  }\n};\n"
+      },
+      "id": "a89be918-1203-4a16-a93e-58ab7af79c2d",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1300,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "98d33b2f-213d-47f2-a371-eea6200da8ea",
+              "name": "numero",
+              "value": "={{ $json.body.data.buyer.checkout_phone?$json.body.data.buyer.checkout_phone:null  }}",
+              "type": "string"
+            },
+            {
+              "id": "793c14fc-8fad-40ff-b61d-74b8303d8345",
+              "name": "nombre",
+              "value": "={{ $json.body.data.buyer.name?$json.body.data.buyer.name:null  }}",
+              "type": "string"
+            },
+            {
+              "id": "91dd8687-0c5f-4500-be93-273d95b33fad",
+              "name": "correo",
+              "value": "={{ $json.body.data.buyer.email?$json.body.data.buyer.email:null  }}",
+              "type": "string"
+            },
+            {
+              "id": "fa1bd1b6-b606-4de1-a5cc-291bfa8ad403",
+              "name": "flujo",
+              "value": "rechazados",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7cbfee2e-dd46-40e7-9e85-c46c47e2eaa5",
+      "name": "Asignar datos RECHAZADOS",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        800,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://connect.mailerlite.com/api/subscribers",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiNjJkOWNjNDIwNmY2MjU3NmNlODlkZjI0ZjI2YTY3Y2I2YzBlMDU1ZTUyNjI3Mzk3ZDI5YzY4YzQ1ZDQ5ODA1MGIwN2U3YmI2MzRjMTdlMWIiLCJpYXQiOjE3MDczNDE5NzMuMTk4MDI2LCJuYmYiOjE3MDczNDE5NzMuMTk4MDI4LCJleHAiOjQ4NjMwMTU1NzMuMTk0NjIzLCJzdWIiOiI3ODg1NjciLCJzY29wZXMiOltdfQ.szhVxEi-fFJkTPNuE5xraeYUUhH_mh4c0fsqQCUoZD7lWk4FEmiKtO6KzqETU9wOjGPYw0hf0i08UzHAXJShiktN-Jd-X6EodonxdgqIYFae4Mfc11BNx8kunRotBESUN7gxeA0yvVSjXv-AuCZ-jjNuRjWFtXrAK237WqIZQoMmGdyrkt6-BLU0FcnksVxLHdliocY1LDisSAjJ3kUKEAVF2OLjI3Ks3SFxsuDcb4zeUgjqACBiYCreoKQKwPlyr1srybwnrbXZL302QtiV-t4jYogole8SwDtQP4El0kVbqkgEiadFcBLF-wNg5K5RNrvTdk-YucFbbKwTVlXH_NdwzgRqNjw9LUl4u7i6FGeiECYVI6ufZ39QTLbwEMaQ4Q2lC6CDt7baSVnT4ahthxN3tlAm49L_5bjAz9UYP3dNHhNX5jh3SeR-qp86TAP3sSyiCQnrHx9HKeyGzmwkXpSdEAl8wCg4jEpX9a3ajJuqfTbcoANyMxJQgqjedep8tAYwOPpnkOmfo45qf4txzIDVE1eeqKrB5_Y1hexB2VZObRMYmGVDyKXnyqJgdWjzOlbkcnoegkXQEkp2t3EyzD2H6S41G9c_0nNjlqgu1elCMFFrMgRXLi9_Op87Y5tCEi52cTUNQ2WSHWMHibEySLzNa873Vop9Gc_tugl9M9g"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "={{ $('Code').first().json.correo }}"
+            },
+            {
+              "name": "groups",
+              "value": "={{ [$('Code').first().json.grupomailer] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e71d3d7b-11b8-405c-8d2c-b47c2135b43b",
+      "name": "MAILERLITE",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2420,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "98d33b2f-213d-47f2-a371-eea6200da8ea",
+              "name": "numero",
+              "value": "={{ $json.body.data.buyer.checkout_phone?$json.body.data.buyer.checkout_phone:null  }}",
+              "type": "string"
+            },
+            {
+              "id": "793c14fc-8fad-40ff-b61d-74b8303d8345",
+              "name": "nombre",
+              "value": "={{ $json.body.data.buyer.name?$json.body.data.buyer.name:null  }}",
+              "type": "string"
+            },
+            {
+              "id": "91dd8687-0c5f-4500-be93-273d95b33fad",
+              "name": "correo",
+              "value": "={{ $json.body.data.buyer.email?$json.body.data.buyer.email:null  }}",
+              "type": "string"
+            },
+            {
+              "id": "bc97ae8d-0182-4e22-967c-23a116480230",
+              "name": "flujo",
+              "value": "tickets",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "73d7c6ef-8bf7-48b8-a325-1153ee63a2af",
+      "name": "Asignar datos TICKET",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        800,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/message/sendText/JUAN CARLOS",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "=429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"number\": \"120363284384113085@g.us\",\n    \"text\": \"💸 COMPRA DEL PRODUCTO {{ $('Webhook').first().json.body.data.product.name}} REALIZADA POR: {{ $('Webhook').first().json.body.data.buyer.checkout_phone}}, nombre: {{ $('Webhook').first().json.body.data.buyer.name}} y correo: {{ $('Webhook').first().json.body.data.buyer.email}}\", \n    \"linkPreview\": false\n}\n",
+        "options": {}
+      },
+      "id": "daf0e626-28a9-4b63-9eb6-105eb0c6a4f1",
+      "name": "Enviar texto SIN MENCION",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1160,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a3c0f0d9-2a6c-432c-a73e-9ee7b51ebf14",
+              "leftValue": "={{ $json.numero }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "01050a48-0eb7-4c75-890f-5644546b8a91",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1000,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hotmart",
+        "options": {}
+      },
+      "id": "c79a1b57-70e8-46fd-9787-03205d422952",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        320,
+        240
+      ],
+      "webhookId": "93f71d5a-f196-44cf-9f8c-9b6d94308933"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Jodd HTTP",
+            "content-length": "454",
+            "content-type": "application/json",
+            "x-forwarded-for": "54.204.181.219",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "0f86eb816a4d",
+            "x-hotmart-hottok": "6SJkhfjuD6Bm4cha7tF8loEMs92JzG11852721",
+            "x-real-ip": "54.204.181.219",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "data": {
+              "offer": {
+                "code": "h4vy1tzz"
+              },
+              "product": {
+                "name": "Terapia del Dolor",
+                "id": 1707154
+              },
+              "checkout_country": {
+                "iso": "PE",
+                "name": "Perú - Piruw"
+              },
+              "buyer_ip": "181.176.85.141",
+              "affiliate": true,
+              "buyer": {
+                "name": "Cecilia Mily Chingo Vásquez ",
+                "email": "cceciliamily@gmail.com"
+              }
+            },
+            "hottok": "6SJkhfjuD6Bm4cha7tF8loEMs92JzG11852721",
+            "id": "bd4da52f-093c-4861-b3a7-d6c4132913b2",
+            "creation_date": 1732801315009,
+            "event": "PURCHASE_OUT_OF_SHOPPING_CART",
+            "version": "2.0.0"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/hotmart",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-11-30T05:51:15.000Z",
+  "versionId": "305ade2b-14de-42ce-904a-463d9567336a"
+}
