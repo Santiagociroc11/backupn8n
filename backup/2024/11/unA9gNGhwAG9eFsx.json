@@ -1,0 +1,799 @@
+{
+  "active": true,
+  "connections": {
+    "Crear contacto": {
+      "main": [
+        [
+          {
+            "node": "Crear conversación",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar contacto": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Crear contacto",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "listar conversaciones1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "listar conversaciones1": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Crear Mensaje Entrante",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Crear conversación1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crear conversación1": {
+      "main": [
+        [
+          {
+            "node": "Crear Mensaje Entrante1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crear conversación": {
+      "main": [
+        [
+          {
+            "node": "Crear Mensaje Entrante2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Buscar contacto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-17T03:34:51.071Z",
+  "id": "unA9gNGhwAG9eFsx",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "ChatWoot WEBHOOKS evolutionAPI",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n-chatwoot.wc2hpx.easypanel.host/api/v1/accounts/1/conversations/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "rWMPhFiwaoG2ark9Yc1Qn4PB"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"inbox_id\": \"1\",\n  \"contact_id\": \"{{ $('Crear contacto').first().json.payload.contact.id }}\",\n  \"status\": \"open\"\n}",
+        "options": {}
+      },
+      "id": "057438d6-dc72-4168-aa2c-0fc4d163ad90",
+      "name": "Crear conversación",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1740,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n-chatwoot.wc2hpx.easypanel.host/api/v1/accounts/1/contacts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "rWMPhFiwaoG2ark9Yc1Qn4PB"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"inbox_id\": 1,\n  \"name\": \"+{{ $('Webhook').first().json.body.data.key.remoteJid.replace(/:\\d+/, '').split('@')[0] }}\",\n  \"phone_number\": \"+{{ $('Webhook').first().json.body.data.key.remoteJid.replace(/:\\d+/, '').split('@')[0] }}\"\n}",
+        "options": {}
+      },
+      "id": "6727a932-4f6f-4937-b1c2-5d52bd68e703",
+      "name": "Crear contacto",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1540,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n-chatwoot.wc2hpx.easypanel.host/api/v1/accounts/1/contacts/filter",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "rWMPhFiwaoG2ark9Yc1Qn4PB"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"payload\": [\n    {\n      \"attribute_key\": \"name\",\n      \"filter_operator\": \"equal_to\",\n      \"values\": [\n        \"+{{ $('Webhook').first().json.body.data.key.remoteJid.replace(/:\\d+/, '').split('@')[0] }}\"\n      ],\n      \"query_operator\": null\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "b0bf4d7e-19bd-4969-b94b-aa6a9a7058ab",
+      "name": "Buscar contacto",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1100,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "353f6ad2-61e2-4bf7-85ee-dc1cbcdc785a",
+              "leftValue": "={{ $json.payload }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "9e68cdf3-7a39-4f10-aec5-a06aaa3f14d9",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1300,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://n8n-chatwoot.wc2hpx.easypanel.host/api/v1/accounts/1/conversations",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "rWMPhFiwaoG2ark9Yc1Qn4PB"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "73580616-65ce-43dd-b4f9-7f9a0218eb19",
+      "name": "listar conversaciones1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1560,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "\n\nconst response = items[0].json;  // Obtiene el JSON de la respuesta de la API\n\nconst number = $('Webhook').first().json.body.data.key.remoteJid.replace(/:\\d+/, '').split('@')[0];\n\nconst contactName = \"+\" + number;  // Nombre o teléfono que deseas buscar\n\n// Iterar sobre las conversaciones en el payload\nconst conversation = response.data.payload.find(item => item.meta.sender.name === contactName);\n\n// Verificar si la conversación fue encontrada\nif (conversation) {\n  return {\n    json: {\n      conversation_id: conversation.id  // Retornar el id de la conversación encontrada\n    }\n  };\n} else {\n  return {\n    json: {\n      conversation_id: null  // Si no se encuentra, retornar null\n    }\n  };\n}\n"
+      },
+      "id": "24b7530f-fd62-4f58-9dfe-8d1be2608d92",
+      "name": "Code1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1740,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://n8n-chatwoot.wc2hpx.easypanel.host/api/v1/accounts/1/conversations/{{ $('Code1').first().json.conversation_id }}/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "rWMPhFiwaoG2ark9Yc1Qn4PB"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"content\": \"{{ $('Webhook').first().json.body.data.message.conversation.replace(/\\\\/g, \"\\\\\\\\\").replace(/\\n/g, \"\\\\n\").replace(/\"/g, '\\\\\"') }}\",\n  \"message_type\": \"{{ $('Webhook').first().json.body.data.key?.fromMe? \"outgoing\": \"incoming\" }}\"\n}",
+        "options": {}
+      },
+      "id": "fdcb30ff-8630-4e16-afc3-8e65c8aaced8",
+      "name": "Crear Mensaje Entrante",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2180,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "755c77fc-a3e8-45c7-81d2-12d605e7c1e4",
+              "leftValue": "={{ $('Code1').first().json.conversation_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "31ea763e-dfa0-4e98-bda9-3b2714cd5eeb",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1940,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n-chatwoot.wc2hpx.easypanel.host/api/v1/accounts/1/conversations/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "rWMPhFiwaoG2ark9Yc1Qn4PB"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"inbox_id\": \"1\",\n  \"contact_id\": \"{{ $('Buscar contacto').first().json.payload.first().id }}\",\n  \"status\": \"open\"\n}",
+        "options": {}
+      },
+      "id": "c3b5e7c7-bfa0-4645-8b14-485a4c0cd816",
+      "name": "Crear conversación1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2180,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://n8n-chatwoot.wc2hpx.easypanel.host/api/v1/accounts/1/conversations/{{ $('Crear conversación1').first().json.id }}/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "rWMPhFiwaoG2ark9Yc1Qn4PB"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"content\": \"{{ $('Webhook').first().json.body.data.message.conversation.replace(/\\\\/g, \"\\\\\\\\\").replace(/\\n/g, \"\\\\n\").replace(/\"/g, '\\\\\"') }}\",\n  \"message_type\": \"{{ $('Webhook').first().json.body.data.key?.fromMe? \"outgoing\": \"incoming\" }}\"\n}",
+        "options": {}
+      },
+      "id": "eb34f9e5-1ac2-4240-b980-976356f960da",
+      "name": "Crear Mensaje Entrante1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2400,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://n8n-chatwoot.wc2hpx.easypanel.host/api/v1/accounts/1/conversations/{{ $('Crear conversación').first().json.id }}/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "rWMPhFiwaoG2ark9Yc1Qn4PB"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"content\": \"{{ $('Webhook').first().json.body.data.message.conversation.replace(/\\\\/g, \"\\\\\\\\\").replace(/\\n/g, \"\\\\n\").replace(/\"/g, '\\\\\"') }}\",\n  \"message_type\": \"{{ $('Webhook').first().json.body.data.key?.fromMe? \"outgoing\": \"incoming\" }}\"\n}",
+        "options": {}
+      },
+      "id": "21355ef5-fdd2-46ab-a8ab-6444db4ecf3e",
+      "name": "Crear Mensaje Entrante2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1920,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "07bc149d-edc5-4eff-9b18-e7e71dc114d6",
+              "leftValue": "={{ $('Webhook').first().json.body.data.message.conversation }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "bc3d37de-530e-4315-82e9-2704d35ddee7",
+      "name": "If2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        840,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6f5958ad-f5fa-455d-ad2e-45c0c0c61099",
+              "leftValue": "={{ $('Webhook1').first().json.body.message_type }}",
+              "rightValue": "outgoing",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "792fa5c4-f49e-4668-bbec-d11e093e073d",
+      "name": "If3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        800,
+        720
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/message/sendText/C UÑAS1",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "=429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $json.body.conversation.meta.sender.phone_number }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.body.conversation.messages[0].content }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8f92bfb4-cfec-4737-b0ee-cf236a48929a",
+      "name": "Enviar texto",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1000,
+        680
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "apievolution-1-salientes",
+        "options": {
+          "noResponseBody": true
+        }
+      },
+      "id": "3c0a41b0-5b44-4591-8934-b83f1ba84a6f",
+      "name": "Webhook1",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        580,
+        720
+      ],
+      "webhookId": "5284586e-2154-42f3-9c39-5bb37e5997c5"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "chatwoot-1",
+        "options": {}
+      },
+      "id": "4cf08439-f11c-4a71-b114-878ce1fde386",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        600,
+        380
+      ],
+      "webhookId": "1afafdd1-d19e-41e7-a298-f95342dc842e"
+    }
+  ],
+  "pinData": {
+    "Webhook1": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "rest-client/2.1.0 (linux-musl x86_64) ruby/3.3.3p89",
+            "content-length": "2130",
+            "accept": "application/json",
+            "accept-encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+            "content-type": "application/json",
+            "x-forwarded-for": "172.18.0.1",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "0f86eb816a4d",
+            "x-real-ip": "172.18.0.1"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "account": {
+              "id": 1,
+              "name": "Agencia X"
+            },
+            "additional_attributes": {},
+            "content_attributes": {},
+            "content_type": "text",
+            "content": ".",
+            "conversation": {
+              "additional_attributes": {},
+              "can_reply": true,
+              "channel": "Channel::Api",
+              "contact_inbox": {
+                "id": 3685,
+                "contact_id": 1633,
+                "inbox_id": 1,
+                "source_id": "d7ff6fd2-094e-4762-a280-342205b44e2e",
+                "created_at": "2024-11-19T23:21:34.954Z",
+                "updated_at": "2024-11-19T23:21:34.954Z",
+                "hmac_verified": false,
+                "pubsub_token": "UgDWsM5cG8YsW8oDkvm1E44u"
+              },
+              "id": 2053,
+              "inbox_id": 1,
+              "messages": [
+                {
+                  "id": 5090,
+                  "content": ".",
+                  "account_id": 1,
+                  "inbox_id": 1,
+                  "conversation_id": 2053,
+                  "message_type": 1,
+                  "created_at": 1732058692,
+                  "updated_at": "2024-11-19T23:24:52.981Z",
+                  "private": false,
+                  "status": "sent",
+                  "source_id": null,
+                  "content_type": "text",
+                  "content_attributes": {},
+                  "sender_type": "User",
+                  "sender_id": 1,
+                  "external_source_ids": {},
+                  "additional_attributes": {},
+                  "processed_message_content": ".",
+                  "sentiment": {},
+                  "conversation": {
+                    "assignee_id": 1,
+                    "unread_count": 0,
+                    "last_activity_at": 1732058692,
+                    "contact_inbox": {
+                      "source_id": "d7ff6fd2-094e-4762-a280-342205b44e2e"
+                    }
+                  },
+                  "sender": {
+                    "id": 1,
+                    "name": "santiago ciro",
+                    "available_name": "santiago ciro",
+                    "avatar_url": "",
+                    "type": "user",
+                    "availability_status": null,
+                    "thumbnail": ""
+                  }
+                }
+              ],
+              "labels": [],
+              "meta": {
+                "sender": {
+                  "additional_attributes": {},
+                  "custom_attributes": {},
+                  "email": null,
+                  "id": 1633,
+                  "identifier": null,
+                  "name": "+5213141985220",
+                  "phone_number": "+5213141985220",
+                  "thumbnail": "",
+                  "type": "contact"
+                },
+                "assignee": {
+                  "id": 1,
+                  "name": "santiago ciro",
+                  "available_name": "santiago ciro",
+                  "avatar_url": "",
+                  "type": "user",
+                  "availability_status": null,
+                  "thumbnail": ""
+                },
+                "team": null,
+                "hmac_verified": false
+              },
+              "status": "open",
+              "custom_attributes": {},
+              "snoozed_until": null,
+              "unread_count": 0,
+              "first_reply_created_at": "2024-11-19T23:22:23.786Z",
+              "priority": null,
+              "waiting_since": 0,
+              "agent_last_seen_at": 1732058692,
+              "contact_last_seen_at": 0,
+              "last_activity_at": 1732058692,
+              "timestamp": 1732058692,
+              "created_at": 1732058494
+            },
+            "created_at": "2024-11-19T23:24:52.981Z",
+            "id": 5090,
+            "inbox": {
+              "id": 1,
+              "name": "GERSSON"
+            },
+            "message_type": "outgoing",
+            "private": false,
+            "sender": {
+              "id": 1,
+              "name": "santiago ciro",
+              "email": "santiago@automscc.com",
+              "type": "user"
+            },
+            "source_id": null,
+            "event": "message_created"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook-test/apievolution-1-salientes",
+          "executionMode": "test"
+        }
+      }
+    ],
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "axios/1.7.7",
+            "content-length": "643",
+            "accept-encoding": "gzip, compress, deflate, br",
+            "content-type": "application/json",
+            "x-forwarded-for": "172.18.0.1",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "45486f40f7ee",
+            "x-real-ip": "172.18.0.1"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "event": "messages.upsert",
+            "instance": "C UÑAS1",
+            "data": {
+              "key": {
+                "remoteJid": "573166013400@s.whatsapp.net",
+                "fromMe": false,
+                "id": "3EB0E39A2D3E5A062A40213A1F05DA387B39FBD3"
+              },
+              "pushName": "Daniela Asesora",
+              "status": "DELIVERY_ACK",
+              "message": {
+                "conversation": "BOTMIERDA3"
+              },
+              "contextInfo": null,
+              "messageType": "conversation",
+              "messageTimestamp": 1731823290,
+              "instanceId": "42b56e07-4b95-496f-b5dd-f9799836cfba",
+              "source": "unknown"
+            },
+            "destination": "https://n8n.automscc.com/webhook/chatwoot-1",
+            "date_time": "2024-11-17T03:01:30.390Z",
+            "sender": "573207581484@s.whatsapp.net",
+            "server_url": "http://evolution.automscc.com",
+            "apikey": "6E093593B610-4579-BB06-575984D22867"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/chatwoot-1",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2024-11-19T23:45:06.000Z",
+  "versionId": "79601b80-8ddf-44d2-9bd2-afd9dcd15d65"
+}
