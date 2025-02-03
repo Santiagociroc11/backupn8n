@@ -1,0 +1,679 @@
+{
+  "active": false,
+  "connections": {
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        []
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-15T18:16:21.290Z",
+  "id": "dnPjfCrus5jhxYWs",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "🟢 [ADRI] ESCRITURA DE GRUPOS",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ffaf95ee-b40d-432a-9617-9c7a4dff4ed5",
+              "name": "grupo",
+              "value": "={{ $json.body.data.id }}",
+              "type": "string"
+            },
+            {
+              "id": "e3a70e61-aa10-4899-baff-8492afba8c37",
+              "name": "numero",
+              "value": "={{ $json.body.data.participants[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "05f7d46c-8fc2-4fc3-8cfe-c7cc00bed18b",
+              "name": "accion",
+              "value": "={{ $json.body.data.action }}",
+              "type": "string"
+            },
+            {
+              "id": "74f6ad94-1242-4c66-8457-fdfe7f9989b3",
+              "name": "instancia",
+              "value": "fran",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "82b745e8-707c-4ef7-92f4-c264aa413deb",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1160,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c3ed79f5-9832-4354-ad38-2b7612c87557",
+              "leftValue": "={{ $json.accion }}",
+              "rightValue": "/add/",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "04bc612d-33e1-4d75-9ee5-d09095cf4082",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1320,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "ADRIANA_LINKS",
+          "mode": "list",
+          "cachedResultName": "ADRIANA_LINKS"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $json.grupo }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "41e7cae6-1cd5-46f3-a21c-f8bc125da418",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1520,
+        520
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8d2037fa-e2a7-4668-901e-4ca0a27a93ab",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a01d6385-e879-4e4a-a4a4-ca56c91f317b",
+      "name": "If3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1680,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1iUJJOE_XYXc8sW_va5-p1sakjdOwgmMDbU41Ecs-lm0/edit?gid=708107600#gid=708107600",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1iUJJOE_XYXc8sW_va5-p1sakjdOwgmMDbU41Ecs-lm0/edit?gid=708107600#gid=708107600",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "GRUPO": "={{ $('Edit Fields').item.json.grupo }}",
+            "WHATSAPP": "=+{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}",
+            "DIA": "={{ new Date().toLocaleString(\"es-CO\", { timeZone: \"America/Bogota\", year: \"numeric\", month: \"2-digit\", day: \"2-digit\" }) }}",
+            "HORA": "={{ new Date().toLocaleTimeString(\"es-CO\", { timeZone: \"America/Bogota\", hour12: false, hour: \"2-digit\", minute: \"2-digit\", second: \"2-digit\" }).replace(/^24/, \"00\") }}",
+            "FUENTE": "FB ADS",
+            "NOMBRE GRUPO": "={{ $('HTTP Request').item.json.subject }}"
+          },
+          "matchingColumns": [
+            "WHATSAPP"
+          ],
+          "schema": [
+            {
+              "id": "DIA",
+              "displayName": "DIA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "HORA",
+              "displayName": "HORA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "WHATSAPP",
+              "displayName": "WHATSAPP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "GRUPO",
+              "displayName": "GRUPO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "NOMBRE GRUPO",
+              "displayName": "NOMBRE GRUPO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "FUENTE",
+              "displayName": "FUENTE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b255d718-eed7-4b1e-951b-58af087e4aac",
+      "name": "Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2080,
+        360
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "webhooks-wha-fran",
+        "options": {}
+      },
+      "id": "15a772c4-6484-418b-b499-f0a540e96fec",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        980,
+        540
+      ],
+      "webhookId": "c3126966-4c75-41b8-95e0-9e03d12aa714"
+    },
+    {
+      "parameters": {
+        "url": "=https://evolution.automscc.com/group/findGroupInfos/{{ $('Edit Fields').item.json.instancia }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "groupJid",
+              "value": "={{ $json.id }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1900,
+        360
+      ],
+      "id": "a11e2803-0628-4683-af5a-52dddb837798",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "ADRIANA_LINKS_ORG",
+          "mode": "list",
+          "cachedResultName": "ADRIANA_LINKS_ORG"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $('If').item.json.grupo }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c5c0e80e-e51d-4d76-91c2-803e0a7421c5",
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1880,
+        660
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8d2037fa-e2a7-4668-901e-4ca0a27a93ab",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "14b4cea2-1ee0-4d34-a694-0471affafc31",
+      "name": "If4",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2040,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1iUJJOE_XYXc8sW_va5-p1sakjdOwgmMDbU41Ecs-lm0/edit?gid=592796758#gid=592796758",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1iUJJOE_XYXc8sW_va5-p1sakjdOwgmMDbU41Ecs-lm0/edit?gid=592796758#gid=592796758",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "GRUPO": "={{ $('Edit Fields').item.json.grupo }}",
+            "WHATSAPP": "=+{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}",
+            "DIA": "={{ new Date().toLocaleString(\"es-CO\", { timeZone: \"America/Bogota\", year: \"numeric\", month: \"2-digit\", day: \"2-digit\" }) }}",
+            "HORA": "={{ new Date().toLocaleTimeString(\"es-CO\", { timeZone: \"America/Bogota\", hour12: false, hour: \"2-digit\", minute: \"2-digit\", second: \"2-digit\" }).replace(/^24/, \"00\") }}",
+            "NOMBRE GRUPO": "={{ $('HTTP Request1').item.json.subject }}",
+            "FUENTE": "ORG"
+          },
+          "matchingColumns": [
+            "WHATSAPP"
+          ],
+          "schema": [
+            {
+              "id": "DIA",
+              "displayName": "DIA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "HORA",
+              "displayName": "HORA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "WHATSAPP",
+              "displayName": "WHATSAPP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "GRUPO",
+              "displayName": "GRUPO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "NOMBRE GRUPO",
+              "displayName": "NOMBRE GRUPO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "FUENTE",
+              "displayName": "FUENTE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "93d6f398-8399-4cdb-8885-e392bfc746c2",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2400,
+        580
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://evolution.automscc.com/group/findGroupInfos/{{ $('Edit Fields').item.json.instancia }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "groupJid",
+              "value": "={{ $json.id }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2220,
+        580
+      ],
+      "id": "e10478d5-e5fb-4d7d-9a4e-cf4cea394ea9",
+      "name": "HTTP Request1"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "axios/1.7.7",
+            "content-length": "406",
+            "accept-encoding": "gzip, compress, deflate, br",
+            "content-type": "application/json",
+            "x-forwarded-for": "172.18.0.1",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "0f86eb816a4d",
+            "x-real-ip": "172.18.0.1"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "event": "group-participants.update",
+            "instance": "fran",
+            "data": {
+              "id": "120363370311322300@g.us",
+              "author": "",
+              "participants": [
+                "573136062300@s.whatsapp.net"
+              ],
+              "action": "add"
+            },
+            "destination": "https://n8n.automscc.com/webhook/webhooks-wha-fran",
+            "date_time": "2025-01-15T21:41:15.421Z",
+            "sender": "573218504711@s.whatsapp.net",
+            "server_url": "http://evolution.automscc.com",
+            "apikey": "05122F14E37B-4AC4-AF45-02CFD55CEEB7"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/webhooks-wha-fran",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-01-24T06:35:22.000Z",
+  "versionId": "6795b7e7-6707-4191-94fc-fb6cd347f322"
+}
