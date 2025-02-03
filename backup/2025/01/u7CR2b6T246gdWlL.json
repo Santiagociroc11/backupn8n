@@ -1,0 +1,513 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-27T16:05:08.928Z",
+  "id": "u7CR2b6T246gdWlL",
+  "meta": null,
+  "name": "[GERSSON] TRACKEO DE VENTAS HOTMART",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hotmart-gersson-ventas",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -500,
+        -40
+      ],
+      "id": "e0e94a10-c406-40f9-959a-3cf5d0b656f3",
+      "name": "Webhook",
+      "webhookId": "d7c48085-5290-468a-bdb8-f9828d72a831"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1SRp6OiE0XlAfLh1Zn_DXPOfy9wA_yPqatGAnELG3KLE/edit?gid=487045029#gid=487045029",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1SRp6OiE0XlAfLh1Zn_DXPOfy9wA_yPqatGAnELG3KLE/edit?gid=487045029#gid=487045029",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "Transacción"
+          ],
+          "schema": [
+            {
+              "id": "producto",
+              "displayName": "producto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "coproducción activa",
+              "displayName": "coproducción activa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "correo",
+              "displayName": "correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "nombre",
+              "displayName": "nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "telefono",
+              "displayName": "telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "pais",
+              "displayName": "pais",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "comision hotmart",
+              "displayName": "comision hotmart",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "parte productor",
+              "displayName": "parte productor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "valor producto",
+              "displayName": "valor producto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "VALOR",
+              "displayName": "VALOR",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "VALOR DESPUES DE HOTMART",
+              "displayName": "VALOR DESPUES DE HOTMART",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Transacción",
+              "displayName": "Transacción",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Comisión Coproductor",
+              "displayName": "Comisión Coproductor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "fecha",
+              "displayName": "fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        400,
+        -60
+      ],
+      "id": "c5af5793-07f9-4628-b819-7ab5cb172c5f",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -280,
+        -40
+      ],
+      "id": "e9cf4c05-dc66-4cb0-9443-e683f31967bc",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "25f4a5ff-c1d6-4209-953a-7c18ef4ddc99",
+              "name": "producto",
+              "value": "={{ $json.data.product.name }}",
+              "type": "string"
+            },
+            {
+              "id": "a7f92ef5-3505-491d-98e0-b69c2beeb858",
+              "name": "coproducción activa",
+              "value": "={{ $json.data.product.has_co_production }}",
+              "type": "boolean"
+            },
+            {
+              "id": "5890810b-53a9-4b5d-b23a-35b627d445ff",
+              "name": "correo",
+              "value": "={{ $json.data.buyer.email }}",
+              "type": "string"
+            },
+            {
+              "id": "b4033946-f611-442d-8a4a-12368dc5549f",
+              "name": "nombre",
+              "value": "={{ $json.data.buyer.name }}",
+              "type": "string"
+            },
+            {
+              "id": "9ea3ff08-1a8d-489a-bef7-2c7807473059",
+              "name": "telefono",
+              "value": "={{ $json.data.buyer.checkout_phone }}",
+              "type": "string"
+            },
+            {
+              "id": "97558f09-72cb-45d6-9b0c-88b4156e4814",
+              "name": "pais",
+              "value": "={{ $json.data.buyer.address.country }}",
+              "type": "string"
+            },
+            {
+              "id": "68a8ce18-fc89-476c-a314-df126129c832",
+              "name": "comision hotmart",
+              "value": "={{ $json.data.commissions[0].value }}",
+              "type": "number"
+            },
+            {
+              "id": "8bbb5436-13db-46a1-a010-38df9b0a0389",
+              "name": "parte productor",
+              "value": "={{ $json.data.commissions[1].value }}",
+              "type": "number"
+            },
+            {
+              "id": "cb21091d-3c56-46f1-92ec-008bca9d4858",
+              "name": "valor producto",
+              "value": "={{ $json.data.purchase.original_offer_price.value }}",
+              "type": "number"
+            },
+            {
+              "id": "29122817-28ff-4dde-a831-c41c95bae0a0",
+              "name": "Transacción",
+              "value": "={{ $json.data.purchase.transaction }}",
+              "type": "string"
+            },
+            {
+              "id": "c9105dd0-a611-458e-90ea-067a0538b62a",
+              "name": "fecha",
+              "value": "={{ $json.data.purchase.approved_date.toDateTime('ms').format('dd-MM-yyyy HH:mm:ss') }}",
+              "type": "string"
+            },
+            {
+              "id": "60169604-8475-429b-b65b-08da02e5d8c8",
+              "name": "oferta",
+              "value": "={{ $json.data.purchase.offer.code }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -80,
+        -40
+      ],
+      "id": "b1ed6d9c-b16f-40b9-8385-4af2e371c097",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "86765f19-f5cf-43a7-a3f7-de1ddce62933",
+              "leftValue": "={{ $json[\"coproducción activa\"] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        140,
+        -40
+      ],
+      "id": "c208df9d-71e1-4deb-af42-73153c4b5677",
+      "name": "If"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Jodd HTTP",
+            "content-length": "1365",
+            "content-type": "application/json",
+            "x-forwarded-for": "100.27.244.124",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "0f86eb816a4d",
+            "x-hotmart-hottok": "6SJkhfjuD6Bm4cha7tF8loEMs92JzG11852721",
+            "x-real-ip": "100.27.244.124",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "data": {
+              "product": {
+                "has_co_production": true,
+                "name": "Sanar con Imanes",
+                "id": 2584300,
+                "ucode": "3f646245-863e-4287-98fd-422437484163"
+              },
+              "commissions": [
+                {
+                  "currency_value": "USD",
+                  "source": "MARKETPLACE",
+                  "value": 2.97
+                },
+                {
+                  "currency_conversion": {
+                    "converted_value": 4.92,
+                    "converted_to_currency": "USD",
+                    "conversion_rate": 1
+                  },
+                  "currency_value": "USD",
+                  "source": "PRODUCER",
+                  "value": 4.92
+                }
+              ],
+              "purchase": {
+                "original_offer_price": {
+                  "currency_value": "USD",
+                  "value": 30.66
+                },
+                "subscription_anticipation_purchase": false,
+                "checkout_country": {
+                  "iso": "MX",
+                  "name": "Mexico"
+                },
+                "origin": {
+                  "xcod": "9b73d4d1-c8c6-4ec8-9aba-2ca7b135af9f"
+                },
+                "order_bump": {
+                  "is_order_bump": false
+                },
+                "approved_date": 1738534531000,
+                "offer": {
+                  "code": "wokrsz9w"
+                },
+                "order_date": 1738534529000,
+                "price": {
+                  "currency_value": "MXN",
+                  "value": 649
+                },
+                "buyer_ip": "189.217.49.56",
+                "payment": {
+                  "installments_number": 6,
+                  "type": "CREDIT_CARD"
+                },
+                "full_price": {
+                  "currency_value": "MXN",
+                  "value": 833.52
+                },
+                "invoice_by": "HOTMART",
+                "transaction": "HP4220224249",
+                "status": "APPROVED"
+              },
+              "affiliates": [
+                {
+                  "affiliate_code": "",
+                  "name": ""
+                }
+              ],
+              "producer": {
+                "name": "MAGNETIC THERAPY ACADEMY LLC"
+              },
+              "buyer": {
+                "address": {
+                  "country": "Mexico",
+                  "country_iso": "MX"
+                },
+                "document": "",
+                "name": "Héctor Jesús De la Rosa Olivar",
+                "checkout_phone": "525540443352",
+                "email": "gpoholistico77@gmail.com"
+              }
+            },
+            "id": "c52b4747-3d79-4a0c-9a36-8e615986e462",
+            "creation_date": 1738534536262,
+            "event": "PURCHASE_APPROVED",
+            "version": "2.0.0"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/hotmart-gersson-ventas",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-02-02T23:13:04.000Z",
+  "versionId": "98b7d4b7-58bc-476e-bc0f-762ea5317c04"
+}
