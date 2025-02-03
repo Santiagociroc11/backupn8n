@@ -1,0 +1,1126 @@
+{
+  "active": true,
+  "connections": {
+    "TablaInst": {
+      "main": [
+        [
+          {
+            "node": "BodyInst",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Form2": {
+      "main": [
+        [
+          {
+            "node": "Variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "TablaInst",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BodyInst": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UnicosSql": {
+      "main": [
+        [
+          {
+            "node": "JsonSql",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JsonSql": {
+      "main": [
+        [
+          {
+            "node": "BodySql",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "UnicosSql",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BodySql": {
+      "main": [
+        [
+          {
+            "node": "Form2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Variables": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Form1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Procesado": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tipo de mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Procesado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SUBIR": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "SUBIR",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tipo de mensaje": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "CAMBIANOMBRE",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "CAMBIADESCRIPCION",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "CAMBIANOMBRE2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PROMOVER": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PROMOVER1": {
+      "main": [
+        [
+          {
+            "node": "PROMOVER",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "PROMOVER1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CAMBIANOMBRE": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CAMBIANOMBRE2": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CAMBIADESCRIPCION": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Procesado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL2": {
+      "main": [
+        []
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "MySQL2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-10T00:15:12.628Z",
+  "id": "xo0CrkHXNl7MHow0",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[Tool] AJUSTES GRUPOS",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3ce61d2a-015a-452b-afd8-c993e37ce897",
+              "name": "Url Evolution API",
+              "value": "https://evolution.automscc.com/",
+              "type": "string"
+            },
+            {
+              "id": "5e949047-3af3-472c-b1ba-0141716387ee",
+              "name": "Apikey Evolution API",
+              "value": "429683C4C977415CAAFCCE10F7D57E11",
+              "type": "string"
+            },
+            {
+              "id": "5169ae17-73eb-4f0a-9c63-eef1aa533e65",
+              "name": "Instancia Evolution API",
+              "value": "={{ $json['Que instancia usarás?'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "56d75fda-20fc-4320-a900-15b6972d577c",
+      "name": "Variables",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        3500,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extraer solo los nombres\nconst instanceNames = $('HTTP Request').all().map(item => ({option: item.json.name}));\n\n// Devolver el resultado como un único objeto JSON con un array de opciones\nreturn [{ json: { options: instanceNames } }];\n"
+      },
+      "id": "9c72a0a4-acac-4283-a6e8-e2dfee8e58f3",
+      "name": "TablaInst",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2520,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "defineForm": "json",
+        "jsonOutput": "=[ {{ $('BodyInst').all()[0].json.toJsonString() }} , {{ $('BodySql').all()[0].json.toJsonString() }}\n]",
+        "options": {
+          "buttonLabel": "ENVIAR"
+        }
+      },
+      "id": "8ec7d935-d403-4e79-81fa-5054bddbf626",
+      "name": "Form2",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        3360,
+        220
+      ],
+      "webhookId": "d3cb8184-bac1-4dd9-9b99-bdd0c23cb00b"
+    },
+    {
+      "parameters": {
+        "url": "=https://evolution.automscc.com/instance/fetchInstances",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e37d2e98-42be-4907-9922-c5e293985bdd",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2380,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Accede a los datos de entrada desde los nodos anteriores\nconst inputData1 = $('TablaInst').first().json.options; // Primer conjunto de opciones\n\n// Inicializa un arreglo para las preguntas\nconst outputData = [];\n\n// Crea el objeto para la primera pregunta\nconst question1 = {\n  \"fieldLabel\": \"Que instancia usarás?\",\n  \"fieldType\": \"dropdown\",\n  \"fieldOptions\": {\n    \"values\": []\n  },\n  \"requiredField\": true\n};\n\n// Agrega las opciones de la primera pregunta\ninputData1.forEach(option => {\n  question1.fieldOptions.values.push( option ); // Asegúrate de que 'option' es el valor de la opción\n});\n\n\n// Agrega la pregunta al arreglo de salida\noutputData.push(question1);\n\n// Retorna el arreglo de objetos como una sola salida JSON\nreturn outputData;\n"
+      },
+      "id": "c919c2f9-0e82-4041-89fd-9798a64362fd",
+      "name": "BodyInst",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2660,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Accede a los datos de entrada desde los nodos anteriores\nconst tables = $input.all(); // Obtiene todos los elementos de entrada\n\n// Verifica que 'tables' contenga al menos un elemento y extrae los nombres de las tablas\nconst tableNames = tables.map(item => item.json[\"Tables_in_n8n\"]);\n\n// Elimina duplicados usando un Set\nconst uniqueTableNames = [...new Set(tableNames)];\n\n// Crea un nuevo arreglo de salida con los nombres únicos\nconst outputData = uniqueTableNames.map(name => {\n  return {\n    table_name: name\n  };\n});\n\n// Retorna el arreglo de objetos como una salida JSON\nreturn outputData;\n"
+      },
+      "id": "b60e83c4-c4cf-40b4-a7a1-cc82aac26b51",
+      "name": "UnicosSql",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2940,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extraer solo los nombres de las tablas y convertirlos al formato deseado\nconst tableNames = items.map(item => ({\n    option: item.json.table_name\n}));\n\n// Devolver el resultado como un único objeto JSON con un array de opciones\nreturn [{ json: { options: tableNames } }];\n"
+      },
+      "id": "2a0aee78-49de-4f88-8e65-0b94145f5e38",
+      "name": "JsonSql",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3080,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "show TABLES",
+        "options": {}
+      },
+      "id": "1dd7f70e-32da-4787-ad50-5e9e2303ad4c",
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        2800,
+        220
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "steiUYgtMeBLjkId",
+          "name": "N8N"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "\nconst inputData2 = $('JsonSql').first().json.options; // Primer conjunto de opciones\n\n// Inicializa un arreglo para las preguntas\nconst outputData = [];\n\n\n// Crea el objeto para la primera pregunta\nconst question2 = {\n  \"fieldLabel\": \"Que tabla?\",\n  \"fieldType\": \"dropdown\",\n  \"fieldOptions\": {\n    \"values\": []\n  },\n  \"requiredField\": false\n};\n\n// Agrega las opciones de la primera pregunta\ninputData2.forEach(option => {\n  question2.fieldOptions.values.push( option ); // Asegúrate de que 'option' es el valor de la opción\n});\n\n// Agrega la pregunta al arreglo de salida\noutputData.push(question2);\n\n// Retorna el arreglo de objetos como una sola salida JSON\nreturn outputData;\n"
+      },
+      "id": "0789f1b7-1d09-49c4-8da0-532efa7af361",
+      "name": "BodySql",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3220,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "={{ $('Form2').item.json['Que tabla?'] }}",
+          "mode": "name"
+        },
+        "limit": 1000,
+        "options": {}
+      },
+      "id": "2d12d341-7192-492b-9f93-bc9f671c1a17",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        3640,
+        220
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "steiUYgtMeBLjkId",
+          "name": "N8N"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formTitle": "MODIFICACIÓN DE GRUPOS",
+        "formDescription": "llena la información del envío, en la siguiente pantalla se cargará la sesión y la tabla a usar.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "TIPO DE ACCIÓN",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "AGREGAR ADMIN"
+                  },
+                  {
+                    "option": "MODIFICAR NOMBRE"
+                  },
+                  {
+                    "option": "MODIFICAR DESCRIPCIÓN"
+                  },
+                  {
+                    "option": "CAMBIAR IMAGEN"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "NOMBRE NUEVO",
+              "fieldType": "textarea"
+            },
+            {
+              "fieldLabel": "DESCRIPCION",
+              "fieldType": "textarea"
+            },
+            {
+              "fieldLabel": "ADMINS",
+              "fieldType": "textarea"
+            },
+            {
+              "fieldLabel": "IMAGEN",
+              "fieldType": "file",
+              "multipleFiles": false
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {
+          "path": "ConfigGrupos"
+        }
+      },
+      "id": "29548dd7-ffbe-4ee1-8a6c-d89b848620ee",
+      "name": "Form1",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        1560,
+        240
+      ],
+      "webhookId": "c04d48bd-37a8-4566-895f-5825b3ed9f65"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "15956088-1c52-48bb-af02-c0d4aa06f838",
+      "name": "Procesado",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        4180,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.random() * (4 - 0 + Number.EPSILON) + 0}}"
+      },
+      "id": "b2147030-0386-439d-8e56-a69e2a9da5fb",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        5960,
+        260
+      ],
+      "webhookId": "04d20b36-0a44-40cf-877c-5058e5bec8e6"
+    },
+    {
+      "parameters": {
+        "operation": "upload",
+        "bucketName": "n8n",
+        "fileName": "={{ $now.toLocal().format('MM-dd-HH-mm') }}-{{ $('Form1').all()[0].json.IMAGEN.filename.replace(/\\s+/g, '') }}",
+        "binaryPropertyName": "IMAGEN",
+        "additionalFields": {}
+      },
+      "id": "379cf20e-bdbf-4863-9ca4-062bb1502c12",
+      "name": "SUBIR",
+      "type": "n8n-nodes-base.s3",
+      "typeVersion": 1,
+      "position": [
+        1980,
+        120
+      ],
+      "credentials": {
+        "s3": {
+          "id": "Y7pBuiQHG1mb91C8",
+          "name": "S3 account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9ecd0f46-9b4c-406d-94af-61dae04fe420",
+              "name": "=nombreArchivo",
+              "value": "={{ $now.toLocal().format('MM-dd-HH-mm') }}-{{ $('Form1').all()[0].json.IMAGEN.filename.replace(/\\s+/g, '')}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8900380e-ac3e-4092-afc4-04645a3bb53d",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2120,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f5dd797c-df2e-4a59-b5ac-97f7009b9d36",
+              "leftValue": "={{ $json.IMAGEN }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b83ecd6e-7619-44fa-81ad-da0210d007e5",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1780,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const entrada = $('Form1').all()[0].json['ADMINS'];\n\n// Dividir la entrada en un array de participantes si contiene comas, o usar el valor único si no tiene comas\nconst participantes = entrada.includes(\",\") \n    ? entrada.split(\",\").map(participante => participante.trim()) \n    : [entrada.trim()];\n\n// Crear un nuevo item para cada participante\nreturn participantes.map(participante => {\n  return { json: { participante } };\n});\n"
+      },
+      "id": "bc8ead6a-c2ff-4c43-9cb3-d3ce18675578",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5160,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Form1').all()[0].json['TIPO DE ACCIÓN'] }}",
+                    "rightValue": "AGREGAR",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ADMINS"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "9968c41f-6809-4d88-a495-694c6483275b",
+                    "leftValue": "={{ $('Form1').all()[0].json['TIPO DE ACCIÓN'] }}",
+                    "rightValue": "=NOMBRE",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NOMBRE"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "b55839e7-5ed3-471c-8f74-0b4edc1ce531",
+                    "leftValue": "={{ $('Form1').all()[0].json['TIPO DE ACCIÓN'] }}",
+                    "rightValue": "=DESCR",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "DESCRIPCION"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "6571a013-6686-4c3f-b0df-ace62356e867",
+                    "leftValue": "={{ $('Form1').all()[0].json['TIPO DE ACCIÓN'] }}",
+                    "rightValue": "IMAGEN",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "IMAGEN"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a92b3dfb-4a7c-4d94-83bf-842dea3472e9",
+      "name": "Tipo de mensaje",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        4860,
+        20
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Variables').first().json['Url Evolution API'].replace(/\\/$/, \"\") }}/group/updateParticipant/{{ $('Variables').first().json['Instancia Evolution API'] }}?groupJid={{ $('Procesado').first().json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"action\": \"promote\",\n  \"participants\": [\n    \"{{ $('Loop Over Items').first().json.participante }}\"\n  ]\n}\n",
+        "options": {}
+      },
+      "id": "329138d7-69e2-418b-b4b6-18a96298db69",
+      "name": "PROMOVER",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5840,
+        -480
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Variables').first().json['Url Evolution API'].replace(/\\/$/, \"\") }}/group/updateParticipant/{{ $('Variables').first().json['Instancia Evolution API'] }}?groupJid={{ $('Procesado').first().json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"action\": \"add\",\n  \"participants\": [\n    \"{{ $('Loop Over Items').first().json.participante }}\"\n  ]\n}\n",
+        "options": {}
+      },
+      "id": "ea9811fd-3154-4131-bfaa-1c01a7800d6d",
+      "name": "PROMOVER1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5620,
+        -480
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "27a2358a-dd9d-4176-be3c-4bd77d7b980c",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        5380,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Variables').first().json['Url Evolution API'].replace(/\\/$/, \"\") }}/group/updateGroupSubject/{{ $('Variables').first().json['Instancia Evolution API'] }}?groupJid={{ $('Procesado').first().json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"subject\": \"{{ $('Procesado').first().json.nombre }}\"\n}\n",
+        "options": {}
+      },
+      "id": "ea0128a7-d672-4434-8087-53e7309c3ae7",
+      "name": "CAMBIANOMBRE",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5240,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Variables').first().json['Url Evolution API'].replace(/\\/$/, \"\") }}/group/updateGroupPicture/{{ $('Variables').first().json['Instancia Evolution API'] }}?groupJid={{ $('Procesado').first().json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"image\": \"https://n8n-minio.wc2hpx.easypanel.host/n8n/{{ $('Edit Fields').all()[0]?.json.nombreArchivo }}\"\n}\n",
+        "options": {}
+      },
+      "id": "723e298e-278d-41d2-8ab9-db724a79f270",
+      "name": "CAMBIANOMBRE2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5240,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Variables').first().json['Url Evolution API'].replace(/\\/$/, \"\") }}/group/updateGroupSubject/{{ $('Variables').first().json['Instancia Evolution API'] }}?groupJid={{ $('Procesado').first().json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"description\": \"{{ $('Form1').first().json.DESCRIPCION }}\"\n}\n",
+        "options": {}
+      },
+      "id": "3f3a1719-cd1a-4881-9b93-98cb7753b471",
+      "name": "CAMBIADESCRIPCION",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5240,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let contador = 1;\n\nconst items = $('MySQL').all();\nconst nombre = $('Form1').first().json['NOMBRE NUEVO'];\n\nconst updatedItems = items.map(item => {\n  const updatedItem = { ...item.json }; \n  updatedItem.nombre = `${nombre} #${contador}`;  // Correct string interpolation\n  contador++; \n  return { json: updatedItem }; \n});\n\nreturn updatedItems;\n"
+      },
+      "id": "05370d5a-b48b-4c69-a3ba-334a94d43ed5",
+      "name": "Code1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3860,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "{{ $('Code2').first().json.sqlQuery }}",
+        "options": {}
+      },
+      "id": "8b0ec4b8-97a8-4f1e-8643-ed7c23fd778b",
+      "name": "MySQL2",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        4780,
+        -320
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "steiUYgtMeBLjkId",
+          "name": "N8N"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const updatedItems = $('Code1').all(); // Obtener los elementos procesados del nodo Loop\n\nlet caseStatements = '';\nlet ids = '';\nlet tabla = $('Form2').first().json['Que tabla?']; // Obtener el nombre de la tabla\n\nupdatedItems.forEach(item => {\n  \n  caseStatements += `WHEN id = '${item.json.id}' THEN '${item.json.nombre}' `;\n  ids += `'${item.json.id}', `;\n});\n\nids = ids.slice(0, -2); // Quitar la coma final\n\nconst sqlQuery = `\n  UPDATE ${tabla} \n  SET nombre = CASE ${caseStatements} END\n  WHERE id IN (${ids});\n`;\n\nreturn { sqlQuery };\n"
+      },
+      "id": "80a08ce7-195d-471e-a17a-ee8a09bbfee3",
+      "name": "Code2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4620,
+        -320
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d90454d4-5603-4171-8b1b-a8dd42e7a11e",
+              "leftValue": "={{ $('Form1').first().json['TIPO DE ACCIÓN'] }}",
+              "rightValue": "MODIFICAR NOMBRE",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "f68049f1-3ddc-4374-854d-10b7a6f5afc8",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        4440,
+        -180
+      ]
+    }
+  ],
+  "pinData": {
+    "Form1": [
+      {
+        "json": {
+          "TIPO DE ACCIÓN": "MODIFICAR NOMBRE",
+          "NOMBRE NUEVO": "Gersson Lopez Academy",
+          "DESCRIPCION": "",
+          "ADMINS": "",
+          "IMAGEN": null,
+          "submittedAt": "2024-11-15T00:00:02.438-05:00",
+          "formMode": "production"
+        }
+      }
+    ],
+    "Form2": [
+      {
+        "json": {
+          "Que instancia usarás?": "santiago",
+          "Que tabla?": "pruebas",
+          "submittedAt": "2024-11-15T00:41:33.903-05:00",
+          "formMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionTimeout": 3600
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2024-11-15T06:01:11.000Z",
+  "versionId": "3397068b-a0c8-4341-8e17-463bf92f47c7"
+}
