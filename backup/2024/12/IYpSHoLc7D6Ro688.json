@@ -1,0 +1,839 @@
+{
+  "active": true,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "MongoDB3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB3": {
+      "main": [
+        [
+          {
+            "node": "MENSAJE R1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Variables": {
+      "main": [
+        [
+          {
+            "node": "MongoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto SIN MENCION": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto SIN MENCION1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB4": {
+      "main": [
+        [
+          {
+            "node": "MENSAJE R2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "MongoDB4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MENSAJE R1": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto SIN MENCION",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MENSAJE R2": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto SIN MENCION1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-12-22T16:16:09.613Z",
+  "id": "IYpSHoLc7D6Ro688",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "🟢 [TYPEBOT] REMARKETING CAKES",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 10
+            }
+          ]
+        }
+      },
+      "id": "887b3561-146f-47e1-9a6d-03f4583e348f",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -60,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "collection": "bot1",
+        "options": {},
+        "query": "={\n  \"$and\": [\n    {\n      \"$or\": [\n        { \"estado\": { \"$nin\": [\"bienvenida\", \"pagado\", \"respondido\"] } }\n      ]\n    },\n    {\n      \"$or\": [\n        { \"rgr1\": { \"$in\": [null, \"\"] } },\n        { \"rgr2\": { \"$in\": [null, \"\"] } }\n      ]\n    },\n    {\n      \"producto\": \"{{ $('Variables').first().json.producto }}\"\n    }\n  ]\n}\n"
+      },
+      "id": "52ed4c57-9aa6-4a7c-8bf3-f9a8dc0d6e94",
+      "name": "MongoDB",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        380,
+        360
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mongoDb": {
+          "id": "B8RXkL6BMY0cNjpU",
+          "name": "MongoDB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c04d1046-7c3b-491f-aa2d-7c55980c85eb",
+              "name": "HORAS",
+              "value": "={{ ($('Variables').first().json.now - $('MongoDB').item.json.ingreso_at)/60/60}}",
+              "type": "string"
+            },
+            {
+              "id": "b62581a6-a917-4349-a37f-f35443b8acd4",
+              "name": "id",
+              "value": "={{ $json._id.toString() }}",
+              "type": "string"
+            },
+            {
+              "id": "40f39c73-139c-4ecf-8637-7dc6123f9eeb",
+              "name": "numero",
+              "value": "={{ $json.whatsapp.replace(/\\D+/g, '') }}",
+              "type": "string"
+            },
+            {
+              "id": "f52bf764-b4ca-4bf8-b18c-87e030a477b2",
+              "name": "MINUTOS_MEDIO",
+              "value": "={{ ($('Variables').first().json.now - $('MongoDB').item.json.medio_at)/60/60}}",
+              "type": "string"
+            },
+            {
+              "id": "473dbcf8-4277-4de9-acca-c5bfaf59e3cd",
+              "name": "rgr1",
+              "value": "={{ $json.rgr1 }}",
+              "type": "string"
+            },
+            {
+              "id": "8e1a5bed-a88f-45a6-bbcd-0d4157ccfd8c",
+              "name": "rgr2",
+              "value": "={{ $json.rgr2 }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6fad766a-fd1d-4b65-9246-debfc1e42d35",
+      "name": "Edit Fields1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        600,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "583b6d10-61cd-4e2d-8bce-15a6419dca4e",
+              "leftValue": "={{ $json.HORAS.toNumber() }}",
+              "rightValue": 24,
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "dcb8a1cf-3b36-4dc2-bf92-a2be95d7e919",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        820,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $node[\"Variables\"].json['Url Evolution API'].replace(/\\/$/, \"\") }}/message/sendText/{{ $node[\"Variables\"].json['Instancia Evolution API'] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $node[\"Variables\"].json['Apikey Evolution API'] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $('Loop Over Items').item.json.numero }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.mensaje }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d88eba3a-b3cc-4405-8bbf-282188ac7a24",
+      "name": "Enviar texto SIN MENCION",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2820,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "9cc60f31-b17c-482e-811f-e3522a03c586",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1880,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "collection": "bot1",
+        "updateKey": "_id",
+        "fields": "rgr1",
+        "options": {}
+      },
+      "id": "9858c664-e0f6-4b2b-b40d-0a55e853e0e4",
+      "name": "MongoDB3",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        2380,
+        180
+      ],
+      "credentials": {
+        "mongoDb": {
+          "id": "B8RXkL6BMY0cNjpU",
+          "name": "MongoDB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ae5e5f38-bc6d-4933-bad0-4c1438b74598",
+              "name": "_id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "a636deb9-a2aa-4b81-a6da-e8a4b26d844f",
+              "name": "rgr1",
+              "value": "={{ Math.floor(Date.now() / 1000) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "49db764f-23c8-46ca-bd58-15c11ae9ca44",
+      "name": "Edit Fields2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2160,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3ce61d2a-015a-452b-afd8-c993e37ce897",
+              "name": "Url Evolution API",
+              "value": "https://evolution.automscc.com/",
+              "type": "string"
+            },
+            {
+              "id": "5e949047-3af3-472c-b1ba-0141716387ee",
+              "name": "Apikey Evolution API",
+              "value": "429683C4C977415CAAFCCE10F7D57E11",
+              "type": "string"
+            },
+            {
+              "id": "5169ae17-73eb-4f0a-9c63-eef1aa533e65",
+              "name": "Instancia Evolution API",
+              "value": "[EMP]-WHA1",
+              "type": "string"
+            },
+            {
+              "id": "9ad11384-35bd-4cd0-814f-ba4559bc80da",
+              "name": "producto",
+              "value": "cakes2",
+              "type": "string"
+            },
+            {
+              "id": "cac6ca56-6ab9-42ec-b1b9-2dcb5bb9125b",
+              "name": "now",
+              "value": "={{ Math.floor(Date.now() / 1000) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d4e70549-1925-4192-b981-8ff6a6bb5abf",
+      "name": "Variables",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        140,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.random() * 8 + 2 }}"
+      },
+      "id": "45dcb527-e567-4478-81b8-bd482d34ec4e",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3040,
+        180
+      ],
+      "webhookId": "5a3a4cd5-0f43-4154-a72b-35b6189701f1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "78133b3e-96d0-4cc6-8e72-b0e790066670",
+              "leftValue": "={{ $json.rgr1 }}",
+              "rightValue": "=",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1040,
+        240
+      ],
+      "id": "9382d09d-de2a-4dca-b4fc-234e916cd420",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $node[\"Variables\"].json['Url Evolution API'].replace(/\\/$/, \"\") }}/message/sendText/{{ $node[\"Variables\"].json['Instancia Evolution API'] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $node[\"Variables\"].json['Apikey Evolution API'] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $('Loop Over Items1').item.json.numero }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $('MENSAJE R2').item.json.mensaje }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "35adb5d4-1fed-4f30-bc0c-db7bf7eb13e5",
+      "name": "Enviar texto SIN MENCION1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2820,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "0d107973-ee72-49aa-b078-0f4f86f25d88",
+      "name": "Loop Over Items1",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1880,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "collection": "bot1",
+        "updateKey": "_id",
+        "fields": "rgr2",
+        "options": {}
+      },
+      "id": "b43817b0-983d-4eca-826f-9b25a38442bd",
+      "name": "MongoDB4",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        2380,
+        440
+      ],
+      "credentials": {
+        "mongoDb": {
+          "id": "B8RXkL6BMY0cNjpU",
+          "name": "MongoDB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ae5e5f38-bc6d-4933-bad0-4c1438b74598",
+              "name": "_id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "a636deb9-a2aa-4b81-a6da-e8a4b26d844f",
+              "name": "rgr2",
+              "value": "={{ Math.floor(Date.now() / 1000) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d47ff468-2524-4e21-8a9d-1317da1c1649",
+      "name": "Edit Fields3",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2160,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.random() * 8 + 2 }}"
+      },
+      "id": "748f5a97-0c28-452f-a18b-d42ec8b83447",
+      "name": "Wait1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3040,
+        440
+      ],
+      "webhookId": "5a3a4cd5-0f43-4154-a72b-35b6189701f1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5610d5df-151e-492e-87a1-f26553c636bf",
+              "leftValue": "={{ ($now/1000 - $json.rgr1)/60}}",
+              "rightValue": 60,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            },
+            {
+              "id": "041881c4-7691-4184-8fe0-0d06958a0577",
+              "leftValue": "={{ $json.rgr2 }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1620,
+        440
+      ],
+      "id": "de238f7f-7317-442a-9984-3f9262ee41be",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "653b960b-16f1-498d-acdb-a670e6b2cfa5",
+              "name": "mensaje",
+              "value": "=🚨 *¡ATENCIÓN! UNA OFERTA IRRESISTIBLE QUE CAMBIARÁ TU NEGOCIO.*  \n\n¿Sigues perdiendo tiempo y dinero en recetas complicadas que no generan resultados? 🍰  \n\nPor solo *12.900 PESOS*, obtén el *MEGAPACK DE LAS 47 TORTAS MÁS RENTABLES PARA 2025*:  \n- ✅ *47 recetas probadas que garantizan ventas.*  \n- ✅ *Ingredientes fáciles y económicos.*  \n- ✅ *Técnicas detalladas paso a paso.*  \n\n🔥 Además, lleva *5 cursos por el precio de 1* con un *80% DE DESCUENTO.*  \n\n💡 *No necesitas experiencia ni equipos costosos.* Este pack es la solución que buscabas.  \n\n🔴 *SOLO QUEDAN 3 CUPOS A ESTE PRECIO.* 🔴  \n_Posteriormente sube a 49.900 pesos._  \n\n💥 *Haz el pago ahora y empieza a ganar dinero desde casa.*  \n\n⏳ *¡Tiempo limitado!*\n",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0fe0bab2-1331-4a96-98a5-f9d77f3b5864",
+      "name": "MENSAJE R1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2600,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "653b960b-16f1-498d-acdb-a670e6b2cfa5",
+              "name": "mensaje",
+              "value": "😈 *Mira esto* 👇🏻\n\nCurso de pastelería en academias: $150.000  \nRecetas premium en línea: $50.000  \nIngredientes exóticos y costosos: $80.000  \n\n*TODO ESO, GASTO TRAS GASTO.*  \n\nPero aquí te traigo una solución diferente:  \nPor solo *12.900 PESOS* y un *ÚNICO PAGO*, obtendrás el *MEGAPACK DE LAS 47 TORTAS MÁS RENTABLES PARA 2025*, con:  \n- ✅ *47 recetas probadas.*  \n- ✅ *Ingredientes simples y económicos.*  \n- ✅ *5 cursos por el precio de 1.*  \n\nNo necesitas gastar más para aprender y vender tortas irresistibles.  \n\nYa aseguré tu acceso. Haz *EL PAGO A LA CUENTA QUE TE PASÉ* y comienza a transformar tu negocio hoy mismo. 🍰  \n",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e7d121ef-cb61-4383-947f-a1627c8599c7",
+      "name": "MENSAJE R2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2600,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1010bc28-b65e-470e-922a-5c33e551b230",
+              "leftValue": "={{ $json.MINUTOS_MEDIO }}",
+              "rightValue": 30,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1360,
+        140
+      ],
+      "id": "74e04413-c573-44e7-8422-0da6ca680b9a",
+      "name": "If3"
+    }
+  ],
+  "pinData": {
+    "Schedule Trigger": [
+      {
+        "json": {
+          "timestamp": "2025-01-22T19:40:53.002-05:00",
+          "Readable date": "January 22nd 2025, 7:40:53 pm",
+          "Readable time": "7:40:53 pm",
+          "Day of week": "Wednesday",
+          "Year": "2025",
+          "Month": "January",
+          "Day of month": "22",
+          "Hour": "19",
+          "Minute": "40",
+          "Second": "53",
+          "Timezone": "America/New_York (UTC-05:00)"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-01-23T01:26:58.000Z",
+  "versionId": "a9fb78f2-40e8-45bd-ac71-09c4dfda56c9"
+}
