@@ -1,0 +1,1703 @@
+{
+  "active": true,
+  "connections": {
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "MongoDB1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Merge5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "MongoDB2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "MongoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google Sheets3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge3": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB3": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "MongoDB3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PAGOS INICIADOS": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CAPTURA": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VENTAS HOTMART": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge5": {
+      "main": [
+        [
+          {
+            "node": "MongoDB5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [
+          {
+            "node": "Merge5",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        []
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        []
+      ]
+    },
+    "MongoDB5": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-01-12T05:32:25.574Z",
+  "id": "6HrzFFzbXqfGiZ7T",
+  "meta": null,
+  "name": "🟢 [API DE CONVERSIONES] VENTAS GERSSON - biomagnetismo",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3d1a8601-a27c-4fcf-af60-e1a0d0368216",
+              "name": "ip",
+              "value": "={{ $json.headers['x-real-ip'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -200,
+        -460
+      ],
+      "id": "8c10043c-bef9-4f47-9506-405aeaf77214",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        60,
+        -560
+      ],
+      "id": "de019025-62ef-4c6d-ab38-4b1d859504f4",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -200,
+        -660
+      ],
+      "id": "e2f10ece-a6dd-4c76-aa6a-6626701969b2",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "collection": "=VENTAS",
+        "options": {},
+        "query": "={\"uniqueIdentifier\": \"{{ $json.uniqueIdentifier }}\"}"
+      },
+      "id": "d15fec74-dab9-410a-a962-ad839683a598",
+      "name": "MongoDB1",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        260,
+        -560
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mongoDb": {
+          "id": "vbsT0SoMA5A3acgH",
+          "name": "BASE DE DATOS GERSSON"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "collection": "VENTAS",
+        "fields": "=uniqueIdentifier,utmCampaign,utmSource,utmMedium,utmContent,utmTerm,userAgent,platform,language,fbc,fbp,ip,tiemporegistro",
+        "options": {}
+      },
+      "id": "a210ab85-1388-44c6-a753-2e04100e4933",
+      "name": "MongoDB2",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        860,
+        -740
+      ],
+      "credentials": {
+        "mongoDb": {
+          "id": "vbsT0SoMA5A3acgH",
+          "name": "BASE DE DATOS GERSSON"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "eb31eaf1-7f83-4773-a663-4213a227c9e8",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "6c18402f-2ebc-443d-a9a2-a349cbd5e945",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        460,
+        -560
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "1a70ed14-2a6d-4502-abb7-b598763b2852",
+      "name": "Merge1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        660,
+        -740
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": " https://graph.facebook.com/v21.0/3812824275713049/events",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "EAAOAcBl41QIBO5HwxKyL1zVbm8rA7zbhTi37R8pjFO13nfKBsVz7b3ECra8Ba2eFV8gQY9pOLXZCLpedjIb9vnkSlczwdxpN8kIVLRr3teWh7CAQsXIgsjN4BY5df9noKicYu1stqgRFgKs5U9Q8GnkM1dOkeCPzYGWXYi7pymtRVqiLHCAhUZBNctR3tvMQZDZD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.toJsonString() }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1320,
+        500
+      ],
+      "id": "661d94f1-2f6c-425d-b115-6283dfa4e76a",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "collection": "=VENTAS",
+        "options": {},
+        "query": "={\"uniqueIdentifier\": \"{{ $json.identificador }}\"}"
+      },
+      "id": "eb0aca92-cc3d-460d-a811-86c80f9c9aa5",
+      "name": "MongoDB",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        380,
+        380
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mongoDb": {
+          "id": "vbsT0SoMA5A3acgH",
+          "name": "BASE DE DATOS GERSSON"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "eb31eaf1-7f83-4773-a663-4213a227c9e8",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "5e274501-9e70-473f-8452-b230d0370744",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        580,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b2f5cef9-b190-4228-a36d-8672a7649c31",
+              "name": "identificador",
+              "value": "={{ $json.body.data.purchase.origin.xcod?$json.body.data.purchase.origin.xcod:\"\" }}",
+              "type": "string"
+            },
+            {
+              "id": "1f4f7e90-6a9c-463e-878b-f40934928311",
+              "name": "telefono",
+              "value": "={{ $json.body.data.buyer.checkout_phone }}",
+              "type": "string"
+            },
+            {
+              "id": "6a953b26-3dea-403d-8687-169175ac02a3",
+              "name": "nombre",
+              "value": "={{ $json.body.data.buyer.name.split(' ')[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "3dbbe535-3c73-4d4a-ac1d-30bc6a3b1880",
+              "name": "correo",
+              "value": "={{ $json.body.data.buyer.email }}",
+              "type": "string"
+            },
+            {
+              "id": "83a8753f-2dc7-4b14-83d9-a0486db37ca3",
+              "name": "tiempo",
+              "value": "={{ $json.body.creation_date }}",
+              "type": "string"
+            },
+            {
+              "id": "5e0a7b20-9da9-4c2e-a5ec-94554d9df98b",
+              "name": "pais",
+              "value": "={{ $json.body.data.buyer.address.country }}",
+              "type": "string"
+            },
+            {
+              "id": "f6b3999a-a935-4875-9354-2fcf84d45d8d",
+              "name": "ip",
+              "value": "={{ $json.body.data.purchase.buyer_ip }}",
+              "type": "string"
+            },
+            {
+              "id": "b1a8661a-d731-42b7-a5a9-7adee0749fea",
+              "name": "apellido",
+              "value": "={{ $json.body.data.buyer.name.split(' ')[1] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -240,
+        520
+      ],
+      "id": "0d7b3d74-311d-412a-8d1d-30bb30dbe2d8",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7f6bd895-d3de-4fc3-aa65-16f523ad470a",
+              "leftValue": "={{ $json.identificador }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        140,
+        400
+      ],
+      "id": "a26e78e2-dbe0-4de3-a422-75749675f2e1",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        960,
+        500
+      ],
+      "id": "4ea8f349-41cc-4397-9d4c-ff7f5607227e",
+      "name": "Merge2"
+    },
+    {
+      "parameters": {
+        "jsCode": "const crypto = require('crypto-js'); // Asegúrate de que la librería está disponible\n\nconst item = $input.first().json;\n\nfunction hashSHA256(value) {\n  return crypto.SHA256(value).toString(crypto.enc.Hex);\n}\n\nconst encryptedData = {\n  em: [hashSHA256(item.correo)],  // Correo electrónico\n  ph: [hashSHA256(item.telefono)],  // Número de teléfono\n  fn: [hashSHA256(item.nombre)],  // Nombre\n  ln: [hashSHA256(item.apellido)],  // Apellido\n  country: [hashSHA256(item.pais)],  // País\n  zp: [hashSHA256(item.zip)], //zip\n  ct: [hashSHA256(item.city)], //ciudad\n  st: [hashSHA256(item.regionName)], //estado\n  // Datos no cifrados deben estar directamente accesibles\n  client_ip_address: item.ip,\n  client_user_agent: item.userAgent,\n  fbc: item.fbc,\n  fbp: item.fbp,\n};\n\nconst facebookEvent = {\n  data: [\n    {\n      event_name: \"Purchase\",\n      event_time: Math.floor(Date.now() / 1000), // Tiempo actual en segundos\n      action_source: \"website\",\n      original_event_data: {\n        event_name: \"Purchase\",\n        event_time: Math.floor(Date.now() / 1000)\n      },\n      user_data: encryptedData,\n      custom_data: {\n        currency: \"USD\",\n        value: 19.5\n      }\n    }\n  ]\n};\n\nreturn facebookEvent;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1140,
+        500
+      ],
+      "id": "0964c3dc-8a77-42a9-8387-af7a523ecc31",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "url": "=http://ip-api.com/json/{{ $json.ip }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        220
+      ],
+      "id": "5a83677f-590a-4cde-b17f-3d5237b0cf19",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        780,
+        240
+      ],
+      "id": "77f7df9f-de51-4952-ad93-3c5c2452c3f0",
+      "name": "Merge3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": " https://graph.facebook.com/v21.0/3812824275713049/events",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "EAAOAcBl41QIBO5HwxKyL1zVbm8rA7zbhTi37R8pjFO13nfKBsVz7b3ECra8Ba2eFV8gQY9pOLXZCLpedjIb9vnkSlczwdxpN8kIVLRr3teWh7CAQsXIgsjN4BY5df9noKicYu1stqgRFgKs5U9Q8GnkM1dOkeCPzYGWXYi7pymtRVqiLHCAhUZBNctR3tvMQZDZD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.toJsonString() }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        680,
+        0
+      ],
+      "id": "5c459cab-53c1-43a3-8762-16f05ac8614f",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.first().json;\n\n\nconst encryptedData = {\n  client_ip_address: item.ip,\n  client_user_agent: item.userAgent,\n  fbc: item.fbc,\n  fbp: item.fbp,\n};\n\nconst facebookEvent = {\n  data: [\n    {\n      event_name: \"InitiateCheckout\",\n      event_time: Math.floor(Date.now() / 1000), // Tiempo actual en segundos\n      action_source: \"website\",\n      original_event_data: {\n        event_name: \"InitiateCheckout\",\n        event_time: Math.floor(Date.now() / 1000)\n      },\n      user_data: encryptedData,\n    }\n  ]\n};\n\nreturn facebookEvent;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ],
+      "id": "58d8ef3e-6452-4102-ba17-4cb1aec68cdf",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "collection": "=VENTAS",
+        "options": {},
+        "query": "={\"uniqueIdentifier\": \"{{ $json.uniqueIdentifier }}\"}"
+      },
+      "id": "faa8f75e-bc0a-4223-b37c-08fd888e7a45",
+      "name": "MongoDB3",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        -40,
+        0
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mongoDb": {
+          "id": "vbsT0SoMA5A3acgH",
+          "name": "BASE DE DATOS GERSSON"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "eb31eaf1-7f83-4773-a663-4213a227c9e8",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "7c475897-22f6-4dd0-9e73-a793b76745d4",
+      "name": "If3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        160,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -260,
+        0
+      ],
+      "id": "4fc861b6-b954-4023-b452-3bfbbe7000bd",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "pi-ventasg",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -440,
+        0
+      ],
+      "id": "ce7b1a7b-5238-456a-9b37-d210f4ef2092",
+      "name": "PAGOS INICIADOS",
+      "webhookId": "dd472942-fcd4-4fea-adcd-7c3db4b7140e",
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "captura-uuid",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -440,
+        -560
+      ],
+      "id": "488357c9-183c-4671-87c8-cfc1ad057a56",
+      "name": "CAPTURA",
+      "webhookId": "caaa89ad-cf89-4123-a083-f2a904f31941"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "compra-hotmart",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -440,
+        520
+      ],
+      "id": "3cd50eba-9a3d-4da0-b18f-a607aeea28a2",
+      "name": "VENTAS HOTMART",
+      "webhookId": "caaa89ad-cf89-4123-a083-f2a904f31941"
+    },
+    {
+      "parameters": {
+        "operation": "findOneAndUpdate",
+        "collection": "VENTAS",
+        "updateKey": "uniqueIdentifier",
+        "fields": "=utmCampaign,utmSource,utmMedium,utmContent,utmTerm,userAgent,platform,language,fbc,fbp,ip",
+        "options": {}
+      },
+      "id": "66d8440c-06cf-455e-844e-fc1dfe7143d4",
+      "name": "MongoDB5",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        860,
+        -380
+      ],
+      "credentials": {
+        "mongoDb": {
+          "id": "vbsT0SoMA5A3acgH",
+          "name": "BASE DE DATOS GERSSON"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "useDataOfInput": "={{ $if($('Merge').item.json.utmCampaign == \"-\", 1 , 2) }}"
+      },
+      "id": "0c576d1a-68e0-494d-bc06-732d2cbdef2e",
+      "name": "Merge5",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        680,
+        -380
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a7d1f77f-9585-45c0-baf9-433bb5851dfd",
+              "leftValue": "={{ $json.utmCampaign }}",
+              "rightValue": "-",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        280,
+        -380
+      ],
+      "id": "99d0fbca-c368-4bf8-9df0-b26f3e6d00b9",
+      "name": "If5"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1SRp6OiE0XlAfLh1Zn_DXPOfy9wA_yPqatGAnELG3KLE/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1SRp6OiE0XlAfLh1Zn_DXPOfy9wA_yPqatGAnELG3KLE/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IDENTIFICADOR": "={{ $json.uniqueIdentifier }}",
+            "CAMPAÑA": "={{ $json.utmCampaign }}",
+            "FUENTE": "={{ $json.utmSource }}",
+            "SEGMENTACIÓN": "={{ $json.utmMedium }}",
+            "ANUNCIO": "={{ $json.utmContent }}",
+            "TERM": "={{ $json.utmTerm }}",
+            "REGISTRO": "={{ $now.format('yyyy-MM-dd HH:mm:ss') }}"
+          },
+          "matchingColumns": [
+            "IDENTIFICADOR"
+          ],
+          "schema": [
+            {
+              "id": "IDENTIFICADOR",
+              "displayName": "IDENTIFICADOR",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CAMPAÑA",
+              "displayName": "CAMPAÑA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "FUENTE",
+              "displayName": "FUENTE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "SEGMENTACIÓN",
+              "displayName": "SEGMENTACIÓN",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ANUNCIO",
+              "displayName": "ANUNCIO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "TERM",
+              "displayName": "TERM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "REGISTRO",
+              "displayName": "REGISTRO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "PAGO INICIADO",
+              "displayName": "PAGO INICIADO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "COMPRA",
+              "displayName": "COMPRA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1020,
+        -740
+      ],
+      "id": "d97fd212-0b8f-48c8-b2ce-a9dbbcd154a3",
+      "name": "Google Sheets4",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1SRp6OiE0XlAfLh1Zn_DXPOfy9wA_yPqatGAnELG3KLE/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1SRp6OiE0XlAfLh1Zn_DXPOfy9wA_yPqatGAnELG3KLE/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IDENTIFICADOR": "={{ $json.uniqueIdentifier }}",
+            "CAMPAÑA": "={{ $json.utmCampaign }}",
+            "FUENTE": "={{ $json.utmSource }}",
+            "SEGMENTACIÓN": "={{ $json.utmMedium }}",
+            "ANUNCIO": "={{ $json.utmContent }}",
+            "TERM": "={{ $json.utmTerm }}",
+            "REGISTRO": "={{ $now.format('yyyy-MM-dd HH:mm:ss') }}"
+          },
+          "matchingColumns": [
+            "IDENTIFICADOR"
+          ],
+          "schema": [
+            {
+              "id": "IDENTIFICADOR",
+              "displayName": "IDENTIFICADOR",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CAMPAÑA",
+              "displayName": "CAMPAÑA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "FUENTE",
+              "displayName": "FUENTE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "SEGMENTACIÓN",
+              "displayName": "SEGMENTACIÓN",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ANUNCIO",
+              "displayName": "ANUNCIO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "TERM",
+              "displayName": "TERM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "REGISTRO",
+              "displayName": "REGISTRO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "PAGO INICIADO",
+              "displayName": "PAGO INICIADO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "COMPRA",
+              "displayName": "COMPRA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1040,
+        -380
+      ],
+      "id": "c4e2d02b-89aa-4aec-925e-f22c1825a0b5",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1SRp6OiE0XlAfLh1Zn_DXPOfy9wA_yPqatGAnELG3KLE/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1SRp6OiE0XlAfLh1Zn_DXPOfy9wA_yPqatGAnELG3KLE/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IDENTIFICADOR": "={{ $json.uniqueIdentifier }}",
+            "PAGO INICIADO": "={{ $now.format('yyyy-MM-dd HH:mm:ss') }}"
+          },
+          "matchingColumns": [
+            "IDENTIFICADOR"
+          ],
+          "schema": [
+            {
+              "id": "IDENTIFICADOR",
+              "displayName": "IDENTIFICADOR",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CAMPAÑA",
+              "displayName": "CAMPAÑA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "FUENTE",
+              "displayName": "FUENTE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "SEGMENTACIÓN",
+              "displayName": "SEGMENTACIÓN",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ANUNCIO",
+              "displayName": "ANUNCIO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "TERM",
+              "displayName": "TERM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "REGISTRO",
+              "displayName": "REGISTRO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "PAGO INICIADO",
+              "displayName": "PAGO INICIADO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "COMPRA",
+              "displayName": "COMPRA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        480,
+        -160
+      ],
+      "id": "0c1a19c4-0e72-4c05-89bb-75c830b9c7e4",
+      "name": "Google Sheets2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1SRp6OiE0XlAfLh1Zn_DXPOfy9wA_yPqatGAnELG3KLE/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1SRp6OiE0XlAfLh1Zn_DXPOfy9wA_yPqatGAnELG3KLE/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "IDENTIFICADOR": "={{ $json.uniqueIdentifier }}",
+            "COMPRA": "={{ $now.format('yyyy-MM-dd HH:mm:ss') }}"
+          },
+          "matchingColumns": [
+            "IDENTIFICADOR"
+          ],
+          "schema": [
+            {
+              "id": "IDENTIFICADOR",
+              "displayName": "IDENTIFICADOR",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CAMPAÑA",
+              "displayName": "CAMPAÑA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "FUENTE",
+              "displayName": "FUENTE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "SEGMENTACIÓN",
+              "displayName": "SEGMENTACIÓN",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ANUNCIO",
+              "displayName": "ANUNCIO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "TERM",
+              "displayName": "TERM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "REGISTRO",
+              "displayName": "REGISTRO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "PAGO INICIADO",
+              "displayName": "PAGO INICIADO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "COMPRA",
+              "displayName": "COMPRA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1140,
+        680
+      ],
+      "id": "2875f7de-225a-4361-a32f-23bd566c9f5b",
+      "name": "Google Sheets3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "CAPTURA": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/21G93 [FBAN/FBIOS;FBAV/496.0.0.23.103;FBBV/684558567;FBDV/iPhone15,5;FBMD/iPhone;FBSN/iOS;FBSV/17.6.1;FBSS/3;FBID/phone;FBLC/en_US;FBOP/5;FBRV/686909745;IABMV/1]",
+            "content-length": "924",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "en-US,en;q=0.9",
+            "content-type": "application/json",
+            "origin": "https://terapiasmagneticas.com",
+            "referer": "https://terapiasmagneticas.com/",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "76.33.50.133",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "0f86eb816a4d",
+            "x-real-ip": "76.33.50.133"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "uniqueIdentifier": "a167bc8c-b93f-4291-bd95-c3a96cb50a21",
+            "utmCampaign": "[121224] [JC] [VENTAS] [BIOMAGNETISMO] [ONGOIN] - PIXEL2",
+            "utmSource": "Facebook_Mobile_Feed",
+            "utmMedium": "BROAD - ANUN5-AMARILLO-PARA ELLO NECESITAMOS.mp4 - Copia",
+            "utmContent": "ANUN5-AMARILLO-PARA ELLO NECESITAMOS.mp4",
+            "utmTerm": "fb",
+            "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/21G93 [FBAN/FBIOS;FBAV/496.0.0.23.103;FBBV/684558567;FBDV/iPhone15,5;FBMD/iPhone;FBSN/iOS;FBSV/17.6.1;FBSS/3;FBID/phone;FBLC/en_US;FBOP/5;FBRV/686909745;IABMV/1]",
+            "platform": "iPhone",
+            "language": "en-US",
+            "cookiesEnabled": true,
+            "localStorageAvailable": true,
+            "fbc": "fb.1.1737402991625.IwZXh0bgNhZW0BMABhZGlkAasXCHLDAnUBHVErIMI3cHL43t9hEis3UTvZ1FYV2AIBPPAVPMI3SCN1FgIyEkAcsDYVEA_aem_yO7sKjAOn78o-UXPX5WfsA",
+            "fbp": "fb.1.1737352810722.246046800781057582",
+            "isFbcGenerated": false,
+            "tiemporegistro": 1737402993
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/captura-uuid",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "PAGOS INICIADOS": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (Linux; Android 14; SM-S921U Build/UP1A.231005.007; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/132.0.6834.74 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/495.0.0.45.201;IABMV/1;]",
+            "content-length": "81",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "en-US,en;q=0.9",
+            "content-type": "application/json",
+            "origin": "https://terapiasmagneticas.com",
+            "priority": "u=1, i",
+            "referer": "https://terapiasmagneticas.com/",
+            "sec-ch-ua": "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"Android WebView\";v=\"132\"",
+            "sec-ch-ua-mobile": "?1",
+            "sec-ch-ua-platform": "\"Android\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "174.224.22.146",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "0f86eb816a4d",
+            "x-real-ip": "174.224.22.146",
+            "x-requested-with": "com.facebook.katana"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "uniqueIdentifier": "83a2c131-06e4-4fe2-9c8d-600b10ccc2bf",
+            "tiempopi": 1737401550
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/pi-ventasg",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "VENTAS HOTMART": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Jodd HTTP",
+            "content-length": "1355",
+            "content-type": "application/json",
+            "x-forwarded-for": "23.22.218.30",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "0f86eb816a4d",
+            "x-hotmart-hottok": "6SJkhfjuD6Bm4cha7tF8loEMs92JzG11852721",
+            "x-real-ip": "23.22.218.30",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "data": {
+              "product": {
+                "has_co_production": true,
+                "name": "Sanar con Imanes",
+                "id": 2584300,
+                "ucode": "3f646245-863e-4287-98fd-422437484163"
+              },
+              "commissions": [
+                {
+                  "currency_value": "USD",
+                  "source": "MARKETPLACE",
+                  "value": 2.97
+                },
+                {
+                  "currency_conversion": {
+                    "converted_value": 4.91,
+                    "converted_to_currency": "USD",
+                    "conversion_rate": 1
+                  },
+                  "currency_value": "USD",
+                  "source": "PRODUCER",
+                  "value": 4.91
+                }
+              ],
+              "purchase": {
+                "original_offer_price": {
+                  "currency_value": "USD",
+                  "value": 30.6
+                },
+                "subscription_anticipation_purchase": false,
+                "checkout_country": {
+                  "iso": "MX",
+                  "name": "Mexico"
+                },
+                "origin": {
+                  "xcod": "78f95a7c-8757-42e2-9d23-c31c7bafd26e"
+                },
+                "order_bump": {
+                  "is_order_bump": false
+                },
+                "approved_date": 1736784313000,
+                "offer": {
+                  "code": "wokrsz9w"
+                },
+                "order_date": 1736784311000,
+                "price": {
+                  "currency_value": "MXN",
+                  "value": 634
+                },
+                "buyer_ip": "187.207.41.220",
+                "payment": {
+                  "installments_number": 1,
+                  "type": "CREDIT_CARD"
+                },
+                "full_price": {
+                  "currency_value": "MXN",
+                  "value": 735.44
+                },
+                "invoice_by": "HOTMART",
+                "transaction": "HP0015950793",
+                "status": "APPROVED"
+              },
+              "affiliates": [
+                {
+                  "affiliate_code": "",
+                  "name": ""
+                }
+              ],
+              "producer": {
+                "name": "MAGNETIC THERAPY ACADEMY LLC"
+              },
+              "buyer": {
+                "address": {
+                  "country": "Mexico",
+                  "country_iso": "MX"
+                },
+                "document": "",
+                "name": "Humberto ortega",
+                "checkout_phone": "525522492462",
+                "email": "humbertoortegaruiz@yahoo.com.mx"
+              }
+            },
+            "id": "fe1ec664-b91b-4ebc-a6f7-50ce0ff41688",
+            "creation_date": 1736784317893,
+            "event": "PURCHASE_APPROVED",
+            "version": "2.0.0"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/compra-hotmart",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 3,
+  "updatedAt": "2025-01-27T16:30:08.000Z",
+  "versionId": "92d53139-1b6e-4149-a6f1-582dd70863fa"
+}
