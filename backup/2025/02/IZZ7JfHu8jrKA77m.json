@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "On clicking 'execute'": {
       "main": [
@@ -230,7 +230,7 @@
   "createdAt": "2025-02-03T15:57:23.489Z",
   "id": "IZZ7JfHu8jrKA77m",
   "meta": null,
-  "name": "My workflow 2",
+  "name": "RESPALDO DIARIO N8N - GITHUB",
   "nodes": [
     {
       "parameters": {},
@@ -451,17 +451,17 @@
         "resource": "file",
         "owner": {
           "__rl": true,
-          "mode": "",
-          "value": "={{ $('Config').first().item.repo_owner }}"
+          "value": "={{ $('Config').first().json.repo_owner }}",
+          "mode": ""
         },
         "repository": {
           "__rl": true,
-          "mode": "",
-          "value": "={{ $('Config').first().item.repo_name }}"
+          "value": "={{ $('Config').first().json.repo_name }}",
+          "mode": ""
         },
-        "filePath": "={{ $('Config').first().item.repo_path }}{{ $json.subPath }}{{$('Execute Workflow Trigger').first().json.id}}.json",
+        "filePath": "={{ $('Config').first().json.repo_path }}{{ $json.subPath }}{{$('Loop Over Items').first().json.id}}.json",
         "fileContent": "={{$('isDiffOrNew').item.json[\"n8n_data_stringy\"]}}",
-        "commitMessage": "={{$('Execute Workflow Trigger').first().json.name}} ({{$json.github_status}})"
+        "commitMessage": "={{$('Loop Over Items').first().json.name}} ({{$json.github_status}})"
       },
       "id": "4ff52860-d4f9-4f23-86dc-0a0034d61a68",
       "name": "Create new file",
@@ -485,17 +485,17 @@
         "operation": "edit",
         "owner": {
           "__rl": true,
-          "mode": "",
-          "value": "={{ $('Config').first().item.repo_owner }}"
+          "value": "={{ $('Config').first().json.repo_owner }}",
+          "mode": ""
         },
         "repository": {
           "__rl": true,
-          "mode": "",
-          "value": "={{ $('Config').first().item.repo_name }}"
+          "value": "={{ $('Config').first().json.repo_name }}",
+          "mode": ""
         },
-        "filePath": "={{ $('Config').first().item.repo_path }}{{ $json.subPath }}{{$('Execute Workflow Trigger').first().json.id}}.json",
+        "filePath": "={{ $('Config').first().json.repo_path }}{{ $json.subPath }}{{$('Loop Over Items').first().json.id}}.json",
         "fileContent": "={{$('isDiffOrNew').item.json[\"n8n_data_stringy\"]}}",
-        "commitMessage": "={{$('Execute Workflow Trigger').first().json.name}} ({{$json.github_status}})"
+        "commitMessage": "={{$('Loop Over Items').first().json.name}} ({{$json.github_status}})"
       },
       "id": "bab56403-22a9-4dda-a5f4-8c71cdc9bed9",
       "name": "Edit existing file",
@@ -553,7 +553,7 @@
               "id": "dae43d3b-56e5-4098-b602-862ebf5cd073",
               "name": "subPath",
               "type": "string",
-              "value": "={{ $('Execute Workflow Trigger').first().json.createdAt.split('-')[0] }}/{{ $('Execute Workflow Trigger').first().json.createdAt.split('-')[1] }}/"
+              "value": "={{ $('Loop Over Items').first().json.createdAt.split('-')[0] }}/{{ $('Loop Over Items').first().json.createdAt.split('-')[1] }}/"
             }
           ]
         },
@@ -616,7 +616,7 @@
           "mode": "",
           "value": "={{ $('Config').first().item.repo_name }}"
         },
-        "filePath": "={{ $('Config').first().item.repo_path }}{{ $('Execute Workflow Trigger').first().json.createdAt.split('-')[0] }}/{{ $('Execute Workflow Trigger').first().json.createdAt.split('-')[1] }}/{{$json.id}}.json",
+        "filePath": "={{ $('Config').first().item.repo_path }}{{ $('Loop Over Items').first().json.createdAt.split('-')[0] }}/{{ $('Loop Over Items').first().json.createdAt.split('-')[1] }}/{{$json.id}}.json",
         "asBinaryProperty": false,
         "additionalParameters": {}
       },
@@ -657,7 +657,7 @@
               "id": "eee305e9-4164-462a-86bd-80f0d58a31ae",
               "name": "repo_path",
               "type": "string",
-              "value": "=backup"
+              "value": "=backup/"
             }
           ]
         },
@@ -681,9 +681,13 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "staticData": null,
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-02-03T16:05:41.000Z",
-  "versionId": "895200c1-ec55-4d26-bf17-7d21cca212e1"
+  "triggerCount": 1,
+  "updatedAt": "2025-02-03T16:12:43.000Z",
+  "versionId": "e9c33a68-a8f8-4499-ac6f-643dac4243ed"
 }
