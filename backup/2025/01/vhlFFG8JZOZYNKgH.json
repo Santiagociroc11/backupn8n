@@ -1,0 +1,426 @@
+{
+  "active": false,
+  "connections": {
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-27T22:26:37.050Z",
+  "id": "vhlFFG8JZOZYNKgH",
+  "meta": null,
+  "name": "[GERSSON] ESCRITURA DE HISTORICO VENTAS",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1SRp6OiE0XlAfLh1Zn_DXPOfy9wA_yPqatGAnELG3KLE/edit?gid=487045029#gid=487045029",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1SRp6OiE0XlAfLh1Zn_DXPOfy9wA_yPqatGAnELG3KLE/edit?gid=487045029#gid=487045029",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "Transacción"
+          ],
+          "schema": [
+            {
+              "id": "producto",
+              "displayName": "producto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "coproducción activa",
+              "displayName": "coproducción activa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "correo",
+              "displayName": "correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "nombre",
+              "displayName": "nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "telefono",
+              "displayName": "telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "pais",
+              "displayName": "pais",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "comision hotmart",
+              "displayName": "comision hotmart",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "parte productor",
+              "displayName": "parte productor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "valor producto",
+              "displayName": "valor producto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Transacción",
+              "displayName": "Transacción",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        440,
+        0
+      ],
+      "id": "cd068405-684f-4f98-b702-d605b637392e",
+      "name": "Google Sheets",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "25f4a5ff-c1d6-4209-953a-7c18ef4ddc99",
+              "name": "producto",
+              "value": "={{ $json.Producto }}",
+              "type": "string"
+            },
+            {
+              "id": "a7f92ef5-3505-491d-98e0-b69c2beeb858",
+              "name": "coproducción activa",
+              "value": "=TRUE",
+              "type": "boolean"
+            },
+            {
+              "id": "5890810b-53a9-4b5d-b23a-35b627d445ff",
+              "name": "correo",
+              "value": "={{ $json[\"Email del Comprador(a)\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "b4033946-f611-442d-8a4a-12368dc5549f",
+              "name": "nombre",
+              "value": "={{ $json[\"Comprador(a)\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "9ea3ff08-1a8d-489a-bef7-2c7807473059",
+              "name": "telefono",
+              "value": "={{ $json[\"Teléfono\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "97558f09-72cb-45d6-9b0c-88b4156e4814",
+              "name": "pais",
+              "value": "={{ $json[\"País\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "68a8ce18-fc89-476c-a314-df126129c832",
+              "name": "comision hotmart",
+              "value": "={{ $json[\"Tarifa de procesamiento\"]}}",
+              "type": "number"
+            },
+            {
+              "id": "8bbb5436-13db-46a1-a010-38df9b0a0389",
+              "name": "parte productor",
+              "value": "={{ $json[\"Facturación bruta \"] }}",
+              "type": "number"
+            },
+            {
+              "id": "cb21091d-3c56-46f1-92ec-008bca9d4858",
+              "name": "valor producto",
+              "value": "={{ $json[\"Facturación bruta (sin impuestos)\"] }}",
+              "type": "number"
+            },
+            {
+              "id": "29122817-28ff-4dde-a831-c41c95bae0a0",
+              "name": "Transacción",
+              "value": "={{ $json[\"Código de la transacción\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "c9105dd0-a611-458e-90ea-067a0538b62a",
+              "name": "fecha",
+              "value": "={{ $json[\"Confirmación del pago\"] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ],
+      "id": "7070fb74-c297-4f63-b991-0f701ab3e4b9",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -720,
+        0
+      ],
+      "id": "03e6ba97-bae7-4d45-bfcd-4039ac544269",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1dmcqZbDrwzdRZGbPM3bfFaZ_WaOglQDPpePa1SAO-HY/edit?gid=916894646#gid=916894646",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1dmcqZbDrwzdRZGbPM3bfFaZ_WaOglQDPpePa1SAO-HY/edit?gid=916894646#gid=916894646",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -480,
+        0
+      ],
+      "id": "214e77b0-7565-4cef-baf4-cea46c1acd28",
+      "name": "Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        0,
+        -20
+      ],
+      "id": "3c83c776-a014-4165-80cd-239df56365ea",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "822227b3-1a02-43e0-9d38-7d2093f8b884",
+              "leftValue": "={{ $json[\"Facturación del(de la) Coproductor(a)\"] }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -260,
+        0
+      ],
+      "id": "28cd6cef-d814-41ce-abca-cb0e46762545",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        660,
+        0
+      ],
+      "id": "4e2353c7-6aa8-4c6f-8228-a3169c1dfb88",
+      "name": "Wait",
+      "webhookId": "bdc4f171-f935-41f1-be94-fb877176fdd3"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-01-29T15:20:17.000Z",
+  "versionId": "fced0bd4-a5c5-48ae-b399-aa9e49cdf581"
+}
