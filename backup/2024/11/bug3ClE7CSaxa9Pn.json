@@ -1,0 +1,334 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "ObtenerLink",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ObtenerLink": {
+      "main": [
+        [
+          {
+            "node": "OBTENER GRUPO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "UPDATE IPS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OBTENER GRUPO": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UPDATE IPS": {
+      "main": [
+        [
+          {
+            "node": "UPDATE LINKS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UPDATE LINKS": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-19T12:59:41.001Z",
+  "id": "bug3ClE7CSaxa9Pn",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[Tool] ACTUALIZAR LINKS DE GRUPOS",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "02bc4a37-86b3-40d3-95df-980843122639",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        500,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "={{$('Edit Fields').first().json.tablaLINK}}",
+          "mode": "name"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "id": "5372929a-1156-4dd3-a4a8-3bbdc28e49f1",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        880,
+        340
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://evolution.automscc.com/group/inviteCode/JUAN CARLOS?groupJid={{ $json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "27dba014-25a0-4870-97e7-b170717175ad",
+      "name": "ObtenerLink",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1320,
+        360
+      ],
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 4000
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "3ddd0859-2c05-4f13-905c-0376133686b8",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1100,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let jsonACTUAL = $('OBTENER GRUPO').first().json\nlet linkNUEVO = $('ObtenerLink').first().json.inviteUrl\nlet tabla = $('Edit Fields').first().json.tablaIPS\n\n// Generar la consulta SQL\nconst query = `\n  UPDATE ${tabla}\n  SET grupo = '${linkNUEVO}'\n  WHERE grupo = '${jsonACTUAL.link}';\n`;\n\n// Devolver el resultado\nreturn [\n  {\n    json: {\n      query: query\n    }\n  }\n];"
+      },
+      "id": "56dcb0cc-44da-4cca-836e-8d190f1931fa",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1760,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "={{$('Edit Fields').first().json.tablaLINK}}",
+          "mode": "name"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{$('Loop Over Items').first().json.id}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a9ffc4e4-b5de-4e35-923c-7fd9e576783e",
+      "name": "OBTENER GRUPO",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1540,
+        360
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "{{ $('Code').first().json.query }}",
+        "options": {}
+      },
+      "id": "36509911-f0fe-4d1d-9463-f1e90ebbb843",
+      "name": "UPDATE IPS",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1940,
+        360
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "table": {
+          "__rl": true,
+          "value": "={{ $('Edit Fields').first().json.tablaLINK }}",
+          "mode": "name"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "id",
+        "valueToMatchOn": "={{$('Loop Over Items').first().json.id}}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "link",
+              "value": "={{ $('ObtenerLink').first().json.inviteUrl }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "56f9297c-076a-449b-9346-2a07bbbeffc0",
+      "name": "UPDATE LINKS",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        2120,
+        360
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "95761bbf-54fc-45e4-b955-18a9fa0b5415",
+              "name": "tablaLINK",
+              "value": "GERSSON_LINKS_TIKTOK",
+              "type": "string"
+            },
+            {
+              "id": "fa2238ed-ce9f-45e9-93df-a5446d17ff30",
+              "name": "tablaIPS",
+              "value": "GERSSON_IPS_TIKTOK",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "86357237-cd24-4f81-9e53-3068d3d001dc",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        700,
+        340
+      ]
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-11-20T19:51:19.000Z",
+  "versionId": "24eb51c8-062a-4478-ae70-e7a6d152dc01"
+}
