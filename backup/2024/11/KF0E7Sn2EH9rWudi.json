@@ -1,0 +1,1638 @@
+{
+  "active": true,
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "TablaSql",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "form1": {
+      "main": [
+        [
+          {
+            "node": "Upload Img to ImgBB for URL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "contadorinciail": {
+      "main": [
+        [
+          {
+            "node": "ModificaNombres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BodysCreate": {
+      "main": [
+        [
+          {
+            "node": "contadorinciail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TablaSql": {
+      "main": [
+        [
+          {
+            "node": "DistinctSql",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DistinctSql": {
+      "main": [
+        [
+          {
+            "node": "TablaInst",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TablaInst": {
+      "main": [
+        [
+          {
+            "node": "BodySql",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BodyInst1": {
+      "main": [
+        [
+          {
+            "node": "Form2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BodySql": {
+      "main": [
+        [
+          {
+            "node": "BodyInst1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ModificaNombres": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "FormFinal",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "API-CREACOMUNIDAD",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "5 seg": {
+      "main": [
+        [
+          {
+            "node": "API-GETINVITE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Img to ImgBB for URL1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setfoto": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Form2": {
+      "main": [
+        [
+          {
+            "node": "BodysCreate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API-CREACOMUNIDAD": {
+      "main": [
+        [
+          {
+            "node": "API-CONFIGURACIONES",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API-CONFIGURACIONES": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API-AGREGA": {
+      "main": [
+        [
+          {
+            "node": "API-ADMINS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API-ADMINS": {
+      "main": [
+        [
+          {
+            "node": "API-OBTENERAVISOS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API-OBTENERAVISOS": {
+      "main": [
+        [
+          {
+            "node": "5 seg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API-GETINVITE": {
+      "main": [
+        [
+          {
+            "node": "EscribirGrupo1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "API-AGREGA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EscribirGrupo1": {
+      "main": [
+        [
+          {
+            "node": "Setfoto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-09T04:01:27.101Z",
+  "id": "KF0E7Sn2EH9rWudi",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[Tool] CREACIÓN DE COMUNIDADES",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "show TABLES",
+        "options": {}
+      },
+      "id": "9c635c44-10de-45e4-8c00-08a6ccc5bf48",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1220,
+        320
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://evolution.automscc.com/instance/fetchInstances",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1982ddf8-3925-4941-a0b6-9612c3341ef5",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1040,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": "=1",
+        "options": {}
+      },
+      "id": "f6818158-24da-4ac2-9d83-2746b15665dc",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2980,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "formTitle": "CREACIÓN DE COMUNIDADES",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Nombre de los grupos",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Descripción",
+              "fieldType": "textarea",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Introduce los admin separados por comas",
+              "fieldType": "textarea",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Cantidad de grupos",
+              "fieldType": "number",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "En que numero empieza?",
+              "fieldType": "number",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "subir imagen de grupos",
+              "fieldType": "file",
+              "acceptFileTypes": ".jpg,.png",
+              "requiredField": true
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {
+          "buttonLabel": "CREAR COMUNIDADES",
+          "path": "creaComunidades",
+          "ignoreBots": true
+        }
+      },
+      "id": "f20edd20-c3f6-4da1-9d81-5f2655298a39",
+      "name": "form1",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        640,
+        320
+      ],
+      "webhookId": "cc458d06-2d09-4477-ad58-42044a891cae"
+    },
+    {
+      "parameters": {
+        "jsCode": "\nconst inicia = $('form1').all()[0].json['En que numero empieza?'];\n\nreturn [{ contador: inicia}];\n"
+      },
+      "id": "654d0ed3-249a-4527-a7f3-95b50a6dce2d",
+      "name": "contadorinciail",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2600,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtener todos los items de un nodo anterior\nconst adminsArray = $('form1').all();\n\n// Obtener el subject y la description del primer item\nconst subject = adminsArray[0]?.json['Nombre de los grupos'] || ''; // Usando el primer item\nconst description = adminsArray[0]?.json['Descripción'] || ''; // Usando el primer item\n\n// Extraer y dividir los participantes en un array\nconst participants = adminsArray.map(item => item.json['Introduce los admin separados por comas'] || '')\n                               .flatMap(admins => admins.split(',').map(participant => participant.trim()));\n\n// Crear el objeto con los datos\nconst data = {\n  subject: subject,\n  description: description,\n  participants: participants\n};\n\nreturn Array(adminsArray[0].json['Cantidad de grupos']).fill({ json: data });\n"
+      },
+      "id": "56f0c18e-94d3-4035-bb34-d3ccc65bc53b",
+      "name": "BodysCreate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2440,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Accede a los datos de entrada desde los nodos anteriores\nconst tables = $input.all(); // Obtiene todos los elementos de entrada\n\n// Verifica que 'tables' contenga al menos un elemento y extrae los nombres de las tablas\nconst tableNames = tables.map(item => item.json[\"Tables_in_u698892974_REDIRECCIONES\"]);\n\n// Elimina duplicados usando un Set\nconst uniqueTableNames = [...new Set(tableNames)];\n\n// Crea un nuevo arreglo de salida con los nombres únicos\nconst outputData = uniqueTableNames.map(name => {\n  return {\n    table_name: name\n  };\n});\n\n// Retorna el arreglo de objetos como una salida JSON\nreturn outputData;\n"
+      },
+      "id": "f2545a82-afd4-4b7b-b737-ec9e4256454e",
+      "name": "TablaSql",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1400,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extraer solo los nombres de las tablas y convertirlos al formato deseado\nconst tableNames = items.map(item => ({\n    option: item.json.table_name\n}));\n\n// Devolver el resultado como un único objeto JSON con un array de opciones\nreturn [{ json: { options: tableNames } }];\n"
+      },
+      "id": "bf015b4e-79e6-41d4-a6d7-0f9515aac59e",
+      "name": "DistinctSql",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1580,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extraer solo los nombres\nconst instanceNames = $('HTTP Request').all().map(item => ({option: item.json.name}));\n\n// Devolver el resultado como un único objeto JSON con un array de opciones\nreturn [{ json: { options: instanceNames } }];\n"
+      },
+      "id": "4f13e393-1dd9-4f7c-a742-1dda95a86f72",
+      "name": "TablaInst",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1760,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "\nconst inputData2 = $('DistinctSql').first().json.options; // Primer conjunto de opciones\n\n// Inicializa un arreglo para las preguntas\nconst outputData = [];\n\n\n// Crea el objeto para la primera pregunta\nconst question2 = {\n  \"fieldLabel\": \"Que tabla?\",\n  \"fieldType\": \"dropdown\",\n  \"fieldOptions\": {\n    \"values\": []\n  },\n  \"requiredField\": true\n};\n\n// Agrega las opciones de la primera pregunta\ninputData2.forEach(option => {\n  question2.fieldOptions.values.push( option ); // Asegúrate de que 'option' es el valor de la opción\n});\n\n// Agrega la pregunta al arreglo de salida\noutputData.push(question2);\n\n// Retorna el arreglo de objetos como una sola salida JSON\nreturn outputData;\n"
+      },
+      "id": "236df1d3-73ae-4d68-90c3-ac56ade6120b",
+      "name": "BodyInst1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2080,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Accede a los datos de entrada desde los nodos anteriores\nconst inputData1 = $('TablaInst').first().json.options; // Primer conjunto de opciones\n\n// Inicializa un arreglo para las preguntas\nconst outputData = [];\n\n// Crea el objeto para la primera pregunta\nconst question1 = {\n  \"fieldLabel\": \"Que instancia usarás?\",\n  \"fieldType\": \"dropdown\",\n  \"fieldOptions\": {\n    \"values\": []\n  },\n  \"requiredField\": true\n};\n\n// Agrega las opciones de la primera pregunta\ninputData1.forEach(option => {\n  question1.fieldOptions.values.push( option ); // Asegúrate de que 'option' es el valor de la opción\n});\n\n\n// Agrega la pregunta al arreglo de salida\noutputData.push(question1);\n\n// Retorna el arreglo de objetos como una sola salida JSON\nreturn outputData;\n"
+      },
+      "id": "7af985d1-a210-417f-81d9-7a12e9313c14",
+      "name": "BodySql",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let contador = $('contadorinciail').all()[0].json['contador'];\n\nconst items = $('BodysCreate').all();\n\nconst updatedItems = items.map(item => {\n  const updatedItem = { ...item.json };  // Copia el contenido dentro de `json`\n  updatedItem.subject = `${updatedItem.subject} #${contador}`; // Actualiza el `subject`\n  contador++; \n  return { json: updatedItem };  // Envuelve en `json` para que n8n lo procese correctamente\n});\n\nreturn updatedItems;\n"
+      },
+      "id": "c39cd0a9-cff6-4608-81c6-6de10c274dc1",
+      "name": "ModificaNombres",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2760,
+        320
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "ce5dfa8a-fae4-48df-90d2-fe4e394af04b",
+      "name": "5 seg",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4440,
+        360
+      ],
+      "webhookId": "ba6f1e01-0667-41da-b029-d765bf55301c"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.imgbb.com/1/upload",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-type",
+              "value": "multipart/form-data"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "image",
+              "inputDataFieldName": "subir_imagen_de_grupos"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "fa3f9087-3bba-4c79-8ee8-dec40b1d2e6f",
+      "name": "Upload Img to ImgBB for URL1",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        840,
+        320
+      ],
+      "notesInFlow": true,
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "aJ1CQSus2socV6Lr",
+          "name": "Query Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/updateGroupPicture/{{ $('Form2').all()[0].json['Que instancia usarás?'] }}?groupJid={{ $('API-CREACOMUNIDAD').all()[0].json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"image\": \"{{ $('Upload Img to ImgBB for URL1').all()[0].json['data']['url'] }}\"\n}",
+        "options": {}
+      },
+      "id": "65b912ac-3f59-487b-ab23-ac6c5b89ca41",
+      "name": "Setfoto",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5080,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "defineForm": "json",
+        "jsonOutput": "=[{{ $('BodySql').item.json.toJsonString() }}, {{ $('BodyInst1').item.json.toJsonString() }}]",
+        "options": {
+          "buttonLabel": "CONTINUAR"
+        }
+      },
+      "id": "db8ab6eb-0578-48b1-a0e5-c68978cebabe",
+      "name": "Form2",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        2260,
+        320
+      ],
+      "webhookId": "d1e430de-48e2-4498-8583-f6a31795c3d6"
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "completionTitle": "TODOS LOS GRUPOS CREADOS",
+        "completionMessage": "Comprueba en whatsapp",
+        "options": {}
+      },
+      "id": "f4c2f386-1dbc-45bd-af67-99db334f8f4b",
+      "name": "FormFinal",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        3300,
+        100
+      ],
+      "webhookId": "4fb3d264-28dd-48ea-86f8-01074d95b231"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://gate.whapi.cloud/communities",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "authorization",
+              "value": "9s2FJ64yQPjjjw13UOjj6NCfGgUebXf3"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.toJsonString() }}",
+        "options": {}
+      },
+      "id": "77b70982-20c4-4200-80e7-e7d02a7083d4",
+      "name": "API-CREACOMUNIDAD",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3220,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://gate.whapi.cloud/communities/{{ $('API-CREACOMUNIDAD').all()[0].json.id }}/settings",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "authorization",
+              "value": "9s2FJ64yQPjjjw13UOjj6NCfGgUebXf3"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "setting",
+              "value": "=modify_groups"
+            },
+            {
+              "name": "policy",
+              "value": "=admins"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "656cae47-b8e2-4e5c-b3fb-209faa968933",
+      "name": "API-CONFIGURACIONES",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3380,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://gate.whapi.cloud/communities/{{ $('API-CREACOMUNIDAD').all()[0].json.id }}/participants",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "authorization",
+              "value": "9s2FJ64yQPjjjw13UOjj6NCfGgUebXf3"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $('Code').all()[0].json.toJsonString()}}",
+        "options": {}
+      },
+      "id": "8705de32-3a58-4cec-a689-b6ba4eaf7964",
+      "name": "API-AGREGA",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3840,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://gate.whapi.cloud/communities/{{ $('API-CREACOMUNIDAD').all()[0].json.id }}/admins",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "authorization",
+              "value": "9s2FJ64yQPjjjw13UOjj6NCfGgUebXf3"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $('Code').all()[0].json.toJsonString()}}",
+        "options": {}
+      },
+      "id": "e51f94c4-b2f8-4c7a-8119-46445085117b",
+      "name": "API-ADMINS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4040,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://gate.whapi.cloud/communities/{{ $('API-CREACOMUNIDAD').all()[0].json.id }}/subGroups",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "authorization",
+              "value": "9s2FJ64yQPjjjw13UOjj6NCfGgUebXf3"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a2637872-b298-40b6-a3d2-556cfa4ba083",
+      "name": "API-OBTENERAVISOS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4220,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://gate.whapi.cloud/groups/{{ $('API-OBTENERAVISOS').all()[0].json.announceGroupInfo.id }}/invite",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "authorization",
+              "value": "9s2FJ64yQPjjjw13UOjj6NCfGgUebXf3"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d286f6b1-6f3d-4ca9-b66d-be6b83b5ebde",
+      "name": "API-GETINVITE",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4640,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "\nconst entrada = $('form1').all()[0].json['Introduce los admin separados por comas'];\n\nconst salida = {\n  participants: entrada.includes(\",\") \n    ? entrada.split(\",\").map(participante => participante.trim()) \n    : [entrada.trim()]\n};\n\nreturn salida;\n"
+      },
+      "id": "71b36922-be9b-4f73-88f8-feb3eeb08652",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3600,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "={{ $('Form2').all()[0].json['Que tabla?'] }}",
+          "mode": "name"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "nombre",
+              "value": "={{ $('API-CREACOMUNIDAD').all()[0].json.subject }}"
+            },
+            {
+              "column": "link",
+              "value": "=https://chat.whatsapp.com/{{ $json.invite_code }}"
+            },
+            {
+              "column": "id",
+              "value": "={{ $('API-OBTENERAVISOS').item.json.announceGroupInfo.id }}"
+            },
+            {
+              "column": "Total",
+              "value": "0"
+            },
+            {
+              "column": "bienvenida",
+              "value": "no"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "12605703-1d9b-4f8c-a1a0-f0d1e5391c73",
+      "name": "EscribirGrupo1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        4840,
+        360
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "MySQL account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "form1": [
+      {
+        "json": {
+          "Nombre de los grupos": "Semana De Las Uñas",
+          "Descripción": "¡Hola! Bienvenida a nuestro grupo exclusivo de 4 CLASES GRATIS del Evento SEMANA DE LAS UÑAS 💅✨\r\n\r\n📅 Fechas del evento: 17, 18, 19 y 20 de Noviembre\r\n\r\nEstas clases virtuales están diseñadas para todas, incluso si no tienes experiencia o mucho capital. En cada clase, aprenderás las bases que te ayudarán a convertirte en una manicurista profesional, sin salir de casa:\r\n\r\n🔸 CLASE 1: Cómo destacar ante la competencia + Polygel desde cero.\r\n🔸 CLASE 2: Dominio del control de Perlas y los secretos del Limado, además de cómo empecé en este mundo.\r\n🔸 CLASE 3: Colocación rápida de Moldes + cómo lograr ser una manicurista rentable.\r\n🔸 CLASE 4: Técnica sorpresa + detalles para certificarte profesionalmente. 🚨 ¡No te salgas del grupo! Perderías el acceso y la información esencial para el evento.\r\n\r\n⚠ Recuerda: nuestro equipo nunca te contactará directamente para ofrecer servicios adicionales. Confía solo en los administradores del grupo.\r\n\r\n¡Nos vemos pronto!",
+          "Introduce los admin separados por comas": "573107174784,573212966365,573017817643,573136298562",
+          "Cantidad de grupos": 5,
+          "En que numero empieza?": 5,
+          "subir imagen de grupos": [
+            {
+              "filename": "Imagen de WhatsApp 2024-11-08 a las 03.17.32_8bb12d6d.jpg",
+              "mimetype": "image/jpeg",
+              "size": 47169
+            }
+          ],
+          "submittedAt": "2024-11-08T23:35:22.762-05:00",
+          "formMode": "production"
+        }
+      }
+    ],
+    "MySQL": [
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "C_IPS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "C_LINKS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS_COMUNIDAD"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS_ORG"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS_VIP"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS_COMUNIDAD"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS_ORG"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS_VIP"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "redirect_limit"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "redirect_limit_org"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "C_IPS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "C_LINKS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS_COMUNIDAD"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS_ORG"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS_VIP"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS_COMUNIDAD"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS_ORG"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS_VIP"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "redirect_limit"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "redirect_limit_org"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "C_IPS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "C_LINKS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS_COMUNIDAD"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS_ORG"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS_VIP"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS_COMUNIDAD"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS_ORG"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS_VIP"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "redirect_limit"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "redirect_limit_org"
+        }
+      }
+    ],
+    "HTTP Request": [
+      {
+        "json": {
+          "id": "0959d229-a55f-45de-a238-512cfff7c11b",
+          "name": "bot-prueba",
+          "connectionStatus": "close",
+          "ownerJid": "573166620443@s.whatsapp.net",
+          "profileName": "Pruebas1",
+          "profilePicUrl": null,
+          "integration": "WHATSAPP-BAILEYS",
+          "number": null,
+          "businessId": null,
+          "token": "512268CCF9E1-4CE3-9464-76F27656AD7B",
+          "clientName": "evolution_exchange",
+          "disconnectionReasonCode": 401,
+          "disconnectionObject": "{\"error\":{\"data\":{\"tag\":\"stream:error\",\"attrs\":{\"code\":\"401\"},\"content\":[{\"tag\":\"conflict\",\"attrs\":{\"type\":\"device_removed\"}}]},\"isBoom\":true,\"isServer\":false,\"output\":{\"statusCode\":401,\"payload\":{\"statusCode\":401,\"error\":\"Unauthorized\",\"message\":\"Stream Errored (conflict)\"},\"headers\":{}}},\"date\":\"2024-11-09T01:21:00.457Z\"}",
+          "disconnectionAt": "2024-11-09T01:21:00.459Z",
+          "createdAt": "2024-11-01T16:59:47.048Z",
+          "updatedAt": "2024-11-09T01:21:00.470Z",
+          "Chatwoot": null,
+          "Proxy": null,
+          "Rabbitmq": null,
+          "Sqs": null,
+          "Websocket": null,
+          "Setting": {
+            "id": "cm2yzcc8c000111rxfaasvgtv",
+            "rejectCall": true,
+            "msgCall": "",
+            "groupsIgnore": true,
+            "alwaysOnline": true,
+            "readMessages": false,
+            "readStatus": false,
+            "syncFullHistory": false,
+            "createdAt": "2024-11-01T16:59:47.053Z",
+            "updatedAt": "2024-11-01T17:01:46.118Z",
+            "instanceId": "0959d229-a55f-45de-a238-512cfff7c11b"
+          },
+          "_count": {
+            "Message": 8978,
+            "Contact": 1641,
+            "Chat": 1209
+          }
+        }
+      },
+      {
+        "json": {
+          "id": "42b56e07-4b95-496f-b5dd-f9799836cfba",
+          "name": "C UÑAS1",
+          "connectionStatus": "open",
+          "ownerJid": "573207581484@s.whatsapp.net",
+          "profileName": "Yolima Lafaurie",
+          "profilePicUrl": "https://pps.whatsapp.net/v/t61.24694-24/425147736_1626288141521313_401360044449142441_n.jpg?ccb=11-4&oh=01_Q5AaINrQ5S2sI6NZhZrQM7UH7QfcPFgZ4EErwquoYsYgIJJ4&oe=673BC0C1&_nc_sid=5e03e0&_nc_cat=101",
+          "integration": "WHATSAPP-BAILEYS",
+          "number": null,
+          "businessId": null,
+          "token": "6E093593B610-4579-BB06-575984D22867",
+          "clientName": "evolution_exchange",
+          "disconnectionReasonCode": null,
+          "disconnectionObject": null,
+          "disconnectionAt": null,
+          "createdAt": "2024-11-07T21:09:28.719Z",
+          "updatedAt": "2024-11-09T00:10:46.615Z",
+          "Chatwoot": null,
+          "Proxy": null,
+          "Rabbitmq": null,
+          "Sqs": null,
+          "Websocket": null,
+          "Setting": {
+            "id": "cm37swk5s2mdo12wgbhblh07m",
+            "rejectCall": false,
+            "msgCall": "",
+            "groupsIgnore": false,
+            "alwaysOnline": false,
+            "readMessages": false,
+            "readStatus": false,
+            "syncFullHistory": false,
+            "createdAt": "2024-11-07T21:09:28.721Z",
+            "updatedAt": "2024-11-07T21:09:28.721Z",
+            "instanceId": "42b56e07-4b95-496f-b5dd-f9799836cfba"
+          },
+          "_count": {
+            "Message": 6613,
+            "Contact": 5639,
+            "Chat": 12139
+          }
+        }
+      },
+      {
+        "json": {
+          "id": "57b1b0e6-6c78-4787-af7d-8aa251f9c115",
+          "name": "santiago",
+          "connectionStatus": "open",
+          "ownerJid": "573136298562@s.whatsapp.net",
+          "profileName": "Santi C",
+          "profilePicUrl": "https://pps.whatsapp.net/v/t61.24694-24/441586516_819497256800053_858432366453777428_n.jpg?ccb=11-4&oh=01_Q5AaINd2LEBLXlRmCTbrGlzgUChxe7ukg8bSxG02CjJtiMKA&oe=673BCD79&_nc_sid=5e03e0&_nc_cat=107",
+          "integration": "WHATSAPP-BAILEYS",
+          "number": null,
+          "businessId": null,
+          "token": "7C8CC4423282-462F-B54E-D8CA7F7136FB",
+          "clientName": "evolution_exchange",
+          "disconnectionReasonCode": 401,
+          "disconnectionObject": "{\"error\":{\"data\":{\"tag\":\"stream:error\",\"attrs\":{\"code\":\"401\"},\"content\":[{\"tag\":\"conflict\",\"attrs\":{\"type\":\"device_removed\"}}]},\"isBoom\":true,\"isServer\":false,\"output\":{\"statusCode\":401,\"payload\":{\"statusCode\":401,\"error\":\"Unauthorized\",\"message\":\"Stream Errored (conflict)\"},\"headers\":{}}},\"date\":\"2024-11-09T01:10:03.060Z\"}",
+          "disconnectionAt": "2024-11-09T01:10:03.062Z",
+          "createdAt": "2024-11-02T23:07:17.502Z",
+          "updatedAt": "2024-11-09T01:10:56.423Z",
+          "Chatwoot": null,
+          "Proxy": null,
+          "Rabbitmq": null,
+          "Sqs": null,
+          "Websocket": null,
+          "Setting": {
+            "id": "cm30rwt7g000tdcqwubfvprux",
+            "rejectCall": false,
+            "msgCall": "",
+            "groupsIgnore": false,
+            "alwaysOnline": false,
+            "readMessages": false,
+            "readStatus": false,
+            "syncFullHistory": false,
+            "createdAt": "2024-11-02T23:07:17.594Z",
+            "updatedAt": "2024-11-02T23:07:17.594Z",
+            "instanceId": "57b1b0e6-6c78-4787-af7d-8aa251f9c115"
+          },
+          "_count": {
+            "Message": 71048,
+            "Contact": 2994,
+            "Chat": 6786
+          }
+        }
+      }
+    ],
+    "contadorinciail": [
+      {
+        "json": {
+          "contador": 5
+        }
+      }
+    ],
+    "BodysCreate": [
+      {
+        "json": {
+          "subject": "Semana De Las Uñas",
+          "description": "¡Hola! Bienvenida a nuestro grupo exclusivo de 4 CLASES GRATIS del Evento SEMANA DE LAS UÑAS 💅✨\r\n\r\n📅 Fechas del evento: 17, 18, 19 y 20 de Noviembre\r\n\r\nEstas clases virtuales están diseñadas para todas, incluso si no tienes experiencia o mucho capital. En cada clase, aprenderás las bases que te ayudarán a convertirte en una manicurista profesional, sin salir de casa:\r\n\r\n🔸 CLASE 1: Cómo destacar ante la competencia + Polygel desde cero.\r\n🔸 CLASE 2: Dominio del control de Perlas y los secretos del Limado, además de cómo empecé en este mundo.\r\n🔸 CLASE 3: Colocación rápida de Moldes + cómo lograr ser una manicurista rentable.\r\n🔸 CLASE 4: Técnica sorpresa + detalles para certificarte profesionalmente. 🚨 ¡No te salgas del grupo! Perderías el acceso y la información esencial para el evento.\r\n\r\n⚠ Recuerda: nuestro equipo nunca te contactará directamente para ofrecer servicios adicionales. Confía solo en los administradores del grupo.\r\n\r\n¡Nos vemos pronto!",
+          "participants": [
+            "573107174784",
+            "573212966365",
+            "573017817643",
+            "573136298562"
+          ]
+        }
+      },
+      {
+        "json": {
+          "subject": "Semana De Las Uñas",
+          "description": "¡Hola! Bienvenida a nuestro grupo exclusivo de 4 CLASES GRATIS del Evento SEMANA DE LAS UÑAS 💅✨\r\n\r\n📅 Fechas del evento: 17, 18, 19 y 20 de Noviembre\r\n\r\nEstas clases virtuales están diseñadas para todas, incluso si no tienes experiencia o mucho capital. En cada clase, aprenderás las bases que te ayudarán a convertirte en una manicurista profesional, sin salir de casa:\r\n\r\n🔸 CLASE 1: Cómo destacar ante la competencia + Polygel desde cero.\r\n🔸 CLASE 2: Dominio del control de Perlas y los secretos del Limado, además de cómo empecé en este mundo.\r\n🔸 CLASE 3: Colocación rápida de Moldes + cómo lograr ser una manicurista rentable.\r\n🔸 CLASE 4: Técnica sorpresa + detalles para certificarte profesionalmente. 🚨 ¡No te salgas del grupo! Perderías el acceso y la información esencial para el evento.\r\n\r\n⚠ Recuerda: nuestro equipo nunca te contactará directamente para ofrecer servicios adicionales. Confía solo en los administradores del grupo.\r\n\r\n¡Nos vemos pronto!",
+          "participants": [
+            "573107174784",
+            "573212966365",
+            "573017817643",
+            "573136298562"
+          ]
+        }
+      },
+      {
+        "json": {
+          "subject": "Semana De Las Uñas",
+          "description": "¡Hola! Bienvenida a nuestro grupo exclusivo de 4 CLASES GRATIS del Evento SEMANA DE LAS UÑAS 💅✨\r\n\r\n📅 Fechas del evento: 17, 18, 19 y 20 de Noviembre\r\n\r\nEstas clases virtuales están diseñadas para todas, incluso si no tienes experiencia o mucho capital. En cada clase, aprenderás las bases que te ayudarán a convertirte en una manicurista profesional, sin salir de casa:\r\n\r\n🔸 CLASE 1: Cómo destacar ante la competencia + Polygel desde cero.\r\n🔸 CLASE 2: Dominio del control de Perlas y los secretos del Limado, además de cómo empecé en este mundo.\r\n🔸 CLASE 3: Colocación rápida de Moldes + cómo lograr ser una manicurista rentable.\r\n🔸 CLASE 4: Técnica sorpresa + detalles para certificarte profesionalmente. 🚨 ¡No te salgas del grupo! Perderías el acceso y la información esencial para el evento.\r\n\r\n⚠ Recuerda: nuestro equipo nunca te contactará directamente para ofrecer servicios adicionales. Confía solo en los administradores del grupo.\r\n\r\n¡Nos vemos pronto!",
+          "participants": [
+            "573107174784",
+            "573212966365",
+            "573017817643",
+            "573136298562"
+          ]
+        }
+      },
+      {
+        "json": {
+          "subject": "Semana De Las Uñas",
+          "description": "¡Hola! Bienvenida a nuestro grupo exclusivo de 4 CLASES GRATIS del Evento SEMANA DE LAS UÑAS 💅✨\r\n\r\n📅 Fechas del evento: 17, 18, 19 y 20 de Noviembre\r\n\r\nEstas clases virtuales están diseñadas para todas, incluso si no tienes experiencia o mucho capital. En cada clase, aprenderás las bases que te ayudarán a convertirte en una manicurista profesional, sin salir de casa:\r\n\r\n🔸 CLASE 1: Cómo destacar ante la competencia + Polygel desde cero.\r\n🔸 CLASE 2: Dominio del control de Perlas y los secretos del Limado, además de cómo empecé en este mundo.\r\n🔸 CLASE 3: Colocación rápida de Moldes + cómo lograr ser una manicurista rentable.\r\n🔸 CLASE 4: Técnica sorpresa + detalles para certificarte profesionalmente. 🚨 ¡No te salgas del grupo! Perderías el acceso y la información esencial para el evento.\r\n\r\n⚠ Recuerda: nuestro equipo nunca te contactará directamente para ofrecer servicios adicionales. Confía solo en los administradores del grupo.\r\n\r\n¡Nos vemos pronto!",
+          "participants": [
+            "573107174784",
+            "573212966365",
+            "573017817643",
+            "573136298562"
+          ]
+        }
+      },
+      {
+        "json": {
+          "subject": "Semana De Las Uñas",
+          "description": "¡Hola! Bienvenida a nuestro grupo exclusivo de 4 CLASES GRATIS del Evento SEMANA DE LAS UÑAS 💅✨\r\n\r\n📅 Fechas del evento: 17, 18, 19 y 20 de Noviembre\r\n\r\nEstas clases virtuales están diseñadas para todas, incluso si no tienes experiencia o mucho capital. En cada clase, aprenderás las bases que te ayudarán a convertirte en una manicurista profesional, sin salir de casa:\r\n\r\n🔸 CLASE 1: Cómo destacar ante la competencia + Polygel desde cero.\r\n🔸 CLASE 2: Dominio del control de Perlas y los secretos del Limado, además de cómo empecé en este mundo.\r\n🔸 CLASE 3: Colocación rápida de Moldes + cómo lograr ser una manicurista rentable.\r\n🔸 CLASE 4: Técnica sorpresa + detalles para certificarte profesionalmente. 🚨 ¡No te salgas del grupo! Perderías el acceso y la información esencial para el evento.\r\n\r\n⚠ Recuerda: nuestro equipo nunca te contactará directamente para ofrecer servicios adicionales. Confía solo en los administradores del grupo.\r\n\r\n¡Nos vemos pronto!",
+          "participants": [
+            "573107174784",
+            "573212966365",
+            "573017817643",
+            "573136298562"
+          ]
+        }
+      }
+    ],
+    "TablaSql": [
+      {
+        "json": {
+          "table_name": "C_IPS"
+        }
+      },
+      {
+        "json": {
+          "table_name": "C_LINKS"
+        }
+      },
+      {
+        "json": {
+          "table_name": "GERSSON_IPS"
+        }
+      },
+      {
+        "json": {
+          "table_name": "GERSSON_IPS_COMUNIDAD"
+        }
+      },
+      {
+        "json": {
+          "table_name": "GERSSON_IPS_ORG"
+        }
+      },
+      {
+        "json": {
+          "table_name": "GERSSON_IPS_VIP"
+        }
+      },
+      {
+        "json": {
+          "table_name": "GERSSON_LINKS"
+        }
+      },
+      {
+        "json": {
+          "table_name": "GERSSON_LINKS_COMUNIDAD"
+        }
+      },
+      {
+        "json": {
+          "table_name": "GERSSON_LINKS_ORG"
+        }
+      },
+      {
+        "json": {
+          "table_name": "GERSSON_LINKS_VIP"
+        }
+      },
+      {
+        "json": {
+          "table_name": "redirect_limit"
+        }
+      },
+      {
+        "json": {
+          "table_name": "redirect_limit_org"
+        }
+      }
+    ],
+    "DistinctSql": [
+      {
+        "json": {
+          "options": [
+            {
+              "option": "C_IPS"
+            },
+            {
+              "option": "C_LINKS"
+            },
+            {
+              "option": "GERSSON_IPS"
+            },
+            {
+              "option": "GERSSON_IPS_COMUNIDAD"
+            },
+            {
+              "option": "GERSSON_IPS_ORG"
+            },
+            {
+              "option": "GERSSON_IPS_VIP"
+            },
+            {
+              "option": "GERSSON_LINKS"
+            },
+            {
+              "option": "GERSSON_LINKS_COMUNIDAD"
+            },
+            {
+              "option": "GERSSON_LINKS_ORG"
+            },
+            {
+              "option": "GERSSON_LINKS_VIP"
+            },
+            {
+              "option": "redirect_limit"
+            },
+            {
+              "option": "redirect_limit_org"
+            }
+          ]
+        }
+      }
+    ],
+    "TablaInst": [
+      {
+        "json": {
+          "options": [
+            {
+              "option": "bot-prueba"
+            },
+            {
+              "option": "C UÑAS1"
+            },
+            {
+              "option": "santiago"
+            }
+          ]
+        }
+      }
+    ],
+    "BodyInst1": [
+      {
+        "json": {
+          "fieldLabel": "Que tabla?",
+          "fieldType": "dropdown",
+          "fieldOptions": {
+            "values": [
+              {
+                "option": "C_IPS"
+              },
+              {
+                "option": "C_LINKS"
+              },
+              {
+                "option": "GERSSON_IPS"
+              },
+              {
+                "option": "GERSSON_IPS_COMUNIDAD"
+              },
+              {
+                "option": "GERSSON_IPS_ORG"
+              },
+              {
+                "option": "GERSSON_IPS_VIP"
+              },
+              {
+                "option": "GERSSON_LINKS"
+              },
+              {
+                "option": "GERSSON_LINKS_COMUNIDAD"
+              },
+              {
+                "option": "GERSSON_LINKS_ORG"
+              },
+              {
+                "option": "GERSSON_LINKS_VIP"
+              },
+              {
+                "option": "redirect_limit"
+              },
+              {
+                "option": "redirect_limit_org"
+              }
+            ]
+          },
+          "requiredField": true
+        }
+      }
+    ],
+    "BodySql": [
+      {
+        "json": {
+          "fieldLabel": "Que instancia usarás?",
+          "fieldType": "dropdown",
+          "fieldOptions": {
+            "values": [
+              {
+                "option": "bot-prueba"
+              },
+              {
+                "option": "C UÑAS1"
+              },
+              {
+                "option": "santiago"
+              }
+            ]
+          },
+          "requiredField": true
+        }
+      }
+    ],
+    "ModificaNombres": [
+      {
+        "json": {
+          "subject": "Semana De Las Uñas #5",
+          "description": "¡Hola! Bienvenida a nuestro grupo exclusivo de 4 CLASES GRATIS del Evento SEMANA DE LAS UÑAS 💅✨\r\n\r\n📅 Fechas del evento: 17, 18, 19 y 20 de Noviembre\r\n\r\nEstas clases virtuales están diseñadas para todas, incluso si no tienes experiencia o mucho capital. En cada clase, aprenderás las bases que te ayudarán a convertirte en una manicurista profesional, sin salir de casa:\r\n\r\n🔸 CLASE 1: Cómo destacar ante la competencia + Polygel desde cero.\r\n🔸 CLASE 2: Dominio del control de Perlas y los secretos del Limado, además de cómo empecé en este mundo.\r\n🔸 CLASE 3: Colocación rápida de Moldes + cómo lograr ser una manicurista rentable.\r\n🔸 CLASE 4: Técnica sorpresa + detalles para certificarte profesionalmente. 🚨 ¡No te salgas del grupo! Perderías el acceso y la información esencial para el evento.\r\n\r\n⚠ Recuerda: nuestro equipo nunca te contactará directamente para ofrecer servicios adicionales. Confía solo en los administradores del grupo.\r\n\r\n¡Nos vemos pronto!",
+          "participants": [
+            "573107174784",
+            "573212966365",
+            "573017817643",
+            "573136298562"
+          ]
+        }
+      },
+      {
+        "json": {
+          "subject": "Semana De Las Uñas #6",
+          "description": "¡Hola! Bienvenida a nuestro grupo exclusivo de 4 CLASES GRATIS del Evento SEMANA DE LAS UÑAS 💅✨\r\n\r\n📅 Fechas del evento: 17, 18, 19 y 20 de Noviembre\r\n\r\nEstas clases virtuales están diseñadas para todas, incluso si no tienes experiencia o mucho capital. En cada clase, aprenderás las bases que te ayudarán a convertirte en una manicurista profesional, sin salir de casa:\r\n\r\n🔸 CLASE 1: Cómo destacar ante la competencia + Polygel desde cero.\r\n🔸 CLASE 2: Dominio del control de Perlas y los secretos del Limado, además de cómo empecé en este mundo.\r\n🔸 CLASE 3: Colocación rápida de Moldes + cómo lograr ser una manicurista rentable.\r\n🔸 CLASE 4: Técnica sorpresa + detalles para certificarte profesionalmente. 🚨 ¡No te salgas del grupo! Perderías el acceso y la información esencial para el evento.\r\n\r\n⚠ Recuerda: nuestro equipo nunca te contactará directamente para ofrecer servicios adicionales. Confía solo en los administradores del grupo.\r\n\r\n¡Nos vemos pronto!",
+          "participants": [
+            "573107174784",
+            "573212966365",
+            "573017817643",
+            "573136298562"
+          ]
+        }
+      },
+      {
+        "json": {
+          "subject": "Semana De Las Uñas #7",
+          "description": "¡Hola! Bienvenida a nuestro grupo exclusivo de 4 CLASES GRATIS del Evento SEMANA DE LAS UÑAS 💅✨\r\n\r\n📅 Fechas del evento: 17, 18, 19 y 20 de Noviembre\r\n\r\nEstas clases virtuales están diseñadas para todas, incluso si no tienes experiencia o mucho capital. En cada clase, aprenderás las bases que te ayudarán a convertirte en una manicurista profesional, sin salir de casa:\r\n\r\n🔸 CLASE 1: Cómo destacar ante la competencia + Polygel desde cero.\r\n🔸 CLASE 2: Dominio del control de Perlas y los secretos del Limado, además de cómo empecé en este mundo.\r\n🔸 CLASE 3: Colocación rápida de Moldes + cómo lograr ser una manicurista rentable.\r\n🔸 CLASE 4: Técnica sorpresa + detalles para certificarte profesionalmente. 🚨 ¡No te salgas del grupo! Perderías el acceso y la información esencial para el evento.\r\n\r\n⚠ Recuerda: nuestro equipo nunca te contactará directamente para ofrecer servicios adicionales. Confía solo en los administradores del grupo.\r\n\r\n¡Nos vemos pronto!",
+          "participants": [
+            "573107174784",
+            "573212966365",
+            "573017817643",
+            "573136298562"
+          ]
+        }
+      },
+      {
+        "json": {
+          "subject": "Semana De Las Uñas #8",
+          "description": "¡Hola! Bienvenida a nuestro grupo exclusivo de 4 CLASES GRATIS del Evento SEMANA DE LAS UÑAS 💅✨\r\n\r\n📅 Fechas del evento: 17, 18, 19 y 20 de Noviembre\r\n\r\nEstas clases virtuales están diseñadas para todas, incluso si no tienes experiencia o mucho capital. En cada clase, aprenderás las bases que te ayudarán a convertirte en una manicurista profesional, sin salir de casa:\r\n\r\n🔸 CLASE 1: Cómo destacar ante la competencia + Polygel desde cero.\r\n🔸 CLASE 2: Dominio del control de Perlas y los secretos del Limado, además de cómo empecé en este mundo.\r\n🔸 CLASE 3: Colocación rápida de Moldes + cómo lograr ser una manicurista rentable.\r\n🔸 CLASE 4: Técnica sorpresa + detalles para certificarte profesionalmente. 🚨 ¡No te salgas del grupo! Perderías el acceso y la información esencial para el evento.\r\n\r\n⚠ Recuerda: nuestro equipo nunca te contactará directamente para ofrecer servicios adicionales. Confía solo en los administradores del grupo.\r\n\r\n¡Nos vemos pronto!",
+          "participants": [
+            "573107174784",
+            "573212966365",
+            "573017817643",
+            "573136298562"
+          ]
+        }
+      },
+      {
+        "json": {
+          "subject": "Semana De Las Uñas #9",
+          "description": "¡Hola! Bienvenida a nuestro grupo exclusivo de 4 CLASES GRATIS del Evento SEMANA DE LAS UÑAS 💅✨\r\n\r\n📅 Fechas del evento: 17, 18, 19 y 20 de Noviembre\r\n\r\nEstas clases virtuales están diseñadas para todas, incluso si no tienes experiencia o mucho capital. En cada clase, aprenderás las bases que te ayudarán a convertirte en una manicurista profesional, sin salir de casa:\r\n\r\n🔸 CLASE 1: Cómo destacar ante la competencia + Polygel desde cero.\r\n🔸 CLASE 2: Dominio del control de Perlas y los secretos del Limado, además de cómo empecé en este mundo.\r\n🔸 CLASE 3: Colocación rápida de Moldes + cómo lograr ser una manicurista rentable.\r\n🔸 CLASE 4: Técnica sorpresa + detalles para certificarte profesionalmente. 🚨 ¡No te salgas del grupo! Perderías el acceso y la información esencial para el evento.\r\n\r\n⚠ Recuerda: nuestro equipo nunca te contactará directamente para ofrecer servicios adicionales. Confía solo en los administradores del grupo.\r\n\r\n¡Nos vemos pronto!",
+          "participants": [
+            "573107174784",
+            "573212966365",
+            "573017817643",
+            "573136298562"
+          ]
+        }
+      }
+    ],
+    "Upload Img to ImgBB for URL1": [
+      {
+        "json": {
+          "data": {
+            "id": "4WdNtXM",
+            "title": "Imagen-de-Whats-App-2024-11-08-a-las-03-17-32-8bb12d6d",
+            "url_viewer": "https://ibb.co/4WdNtXM",
+            "url": "https://i.ibb.co/qB51jc9/Imagen-de-Whats-App-2024-11-08-a-las-03-17-32-8bb12d6d.jpg",
+            "display_url": "https://i.ibb.co/qB51jc9/Imagen-de-Whats-App-2024-11-08-a-las-03-17-32-8bb12d6d.jpg",
+            "width": 640,
+            "height": 640,
+            "size": 47169,
+            "time": 1731126922,
+            "expiration": 0,
+            "image": {
+              "filename": "Imagen-de-Whats-App-2024-11-08-a-las-03-17-32-8bb12d6d.jpg",
+              "name": "Imagen-de-Whats-App-2024-11-08-a-las-03-17-32-8bb12d6d",
+              "mime": "image/jpeg",
+              "extension": "jpg",
+              "url": "https://i.ibb.co/qB51jc9/Imagen-de-Whats-App-2024-11-08-a-las-03-17-32-8bb12d6d.jpg"
+            },
+            "thumb": {
+              "filename": "Imagen-de-Whats-App-2024-11-08-a-las-03-17-32-8bb12d6d.jpg",
+              "name": "Imagen-de-Whats-App-2024-11-08-a-las-03-17-32-8bb12d6d",
+              "mime": "image/jpeg",
+              "extension": "jpg",
+              "url": "https://i.ibb.co/4WdNtXM/Imagen-de-Whats-App-2024-11-08-a-las-03-17-32-8bb12d6d.jpg"
+            },
+            "delete_url": "https://ibb.co/4WdNtXM/7b3e53b3c74b737afddd0fb624370ab6"
+          },
+          "success": true,
+          "status": 200
+        }
+      }
+    ],
+    "Form2": [
+      {
+        "json": {
+          "Que instancia usarás?": "santiago",
+          "Que tabla?": "C_LINKS",
+          "submittedAt": "2024-11-08T23:35:32.448-05:00",
+          "formMode": "production"
+        }
+      }
+    ],
+    "API-CREACOMUNIDAD": [
+      {
+        "json": {
+          "id": "120363343929616508@g.us",
+          "name": "Semana De Las Uñas #5",
+          "conversationTimestamp": 1731126933,
+          "subject": "Semana De Las Uñas #5",
+          "subjectOwner": "573166620443@s.whatsapp.net",
+          "subjectTime": 1731126933,
+          "size": 1,
+          "creation": 1731126933,
+          "owner": "573166620443@s.whatsapp.net",
+          "desc": "¡Hola! Bienvenida a nuestro grupo exclusivo de 4 CLASES GRATIS del Evento SEMANA DE LAS UÑAS 💅✨\r\n\r\n📅 Fechas del evento: 17, 18, 19 y 20 de Noviembre\r\n\r\nEstas clases virtuales están diseñadas para todas, incluso si no tienes experiencia o mucho capital. En cada clase, aprenderás las bases que te ayudarán a convertirte en una manicurista profesional, sin salir de casa:\r\n\r\n🔸 CLASE 1: Cómo destacar ante la competencia + Polygel desde cero.\r\n🔸 CLASE 2: Dominio del control de Perlas y los secretos del Limado, además de cómo empecé en este mundo.\r\n🔸 CLASE 3: Colocación rápida de Moldes + cómo lograr ser una manicurista rentable.\r\n🔸 CLASE 4: Técnica sorpresa + detalles para certificarte profesionalmente. 🚨 ¡No te salgas del grupo! Perderías el acceso y la información esencial para el evento.\r\n\r\n⚠ Recuerda: nuestro equipo nunca te contactará directamente para ofrecer servicios adicionales. Confía solo en los administradores del grupo.\r\n\r\n¡Nos vemos pronto!",
+          "descId": "2E37760E5033B3A67AA43445",
+          "restrict": false,
+          "announce": false,
+          "isCommunity": true,
+          "isCommunityAnnounce": false,
+          "joinApprovalMode": false,
+          "memberAddMode": false,
+          "participants": [
+            {
+              "id": "573166620443@s.whatsapp.net",
+              "admin": "superadmin"
+            }
+          ],
+          "author": "573166620443@s.whatsapp.net"
+        }
+      }
+    ],
+    "API-CONFIGURACIONES": [
+      {
+        "json": {
+          "success": true,
+          "processed": [
+            "573136298562",
+            "573245904626"
+          ],
+          "failed": []
+        }
+      }
+    ],
+    "Code": [
+      {
+        "json": {
+          "participants": [
+            "573107174784",
+            "573212966365",
+            "573017817643",
+            "573136298562"
+          ]
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2024-11-09T05:01:34.000Z",
+  "versionId": "2145a9fa-c155-45e7-a2cb-eef3f0b098ab"
+}
