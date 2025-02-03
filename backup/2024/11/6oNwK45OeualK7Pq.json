@@ -1,0 +1,339 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-30T17:33:04.634Z",
+  "id": "6oNwK45OeualK7Pq",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CLASIFICADOR IA - UCHAT",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "=https://www.uchat.com.au/api/subscriber/chat-messages?user_ns={{ $('Loop Over Items').first().json.user_ns }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "include_bot",
+              "value": "1"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer wotJVBUgJDmGjz4l0JCyToilK25AEHZTVPe1FRbMesI6THPVuRyuFTcL02W7"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "cc131088-3d7f-4180-a011-64cbd4ea5653",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1240,
+        340
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f45fa739-c221-414f-a492-d0b2976f78a3",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        520,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1lHf7hUQmInCjUGjU47lo-3ttRrumxabCxGCTOlHVlP4/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1lHf7hUQmInCjUGjU47lo-3ttRrumxabCxGCTOlHVlP4/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "user_ns": "={{ $('Loop Over Items').item.json.user_ns }}",
+            "OBSERVACION IA": "={{ $json.message.content }}"
+          },
+          "matchingColumns": [
+            "user_ns"
+          ],
+          "schema": [
+            {
+              "id": "user_ns",
+              "displayName": "user_ns",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "NUMERO",
+              "displayName": "NUMERO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ASESOR",
+              "displayName": "ASESOR",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "OBSERVACION IA",
+              "displayName": "OBSERVACION IA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "INTERES",
+              "displayName": "INTERES",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ASESOR",
+              "displayName": "ASESOR",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "LINK",
+              "displayName": "LINK",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a38ebf83-77d8-48cd-8b1b-fcc7733264cb",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1860,
+        340
+      ],
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1lHf7hUQmInCjUGjU47lo-3ttRrumxabCxGCTOlHVlP4/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1lHf7hUQmInCjUGjU47lo-3ttRrumxabCxGCTOlHVlP4/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "OBSERVACION IA"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3dfc73a4-42c8-4d99-ad56-0c67e76cab2a",
+      "name": "Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        760,
+        320
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "074925f7-b761-4372-8adc-3e7a0de75be4",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        980,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "Actúa como SUPERVISOR experto en call center gestionando chats de alto tráfico y experimentado vendedor entrenado por jurgen klaric. Resume el estado del cliente, midiendo su interés (1-10 según mensajes y señales deducibles de compra). Convierte 'ts' (timestamp Unix) a hora Bogotá y prioriza mensajes desde el 28 de noviembre en la noche para evaluar urgencia de recuperación, informa si el cliente recibió respuesta a sus preguntas o mensajes. Nota: el mensaje inicial 'Quiero inscribirme a la terapia del dolor' es automático y no indica interés real. Responde en máximo 400 caracteres. pon el interes en las primeras palabras con el formato : \"(temperatura: 1)\"",
+              "role": "system"
+            },
+            {
+              "content": "={{ $json.data.toJsonString() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b3dc6df7-fa9f-4aba-a389-3be22fd18d9f",
+      "name": "OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.6,
+      "position": [
+        1460,
+        340
+      ],
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-12-16T22:52:04.000Z",
+  "versionId": "38125c99-af38-4a5b-980f-43132f22601c"
+}
