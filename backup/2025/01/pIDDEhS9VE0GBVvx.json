@@ -1,0 +1,426 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-15T20:17:27.370Z",
+  "id": "pIDDEhS9VE0GBVvx",
+  "meta": null,
+  "name": "ENVIOS MASIVOS CHATWOOT API",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        -60
+      ],
+      "id": "041590f6-937d-4392-bf0c-3e80917b9595",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1e83mWeX6DWgOSqA3anCUvVjW78s42H-PZbCzJNDVjUE/edit?gid=610847183#gid=610847183",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1e83mWeX6DWgOSqA3anCUvVjW78s42H-PZbCzJNDVjUE/edit?gid=610847183#gid=610847183",
+          "mode": "url"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "RECUPERADO"
+            },
+            {
+              "lookupColumn": "FINAL"
+            },
+            {
+              "lookupColumn": "MENSAJE MASIVO ENVIADO"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        360,
+        -60
+      ],
+      "id": "cfe027b3-5f7d-4473-8528-64fe982b8205",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v21.0/269879672874422/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer EAAFrfQY0m5QBOZB3ZCV294qwxQHzim0boCiCewwsFRAbCPUL4kb07GzgK2QzECkXvyZAeEl7UGlIYMgAZAOjxUotyre1wSIkLZCrfDAKMXivN6ZCVbHfKgBW3QKAnR3ljVcrRHF7EGBd73coiKzsQ1PljBuG3Wzzukshqts9a63ZC0dnY9DEGR1aPnZCdy6ZC"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"messaging_product\": \"whatsapp\",\n    \"recipient_type\": \"individual\",\n    \"to\": \"{{$json.numero}}\",\n    \"type\": \"template\",\n    \"template\": {\n        \"name\": \"{{ $('Edit Fields').item.json.plantilla }}\",\n        \"language\": {\n            \"code\": \"Es\"\n        }\n    }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        980,
+        -20
+      ],
+      "id": "0ae1e627-9a83-4e68-a6b9-417573970067",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        740,
+        -60
+      ],
+      "id": "6de4922d-4c12-4ff7-a96b-068290558bf1",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1e83mWeX6DWgOSqA3anCUvVjW78s42H-PZbCzJNDVjUE/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1e83mWeX6DWgOSqA3anCUvVjW78s42H-PZbCzJNDVjUE/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "MENSAJE MASIVO ENVIADO": "1",
+            "NUMERO": "={{ $('Loop Over Items').item.json.numero }}"
+          },
+          "matchingColumns": [
+            "NUMERO"
+          ],
+          "schema": [
+            {
+              "id": "NUMERO",
+              "displayName": "NUMERO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "MEDIO",
+              "displayName": "MEDIO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "FECHA DE PAGO",
+              "displayName": "FECHA DE PAGO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "MENSAJE MASIVO ENVIADO",
+              "displayName": "MENSAJE MASIVO ENVIADO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CONTACTADO",
+              "displayName": "CONTACTADO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "COMENTARIO",
+              "displayName": "COMENTARIO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "RECUPERADO",
+              "displayName": "RECUPERADO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "YEZDE",
+              "displayName": "YEZDE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "FINAL",
+              "displayName": "FINAL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1340,
+        -20
+      ],
+      "id": "d5c9ca9d-74b9-4c81-97fb-cbeb6769fdfa",
+      "name": "Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const axios = require('axios').default;\n\nconst wha = '573009937799';\nconst numerowha = `+${wha}`;\nlet from = $('Loop Over Items').first().json.numero;\nconst senderfb = '269879672874422';\nlet sender = senderfb;\nconst currentDateTimestamp = Math.floor(Date.now() / 1000);\nconst busineessid = '253762167824327';\nconst tokenchatw = '29b0ba69b0b32d549a476fccd0e0e831';\nconst mensaje = \"🔴 BOT: \" + $('Edit Fields').first().json.mensaje\n\nconst reenviarWebhookAChatwoot = async data => {\n  const chatwootWebhookUrl = `https://app.chatwoot.com/webhooks/whatsapp/${numerowha}`; // Reemplaza con la URL real del webhook de Chatwoot\n  const chatwootToken = tokenchatw; // Si Chatwoot requiere autenticación\n\n  try {\n    await axios.post(chatwootWebhookUrl, data, {\n      headers: {\n        'Content-Type': 'application/json',\n        Authorization: `Bearer ${chatwootToken}`, // Solo si es necesario\n      },\n    });\n  } catch (error) {\n    console.error('Error al reenviar el webhook a Chatwoot:', error);\n  }\n};\n\nasync function enviarespuestaChatwoot(body) {\n  try {\n    await reenviarWebhookAChatwoot(body); // Sin .catch aquí, se maneja dentro del bloque try-catch\n  } catch (error) {\n  }\n}\n\nfunction generarWamidAleatorio() {\n  const inicio = 'wamid.';\n  const caracteres =\n    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';\n  let resultado = inicio;\n  const longitud = 50;\n  for (let i = inicio.length; i < longitud; i++) {\n    resultado += caracteres.charAt(\n      Math.floor(Math.random() * caracteres.length)\n    );\n  }\n  return resultado;\n}\n\nlet bodyParaChatwoot = {\n  object: busineessid,\n  entry: [\n    {\n      id: busineessid,\n      changes: [\n        {\n          value: {\n            messaging_product: 'wha',\n            metadata: {\n              display_phone_number: numerowha,\n              phone_number_id: sender,\n            },\n            contacts: [\n              {\n                profile: {\n                  name: '',\n                },\n                wa_id: String(from), // Convertir a cadena explícitamente\n              },\n            ],\n            messages: [\n              {\n                from: String(from), // Convertir a cadena explícitamente\n                id: generarWamidAleatorio(),\n                timestamp: currentDateTimestamp,\n                text: {\n                  body: mensaje,\n                },\n                type: 'text',\n              },\n            ],\n          },\n          field: 'messages',\n        },\n      ],\n    },\n  ],\n};\n\n\nfunction delay(ms) {\n  return new Promise(resolve => setTimeout(resolve, ms));\n}\n// Llamada a la función\nenviarespuestaChatwoot(bodyParaChatwoot);\n\n// Retornar un array de objetos como resultado\nreturn [\n  {\n    json: bodyParaChatwoot, // Esta es la estructura que se debe retornar en n8n\n  },\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1160,
+        -20
+      ],
+      "id": "8ce86359-52ee-4ee7-9b51-d772145980ff",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "54978e17-a90b-4037-9787-8280308ec9ab",
+              "name": "plantilla",
+              "value": "emergencia1_1",
+              "type": "string"
+            },
+            {
+              "id": "2fc24d58-a8b4-4008-8982-652018d4929e",
+              "name": "mensaje",
+              "value": "IMPORTANTE: Hola, te habla Santiago, administrador del negocio.  Hace poco recibimos tu compra, pero vimos que TU PAGO REBOTÓ 🔴 debido a un error interno del banco relacionado con Transfiya.  El acceso al producto se encuentra activo en el link de la compra, pero el pago no lo recibimos, te pido por favor que puedas hacer el pago a la misma cuenta  Transfiya: 3162351670 Valor: 17.900  Agradecemos enormemente tu ayuda.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        180,
+        -60
+      ],
+      "id": "a0b958c0-0c4d-4af5-8c3c-d91399e86660",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1500,
+        -20
+      ],
+      "id": "9328ffe2-09db-4fd7-997e-43f3a27b5f9e",
+      "name": "Wait",
+      "webhookId": "076ac555-66a3-4c0e-86cf-d639ecc4b159"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e8f2406a-9678-424a-8674-27ef4d5ab4fd",
+              "name": "numero",
+              "value": "={{ $json.NUMERO }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        560,
+        -60
+      ],
+      "id": "9978de39-5cea-47f5-a161-e10aecc14a62",
+      "name": "Edit Fields1"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-24T17:37:12.000Z",
+  "versionId": "2d11fad5-3d46-43e2-bae6-41d6cf3d5025"
+}
