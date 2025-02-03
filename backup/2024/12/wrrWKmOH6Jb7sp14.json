@@ -1,0 +1,707 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait4": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request3": {
+      "main": [
+        [
+          {
+            "node": "Wait4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-12-27T17:52:58.712Z",
+  "id": "wrrWKmOH6Jb7sp14",
+  "meta": null,
+  "name": "🟢 [TOOL] WEBHOOKS SMS - TRANSFIYA",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "sms-transfiya",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -300,
+        -60
+      ],
+      "id": "e7aa8211-88c6-48c3-a950-8cd70fed6d3c",
+      "name": "Webhook",
+      "webhookId": "59e5694f-83f2-4988-ad2f-4281c57d3d0d"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "=https://docs.google.com/spreadsheets/d/1sDv2vkexbHWcnR4SxVUAZW747rXFeyqKhWbldwLvrRQ/edit?gid=2042987742#gid=2042987742",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1sDv2vkexbHWcnR4SxVUAZW747rXFeyqKhWbldwLvrRQ/edit?gid=2042987742#gid=2042987742",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "FECHA": "={{ new Date($('Webhook').first().json.body.receivedStamp).toLocaleString('en-US', { timeZone: 'America/Bogota', hour12: false }).replace(',', '').replace(/\\//g, '-') }}",
+            "NOMBRE": "={{ $json.name }}",
+            "VALOR": "={{ $json.value }}"
+          },
+          "matchingColumns": [
+            "FECHA"
+          ],
+          "schema": [
+            {
+              "id": "FECHA",
+              "displayName": "FECHA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "NOMBRE",
+              "displayName": "NOMBRE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "VALOR",
+              "displayName": "VALOR",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "DIA",
+              "displayName": "DIA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "HORA",
+              "displayName": "HORA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        700,
+        -60
+      ],
+      "id": "e36d86dc-6ce7-4d3b-9272-a512c0f8a478",
+      "name": "Google Sheets",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1ee89caa-c2b1-4951-8f13-11bc950f8120",
+              "leftValue": "={{ $json.body.text.toLowerCase() }}",
+              "rightValue": "/transfiya/",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -100,
+        -60
+      ],
+      "id": "61bc9a87-6556-4518-998e-1ae737c762b0",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Entrada: Asumimos que el texto viene en msg.body\nconst inputText = $('Webhook').first().json.body.text;\n\n// Expresión regular para extraer el nombre\nconst nameMatch = inputText.match(/^(\\w+)\\s/);\nconst name = nameMatch ? nameMatch[1] : null;\n\n// Expresión regular para extraer el valor\nconst valueMatch = inputText.match(/\\$\\s([\\d.]+)/);\nlet value = valueMatch ? valueMatch[1] : null;\n\n// Eliminar los puntos del valor (separadores de miles)\nif (value) {\n    value = value.replace(/\\./g, '');  // Elimina todos los puntos\n}\n\n// Resultado\nreturn {\n    name: name,\n    value: value\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        500,
+        -40
+      ],
+      "id": "8a18560e-a1a4-430a-81e6-eec294550e56",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "amount": 60
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        960,
+        0
+      ],
+      "id": "0b404c4e-e24c-4062-acc6-2fb8ccc91d0b",
+      "name": "Wait",
+      "webhookId": "7d6d2d10-9ec1-4235-8077-171a333abfb0"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ef9ec435-f9c9-4e21-890a-667c38048a91",
+              "leftValue": "={{ $json.body.text.toLowerCase() }}",
+              "rightValue": "/acepta/",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        120,
+        -80
+      ],
+      "id": "0c83b973-9be7-44bc-b898-10a16646e976",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://evolution.automscc.com/message/sendText/santiago",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "573245904626"
+            },
+            {
+              "name": "text",
+              "value": "=🔴 MENSAJE AUTOMATICO: SE CAYÓ EL TRANSFIYAAAA"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        480,
+        -380
+      ],
+      "id": "ce2965fa-7e67-42ac-8366-777d9f1f074f",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://evolution.automscc.com/message/sendText/santiago",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "573245904626"
+            },
+            {
+              "name": "text",
+              "value": "=🔴 MENSAJE AUTOMATICO: SE CAYÓ EL TRANSFIYAAAA"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        840,
+        -380
+      ],
+      "id": "eb68ccc0-9375-437e-9791-90cb8a7186d6",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        660,
+        -380
+      ],
+      "id": "2dd57976-16b9-4297-bc2f-02544416acdd",
+      "name": "Wait1",
+      "webhookId": "d2e8938a-273b-4f0c-9cbe-c7a5bb297ea2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://evolution.automscc.com/message/sendText/santiago",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "573245904626"
+            },
+            {
+              "name": "text",
+              "value": "=🔴 MENSAJE AUTOMATICO: SE CAYÓ EL TRANSFIYAAAA"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1200,
+        -380
+      ],
+      "id": "c911d8ff-fd82-4a67-aff1-bd730e5a4763",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1020,
+        -380
+      ],
+      "id": "c97a5df4-2c0e-4e13-b89e-42b558db88e6",
+      "name": "Wait2",
+      "webhookId": "d2e8938a-273b-4f0c-9cbe-c7a5bb297ea2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://evolution.automscc.com/message/sendText/santiago",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "573245904626"
+            },
+            {
+              "name": "text",
+              "value": "=🔴 MENSAJE AUTOMATICO: SE CAYÓ EL TRANSFIYAAAA"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1560,
+        -380
+      ],
+      "id": "5b60436a-f146-4532-893d-4717a1ef5fdc",
+      "name": "HTTP Request3"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1380,
+        -380
+      ],
+      "id": "843c0f65-ea9d-43e3-afea-22c395afcf8d",
+      "name": "Wait3",
+      "webhookId": "d2e8938a-273b-4f0c-9cbe-c7a5bb297ea2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://evolution.automscc.com/message/sendText/santiago",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "573245904626"
+            },
+            {
+              "name": "text",
+              "value": "=🔴 MENSAJE AUTOMATICO: SE CAYÓ EL TRANSFIYAAAA"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1920,
+        -380
+      ],
+      "id": "6b597e20-e748-48db-bf5e-6575d6068c9d",
+      "name": "HTTP Request4"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1740,
+        -380
+      ],
+      "id": "c7a134fd-0d61-4d3b-8040-8ee6f03e1718",
+      "name": "Wait4",
+      "webhookId": "d2e8938a-273b-4f0c-9cbe-c7a5bb297ea2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ef9ec435-f9c9-4e21-890a-667c38048a91",
+              "leftValue": "={{ $json.body.text.toLowerCase() }}",
+              "rightValue": "/saldo/",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        320,
+        -40
+      ],
+      "id": "01462a50-4da0-4a4a-a8e4-8ecbae25e423",
+      "name": "If2"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "SMS Forwarder App",
+            "transfer-encoding": "chunked",
+            "accept-encoding": "gzip",
+            "content-type": "application/json; charset=utf-8",
+            "x-forwarded-for": "179.33.153.162",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "0f86eb816a4d",
+            "x-real-ip": "179.33.153.162"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "from": "890159",
+            "text": "DISNEY te envio $ 37.900 por Transfiya. Aceptalos en tu Entidad Financiera o se cancelara.",
+            "sentStamp": 1737695325000,
+            "receivedStamp": 1737695326104,
+            "sim": "sim1"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/sms-transfiya",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-01-24T07:30:31.000Z",
+  "versionId": "39610083-9d9e-47fe-a9dc-d7a2299a98a2"
+}
