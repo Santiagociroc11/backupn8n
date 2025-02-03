@@ -1,0 +1,495 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-15T04:11:22.622Z",
+  "id": "dJRfq9qYV0J2Hz9E",
+  "meta": null,
+  "name": "🟢 [ADRI] CAPTURA-POSTRES",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "captura-postres",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -360,
+        -40
+      ],
+      "id": "3a40946b-feb6-4632-afe5-4d2c60112179",
+      "name": "Webhook",
+      "webhookId": "9bdb2fac-e8a5-49b1-9232-ad9ce950cac1"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1iUJJOE_XYXc8sW_va5-p1sakjdOwgmMDbU41Ecs-lm0/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1iUJJOE_XYXc8sW_va5-p1sakjdOwgmMDbU41Ecs-lm0/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "CORREO"
+          ],
+          "schema": [
+            {
+              "id": "FECHA",
+              "displayName": "FECHA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CORREO",
+              "displayName": "CORREO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CAMPAÑA",
+              "displayName": "CAMPAÑA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SEGMENTACION",
+              "displayName": "SEGMENTACION",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ANUNCIO",
+              "displayName": "ANUNCIO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "PLATAFORMA",
+              "displayName": "PLATAFORMA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        400,
+        -160
+      ],
+      "id": "12e0c337-a599-4db2-b0c4-1a12f4796703",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3e017d9f-2e10-4096-b742-f29f90050d12",
+              "name": "CORREO",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "404b1a16-7c5c-48d2-8e9a-d272cd85648c",
+              "name": "CAMPAÑA",
+              "value": "={{ $json.body.utmCampaign }}",
+              "type": "string"
+            },
+            {
+              "id": "a60bdde3-f659-4ed3-ab93-695b824c4095",
+              "name": "PLATAFORMA",
+              "value": "={{ $json.body.utmSource }}",
+              "type": "string"
+            },
+            {
+              "id": "efdf6533-c3b2-45d1-8f08-e84e5179b8f8",
+              "name": "SEGMENTACION",
+              "value": "={{ $json.body.utmMedium }}",
+              "type": "string"
+            },
+            {
+              "id": "0edbf33b-43a2-4ff4-83d4-e3d775649db6",
+              "name": "ANUNCIO",
+              "value": "={{ $json.body.utmContent }}",
+              "type": "string"
+            },
+            {
+              "id": "e6c54583-3fff-40ef-977f-b4a4d87a14f1",
+              "name": "FECHA",
+              "value": "={{ $now.format('dd-MM-yyyy HH:mm:ss') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        160,
+        -160
+      ],
+      "id": "72db00af-bd9c-4e77-9144-c9ee79ce7461",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.pagina }}",
+                    "rightValue": "PRINCIPAL",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PRINCIPAL"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "608d00e0-4bcc-4ac0-b01d-36122eb35c73",
+                    "leftValue": "={{ $json.body.pagina }}",
+                    "rightValue": "ORG",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ORG"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -120,
+        -40
+      ],
+      "id": "d07b799a-7e0c-4603-ae1e-b63e846f48dd",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1iUJJOE_XYXc8sW_va5-p1sakjdOwgmMDbU41Ecs-lm0/edit?gid=603309166#gid=603309166",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1iUJJOE_XYXc8sW_va5-p1sakjdOwgmMDbU41Ecs-lm0/edit?gid=603309166#gid=603309166",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "CORREO"
+          ],
+          "schema": [
+            {
+              "id": "FECHA",
+              "displayName": "FECHA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CORREO",
+              "displayName": "CORREO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CAMPAÑA",
+              "displayName": "CAMPAÑA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SEGMENTACION",
+              "displayName": "SEGMENTACION",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ANUNCIO",
+              "displayName": "ANUNCIO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "PLATAFORMA",
+              "displayName": "PLATAFORMA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        400,
+        60
+      ],
+      "id": "55a54f7e-4b23-4b55-812f-732375ceb525",
+      "name": "Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3e017d9f-2e10-4096-b742-f29f90050d12",
+              "name": "CORREO",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "404b1a16-7c5c-48d2-8e9a-d272cd85648c",
+              "name": "CAMPAÑA",
+              "value": "={{ $json.body.utmCampaign }}",
+              "type": "string"
+            },
+            {
+              "id": "a60bdde3-f659-4ed3-ab93-695b824c4095",
+              "name": "PLATAFORMA",
+              "value": "={{ $json.body.utmSource }}",
+              "type": "string"
+            },
+            {
+              "id": "efdf6533-c3b2-45d1-8f08-e84e5179b8f8",
+              "name": "SEGMENTACION",
+              "value": "={{ $json.body.utmMedium }}",
+              "type": "string"
+            },
+            {
+              "id": "0edbf33b-43a2-4ff4-83d4-e3d775649db6",
+              "name": "ANUNCIO",
+              "value": "={{ $json.body.utmContent }}",
+              "type": "string"
+            },
+            {
+              "id": "e6c54583-3fff-40ef-977f-b4a4d87a14f1",
+              "name": "FECHA",
+              "value": "={{ $now.format('dd-MM-yyyy HH:mm:ss') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        160,
+        60
+      ],
+      "id": "9a34590d-853b-4402-876f-1a220e77e017",
+      "name": "Edit Fields1"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (Linux; Android 8.0.0; SM-G570M Build/R16NW; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/132.0.6834.74 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/495.0.0.45.201;IABMV/1;]",
+            "content-length": "157",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "es-US,es;q=0.9,en-US;q=0.8,en;q=0.7",
+            "content-type": "application/json",
+            "origin": "https://www.adrianarueda.online",
+            "priority": "u=1, i",
+            "referer": "https://www.adrianarueda.online/",
+            "sec-ch-ua": "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"Android WebView\";v=\"132\"",
+            "sec-ch-ua-mobile": "?1",
+            "sec-ch-ua-platform": "\"Android\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "181.69.7.212",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "0f86eb816a4d",
+            "x-real-ip": "181.69.7.212",
+            "x-requested-with": "com.facebook.katana"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "tiemporegistro": 1736987995,
+            "email": "maitteyary1@gmail.com",
+            "utmCampaign": "-",
+            "utmSource": "-",
+            "utmMedium": "-",
+            "utmContent": "-",
+            "utmTerm": "-",
+            "pagina": "ORG"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/captura-postres",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-01-24T06:35:25.000Z",
+  "versionId": "3062226c-8685-4708-86d0-935640f74e6d"
+}
