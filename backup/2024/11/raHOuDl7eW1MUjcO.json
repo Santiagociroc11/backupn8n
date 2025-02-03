@@ -1,0 +1,844 @@
+{
+  "active": true,
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "TablaSql",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "form1": {
+      "main": [
+        [
+          {
+            "node": "SUBIR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "contadorinciail": {
+      "main": [
+        [
+          {
+            "node": "ModificaNombres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BodysCreate": {
+      "main": [
+        [
+          {
+            "node": "contadorinciail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TablaSql": {
+      "main": [
+        [
+          {
+            "node": "DistinctSql",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DistinctSql": {
+      "main": [
+        [
+          {
+            "node": "TablaInst",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TablaInst": {
+      "main": [
+        [
+          {
+            "node": "BodySql",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BodyInst1": {
+      "main": [
+        [
+          {
+            "node": "Form2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BodySql": {
+      "main": [
+        [
+          {
+            "node": "BodyInst1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ModificaNombres": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "FormFinal",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "CreateGroup",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CreateGroup": {
+      "main": [
+        [
+          {
+            "node": "5 seg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "5 seg": {
+      "main": [
+        [
+          {
+            "node": "ObtenerLink",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ObtenerLink": {
+      "main": [
+        [
+          {
+            "node": "EscribirGrupo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EscribirGrupo": {
+      "main": [
+        [
+          {
+            "node": "PromoveAdmins",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PromoveAdmins": {
+      "main": [
+        [
+          {
+            "node": "Config1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config1": {
+      "main": [
+        [
+          {
+            "node": "Config2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config2": {
+      "main": [
+        [
+          {
+            "node": "Setfoto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setfoto": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Form2": {
+      "main": [
+        [
+          {
+            "node": "BodysCreate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SUBIR": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-03T21:42:30.573Z",
+  "id": "raHOuDl7eW1MUjcO",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[Tool] CREACIÓN DE GRUPOS 2.0",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "show TABLES",
+        "options": {}
+      },
+      "id": "3826e854-3793-40e2-95a6-24004ae7a705",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1220,
+        320
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://evolution.automscc.com/instance/fetchInstances",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f756d66b-1fef-4302-919e-f24a88920bdd",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1040,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": "=1",
+        "options": {}
+      },
+      "id": "99f61dc6-f2d0-44b8-9b85-3354ecb912e0",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2980,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "formTitle": "CREACIÓN DE GRUPOS",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Nombre de los grupos",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Descripción",
+              "fieldType": "textarea",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Introduce los admin separados por comas",
+              "fieldType": "textarea",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Cantidad de grupos",
+              "fieldType": "number",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "En que numero empieza?",
+              "fieldType": "number",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "subir imagen de grupos",
+              "fieldType": "file",
+              "acceptFileTypes": ".jpg,.png",
+              "requiredField": true
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {
+          "buttonLabel": "CREAR GRUPOS",
+          "ignoreBots": true
+        }
+      },
+      "id": "243e8de7-3eb4-4f42-9b13-803a853583e5",
+      "name": "form1",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        520,
+        320
+      ],
+      "webhookId": "a72b99b7-5dfb-4f38-be9d-28125c3d8308"
+    },
+    {
+      "parameters": {
+        "jsCode": "\nconst inicia = $('form1').all()[0].json['En que numero empieza?'];\n\nreturn [{ contador: inicia}];\n"
+      },
+      "id": "85f20b2e-5ebb-4637-9ad8-a4348ca02652",
+      "name": "contadorinciail",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2600,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtener todos los items de un nodo anterior\nconst adminsArray = $('form1').all();\n\n// Obtener el subject y la description del primer item\nconst subject = adminsArray[0]?.json['Nombre de los grupos'] || ''; // Usando el primer item\nconst description = adminsArray[0]?.json['Descripción'] || ''; // Usando el primer item\n\n// Extraer y dividir los participantes en un array\nconst participants = adminsArray.map(item => item.json['Introduce los admin separados por comas'] || '')\n                               .flatMap(admins => admins.split(',').map(participant => participant.trim()));\n\n// Crear el objeto con los datos\nconst data = {\n  subject: subject,\n  description: description,\n  participants: participants\n};\n\nreturn Array(adminsArray[0].json['Cantidad de grupos']).fill({ json: data });\n"
+      },
+      "id": "373bbcff-decf-491a-a17f-b33fb3435e41",
+      "name": "BodysCreate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2440,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Accede a los datos de entrada desde los nodos anteriores\nconst tables = $input.all(); // Obtiene todos los elementos de entrada\n\n// Verifica que 'tables' contenga al menos un elemento y extrae los nombres de las tablas\nconst tableNames = tables.map(item => item.json[\"Tables_in_u698892974_REDIRECCIONES\"]);\n\n// Elimina duplicados usando un Set\nconst uniqueTableNames = [...new Set(tableNames)];\n\n// Crea un nuevo arreglo de salida con los nombres únicos\nconst outputData = uniqueTableNames.map(name => {\n  return {\n    table_name: name\n  };\n});\n\n// Retorna el arreglo de objetos como una salida JSON\nreturn outputData;\n"
+      },
+      "id": "8d03a3b5-e1cc-4eff-b5ac-a833fc50467f",
+      "name": "TablaSql",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1400,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extraer solo los nombres de las tablas y convertirlos al formato deseado\nconst tableNames = items.map(item => ({\n    option: item.json.table_name\n}));\n\n// Devolver el resultado como un único objeto JSON con un array de opciones\nreturn [{ json: { options: tableNames } }];\n"
+      },
+      "id": "ad97a69e-f9d7-4bd0-b02e-3b451550b163",
+      "name": "DistinctSql",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1580,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extraer solo los nombres\nconst instanceNames = $('HTTP Request').all().map(item => ({option: item.json.name}));\n\n// Devolver el resultado como un único objeto JSON con un array de opciones\nreturn [{ json: { options: instanceNames } }];\n"
+      },
+      "id": "c471b6be-1d40-4cd1-add9-06909855e723",
+      "name": "TablaInst",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1760,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "\nconst inputData2 = $('DistinctSql').first().json.options; // Primer conjunto de opciones\n\n// Inicializa un arreglo para las preguntas\nconst outputData = [];\n\n\n// Crea el objeto para la primera pregunta\nconst question2 = {\n  \"fieldLabel\": \"Que tabla?\",\n  \"fieldType\": \"dropdown\",\n  \"fieldOptions\": {\n    \"values\": []\n  },\n  \"requiredField\": true\n};\n\n// Agrega las opciones de la primera pregunta\ninputData2.forEach(option => {\n  question2.fieldOptions.values.push( option ); // Asegúrate de que 'option' es el valor de la opción\n});\n\n// Agrega la pregunta al arreglo de salida\noutputData.push(question2);\n\n// Retorna el arreglo de objetos como una sola salida JSON\nreturn outputData;\n"
+      },
+      "id": "06af2160-61a6-413d-8a06-ddc364fde3a7",
+      "name": "BodyInst1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2080,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Accede a los datos de entrada desde los nodos anteriores\nconst inputData1 = $('TablaInst').first().json.options; // Primer conjunto de opciones\n\n// Inicializa un arreglo para las preguntas\nconst outputData = [];\n\n// Crea el objeto para la primera pregunta\nconst question1 = {\n  \"fieldLabel\": \"Que instancia usarás?\",\n  \"fieldType\": \"dropdown\",\n  \"fieldOptions\": {\n    \"values\": []\n  },\n  \"requiredField\": true\n};\n\n// Agrega las opciones de la primera pregunta\ninputData1.forEach(option => {\n  question1.fieldOptions.values.push( option ); // Asegúrate de que 'option' es el valor de la opción\n});\n\n\n// Agrega la pregunta al arreglo de salida\noutputData.push(question1);\n\n// Retorna el arreglo de objetos como una sola salida JSON\nreturn outputData;\n"
+      },
+      "id": "0f066d1f-60f2-424f-9afe-e099598890e3",
+      "name": "BodySql",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let contador = $('contadorinciail').all()[0].json['contador'];\n\nconst items = $('BodysCreate').all();\n\nconst updatedItems = items.map(item => {\n  const updatedItem = { ...item.json };  // Copia el contenido dentro de `json`\n  updatedItem.subject = `${updatedItem.subject} #${contador}`; // Actualiza el `subject`\n  contador++; \n  return { json: updatedItem };  // Envuelve en `json` para que n8n lo procese correctamente\n});\n\nreturn updatedItems;\n"
+      },
+      "id": "6b88a5fd-d8bc-4055-ae9a-23a6869c225a",
+      "name": "ModificaNombres",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2760,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/create/{{ $('Form2').all()[0].json['Que instancia usarás?'] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.toJsonString() }}",
+        "options": {}
+      },
+      "id": "b570a036-1907-4e84-b95c-3712a6833e2e",
+      "name": "CreateGroup",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3220,
+        340
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "ecdbf2b5-3c1e-40ea-86c7-f0d08bab315b",
+      "name": "5 seg",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3400,
+        340
+      ],
+      "webhookId": "5a1e03a6-5052-4f92-b342-aee6ce6ce8ea"
+    },
+    {
+      "parameters": {
+        "url": "=https://evolution.automscc.com/group/inviteCode/{{ $('Form2').all()[0].json['Que instancia usarás?'] }}?groupJid={{ $json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "09b40db9-7048-4591-ab4c-0e16cd261b22",
+      "name": "ObtenerLink",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3600,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "={{ $('Form2').all()[0].json['Que tabla?'] }}",
+          "mode": "name"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "nombre",
+              "value": "={{ $('CreateGroup').all()[0].json.subject }}"
+            },
+            {
+              "column": "link",
+              "value": "={{ $json.inviteUrl }}"
+            },
+            {
+              "column": "id",
+              "value": "={{ $('CreateGroup').item.json.id }}"
+            },
+            {
+              "column": "Total",
+              "value": "0"
+            },
+            {
+              "column": "bienvenida",
+              "value": "no"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "62534da2-7536-45de-8a50-5a53d10cff8a",
+      "name": "EscribirGrupo",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        3780,
+        340
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('Form2').all()[0].json['Que instancia usarás?'] }}?groupJid={{ $('CreateGroup').item.json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"action\": \"promote\", \n  \n  \"participants\": {{ $('BodysCreate').all()[0].json['participants'].toJsonString() }}\n}",
+        "options": {}
+      },
+      "id": "7fd1817a-8301-4e8e-9953-471c18fc1aec",
+      "name": "PromoveAdmins",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3960,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/updateSetting/{{ $('Form2').all()[0].json['Que instancia usarás?'] }}?groupJid={{ $('CreateGroup').item.json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"action\": \"announcement\"\n}",
+        "options": {}
+      },
+      "id": "9f4fc291-4926-48ce-8677-b640527a3167",
+      "name": "Config1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4140,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/updateSetting/{{ $('Form2').all()[0].json['Que instancia usarás?'] }}?groupJid={{ $('CreateGroup').item.json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"action\": \"locked\"\n}",
+        "options": {}
+      },
+      "id": "fdcf706c-d318-4bed-9e04-6834c8ee6ee3",
+      "name": "Config2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4320,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/updateGroupPicture/{{ $('Form2').all()[0].json['Que instancia usarás?'] }}?groupJid={{ $('CreateGroup').item.json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"image\": \"{{ $('Edit Fields').first().json.URL_IMAGEN}}\"\n}",
+        "options": {}
+      },
+      "id": "37d0fd30-bb61-4d26-a9ce-008c93fb191e",
+      "name": "Setfoto",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4520,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "defineForm": "json",
+        "jsonOutput": "=[{{ $('BodySql').item.json.toJsonString() }}, {{ $('BodyInst1').item.json.toJsonString() }}]",
+        "options": {
+          "buttonLabel": "CONTINUAR"
+        }
+      },
+      "id": "a09897d0-67ac-4287-9d6f-c842095d5172",
+      "name": "Form2",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        2260,
+        320
+      ],
+      "webhookId": "8a58e824-7ab2-44d8-86ed-7b1a021eb831"
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "completionTitle": "TODOS LOS GRUPOS CREADOS",
+        "completionMessage": "Comprueba en whatsapp",
+        "options": {}
+      },
+      "id": "54c146f6-209c-47c0-8919-41965d5869d0",
+      "name": "FormFinal",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        3300,
+        100
+      ],
+      "webhookId": "dc152ac1-5c48-4aa8-98df-2f4eeebf5866"
+    },
+    {
+      "parameters": {
+        "operation": "upload",
+        "bucketName": "n8n",
+        "fileName": "={{ $now.toLocal().format('MM-dd-HH-mm') }}-imagenGrupo",
+        "binaryPropertyName": "subir_imagen_de_grupos",
+        "additionalFields": {}
+      },
+      "id": "476284a9-d355-4c43-923c-01dec066b351",
+      "name": "SUBIR",
+      "type": "n8n-nodes-base.s3",
+      "typeVersion": 1,
+      "position": [
+        700,
+        320
+      ],
+      "credentials": {
+        "s3": {
+          "id": "Y7pBuiQHG1mb91C8",
+          "name": "S3 account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9ecd0f46-9b4c-406d-94af-61dae04fe420",
+              "name": "=URL_IMAGEN",
+              "value": "=https://n8n-minio.wc2hpx.easypanel.host/n8n/{{ $now.toLocal().format('MM-dd-HH-mm') }}-imagenGrupo",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4bbd376e-564d-41bd-855b-c8b21718759f",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        860,
+        320
+      ]
+    }
+  ],
+  "pinData": {
+    "form1": [
+      {
+        "json": {
+          "Nombre de los grupos": "Semana de la Terapia del Dolor 24/02",
+          "Descripción": "🗓️ Fecha del evento: 24, 25 y 26 de febrero\r\n⏰ Hora: 7:00 PM (COL)\r\n\r\nEn este evento EN VIVO te mostraré cómo:\r\n\r\n✅ Eliminar el dolor SIN experiencia en medicina.\r\n✅ SIN necesidad de aparatos costosos.\r\n✅ SIN efectos secundarios.\r\n✅ En personas de todas las edades.\r\n\r\n💡 Practicaremos juntos para aprender a ELIMINAR EL DOLOR en menos de 12 minutos desde casa.\r\n\r\n🚨 IMPORTANTE:\r\n1️⃣ ¡No te salgas del grupo! Perderás tu acceso y no recibirás información clave.\r\n2️⃣ Nuestro equipo NUNCA te pedirá códigos, datos ni te contactará por privado. Solo confía en los administradores. ❌\r\n\r\n¡Nos vemos pronto! 👋\r\nGersson López",
+          "Introduce los admin separados por comas": "573136298562,573058176936,573017817643,573158989416,573233870781,573160780201",
+          "Cantidad de grupos": 5,
+          "En que numero empieza?": 6,
+          "subir imagen de grupos": [
+            {
+              "filename": "PERFIL PARA GRUPOS - GERSON_Mesa de trabajo 1 (1).png",
+              "mimetype": "image/png",
+              "size": 463844
+            }
+          ],
+          "submittedAt": "2025-02-03T10:24:45.050-05:00",
+          "formMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:FormFinal": {
+      "267400-FormFinal": {
+        "completionTitle": "TODOS LOS GRUPOS CREADOS",
+        "completionMessage": "Comprueba en whatsapp",
+        "redirectUrl": ""
+      },
+      "268038-FormFinal": {
+        "completionTitle": "TODOS LOS GRUPOS CREADOS",
+        "completionMessage": "Comprueba en whatsapp",
+        "redirectUrl": ""
+      },
+      "300856-FormFinal": {
+        "completionTitle": "TODOS LOS GRUPOS CREADOS",
+        "completionMessage": "Comprueba en whatsapp",
+        "redirectUrl": ""
+      },
+      "341418-FormFinal": {
+        "completionTitle": "TODOS LOS GRUPOS CREADOS",
+        "completionMessage": "Comprueba en whatsapp",
+        "redirectUrl": ""
+      }
+    }
+  },
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2025-02-03T15:27:46.000Z",
+  "versionId": "ab056664-b89e-4290-b9e8-55b4f3057508"
+}
