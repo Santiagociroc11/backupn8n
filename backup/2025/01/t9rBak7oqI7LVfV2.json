@@ -1,0 +1,301 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "MongoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB": {
+      "main": [
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-24T06:50:17.867Z",
+  "id": "t9rBak7oqI7LVfV2",
+  "meta": null,
+  "name": "ESCRITURA DE RECUPERACIÓN - TRANSFIYA",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        -20
+      ],
+      "id": "28892a96-b6c2-4630-8b83-432ef7dd8b9b",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "collection": "bot-win+2",
+        "options": {},
+        "query": "{\n    \"estado\": \"pagado\", \n    \"pagado_at\": {\n        \"$gt\": 1737630000\n    }\n}"
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        20,
+        -20
+      ],
+      "id": "3d5c02d9-4a15-4db7-a9f9-acadfdb483b0",
+      "name": "MongoDB",
+      "credentials": {
+        "mongoDb": {
+          "id": "jDujtIdwD5ws13s0",
+          "name": "BD WIN+2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1e83mWeX6DWgOSqA3anCUvVjW78s42H-PZbCzJNDVjUE/edit?gid=610847183#gid=610847183",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1e83mWeX6DWgOSqA3anCUvVjW78s42H-PZbCzJNDVjUE/edit?gid=610847183#gid=610847183",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "NUMERO": "={{ $json.whatsapp }}",
+            "MEDIO": "={{ $json.medio }}",
+            "FECHA DE PAGO": "={{ $json.pagado_at.toDateTime('s').format('dd-MM-yyyy HH:mm:ss') }}"
+          },
+          "matchingColumns": [
+            "NUMERO"
+          ],
+          "schema": [
+            {
+              "id": "NUMERO",
+              "displayName": "NUMERO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "MEDIO",
+              "displayName": "MEDIO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "FECHA DE PAGO",
+              "displayName": "FECHA DE PAGO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "MENSAJE MASIVO ENVIADO",
+              "displayName": "MENSAJE MASIVO ENVIADO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "CONTACTADO",
+              "displayName": "CONTACTADO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "COMENTARIO",
+              "displayName": "COMENTARIO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "RECUPERADO",
+              "displayName": "RECUPERADO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "YEZDE",
+              "displayName": "YEZDE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "FINAL",
+              "displayName": "FINAL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        680,
+        -20
+      ],
+      "id": "5f4c4b6b-de0e-4d68-b6f0-147957f5e290",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "pagado_at",
+              "order": "descending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -20
+      ],
+      "id": "dc2ed6f2-ac6a-4ce6-9aff-7ae1e5a7b66e",
+      "name": "Sort"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        460,
+        -20
+      ],
+      "id": "689630a2-086b-44ec-be0d-89821994c069",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        900,
+        -20
+      ],
+      "id": "32c49e01-e508-4ceb-9e02-743aff6d98fb",
+      "name": "Wait",
+      "webhookId": "ab4bf817-d6a7-4ffd-967a-bdaf85ae4b32"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-24T07:19:44.000Z",
+  "versionId": "0c843372-52f6-482d-a641-6bc4a8bfb9af"
+}
