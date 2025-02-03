@@ -1,0 +1,738 @@
+{
+  "active": true,
+  "connections": {
+    "Variables": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TablaInst": {
+      "main": [
+        [
+          {
+            "node": "BodyInst",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Form2": {
+      "main": [
+        [
+          {
+            "node": "Variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "TablaInst",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BodyInst": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UnicosSql": {
+      "main": [
+        [
+          {
+            "node": "JsonSql",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JsonSql": {
+      "main": [
+        [
+          {
+            "node": "BodySql",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "UnicosSql",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BodySql": {
+      "main": [
+        [
+          {
+            "node": "Form2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Form1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar audio": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Enviar audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-16T00:14:41.048Z",
+  "id": "FbS0GG5R68ag5k52",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[Tool] ENVÍO DE ENCUESTAS MASIVAS",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3ce61d2a-015a-452b-afd8-c993e37ce897",
+              "name": "Url Evolution API",
+              "value": "https://evolution.automscc.com/",
+              "type": "string"
+            },
+            {
+              "id": "5e949047-3af3-472c-b1ba-0141716387ee",
+              "name": "Apikey Evolution API",
+              "value": "429683C4C977415CAAFCCE10F7D57E11",
+              "type": "string"
+            },
+            {
+              "id": "5169ae17-73eb-4f0a-9c63-eef1aa533e65",
+              "name": "Instancia Evolution API",
+              "value": "={{ $json['Que instancia usarás?'] }}",
+              "type": "string"
+            },
+            {
+              "id": "c54eef23-0585-495f-883a-a038dcedfe55",
+              "name": "mensaje",
+              "value": "={{ $('Form1').first().json.TEXTO.replace(/\\\\/g, \"\\\\\\\\\").replace(/\\n/g, \"\\\\n\").replace(/\"/g, '\\\\\"') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "74ee2fbd-86f5-4642-a8f8-1c69fa7b2604",
+      "name": "Variables",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        2220,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extraer solo los nombres\nconst instanceNames = $('HTTP Request').all().map(item => ({option: item.json.name}));\n\n// Devolver el resultado como un único objeto JSON con un array de opciones\nreturn [{ json: { options: instanceNames } }];\n"
+      },
+      "id": "c10d67ea-ab4f-4a9d-a6da-616f9535be5b",
+      "name": "TablaInst",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1240,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "defineForm": "json",
+        "jsonOutput": "=[ {{ $('BodyInst').all()[0].json.toJsonString() }} , {{ $('BodySql').all()[0].json.toJsonString() }}\n]",
+        "options": {
+          "buttonLabel": "ENVIAR"
+        }
+      },
+      "id": "2e027349-beef-477e-9f8f-ab14a9ef3413",
+      "name": "Form2",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        400
+      ],
+      "webhookId": "8a58e824-7ab2-44d8-86ed-7b1a021eb831"
+    },
+    {
+      "parameters": {
+        "url": "=https://evolution.automscc.com/instance/fetchInstances",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f5400661-5772-40a9-b872-7646f43e05e2",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1100,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Accede a los datos de entrada desde los nodos anteriores\nconst inputData1 = $('TablaInst').first().json.options; // Primer conjunto de opciones\n\n// Inicializa un arreglo para las preguntas\nconst outputData = [];\n\n// Crea el objeto para la primera pregunta\nconst question1 = {\n  \"fieldLabel\": \"Que instancia usarás?\",\n  \"fieldType\": \"dropdown\",\n  \"fieldOptions\": {\n    \"values\": []\n  },\n  \"requiredField\": true\n};\n\n// Agrega las opciones de la primera pregunta\ninputData1.forEach(option => {\n  question1.fieldOptions.values.push( option ); // Asegúrate de que 'option' es el valor de la opción\n});\n\n\n// Agrega la pregunta al arreglo de salida\noutputData.push(question1);\n\n// Retorna el arreglo de objetos como una sola salida JSON\nreturn outputData;\n"
+      },
+      "id": "8f9b6955-5137-466e-ab7e-3aa206e2a492",
+      "name": "BodyInst",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1380,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Accede a los datos de entrada desde los nodos anteriores\nconst tables = $input.all(); // Obtiene todos los elementos de entrada\n\n// Verifica que 'tables' contenga al menos un elemento y extrae los nombres de las tablas\nconst tableNames = tables.map(item => item.json[\"Tables_in_n8n\"]);\n\n// Elimina duplicados usando un Set\nconst uniqueTableNames = [...new Set(tableNames)];\n\n// Crea un nuevo arreglo de salida con los nombres únicos\nconst outputData = uniqueTableNames.map(name => {\n  return {\n    table_name: name\n  };\n});\n\n// Retorna el arreglo de objetos como una salida JSON\nreturn outputData;\n"
+      },
+      "id": "2521aa0e-1585-48ee-98db-5a78d018bf37",
+      "name": "UnicosSql",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1660,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extraer solo los nombres de las tablas y convertirlos al formato deseado\nconst tableNames = items.map(item => ({\n    option: item.json.table_name\n}));\n\n// Devolver el resultado como un único objeto JSON con un array de opciones\nreturn [{ json: { options: tableNames } }];\n"
+      },
+      "id": "40769ecc-84e5-487d-9a34-ff294161c112",
+      "name": "JsonSql",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1800,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "show TABLES",
+        "options": {}
+      },
+      "id": "753cd6b3-b287-40cf-b0c8-a76c75e5df91",
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1520,
+        400
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "steiUYgtMeBLjkId",
+          "name": "N8N"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "\nconst inputData2 = $('JsonSql').first().json.options; // Primer conjunto de opciones\n\n// Inicializa un arreglo para las preguntas\nconst outputData = [];\n\n\n// Crea el objeto para la primera pregunta\nconst question2 = {\n  \"fieldLabel\": \"Que tabla?\",\n  \"fieldType\": \"dropdown\",\n  \"fieldOptions\": {\n    \"values\": []\n  },\n  \"requiredField\": false\n};\n\n// Agrega las opciones de la primera pregunta\ninputData2.forEach(option => {\n  question2.fieldOptions.values.push( option ); // Asegúrate de que 'option' es el valor de la opción\n});\n\n// Agrega la pregunta al arreglo de salida\noutputData.push(question2);\n\n// Retorna el arreglo de objetos como una sola salida JSON\nreturn outputData;\n"
+      },
+      "id": "cc42faea-2946-4fda-8a3d-6c709fefe6f1",
+      "name": "BodySql",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1940,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "={{ $('Form2').item.json['Que tabla?'] }}",
+          "mode": "name"
+        },
+        "limit": 1000,
+        "options": {}
+      },
+      "id": "293cf240-5bad-4b2a-a40d-57011e3c178c",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        2400,
+        400
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "steiUYgtMeBLjkId",
+          "name": "N8N"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b824522e-1182-46ff-8d88-1810854c8caf",
+              "leftValue": "={{ $json.tipo }}",
+              "rightValue": "/normal/",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "7e9a3d10-47c5-4b48-8f0c-6d3dd42de6a0",
+      "name": "If2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2580,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "formTitle": "ENVÍOS DE ENCUESTAS",
+        "formDescription": "llena la información del envío, en la siguiente pantalla se cargará la sesión y la tabla a usar.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "TEXTO",
+              "fieldType": "textarea",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "OPCION 1",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "OPCION 2",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "OPCION 3",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Minimo",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "0"
+                  },
+                  {
+                    "option": "1"
+                  },
+                  {
+                    "option": "2"
+                  },
+                  {
+                    "option": "3"
+                  },
+                  {
+                    "option": "4"
+                  },
+                  {
+                    "option": "5"
+                  },
+                  {
+                    "option": "6"
+                  },
+                  {
+                    "option": "7"
+                  },
+                  {
+                    "option": "8"
+                  },
+                  {
+                    "option": "9"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Maximo",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "1"
+                  },
+                  {
+                    "option": "2"
+                  },
+                  {
+                    "option": "3"
+                  },
+                  {
+                    "option": "4"
+                  },
+                  {
+                    "option": "5"
+                  },
+                  {
+                    "option": "6"
+                  },
+                  {
+                    "option": "7"
+                  },
+                  {
+                    "option": "8"
+                  },
+                  {
+                    "option": "9"
+                  },
+                  {
+                    "option": "10"
+                  },
+                  {
+                    "option": "11"
+                  },
+                  {
+                    "option": "12"
+                  },
+                  {
+                    "option": "13"
+                  },
+                  {
+                    "option": "14"
+                  },
+                  {
+                    "option": "15"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "TAMAÑO DE GRUPO",
+              "fieldType": "number",
+              "requiredField": true
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {
+          "path": "EnviosMasivosEncuestas"
+        }
+      },
+      "id": "9753c162-04d1-4215-ae2f-37492ce649e4",
+      "name": "Form1",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        940,
+        400
+      ],
+      "webhookId": "441df064-2159-4bc8-acae-648db0edd868"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "36561b5e-0505-473a-839f-df7d1a4598f7",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2900,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $node[\"Variables\"].json['Url Evolution API'].replace(/\\/$/, \"\") }}/message/sendPoll/{{ $node[\"Variables\"].json['Instancia Evolution API'] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $node[\"Variables\"].json['Apikey Evolution API'] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.toJsonString() }}",
+        "options": {}
+      },
+      "id": "87d16e46-e0f0-470a-8f8c-561de2a99a37",
+      "name": "Enviar audio",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3660,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2bbf4c6d-08af-470a-bdee-d4c0ef508677",
+              "leftValue": "={{ $('HTTP Request2').all()[0].json.size }}",
+              "rightValue": "={{ $('Form1').all()[0].json['TAMAÑO DE GRUPO'] }}",
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "48bc49e2-9443-44cb-ae7f-006830c0eb8d",
+      "name": "If3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3280,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $node[\"Variables\"].json['Url Evolution API'].replace(/\\/$/, \"\") }}/group/findGroupInfos/{{ $node[\"Variables\"].json['Instancia Evolution API'] }}?groupJid={{ $('Loop Over Items').all()[0].json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $node[\"Variables\"].json['Apikey Evolution API'] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9498a1a7-8f35-4bae-a6a2-07db5dea73e8",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3120,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.random() * ($('Form1').all()[0].json.Maximo - $('Form1').all()[0].json.Minimo + Number.EPSILON) + $('Form1').all()[0].json.Minimo}}\n"
+      },
+      "id": "7584b422-416a-4ce2-90dd-c5a98984ee88",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3860,
+        320
+      ],
+      "webhookId": "e891d9df-8d4c-433c-a414-e981d0cf66f8"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtener los datos necesarios\nconst loopId = $('Loop Over Items').first().json.id;\nconst form1Data = $('Form1').first().json;\n\nconst name = $('Form1').all()[0].json['TEXTO'];\n\n// Crear el JSON\nconst result = {\n    number: loopId,\n    name: name,\n    selectableCount: 1,\n    values: [\n        form1Data['OPCION 1'],\n        form1Data['OPCION 2'],\n        form1Data['OPCION 3']\n    ]\n};\n\n// Retornar el resultado\nreturn result;\n"
+      },
+      "id": "a959d90a-4f61-4df2-a085-f0dbab734720",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3500,
+        320
+      ]
+    }
+  ],
+  "pinData": {
+    "Form1": [
+      {
+        "json": {
+          "TEXTO": "🔥 *¡SUPER IMPORTANTE!* 🔥\r\n\r\n✨ Necesito confirmar tu asistencia para el día de la clase, porque ese día tengo preparadas algunas *SORPRESAS INCREÍBLES* 🎁 y necesito saber con cuántas personas contar. \r\n\r\n¡No te la puedes perder! 💅✨\r\n\r\nResponde con una de estas opciones 👇🏻",
+          "OPCION 1": "*¡CLARO QUE SÍ! Estoy emocionada, ya quiero empezar las clases. 🥳*",
+          "OPCION 2": "*¡SÍ! Estoy lista para aprender y transformar mi técnica. 💪💖*",
+          "OPCION 3": "*No, no quiero aprender 🙄*",
+          "Minimo": "0",
+          "Maximo": "5",
+          "TAMAÑO DE GRUPO": 1,
+          "submittedAt": "2024-11-15T20:04:26.519-05:00",
+          "formMode": "production"
+        }
+      }
+    ],
+    "Form2": [
+      {
+        "json": {
+          "Que instancia usarás?": "santiago",
+          "Que tabla?": "pruebasUÑAS",
+          "submittedAt": "2024-11-15T20:04:33.908-05:00",
+          "formMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2025-01-22T22:01:45.000Z",
+  "versionId": "ec0aaee5-c9f7-4e31-89c1-f73f0324cab2"
+}
