@@ -1,0 +1,982 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Buscar contacto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar contacto": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "listar conversaciones",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "listar conversaciones": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crear conversación2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Crear conversación2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request3": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request4": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets2": {
+      "main": [
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request5": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets3": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-12-02T03:01:03.898Z",
+  "id": "X0NS8CPCWUHJl7Kh",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "ENVÍO MASIVO CHATWOOT",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://n8n-chatwoot.wc2hpx.easypanel.host/api/v1/accounts/1/contacts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "yDCVRozPVzacZhCrd8STezS2"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "inbox_id",
+              "value": "2"
+            },
+            {
+              "name": "name",
+              "value": "={{ $('Loop Over Items').first().json.NUMERO }}"
+            },
+            {
+              "name": "phone_number",
+              "value": "=+{{ $('Loop Over Items').first().json.NUMERO }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3d571baf-3f2d-4819-83b9-9bc58e5a95f2",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2100,
+        380
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c62d356d-8921-4d0a-a9ed-f7880c470768",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        860,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1lHf7hUQmInCjUGjU47lo-3ttRrumxabCxGCTOlHVlP4/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1lHf7hUQmInCjUGjU47lo-3ttRrumxabCxGCTOlHVlP4/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "ENVIADO API"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "344a3e7a-7da0-4f5f-bb2b-f2da2b39651b",
+      "name": "Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1060,
+        320
+      ],
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "2a936904-74fd-431b-b3bc-6c1bb9c18597",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1420,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://n8n-chatwoot.wc2hpx.easypanel.host/api/v1/accounts/1/conversations",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "yDCVRozPVzacZhCrd8STezS2"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"inbox_id\": \"2\",\n  \"contact_id\": \"{{ $json.payload.contact.id }}\",\n  \"status\": \"open\"\n} ",
+        "options": {}
+      },
+      "id": "5d48007b-b4f8-4086-b4ee-40a12139df7b",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2260,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://n8n-chatwoot.wc2hpx.easypanel.host/api/v1/accounts/1/conversations/{{ $json.id }}/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "yDCVRozPVzacZhCrd8STezS2"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"content\":\"Buenas tardes, me comunico desde la academia de gersson López, soy administrador del equipo y me dieron tu número porque estuviste con interés en el programa\\n\\nQuisiera saber qué pasó con tu proceso de inscripción y si te puedo ayudar en algo o veamos alternativas para que no te quedes por fuera.\\n\\n_Por haberte comunicado, en este momento yo te puedo asegurar *TODOS LOS BONOS* y la beca 😬_\",\n  \"message_type\": \"outgoing\",\n  \"template_params\": {\n    \"name\": \"pruebas\",\n    \"category\": \"MARKETING\",\n    \"language\": \"es\",\n    \"processed_params\": { }\n  }\n}",
+        "options": {}
+      },
+      "id": "079820ba-4d69-4e5e-bd0f-3dd532e0efb1",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2420,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "maxItems": 100
+      },
+      "id": "dbd28399-1aad-4b12-b1fd-f49c3bdaf660",
+      "name": "Limit",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1lHf7hUQmInCjUGjU47lo-3ttRrumxabCxGCTOlHVlP4/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1lHf7hUQmInCjUGjU47lo-3ttRrumxabCxGCTOlHVlP4/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "NUMERO": "={{ $('Loop Over Items').first().json.NUMERO}}",
+            "ENVIADO API": "SI"
+          },
+          "matchingColumns": [
+            "NUMERO"
+          ],
+          "schema": [
+            {
+              "id": "user_ns",
+              "displayName": "user_ns",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "NUMERO",
+              "displayName": "NUMERO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ASESOR",
+              "displayName": "ASESOR",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "OBSERVACION IA",
+              "displayName": "OBSERVACION IA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "INTERES",
+              "displayName": "INTERES",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ASESOR",
+              "displayName": "ASESOR",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "LINK",
+              "displayName": "LINK",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ENVIADO API",
+              "displayName": "ENVIADO API",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0dd794dc-6832-47cb-bdd7-34dbe47a7374",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        4040,
+        360
+      ],
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n-chatwoot.wc2hpx.easypanel.host/api/v1/accounts/1/contacts/filter",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "yDCVRozPVzacZhCrd8STezS2"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"payload\": [\n    {\n      \"attribute_key\": \"phone_number\",\n      \"filter_operator\": \"equal_to\",\n      \"values\": [\n        \"{{ $json.NUMERO }}\"\n      ],\n      \"query_operator\": null\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "c418866b-68e4-4822-8215-785490e9752f",
+      "name": "Buscar contacto",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1640,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "353f6ad2-61e2-4bf7-85ee-dc1cbcdc785a",
+              "leftValue": "={{ $json.payload }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "39d2c407-1f19-44ff-b696-31a9cd3ba042",
+      "name": "If2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1800,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://n8n-chatwoot.wc2hpx.easypanel.host/api/v1/accounts/1/conversations",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "yDCVRozPVzacZhCrd8STezS2"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0b002440-3077-4cc0-a804-41c8e803d358",
+      "name": "listar conversaciones",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2000,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "\n\nconst response = items[0].json;  // Obtiene el JSON de la respuesta de la API\n\nconst number = $('Loop Over Items').first().json.NUMERO;\n\nconst contactName = \"+\" + number;  // Nombre o teléfono que deseas buscar\n\n// Iterar sobre las conversaciones en el payload\nconst conversation = response.data.payload.find(item => item.meta.sender.name === contactName);\n\n// Verificar si la conversación fue encontrada\nif (conversation) {\n  return {\n    json: {\n      conversation_id: conversation.id  // Retornar el id de la conversación encontrada\n    }\n  };\n} else {\n  return {\n    json: {\n      conversation_id: null  // Si no se encuentra, retornar null\n    }\n  };\n}\n"
+      },
+      "id": "2423801d-4bce-4037-9159-3fa933a2845d",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2180,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "755c77fc-a3e8-45c7-81d2-12d605e7c1e4",
+              "leftValue": "={{ $('Code').first().json.conversation_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "8634e928-9908-4a37-bb07-27c648990d06",
+      "name": "If3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2380,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n-chatwoot.wc2hpx.easypanel.host/api/v1/accounts/1/conversations/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "yDCVRozPVzacZhCrd8STezS2"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"inbox_id\": \"2\",\n  \"contact_id\": \"{{ $('Buscar contacto').first().json.payload.first().id }}\",\n  \"status\": \"open\"\n}",
+        "options": {}
+      },
+      "id": "5fcdb8c7-1a66-46cb-8eca-c20a356e6d3d",
+      "name": "Crear conversación2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2580,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://n8n-chatwoot.wc2hpx.easypanel.host/api/v1/accounts/1/conversations/{{ $json.id }}/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "yDCVRozPVzacZhCrd8STezS2"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"content\":\"Buenas tardes, me comunico desde la academia de gersson López, soy administrador del equipo y me dieron tu número porque estuviste con interés en el programa\\n\\nQuisiera saber qué pasó con tu proceso de inscripción y si te puedo ayudar en algo o veamos alternativas para que no te quedes por fuera.\\n\\n_Por haberte comunicado, en este momento yo te puedo asegurar *TODOS LOS BONOS* y la beca 😬_\",\n  \"message_type\": \"outgoing\",\n  \"template_params\": {\n    \"name\": \"pruebas\",\n    \"category\": \"MARKETING\",\n    \"language\": \"es\",\n    \"processed_params\": { }\n  }\n}",
+        "options": {}
+      },
+      "id": "d55016fa-a032-4e15-9bb8-683274d36840",
+      "name": "HTTP Request3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2740,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://n8n-chatwoot.wc2hpx.easypanel.host/api/v1/accounts/1/conversations/{{ $('Code').first().json.conversation_id }}/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "yDCVRozPVzacZhCrd8STezS2"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"content\":\"Buenas tardes, me comunico desde la academia de gersson López, soy administrador del equipo y me dieron tu número porque estuviste con interés en el programa\\n\\nQuisiera saber qué pasó con tu proceso de inscripción y si te puedo ayudar en algo o veamos alternativas para que no te quedes por fuera.\\n\\n_Por haberte comunicado, en este momento yo te puedo asegurar *TODOS LOS BONOS* y la beca 😬_\",\n  \"message_type\": \"outgoing\",\n  \"template_params\": {\n    \"name\": \"pruebas\",\n    \"category\": \"MARKETING\",\n    \"language\": \"es\",\n    \"processed_params\": { }\n  }\n}",
+        "options": {}
+      },
+      "id": "316a987c-4ae0-4f06-9e3a-bc024bf9d51f",
+      "name": "HTTP Request4",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2720,
+        60
+      ]
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4260,
+        360
+      ],
+      "id": "18f6a3f9-d34c-4e97-b8cb-f69b134cfd2b",
+      "name": "Wait",
+      "webhookId": "66c205e7-68d8-46a1-8e7c-97a52fa14672"
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "CUENTA"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        3320,
+        360
+      ],
+      "id": "4f6a83d2-7eed-4d13-9382-7aa35b6c8058",
+      "name": "Sort"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1hcoH6cbKhLldzF86QV3aiCqxR5X1qE69B9DkI3g1ENo/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1hcoH6cbKhLldzF86QV3aiCqxR5X1qE69B9DkI3g1ENo/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        3180,
+        360
+      ],
+      "id": "706cc7b1-60ac-4e38-a42a-508ba3dbcb2b",
+      "name": "Google Sheets2",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        3480,
+        360
+      ],
+      "id": "aeb6faa2-d413-4a96-b55e-95ad831ebcc8",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://n8n-chatwoot.wc2hpx.easypanel.host/api/v1/accounts/1/conversations/{{ $('Code1').first().json.conversationID}}/assignments",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "yDCVRozPVzacZhCrd8STezS2"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"assignee_id\": \"{{ $json.ID }}\"\n}",
+        "options": {}
+      },
+      "id": "5c3eddcb-6880-4bda-8d04-cc2eab4dd04e",
+      "name": "HTTP Request5",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3660,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return {\n  json: {\n    conversationID: $json.conversation_id\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3020,
+        360
+      ],
+      "id": "170e5f52-07ca-483a-8992-5803183b4d29",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1hcoH6cbKhLldzF86QV3aiCqxR5X1qE69B9DkI3g1ENo/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1hcoH6cbKhLldzF86QV3aiCqxR5X1qE69B9DkI3g1ENo/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "CUENTA": "={{ $('Limit1').item.json.CUENTA + 1}}",
+            "AGENTE": "={{ $('Limit1').item.json.AGENTE }}"
+          },
+          "matchingColumns": [
+            "AGENTE"
+          ],
+          "schema": [
+            {
+              "id": "AGENTE",
+              "displayName": "AGENTE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CUENTA",
+              "displayName": "CUENTA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        3860,
+        360
+      ],
+      "id": "196479b3-6c72-43b6-bf85-5b535752bef1",
+      "name": "Google Sheets3",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-12-02T23:19:13.000Z",
+  "versionId": "0c5dbae1-2b85-43f7-bc53-2d2c8da4ec09"
+}
