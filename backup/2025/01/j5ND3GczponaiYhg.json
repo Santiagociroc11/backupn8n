@@ -1,0 +1,1438 @@
+{
+  "active": false,
+  "connections": {
+    "Formatear grupos y mensajes": {
+      "main": [
+        [
+          {
+            "node": "Tipo de mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Procesado": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar media": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar audio": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Marcar mensaje como enviado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar audio1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Formatear grupos y mensajes",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Formatear grupos y mensajes1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Formatear grupos y mensajes1": {
+      "main": [
+        [
+          {
+            "node": "Tipo de mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar media3": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar media4": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Procesado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Variables": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Marcar mensaje como enviado": {
+      "main": [
+        [
+          {
+            "node": "Procesado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Switch3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtrar mensajes para enviar": {
+      "main": [
+        [
+          {
+            "node": "Variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tipo de mensaje": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto CON MENCION",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Enviar texto SIN MENCION",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Enviar media CON MENCION",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Enviar media",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch2": {
+      "main": [
+        [
+          {
+            "node": "Enviar audio1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Enviar audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch3": {
+      "main": [
+        [
+          {
+            "node": "Enviar media4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Enviar media3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto SIN MENCION": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto CON MENCION": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar media CON MENCION": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Notion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notion": {
+      "main": [
+        [
+          {
+            "node": "Filtrar mensajes para enviar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-11T19:49:28.743Z",
+  "id": "j5ND3GczponaiYhg",
+  "meta": null,
+  "name": "⌚ ENVIOS PROGRAMADOS [NOTION]",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "17800880-d85d-8097-84a7-f7efd09c176d",
+          "mode": "list",
+          "cachedResultName": "[TD] ENVIOS PROGRAMADOS",
+          "cachedResultUrl": "https://www.notion.so/17800880d85d809784a7f7efd09c176d"
+        },
+        "returnAll": true,
+        "filterType": "manual",
+        "filters": {
+          "conditions": [
+            {
+              "key": "ENVIADO|checkbox",
+              "condition": "equals"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        -3120,
+        800
+      ],
+      "id": "d03f5b09-0a41-4079-a826-fcd21c32ea40",
+      "name": "Notion",
+      "credentials": {
+        "notionApi": {
+          "id": "96gd5czBYIXX6Aw7",
+          "name": "NOTION SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Importar las variables\nlet mensaje = $('Variables').all()[0].json.mensaje;\nlet tipoMensaje = $('Filtrar mensajes para enviar').all()[0].json.property_tipo;\nlet grupoId = $('Procesado').all()[0].json.id;\n\nlet archivo = $('Filtrar mensajes para enviar').all()[0].json.property_archivo;\nlet urlArchivo = archivo.length > 0 ? archivo[0].url : [];\nlet nombreArchivo = archivo.length > 0 ? archivo[0].visible_name : [];\n\nlet tipoMedia = null;\nlet esMedia = false;\n\n// Identificar si es un mensaje de tipo media\nswitch (tipoMensaje) {\n  case \"IMAGEN\":\n    tipoMedia = \"image\";\n    esMedia = true;\n    break;\n  case \"VIDEO\":\n    tipoMedia = \"video\";\n    esMedia = true;\n    break;\n  case \"DOCUMENTO\":\n    tipoMedia = \"document\";\n    esMedia = true;\n    break;\n  case \"AUDIO\":\n    tipoMedia = \"audio\";\n    esMedia = false;\n    break;\n    \n    case \"PTV\":\n    tipoMedia = \"ptv\";\n    esMedia = false;\n    break;\n}\n\n// Formatear cada grupo con su mensaje\nlet resultado = {\n  grupo_id: grupoId,\n  mensaje: mensaje,\n  tipoMensaje: tipoMensaje,\n  urlArchivo: urlArchivo,\n  tipoMedia: tipoMedia,\n  esMedia: esMedia,\n  nombreArchivo: nombreArchivo\n};\n\n// Devolver resultado\nreturn resultado;\n"
+      },
+      "id": "137e927f-370d-4863-85e3-f0469d522bc8",
+      "name": "Formatear grupos y mensajes",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -980,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "ffa87713-8768-485e-b4ea-47bd423e1e87",
+      "name": "Procesado",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -2000,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $node[\"Variables\"].json['Url Evolution API'].replace(/\\/$/, \"\") }}/message/sendMedia/{{ $node[\"Variables\"].json['Instancia Evolution API'] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $node[\"Variables\"].json['Apikey Evolution API'] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"number\": \"{{$('Formatear grupos y mensajes').all()[0].json.grupo_id}}\",\n    \"mediatype\": \"{{$('Formatear grupos y mensajes').all()[0].json.tipoMedia}}\", \n    \"caption\": \"{{$('Formatear grupos y mensajes').all()[0].json.mensaje}}\",\n    \"media\": \"{{$('Formatear grupos y mensajes').all()[0].json.urlArchivo}}\", \n    \"fileName\": \"{{$('Formatear grupos y mensajes').all()[0].json.nombreArchivo}}\"\n}",
+        "options": {}
+      },
+      "id": "073cf600-11a1-48c2-b749-aa74e8030bc3",
+      "name": "Enviar media",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $node[\"Variables\"].json['Url Evolution API'].replace(/\\/$/, \"\") }}/message/sendWhatsAppAudio/{{ $node[\"Variables\"].json['Instancia Evolution API'] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $node[\"Variables\"].json['Apikey Evolution API'] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $json.grupo_id }}"
+            },
+            {
+              "name": "audio",
+              "value": "={{$('Formatear grupos y mensajes').all()[0].json.urlArchivo}}"
+            },
+            {
+              "name": "encoding",
+              "value": "={{ true }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3a749617-ef64-4ab7-8b56-8f8f2c57d0f7",
+      "name": "Enviar audio",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        240,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.random() * ($('Filtrar mensajes para enviar').all()[0].json.Maximo - $('Filtrar mensajes para enviar').all()[0].json.Minimo + Number.EPSILON) + $('Filtrar mensajes para enviar').all()[0].json.Minimo}}\n"
+      },
+      "id": "a0c6762d-4386-4d05-a282-0da722c4dadc",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        740,
+        860
+      ],
+      "webhookId": "ecc834c9-ff53-4cd6-ad14-534d8919934b"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $node[\"Variables\"].json['Url Evolution API'].replace(/\\/$/, \"\") }}/message/sendWhatsAppAudio/{{ $node[\"Variables\"].json['Instancia Evolution API'] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $node[\"Variables\"].json['Apikey Evolution API'] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{$('Formatear grupos y mensajes').all()[0].json.grupo_id}}"
+            },
+            {
+              "name": "audio",
+              "value": "={{$('Formatear grupos y mensajes').all()[0].json.urlArchivo}}"
+            },
+            {
+              "name": "encoding",
+              "value": "={{ true }}"
+            },
+            {
+              "name": "mentionsEveryOne",
+              "value": "={{ true }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5fca7adf-c483-4806-950c-1b157de362a3",
+      "name": "Enviar audio1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        240,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "21790817-89cc-4383-a52f-aa825889b94e",
+              "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json.property_archivo}}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "0a885fcf-0f99-4c1c-817f-f0df827b5325",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1280,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Importar las variables\nlet mensaje = $('Variables').all()[0].json.mensaje;\nlet tipoMensaje = $('Filtrar mensajes para enviar').all()[0].json.tipo.value;\nlet grupoId = $('Procesado').all()[0].json.id;\n\n// Formatear cada grupo con su mensaje\nlet resultado = {\n  grupo_id: grupoId,\n  mensaje: mensaje,\n  tipoMensaje: tipoMensaje,\n  esMedia: false\n};\n\n// Devolver resultado\nreturn resultado;\n"
+      },
+      "id": "b76bd9f8-6f7f-4dcc-b2fc-80f278deb06d",
+      "name": "Formatear grupos y mensajes1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -980,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $node[\"Variables\"].json['Url Evolution API'].replace(/\\/$/, \"\") }}/message/sendPtv/{{ $node[\"Variables\"].json['Instancia Evolution API'] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $node[\"Variables\"].json['Apikey Evolution API'] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{$('Formatear grupos y mensajes').all()[0].json.grupo_id}}"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "15824c83-f04e-4ff6-9094-f537ab45ca34",
+      "name": "Enviar media3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        20,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $node[\"Variables\"].json['Url Evolution API'].replace(/\\/$/, \"\") }}/message/sendPtv/{{ $node[\"Variables\"].json['Instancia Evolution API'] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $node[\"Variables\"].json['Apikey Evolution API'] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{$('Formatear grupos y mensajes').all()[0].json.grupo_id}}"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "data"
+            },
+            {
+              "name": "mentionsEveryOne",
+              "value": "={{ true }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9fdf8561-ac3b-427c-af7e-3ef72c946350",
+      "name": "Enviar media4",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        20,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b824522e-1182-46ff-8d88-1810854c8caf",
+              "leftValue": "={{ $json.tipo }}",
+              "rightValue": "/normal/",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b74be47a-9511-40c7-a6dc-3a21aa9b7821",
+      "name": "If2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -2280,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Variables').all()[0].json['Url Evolution API'] }}group/findGroupInfos/{{ $('Variables').all()[0].json['Instancia Evolution API'] }}?groupJid={{ $('Procesado').all()[0].json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $node[\"Variables\"].json['Apikey Evolution API'] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c9f4b0ec-37bf-4294-9a1b-eed846cf18b0",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1740,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2bbf4c6d-08af-470a-bdee-d4c0ef508677",
+              "leftValue": "={{ $('HTTP Request2').all()[0].json.size }}",
+              "rightValue": "={{ $('Filtrar mensajes para enviar').all()[0].json.property_tama_o }}",
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "afdaca5e-ed64-45f7-888c-7a160222c7ff",
+      "name": "If3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1520,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "={{ $('Filtrar mensajes para enviar').item.json.property_grupos }}",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "6f4e9fd6-51c8-4cd9-a64c-272854e00da0",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -2480,
+        800
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "steiUYgtMeBLjkId",
+          "name": "N8N"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3ce61d2a-015a-452b-afd8-c993e37ce897",
+              "name": "Url Evolution API",
+              "value": "https://evolution.automscc.com/",
+              "type": "string"
+            },
+            {
+              "id": "5e949047-3af3-472c-b1ba-0141716387ee",
+              "name": "Apikey Evolution API",
+              "value": "429683C4C977415CAAFCCE10F7D57E11",
+              "type": "string"
+            },
+            {
+              "id": "5169ae17-73eb-4f0a-9c63-eef1aa533e65",
+              "name": "Instancia Evolution API",
+              "value": "={{ $json.property_instancia }}",
+              "type": "string"
+            },
+            {
+              "id": "1a03324f-ff46-4c35-86f7-5ffee90a2da3",
+              "name": "mensaje",
+              "value": "={{ $json.property_mensaje.replace(/\\\\/g, \"\\\\\\\\\").replace(/\\n/g, \"\\\\n\").replace(/\"/g, '\\\\\"') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "eed33b30-c374-46bc-8bd4-5ac84075b4ca",
+      "name": "Variables",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        -2660,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 64,
+        "tableId": 335,
+        "rowId": "={{ $('Filtrar mensajes para enviar').all()[0].json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 5446,
+              "fieldValue": "={{ true }}"
+            }
+          ]
+        }
+      },
+      "id": "6d9913e1-86f5-41a1-b797-51f0130860f8",
+      "name": "Marcar mensaje como enviado",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        920,
+        860
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "AnyMtAsWsM8u1RCq",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{$('Formatear grupos y mensajes').all()[0].json.urlArchivo}}",
+        "options": {}
+      },
+      "id": "f7a4bee2-9cb6-4c17-ade9-c789543c594a",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -420,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "c1b5a134-c189-47b5-8865-6101ad951566",
+              "leftValue": "={{ DateTime.fromISO($json.property_fecha.start).toFormat('dd-MM-yyyy HH:mm') }}",
+              "rightValue": "={{ DateTime.fromISO($now).toFormat('dd-MM-yyyy HH:mm') }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "bb443520-f0f3-4295-99a9-681d115c5118",
+      "name": "Filtrar mensajes para enviar",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2,
+      "position": [
+        -2900,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.tipoMensaje }}",
+                    "rightValue": "TEXTO",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "texto"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "9968c41f-6809-4d88-a495-694c6483275b",
+                    "leftValue": "={{ $json.esMedia }}",
+                    "rightValue": "=",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "media"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "b55839e7-5ed3-471c-8f74-0b4edc1ce531",
+                    "leftValue": "={{ $json.tipoMensaje }}",
+                    "rightValue": "=AUDIO",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "audio"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "6571a013-6686-4c3f-b0df-ace62356e867",
+                    "leftValue": "={{ $json.tipoMensaje }}",
+                    "rightValue": "PTV",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PTV"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "776caddc-9c0d-4b67-b7b1-2f4609bab28b",
+      "name": "Tipo de mensaje",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        -700,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json['¿MENCIÓN?'].value }}",
+                    "rightValue": "SI",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "SI"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b089ed3e-b9a7-44e7-9ef5-9e71bbf65178",
+                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json['¿MENCIÓN?'].value }}",
+                    "rightValue": "NO",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NO"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "18f6f7f3-b84d-471c-973c-cd7e15db3860",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        20,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json.property_menci_n }}",
+                    "rightValue": "SI",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "SI"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b089ed3e-b9a7-44e7-9ef5-9e71bbf65178",
+                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json.property_menci_n }}",
+                    "rightValue": "NO",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NO"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8320038a-2725-4469-8268-c68b87649d38",
+      "name": "Switch1",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -20,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json['¿MENCIÓN?'].value }}",
+                    "rightValue": "SI",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "SI"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b089ed3e-b9a7-44e7-9ef5-9e71bbf65178",
+                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json['¿MENCIÓN?'].value }}",
+                    "rightValue": "NO",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NO"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d87bac37-2707-4ae1-bf1a-49728b981aed",
+      "name": "Switch2",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -20,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json['¿MENCIÓN?'].value }}",
+                    "rightValue": "SI",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "SI"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b089ed3e-b9a7-44e7-9ef5-9e71bbf65178",
+                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json['¿MENCIÓN?'].value }}",
+                    "rightValue": "NO",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NO"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4a6d51d8-7e98-424f-bb4c-0b51b8ea61c8",
+      "name": "Switch3",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -240,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $node[\"Variables\"].json['Url Evolution API'].replace(/\\/$/, \"\") }}/message/sendText/{{ $node[\"Variables\"].json['Instancia Evolution API'] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $node[\"Variables\"].json['Apikey Evolution API'] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"number\": \"{{ $('Tipo de mensaje').all()[0].json.grupo_id }}\",\n    \"text\": \"{{ $('Tipo de mensaje').all()[0].json.mensaje }}\", \n    \"linkPreview\": false\n}\n",
+        "options": {}
+      },
+      "id": "6f37409b-2df4-4da4-b0f4-3df4cdcc19c4",
+      "name": "Enviar texto SIN MENCION",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        240,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $node[\"Variables\"].json['Url Evolution API'].replace(/\\/$/, \"\") }}/message/sendText/{{ $node[\"Variables\"].json['Instancia Evolution API'] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $node[\"Variables\"].json['Apikey Evolution API'] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"number\": \"{{ $('Tipo de mensaje').all()[0].json.grupo_id }}\",\n    \"text\": \"{{ $('Tipo de mensaje').all()[0].json.mensaje }}\", \n    \"linkPreview\": false,\n    \"mentionsEveryOne\": true\n}",
+        "options": {}
+      },
+      "id": "25d27d2b-478a-49f6-87ba-c01aba95ab5d",
+      "name": "Enviar texto CON MENCION",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        240,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $node[\"Variables\"].json['Url Evolution API'].replace(/\\/$/, \"\") }}/message/sendMedia/{{ $node[\"Variables\"].json['Instancia Evolution API'] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $node[\"Variables\"].json['Apikey Evolution API'] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"number\": \"{{$('Formatear grupos y mensajes').all()[0].json.grupo_id}}\",\n    \"mediatype\": \"{{$('Formatear grupos y mensajes').all()[0].json.tipoMedia}}\", \n    \"caption\": \"{{$('Formatear grupos y mensajes').all()[0].json.mensaje}}\",\n    \"media\": \"{{$('Formatear grupos y mensajes').all()[0].json.urlArchivo}}\", \n    \"fileName\": \"{{$('Formatear grupos y mensajes').all()[0].json.nombreArchivo}}\",\n    \"mentionsEveryOne\": true\n}",
+        "options": {}
+      },
+      "id": "7c5d3afa-80fa-4fd1-a2cb-9d3540226e75",
+      "name": "Enviar media CON MENCION",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        240,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "79b1664f-68b4-4bed-8293-84442cab1589",
+      "name": "Schedule Trigger1",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -3340,
+        800
+      ]
+    }
+  ],
+  "pinData": {
+    "Schedule Trigger1": [
+      {
+        "json": {
+          "timestamp": "2024-11-14T19:22:18.003-05:00",
+          "Readable date": "November 14th 2024, 7:22:18 pm",
+          "Readable time": "7:22:18 pm",
+          "Day of week": "Thursday",
+          "Year": "2024",
+          "Month": "November",
+          "Day of month": "14",
+          "Hour": "19",
+          "Minute": "22",
+          "Second": "18",
+          "Timezone": "America/Bogota (UTC-05:00)"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger1": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-01-12T21:05:36.000Z",
+  "versionId": "44c0965d-52b8-4859-8609-828abf313e99"
+}
