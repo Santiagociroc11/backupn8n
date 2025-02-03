@@ -1,0 +1,341 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-12T05:51:12.209Z",
+  "id": "K01GkZBa2sXIAmPE",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[Tool] ENVÍO MASIVO 1 A 1 API",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "bf1aef1d-6494-49be-9cf0-74f3ab18e532",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        540,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.gupshup.io/wa/api/v1/template/msg",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "lcq8o7kkboyzjlmr2jkhzgxd8lfpxupz"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "source",
+              "value": "={{ $('Edit Fields').first().json.enviador }}"
+            },
+            {
+              "name": "destination",
+              "value": "={{ $('Loop Over Items').itemMatching($itemIndex).json.numero }}"
+            },
+            {
+              "name": "src.name",
+              "value": "SemanaNails"
+            },
+            {
+              "name": "template",
+              "value": "={\"id\":\"{{ $('Edit Fields').first().json.plantilla }}\"}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "dfd223eb-a661-43c9-b1cf-290b4ead3093",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1620,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "numeros_carlos",
+          "mode": "list",
+          "cachedResultName": "numeros_carlos"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "={{ $('Edit Fields').first().json.envio }}",
+              "value": "="
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8b2c7195-e75f-49b5-94ae-7d753fdd7668",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        920,
+        360
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "urz5Tdw0DcSlCZt3",
+          "name": "N8N NUMEROS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 40,
+        "options": {}
+      },
+      "id": "8278275a-119f-4f60-88a1-60c7f1695dbd",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1340,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "\nconst data = $('Loop Over Items').all().map(item => item.json);\nconst tabla = $('Edit Fields').first().json.tabla;\nconst envio = $('Edit Fields').first().json.envio;\n\nconst idsToUpdate = data.map(record => record.id).join(\", \");\n\n\nconst query = `\n    UPDATE ${tabla}\n    SET ${envio} = 'sí'\n    WHERE id IN (${idsToUpdate});\n`;\n\n\nreturn [{ json: { query } }];\n"
+      },
+      "id": "04d87722-33d2-4bd0-bfc6-fc5dc8eaa247",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1800,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6c244a9a-9f5b-46ae-a0fa-795959aa9fba",
+              "name": "plantilla",
+              "value": "855a4143-6327-49df-9e1c-cf039638cede",
+              "type": "string"
+            },
+            {
+              "id": "7a0ddc37-3755-4ff4-9b0e-6f916784c119",
+              "name": "envio",
+              "value": "envio2",
+              "type": "string"
+            },
+            {
+              "id": "f535a9bf-e49e-4b0d-86ae-a9c33d5e3c99",
+              "name": "tabla",
+              "value": "numeros_carlos",
+              "type": "string"
+            },
+            {
+              "id": "cbc680f1-0ccc-493a-8b55-dffdd2163069",
+              "name": "enviador",
+              "value": "573207581483",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4c6c5e36-1248-4d9d-ab50-680ab9cfac4a",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        720,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "{{ $json.query }}",
+        "options": {}
+      },
+      "id": "c389db6f-522e-4f26-b6cc-5c53905dcab2",
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1960,
+        360
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "urz5Tdw0DcSlCZt3",
+          "name": "N8N NUMEROS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "id": "6c4a5a14-1b00-4102-aa70-fbbd1bc44c80",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2200,
+        360
+      ],
+      "webhookId": "920fcb4c-5c78-4802-9076-417c5348d8c5"
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "id",
+              "order": "descending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "610289ba-ad9c-460d-9543-d4039ae31014",
+      "name": "Sort",
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        360
+      ]
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-11-19T18:43:20.000Z",
+  "versionId": "5d0badf0-cd6c-43d0-9867-0ce2fd5c9654"
+}
