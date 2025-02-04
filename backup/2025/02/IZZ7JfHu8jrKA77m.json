@@ -238,24 +238,8 @@
       "name": "On clicking 'execute'",
       "type": "n8n-nodes-base.manualTrigger",
       "position": [
-        -360,
-        -280
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {
-        "content": "## Subworkflow",
-        "height": 731.7039821513649,
-        "width": 1910.7813046051347,
-        "color": 6
-      },
-      "id": "74d80fdf-2dda-49c8-90f6-532bfce9f018",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -840,
-        100
+        -1440,
+        40
       ],
       "typeVersion": 1
     },
@@ -268,8 +252,8 @@
       "name": "n8n",
       "type": "n8n-nodes-base.n8n",
       "position": [
-        -60,
-        -180
+        -1140,
+        120
       ],
       "typeVersion": 1,
       "credentials": {
@@ -311,8 +295,8 @@
       "name": "Get File",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        -160,
-        180
+        -220,
+        -160
       ],
       "typeVersion": 4.2
     },
@@ -320,11 +304,11 @@
       "parameters": {
         "conditions": {
           "options": {
-            "leftValue": "",
             "caseSensitive": true,
-            "typeValidation": "strict"
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
           },
-          "combinator": "and",
           "conditions": [
             {
               "id": "45ce825e-9fa6-430c-8931-9aaf22c42585",
@@ -346,7 +330,8 @@
               "leftValue": "={{ $json.error }}",
               "rightValue": ""
             }
-          ]
+          ],
+          "combinator": "and"
         },
         "options": {}
       },
@@ -354,8 +339,8 @@
       "name": "If file too large",
       "type": "n8n-nodes-base.if",
       "position": [
-        -400,
-        200
+        -460,
+        -140
       ],
       "typeVersion": 2
     },
@@ -365,8 +350,8 @@
       "name": "Merge Items",
       "type": "n8n-nodes-base.merge",
       "position": [
-        -400,
-        460
+        -460,
+        120
       ],
       "typeVersion": 2
     },
@@ -378,8 +363,8 @@
       "name": "isDiffOrNew",
       "type": "n8n-nodes-base.code",
       "position": [
-        -200,
-        460
+        -260,
+        120
       ],
       "typeVersion": 1
     },
@@ -407,8 +392,8 @@
       "name": "Check Status",
       "type": "n8n-nodes-base.switch",
       "position": [
-        200,
-        460
+        140,
+        120
       ],
       "typeVersion": 1
     },
@@ -418,8 +403,8 @@
       "name": "Same file - Do nothing",
       "type": "n8n-nodes-base.noOp",
       "position": [
-        420,
-        300
+        360,
+        -40
       ],
       "typeVersion": 1
     },
@@ -429,8 +414,8 @@
       "name": "File is different",
       "type": "n8n-nodes-base.noOp",
       "position": [
-        420,
-        460
+        360,
+        120
       ],
       "typeVersion": 1
     },
@@ -440,8 +425,8 @@
       "name": "File is new",
       "type": "n8n-nodes-base.noOp",
       "position": [
-        420,
-        660
+        360,
+        320
       ],
       "typeVersion": 1
     },
@@ -467,8 +452,8 @@
       "name": "Create new file",
       "type": "n8n-nodes-base.github",
       "position": [
-        640,
-        660
+        580,
+        320
       ],
       "typeVersion": 1,
       "credentials": {
@@ -501,8 +486,8 @@
       "name": "Edit existing file",
       "type": "n8n-nodes-base.github",
       "position": [
-        640,
-        460
+        580,
+        120
       ],
       "typeVersion": 1,
       "credentials": {
@@ -520,8 +505,8 @@
       "name": "Loop Over Items",
       "type": "n8n-nodes-base.splitInBatches",
       "position": [
-        180,
-        -180
+        -940,
+        120
       ],
       "typeVersion": 3
     },
@@ -540,8 +525,8 @@
       "name": "Schedule Trigger",
       "type": "n8n-nodes-base.scheduleTrigger",
       "position": [
-        -360,
-        -80
+        -1440,
+        200
       ],
       "typeVersion": 1.2
     },
@@ -564,42 +549,10 @@
       "name": "Create sub path",
       "type": "n8n-nodes-base.set",
       "position": [
-        0,
-        460
+        -60,
+        120
       ],
       "typeVersion": 3.3
-    },
-    {
-      "parameters": {
-        "content": "## Backup to GitHub \nThis workflow will backup all instance workflows to GitHub every 24 hours.\n\nThe files are saved into folders using `YYYY/MM/` for the directory path and `ID.json` for the filename.\n\nThe Repo Owner, Repo Name and Main folder are set using the **Variables** feature but can be replaced with the `Config` node in the subworkflow. \n\nThe workflow runs calls itself to help reduce memory usage, Once the workflow has completed it will send an optional notification to Slack.\n\n### Time to Run\nTested with 1423 workflows on `1.44.1` it took under 30 minutes for the first run and under 12 minutes once the initial run is complete.",
-        "height": 417,
-        "width": 385,
-        "color": 4
-      },
-      "id": "53982f8e-c892-4049-a62a-e0a0f3c17a31",
-      "name": "Sticky Note1",
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -840,
-        -360
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {
-        "content": "## Main workflow loop",
-        "height": 416.1856906618075,
-        "width": 1272.6408145680155,
-        "color": 7
-      },
-      "id": "93317f76-2715-4e59-bf12-b625449a2f22",
-      "name": "Sticky Note2",
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -400,
-        -360
-      ],
-      "typeVersion": 1
     },
     {
       "parameters": {
@@ -608,15 +561,15 @@
         "operation": "get",
         "owner": {
           "__rl": true,
-          "mode": "",
-          "value": "={{ $('Config').first().item.repo_owner }}"
+          "value": "={{ $('Config').first().json.repo_owner }}",
+          "mode": ""
         },
         "repository": {
           "__rl": true,
-          "mode": "",
-          "value": "={{ $('Config').first().item.repo_name }}"
+          "value": "={{ $('Config').first().json.repo_name }}",
+          "mode": ""
         },
-        "filePath": "={{ $('Config').first().item.repo_path }}{{ $('Loop Over Items').first().json.createdAt.split('-')[0] }}/{{ $('Loop Over Items').first().json.createdAt.split('-')[1] }}/{{$json.id}}.json",
+        "filePath": "={{ $('Config').first().json.repo_path }}{{ $('Loop Over Items').first().json.createdAt.split('-')[0] }}/{{ $('Loop Over Items').first().json.createdAt.split('-')[1] }}/{{$json.id}}.json",
         "asBinaryProperty": false,
         "additionalParameters": {}
       },
@@ -624,8 +577,8 @@
       "name": "Get file data",
       "type": "n8n-nodes-base.github",
       "position": [
-        -600,
-        200
+        -660,
+        -140
       ],
       "typeVersion": 1,
       "alwaysOutputData": true,
@@ -668,13 +621,19 @@
       "name": "Config",
       "type": "n8n-nodes-base.set",
       "position": [
-        -600,
-        480
+        -660,
+        140
       ],
       "typeVersion": 3.4
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "On clicking 'execute'": [
+      {
+        "json": {}
+      }
+    ]
+  },
   "repo_name": "backupn8n",
   "repo_owner": "Santiagociroc11",
   "repo_path": "backup/",
@@ -688,6 +647,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-02-03T16:12:43.000Z",
-  "versionId": "e9c33a68-a8f8-4499-ac6f-643dac4243ed"
+  "updatedAt": "2025-02-03T16:18:39.000Z",
+  "versionId": "a32d3077-3ac9-4226-8ce0-924c96b1dd89"
 }
