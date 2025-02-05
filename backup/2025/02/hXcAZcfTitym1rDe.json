@@ -1,0 +1,604 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Mautic1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mautic1": {
+      "main": [
+        [
+          {
+            "node": "Mautic",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-05T03:58:45.965Z",
+  "id": "hXcAZcfTitym1rDe",
+  "meta": null,
+  "name": "🟢 [ARZA] CAPTURA-CEJAS",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "captura-cejas1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -360,
+        -40
+      ],
+      "id": "6d3ffc4e-6b56-48e7-a7c1-6be7870ae3c0",
+      "name": "Webhook",
+      "webhookId": "c15ff2fc-c331-4b8e-bd40-a1127d1666b6"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1zgBTGl25U0OglUDwPViHJtRatrocFaBmaCQTIXUafJ0/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1zgBTGl25U0OglUDwPViHJtRatrocFaBmaCQTIXUafJ0/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "CORREO"
+          ],
+          "schema": [
+            {
+              "id": "FECHA",
+              "displayName": "FECHA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CORREO",
+              "displayName": "CORREO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CAMPAÑA",
+              "displayName": "CAMPAÑA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SEGMENTACION",
+              "displayName": "SEGMENTACION",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ANUNCIO",
+              "displayName": "ANUNCIO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "PLATAFORMA",
+              "displayName": "PLATAFORMA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "VENTA",
+              "displayName": "VENTA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        360,
+        -100
+      ],
+      "id": "645e9e05-d3be-45fc-b914-404a37422e59",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3e017d9f-2e10-4096-b742-f29f90050d12",
+              "name": "CORREO",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "404b1a16-7c5c-48d2-8e9a-d272cd85648c",
+              "name": "CAMPAÑA",
+              "value": "={{ $json.body.utmCampaign }}",
+              "type": "string"
+            },
+            {
+              "id": "a60bdde3-f659-4ed3-ab93-695b824c4095",
+              "name": "PLATAFORMA",
+              "value": "={{ $json.body.utmSource }}",
+              "type": "string"
+            },
+            {
+              "id": "efdf6533-c3b2-45d1-8f08-e84e5179b8f8",
+              "name": "SEGMENTACION",
+              "value": "={{ $json.body.utmMedium }}",
+              "type": "string"
+            },
+            {
+              "id": "0edbf33b-43a2-4ff4-83d4-e3d775649db6",
+              "name": "ANUNCIO",
+              "value": "={{ $json.body.utmContent }}",
+              "type": "string"
+            },
+            {
+              "id": "e6c54583-3fff-40ef-977f-b4a4d87a14f1",
+              "name": "FECHA",
+              "value": "={{ $now.format('dd-MM-yyyy HH:mm:ss') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        120,
+        -160
+      ],
+      "id": "06462cd4-6878-44b4-9df2-5518fd994176",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.pagina }}",
+                    "rightValue": "PRINCIPAL",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PRINCIPAL"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "608d00e0-4bcc-4ac0-b01d-36122eb35c73",
+                    "leftValue": "={{ $json.body.pagina }}",
+                    "rightValue": "ORG",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ORG"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -120,
+        -40
+      ],
+      "id": "2fd13eb8-fb8a-4cbc-8f85-600f76016451",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1iUJJOE_XYXc8sW_va5-p1sakjdOwgmMDbU41Ecs-lm0/edit?gid=603309166#gid=603309166",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1iUJJOE_XYXc8sW_va5-p1sakjdOwgmMDbU41Ecs-lm0/edit?gid=603309166#gid=603309166",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "CORREO"
+          ],
+          "schema": [
+            {
+              "id": "FECHA",
+              "displayName": "FECHA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CORREO",
+              "displayName": "CORREO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CAMPAÑA",
+              "displayName": "CAMPAÑA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SEGMENTACION",
+              "displayName": "SEGMENTACION",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ANUNCIO",
+              "displayName": "ANUNCIO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "PLATAFORMA",
+              "displayName": "PLATAFORMA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        380,
+        160
+      ],
+      "id": "5b32296c-8502-48e9-aca7-94246924a044",
+      "name": "Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3e017d9f-2e10-4096-b742-f29f90050d12",
+              "name": "CORREO",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "404b1a16-7c5c-48d2-8e9a-d272cd85648c",
+              "name": "CAMPAÑA",
+              "value": "={{ $json.body.utmCampaign }}",
+              "type": "string"
+            },
+            {
+              "id": "a60bdde3-f659-4ed3-ab93-695b824c4095",
+              "name": "PLATAFORMA",
+              "value": "={{ $json.body.utmSource }}",
+              "type": "string"
+            },
+            {
+              "id": "efdf6533-c3b2-45d1-8f08-e84e5179b8f8",
+              "name": "SEGMENTACION",
+              "value": "={{ $json.body.utmMedium }}",
+              "type": "string"
+            },
+            {
+              "id": "0edbf33b-43a2-4ff4-83d4-e3d775649db6",
+              "name": "ANUNCIO",
+              "value": "={{ $json.body.utmContent }}",
+              "type": "string"
+            },
+            {
+              "id": "e6c54583-3fff-40ef-977f-b4a4d87a14f1",
+              "name": "FECHA",
+              "value": "={{ $now.format('dd-MM-yyyy HH:mm:ss') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        160,
+        160
+      ],
+      "id": "02c5276c-d112-42a6-8bd9-3b5944fa4f99",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://connect.mailerlite.com/api/subscribers",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMDYyNDY1MmEwYjI2OTAyMTM5YWRlZjJjYWRmNjYxNTJiZDFlYTVlZTBlMmI5NjhjMjMzYjc5YzI2YTU3ODIwYWVlMGEwMDA0YTY0OTk3MWMiLCJpYXQiOjE3Mzg3MzMwODYuMTYyNTQ0LCJuYmYiOjE3Mzg3MzMwODYuMTYyNTQ2LCJleHAiOjQ4OTQ0MDY2ODYuMTU4OTcsInN1YiI6IjEzMjUzMTgiLCJzY29wZXMiOltdfQ.d1Cq864bb56DDgXkouYy5QfvC2loGoItl76NUAQW-P9E_k8exAxlR5rCtJdwskBF5S-YOds258RkStW_SLXFjtxUki7k9dEjG1TA6FmfIMlKegtmOQubeeqGLpXJvoAT89oQWy9YQkxKNPcSgdnNjDkp_ElGEif56roTEtV2VF1GLwmYNfMQ88vMPtlcW2SNI4bU5YOO69GKI1VDYRNnuGNAS4bdN2biSX18c3uATToNAy7u_VSpRBNohN5IIRc8NKSzGUjwF-P2smMbOecJisKn-FLJpaMrbIgw7HUTCz0qYAE763Zy5GdOfA8xG6zRseQx75tgO12bZ6SFQZ9Y2i1Q3cwYM9k3W7yaCLEeOKpRFXAvLWQvQo-3MrhFByZqnu7IDGRANKzs2M9uwmgz98dk_MDwEliOUDSKHSBtH6dM6D_3W0Bv-7-ew8BtvsHeM1-y8c8ugc5e614HKX1hJsL5RVR147K4t80xBkv5S7YAqU_hag_UDkQnaPlK7iZOriNL8fGqG0-BxOff0SdmV7pi6j7Nm05UlOI8OGEQlxXsczH3UXFXqJgQhv51IeBH6Is9rk76t7qZu3c9WutkXRVbfSBqOrF31bL73C-BqerB7iDiJTrHGKqAZxMz9HIe_TWU9gbvI-V2VNBjD5N0JzHMYg-XwW_8MmNElXW2uio"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"email\": \"{{ $json.CORREO }}\",\n    \"groups\": [\n        \"145472284957607163\"\n    ],\n    \"subscribed_at\": \"{{ $now.format('yyyy-MM-dd HH:mm:ss') }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        360,
+        -260
+      ],
+      "id": "cdb1f55a-4b84-4e0a-8aac-530f97fc61ac",
+      "name": "HTTP Request3",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "email": "={{ $json.CORREO }}",
+        "company": "Veruska",
+        "additionalFields": {},
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mautic",
+      "typeVersion": 1,
+      "position": [
+        360,
+        -420
+      ],
+      "id": "c88b43fa-b9d4-404b-a973-bf79f6cecbe7",
+      "name": "Mautic1",
+      "credentials": {
+        "mauticOAuth2Api": {
+          "id": "8bn8d1Hiwo1bDGuv",
+          "name": "MAUTIC CARLOS ARZA - CEJAS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "contactSegment",
+        "contactId": "={{ $json.id }}",
+        "segmentId": 1
+      },
+      "type": "n8n-nodes-base.mautic",
+      "typeVersion": 1,
+      "position": [
+        580,
+        -420
+      ],
+      "id": "8188a4cd-8596-473c-ac0f-a19be2af2b95",
+      "name": "Mautic",
+      "credentials": {
+        "mauticOAuth2Api": {
+          "id": "8bn8d1Hiwo1bDGuv",
+          "name": "MAUTIC CARLOS ARZA - CEJAS"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1",
+            "content-length": "162",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "es-419,es;q=0.9",
+            "content-type": "application/json",
+            "origin": "https://www.veru-cejasperfectas.com",
+            "referer": "https://www.veru-cejasperfectas.com/",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "186.98.250.151",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "0f86eb816a4d",
+            "x-real-ip": "186.98.250.151"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "tiemporegistro": 1738735355,
+            "email": "SANTI1@gmail.com",
+            "utmCampaign": "-",
+            "utmSource": "-",
+            "utmMedium": "-",
+            "utmContent": "-",
+            "utmTerm": "-",
+            "pagina": "PRINCIPAL"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/captura-cejas1",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-02-05T06:32:40.000Z",
+  "versionId": "461fe9c8-5b7e-4b59-adcc-a16063d6a4e7"
+}
