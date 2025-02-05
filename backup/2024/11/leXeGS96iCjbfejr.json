@@ -16,18 +16,7 @@
       "main": [
         [
           {
-            "node": "MySQL1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "MySQL1": {
-      "main": [
-        [
-          {
-            "node": "If3",
+            "node": "BD GERSSON PRINCIPAL",
             "type": "main",
             "index": 0
           }
@@ -45,7 +34,7 @@
         ],
         [
           {
-            "node": "MySQL2",
+            "node": "BD ARZA CEJAS",
             "type": "main",
             "index": 0
           }
@@ -81,67 +70,11 @@
         ]
       ]
     },
-    "If6": {
-      "main": [
-        [
-          {
-            "node": "HTTP Request6",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Google Sheets2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "MySQL2": {
-      "main": [
-        [
-          {
-            "node": "If8",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "HTTP Request8": {
-      "main": [
-        []
-      ]
-    },
-    "Google Sheets2": {
-      "main": [
-        [
-          {
-            "node": "HTTP Request8",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Webhook": {
       "main": [
         [
           {
             "node": "Edit Fields",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If8": {
-      "main": [
-        [
-          {
-            "node": "If6",
             "type": "main",
             "index": 0
           }
@@ -169,6 +102,73 @@
           }
         ]
       ]
+    },
+    "If6": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        []
+      ]
+    },
+    "HTTP Request3": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [
+          {
+            "node": "If6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BD GERSSON PRINCIPAL": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BD ARZA CEJAS": {
+      "main": [
+        [
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-11-04T07:42:41.519Z",
@@ -176,7 +176,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "🟢 [GERSSON] ESCRITURA Y EXPULSION DE GRUPOS",
+  "name": "🟢 [AGENCIA] ESCRITURA Y EXPULSION DE GRUPOS",
   "nodes": [
     {
       "parameters": {
@@ -251,42 +251,6 @@
         1300,
         340
       ]
-    },
-    {
-      "parameters": {
-        "operation": "select",
-        "table": {
-          "__rl": true,
-          "value": "GERSSON_LINKS",
-          "mode": "list",
-          "cachedResultName": "GERSSON_LINKS"
-        },
-        "limit": 1,
-        "where": {
-          "values": [
-            {
-              "column": "id",
-              "value": "={{ $('If').item.json.grupo }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "bb1111bd-c105-4c09-8ffe-61df90078168",
-      "name": "MySQL1",
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        1520,
-        320
-      ],
-      "alwaysOutputData": true,
-      "credentials": {
-        "mySql": {
-          "id": "4J4D0oAUKKPzfhYR",
-          "name": "REDIRECCIONES"
-        }
-      }
     },
     {
       "parameters": {
@@ -487,239 +451,6 @@
     },
     {
       "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "6e074b0d-4663-476d-ae90-8be442f648cd",
-              "leftValue": "={{ $('Edit Fields').item.json.numero }}",
-              "rightValue": "58",
-              "operator": {
-                "type": "string",
-                "operation": "startsWith"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "16e9716b-476c-4868-b9eb-d7e488ad91b1",
-      "name": "If6",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        2140,
-        640
-      ]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('Webhook').item.json.body.instance }}?groupJid={{ $('Edit Fields').item.json.grupo }}",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "apikey",
-              "value": "429683C4C977415CAAFCCE10F7D57E11"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "=\n{ \"action\": \"remove\", \n  \n  \"participants\": [ \"{{ $('Edit Fields').item.json.numero }}\" ] } ",
-        "options": {}
-      },
-      "id": "98f6cf5e-da14-4ebb-9eb4-a443a0b3d7b3",
-      "name": "HTTP Request6",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2340,
-        560
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "select",
-        "table": {
-          "__rl": true,
-          "value": "GERSSON_LINKS_TIKTOK",
-          "mode": "list",
-          "cachedResultName": "GERSSON_LINKS_TIKTOK"
-        },
-        "limit": 1,
-        "where": {
-          "values": [
-            {
-              "column": "id",
-              "value": "={{ $('If').item.json.grupo }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "caf576a2-da43-498d-a34b-e7826c86ef68",
-      "name": "MySQL2",
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        1800,
-        760
-      ],
-      "alwaysOutputData": true,
-      "credentials": {
-        "mySql": {
-          "id": "4J4D0oAUKKPzfhYR",
-          "name": "REDIRECCIONES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "url": "=https://www.uchat.com.au/api/subscribers?phone=%2B{{ $('Google Sheets2').all()[0].json.WHATSAPP.toNumber() }}",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer wotJVBUgJDmGjz4l0JCyToilK25AEHZTVPe1FRbMesI6THPVuRyuFTcL02W7"
-            },
-            {
-              "name": "Content-Type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "db10291d-2e33-4be4-bc2b-7043b2c331c3",
-      "name": "HTTP Request8",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2500,
-        720
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "content": "\n\nTIK TOK",
-        "height": 433,
-        "width": 1221,
-        "color": 3
-      },
-      "id": "69663507-4322-4c83-bb1e-431ab2881c0c",
-      "name": "Sticky Note2",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        1580,
-        520
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "appendOrUpdate",
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1WslDW85uIVqx6oUlereeS0syUOsWQ4WwjP61WPERXMg/edit?gid=1124891128#gid=1124891128",
-          "mode": "url"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1WslDW85uIVqx6oUlereeS0syUOsWQ4WwjP61WPERXMg/edit?gid=1124891128#gid=1124891128",
-          "mode": "url"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "GRUPO": "={{ $('Edit Fields').item.json.grupo }}",
-            "WHATSAPP": "=+{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}",
-            "DIA": "={{ new Date().toLocaleString(\"es-CO\", { timeZone: \"America/Bogota\", year: \"numeric\", month: \"2-digit\", day: \"2-digit\" }) }}",
-            "HORA": "={{ new Date().toLocaleTimeString(\"es-CO\", { timeZone: \"America/Bogota\", hour12: false, hour: \"2-digit\", minute: \"2-digit\", second: \"2-digit\" }).replace(/^24/, \"00\") }}",
-            "FUENTE": "TIKTOK"
-          },
-          "matchingColumns": [
-            "WHATSAPP"
-          ],
-          "schema": [
-            {
-              "id": "DIA",
-              "displayName": "DIA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "HORA",
-              "displayName": "HORA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "WHATSAPP",
-              "displayName": "WHATSAPP",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "GRUPO",
-              "displayName": "GRUPO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "FUENTE",
-              "displayName": "FUENTE",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "f2a4a014-2a14-467e-a915-a81456be55a7",
-      "name": "Google Sheets2",
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        2320,
-        720
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "Google Sheets account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "httpMethod": "POST",
         "path": "webhooks-wha-fran",
         "options": {}
@@ -733,40 +464,6 @@
         340
       ],
       "webhookId": "453d99b1-161b-46e8-8ac0-40581b8efbe2"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "8d2037fa-e2a7-4668-901e-4ca0a27a93ab",
-              "leftValue": "={{ $json.id }}",
-              "rightValue": "",
-              "operator": {
-                "type": "string",
-                "operation": "exists",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "70a5ee38-3f07-4862-bb1f-3a0a8067eadc",
-      "name": "If8",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        1960,
-        760
-      ]
     },
     {
       "parameters": {
@@ -860,6 +557,307 @@
       ],
       "id": "90bfcb71-0192-47a5-ad03-4c60f2df0b83",
       "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8d2037fa-e2a7-4668-901e-4ca0a27a93ab",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "6b950143-cad3-4b26-b189-c2fbe0b08256",
+      "name": "If5",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2320,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6e074b0d-4663-476d-ae90-8be442f648cd",
+              "leftValue": "={{ $('Edit Fields').item.json.numero }}",
+              "rightValue": "58",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "140accb6-76da-47b0-8539-b31efbc33924",
+      "name": "If6",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2540,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('Webhook').item.json.body.instance }}?groupJid={{ $('Edit Fields').item.json.grupo }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{ \"action\": \"remove\", \n  \n  \"participants\": [ \"{{ $('Edit Fields').item.json.numero }}\" ] } ",
+        "options": {}
+      },
+      "id": "cdb2b909-ff01-4fe2-91a5-b73006b98d91",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2780,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1zgBTGl25U0OglUDwPViHJtRatrocFaBmaCQTIXUafJ0/edit?gid=1652768103#gid=1652768103",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1zgBTGl25U0OglUDwPViHJtRatrocFaBmaCQTIXUafJ0/edit?gid=1652768103#gid=1652768103",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "WHATSAPP": "=+{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}",
+            "DIA": "={{ $now.format('dd-MM-yyyy') }}",
+            "HORA": "={{ $now.format('HH:mm:ss') }}",
+            "GRUPO": "={{ $('Edit Fields').item.json.grupo }}",
+            "FUENTE": "FB ADS",
+            "NOMBRE GRUPO": "={{ $json.subject }}"
+          },
+          "matchingColumns": [
+            "WHATSAPP"
+          ],
+          "schema": [
+            {
+              "id": "DIA",
+              "displayName": "DIA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "HORA",
+              "displayName": "HORA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "WHATSAPP",
+              "displayName": "WHATSAPP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "GRUPO",
+              "displayName": "GRUPO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "NOMBRE GRUPO",
+              "displayName": "NOMBRE GRUPO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "FUENTE",
+              "displayName": "FUENTE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "eb3d5f2c-920c-4b3a-b26e-538f99123edb",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2860,
+        620
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://evolution.automscc.com/group/findGroupInfos/{{ $('Edit Fields').item.json.instancia }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "groupJid",
+              "value": "={{ $json.id }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2700,
+        620
+      ],
+      "id": "db7ba858-50cd-4d94-81bb-71e353657f24",
+      "name": "HTTP Request3"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_LINKS",
+          "mode": "list",
+          "cachedResultName": "GERSSON_LINKS"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $('If').item.json.grupo }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "bb1111bd-c105-4c09-8ffe-61df90078168",
+      "name": "BD GERSSON PRINCIPAL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1520,
+        320
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "ARZA_CEJAS_LINKS",
+          "mode": "list",
+          "cachedResultName": "ARZA_CEJAS_LINKS"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $('If').item.json.grupo }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "dd3162f4-ebca-4577-b101-5e143430a2e1",
+      "name": "BD ARZA CEJAS",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        2160,
+        620
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
     }
   ],
   "pinData": {
@@ -868,8 +866,8 @@
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
-            "user-agent": "axios/1.7.7",
-            "content-length": "436",
+            "user-agent": "axios/1.7.9",
+            "content-length": "406",
             "accept-encoding": "gzip, compress, deflate, br",
             "content-type": "application/json",
             "x-forwarded-for": "172.18.0.1",
@@ -885,15 +883,15 @@
             "event": "group-participants.update",
             "instance": "fran",
             "data": {
-              "id": "120363280040905241@g.us",
-              "author": "573138318719@s.whatsapp.net",
+              "id": "120363378573886462@g.us",
+              "author": "",
               "participants": [
-                "573138318719@s.whatsapp.net"
+                "573245904626@s.whatsapp.net"
               ],
-              "action": "remove"
+              "action": "add"
             },
             "destination": "https://n8n.automscc.com/webhook/webhooks-wha-fran",
-            "date_time": "2025-01-26T20:48:05.354Z",
+            "date_time": "2025-02-05T03:03:01.580Z",
             "sender": "573218504711@s.whatsapp.net",
             "server_url": "http://evolution.automscc.com",
             "apikey": "05122F14E37B-4AC4-AF45-02CFD55CEEB7"
@@ -915,6 +913,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-01-26T23:58:36.000Z",
-  "versionId": "f5b5e156-215b-445b-96b9-371eafe17b47"
+  "updatedAt": "2025-02-05T06:07:12.000Z",
+  "versionId": "4370d7eb-2ee1-4a6d-bb3a-a1cca25d4955"
 }
