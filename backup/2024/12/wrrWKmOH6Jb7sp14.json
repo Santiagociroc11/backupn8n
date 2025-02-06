@@ -212,7 +212,7 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "FECHA": "={{ new Date($('Webhook').first().json.body.receivedStamp).toLocaleString('en-US', { timeZone: 'America/Bogota', hour12: false }).replace(',', '').replace(/\\//g, '-') }}",
+            "FECHA": "={{ $now.format('dd-MM-yyyy HH:mm:ss') }}",
             "NOMBRE": "={{ $json.name }}",
             "VALOR": "={{ $json.value }}"
           },
@@ -702,6 +702,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-02-04T22:42:51.000Z",
-  "versionId": "d37899ac-641f-4241-8784-a959d23dc07b"
+  "updatedAt": "2025-02-05T06:54:48.000Z",
+  "versionId": "c7054712-5ff2-43ff-a522-2549de56eb08"
 }
