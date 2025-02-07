@@ -1,0 +1,391 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        []
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook1": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-02-06T18:07:17.710Z",
+  "id": "KqFiJkoRNhWdxNiq",
+  "meta": null,
+  "name": "[GERSSON] BOT SOPORTE GRUPO",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "evolution-api-cloud-td",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -900,
+        -80
+      ],
+      "id": "f6d9131a-d721-4333-9737-ade3931d44b8",
+      "name": "Webhook",
+      "webhookId": "699fb268-aa39-4bd2-bfe7-ee3fcbc73ca6"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ddaba9fd-1094-4efa-9c86-5ada32c5d4ca",
+              "name": "body",
+              "value": "={{ $json.body.query }}",
+              "type": "string"
+            },
+            {
+              "id": "7dd32469-7c0d-41cc-b5a4-0ad274d478b0",
+              "name": "numero",
+              "value": "={{ $json.body.user.replace(/\\D+/g, '') }}",
+              "type": "string"
+            },
+            {
+              "id": "3a6f35b5-6b6f-4044-96ed-0b1d14bcafc0",
+              "name": "producto",
+              "value": "gersson-soporte3",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -660,
+        -80
+      ],
+      "id": "72065d07-d42f-4cdd-a887-9ac9ea62786e",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n.automscc.com/webhook/sheet-lectura",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"whatsapp\": \"{{$('Edit Fields').first().json.numero}}\",\n\"producto\": \"{{$('Edit Fields').first().json.producto}}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -440,
+        -80
+      ],
+      "id": "3faa1a5a-1fb3-4ea6-ad07-020818e53fe5",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.estado }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "empty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NO EXISTE"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4f2fa03a-300c-4b8d-aeb2-ce6286ca2726",
+                    "leftValue": "={{ $json.estado }}",
+                    "rightValue": "bienvenida",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ESTADO BIENVENIDA"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -220,
+        -80
+      ],
+      "id": "67a86cda-8819-43bd-ade7-7a10d7038658",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4a44ac4f-46d2-43b2-b087-3272a0f6bc1d",
+              "name": "message",
+              "value": "=Hola 🫵🏻, este chat es *UNICAMENTE PARA LOS QUE NO PUDIERON UNIRSE AL GRUPO* de la Terapia del dolor.  \n\nSoy *UN BOT*, no hay una persona que responda tus mensajes en este chat, si tienes dudas, en el grupo se enviará la *TODA LA INFORMACIÓN*  \n\nIngresa al Grupo acá 👇🏻\n\n*Dale clic a este enlace: {{ $('Code').first().json.link }}*\n\n_Si no puedes darle clic al link, guarda mi contacto y vuelve a entrar al chat_\n\n",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": true
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        180,
+        -200
+      ],
+      "id": "f861866e-6054-4021-a9f7-8f7168da3dbe",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json.toJsonString() }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        420,
+        -320
+      ],
+      "id": "7094958a-1ceb-4e73-96d8-11eb4055174a",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "const mysql = require('mysql2/promise');\n\n\nnumero = $('Edit Fields').first().json.numero\n\nconst link = await grupoactual(numero);\n\nconsole.log(\"link: \", link)\n\nreturn {\n      json: { \n        link: link\n      }\n    };\n\n\nasync function grupoactual(wha) {\n  \n  const dbConfig = {\n    host: \"srv1182.hstgr.io\",\n    user: \"u698892974_JSD1\",\n    password: \"Jsdrevolution123\",\n    database: \"u698892974_REDIRECCIONES\",\n  };\n\n  const tablalinks = \"GERSSON_LINKS_ORG\";\n  const tablaip = \"GERSSON_IPS_ORG\";\n  const limite = \"redirect_limit\";\n  const ip = wha;\n\n  let connection;\n\n  try {\n    connection = await mysql.createConnection(dbConfig);\n    const [limitRows] = await connection.execute(`SELECT Limite FROM ${limite}`);\n    const selectINT = limitRows[0].Limite;\n\n    const [linkRows] = await connection.execute(\n      `SELECT * FROM ${tablalinks} WHERE Total < ? LIMIT 1`,\n      [selectINT]\n    );\n    const currentLink = linkRows[0];\n    const linkString = currentLink.link;\n    const idgrupo = currentLink.id;\n\n    const [ipRows] = await connection.execute(`SELECT * FROM ${tablaip} WHERE ip = ?`, [ip]);\n\n    if (ipRows.length >= 1) {\n      const Link2 = ipRows[0].grupo;\n      return Link2;\n    } else {\n      await connection.execute(`INSERT INTO ${tablaip} (ip, grupo) VALUES (?, ?)`, [\n        ip,\n        linkString,\n      ]);\n      await connection.execute(`UPDATE ${tablalinks} SET Total = Total + 1 WHERE ID = ?`, [\n        idgrupo,\n      ]);\n\n      return linkString;\n    }\n  } catch (error) {\n    console.error(\"Error en grupoactual:\", error);\n  } finally {\n    if (connection) {\n      await connection.end();\n    }\n  }\n}\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        -200
+      ],
+      "id": "0c17791a-3a80-495c-aa63-ece4f6979405",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n.automscc.com/webhook/sheet-escritura",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"whatsapp\": \"{{$('Edit Fields').first().json.numero}}\",\n\"producto\": \"{{$('Edit Fields').first().json.producto}}\",\n\"estado\": \"bienvenida\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        420,
+        -180
+      ],
+      "id": "6ac3b8d4-b0b8-42d9-9160-ded782548b47",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json.toJsonString() }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        240,
+        -40
+      ],
+      "id": "c6f641cc-41f3-4ca8-b511-622c3dffc7aa",
+      "name": "Respond to Webhook1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4a44ac4f-46d2-43b2-b087-3272a0f6bc1d",
+              "name": "message",
+              "value": "=Recuerda que te dije *QUE SOY UN BOT*, no puedo responder a ninguna pregunta ni saludo, solo estoy para ayudarte con el ingreso al grupo.\n\n*ARRIBA DE ESTE MENSAJE TIENES EL LINK*",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": true
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        20,
+        60
+      ],
+      "id": "93de73a1-96b8-4bce-8cab-fc8a6d63595a",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n.automscc.com/webhook/sheet-escritura",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"whatsapp\": \"{{$('Edit Fields').first().json.numero}}\",\n\"producto\": \"{{$('Edit Fields').first().json.producto}}\",\n\"estado\": \"respondido\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        100
+      ],
+      "id": "80571cc8-c86d-465c-b66b-32933b40d0e4",
+      "name": "HTTP Request2"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-02-06T21:16:40.000Z",
+  "versionId": "c4636c5d-71cc-4f4d-a738-dd4f758349f2"
+}
