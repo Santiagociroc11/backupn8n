@@ -101,7 +101,7 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -600,
+        -720,
         -40
       ],
       "id": "f6a618aa-2984-41a2-b1a6-7d9788e2bf0f",
@@ -157,7 +157,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        -420,
+        -480,
         -40
       ],
       "id": "77fb41e8-8fa9-45b2-a91e-5d7a9c2981cd",
@@ -444,6 +444,9 @@
       ],
       "id": "d0ae5df5-f1ce-4a40-afa2-3383d22f7b4d",
       "name": "Google Sheets1",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "zruD3ONGC9HU2i7s",
@@ -539,6 +542,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-01-29T15:19:07.000Z",
-  "versionId": "16f8bc08-94e0-408b-ad14-d772bf934667"
+  "updatedAt": "2025-02-10T17:29:11.000Z",
+  "versionId": "94a2e71a-d519-4d9a-b137-e7358191b037"
 }
