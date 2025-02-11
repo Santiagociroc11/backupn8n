@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Formatear grupos y mensajes": {
       "main": [
@@ -40,17 +40,6 @@
         [
           {
             "node": "Wait",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Wait": {
-      "main": [
-        [
-          {
-            "node": "Marcar mensaje como enviado",
             "type": "main",
             "index": 0
           }
@@ -168,17 +157,6 @@
         [
           {
             "node": "MySQL",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Marcar mensaje como enviado": {
-      "main": [
-        [
-          {
-            "node": "Procesado",
             "type": "main",
             "index": 0
           }
@@ -365,6 +343,28 @@
           }
         ]
       ]
+    },
+    "Notion1": {
+      "main": [
+        [
+          {
+            "node": "Procesado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Notion1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-01-11T19:49:28.743Z",
@@ -412,7 +412,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Importar las variables\nlet mensaje = $('Variables').all()[0].json.mensaje;\nlet tipoMensaje = $('Filtrar mensajes para enviar').all()[0].json.property_tipo;\nlet grupoId = $('Procesado').all()[0].json.id;\n\nlet archivo = $('Filtrar mensajes para enviar').all()[0].json.property_archivo;\nlet urlArchivo = archivo.length > 0 ? archivo[0].url : [];\nlet nombreArchivo = archivo.length > 0 ? archivo[0].visible_name : [];\n\nlet tipoMedia = null;\nlet esMedia = false;\n\n// Identificar si es un mensaje de tipo media\nswitch (tipoMensaje) {\n  case \"IMAGEN\":\n    tipoMedia = \"image\";\n    esMedia = true;\n    break;\n  case \"VIDEO\":\n    tipoMedia = \"video\";\n    esMedia = true;\n    break;\n  case \"DOCUMENTO\":\n    tipoMedia = \"document\";\n    esMedia = true;\n    break;\n  case \"AUDIO\":\n    tipoMedia = \"audio\";\n    esMedia = false;\n    break;\n    \n    case \"PTV\":\n    tipoMedia = \"ptv\";\n    esMedia = false;\n    break;\n}\n\n// Formatear cada grupo con su mensaje\nlet resultado = {\n  grupo_id: grupoId,\n  mensaje: mensaje,\n  tipoMensaje: tipoMensaje,\n  urlArchivo: urlArchivo,\n  tipoMedia: tipoMedia,\n  esMedia: esMedia,\n  nombreArchivo: nombreArchivo\n};\n\n// Devolver resultado\nreturn resultado;\n"
+        "jsCode": "// Importar las variables\nlet mensaje = $('Variables').all()[0].json.mensaje;\nlet tipoMensaje = $('Filtrar mensajes para enviar').all()[0].json.property_tipo;\nlet grupoId = $('Procesado').all()[0].json.id;\n\nlet archivo = $('Filtrar mensajes para enviar').first().json.property_archivo[0];\nlet urlArchivo = archivo.length > 0 ? archivo : [];\nlet nombreArchivo = archivo.length > 0 ? archivo : [];\n\nlet tipoMedia = null;\nlet esMedia = false;\n\n// Identificar si es un mensaje de tipo media\nswitch (tipoMensaje) {\n  case \"IMAGEN\":\n    tipoMedia = \"image\";\n    esMedia = true;\n    break;\n  case \"VIDEO\":\n    tipoMedia = \"video\";\n    esMedia = true;\n    break;\n  case \"DOCUMENTO\":\n    tipoMedia = \"document\";\n    esMedia = true;\n    break;\n  case \"AUDIO\":\n    tipoMedia = \"audio\";\n    esMedia = false;\n    break;\n    \n    case \"PTV\":\n    tipoMedia = \"ptv\";\n    esMedia = false;\n    break;\n}\n\n// Formatear cada grupo con su mensaje\nlet resultado = {\n  grupo_id: grupoId,\n  mensaje: mensaje,\n  tipoMensaje: tipoMensaje,\n  urlArchivo: urlArchivo,\n  tipoMedia: tipoMedia,\n  esMedia: esMedia,\n  nombreArchivo: nombreArchivo\n};\n\n// Devolver resultado\nreturn resultado;\n"
       },
       "id": "137e927f-370d-4863-85e3-f0469d522bc8",
       "name": "Formatear grupos y mensajes",
@@ -506,20 +506,6 @@
     },
     {
       "parameters": {
-        "amount": "={{ Math.random() * ($('Filtrar mensajes para enviar').all()[0].json.Maximo - $('Filtrar mensajes para enviar').all()[0].json.Minimo + Number.EPSILON) + $('Filtrar mensajes para enviar').all()[0].json.Minimo}}\n"
-      },
-      "id": "a0c6762d-4386-4d05-a282-0da722c4dadc",
-      "name": "Wait",
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
-      "position": [
-        740,
-        860
-      ],
-      "webhookId": "ecc834c9-ff53-4cd6-ad14-534d8919934b"
-    },
-    {
-      "parameters": {
         "method": "POST",
         "url": "={{ $node[\"Variables\"].json['Url Evolution API'].replace(/\\/$/, \"\") }}/message/sendWhatsAppAudio/{{ $node[\"Variables\"].json['Instancia Evolution API'] }}",
         "sendHeaders": true,
@@ -594,7 +580,7 @@
       "typeVersion": 2.2,
       "position": [
         -1280,
-        620
+        600
       ]
     },
     {
@@ -849,36 +835,6 @@
     },
     {
       "parameters": {
-        "operation": "update",
-        "databaseId": 64,
-        "tableId": 335,
-        "rowId": "={{ $('Filtrar mensajes para enviar').all()[0].json.id }}",
-        "fieldsUi": {
-          "fieldValues": [
-            {
-              "fieldId": 5446,
-              "fieldValue": "={{ true }}"
-            }
-          ]
-        }
-      },
-      "id": "6d9913e1-86f5-41a1-b797-51f0130860f8",
-      "name": "Marcar mensaje como enviado",
-      "type": "n8n-nodes-base.baserow",
-      "typeVersion": 1,
-      "position": [
-        920,
-        860
-      ],
-      "credentials": {
-        "baserowApi": {
-          "id": "AnyMtAsWsM8u1RCq",
-          "name": "Baserow account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "url": "={{$('Formatear grupos y mensajes').all()[0].json.urlArchivo}}",
         "options": {}
       },
@@ -907,7 +863,7 @@
               "rightValue": "={{ DateTime.fromISO($now).toFormat('dd-MM-yyyy HH:mm') }}",
               "operator": {
                 "type": "string",
-                "operation": "notEquals"
+                "operation": "equals"
               }
             }
           ],
@@ -1053,7 +1009,7 @@
                 },
                 "conditions": [
                   {
-                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json['¿MENCIÓN?'].value }}",
+                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json.property_menci_n }}",
                     "rightValue": "SI",
                     "operator": {
                       "type": "string",
@@ -1077,7 +1033,7 @@
                 "conditions": [
                   {
                     "id": "b089ed3e-b9a7-44e7-9ef5-9e71bbf65178",
-                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json['¿MENCIÓN?'].value }}",
+                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json.property_menci_n }}",
                     "rightValue": "NO",
                     "operator": {
                       "type": "string",
@@ -1183,7 +1139,7 @@
                 },
                 "conditions": [
                   {
-                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json['¿MENCIÓN?'].value }}",
+                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json.property_menci_n }}",
                     "rightValue": "SI",
                     "operator": {
                       "type": "string",
@@ -1207,7 +1163,7 @@
                 "conditions": [
                   {
                     "id": "b089ed3e-b9a7-44e7-9ef5-9e71bbf65178",
-                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json['¿MENCIÓN?'].value }}",
+                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json.property_menci_n }}",
                     "rightValue": "NO",
                     "operator": {
                       "type": "string",
@@ -1248,7 +1204,7 @@
                 },
                 "conditions": [
                   {
-                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json['¿MENCIÓN?'].value }}",
+                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json.property_menci_n }}",
                     "rightValue": "SI",
                     "operator": {
                       "type": "string",
@@ -1272,7 +1228,7 @@
                 "conditions": [
                   {
                     "id": "b089ed3e-b9a7-44e7-9ef5-9e71bbf65178",
-                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json['¿MENCIÓN?'].value }}",
+                    "leftValue": "={{ $('Filtrar mensajes para enviar').all()[0].json.property_menci_n }}",
                     "rightValue": "NO",
                     "operator": {
                       "type": "string",
@@ -1399,23 +1355,71 @@
         -3340,
         800
       ]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": {
+          "__rl": true,
+          "value": "={{ $('Notion').first().json.id }}",
+          "mode": "id"
+        },
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "ENVIADO|checkbox",
+              "checkboxValue": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        1060,
+        860
+      ],
+      "id": "670fd552-aa39-4920-8084-84bc3261b4c3",
+      "name": "Notion1",
+      "credentials": {
+        "notionApi": {
+          "id": "96gd5czBYIXX6Aw7",
+          "name": "NOTION SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.random() * ($('Filtrar mensajes para enviar').all()[0].json.Maximo - $('Filtrar mensajes para enviar').all()[0].json.Minimo + Number.EPSILON) + $('Filtrar mensajes para enviar').all()[0].json.Minimo}}\n"
+      },
+      "id": "a0c6762d-4386-4d05-a282-0da722c4dadc",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        840,
+        860
+      ],
+      "webhookId": "ecc834c9-ff53-4cd6-ad14-534d8919934b"
     }
   ],
   "pinData": {
     "Schedule Trigger1": [
       {
         "json": {
-          "timestamp": "2024-11-14T19:22:18.003-05:00",
-          "Readable date": "November 14th 2024, 7:22:18 pm",
-          "Readable time": "7:22:18 pm",
-          "Day of week": "Thursday",
-          "Year": "2024",
-          "Month": "November",
-          "Day of month": "14",
-          "Hour": "19",
-          "Minute": "22",
-          "Second": "18",
-          "Timezone": "America/Bogota (UTC-05:00)"
+          "timestamp": "2025-02-10T14:10:23.002-05:00",
+          "Readable date": "February 10th 2025, 2:10:23 pm",
+          "Readable time": "2:10:23 pm",
+          "Day of week": "Monday",
+          "Year": "2025",
+          "Month": "February",
+          "Day of month": "10",
+          "Hour": "14",
+          "Minute": "10",
+          "Second": "23",
+          "Timezone": "America/New_York (UTC-05:00)"
         }
       }
     ]
@@ -1433,6 +1437,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-01-12T21:05:36.000Z",
-  "versionId": "44c0965d-52b8-4859-8609-828abf313e99"
+  "updatedAt": "2025-02-10T19:47:01.000Z",
+  "versionId": "ee5048b0-6c79-4b1a-b9ff-4a38e232aa77"
 }
