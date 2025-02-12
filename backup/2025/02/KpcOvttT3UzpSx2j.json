@@ -82,7 +82,7 @@
         ],
         [
           {
-            "node": "AI Agent",
+            "node": "traer comentario",
             "type": "main",
             "index": 0
           }
@@ -216,7 +216,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "🟢 AUTOMATIZA COMENTARIOS FACEBOOK - IA",
+  "name": "🟢 [TU SOTF.] AUTOMATIZA COMENTARIOS FACEBOOK - IA",
   "nodes": [
     {
       "parameters": {
@@ -230,8 +230,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -920,
-        -140
+        -560,
+        -400
       ],
       "id": "6ce222b1-7ab8-427c-ae21-2aa11c2e2779",
       "name": "Webhook",
@@ -243,14 +243,14 @@
         "promptType": "define",
         "text": "={{ $json.comentario }}",
         "options": {
-          "systemMessage": "Eres el moderador de comentarios de una pagina llamada \"tu software seguro\"\n\nactua como el mejor comunity manager del mundo, con experiencia de 10 años respondiendo comentarios y con un tono simpatico, a veces hasta comico para agradar más.\n\nTus respuestas no son abiertas, son definitivas, es decir, no esperas respuesta de los usuarios, das información y listo. NO HAGAS PREGUNTAS\n\nTu tarea es identificar que quiere la persona en ese unico mensaje que recibes y responder en consecuencia... si piden información los mandas a presionar el botón de la publicación que dirije a whastapp.\n\nSi dan gracias o dicen algo bueno, respondes dando gracias inteligentemente."
+          "systemMessage": "Eres el moderador de comentarios de una página llamada \"tu software seguro\" que se encarga de dar los mejores productos tecnológicos al mejor precio. actúa como el mejor community manager del mundo, con experiencia de 10 años respondiendo comentarios y con un tono simpático, a veces hasta cómico para agradar más. Vendemos una app que vale 17.900 pesos el año, único pago, que sirve para ver tv, peliculas y series en celular y tv pero solo en dispositivos con android, tv con android, celulares android y pc, si preguntan aclaras, pero no des demasiadas explicaciones, mandalos al botón de whatsapp. Si preguntan el nombre de la app, no lo dices ni tampoco dices que es oculto o secreto, mandas directo al whatsapp por el botón. Tus respuestas no son abiertas, son definitivas, es decir, no esperas respuesta de los usuarios, das información y listo. NO HAGAS PREGUNTAS Tu tarea es identificar qué quiere la persona en ese único mensaje que recibes y responder en consecuencia... si piden información los mandas a presionar el botón de la publicación que dirige a whastapp. \n\nSi dan gracias o dicen algo bueno asume que es un comprador, responde dando gracias inteligentemente y diciendo que nos recomiende.\n\nTrata de dar respuestas cortas.\n"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        660,
-        -200
+        560,
+        -160
       ],
       "id": "ef541453-271f-4a79-ba72-aacdc40610a8",
       "name": "AI Agent"
@@ -268,8 +268,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        640,
-        -20
+        560,
+        40
       ],
       "id": "615a8507-7d01-4eef-8786-8b9d72f97b83",
       "name": "OpenAI Chat Model",
@@ -326,8 +326,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -420,
-        -100
+        -200,
+        -260
       ],
       "id": "a7c63025-29a1-4338-9c81-40e0f5321270",
       "name": "If"
@@ -343,7 +343,7 @@
             },
             {
               "category": "malos",
-              "description": "coemntarios dañinos o con el fin de desprestigiar o causar mala reputación, tambien comentarios con links o evidencias de estafas presuntamente cometidas"
+              "description": "Un mensaje debe clasificarse en esta categoría si contiene ataques, desprestigio o intención de dañar la reputación; enlaces o menciones de posibles estafas; afirmaciones de que el producto o servicio es gratuito, referencias a \"MagisTV\" o \"magis\" o \"magis tv\" o \"iptv\" o disponibilidad gratuita en Google; burlas hacia compradores o comentarios sarcásticos o burlescos en general; o quejas sobre falta de entrega tras el pago o mala atención al cliente. Tambien si preguntan o afirman que es iptv o que ya la tienen hace tiempo sin pagar."
             },
             {
               "category": "buenos",
@@ -403,8 +403,8 @@
       "type": "n8n-nodes-base.facebookGraphApi",
       "typeVersion": 1,
       "position": [
-        960,
-        -520
+        640,
+        -460
       ],
       "id": "5419edeb-fa1e-4d4c-9110-89f20faaf704",
       "name": "eliminar comentario",
@@ -420,6 +420,7 @@
         "httpRequestMethod": "POST",
         "graphApiVersion": "v21.0",
         "node": "=234154656454626",
+        "edge": "blocked",
         "options": {
           "queryParameters": {
             "parameter": [
@@ -434,8 +435,8 @@
       "type": "n8n-nodes-base.facebookGraphApi",
       "typeVersion": 1,
       "position": [
-        1140,
-        -520
+        820,
+        -460
       ],
       "id": "76ad8b10-35b9-4341-b7d1-a6a42d710fa3",
       "name": "bloquear persona",
@@ -464,8 +465,8 @@
       "type": "n8n-nodes-base.facebookGraphApi",
       "typeVersion": 1,
       "position": [
-        500,
-        -480
+        180,
+        -420
       ],
       "id": "2db0fb3d-ee40-4109-971c-d88d33bf9cfb",
       "name": "traer comentario",
@@ -494,8 +495,8 @@
       "type": "n8n-nodes-base.facebookGraphApi",
       "typeVersion": 1,
       "position": [
-        1060,
-        -280
+        900,
+        -160
       ],
       "id": "d3dc57aa-8af1-4fd5-a0a5-31a158f61fd0",
       "name": "coment",
@@ -534,8 +535,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        700,
-        -480
+        380,
+        -420
       ],
       "id": "1c6e5c64-3b0c-4552-b49c-cfcf989e1469",
       "name": "puedo borrar?"
@@ -559,8 +560,8 @@
       "type": "n8n-nodes-base.facebookGraphApi",
       "typeVersion": 1,
       "position": [
-        1480,
-        -380
+        1240,
+        -240
       ],
       "id": "44e5d356-7c35-453f-ab55-e560fc90acb6",
       "name": "mostrar comentario",
@@ -606,8 +607,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -140,
-        -140
+        -20,
+        -160
       ],
       "id": "17f8303c-4892-4163-bb99-dfa7b9cb7389",
       "name": "asignacion"
@@ -632,8 +633,8 @@
       "type": "n8n-nodes-base.facebookGraphApi",
       "typeVersion": 1,
       "position": [
-        1720,
-        -260
+        1400,
+        -140
       ],
       "id": "43e5a340-00d9-4842-aa0e-57e03a963028",
       "name": "responder",
@@ -655,8 +656,8 @@
       "type": "n8n-nodes-base.facebookGraphApi",
       "typeVersion": 1,
       "position": [
-        1880,
-        -260
+        1580,
+        -140
       ],
       "id": "597aa43a-47fe-4b7f-a7d1-5e95800cec9b",
       "name": "LIKE",
@@ -695,8 +696,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1260,
-        -280
+        1060,
+        -160
       ],
       "id": "803cd3c6-a4cb-470d-abd2-3f2bfd277122",
       "name": "oculto?"
@@ -729,76 +730,14 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -680,
-        -140
+        -380,
+        -400
       ],
       "id": "ab9ab524-fdc5-4ba6-aa09-19e156a57000",
       "name": "If1"
     }
   ],
-  "pinData": {
-    "Webhook": [
-      {
-        "json": {
-          "headers": {
-            "host": "n8n.automscc.com",
-            "user-agent": "Webhooks/1.0 (https://fb.me/webhooks)",
-            "content-length": "1173",
-            "accept": "*/*",
-            "content-type": "application/json",
-            "x-forwarded-for": "173.252.127.114",
-            "x-forwarded-host": "n8n.automscc.com",
-            "x-forwarded-port": "443",
-            "x-forwarded-proto": "https",
-            "x-forwarded-server": "ad0d00adc764",
-            "x-hub-signature": "sha1=a4447ebc73c124563ea51ec1a14243b8c90fb273",
-            "x-hub-signature-256": "sha256=f17aec0b0f72a546411154218bc13cd44eee7cc2af723f60ba7d1ff7856f97a8",
-            "x-real-ip": "173.252.127.114",
-            "accept-encoding": "gzip"
-          },
-          "params": {},
-          "query": {},
-          "body": {
-            "entry": [
-              {
-                "id": "234154656454626",
-                "time": 1739253405,
-                "changes": [
-                  {
-                    "value": {
-                      "from": {
-                        "id": "9145731315503283",
-                        "name": "Santiago Ciro Criollo"
-                      },
-                      "post": {
-                        "status_type": "shared_story",
-                        "is_published": false,
-                        "updated_time": "2025-02-11T05:56:41+0000",
-                        "permalink_url": "https://www.facebook.com/122202764534239176/posts/pfbid06HQasiadnCc4sDCp41qvGypRMn3RxHmiiQzbBZCtZWspWNbwxB3UaAR83VmuaVKJl",
-                        "promotion_status": "inactive",
-                        "id": "234154656454626_122198742746239176"
-                      },
-                      "photo": "https://scontent.fbaq2-2.fna.fbcdn.net/v/t39.30808-6/476832893_10231969836380570_9162243127397062183_n.jpg?stp=cp1_dst-jpg_e15_fr_q75_tt6&cstp=mx443x960&ctp=s443x960&_nc_cat=100&ccb=1-7&_nc_sid=5a4fcb&_nc_ohc=FqgGpP03RasQ7kNvgE641pj&_nc_oc=Adi4miuj3g9FiRrwZljJ5ZruMtUGNleYXQ5-0LHuy3Yu0nkBZF-fboMJIrNQfFS0uYU&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fbaq2-2.fna&oh=00_AYA4MYVh0wQXm8UFZrH6qkWRY65M6A1FB0Z4M9QeU7nbFg&oe=67B0C541",
-                      "post_id": "234154656454626_122198742746239176",
-                      "comment_id": "122198742746239176_9195180360598477",
-                      "created_time": 1739253401,
-                      "item": "comment",
-                      "parent_id": "234154656454626_122198742746239176",
-                      "verb": "add"
-                    },
-                    "field": "feed"
-                  }
-                ]
-              }
-            ],
-            "object": "page"
-          },
-          "webhookUrl": "https://n8n.automscc.com/webhook/comentariosfb",
-          "executionMode": "production"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "repo_name": "backupn8n",
   "repo_owner": "Santiagociroc11",
   "repo_path": "backup/",
@@ -808,6 +747,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-02-11T06:00:14.000Z",
-  "versionId": "c14acad4-c6a6-4fb0-ad42-ce2e9869037c"
+  "updatedAt": "2025-02-11T21:44:00.000Z",
+  "versionId": "3b245ce9-cef8-4f1a-931c-d60525967c49"
 }
