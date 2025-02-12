@@ -1,0 +1,403 @@
+{
+  "active": false,
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "MongoDB1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "MongoDB",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "MongoDB2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Form",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB2": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-02-11T19:42:03.197Z",
+  "id": "pfyY5bavMJWdacSQ",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[BOT-WHA] ENTREGA CHATGPT",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "ENTREGA CHATGPT",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Escribe tu correo",
+              "fieldType": "email",
+              "requiredField": true
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {
+          "buttonLabel": "Ingresar",
+          "path": "entrega-chatgpt"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -440,
+        -40
+      ],
+      "id": "10ddf823-3f62-427e-8c89-b8f37b4ba170",
+      "name": "On form submission",
+      "webhookId": "984cd8d1-7fb6-46a2-b89b-37c3dd439373"
+    },
+    {
+      "parameters": {
+        "collection": "ob_chatgpt",
+        "options": {},
+        "query": "={\"correo\": \"{{ $json.correo }}\"}"
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        -20,
+        -40
+      ],
+      "id": "ac0bb498-1891-4877-9c59-fb9ed56cc0ba",
+      "name": "MongoDB",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mongoDb": {
+          "id": "QgrjX0izmxjiAmYp",
+          "name": "DB-UTILIDADES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a38300d2-541b-4f0d-8680-53f4205d6679",
+              "leftValue": "={{ $('MongoDB').first().json.isEmpty() }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        200,
+        -40
+      ],
+      "id": "d696f547-4519-4720-88ec-e73a334f9d3a",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "collection": "=ob_chatgpt",
+        "fields": "=correo,fecha",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        920,
+        -180
+      ],
+      "id": "d158d1c7-106a-4f49-98fd-670e9ec03858",
+      "name": "MongoDB1",
+      "credentials": {
+        "mongoDb": {
+          "id": "QgrjX0izmxjiAmYp",
+          "name": "DB-UTILIDADES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        720,
+        -180
+      ],
+      "id": "61e6bfb2-6d57-46f4-b523-1c4941432526",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ada7313a-0363-46f5-acde-7ac57d7adff1",
+              "name": "correo",
+              "value": "={{ $json['Escribe tu correo'].toLowerCase() }}",
+              "type": "string"
+            },
+            {
+              "id": "bdadcd34-eab2-40dc-a433-ac5389c27c20",
+              "name": "fecha",
+              "value": "={{ $now.toMillis() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -260,
+        -40
+      ],
+      "id": "29ce3386-41e8-42e0-894d-41024d5da0db",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        720,
+        20
+      ],
+      "id": "4d994eac-35e4-40f1-850f-b016c737d67e",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "operation": "findOneAndUpdate",
+        "collection": "=ob_chatgpt",
+        "updateKey": "correo",
+        "fields": "=fecha",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        920,
+        20
+      ],
+      "id": "2eb79855-970f-4c87-9fb3-04b30633b1d8",
+      "name": "MongoDB2",
+      "credentials": {
+        "mongoDb": {
+          "id": "QgrjX0izmxjiAmYp",
+          "name": "DB-UTILIDADES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d67d49b9-3e01-41a2-a20e-c8339faaa5bd",
+              "leftValue": "={{ ($('Edit Fields').first().json.fecha-$json.fecha)/1000/60/60 }}",
+              "rightValue": 24,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        440,
+        0
+      ],
+      "id": "9c8fce64-e756-4158-8c81-98135b00a9bb",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "completionTitle": "ACCESO DENEGADO <br>",
+        "completionMessage": "=Debes esperar: {{ $json.diferenciaMINUTOS.toNumber().round() }} HORAS para poder volver a ver los datos de ingreso o solicitar nuevo codigo......SON LAS REGLAS.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        820,
+        200
+      ],
+      "id": "d89017d1-d748-4b7e-9120-47eaf9eba781",
+      "name": "Form",
+      "webhookId": "713c63e2-da1b-48d6-a2b2-e0cbd5dbea91"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "048811ce-c656-4fc0-a982-90d7593be066",
+              "name": "diferenciaMINUTOS",
+              "value": "={{ ((24-(($('Edit Fields').first().json.fecha-$json.fecha)/1000/60/60))) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        660,
+        200
+      ],
+      "id": "064cb787-b06b-40e8-8c99-ed7bfbf29a15",
+      "name": "Edit Fields1"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-11T21:51:23.000Z",
+  "versionId": "64659400-b73a-49b3-b280-9fcfe9c5ffb5"
+}
