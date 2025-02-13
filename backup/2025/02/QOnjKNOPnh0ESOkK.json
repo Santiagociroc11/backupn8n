@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Webhook": {
       "main": [
@@ -21,7 +21,7 @@
             "index": 0
           },
           {
-            "node": "HTTP Request3",
+            "node": "Edit Fields1",
             "type": "main",
             "index": 0
           }
@@ -38,6 +38,17 @@
           }
         ],
         []
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
@@ -67,7 +78,7 @@
         "operation": "appendOrUpdate",
         "documentId": {
           "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1zgBTGl25U0OglUDwPViHJtRatrocFaBmaCQTIXUafJ0/edit?gid=0#gid=0",
+          "value": "https://docs.google.com/spreadsheets/d/1B-AZgzqX2eYe-8XZq5buwdZzq0GBz2FwX5xDRUIEFrA/edit?gid=0#gid=0",
           "mode": "url"
         },
         "sheetName": {
@@ -155,7 +166,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        360,
+        580,
         -100
       ],
       "id": "4b94bda3-75f4-46f8-85bc-30cef79f8b38",
@@ -288,34 +299,30 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://connect.mailerlite.com/api/subscribers",
+        "url": "https://api.flodesk.com/v1/subscribers",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
             {
               "name": "Authorization",
-              "value": "=Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMDYyNDY1MmEwYjI2OTAyMTM5YWRlZjJjYWRmNjYxNTJiZDFlYTVlZTBlMmI5NjhjMjMzYjc5YzI2YTU3ODIwYWVlMGEwMDA0YTY0OTk3MWMiLCJpYXQiOjE3Mzg3MzMwODYuMTYyNTQ0LCJuYmYiOjE3Mzg3MzMwODYuMTYyNTQ2LCJleHAiOjQ4OTQ0MDY2ODYuMTU4OTcsInN1YiI6IjEzMjUzMTgiLCJzY29wZXMiOltdfQ.d1Cq864bb56DDgXkouYy5QfvC2loGoItl76NUAQW-P9E_k8exAxlR5rCtJdwskBF5S-YOds258RkStW_SLXFjtxUki7k9dEjG1TA6FmfIMlKegtmOQubeeqGLpXJvoAT89oQWy9YQkxKNPcSgdnNjDkp_ElGEif56roTEtV2VF1GLwmYNfMQ88vMPtlcW2SNI4bU5YOO69GKI1VDYRNnuGNAS4bdN2biSX18c3uATToNAy7u_VSpRBNohN5IIRc8NKSzGUjwF-P2smMbOecJisKn-FLJpaMrbIgw7HUTCz0qYAE763Zy5GdOfA8xG6zRseQx75tgO12bZ6SFQZ9Y2i1Q3cwYM9k3W7yaCLEeOKpRFXAvLWQvQo-3MrhFByZqnu7IDGRANKzs2M9uwmgz98dk_MDwEliOUDSKHSBtH6dM6D_3W0Bv-7-ew8BtvsHeM1-y8c8ugc5e614HKX1hJsL5RVR147K4t80xBkv5S7YAqU_hag_UDkQnaPlK7iZOriNL8fGqG0-BxOff0SdmV7pi6j7Nm05UlOI8OGEQlxXsczH3UXFXqJgQhv51IeBH6Is9rk76t7qZu3c9WutkXRVbfSBqOrF31bL73C-BqerB7iDiJTrHGKqAZxMz9HIe_TWU9gbvI-V2VNBjD5N0JzHMYg-XwW_8MmNElXW2uio"
+              "value": "=Basic {{ $json.apikey.base64Encode() }}"
             },
             {
-              "name": "Content-Type",
-              "value": "application/json"
-            },
-            {
-              "name": "Accept",
-              "value": "application/json"
+              "name": "User-Agent",
+              "value": "n8n"
             }
           ]
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"email\": \"{{ $json.CORREO }}\",\n    \"groups\": [\n        \"145472284957607163\"\n    ],\n    \"subscribed_at\": \"{{ $now.format('yyyy-MM-dd HH:mm:ss') }}\"\n}",
+        "jsonBody": "={\n    \"email\": \"{{ $('Edit Fields').first().json.CORREO }}\",\n    \"segment_ids\": [\n       \"67ac51b5444e7ec7d3c0b539\"\n    ]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        360,
-        -260
+        600,
+        -280
       ],
       "id": "6b0ff7f5-fac3-44ef-946f-3edbb6488ad6",
       "name": "HTTP Request3",
@@ -323,6 +330,29 @@
       "maxTries": 5,
       "waitBetweenTries": 5000,
       "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3b792b00-e2cb-45c0-a46c-58fa474c5e45",
+              "name": "apikey",
+              "value": "fd_key_bed3808a2b6748a396f136e0d372f967.Q5pfUMnJ7PEyyqUTZQ39TLIQPrjzjR2AXOG0hWsHPbqmUP38Sd0WPpUkivr4WAgGEjFJYLpY7z8g3xjNfUJaDjkTNXj5SZ8GgRfR075zrPN2RIZ0vXwsagyhtjyLlUZ9zJ7nGqtuHrBCfyKL24LtUwMmcFC6Zr8YLC2M9UwImXKwpJ8SaNs5ktdXVMQcDYIk",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        400,
+        -280
+      ],
+      "id": "feb9d42e-4e5e-4fcc-97d0-ee16ea241b5a",
+      "name": "Edit Fields1"
     }
   ],
   "pinData": {
@@ -376,6 +406,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-02-11T23:46:38.000Z",
-  "versionId": "f63f590c-f6f1-463d-914d-79648d63e987"
+  "updatedAt": "2025-02-12T08:25:05.000Z",
+  "versionId": "fa3591d5-7467-4bd7-8cf5-082a2df047a9"
 }
