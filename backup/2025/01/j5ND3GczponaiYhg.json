@@ -17,7 +17,7 @@
         [],
         [
           {
-            "node": "HTTP Request2",
+            "node": "If1",
             "type": "main",
             "index": 0
           }
@@ -113,28 +113,6 @@
         [
           {
             "node": "Procesado",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "HTTP Request2": {
-      "main": [
-        [
-          {
-            "node": "If3",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If3": {
-      "main": [
-        [
-          {
-            "node": "If1",
             "type": "main",
             "index": 0
           }
@@ -398,8 +376,8 @@
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
       "position": [
-        -3120,
-        800
+        -2580,
+        680
       ],
       "id": "d03f5b09-0a41-4079-a826-fcd21c32ea40",
       "name": "Notion",
@@ -432,7 +410,7 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        -2000,
+        -1480,
         580
       ]
     },
@@ -579,7 +557,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -1280,
+        -1260,
         600
       ]
     },
@@ -707,64 +685,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -2280,
-        800
-      ]
-    },
-    {
-      "parameters": {
-        "url": "={{ $('Variables').all()[0].json['Url Evolution API'] }}group/findGroupInfos/{{ $('Variables').all()[0].json['Instancia Evolution API'] }}?groupJid={{ $('Procesado').all()[0].json.id }}",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "apikey",
-              "value": "={{ $node[\"Variables\"].json['Apikey Evolution API'] }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "c9f4b0ec-37bf-4294-9a1b-eed846cf18b0",
-      "name": "HTTP Request2",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
         -1740,
-        620
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "2bbf4c6d-08af-470a-bdee-d4c0ef508677",
-              "leftValue": "={{ $('HTTP Request2').all()[0].json.size }}",
-              "rightValue": "={{ $('Filtrar mensajes para enviar').all()[0].json.property_tama_o }}",
-              "operator": {
-                "type": "number",
-                "operation": "gt"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "afdaca5e-ed64-45f7-888c-7a160222c7ff",
-      "name": "If3",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        -1520,
-        620
+        680
       ]
     },
     {
@@ -782,8 +704,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        -2480,
-        800
+        -1940,
+        680
       ],
       "credentials": {
         "mySql": {
@@ -829,8 +751,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.3,
       "position": [
-        -2660,
-        800
+        -2120,
+        680
       ]
     },
     {
@@ -876,8 +798,8 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2,
       "position": [
-        -2900,
-        800
+        -2360,
+        680
       ]
     },
     {
@@ -1352,8 +1274,8 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -3340,
-        800
+        -2800,
+        680
       ]
     },
     {
@@ -1437,6 +1359,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-02-10T19:47:01.000Z",
-  "versionId": "ee5048b0-6c79-4b1a-b9ff-4a38e232aa77"
+  "updatedAt": "2025-02-13T17:59:46.000Z",
+  "versionId": "393c8d47-28b9-4ba4-ab2c-a392dee2db58"
 }
