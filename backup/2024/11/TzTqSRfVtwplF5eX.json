@@ -138,7 +138,7 @@
         [],
         [
           {
-            "node": "HTTP Request2",
+            "node": "If1",
             "type": "main",
             "index": 0
           }
@@ -171,7 +171,7 @@
       "main": [
         [
           {
-            "node": "Wait",
+            "node": "Enviar texto2",
             "type": "main",
             "index": 0
           }
@@ -428,33 +428,22 @@
         ]
       ]
     },
+    "Enviar texto2": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "If2": {
       "main": [
         [
           {
             "node": "Procesado",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "HTTP Request2": {
-      "main": [
-        [
-          {
-            "node": "If3",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If3": {
-      "main": [
-        [
-          {
-            "node": "If1",
             "type": "main",
             "index": 0
           }
@@ -500,8 +489,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.3,
       "position": [
-        3340,
-        220
+        4160,
+        100
       ]
     },
     {
@@ -513,8 +502,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2360,
-        220
+        3180,
+        100
       ]
     },
     {
@@ -530,8 +519,8 @@
       "type": "n8n-nodes-base.form",
       "typeVersion": 1,
       "position": [
-        3200,
-        220
+        4020,
+        100
       ],
       "webhookId": "8a58e824-7ab2-44d8-86ed-7b1a021eb831"
     },
@@ -554,8 +543,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2220,
-        220
+        3040,
+        100
       ]
     },
     {
@@ -567,21 +556,21 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2500,
-        220
+        3320,
+        100
       ]
     },
     {
       "parameters": {
-        "jsCode": "// Accede a los datos de entrada desde los nodos anteriores\nconst tables = $input.all(); // Obtiene todos los elementos de entrada\n\n// Verifica que 'tables' contenga al menos un elemento y extrae los nombres de las tablas\nconst tableNames = tables.map(item => item.json[\"Tables_in_n8n\"]);\n\n// Elimina duplicados usando un Set\nconst uniqueTableNames = [...new Set(tableNames)];\n\n// Crea un nuevo arreglo de salida con los nombres únicos\nconst outputData = uniqueTableNames.map(name => {\n  return {\n    table_name: name\n  };\n});\n\n// Retorna el arreglo de objetos como una salida JSON\nreturn outputData;\n"
+        "jsCode": "// Accede a los datos de entrada desde los nodos anteriores\nconst tables = $input.all(); // Obtiene todos los elementos de entrada\n\n// Verifica que 'tables' contenga al menos un elemento y extrae los nombres de las tablas\nconst tableNames = tables.map(item => item.json[\"Tables_in_u698892974_REDIRECCIONES\"]);\n\n// Elimina duplicados usando un Set\nconst uniqueTableNames = [...new Set(tableNames)];\n\n// Filtra solo las tablas que contienen \"links\" (insensible a mayúsculas/minúsculas)\nconst filteredTables = uniqueTableNames.filter(name => \n  name.toLowerCase().includes(\"links\") || name.toLowerCase().includes(\"pruebas\")\n);\n\n\n// Crea un nuevo arreglo de salida con los nombres filtrados\nconst outputData = filteredTables.map(name => {\n  return { table_name: name };\n});\n\n// Retorna el arreglo de objetos como una salida JSON\nreturn outputData;\n"
       },
       "id": "28fa58af-d724-4f6f-80ac-700e5748a664",
       "name": "UnicosSql",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2780,
-        220
+        3600,
+        100
       ]
     },
     {
@@ -593,14 +582,14 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2920,
-        220
+        3740,
+        100
       ]
     },
     {
       "parameters": {
         "operation": "executeQuery",
-        "query": "show TABLES",
+        "query": "SHOW TABLES;\n",
         "options": {}
       },
       "id": "9f1aeaf9-7147-438c-a758-063805e14352",
@@ -608,13 +597,13 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        2640,
-        220
+        3460,
+        100
       ],
       "credentials": {
         "mySql": {
-          "id": "steiUYgtMeBLjkId",
-          "name": "N8N"
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
         }
       }
     },
@@ -627,8 +616,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3060,
-        220
+        3880,
+        100
       ]
     },
     {
@@ -640,7 +629,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        5000,
+        5220,
         -80
       ]
     },
@@ -659,13 +648,13 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        3520,
-        220
+        4340,
+        100
       ],
       "credentials": {
         "mySql": {
-          "id": "steiUYgtMeBLjkId",
-          "name": "N8N"
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
         }
       }
     },
@@ -823,11 +812,6 @@
                 ]
               },
               "requiredField": true
-            },
-            {
-              "fieldLabel": "TAMAÑO DE GRUPO",
-              "fieldType": "number",
-              "requiredField": true
             }
           ]
         },
@@ -841,8 +825,8 @@
       "type": "n8n-nodes-base.formTrigger",
       "typeVersion": 2.2,
       "position": [
-        1400,
-        240
+        2220,
+        120
       ],
       "webhookId": "441df064-2159-4bc8-acae-648db0edd868"
     },
@@ -855,7 +839,7 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        3980,
+        4780,
         0
       ]
     },
@@ -896,7 +880,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        6220,
+        6440,
         -600
       ]
     },
@@ -923,7 +907,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        6220,
+        6440,
         -300
       ]
     },
@@ -950,10 +934,6 @@
             {
               "name": "audio",
               "value": "={{$('Formatear grupos y mensajes').all()[0].json.urlArchivo}}"
-            },
-            {
-              "name": "encoding",
-              "value": "={{ true }}"
             }
           ]
         },
@@ -964,7 +944,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        6220,
+        6420,
         0
       ]
     },
@@ -977,8 +957,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        6720,
-        280
+        7760,
+        320
       ],
       "webhookId": "e891d9df-8d4c-433c-a414-e981d0cf66f8"
     },
@@ -995,8 +975,8 @@
       "type": "n8n-nodes-base.s3",
       "typeVersion": 1,
       "position": [
-        1820,
-        120
+        2640,
+        0
       ],
       "credentials": {
         "s3": {
@@ -1046,7 +1026,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        6220,
+        6440,
         -760
       ]
     },
@@ -1099,7 +1079,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        6220,
+        6440,
         -440
       ]
     },
@@ -1128,10 +1108,6 @@
               "value": "={{$('Formatear grupos y mensajes').all()[0].json.urlArchivo}}"
             },
             {
-              "name": "encoding",
-              "value": "={{ true }}"
-            },
-            {
               "name": "mentionsEveryOne",
               "value": "={{ true }}"
             }
@@ -1144,7 +1120,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        6220,
+        6420,
         -140
       ]
     },
@@ -1209,7 +1185,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        5960,
+        6180,
         -660
       ]
     },
@@ -1274,7 +1250,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        5960,
+        6180,
         -380
       ]
     },
@@ -1297,8 +1273,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1960,
-        120
+        2780,
+        0
       ]
     },
     {
@@ -1331,8 +1307,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1620,
-        240
+        2440,
+        120
       ]
     },
     {
@@ -1365,7 +1341,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        4760,
+        4980,
         40
       ]
     },
@@ -1378,7 +1354,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        5000,
+        5220,
         100
       ]
     },
@@ -1443,7 +1419,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        5960,
+        6180,
         -100
       ]
     },
@@ -1558,7 +1534,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3,
       "position": [
-        5280,
+        5500,
         0
       ]
     },
@@ -1597,7 +1573,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        6000,
+        6220,
         300
       ]
     },
@@ -1611,7 +1587,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        5560,
+        5780,
         180
       ]
     },
@@ -1676,7 +1652,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        5740,
+        5960,
         180
       ]
     },
@@ -1719,46 +1695,14 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        6000,
+        6220,
         140
       ]
     },
     {
       "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "b824522e-1182-46ff-8d88-1810854c8caf",
-              "leftValue": "={{ $json.tipo }}",
-              "rightValue": "/normal/",
-              "operator": {
-                "type": "string",
-                "operation": "regex"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "72ed838a-f451-405f-b479-e9d97e656759",
-      "name": "If2",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        3700,
-        220
-      ]
-    },
-    {
-      "parameters": {
-        "url": "={{ $node[\"Variables\"].json['Url Evolution API'].replace(/\\/$/, \"\") }}/group/findGroupInfos/{{ $node[\"Variables\"].json['Instancia Evolution API'] }}?groupJid={{ $('Procesado').all()[0].json.id }}",
+        "method": "POST",
+        "url": "={{ $node[\"Variables\"].json['Url Evolution API'].replace(/\\/$/, \"\") }}/message/sendText/{{ $node[\"Variables\"].json['Instancia Evolution API'] }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -1768,15 +1712,32 @@
             }
           ]
         },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $('Switch2').first().json.grupo_id }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $('Switch2').first().json.mensaje }}"
+            },
+            {
+              "name": "linkPreview",
+              "value": "={{ false }}"
+            }
+          ]
+        },
         "options": {}
       },
-      "id": "8fb9a4f9-ac51-47dc-a3a3-112a8e2d50f5",
-      "name": "HTTP Request2",
+      "id": "9a973ecc-5f61-4bb8-914a-b22dcad51f8e",
+      "name": "Enviar texto2",
       "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
+      "typeVersion": 4.1,
       "position": [
-        4200,
-        40
+        6580,
+        0
       ]
     },
     {
@@ -1790,12 +1751,12 @@
           },
           "conditions": [
             {
-              "id": "2bbf4c6d-08af-470a-bdee-d4c0ef508677",
-              "leftValue": "={{ $('HTTP Request2').all()[0].json.size }}",
-              "rightValue": "={{ $('Form1').all()[0].json['TAMAÑO DE GRUPO'] }}",
+              "id": "fa2d22dd-feff-40ad-82da-09d5a6a86089",
+              "leftValue": "={{ $json.Total }}",
+              "rightValue": 700,
               "operator": {
                 "type": "number",
-                "operation": "gt"
+                "operation": "gte"
               }
             }
           ],
@@ -1803,30 +1764,1016 @@
         },
         "options": {}
       },
-      "id": "186029cf-1c76-456f-baac-1dc1ec728f30",
-      "name": "If3",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        4460,
-        40
-      ]
+        4520,
+        100
+      ],
+      "id": "19737ee2-22c8-44b8-80fe-d20b09d8b814",
+      "name": "If2"
     }
   ],
   "pinData": {
     "Form1": [
       {
         "json": {
-          "NOMBRE DE MENSAJE": "sdfsd",
-          "TIPO DE MENSAJE": "TEXTO",
-          "CUERPO DEL MENSAJE": "asdfasd",
-          "MEDIA": null,
-          "¿MENCIÓN?": "SI",
-          "Minimo": "1",
-          "Maximo": "3",
-          "TAMAÑO DE GRUPO": 1,
-          "submittedAt": "2024-11-14T19:26:25.187-05:00",
+          "NOMBRE DE MENSAJE": "envio audio1",
+          "TIPO DE MENSAJE": "AUDIO",
+          "CUERPO DEL MENSAJE": "*ESCUCHA EL AUDIO CON ATENCIÓN* 👆\r\n\r\nAhora, llena la encuesta tocando el siguiente enlace \r\n👉 https://forms.gle/btFMg5wPY6Njwti86\r\n\r\nAl final de la misma, vas a encontrar el libro de trabajo de la clase #1. 📖.\r\n*Nos vemos este lunes 24 de febrero.* \r\n\r\n🚨*IMPORTANTE:*🚨 No des información a NADIE ni respondas ningún mensaje que no provenga de los administradores del grupo",
+          "MEDIA": {
+            "filename": "Audio_Ger.ogg",
+            "mimetype": "audio/ogg",
+            "size": 1001706
+          },
+          "¿MENCIÓN?": "NO",
+          "Minimo": "0",
+          "Maximo": "1",
+          "TAMAÑO DE GRUPO": 700,
+          "submittedAt": "2025-02-13T12:18:57.022-05:00",
           "formMode": "production"
+        }
+      }
+    ],
+    "Variables": [
+      {
+        "json": {
+          "Url Evolution API": "https://evolution.automscc.com/",
+          "Apikey Evolution API": "429683C4C977415CAAFCCE10F7D57E11",
+          "Instancia Evolution API": "GERSSON1"
+        }
+      }
+    ],
+    "TablaInst": [
+      {
+        "json": {
+          "options": [
+            {
+              "option": "API-HOTMART"
+            },
+            {
+              "option": "GERSSON1"
+            },
+            {
+              "option": "santiago"
+            },
+            {
+              "option": "fran"
+            },
+            {
+              "option": "[EMP]-WHA1"
+            },
+            {
+              "option": "API GERSSON - SOPORTE"
+            }
+          ]
+        }
+      }
+    ],
+    "Form2": [
+      {
+        "json": {
+          "Que instancia usarás?": "GERSSON1",
+          "Que tabla?": "GERSSON_LINKS",
+          "submittedAt": "2025-02-13T12:19:03.702-05:00",
+          "formMode": "production"
+        }
+      }
+    ],
+    "HTTP Request": [
+      {
+        "json": {
+          "id": "088b117d-d2fc-4c98-bc86-2ea828ba9b20",
+          "name": "API-HOTMART",
+          "connectionStatus": "open",
+          "ownerJid": null,
+          "profileName": null,
+          "profilePicUrl": null,
+          "integration": "WHATSAPP-BUSINESS",
+          "number": "595736856956398",
+          "businessId": "495905716948702",
+          "token": "EAAPsz4GpCJYBOxmEYPEhZBdW8LB7VgfJ2pl6X1iWu1gdDfxcCd6dFhJyEbZAWNZA8Wpls8jkBDBI5JKJmeaIn9ZCBVJi9APq3hLrAgFuFhGmDgDgAvWKZAG5NXhZAz9b96UsMVLRpnziUnlApDRLt2w3jawiSEsiIeEn7enTVNh9ppEteYhxSqnsAnhV8EVskuQQZDZD",
+          "clientName": "evolution_exchange",
+          "disconnectionReasonCode": null,
+          "disconnectionObject": null,
+          "disconnectionAt": null,
+          "createdAt": "2025-01-22T06:01:45.102Z",
+          "updatedAt": "2025-01-22T06:01:45.102Z",
+          "Chatwoot": {
+            "id": "cm67hzpb414lmy9x3hyfj8omv",
+            "enabled": true,
+            "accountId": "2",
+            "token": "wTVRJs9UfamwhTqcAqNpdqWE",
+            "url": "https://n8n-chatwoot.wc2hpx.easypanel.host",
+            "nameInbox": "API-HOTMART",
+            "signMsg": false,
+            "signDelimiter": null,
+            "number": null,
+            "reopenConversation": true,
+            "conversationPending": false,
+            "mergeBrazilContacts": false,
+            "importContacts": false,
+            "importMessages": false,
+            "daysLimitImportMessages": 7,
+            "organization": "",
+            "logo": "",
+            "ignoreJids": [],
+            "createdAt": "2025-01-22T06:03:06.593Z",
+            "updatedAt": "2025-02-07T04:23:10.526Z",
+            "instanceId": "088b117d-d2fc-4c98-bc86-2ea828ba9b20"
+          },
+          "Proxy": null,
+          "Rabbitmq": null,
+          "Sqs": null,
+          "Websocket": null,
+          "Setting": {
+            "id": "cm67hxyfm14lky9x3o5iy2kk5",
+            "rejectCall": false,
+            "msgCall": "",
+            "groupsIgnore": false,
+            "alwaysOnline": false,
+            "readMessages": false,
+            "readStatus": false,
+            "syncFullHistory": false,
+            "wavoipToken": null,
+            "createdAt": "2025-01-22T06:01:45.106Z",
+            "updatedAt": "2025-01-22T06:01:45.106Z",
+            "instanceId": "088b117d-d2fc-4c98-bc86-2ea828ba9b20"
+          },
+          "_count": {
+            "Message": 1410,
+            "Contact": 0,
+            "Chat": 0
+          }
+        }
+      },
+      {
+        "json": {
+          "id": "5b778628-b194-4695-a1c0-f21e997385d6",
+          "name": "GERSSON1",
+          "connectionStatus": "open",
+          "ownerJid": "573160780201@s.whatsapp.net",
+          "profileName": "Terapias Magnéticas Academy",
+          "profilePicUrl": "https://pps.whatsapp.net/v/t61.24694-24/461551605_968213061736636_1462858764447818828_n.jpg?ccb=11-4&oh=01_Q5AaIHEfGsHHlZBKo4_8QzngAInKv0UhAugsUq_UvGhQ-rJj&oe=67BABE69&_nc_sid=5e03e0&_nc_cat=109",
+          "integration": "WHATSAPP-BAILEYS",
+          "number": null,
+          "businessId": null,
+          "token": "C4C73F31657E-4DC7-9DF4-64A4628BC78F",
+          "clientName": "evolution_exchange",
+          "disconnectionReasonCode": null,
+          "disconnectionObject": null,
+          "disconnectionAt": null,
+          "createdAt": "2025-02-10T20:06:47.216Z",
+          "updatedAt": "2025-02-13T09:30:37.620Z",
+          "Chatwoot": null,
+          "Proxy": null,
+          "Rabbitmq": null,
+          "Sqs": null,
+          "Websocket": null,
+          "Setting": {
+            "id": "cm6zhhv3n0vnuk654627xlngn",
+            "rejectCall": false,
+            "msgCall": "",
+            "groupsIgnore": false,
+            "alwaysOnline": false,
+            "readMessages": false,
+            "readStatus": false,
+            "syncFullHistory": false,
+            "wavoipToken": "",
+            "createdAt": "2025-02-10T20:06:47.219Z",
+            "updatedAt": "2025-02-10T20:06:47.219Z",
+            "instanceId": "5b778628-b194-4695-a1c0-f21e997385d6"
+          },
+          "_count": {
+            "Message": 159,
+            "Contact": 4808,
+            "Chat": 2129
+          }
+        }
+      },
+      {
+        "json": {
+          "id": "9550485e-7827-4bc9-bfca-034e671d6704",
+          "name": "santiago",
+          "connectionStatus": "open",
+          "ownerJid": "573136298562@s.whatsapp.net",
+          "profileName": "Santi C",
+          "profilePicUrl": "https://pps.whatsapp.net/v/t61.24694-24/441586516_819497256800053_858432366453777428_n.jpg?ccb=11-4&oh=01_Q5AaIE7fpcnxojdVE3tFM6KnlBUDybkk9scXIsp231TO_Px7&oe=67BACDF9&_nc_sid=5e03e0&_nc_cat=107",
+          "integration": "WHATSAPP-BAILEYS",
+          "number": null,
+          "businessId": null,
+          "token": "7A0D7F9C744D-4F18-8833-BD965F843FD2",
+          "clientName": "evolution_exchange",
+          "disconnectionReasonCode": 401,
+          "disconnectionObject": "{\"error\":{\"data\":{\"tag\":\"stream:error\",\"attrs\":{\"code\":\"401\"},\"content\":[{\"tag\":\"conflict\",\"attrs\":{\"type\":\"device_removed\"}}]},\"isBoom\":true,\"isServer\":false,\"output\":{\"statusCode\":401,\"payload\":{\"statusCode\":401,\"error\":\"Unauthorized\",\"message\":\"Stream Errored (conflict)\"},\"headers\":{}}},\"date\":\"2025-02-07T23:21:42.063Z\"}",
+          "disconnectionAt": "2025-02-07T23:21:42.065Z",
+          "createdAt": "2025-01-11T20:23:43.770Z",
+          "updatedAt": "2025-02-13T09:30:38.308Z",
+          "Chatwoot": null,
+          "Proxy": null,
+          "Rabbitmq": null,
+          "Sqs": null,
+          "Websocket": null,
+          "Setting": {
+            "id": "cm5smw3hasm99y9x3im8foo0i",
+            "rejectCall": false,
+            "msgCall": "",
+            "groupsIgnore": false,
+            "alwaysOnline": false,
+            "readMessages": false,
+            "readStatus": false,
+            "syncFullHistory": false,
+            "wavoipToken": null,
+            "createdAt": "2025-01-11T20:23:43.774Z",
+            "updatedAt": "2025-01-11T20:23:43.774Z",
+            "instanceId": "9550485e-7827-4bc9-bfca-034e671d6704"
+          },
+          "_count": {
+            "Message": 130975,
+            "Contact": 3834,
+            "Chat": 18007
+          }
+        }
+      },
+      {
+        "json": {
+          "id": "a334b0e6-f080-433e-8fb4-59499b595ec3",
+          "name": "fran",
+          "connectionStatus": "open",
+          "ownerJid": "573218504711@s.whatsapp.net",
+          "profileName": "Francisco Gonzalez",
+          "profilePicUrl": "https://pps.whatsapp.net/v/t61.24694-24/473395002_941182561482885_3930690072953303972_n.jpg?ccb=11-4&oh=01_Q5AaIFceHbGSfKSozwXwxjpNlSM91guq8ENnDsFWWrsxGvaN&oe=67BAD2F5&_nc_sid=5e03e0&_nc_cat=101",
+          "integration": "WHATSAPP-BAILEYS",
+          "number": null,
+          "businessId": null,
+          "token": "05122F14E37B-4AC4-AF45-02CFD55CEEB7",
+          "clientName": "evolution_exchange",
+          "disconnectionReasonCode": null,
+          "disconnectionObject": null,
+          "disconnectionAt": null,
+          "createdAt": "2025-01-15T15:33:10.325Z",
+          "updatedAt": "2025-02-13T09:30:36.404Z",
+          "Chatwoot": null,
+          "Proxy": null,
+          "Rabbitmq": null,
+          "Sqs": null,
+          "Websocket": null,
+          "Setting": {
+            "id": "cm5y29ueyuo3ay9x3ckv0dhkm",
+            "rejectCall": false,
+            "msgCall": "",
+            "groupsIgnore": false,
+            "alwaysOnline": false,
+            "readMessages": false,
+            "readStatus": false,
+            "syncFullHistory": false,
+            "wavoipToken": null,
+            "createdAt": "2025-01-15T15:33:10.330Z",
+            "updatedAt": "2025-01-15T15:33:10.330Z",
+            "instanceId": "a334b0e6-f080-433e-8fb4-59499b595ec3"
+          },
+          "_count": {
+            "Message": 113961,
+            "Contact": 2664,
+            "Chat": 24890
+          }
+        }
+      },
+      {
+        "json": {
+          "id": "b68ae927-234b-484f-a12f-bc8b0b050931",
+          "name": "[EMP]-WHA1",
+          "connectionStatus": "open",
+          "ownerJid": "573245207576@s.whatsapp.net",
+          "profileName": "Andrea Asesora",
+          "profilePicUrl": "https://pps.whatsapp.net/v/t61.24694-24/469965509_595412439554993_4532148904261326463_n.jpg?ccb=11-4&oh=01_Q5AaIIkTVtP_bBtMo_xd1fcU5sjy05z8aavBCqRexpdecPDG&oe=67BB4378&_nc_sid=5e03e0&_nc_cat=108",
+          "integration": "WHATSAPP-BAILEYS",
+          "number": null,
+          "businessId": null,
+          "token": "0B9DCBA6E4CD-4F10-86EC-A07E82F208D4",
+          "clientName": "evolution_exchange",
+          "disconnectionReasonCode": null,
+          "disconnectionObject": null,
+          "disconnectionAt": null,
+          "createdAt": "2024-12-16T20:51:20.405Z",
+          "updatedAt": "2025-02-13T15:58:59.585Z",
+          "Chatwoot": null,
+          "Proxy": null,
+          "Rabbitmq": null,
+          "Sqs": null,
+          "Websocket": null,
+          "Setting": {
+            "id": "cm4rifgf1qhacy9x38efeg8tr",
+            "rejectCall": false,
+            "msgCall": "",
+            "groupsIgnore": false,
+            "alwaysOnline": false,
+            "readMessages": false,
+            "readStatus": false,
+            "syncFullHistory": false,
+            "wavoipToken": null,
+            "createdAt": "2024-12-16T20:51:20.413Z",
+            "updatedAt": "2024-12-16T20:51:20.413Z",
+            "instanceId": "b68ae927-234b-484f-a12f-bc8b0b050931"
+          },
+          "_count": {
+            "Message": 7682,
+            "Contact": 1939,
+            "Chat": 293
+          }
+        }
+      },
+      {
+        "json": {
+          "id": "e9992c82-a0e4-40c7-955b-438e7a6cdbdc",
+          "name": "API GERSSON - SOPORTE",
+          "connectionStatus": "open",
+          "ownerJid": null,
+          "profileName": null,
+          "profilePicUrl": null,
+          "integration": "WHATSAPP-BUSINESS",
+          "number": "285551527971753",
+          "businessId": "313969135122559",
+          "token": "EAAOHZBBqoXs4BOwfCbXGAdAVrwdP5IM2pZCiKXqTGyl2jap7NJLpmiyPWh3m2aaszaVB5GaC4Y19d9D23aZAeZA5FTv7WgmB33HxjnEXZCEQg0Xg5OWhX6sLqlfOfWdMK5LjRifkVsjbX3FNpAJPXdKJMZAN33GFIsUP0OKUGSYZACTqZCmZClPQsXktYZCFLquS6MNgZDZD",
+          "clientName": "evolution_exchange",
+          "disconnectionReasonCode": null,
+          "disconnectionObject": null,
+          "disconnectionAt": null,
+          "createdAt": "2025-02-06T18:12:24.874Z",
+          "updatedAt": "2025-02-06T18:12:24.874Z",
+          "Chatwoot": null,
+          "Proxy": null,
+          "Rabbitmq": null,
+          "Sqs": null,
+          "Websocket": null,
+          "Setting": {
+            "id": "cm6tnndf100khpt54vxn5zgw5",
+            "rejectCall": false,
+            "msgCall": "",
+            "groupsIgnore": false,
+            "alwaysOnline": false,
+            "readMessages": false,
+            "readStatus": false,
+            "syncFullHistory": false,
+            "wavoipToken": "",
+            "createdAt": "2025-02-06T18:12:24.877Z",
+            "updatedAt": "2025-02-06T18:12:24.877Z",
+            "instanceId": "e9992c82-a0e4-40c7-955b-438e7a6cdbdc"
+          },
+          "_count": {
+            "Message": 279,
+            "Contact": 0,
+            "Chat": 0
+          }
+        }
+      }
+    ],
+    "BodyInst": [
+      {
+        "json": {
+          "fieldLabel": "Que instancia usarás?",
+          "fieldType": "dropdown",
+          "fieldOptions": {
+            "values": [
+              {
+                "option": "API-HOTMART"
+              },
+              {
+                "option": "GERSSON1"
+              },
+              {
+                "option": "santiago"
+              },
+              {
+                "option": "fran"
+              },
+              {
+                "option": "[EMP]-WHA1"
+              },
+              {
+                "option": "API GERSSON - SOPORTE"
+              }
+            ]
+          },
+          "requiredField": true
+        }
+      }
+    ],
+    "UnicosSql": [
+      {
+        "json": {
+          "table_name": "ADRIANA_LINKS"
+        }
+      },
+      {
+        "json": {
+          "table_name": "ADRIANA_LINKS_ORG"
+        }
+      },
+      {
+        "json": {
+          "table_name": "ARZA_CEJAS_LINKS"
+        }
+      },
+      {
+        "json": {
+          "table_name": "ARZA_UÑAS_LINKS"
+        }
+      },
+      {
+        "json": {
+          "table_name": "C_LINKS"
+        }
+      },
+      {
+        "json": {
+          "table_name": "GERSSON_LINKS"
+        }
+      },
+      {
+        "json": {
+          "table_name": "GERSSON_LINKS_ORG"
+        }
+      },
+      {
+        "json": {
+          "table_name": "GERSSON_LINKS_TIKTOK"
+        }
+      },
+      {
+        "json": {
+          "table_name": "GERSSON_LINKS_VIP"
+        }
+      },
+      {
+        "json": {
+          "table_name": "pruebas"
+        }
+      }
+    ],
+    "JsonSql": [
+      {
+        "json": {
+          "options": [
+            {
+              "option": "ADRIANA_LINKS"
+            },
+            {
+              "option": "ADRIANA_LINKS_ORG"
+            },
+            {
+              "option": "ARZA_CEJAS_LINKS"
+            },
+            {
+              "option": "ARZA_UÑAS_LINKS"
+            },
+            {
+              "option": "C_LINKS"
+            },
+            {
+              "option": "GERSSON_LINKS"
+            },
+            {
+              "option": "GERSSON_LINKS_ORG"
+            },
+            {
+              "option": "GERSSON_LINKS_TIKTOK"
+            },
+            {
+              "option": "GERSSON_LINKS_VIP"
+            },
+            {
+              "option": "pruebas"
+            }
+          ]
+        }
+      }
+    ],
+    "MySQL1": [
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "ADRIANA_IPS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "ADRIANA_IPS_ORG"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "ADRIANA_LINKS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "ADRIANA_LINKS_ORG"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "ARZA_CEJAS_IPS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "ARZA_CEJAS_LINKS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "ARZA_UÑAS_IPS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "ARZA_UÑAS_LINKS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "C_IPS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "C_LINKS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS_ORG"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS_TIKTOK"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS_VIP"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS_ORG"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS_TIKTOK"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS_VIP"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "pruebas"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "redirect_limit"
+        }
+      },
+      {
+        "json": {
+          "Tables_in_u698892974_REDIRECCIONES": "redirect_limit_org"
+        }
+      }
+    ],
+    "BodySql": [
+      {
+        "json": {
+          "fieldLabel": "Que tabla?",
+          "fieldType": "dropdown",
+          "fieldOptions": {
+            "values": [
+              {
+                "option": "ADRIANA_LINKS"
+              },
+              {
+                "option": "ADRIANA_LINKS_ORG"
+              },
+              {
+                "option": "ARZA_CEJAS_LINKS"
+              },
+              {
+                "option": "ARZA_UÑAS_LINKS"
+              },
+              {
+                "option": "C_LINKS"
+              },
+              {
+                "option": "GERSSON_LINKS"
+              },
+              {
+                "option": "GERSSON_LINKS_ORG"
+              },
+              {
+                "option": "GERSSON_LINKS_TIKTOK"
+              },
+              {
+                "option": "GERSSON_LINKS_VIP"
+              },
+              {
+                "option": "pruebas"
+              }
+            ]
+          },
+          "requiredField": false
+        }
+      }
+    ],
+    "MySQL": [
+      {
+        "json": {
+          "#": 1,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #1",
+          "link": "https://chat.whatsapp.com/K8RT8gNGCVyGFmU0Tgo6fG",
+          "id": "120363374602828222@g.us",
+          "Total": 1000,
+          "bienvenida": "si"
+        }
+      },
+      {
+        "json": {
+          "#": 2,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #2",
+          "link": "https://chat.whatsapp.com/DxllFt4KBnT9vsiNV3qWCV",
+          "id": "120363374858139229@g.us",
+          "Total": 1000,
+          "bienvenida": "si"
+        }
+      },
+      {
+        "json": {
+          "#": 3,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #3",
+          "link": "https://chat.whatsapp.com/BOEWn6pd4Gu0WtZ0cgLq6v",
+          "id": "120363395549787210@g.us",
+          "Total": 1000,
+          "bienvenida": "si"
+        }
+      },
+      {
+        "json": {
+          "#": 4,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #4",
+          "link": "https://chat.whatsapp.com/LBPcNG8gRdM57Uf5L5pnRo",
+          "id": "120363375916970270@g.us",
+          "Total": 1000,
+          "bienvenida": "si"
+        }
+      },
+      {
+        "json": {
+          "#": 5,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #5",
+          "link": "https://chat.whatsapp.com/ETXyPmWl83pJqrMqt3CzC0",
+          "id": "120363375284716788@g.us",
+          "Total": 1000,
+          "bienvenida": "si"
+        }
+      },
+      {
+        "json": {
+          "#": 6,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #6",
+          "link": "https://chat.whatsapp.com/BJU90lA1yINBAPnnlnVXqz",
+          "id": "120363380382069777@g.us",
+          "Total": 1000,
+          "bienvenida": "si"
+        }
+      },
+      {
+        "json": {
+          "#": 7,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #7",
+          "link": "https://chat.whatsapp.com/GbBIeiC2qFO7oPYbxCrEzM",
+          "id": "120363393035274778@g.us",
+          "Total": 1000,
+          "bienvenida": "si"
+        }
+      },
+      {
+        "json": {
+          "#": 8,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #8",
+          "link": "https://chat.whatsapp.com/Huha1vw9QtKL9TAWwoAKiH",
+          "id": "120363395148285362@g.us",
+          "Total": 1000,
+          "bienvenida": "si"
+        }
+      },
+      {
+        "json": {
+          "#": 9,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #9",
+          "link": "https://chat.whatsapp.com/C3Wouvf0rsXCnPsoa65wGu",
+          "id": "120363396864804759@g.us",
+          "Total": 1000,
+          "bienvenida": "si"
+        }
+      },
+      {
+        "json": {
+          "#": 10,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #10",
+          "link": "https://chat.whatsapp.com/BHlaJrndE7hCEG2Vy87zXM",
+          "id": "120363396232480598@g.us",
+          "Total": 1000,
+          "bienvenida": "si"
+        }
+      },
+      {
+        "json": {
+          "#": 11,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #11",
+          "link": "https://chat.whatsapp.com/Fn3m2lGJ1DGBbavno07ayC",
+          "id": "120363382719360855@g.us",
+          "Total": 1000,
+          "bienvenida": "si"
+        }
+      },
+      {
+        "json": {
+          "#": 12,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #12",
+          "link": "https://chat.whatsapp.com/Kguy7HSXa9DBxzQvlXrrir",
+          "id": "120363378555931651@g.us",
+          "Total": 1000,
+          "bienvenida": "si"
+        }
+      },
+      {
+        "json": {
+          "#": 13,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #13",
+          "link": "https://chat.whatsapp.com/BmpEh2J4M0iA6lVJmlBk5i",
+          "id": "120363377493478871@g.us",
+          "Total": 1000,
+          "bienvenida": "si"
+        }
+      },
+      {
+        "json": {
+          "#": 14,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #14",
+          "link": "https://chat.whatsapp.com/KzBAfeDRKhPKSUy53lF7KM",
+          "id": "120363396627450288@g.us",
+          "Total": 1000,
+          "bienvenida": "si"
+        }
+      },
+      {
+        "json": {
+          "#": 15,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #15",
+          "link": "https://chat.whatsapp.com/GzfeYMuU8MwJXl5h9J1YrO",
+          "id": "120363397649390162@g.us",
+          "Total": 1000,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 16,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #16",
+          "link": "https://chat.whatsapp.com/HarHYCAyzTXDWcP4LPAZMN",
+          "id": "120363396821776663@g.us",
+          "Total": 1000,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 17,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #17",
+          "link": "https://chat.whatsapp.com/IrW2Qm6EI130V4ujbsQGSD",
+          "id": "120363397687209305@g.us",
+          "Total": 1000,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 18,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #18",
+          "link": "https://chat.whatsapp.com/IsVcVWg8XhGFcUnsDRMKQd",
+          "id": "120363397326363506@g.us",
+          "Total": 1000,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 19,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #19",
+          "link": "https://chat.whatsapp.com/CPV3WXeTZOfBidkksYKSXA",
+          "id": "120363396937940134@g.us",
+          "Total": 829,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 20,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #20",
+          "link": "https://chat.whatsapp.com/LnU3YQ0tILuKYo4iOIBLwV",
+          "id": "120363395883362459@g.us",
+          "Total": 0,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 21,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #21",
+          "link": "https://chat.whatsapp.com/G8T8TIY6uLFKAuGRQmUI3G",
+          "id": "120363399116116824@g.us",
+          "Total": 0,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 22,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #22",
+          "link": "https://chat.whatsapp.com/DJP5iz6gsWyJQdWKtFPKo1",
+          "id": "120363399759208191@g.us",
+          "Total": 0,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 23,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #23",
+          "link": "https://chat.whatsapp.com/F58CTlrWp1jDtPktbFwsoX",
+          "id": "120363400122117498@g.us",
+          "Total": 0,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 24,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #24",
+          "link": "https://chat.whatsapp.com/G1osxPwndBnGQUGENY5gvc",
+          "id": "120363400868122694@g.us",
+          "Total": 0,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 25,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #25",
+          "link": "https://chat.whatsapp.com/JeBLolQ8Qn2B1Lqc6PcJEa",
+          "id": "120363382144178717@g.us",
+          "Total": 0,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 26,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #26",
+          "link": "https://chat.whatsapp.com/KG4HM353VpF8jxtyBBGicd",
+          "id": "120363398546212545@g.us",
+          "Total": 0,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 27,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #27",
+          "link": "https://chat.whatsapp.com/Du5NuaFvynMKSeqzpwcFhz",
+          "id": "120363381003335040@g.us",
+          "Total": 0,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 28,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #28",
+          "link": "https://chat.whatsapp.com/HioPYoMfa1o3nlDqV5VmYK",
+          "id": "120363399938196660@g.us",
+          "Total": 0,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 29,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #29",
+          "link": "https://chat.whatsapp.com/C7IKnUFNFKGEw7G4ANp8pL",
+          "id": "120363397154375776@g.us",
+          "Total": 0,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 30,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #30",
+          "link": "https://chat.whatsapp.com/GBhslDzaCYHJhLz1YB3FkL",
+          "id": "120363398965505622@g.us",
+          "Total": 0,
+          "bienvenida": "no"
+        }
+      }
+    ],
+    "SUBIR": [
+      {
+        "json": {
+          "success": true
+        }
+      }
+    ],
+    "Edit Fields": [
+      {
+        "json": {
+          "nombreArchivo": "02-13-12-18-Audio_Ger.ogg"
+        }
+      }
+    ],
+    "If": [
+      {
+        "json": {
+          "NOMBRE DE MENSAJE": "envio audio1",
+          "TIPO DE MENSAJE": "AUDIO",
+          "CUERPO DEL MENSAJE": "*ESCUCHA EL AUDIO CON ATENCIÓN* 👆\r\n\r\nAhora, llena la encuesta tocando el siguiente enlace \r\n👉 https://forms.gle/btFMg5wPY6Njwti86\r\n\r\nAl final de la misma, vas a encontrar el libro de trabajo de la clase #1. 📖.\r\n*Nos vemos este lunes 24 de febrero.* \r\n\r\n🚨*IMPORTANTE:*🚨 No des información a NADIE ni respondas ningún mensaje que no provenga de los administradores del grupo",
+          "MEDIA": {
+            "filename": "Audio_Ger.ogg",
+            "mimetype": "audio/ogg",
+            "size": 1001706
+          },
+          "¿MENCIÓN?": "NO",
+          "Minimo": "0",
+          "Maximo": "1",
+          "TAMAÑO DE GRUPO": 700,
+          "submittedAt": "2025-02-13T12:18:57.022-05:00",
+          "formMode": "production"
+        }
+      }
+    ],
+    "If2": [
+      {
+        "json": {
+          "#": 15,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #15",
+          "link": "https://chat.whatsapp.com/GzfeYMuU8MwJXl5h9J1YrO",
+          "id": "120363397649390162@g.us",
+          "Total": 1000,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 16,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #16",
+          "link": "https://chat.whatsapp.com/HarHYCAyzTXDWcP4LPAZMN",
+          "id": "120363396821776663@g.us",
+          "Total": 1000,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 17,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #17",
+          "link": "https://chat.whatsapp.com/IrW2Qm6EI130V4ujbsQGSD",
+          "id": "120363397687209305@g.us",
+          "Total": 1000,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 18,
+          "nombre": "Semana de la Terapia del Dolor 24/02 #18",
+          "link": "https://chat.whatsapp.com/IsVcVWg8XhGFcUnsDRMKQd",
+          "id": "120363397326363506@g.us",
+          "Total": 1000,
+          "bienvenida": "no"
         }
       }
     ]
@@ -1840,6 +2787,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2024-11-15T00:30:08.000Z",
-  "versionId": "4204359e-b930-486e-90ef-ca262d6d0057"
+  "updatedAt": "2025-02-13T17:43:00.000Z",
+  "versionId": "ad80e582-d50a-4329-a1b7-e42c28507059"
 }
