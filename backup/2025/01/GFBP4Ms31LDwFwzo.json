@@ -813,15 +813,17 @@
           "mode": "url"
         },
         "columns": {
-          "mappingMode": "autoMapInputData",
+          "mappingMode": "defineBelow",
           "value": {
-            "ID": "={{ $json._id }}",
-            "FECHA REGISTRO": "={{ $now.format('yyyy-MM-dd HH:mm:ss') }}",
-            "CORREO": "={{ $json.email }}",
-            "CAMPAÑA": "={{ $json.utmCampaign }}",
-            "SEGMENTACION": "={{ $json.utmMedium }}",
-            "ANUNCIO": "={{ $json.utmContent }}",
-            "PLATAFORMA": "={{ $json.utmSource }}"
+            "ID": "={{ $json.ID }}",
+            "FECHA ENCUESTA": "={{ $json[\"FECHA ENCUESTA\"] }}",
+            "HORA ENCUESTA": "={{ $json[\"HORA ENCUESTA\"] }}",
+            "EDAD": "={{ $json.EDAD }}",
+            "INGRESOS": "={{ $json.INGRESOS }}",
+            "ESTUDIOS": "={{ $json.ESTUDIOS }}",
+            "OCUPACION": "={{ $json.OCUPACION }}",
+            "PROPOSITO": "={{ $json.PROPOSITO }}",
+            "PUNTAJE": "={{ $json.PUNTAJE }}"
           },
           "matchingColumns": [
             "ID"
@@ -834,7 +836,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "HORA",
@@ -844,7 +847,7 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true,
-              "removed": false
+              "removed": true
             },
             {
               "id": "ID",
@@ -864,7 +867,7 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true,
-              "removed": false
+              "removed": true
             },
             {
               "id": "WHATSAPP",
@@ -874,7 +877,7 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true,
-              "removed": false
+              "removed": true
             },
             {
               "id": "CAMPAÑA",
@@ -883,7 +886,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "SEGMENTACION",
@@ -892,7 +896,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "ANUNCIO",
@@ -901,7 +906,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "PLATAFORMA",
@@ -910,7 +916,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "PAIS",
@@ -920,7 +927,7 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true,
-              "removed": false
+              "removed": true
             },
             {
               "id": "FECHA ENCUESTA",
@@ -1005,9 +1012,11 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true,
-              "removed": false
+              "removed": true
             }
-          ]
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
         },
         "options": {}
       },
@@ -1084,7 +1093,7 @@
             {
               "id": "703ee060-0a76-4436-8621-7a62f8e7db1a",
               "name": "HORA ENCUESTA",
-              "value": "={{ $now.format('HH:mm:ss') }}",
+              "value": "={{ $now.format('HH:mm:ss:s') }}",
               "type": "string"
             }
           ]
@@ -1502,18 +1511,21 @@
           "mode": "url"
         },
         "columns": {
-          "mappingMode": "autoMapInputData",
+          "mappingMode": "defineBelow",
           "value": {
-            "ID": "={{ $json._id }}",
-            "FECHA REGISTRO": "={{ $now.format('yyyy-MM-dd HH:mm:ss') }}",
-            "CORREO": "={{ $json.email }}",
-            "CAMPAÑA": "={{ $json.utmCampaign }}",
-            "SEGMENTACION": "={{ $json.utmMedium }}",
-            "ANUNCIO": "={{ $json.utmContent }}",
-            "PLATAFORMA": "={{ $json.utmSource }}"
+            "ID": "={{ $json.ID }}",
+            "FECHA REGISTRO": "={{ $json[\"FECHA REGISTRO\"] }}",
+            "CORREO": "={{ $json.CORREO }}",
+            "CAMPAÑA": "={{ $json[\"CAMPAÑA\"] }}",
+            "SEGMENTACION": "={{ $json.SEGMENTACION }}",
+            "ANUNCIO": "={{ $json.ANUNCIO }}",
+            "PLATAFORMA": "={{ $json.PLATAFORMA }}",
+            "HORA": "={{ $json.HORA }}",
+            "WHATSAPP": "={{ $json.WHATSAPP }}",
+            "PAIS": "={{ $json.PAIS }}"
           },
           "matchingColumns": [
-            "CORREO"
+            "ID"
           ],
           "schema": [
             {
@@ -1619,7 +1631,7 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true,
-              "removed": false
+              "removed": true
             },
             {
               "id": "HORA ENCUESTA",
@@ -1629,7 +1641,7 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true,
-              "removed": false
+              "removed": true
             },
             {
               "id": "EDAD",
@@ -1638,7 +1650,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "INGRESOS",
@@ -1647,7 +1660,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "ESTUDIOS",
@@ -1656,7 +1670,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "OCUPACION",
@@ -1665,7 +1680,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "PROPOSITO",
@@ -1675,7 +1691,7 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true,
-              "removed": false
+              "removed": true
             },
             {
               "id": "PUNTAJE",
@@ -1684,7 +1700,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "QLEAD",
@@ -1694,9 +1711,11 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true,
-              "removed": false
+              "removed": true
             }
-          ]
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
         },
         "options": {}
       },
@@ -1773,13 +1792,13 @@
             {
               "id": "c3adebcf-1f39-46ce-9548-b1243262ba2d",
               "name": "FECHA REGISTRO",
-              "value": "={{ $('REGISTRO').item.json.body.tiemporegistro.toDateTime('s').format('yyyy-MM-dd') }}",
+              "value": "={{ $now.format('yyyy-MM-dd') }}",
               "type": "string"
             },
             {
               "id": "d42a68f2-323f-4337-b37f-ec1b9a9e65c4",
               "name": "HORA",
-              "value": "={{ $('REGISTRO').item.json.body.tiemporegistro.toDateTime('s').format(' HH:mm:ss') }}",
+              "value": "={{ $now.format('HH:mm:ss:s') }}",
               "type": "string"
             }
           ]
@@ -2068,95 +2087,95 @@
     }
   ],
   "pinData": {
-    "REGISTRO": [
-      {
-        "json": {
-          "headers": {
-            "host": "n8n.automscc.com",
-            "user-agent": "Mozilla/5.0 (Linux; Android 14; CPH2363 Build/TP1A.220905.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/132.0.6834.97 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/497.0.0.47.36;IABMV/1;]",
-            "content-length": "792",
-            "accept": "*/*",
-            "accept-encoding": "gzip, deflate, br, zstd",
-            "accept-language": "es-MX,es;q=0.9,en-US;q=0.8,en;q=0.7",
-            "content-type": "application/json",
-            "origin": "https://terapiasmagneticas.com",
-            "priority": "u=1, i",
-            "referer": "https://terapiasmagneticas.com/",
-            "sec-ch-ua": "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"Android WebView\";v=\"132\"",
-            "sec-ch-ua-mobile": "?1",
-            "sec-ch-ua-platform": "\"Android\"",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "187.172.233.205",
-            "x-forwarded-host": "n8n.automscc.com",
-            "x-forwarded-port": "443",
-            "x-forwarded-proto": "https",
-            "x-forwarded-server": "0f86eb816a4d",
-            "x-real-ip": "187.172.233.205",
-            "x-requested-with": "com.facebook.katana"
-          },
-          "params": {},
-          "query": {},
-          "body": {
-            "tiemporegistro": 1737828407,
-            "email": "hotel_roberto@hotmail.com",
-            "whatsapp": "+526691586738",
-            "utmCampaign": "[0125] [JC] [CAPTACION] [SIGNUP] [F] [ABO] [TEST]",
-            "utmSource": "Facebook_Mobile_Feed",
-            "utmMedium": "Negocios y finanzas",
-            "utmContent": "ANUN4-HORIZONTAL-EL DOLOR DE TUS PACIENTES(cap 04.mp4).mp4",
-            "utmTerm": "fb",
-            "userAgent": "Mozilla/5.0 (Linux; Android 14; CPH2363 Build/TP1A.220905.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/132.0.6834.97 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/497.0.0.47.36;IABMV/1;]",
-            "platform": "Linux aarch64",
-            "language": "es-MX",
-            "fbc": "fb.1.1737828371097.IwZXh0bgNhZW0BMABhZGlkAasarSJlexwBHdjEGXmtO4AQhrO6kPV3otmAydoL2GqfgpWsmJ0brbcH-f6Awe3m44X3Dw_aem_0KXEKPnY_XRZmkey8LT7jw",
-            "fbp": "fb.1.1732299220566.8362989626617327",
-            "isFbcGenerated": false
-          },
-          "webhookUrl": "https://n8n.automscc.com/webhook/captura-td-2025-1",
-          "executionMode": "production"
-        }
-      }
-    ],
     "ENCUESTA": [
       {
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
-            "user-agent": "Mozilla/5.0 (Linux; Android 12; SM-A315G Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.260 Mobile Safari/537.36 Instagram 364.0.0.35.86 Android (31/12; 420dpi; 1080x2195; samsung; SM-A315G; a31; mt6768; es_US; 687078753)",
-            "content-length": "800",
+            "user-agent": "Mozilla/5.0 (Linux; Android 13; moto g32 Build/T2SNS33.73-22-3-12; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/133.0.6943.81 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/500.0.0.57.50;IABMV/1;]",
+            "content-length": "625",
             "accept": "*/*",
             "accept-encoding": "gzip, deflate, br, zstd",
-            "accept-language": "es-US,es;q=0.9,en-US;q=0.8,en;q=0.7",
+            "accept-language": "es-US,es-MX;q=0.9,es-ES;q=0.8,es;q=0.7,en-US;q=0.6,en;q=0.5",
             "content-type": "application/json",
             "origin": "https://terapiasmagneticas.com",
             "priority": "u=1, i",
             "referer": "https://terapiasmagneticas.com/",
-            "sec-ch-ua": "\"Android WebView\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
+            "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Android WebView\";v=\"133\", \"Chromium\";v=\"133\"",
             "sec-ch-ua-mobile": "?1",
             "sec-ch-ua-platform": "\"Android\"",
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "181.237.103.24",
+            "x-forwarded-for": "201.137.90.125",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "0f86eb816a4d",
-            "x-real-ip": "181.237.103.24",
-            "x-requested-with": "com.instagram.android"
+            "x-forwarded-server": "3051a3bb6625",
+            "x-real-ip": "201.137.90.125",
+            "x-requested-with": "com.facebook.katana"
           },
           "params": {},
           "query": {},
           "body": {
-            "answersJson": "{\n  \"Edad\": \"41-50\",\n  \"Nivel_de_estudios\": \"Profesional\",\n  \"Ocupación\": \"Trabajo para un negocio que está en área de la salud\",\n  \"Ingresos\": \"301-600\",\n  \"Eliminar_dolor_para\": \"Para crear o ampliar tu negocio relacionado con la salud\"\n}",
-            "referrer": "https://terapiasmagneticas.com/registro-l6/?utm_campaign=%5B0125%5D+%5BJC%5D+%5BCAPTACION%5D+%5BSIGNUP%5D+%5BF%5D+%5BABO%5D+%5BTEST%5D&utm_source=Instagram_Feed&utm_medium=Recetas+de+postres&utm_content=ANUN8-HORIZONTAL-SI+ERES+EXPERTO+EN+REFLEXOLOGIA%28cap+08.mp4%29.mp4&utm_term=ig&fbclid=PAZXh0bgNhZW0BMABhZGlkAasarSOrGnwBppFCdaTl2YOMP8pMyNMIbXWEpTSkpEieKggiW-isZV4ul9gbCmY4TyzAxw_aem_JVloUGJqZvmzy6QNEjPobQ",
-            "email": "zapatagiraldo@gmail.com",
-            "whatsapp": "+573117051230",
-            "tiempoencuesta": 1737934536
+            "answersJson": "{\n  \"Edad\": \"61-80\",\n  \"Nivel_de_estudios\": \"Postgrado\",\n  \"Ocupación\": \"Retirado\",\n  \"Ingresos\": \"101-300\",\n  \"Eliminar_dolor_para\": \"Para tu familia o amigos\"\n}",
+            "referrer": "https://terapiasmagneticas.com/registro-l6/?fbclid=IwY2xjawIc3r9leHRuA2FlbQIxMQABHQgBWwk7X7sjOT9KF3kf6hyidiNVbgfi7L8Flsp0WdnKffZFiRVbGmKkCw_aem_vHHkZaMVKqazNHNTzYn30g&utm_medium=paid&utm_source=fb&utm_id=120216513568150101&utm_content=120216514488750101&utm_term=120216514488630101&utm_campaign=120216513568150101",
+            "email": "isaiaspalaciosc@gmail.com",
+            "whatsapp": "+525539067506",
+            "tiempoencuesta": 1739587579
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/encuesta-p2",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "REGISTRO": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (Linux; Android 14; 23129RA5FL Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/133.0.6943.81 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/500.0.0.57.50;IABMV/1;]",
+            "content-length": "817",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "es-ES,es;q=0.9,en-US;q=0.8,en;q=0.7",
+            "content-type": "application/json",
+            "origin": "https://terapiasmagneticas.com",
+            "priority": "u=1, i",
+            "referer": "https://terapiasmagneticas.com/",
+            "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Android WebView\";v=\"133\", \"Chromium\";v=\"133\"",
+            "sec-ch-ua-mobile": "?1",
+            "sec-ch-ua-platform": "\"Android\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "181.64.57.22",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3051a3bb6625",
+            "x-real-ip": "181.64.57.22",
+            "x-requested-with": "com.facebook.katana"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "tiemporegistro": 1739587788,
+            "email": "coletjf@hotmail.es",
+            "whatsapp": "+51977483651",
+            "utmCampaign": "🟠[0125] [JC] [CAPTACION] [SIGNUP] [T] [CBO]",
+            "utmSource": "Facebook_Mobile_Feed",
+            "utmMedium": "00 - Vio página de Registro + Vio Anuncios de Captación 365D",
+            "utmContent": "ANUN4-L6-VERTICAL-EL DOLOR NO ES EL HOMBRO.mp4",
+            "utmTerm": "fb",
+            "userAgent": "Mozilla/5.0 (Linux; Android 14; 23129RA5FL Build/UKQ1.231207.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/133.0.6943.81 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/500.0.0.57.50;IABMV/1;]",
+            "platform": "Linux aarch64",
+            "language": "es-ES",
+            "fbc": "fb.1.1739587708189.IwZXh0bgNhZW0BMABhZGlkAasbIf0HsMwBHUoceJSUpPGYm3n5yhxy8oTA7-kHWD_5EZsFzk2m7Xc7ghIf0DpCtyh5nw_aem_eGaACfKvkOXzzUEvdWF7QA",
+            "fbp": "fb.1.1739587708211.801895200741155508",
+            "isFbcGenerated": false
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/captura-td-2025-1",
           "executionMode": "production"
         }
       }
@@ -2171,6 +2190,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-02-11T07:16:48.000Z",
-  "versionId": "f79ee077-0379-4889-8d5c-c53a5fa4c1ad"
+  "updatedAt": "2025-02-15T03:16:07.000Z",
+  "versionId": "c5ba889b-5d3d-41ea-825d-4231265f6e0f"
 }
