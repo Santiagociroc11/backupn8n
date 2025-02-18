@@ -1,0 +1,73 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "n8n",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-18T04:42:33.990Z",
+  "id": "Z9Td9LXXT8LUmDcR",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -360,
+        -40
+      ],
+      "id": "de79d816-3e34-4d3a-9a5e-60d61eb3f3ad",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "workflowId": {
+          "__rl": true,
+          "value": "QOnjKNOPnh0ESOkK",
+          "mode": "list",
+          "cachedResultName": "🟢 [ARZA] CAPTURA-UÑAS (#QOnjKNOPnh0ESOkK)"
+        },
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        -40
+      ],
+      "id": "6134789e-2778-4c0b-858c-9c878878ee67",
+      "name": "n8n",
+      "credentials": {
+        "n8nApi": {
+          "id": "uiktFCUOAkK45RDJ",
+          "name": "n8n account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-18T04:42:33.990Z",
+  "versionId": "c598cee6-f162-4520-bb4d-4d85b6586dfe"
+}
