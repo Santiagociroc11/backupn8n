@@ -75,7 +75,7 @@
     },
     {
       "parameters": {
-        "operation": "appendOrUpdate",
+        "operation": "append",
         "documentId": {
           "__rl": true,
           "value": "https://docs.google.com/spreadsheets/d/1B-AZgzqX2eYe-8XZq5buwdZzq0GBz2FwX5xDRUIEFrA/edit?gid=0#gid=0",
@@ -94,13 +94,24 @@
           ],
           "schema": [
             {
-              "id": "FECHA",
-              "displayName": "FECHA",
+              "id": "FECHA REGISTRO",
+              "displayName": "FECHA REGISTRO",
               "required": false,
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "HORA",
+              "displayName": "HORA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
             },
             {
               "id": "CORREO",
@@ -147,15 +158,6 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true
-            },
-            {
-              "id": "VENTA",
-              "displayName": "VENTA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
             }
           ],
           "attemptToConvertTypes": false,
@@ -166,7 +168,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        580,
+        500,
         -100
       ],
       "id": "4b94bda3-75f4-46f8-85bc-30cef79f8b38",
@@ -214,8 +216,14 @@
             },
             {
               "id": "e6c54583-3fff-40ef-977f-b4a4d87a14f1",
-              "name": "FECHA",
-              "value": "={{ $now.format('dd-MM-yyyy HH:mm:ss') }}",
+              "name": "FECHA REGISTRO",
+              "value": "={{ $now.format('yyyy-MM-dd') }}",
+              "type": "string"
+            },
+            {
+              "id": "ab406536-e2b9-4e10-85d3-b8ac95750231",
+              "name": "HORA",
+              "value": "={{ $now.format('HH:mm:ss:s') }}",
               "type": "string"
             }
           ]
@@ -406,6 +414,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-02-12T08:25:05.000Z",
-  "versionId": "fa3591d5-7467-4bd7-8cf5-082a2df047a9"
+  "updatedAt": "2025-02-18T03:56:23.000Z",
+  "versionId": "6468d80e-7f45-4f79-93a1-4a90a03cb8c7"
 }
