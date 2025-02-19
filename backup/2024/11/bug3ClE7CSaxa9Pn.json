@@ -1,11 +1,11 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "When clicking ‘Test workflow’": {
       "main": [
         [
           {
-            "node": "Edit Fields",
+            "node": "MySQL1",
             "type": "main",
             "index": 0
           }
@@ -16,74 +16,7 @@
       "main": [
         [
           {
-            "node": "Loop Over Items",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Loop Over Items": {
-      "main": [
-        [],
-        [
-          {
-            "node": "ObtenerLink",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "ObtenerLink": {
-      "main": [
-        [
-          {
-            "node": "OBTENER GRUPO",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Code": {
-      "main": [
-        [
-          {
-            "node": "UPDATE IPS",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OBTENER GRUPO": {
-      "main": [
-        [
-          {
-            "node": "Code",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "UPDATE IPS": {
-      "main": [
-        [
-          {
-            "node": "UPDATE LINKS",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "UPDATE LINKS": {
-      "main": [
-        [
-          {
-            "node": "Loop Over Items",
+            "node": "Merge",
             "type": "main",
             "index": 0
           }
@@ -97,6 +30,78 @@
             "node": "MySQL",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "UnicosSql",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UnicosSql": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -107,7 +112,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "[Tool] ACTUALIZAR LINKS DE GRUPOS",
+  "name": "[TOOL] ACTUALIZAR LINKS DE GRUPOS",
   "nodes": [
     {
       "parameters": {},
@@ -116,7 +121,7 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        500,
+        160,
         340
       ]
     },
@@ -136,151 +141,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        880,
-        340
-      ],
-      "credentials": {
-        "mySql": {
-          "id": "4J4D0oAUKKPzfhYR",
-          "name": "REDIRECCIONES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "url": "=https://evolution.automscc.com/group/inviteCode/{{$('Edit Fields').first().json.SESION}}?groupJid={{ $json.id }}",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "apikey",
-              "value": "429683C4C977415CAAFCCE10F7D57E11"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "27dba014-25a0-4870-97e7-b170717175ad",
-      "name": "ObtenerLink",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        1320,
-        360
-      ],
-      "retryOnFail": true,
-      "maxTries": 5,
-      "waitBetweenTries": 4000
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "id": "3ddd0859-2c05-4f13-905c-0376133686b8",
-      "name": "Loop Over Items",
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 3,
-      "position": [
-        1100,
-        340
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "let jsonACTUAL = $('OBTENER GRUPO').first().json\nlet linkNUEVO = $('ObtenerLink').first().json.inviteUrl\nlet tabla = $('Edit Fields').first().json.tablaIPS\n\n// Generar la consulta SQL\nconst query = `\n  UPDATE ${tabla}\n  SET grupo = '${linkNUEVO}'\n  WHERE grupo = '${jsonACTUAL.link}';\n`;\n\n// Devolver el resultado\nreturn [\n  {\n    json: {\n      query: query\n    }\n  }\n];"
-      },
-      "id": "56dcb0cc-44da-4cca-836e-8d190f1931fa",
-      "name": "Code",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1760,
-        360
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "select",
-        "table": {
-          "__rl": true,
-          "value": "={{$('Edit Fields').first().json.tablaLINK}}",
-          "mode": "name"
-        },
-        "returnAll": true,
-        "where": {
-          "values": [
-            {
-              "column": "id",
-              "value": "={{$('Loop Over Items').first().json.id}}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "a9ffc4e4-b5de-4e35-923c-7fd9e576783e",
-      "name": "OBTENER GRUPO",
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        1540,
-        360
-      ],
-      "credentials": {
-        "mySql": {
-          "id": "4J4D0oAUKKPzfhYR",
-          "name": "REDIRECCIONES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "executeQuery",
-        "query": "{{ $('Code').first().json.query }}",
-        "options": {}
-      },
-      "id": "36509911-f0fe-4d1d-9463-f1e90ebbb843",
-      "name": "UPDATE IPS",
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        1940,
-        360
-      ],
-      "credentials": {
-        "mySql": {
-          "id": "4J4D0oAUKKPzfhYR",
-          "name": "REDIRECCIONES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "table": {
-          "__rl": true,
-          "value": "={{ $('Edit Fields').first().json.tablaLINK }}",
-          "mode": "name"
-        },
-        "dataMode": "defineBelow",
-        "columnToMatchOn": "id",
-        "valueToMatchOn": "={{$('Loop Over Items').first().json.id}}",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "link",
-              "value": "={{ $('ObtenerLink').first().json.inviteUrl }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "56f9297c-076a-449b-9346-2a07bbbeffc0",
-      "name": "UPDATE LINKS",
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        2120,
-        360
+        1160,
+        260
       ],
       "credentials": {
         "mySql": {
@@ -296,13 +158,13 @@
             {
               "id": "95761bbf-54fc-45e4-b955-18a9fa0b5415",
               "name": "tablaLINK",
-              "value": "GERSSON_LINKS_ORG",
+              "value": "={{ $json.links_table }}",
               "type": "string"
             },
             {
               "id": "fa2238ed-ce9f-45e9-93df-a5446d17ff30",
               "name": "tablaIPS",
-              "value": "GERSSON_IPS_ORG",
+              "value": "={{ $json.ips_table }}",
               "type": "string"
             },
             {
@@ -320,9 +182,119 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        700,
-        340
+        960,
+        260
       ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Accede a los datos de entrada desde los nodos anteriores\nconst tables = $input.all(); // Obtiene todos los elementos de entrada\n\n// Verifica que 'tables' contenga al menos un elemento y extrae los nombres de las tablas\nconst tableNames = tables.map(item => item.json[\"Tables_in_u698892974_REDIRECCIONES\"]);\n\n// Elimina duplicados usando un Set\nconst uniqueTableNames = [...new Set(tableNames)];\n\n// Filtra solo las tablas que contienen \"links\" o \"ips\" (insensible a mayúsculas/minúsculas)\nconst filteredTables = uniqueTableNames.filter(name => \n  name.toLowerCase().includes(\"links\") || name.toLowerCase().includes(\"ips\")\n);\n\n// Crea un objeto para agrupar por base y sufijo\nconst groupedTables = {};\n\nfilteredTables.forEach(name => {\n  // Extrae el prefijo hasta la última ocurrencia de \"_IPS\" o \"_LINKS\"\n  const match = name.match(/^(.*?)(_IPS|_LINKS)(_.*)?$/i);\n  if (!match) return;\n  \n  const baseName = match[1]; // Prefijo base (sin _IPS o _LINKS)\n  const suffix = match[3] || ''; // Sufijo adicional (como _ORG, _VIP, etc.)\n\n  if (!groupedTables[baseName]) {\n    groupedTables[baseName] = {};\n  }\n\n  if (!groupedTables[baseName][suffix]) {\n    groupedTables[baseName][suffix] = { ips: null, links: null };\n  }\n\n  if (name.toLowerCase().includes(\"ips\")) {\n    groupedTables[baseName][suffix].ips = name;\n  } else if (name.toLowerCase().includes(\"links\")) {\n    groupedTables[baseName][suffix].links = name;\n  }\n});\n\n// Convierte los pares en un arreglo de salida\nconst outputData = [];\n\nObject.entries(groupedTables).forEach(([base, suffixes]) => {\n  Object.entries(suffixes).forEach(([suffix, pair]) => {\n    if (pair.ips && pair.links) {\n      outputData.push({\n        base_name: base,\n        ips_table: pair.ips,\n        links_table: pair.links\n      });\n    }\n  });\n});\n\n// Retorna el arreglo de objetos como una salida JSON\nreturn outputData;\n"
+      },
+      "id": "cd0797f4-a9ca-4965-9bfb-582fc7ba955b",
+      "name": "UnicosSql",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        520,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SHOW TABLES;\n",
+        "options": {}
+      },
+      "id": "0f870094-3853-4b50-980e-4edf7eeb39ab",
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        360,
+        260
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        720,
+        260
+      ],
+      "id": "d4b17eae-1f15-456d-97ad-23d0c60a5255",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        160,
+        140
+      ],
+      "id": "9e2955d0-3fbb-439e-b695-ca98fda6b9ae",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "OJGmK9DNMy7rTKfw",
+          "mode": "id"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1520,
+        360
+      ],
+      "id": "5a38cb9b-eb65-46eb-8847-aa64831ed6f1",
+      "name": "Execute Workflow"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1320,
+        360
+      ],
+      "id": "641e86bc-b853-4c8b-a2d1-cb6630095936",
+      "name": "Merge"
     }
   ],
   "pinData": {},
@@ -332,9 +304,13 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "staticData": null,
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-02-16T21:07:01.000Z",
-  "versionId": "218e6f2a-8358-41a4-8e9d-40c0fc4d0c58"
+  "triggerCount": 1,
+  "updatedAt": "2025-02-18T20:03:08.000Z",
+  "versionId": "3a06abf9-23c1-42f2-b4fd-af0e000b694a"
 }
