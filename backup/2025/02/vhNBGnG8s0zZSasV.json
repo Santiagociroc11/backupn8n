@@ -1,0 +1,67 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "MongoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-19T05:02:58.540Z",
+  "id": "vhNBGnG8s0zZSasV",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -420,
+        -40
+      ],
+      "id": "0e4e1ac6-d421-4c94-b34e-6ddaf48ff22a",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "collection": "TD-l6",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        -200,
+        -40
+      ],
+      "id": "bf37e7a6-7cc0-4fd7-90ff-f23d56a160b0",
+      "name": "MongoDB",
+      "credentials": {
+        "mongoDb": {
+          "id": "vbsT0SoMA5A3acgH",
+          "name": "BASE DE DATOS GERSSON"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-19T05:02:58.540Z",
+  "versionId": "3e1aebc7-8645-49ab-89b7-c455ee27ddd7"
+}
