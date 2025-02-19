@@ -76,6 +76,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -233,8 +240,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        760,
-        -60
+        820,
+        0
       ],
       "id": "5c7c6893-685d-4dee-ac81-f27dc3d96542",
       "name": "Wait",
@@ -452,7 +459,8 @@
           "id": "zruD3ONGC9HU2i7s",
           "name": "Google Sheets account"
         }
-      }
+      },
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -542,6 +550,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-02-10T17:29:11.000Z",
-  "versionId": "94a2e71a-d519-4d9a-b137-e7358191b037"
+  "updatedAt": "2025-02-18T23:04:29.000Z",
+  "versionId": "84505da9-d204-4fc9-9bb3-8a56f93d5f0b"
 }
