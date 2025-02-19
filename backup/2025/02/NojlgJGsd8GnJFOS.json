@@ -518,6 +518,52 @@
           }
         ]
       ]
+    },
+    "Google Sheets": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-02-04T14:56:56.201Z",
@@ -968,7 +1014,8 @@
           "id": "zruD3ONGC9HU2i7s",
           "name": "Google Sheets account"
         }
-      }
+      },
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -1431,7 +1478,7 @@
     },
     {
       "parameters": {
-        "operation": "appendOrUpdate",
+        "operation": "append",
         "documentId": {
           "__rl": true,
           "value": "={{$('Edit Fields9').first().json.url_sheet}}",
@@ -1649,12 +1696,16 @@
       ],
       "id": "51c2d4ee-5ff1-4ceb-8ef3-e4efa56ac050",
       "name": "Google Sheets",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "zruD3ONGC9HU2i7s",
           "name": "Google Sheets account"
         }
-      }
+      },
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -2231,6 +2282,34 @@
       ],
       "id": "0f0c9edc-c5da-4846-b335-d23e6f9d9928",
       "name": "Merge7"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1140,
+        -260
+      ],
+      "id": "52f88d7a-866e-4e8d-b6b9-aef1d0360a47",
+      "name": "Wait",
+      "webhookId": "e02c8398-bf9f-4d9e-8ed9-c03f6921589d"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1200,
+        480
+      ],
+      "id": "52ab6634-b616-431f-b4ac-3fb181ff083e",
+      "name": "Wait1",
+      "webhookId": "02783fbd-6233-4064-9c8a-bb1fdbebd75e"
     }
   ],
   "pinData": {
@@ -2343,6 +2422,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-02-04T22:37:01.000Z",
-  "versionId": "c40c399c-4435-4da3-a368-f00c1146f30b"
+  "updatedAt": "2025-02-19T00:24:13.000Z",
+  "versionId": "89131f54-3baf-49a8-b489-f02965b50f5e"
 }
