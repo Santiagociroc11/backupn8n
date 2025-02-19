@@ -1,0 +1,473 @@
+{
+  "active": true,
+  "connections": {
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "UPDATE IPS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OBTENER GRUPO": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UPDATE IPS": {
+      "main": [
+        [
+          {
+            "node": "UPDATE LINKS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UPDATE LINKS": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "OBTENER GRUPO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "LINK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LINK": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-18T18:08:46.843Z",
+  "id": "OJGmK9DNMy7rTKfw",
+  "meta": null,
+  "name": "[SUB-MODULO] ACTUALIZA LINKS",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "let jsonACTUAL = $('OBTENER GRUPO').first().json\nlet linkNUEVO = $('LINK').first().json.inviteUrl\nlet tabla = $('Loop Over Items').first().json.tablaIPS\n\n// Generar la consulta SQL\nconst query = `\n  UPDATE ${tabla}\n  SET grupo = '${linkNUEVO}'\n  WHERE grupo = '${jsonACTUAL.link}';\n`;\n\n// Devolver el resultado\nreturn [\n  {\n    json: {\n      query: query\n    }\n  }\n];"
+      },
+      "id": "8105dee4-06c7-4be6-9022-9272253d7421",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        180,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "={{ $('LINK').item.json.tablaLINK}}",
+          "mode": "name"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{$('Loop Over Items').item.json.id}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "feafbc56-15be-47a3-8f19-8821aa4c7de8",
+      "name": "OBTENER GRUPO",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        0,
+        0
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "{{ $('Code').first().json.query }}",
+        "options": {}
+      },
+      "id": "a0a0fc28-e2c1-499a-8918-4823f74f1710",
+      "name": "UPDATE IPS",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        360,
+        0
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "table": {
+          "__rl": true,
+          "value": "={{ $('Loop Over Items').item.json.tablaLINK }}",
+          "mode": "name"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "id",
+        "valueToMatchOn": "={{$('Loop Over Items').item.json.id}}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "link",
+              "value": "={{ $('LINK').first().json.inviteUrl }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c3b31366-b05c-4582-8aa3-417b8d71454c",
+      "name": "UPDATE LINKS",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        540,
+        0
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "bb5a03d3-49fb-4a7d-82b8-b82e4051e36c",
+              "leftValue": "={{ $json.inviteUrl }}",
+              "rightValue": "={{ $('LINK').item.json.inviteUrl }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -220,
+        0
+      ],
+      "id": "dae558c0-e16e-4fb2-98ba-786e677f6f75",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -680,
+        80
+      ],
+      "id": "a6b8c7cf-18a5-4bf9-b822-af705c1493c8",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -920,
+        60
+      ],
+      "id": "3f23dac2-94ff-4fd1-b40b-4c458e13bf12",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        160,
+        260
+      ],
+      "id": "8d16c95d-8777-4d84-aa77-a1057de1e417",
+      "name": "Wait",
+      "webhookId": "f19289d9-f3ca-4abf-9ff3-56806fd55698"
+    },
+    {
+      "parameters": {
+        "resource": "groups-api",
+        "operation": "fetch-invite-code",
+        "instanceName": "={{ $json.SESION }}",
+        "groupJid": "={{ $json.id }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -460,
+        100
+      ],
+      "id": "7a617895-a6f4-4457-a058-967d15d3469f",
+      "name": "LINK",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "vps 1"
+        }
+      },
+      "onError": "continueErrorOutput"
+    }
+  ],
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "#": 0,
+          "nombre": "Masterclass Postres Saludable 21/01 #1",
+          "link": "https://chat.whatsapp.com/FSvS8FRcxYt83v2LpmxY95",
+          "id": "120363388875702874@g.us",
+          "Total": 1000,
+          "bienvenida": "no",
+          "tablaLINK": "ADRIANA_LINKS",
+          "tablaIPS": "ADRIANA_IPS",
+          "SESION": "JUANCA"
+        }
+      },
+      {
+        "json": {
+          "#": 1,
+          "nombre": "Masterclass Postres Saludable 21/01 #2",
+          "link": "https://chat.whatsapp.com/K5HvoHNq3RCJeya2lUMXy6",
+          "id": "120363369032330372@g.us",
+          "Total": 1000,
+          "bienvenida": "no",
+          "tablaLINK": "ADRIANA_LINKS",
+          "tablaIPS": "ADRIANA_IPS",
+          "SESION": "JUANCA"
+        }
+      },
+      {
+        "json": {
+          "#": 2,
+          "nombre": "Masterclass Postres Saludable 21/01 #3",
+          "link": "https://chat.whatsapp.com/De9P5qmYjByLoH9eFar9k7",
+          "id": "120363391778274687@g.us",
+          "Total": 1000,
+          "bienvenida": "no",
+          "tablaLINK": "ADRIANA_LINKS",
+          "tablaIPS": "ADRIANA_IPS",
+          "SESION": "JUANCA"
+        }
+      },
+      {
+        "json": {
+          "#": 3,
+          "nombre": "Masterclass Postres Saludable 21/01 #4",
+          "link": "https://chat.whatsapp.com/FQoNYkLq0lfDlDgK4NZIaz",
+          "id": "120363372701025562@g.us",
+          "Total": 1000,
+          "bienvenida": "no",
+          "tablaLINK": "ADRIANA_LINKS",
+          "tablaIPS": "ADRIANA_IPS",
+          "SESION": "JUANCA"
+        }
+      },
+      {
+        "json": {
+          "#": 4,
+          "nombre": "Masterclass Postres Saludable 21/01 #5",
+          "link": "https://chat.whatsapp.com/Cst7TI0UZZ72IAhXMWgsIP",
+          "id": "120363371717732736@g.us",
+          "Total": 1000,
+          "bienvenida": "no",
+          "tablaLINK": "ADRIANA_LINKS",
+          "tablaIPS": "ADRIANA_IPS",
+          "SESION": "JUANCA"
+        }
+      },
+      {
+        "json": {
+          "#": 5,
+          "nombre": "Masterclass Postres Saludable 21/01 #6",
+          "link": "https://chat.whatsapp.com/JbRvSs3awqJIkpqh0ZWBtB",
+          "id": "120363390295207559@g.us",
+          "Total": 477,
+          "bienvenida": "no",
+          "tablaLINK": "ADRIANA_LINKS",
+          "tablaIPS": "ADRIANA_IPS",
+          "SESION": "JUANCA"
+        }
+      },
+      {
+        "json": {
+          "#": 6,
+          "nombre": "Masterclass Postres Saludable 21/01 #7",
+          "link": "https://chat.whatsapp.com/CMnYrznvhuNJu7OXmTSv1n",
+          "id": "120363374188909031@g.us",
+          "Total": 0,
+          "bienvenida": "no",
+          "tablaLINK": "ADRIANA_LINKS",
+          "tablaIPS": "ADRIANA_IPS",
+          "SESION": "JUANCA"
+        }
+      },
+      {
+        "json": {
+          "#": 7,
+          "nombre": "Masterclass Postres Saludable 21/01 #8",
+          "link": "https://chat.whatsapp.com/Luar5dsQ2ey0NeDop8ayvH",
+          "id": "120363390792241827@g.us",
+          "Total": 0,
+          "bienvenida": "no",
+          "tablaLINK": "ADRIANA_LINKS",
+          "tablaIPS": "ADRIANA_IPS",
+          "SESION": "JUANCA"
+        }
+      },
+      {
+        "json": {
+          "#": 8,
+          "nombre": "Masterclass Postres Saludable 21/01 #9",
+          "link": "https://chat.whatsapp.com/EcpmQ4C83y5DkHnMiuKnBc",
+          "id": "120363388988823139@g.us",
+          "Total": 0,
+          "bienvenida": "no",
+          "tablaLINK": "ADRIANA_LINKS",
+          "tablaIPS": "ADRIANA_IPS",
+          "SESION": "JUANCA"
+        }
+      },
+      {
+        "json": {
+          "#": 9,
+          "nombre": "Masterclass Postres Saludable 21/01 #10",
+          "link": "https://chat.whatsapp.com/KBfdMIeYVRWIbEgaRbOauY",
+          "id": "120363373869294163@g.us",
+          "Total": 0,
+          "bienvenida": "no",
+          "tablaLINK": "ADRIANA_LINKS",
+          "tablaIPS": "ADRIANA_IPS",
+          "SESION": "JUANCA"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-18T20:46:45.000Z",
+  "versionId": "57d01f21-8eef-4585-b81a-f9c891464b27"
+}
