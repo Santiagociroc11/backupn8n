@@ -24,6 +24,16 @@
             "node": "Edit Fields1",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -50,11 +60,75 @@
           }
         ]
       ]
+    },
+    "Google Sheets": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        []
+      ]
+    },
+    "MySQL": {
+      "main": [
+        []
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-02-11T22:32:57.156Z",
   "id": "QOnjKNOPnh0ESOkK",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "🟢 [ARZA] CAPTURA-UÑAS",
   "nodes": [
     {
@@ -66,7 +140,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -360,
+        -100,
         -40
       ],
       "id": "d6fdc744-5bae-4992-8d4e-9d7afad0a5e6",
@@ -168,17 +242,21 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        500,
-        -100
+        620,
+        120
       ],
       "id": "4b94bda3-75f4-46f8-85bc-30cef79f8b38",
       "name": "Google Sheets",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "zruD3ONGC9HU2i7s",
           "name": "Google Sheets account"
         }
-      }
+      },
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -233,8 +311,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        120,
-        -160
+        340,
+        -100
       ],
       "id": "de9e2f4a-676c-47ea-8ad0-10c711d590c1",
       "name": "Edit Fields"
@@ -298,7 +376,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -120,
+        80,
         -40
       ],
       "id": "4a421d12-13a9-416a-8b59-fbef1f4b9c8d",
@@ -329,7 +407,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        600,
+        820,
         -280
       ],
       "id": "6b0ff7f5-fac3-44ef-946f-3edbb6488ad6",
@@ -356,11 +434,173 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        400,
+        620,
         -280
       ],
       "id": "feb9d42e-4e5e-4fcc-97d0-ee16ea241b5a",
       "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        860,
+        160
+      ],
+      "id": "1c20e0f5-caee-48e6-b954-ae7487674b42",
+      "name": "Wait",
+      "webhookId": "b606e5ea-48cb-48b1-bae5-3fb5f9ef127b"
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "ARZA_UÑAS",
+          "mode": "list",
+          "cachedResultName": "ARZA_UÑAS"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "fecha_registro",
+              "value": "={{ $json[\"FECHA REGISTRO\"] }}"
+            },
+            {
+              "column": "hora",
+              "value": "={{ $json.HORA }}"
+            },
+            {
+              "column": "campaña",
+              "value": "={{ $json[\"CAMPAÑA\"] }}"
+            },
+            {
+              "column": "segmentacion",
+              "value": "={{ $json.SEGMENTACION }}"
+            },
+            {
+              "column": "anuncio",
+              "value": "={{ $json.ANUNCIO }}"
+            },
+            {
+              "column": "plataforma",
+              "value": "={{ $json.PLATAFORMA }}"
+            },
+            {
+              "column": "fuente",
+              "value": "={{ $('Switch').item.json.body.pagina }}"
+            },
+            {
+              "column": "correo",
+              "value": "={{ $json.CORREO }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1180,
+        -80
+      ],
+      "id": "100af81b-6ba8-4554-ad27-403059ba30c1",
+      "name": "MySQL",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "ARZA_UÑAS",
+          "mode": "list",
+          "cachedResultName": "ARZA_UÑAS"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "correo",
+              "condition": "LIKE",
+              "value": "={{ $json.CORREO }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        620,
+        -20
+      ],
+      "id": "74752d21-1aac-4cfa-bda3-6d3083ddd22e",
+      "name": "MySQL1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7f3e8099-ae55-4534-a5be-217d413c0ff2",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        800,
+        -20
+      ],
+      "id": "8ac1915a-2848-4c0c-87e0-38804be3eb84",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1000,
+        -80
+      ],
+      "id": "03b9265a-38c3-4596-8581-50ec6709165a",
+      "name": "Merge"
     }
   ],
   "pinData": {
@@ -369,37 +609,42 @@
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
-            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1",
-            "content-length": "162",
+            "user-agent": "Mozilla/5.0 (Linux; Android 9; STK-LX3 Build/HUAWEISTK-LX3; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/133.0.6943.81 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/500.0.0.57.50;IABMV/1;]",
+            "content-length": "433",
             "accept": "*/*",
-            "accept-encoding": "gzip, deflate, br",
-            "accept-language": "es-419,es;q=0.9",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "es-CO,es;q=0.9,en-US;q=0.8,en;q=0.7",
             "content-type": "application/json",
-            "origin": "https://www.veru-cejasperfectas.com",
-            "referer": "https://www.veru-cejasperfectas.com/",
+            "origin": "https://www.academymanicuristagolden.com",
+            "priority": "u=1, i",
+            "referer": "https://www.academymanicuristagolden.com/reg-l1?ref=J88521581I&utm_source=Facebook_Mobile_Reels&utm_medium=Manicure+%26+Pedicure+%2B+Gelish+%2B+Nails+Art+%2B+decoraci%C3%B3n+de+u%C3%B1as&utm_content=ANUN5-L1-CAPTACION-VERTICAL-PERFECCIONAR-APLICO+ACRILICO+Y+NUNCA+ME+QUEDA+PAREJO.mp4&utm_term=fb&utm_campaign=GG+%7C+0225+%7C+CAPTACION+%7C+F+%7C+COMPLETAR+REGISTRO+%7C+COL+%7C+MEX+%7C+CHL+%7C+TEST+PUBLICOS+%2B+CREATIVOS+-+Copia&fbclid=IwZXh0bgNhZW0BMABhZGlkAasXCM60w4EBHS9qruuC7s4dpeIGkRGDgyuelVY37yog_O-6gVpVmShuLWRgXYch4ivaEA_aem_6RJN60KRHcpx-yGyxgguBw",
+            "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Android WebView\";v=\"133\", \"Chromium\";v=\"133\"",
+            "sec-ch-ua-mobile": "?1",
+            "sec-ch-ua-platform": "\"Android\"",
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "186.98.250.151",
+            "x-forwarded-for": "181.55.23.250",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "0f86eb816a4d",
-            "x-real-ip": "186.98.250.151"
+            "x-forwarded-server": "3051a3bb6625",
+            "x-real-ip": "181.55.23.250",
+            "x-requested-with": "com.facebook.katana"
           },
           "params": {},
           "query": {},
           "body": {
-            "tiemporegistro": 1738735355,
-            "email": "SANTI1@gmail.com",
-            "utmCampaign": "-",
-            "utmSource": "-",
-            "utmMedium": "-",
-            "utmContent": "-",
-            "utmTerm": "-",
+            "tiemporegistro": 1739928818,
+            "email": "myriamgalanmunoz@gmail.com",
+            "utmCampaign": "GG | 0225 | CAPTACION | F | COMPLETAR REGISTRO | COL | MEX | CHL | TEST PUBLICOS + CREATIVOS - Copia",
+            "utmSource": "Facebook_Mobile_Reels",
+            "utmMedium": "Manicure & Pedicure + Gelish + Nails Art + decoración de uñas",
+            "utmContent": "ANUN5-L1-CAPTACION-VERTICAL-PERFECCIONAR-APLICO ACRILICO Y NUNCA ME QUEDA PAREJO.mp4",
+            "utmTerm": "fb",
             "pagina": "PRINCIPAL"
           },
-          "webhookUrl": "https://n8n.automscc.com/webhook/captura-cejas1",
+          "webhookUrl": "https://n8n.automscc.com/webhook/captura-uñas1",
           "executionMode": "production"
         }
       }
@@ -414,6 +659,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-02-18T03:56:23.000Z",
-  "versionId": "6468d80e-7f45-4f79-93a1-4a90a03cb8c7"
+  "updatedAt": "2025-02-19T01:37:18.000Z",
+  "versionId": "ce806b66-a603-465d-903c-1da605ed9946"
 }
