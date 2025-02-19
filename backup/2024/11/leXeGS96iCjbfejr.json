@@ -67,6 +67,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -123,7 +130,14 @@
     },
     "Google Sheets": {
       "main": [
-        []
+        [],
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "HTTP Request3": {
@@ -164,6 +178,28 @@
         [
           {
             "node": "If5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
             "type": "main",
             "index": 0
           }
@@ -438,16 +474,19 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        2220,
+        2260,
         320
       ],
       "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "zruD3ONGC9HU2i7s",
           "name": "Google Sheets account"
         }
-      }
+      },
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -494,8 +533,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2520,
-        320
+        2680,
+        140
       ],
       "id": "f8d1b083-0e2c-4ddc-b657-deefee2de178",
       "name": "HTTP Request7",
@@ -515,8 +554,8 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        2380,
-        320
+        2480,
+        140
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -657,12 +696,12 @@
         "operation": "appendOrUpdate",
         "documentId": {
           "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1zgBTGl25U0OglUDwPViHJtRatrocFaBmaCQTIXUafJ0/edit?gid=1652768103#gid=1652768103",
+          "value": "https://docs.google.com/spreadsheets/d/1B-AZgzqX2eYe-8XZq5buwdZzq0GBz2FwX5xDRUIEFrA/edit?gid=1652768103#gid=1652768103",
           "mode": "url"
         },
         "sheetName": {
           "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1zgBTGl25U0OglUDwPViHJtRatrocFaBmaCQTIXUafJ0/edit?gid=1652768103#gid=1652768103",
+          "value": "https://docs.google.com/spreadsheets/d/1B-AZgzqX2eYe-8XZq5buwdZzq0GBz2FwX5xDRUIEFrA/edit?gid=1652768103#gid=1652768103",
           "mode": "url"
         },
         "columns": {
@@ -744,16 +783,19 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        2860,
+        2900,
         620
       ],
       "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "zruD3ONGC9HU2i7s",
           "name": "Google Sheets account"
         }
-      }
+      },
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -858,6 +900,34 @@
           "name": "REDIRECCIONES"
         }
       }
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2460,
+        340
+      ],
+      "id": "46cfde3e-8111-4c3b-9bf9-35262b991448",
+      "name": "Wait",
+      "webhookId": "2173a5eb-e116-42a4-8f13-a634b14fc474"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3120,
+        680
+      ],
+      "id": "6982a9d9-82dd-434a-b4fb-32ee0a057e3d",
+      "name": "Wait2",
+      "webhookId": "2173a5eb-e116-42a4-8f13-a634b14fc474"
     }
   ],
   "pinData": {
@@ -913,6 +983,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-02-18T04:38:23.000Z",
-  "versionId": "390f39e7-3e03-4844-b60d-37e88fcb9922"
+  "updatedAt": "2025-02-19T00:22:16.000Z",
+  "versionId": "e96fdd06-967f-432e-97fc-b41adf785e77"
 }
