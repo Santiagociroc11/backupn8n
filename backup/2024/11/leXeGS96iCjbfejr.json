@@ -23,60 +23,6 @@
         ]
       ]
     },
-    "If3": {
-      "main": [
-        [
-          {
-            "node": "If4",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "BD ARZA CEJAS",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If4": {
-      "main": [
-        [
-          {
-            "node": "HTTP Request1",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "HTTP Request",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Sheets1": {
-      "main": [
-        [
-          {
-            "node": "MongoDB",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Wait",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Webhook": {
       "main": [
         [
@@ -88,118 +34,169 @@
         ]
       ]
     },
-    "MongoDB": {
+    "BD GERSSON PRINCIPAL": {
       "main": [
         [
           {
-            "node": "HTTP Request7",
+            "node": "ES TD?",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "HTTP Request": {
+    "NOMBRE": {
       "main": [
         [
           {
-            "node": "Google Sheets1",
+            "node": "busqueda",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "If6": {
+    "busqueda": {
       "main": [
         [
           {
-            "node": "HTTP Request2",
+            "node": "no existe?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "no existe?": {
+      "main": [
+        [
+          {
+            "node": "escritura",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "encontrar": {
+      "main": [
+        [
+          {
+            "node": "tag manychat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ES UÑAS?": {
+      "main": [
+        [
+          {
+            "node": "VENEZUELA?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ES TD?": {
+      "main": [
+        [
+          {
+            "node": "VENEZUELA?1",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "HTTP Request3",
+            "node": "BD UÑAS",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Google Sheets": {
+    "BD UÑAS": {
       "main": [
-        [],
         [
           {
-            "node": "Wait2",
+            "node": "ES UÑAS?",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "HTTP Request3": {
+    "VENEZUELA?": {
       "main": [
         [
           {
-            "node": "Google Sheets",
+            "node": "ELIMINAR +",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NOMBRE1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "If5": {
+    "VENEZUELA?1": {
       "main": [
         [
           {
-            "node": "If6",
+            "node": "ELIMINAR +58",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NOMBRE",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "encontrar",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "BD GERSSON PRINCIPAL": {
+    "NOMBRE1": {
       "main": [
         [
           {
-            "node": "If3",
+            "node": "busqueda1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "BD ARZA CEJAS": {
+    "busqueda1": {
       "main": [
         [
           {
-            "node": "If5",
+            "node": "no existe?1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Wait": {
+    "no existe?1": {
       "main": [
         [
           {
-            "node": "Google Sheets1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Wait2": {
-      "main": [
-        [
-          {
-            "node": "Google Sheets",
+            "node": "escritura1",
             "type": "main",
             "index": 0
           }
@@ -290,206 +287,6 @@
     },
     {
       "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "8d2037fa-e2a7-4668-901e-4ca0a27a93ab",
-              "leftValue": "={{ $json.id }}",
-              "rightValue": "",
-              "operator": {
-                "type": "string",
-                "operation": "exists",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "3eb23b6c-4d35-4d1b-bc97-495f1adeba58",
-      "name": "If3",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        1680,
-        320
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "6e074b0d-4663-476d-ae90-8be442f648cd",
-              "leftValue": "={{ $('Edit Fields').item.json.numero }}",
-              "rightValue": "58",
-              "operator": {
-                "type": "string",
-                "operation": "startsWith"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "6ab5d11b-90de-4ec0-b036-cfb425bba0eb",
-      "name": "If4",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        1900,
-        260
-      ]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('Webhook').item.json.body.instance }}?groupJid={{ $('Edit Fields').item.json.grupo }}",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "apikey",
-              "value": "429683C4C977415CAAFCCE10F7D57E11"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "=\n{ \"action\": \"remove\", \n  \n  \"participants\": [ \"{{ $('Edit Fields').item.json.numero }}\" ] } ",
-        "options": {}
-      },
-      "id": "fe055f3b-a869-46fc-a435-7c8e76f07428",
-      "name": "HTTP Request1",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2140,
-        160
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "appendOrUpdate",
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1QSrLnfia_k5CIy0RS_kX1bQZ90IkQnBKJLsFNYEziUI/edit?gid=1924621178#gid=1924621178",
-          "mode": "url"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1QSrLnfia_k5CIy0RS_kX1bQZ90IkQnBKJLsFNYEziUI/edit?gid=1924621178#gid=1924621178",
-          "mode": "url"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "WHATSAPP": "=+{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}",
-            "DIA": "={{ $now.format('dd-MM-yyyy') }}",
-            "HORA": "={{ $now.format('HH:mm:ss') }}",
-            "GRUPO": "={{ $('Edit Fields').item.json.grupo }}",
-            "FUENTE": "FB ADS",
-            "NOMBRE GRUPO": "={{ $json.subject }}"
-          },
-          "matchingColumns": [
-            "WHATSAPP"
-          ],
-          "schema": [
-            {
-              "id": "DIA",
-              "displayName": "DIA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "HORA",
-              "displayName": "HORA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "WHATSAPP",
-              "displayName": "WHATSAPP",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "GRUPO",
-              "displayName": "GRUPO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "NOMBRE GRUPO",
-              "displayName": "NOMBRE GRUPO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "FUENTE",
-              "displayName": "FUENTE",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "2b6b98a3-fd0c-493a-9999-697031125778",
-      "name": "Google Sheets1",
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        2260,
-        320
-      ],
-      "retryOnFail": true,
-      "maxTries": 5,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "Google Sheets account"
-        }
-      },
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
         "httpMethod": "POST",
         "path": "webhooks-wha",
         "options": {}
@@ -503,331 +300,6 @@
         340
       ],
       "webhookId": "453d99b1-161b-46e8-8ac0-40581b8efbe2"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.manychat.com/fb/subscriber/addTagByName",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
-            },
-            {
-              "name": "Content-Type",
-              "value": "application/json"
-            },
-            {
-              "name": "Accept",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"tag_name\": \"INGRESOGRUPO-L6\"\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2680,
-        140
-      ],
-      "id": "f8d1b083-0e2c-4ddc-b657-deefee2de178",
-      "name": "HTTP Request7",
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "maxTries": 5,
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
-        "collection": "=TD-l6",
-        "options": {},
-        "query": "={\n  \"whatsapp\": {\n    \"$regex\": \".*{{ $json.WHATSAPP.slice(-6) }}.*\",\n    \"$options\": \"i\"\n  }\n}"
-      },
-      "id": "5050bc71-0a7f-4743-8e5c-2990400df735",
-      "name": "MongoDB",
-      "type": "n8n-nodes-base.mongoDb",
-      "typeVersion": 1.1,
-      "position": [
-        2480,
-        140
-      ],
-      "alwaysOutputData": true,
-      "credentials": {
-        "mongoDb": {
-          "id": "vbsT0SoMA5A3acgH",
-          "name": "BASE DE DATOS GERSSON"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "url": "=https://evolution.automscc.com/group/findGroupInfos/{{ $('Edit Fields').item.json.instancia }}",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "groupJid",
-              "value": "={{ $json.id }}"
-            }
-          ]
-        },
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "apikey",
-              "value": "429683C4C977415CAAFCCE10F7D57E11"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2060,
-        320
-      ],
-      "id": "90bfcb71-0192-47a5-ad03-4c60f2df0b83",
-      "name": "HTTP Request"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "8d2037fa-e2a7-4668-901e-4ca0a27a93ab",
-              "leftValue": "={{ $json.id }}",
-              "rightValue": "",
-              "operator": {
-                "type": "string",
-                "operation": "exists",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "6b950143-cad3-4b26-b189-c2fbe0b08256",
-      "name": "If5",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        2320,
-        620
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "6e074b0d-4663-476d-ae90-8be442f648cd",
-              "leftValue": "={{ $('Edit Fields').item.json.numero }}",
-              "rightValue": "58",
-              "operator": {
-                "type": "string",
-                "operation": "startsWith"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "140accb6-76da-47b0-8539-b31efbc33924",
-      "name": "If6",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        2540,
-        560
-      ]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('Webhook').item.json.body.instance }}?groupJid={{ $('Edit Fields').item.json.grupo }}",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "apikey",
-              "value": "429683C4C977415CAAFCCE10F7D57E11"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "=\n{ \"action\": \"remove\", \n  \n  \"participants\": [ \"{{ $('Edit Fields').item.json.numero }}\" ] } ",
-        "options": {}
-      },
-      "id": "cdb2b909-ff01-4fe2-91a5-b73006b98d91",
-      "name": "HTTP Request2",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2780,
-        460
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "appendOrUpdate",
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1B-AZgzqX2eYe-8XZq5buwdZzq0GBz2FwX5xDRUIEFrA/edit?gid=1652768103#gid=1652768103",
-          "mode": "url"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1B-AZgzqX2eYe-8XZq5buwdZzq0GBz2FwX5xDRUIEFrA/edit?gid=1652768103#gid=1652768103",
-          "mode": "url"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "WHATSAPP": "=+{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}",
-            "DIA": "={{ $now.format('dd-MM-yyyy') }}",
-            "HORA": "={{ $now.format('HH:mm:ss') }}",
-            "GRUPO": "={{ $('Edit Fields').item.json.grupo }}",
-            "FUENTE": "FB ADS",
-            "NOMBRE GRUPO": "={{ $json.subject }}"
-          },
-          "matchingColumns": [
-            "WHATSAPP"
-          ],
-          "schema": [
-            {
-              "id": "DIA",
-              "displayName": "DIA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "HORA",
-              "displayName": "HORA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "WHATSAPP",
-              "displayName": "WHATSAPP",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "GRUPO",
-              "displayName": "GRUPO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "NOMBRE GRUPO",
-              "displayName": "NOMBRE GRUPO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "FUENTE",
-              "displayName": "FUENTE",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "eb3d5f2c-920c-4b3a-b26e-538f99123edb",
-      "name": "Google Sheets",
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        2900,
-        620
-      ],
-      "retryOnFail": true,
-      "maxTries": 5,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "Google Sheets account"
-        }
-      },
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
-        "url": "=https://evolution.automscc.com/group/findGroupInfos/{{ $('Edit Fields').item.json.instancia }}",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "groupJid",
-              "value": "={{ $json.id }}"
-            }
-          ]
-        },
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "apikey",
-              "value": "429683C4C977415CAAFCCE10F7D57E11"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2700,
-        620
-      ],
-      "id": "db7ba858-50cd-4d94-81bb-71e353657f24",
-      "name": "HTTP Request3"
     },
     {
       "parameters": {
@@ -867,6 +339,321 @@
     },
     {
       "parameters": {
+        "url": "=https://evolution.automscc.com/group/findGroupInfos/{{ $('Edit Fields').item.json.instancia }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "groupJid",
+              "value": "={{ $json.id }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2100,
+        240
+      ],
+      "id": "90bfcb71-0192-47a5-ad03-4c60f2df0b83",
+      "name": "NOMBRE"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_L6_WHA",
+          "mode": "list",
+          "cachedResultName": "GERSSON_L6_WHA"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "whatsapp",
+              "condition": "LIKE",
+              "value": "=%{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}%"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        2260,
+        240
+      ],
+      "id": "aaef5c4c-e6d2-4c6e-b81b-bc298198a2b4",
+      "name": "busqueda",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_L6_WHA",
+          "mode": "list",
+          "cachedResultName": "GERSSON_L6_WHA"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "dia",
+              "value": "={{ $now.format('yyyy-MM-dd') }}"
+            },
+            {
+              "column": "hora",
+              "value": "={{ $now.format('HH:mm:ss') }}"
+            },
+            {
+              "column": "whatsapp",
+              "value": "=+{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}"
+            },
+            {
+              "column": "grupo",
+              "value": "={{ $('Edit Fields').item.json.grupo }}"
+            },
+            {
+              "column": "nombre_grupo",
+              "value": "={{ $('NOMBRE').item.json.subject }}"
+            },
+            {
+              "column": "fuente",
+              "value": "FB ADS"
+            }
+          ]
+        },
+        "options": {
+          "detailedOutput": true
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        2620,
+        220
+      ],
+      "id": "32a3c67d-3849-40bc-b9d2-a732f3a87c10",
+      "name": "escritura",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7f3e8099-ae55-4534-a5be-217d413c0ff2",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2400,
+        240
+      ],
+      "id": "abde33a3-3532-4158-8ef1-0894541dd9ca",
+      "name": "no existe?"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('Webhook').item.json.body.instance }}?groupJid={{ $('Edit Fields').item.json.grupo }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{ \"action\": \"remove\", \n  \n  \"participants\": [ \"{{ $('Edit Fields').item.json.numero }}\" ] } ",
+        "options": {}
+      },
+      "id": "fe055f3b-a869-46fc-a435-7c8e76f07428",
+      "name": "ELIMINAR +58",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2100,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "collection": "=TD-l6",
+        "options": {},
+        "query": "={\n  \"whatsapp\": {\n    \"$regex\": \".*{{ $('Edit Fields').item.json.numero.replace(/\\D/g, \"\").slice(-6) }}.*\",\n    \"$options\": \"i\"\n  }\n}"
+      },
+      "id": "5050bc71-0a7f-4743-8e5c-2990400df735",
+      "name": "encontrar",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        2100,
+        60
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mongoDb": {
+          "id": "vbsT0SoMA5A3acgH",
+          "name": "BASE DE DATOS GERSSON"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.manychat.com/fb/subscriber/addTagByName",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"tag_name\": \"INGRESOGRUPO-L6\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2280,
+        60
+      ],
+      "id": "f8d1b083-0e2c-4ddc-b657-deefee2de178",
+      "name": "tag manychat",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "maxTries": 5,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8d2037fa-e2a7-4668-901e-4ca0a27a93ab",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "6b950143-cad3-4b26-b189-c2fbe0b08256",
+      "name": "ES UÑAS?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2060,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8d2037fa-e2a7-4668-901e-4ca0a27a93ab",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "3eb23b6c-4d35-4d1b-bc97-495f1adeba58",
+      "name": "ES TD?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1680,
+        320
+      ]
+    },
+    {
+      "parameters": {
         "operation": "select",
         "table": {
           "__rl": true,
@@ -886,12 +673,12 @@
         "options": {}
       },
       "id": "dd3162f4-ebca-4577-b101-5e143430a2e1",
-      "name": "BD ARZA CEJAS",
+      "name": "BD UÑAS",
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        2160,
-        620
+        1900,
+        640
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -903,31 +690,255 @@
     },
     {
       "parameters": {
-        "amount": 10
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6e074b0d-4663-476d-ae90-8be442f648cd",
+              "leftValue": "={{ $('Edit Fields').item.json.numero }}",
+              "rightValue": "58",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
       },
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
+      "id": "140accb6-76da-47b0-8539-b31efbc33924",
+      "name": "VENEZUELA?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
       "position": [
-        2460,
-        340
-      ],
-      "id": "46cfde3e-8111-4c3b-9bf9-35262b991448",
-      "name": "Wait",
-      "webhookId": "2173a5eb-e116-42a4-8f13-a634b14fc474"
+        2280,
+        620
+      ]
     },
     {
       "parameters": {
-        "amount": 10
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6e074b0d-4663-476d-ae90-8be442f648cd",
+              "leftValue": "={{ $('Edit Fields').item.json.numero }}",
+              "rightValue": "58",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
       },
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
+      "id": "6ab5d11b-90de-4ec0-b036-cfb425bba0eb",
+      "name": "VENEZUELA?1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
       "position": [
-        3120,
-        680
+        1920,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('Webhook').item.json.body.instance }}?groupJid={{ $('Edit Fields').item.json.grupo }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{ \"action\": \"remove\", \n  \n  \"participants\": [ \"{{ $('Edit Fields').item.json.numero }}\" ] } ",
+        "options": {}
+      },
+      "id": "cdb2b909-ff01-4fe2-91a5-b73006b98d91",
+      "name": "ELIMINAR +",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2480,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://evolution.automscc.com/group/findGroupInfos/{{ $('Edit Fields').item.json.instancia }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "groupJid",
+              "value": "={{ $json.id }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2480,
+        640
       ],
-      "id": "6982a9d9-82dd-434a-b4fb-32ee0a057e3d",
-      "name": "Wait2",
-      "webhookId": "2173a5eb-e116-42a4-8f13-a634b14fc474"
+      "id": "db7ba858-50cd-4d94-81bb-71e353657f24",
+      "name": "NOMBRE1"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "ARZA_UÑAS_WHA",
+          "mode": "list",
+          "cachedResultName": "ARZA_UÑAS_WHA"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "whatsapp",
+              "condition": "LIKE",
+              "value": "=%{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}%"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        2640,
+        640
+      ],
+      "id": "9f763c9d-5423-4e94-8803-04ee4d5d1893",
+      "name": "busqueda1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "ARZA_UÑAS_WHA",
+          "mode": "list",
+          "cachedResultName": "ARZA_UÑAS_WHA"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "dia",
+              "value": "={{ $now.format('yyyy-MM-dd') }}"
+            },
+            {
+              "column": "hora",
+              "value": "={{ $now.format('HH:mm:ss') }}"
+            },
+            {
+              "column": "whatsapp",
+              "value": "=+{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}"
+            },
+            {
+              "column": "grupo",
+              "value": "={{ $('Edit Fields').item.json.grupo }}"
+            },
+            {
+              "column": "nombre_grupo",
+              "value": "={{ $('NOMBRE1').item.json.subject }}"
+            },
+            {
+              "column": "fuente",
+              "value": "FB ADS"
+            }
+          ]
+        },
+        "options": {
+          "detailedOutput": true
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        3000,
+        620
+      ],
+      "id": "7a25cc11-8719-4090-80b6-f7a7737a471f",
+      "name": "escritura1",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7f3e8099-ae55-4534-a5be-217d413c0ff2",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2800,
+        640
+      ],
+      "id": "19423da8-51b0-4db7-90e5-29b2e23cd75f",
+      "name": "no existe?1"
     }
   ],
   "pinData": {
@@ -937,36 +948,36 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "axios/1.7.9",
-            "content-length": "406",
+            "content-length": "402",
             "accept-encoding": "gzip, compress, deflate, br",
             "content-type": "application/json",
             "x-forwarded-for": "172.18.0.1",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "0f86eb816a4d",
+            "x-forwarded-server": "3051a3bb6625",
             "x-real-ip": "172.18.0.1"
           },
           "params": {},
           "query": {},
           "body": {
             "event": "group-participants.update",
-            "instance": "fran",
+            "instance": "JUANCA",
             "data": {
-              "id": "120363378573886462@g.us",
+              "id": "120363384878432671@g.us",
               "author": "",
               "participants": [
-                "573245904626@s.whatsapp.net"
+                "56998059494@s.whatsapp.net"
               ],
               "action": "add"
             },
-            "destination": "https://n8n.automscc.com/webhook/webhooks-wha-fran",
-            "date_time": "2025-02-05T03:03:01.580Z",
-            "sender": "573218504711@s.whatsapp.net",
+            "destination": "https://n8n.automscc.com/webhook/webhooks-wha",
+            "date_time": "2025-02-19T23:34:09.014Z",
+            "sender": "573017817643@s.whatsapp.net",
             "server_url": "http://evolution.automscc.com",
-            "apikey": "05122F14E37B-4AC4-AF45-02CFD55CEEB7"
+            "apikey": "0A3BBB105AEA-46B2-ADAD-27FE2369B711"
           },
-          "webhookUrl": "https://n8n.automscc.com/webhook/webhooks-wha-fran",
+          "webhookUrl": "https://n8n.automscc.com/webhook/webhooks-wha",
           "executionMode": "production"
         }
       }
@@ -981,8 +992,27 @@
     "callerPolicy": "workflowsFromSameOwner"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2025-02-04T22:36:35.108Z",
+      "updatedAt": "2025-02-04T22:36:35.108Z",
+      "id": "HjNWwvqlBnseDfSA",
+      "name": "GERSSON"
+    },
+    {
+      "createdAt": "2025-02-20T03:14:39.493Z",
+      "updatedAt": "2025-02-20T03:14:39.493Z",
+      "id": "fMteddKWhaFhuYHk",
+      "name": "MYSQL"
+    },
+    {
+      "createdAt": "2025-02-04T22:36:43.008Z",
+      "updatedAt": "2025-02-04T22:36:43.008Z",
+      "id": "ux9yUSYJLDIzqblK",
+      "name": "CARLOS ARZA"
+    }
+  ],
   "triggerCount": 1,
-  "updatedAt": "2025-02-19T00:22:16.000Z",
-  "versionId": "e96fdd06-967f-432e-97fc-b41adf785e77"
+  "updatedAt": "2025-02-20T05:07:50.000Z",
+  "versionId": "156fd951-b1bb-4201-aaed-9847b274c67f"
 }
