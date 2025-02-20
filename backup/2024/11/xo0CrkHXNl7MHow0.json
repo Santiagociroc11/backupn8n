@@ -195,7 +195,7 @@
       "main": [
         [
           {
-            "node": "Evolution API",
+            "node": "Evolution API2",
             "type": "main",
             "index": 0
           }
@@ -306,6 +306,64 @@
       ]
     },
     "Evolution API1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evolution API2": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Evolution API",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Evolution API3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evolution API3": {
       "main": [
         [
           {
@@ -595,8 +653,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        6180,
-        260
+        7060,
+        280
       ],
       "webhookId": "04d20b36-0a44-40cf-877c-5058e5bec8e6"
     },
@@ -819,8 +877,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        5460,
-        -60
+        5540,
+        -100
       ]
     },
     {
@@ -850,8 +908,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        5460,
-        240
+        5540,
+        200
       ]
     },
     {
@@ -881,8 +939,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        5460,
-        80
+        5540,
+        40
       ]
     },
     {
@@ -972,13 +1030,13 @@
         "operation": "update-participants",
         "instanceName": "={{ $('Variables').first().json['Instancia Evolution API'] }}",
         "groupJid": "={{ $('Procesado').first().json.id }}",
-        "participants": "={{ $('Form1').first().json.ADMINS }}"
+        "participants": "={{ $('Switch').item.json.missingAdmins }}"
       },
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        5360,
-        -300
+        6140,
+        -560
       ],
       "id": "b958b03a-61a6-4cc3-ae07-c64df4b7eae0",
       "name": "Evolution API",
@@ -996,16 +1054,169 @@
         "instanceName": "={{ $('Variables').first().json['Instancia Evolution API'] }}",
         "groupJid": "={{ $('Procesado').first().json.id }}",
         "action": "promote",
-        "participants": "={{ $('Form1').first().json.ADMINS }}"
+        "participants": "={{ $('Switch').item.json.missingAdmins }}"
       },
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        5540,
-        -300
+        6360,
+        -560
       ],
       "id": "8aab5204-ea8e-4a4c-b062-39b1971305b2",
       "name": "Evolution API1",
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "vps 1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "groups-api",
+        "operation": "find-participants",
+        "instanceName": "={{ $('Variables').item.json['Instancia Evolution API'] }}",
+        "groupJid": "={{ $('Procesado').item.json.id }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        5300,
+        -400
+      ],
+      "id": "2543892a-e7e5-4aa7-b2c9-0a63707bba14",
+      "name": "Evolution API2",
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "vps 1"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtener la lista de Admins desde la variable que proviene del formulario\nlet adminsFromForm = $('Form1').first().json.ADMINS; \nlet adminsArray = adminsFromForm.split(\",\").map(admin => admin.replace(/\\D/g, \"\")); // Limpiar los admin y obtener solo números\n\n// Obtener el JSON de entrada (array de participantes) desde el nodo anterior\nlet inputJson = $input.first().json.data.participants;\n\n// Limpiar los participantes: Solo quedarse con los números en el id\nlet participantsArray = inputJson.map(participant => ({\n    id: participant.id.replace(/\\D/g, \"\"), // Limpiar el id del participante, dejando solo números\n    admin: participant.admin // Guardar el valor de admin también\n}));\n\n// Crear variables que almacenarán los IDs de los admins faltantes, válidos e inválidos\nlet missingAdmins = [];\nlet validAdmins = [];\nlet invalidAdmins = [];\n\n// Verificar si cada admin está en la lista de participantes\nadminsArray.forEach(admin => {\n    let participant = participantsArray.find(p => p.id === admin); // Buscar al participante por id\n\n    if (!participant) {\n        // Si el admin no está en la lista de participantes\n        missingAdmins.push(admin); \n    } else {\n        // Si el admin está en la lista, verificar si tiene el campo \"admin\" diferente de null\n        if (participant.admin !== null) {\n            validAdmins.push(admin); // Agregar admin válido si tiene un valor distinto a null\n        } else {\n            invalidAdmins.push(admin); // Agregar admin inválido si \"admin\" es null\n        }\n    }\n});\n\n// Si faltan admins, o si hay admins válidos, o inválidos, devolver el JSON con la información\nif (missingAdmins.length > 0 || validAdmins.length > 0 || invalidAdmins.length > 0) {\n    return {\n        json: {\n            missingAdmins: missingAdmins.join(\",\"),\n            validAdmins: validAdmins.join(\",\"),\n            invalidAdmins: invalidAdmins.join(\",\")\n        }\n    };\n} else {\n    return {\n        json: {} // Si no faltan admins, no hay admins válidos ni inválidos\n    };\n}\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5580,
+        -400
+      ],
+      "id": "35ea1d1f-f7a7-4505-b097-a375f0b752d5",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.missingAdmins }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEmpty",
+                      "singleValue": true
+                    },
+                    "id": "9d298e3e-2ff6-4202-bdbb-a8f90fb50924"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NO EXISTEN"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "3b4ef31b-8e16-4b80-b9c9-7bd44af59520",
+                    "leftValue": "={{ $json.validAdmins }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEmpty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "SON ADMIN"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4badef7c-205f-4ba1-adc1-7ec5a47b4fd7",
+                    "leftValue": "={{ $json.invalidAdmins }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEmpty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NO SON ADMIN"
+            }
+          ]
+        },
+        "options": {
+          "allMatchingOutputs": true
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        5800,
+        -400
+      ],
+      "id": "47d9216a-c56b-4932-af66-261c95622584",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "resource": "groups-api",
+        "operation": "update-participants",
+        "instanceName": "={{ $('Variables').first().json['Instancia Evolution API'] }}",
+        "groupJid": "={{ $('Procesado').first().json.id }}",
+        "action": "promote",
+        "participants": "={{ $('Switch').item.json.invalidAdmins }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        6260,
+        -380
+      ],
+      "id": "c61da933-afb7-49ad-9490-95c9f674bbef",
+      "name": "Evolution API3",
       "credentials": {
         "evolutionApi": {
           "id": "Png3VbsnUeyqI5UL",
@@ -1021,728 +1232,10 @@
           "TIPO DE ACCIÓN": "AGREGAR ADMIN",
           "NOMBRE NUEVO": "",
           "DESCRIPCION": "",
-          "ADMINS": "573107174784",
+          "ADMINS": "573058176936,573158989416,573160780201,573218504711",
           "IMAGEN": null,
-          "submittedAt": "2025-02-18T10:21:04.019-05:00",
+          "submittedAt": "2025-02-19T20:51:38.379-05:00",
           "formMode": "production"
-        }
-      }
-    ],
-    "Variables": [
-      {
-        "json": {
-          "Url Evolution API": "https://evolution.automscc.com/",
-          "Apikey Evolution API": "429683C4C977415CAAFCCE10F7D57E11",
-          "Instancia Evolution API": "JUANCA"
-        }
-      }
-    ],
-    "TablaInst": [
-      {
-        "json": {
-          "options": [
-            {
-              "option": "API-HOTMART"
-            },
-            {
-              "option": "JUANCA"
-            },
-            {
-              "option": "santiago"
-            },
-            {
-              "option": "[EMP]-WHA1"
-            },
-            {
-              "option": "API GERSSON - SOPORTE"
-            }
-          ]
-        }
-      }
-    ],
-    "Form2": [
-      {
-        "json": {
-          "Que instancia usarás?": "JUANCA",
-          "Que tabla?": "ARZA_UÑAS_LINKS",
-          "submittedAt": "2025-02-18T10:26:11.644-05:00",
-          "formMode": "production"
-        }
-      }
-    ],
-    "HTTP Request": [
-      {
-        "json": {
-          "id": "088b117d-d2fc-4c98-bc86-2ea828ba9b20",
-          "name": "API-HOTMART",
-          "connectionStatus": "open",
-          "ownerJid": null,
-          "profileName": null,
-          "profilePicUrl": null,
-          "integration": "WHATSAPP-BUSINESS",
-          "number": "595736856956398",
-          "businessId": "495905716948702",
-          "token": "EAAPsz4GpCJYBOxmEYPEhZBdW8LB7VgfJ2pl6X1iWu1gdDfxcCd6dFhJyEbZAWNZA8Wpls8jkBDBI5JKJmeaIn9ZCBVJi9APq3hLrAgFuFhGmDgDgAvWKZAG5NXhZAz9b96UsMVLRpnziUnlApDRLt2w3jawiSEsiIeEn7enTVNh9ppEteYhxSqnsAnhV8EVskuQQZDZD",
-          "clientName": "evolution_exchange",
-          "disconnectionReasonCode": null,
-          "disconnectionObject": null,
-          "disconnectionAt": null,
-          "createdAt": "2025-01-22T06:01:45.102Z",
-          "updatedAt": "2025-01-22T06:01:45.102Z",
-          "Chatwoot": {
-            "id": "cm67hzpb414lmy9x3hyfj8omv",
-            "enabled": true,
-            "accountId": "2",
-            "token": "wTVRJs9UfamwhTqcAqNpdqWE",
-            "url": "https://n8n-chatwoot.wc2hpx.easypanel.host",
-            "nameInbox": "API-HOTMART",
-            "signMsg": false,
-            "signDelimiter": null,
-            "number": null,
-            "reopenConversation": true,
-            "conversationPending": false,
-            "mergeBrazilContacts": false,
-            "importContacts": false,
-            "importMessages": false,
-            "daysLimitImportMessages": 7,
-            "organization": "",
-            "logo": "",
-            "ignoreJids": [],
-            "createdAt": "2025-01-22T06:03:06.593Z",
-            "updatedAt": "2025-02-07T04:23:10.526Z",
-            "instanceId": "088b117d-d2fc-4c98-bc86-2ea828ba9b20"
-          },
-          "Proxy": null,
-          "Rabbitmq": null,
-          "Sqs": null,
-          "Websocket": null,
-          "Setting": {
-            "id": "cm67hxyfm14lky9x3o5iy2kk5",
-            "rejectCall": false,
-            "msgCall": "",
-            "groupsIgnore": false,
-            "alwaysOnline": false,
-            "readMessages": false,
-            "readStatus": false,
-            "syncFullHistory": false,
-            "wavoipToken": null,
-            "createdAt": "2025-01-22T06:01:45.106Z",
-            "updatedAt": "2025-01-22T06:01:45.106Z",
-            "instanceId": "088b117d-d2fc-4c98-bc86-2ea828ba9b20"
-          },
-          "_count": {
-            "Message": 1466,
-            "Contact": 0,
-            "Chat": 0
-          }
-        }
-      },
-      {
-        "json": {
-          "id": "3828ab64-55c4-406d-9197-6b2cacd3f964",
-          "name": "JUANCA",
-          "connectionStatus": "open",
-          "ownerJid": "573017817643@s.whatsapp.net",
-          "profileName": "Juan Carlos",
-          "profilePicUrl": "https://pps.whatsapp.net/v/t61.24694-24/455307745_1781163155970148_845172230304719599_n.jpg?ccb=11-4&oh=01_Q5AaIHPoaujzhHCqIXUiAILxRfmy8u07KI9OXh8pVUfqARBj&oe=67C19F0D&_nc_sid=5e03e0&_nc_cat=102",
-          "integration": "WHATSAPP-BAILEYS",
-          "number": null,
-          "businessId": null,
-          "token": "0A3BBB105AEA-46B2-ADAD-27FE2369B711",
-          "clientName": "evolution_exchange",
-          "disconnectionReasonCode": null,
-          "disconnectionObject": null,
-          "disconnectionAt": null,
-          "createdAt": "2025-02-13T18:13:36.985Z",
-          "updatedAt": "2025-02-18T12:00:36.899Z",
-          "Chatwoot": null,
-          "Proxy": null,
-          "Rabbitmq": null,
-          "Sqs": null,
-          "Websocket": null,
-          "Setting": {
-            "id": "cm73nrvq605n4oa556nga6i5p",
-            "rejectCall": false,
-            "msgCall": "",
-            "groupsIgnore": false,
-            "alwaysOnline": false,
-            "readMessages": false,
-            "readStatus": false,
-            "syncFullHistory": false,
-            "wavoipToken": "",
-            "createdAt": "2025-02-13T18:13:36.990Z",
-            "updatedAt": "2025-02-13T18:13:36.990Z",
-            "instanceId": "3828ab64-55c4-406d-9197-6b2cacd3f964"
-          },
-          "_count": {
-            "Message": 91362,
-            "Contact": 5196,
-            "Chat": 17333
-          }
-        }
-      },
-      {
-        "json": {
-          "id": "9550485e-7827-4bc9-bfca-034e671d6704",
-          "name": "santiago",
-          "connectionStatus": "open",
-          "ownerJid": "573136298562@s.whatsapp.net",
-          "profileName": "Santi C",
-          "profilePicUrl": "https://pps.whatsapp.net/v/t61.24694-24/441586516_819497256800053_858432366453777428_n.jpg?ccb=11-4&oh=01_Q5AaIAJV9GiYLKBFIxW0iZ1o33GpO1zn0ZmQpuZq5CYFC0GU&oe=67BCC839&_nc_sid=5e03e0&_nc_cat=107",
-          "integration": "WHATSAPP-BAILEYS",
-          "number": null,
-          "businessId": null,
-          "token": "7A0D7F9C744D-4F18-8833-BD965F843FD2",
-          "clientName": "evolution_exchange",
-          "disconnectionReasonCode": 401,
-          "disconnectionObject": "{\"error\":{\"data\":{\"tag\":\"stream:error\",\"attrs\":{\"code\":\"401\"},\"content\":[{\"tag\":\"conflict\",\"attrs\":{\"type\":\"device_removed\"}}]},\"isBoom\":true,\"isServer\":false,\"output\":{\"statusCode\":401,\"payload\":{\"statusCode\":401,\"error\":\"Unauthorized\",\"message\":\"Stream Errored (conflict)\"},\"headers\":{}}},\"date\":\"2025-02-07T23:21:42.063Z\"}",
-          "disconnectionAt": "2025-02-07T23:21:42.065Z",
-          "createdAt": "2025-01-11T20:23:43.770Z",
-          "updatedAt": "2025-02-14T21:43:31.082Z",
-          "Chatwoot": null,
-          "Proxy": null,
-          "Rabbitmq": null,
-          "Sqs": null,
-          "Websocket": null,
-          "Setting": {
-            "id": "cm5smw3hasm99y9x3im8foo0i",
-            "rejectCall": false,
-            "msgCall": "",
-            "groupsIgnore": false,
-            "alwaysOnline": false,
-            "readMessages": false,
-            "readStatus": false,
-            "syncFullHistory": false,
-            "wavoipToken": null,
-            "createdAt": "2025-01-11T20:23:43.774Z",
-            "updatedAt": "2025-01-11T20:23:43.774Z",
-            "instanceId": "9550485e-7827-4bc9-bfca-034e671d6704"
-          },
-          "_count": {
-            "Message": 134339,
-            "Contact": 3899,
-            "Chat": 18011
-          }
-        }
-      },
-      {
-        "json": {
-          "id": "b68ae927-234b-484f-a12f-bc8b0b050931",
-          "name": "[EMP]-WHA1",
-          "connectionStatus": "open",
-          "ownerJid": "573245207576@s.whatsapp.net",
-          "profileName": "Andrea Asesora",
-          "profilePicUrl": "https://pps.whatsapp.net/v/t61.24694-24/469965509_595412439554993_4532148904261326463_n.jpg?ccb=11-4&oh=01_Q5AaIDSdmrvWKaHNJ5Quqwzey6YTAQy384_-X3d35IhsKWKF&oe=67BCCD38&_nc_sid=5e03e0&_nc_cat=108",
-          "integration": "WHATSAPP-BAILEYS",
-          "number": null,
-          "businessId": null,
-          "token": "0B9DCBA6E4CD-4F10-86EC-A07E82F208D4",
-          "clientName": "evolution_exchange",
-          "disconnectionReasonCode": null,
-          "disconnectionObject": null,
-          "disconnectionAt": null,
-          "createdAt": "2024-12-16T20:51:20.405Z",
-          "updatedAt": "2025-02-14T22:51:20.430Z",
-          "Chatwoot": null,
-          "Proxy": null,
-          "Rabbitmq": null,
-          "Sqs": null,
-          "Websocket": null,
-          "Setting": {
-            "id": "cm4rifgf1qhacy9x38efeg8tr",
-            "rejectCall": false,
-            "msgCall": "",
-            "groupsIgnore": false,
-            "alwaysOnline": false,
-            "readMessages": false,
-            "readStatus": false,
-            "syncFullHistory": false,
-            "wavoipToken": null,
-            "createdAt": "2024-12-16T20:51:20.413Z",
-            "updatedAt": "2024-12-16T20:51:20.413Z",
-            "instanceId": "b68ae927-234b-484f-a12f-bc8b0b050931"
-          },
-          "_count": {
-            "Message": 7699,
-            "Contact": 1947,
-            "Chat": 293
-          }
-        }
-      },
-      {
-        "json": {
-          "id": "e9992c82-a0e4-40c7-955b-438e7a6cdbdc",
-          "name": "API GERSSON - SOPORTE",
-          "connectionStatus": "open",
-          "ownerJid": null,
-          "profileName": null,
-          "profilePicUrl": null,
-          "integration": "WHATSAPP-BUSINESS",
-          "number": "285551527971753",
-          "businessId": "313969135122559",
-          "token": "EAAOHZBBqoXs4BOwfCbXGAdAVrwdP5IM2pZCiKXqTGyl2jap7NJLpmiyPWh3m2aaszaVB5GaC4Y19d9D23aZAeZA5FTv7WgmB33HxjnEXZCEQg0Xg5OWhX6sLqlfOfWdMK5LjRifkVsjbX3FNpAJPXdKJMZAN33GFIsUP0OKUGSYZACTqZCmZClPQsXktYZCFLquS6MNgZDZD",
-          "clientName": "evolution_exchange",
-          "disconnectionReasonCode": null,
-          "disconnectionObject": null,
-          "disconnectionAt": null,
-          "createdAt": "2025-02-06T18:12:24.874Z",
-          "updatedAt": "2025-02-06T18:12:24.874Z",
-          "Chatwoot": null,
-          "Proxy": null,
-          "Rabbitmq": null,
-          "Sqs": null,
-          "Websocket": null,
-          "Setting": {
-            "id": "cm6tnndf100khpt54vxn5zgw5",
-            "rejectCall": false,
-            "msgCall": "",
-            "groupsIgnore": false,
-            "alwaysOnline": false,
-            "readMessages": false,
-            "readStatus": false,
-            "syncFullHistory": false,
-            "wavoipToken": "",
-            "createdAt": "2025-02-06T18:12:24.877Z",
-            "updatedAt": "2025-02-06T18:12:24.877Z",
-            "instanceId": "e9992c82-a0e4-40c7-955b-438e7a6cdbdc"
-          },
-          "_count": {
-            "Message": 394,
-            "Contact": 0,
-            "Chat": 0
-          }
-        }
-      }
-    ],
-    "BodyInst": [
-      {
-        "json": {
-          "fieldLabel": "Que instancia usarás?",
-          "fieldType": "dropdown",
-          "fieldOptions": {
-            "values": [
-              {
-                "option": "API-HOTMART"
-              },
-              {
-                "option": "JUANCA"
-              },
-              {
-                "option": "santiago"
-              },
-              {
-                "option": "[EMP]-WHA1"
-              },
-              {
-                "option": "API GERSSON - SOPORTE"
-              }
-            ]
-          },
-          "requiredField": true
-        }
-      }
-    ],
-    "UnicosSql": [
-      {
-        "json": {
-          "table_name": "ADRIANA_LINKS"
-        }
-      },
-      {
-        "json": {
-          "table_name": "ADRIANA_LINKS_ORG"
-        }
-      },
-      {
-        "json": {
-          "table_name": "ARZA_CEJAS_LINKS"
-        }
-      },
-      {
-        "json": {
-          "table_name": "ARZA_UÑAS_LINKS"
-        }
-      },
-      {
-        "json": {
-          "table_name": "C_LINKS"
-        }
-      },
-      {
-        "json": {
-          "table_name": "GERSSON_LINKS"
-        }
-      },
-      {
-        "json": {
-          "table_name": "GERSSON_LINKS_ORG"
-        }
-      },
-      {
-        "json": {
-          "table_name": "GERSSON_LINKS_TIKTOK"
-        }
-      },
-      {
-        "json": {
-          "table_name": "GERSSON_LINKS_VIP"
-        }
-      },
-      {
-        "json": {
-          "table_name": "pruebas"
-        }
-      }
-    ],
-    "JsonSql": [
-      {
-        "json": {
-          "options": [
-            {
-              "option": "ADRIANA_LINKS"
-            },
-            {
-              "option": "ADRIANA_LINKS_ORG"
-            },
-            {
-              "option": "ARZA_CEJAS_LINKS"
-            },
-            {
-              "option": "ARZA_UÑAS_LINKS"
-            },
-            {
-              "option": "C_LINKS"
-            },
-            {
-              "option": "GERSSON_LINKS"
-            },
-            {
-              "option": "GERSSON_LINKS_ORG"
-            },
-            {
-              "option": "GERSSON_LINKS_TIKTOK"
-            },
-            {
-              "option": "GERSSON_LINKS_VIP"
-            },
-            {
-              "option": "pruebas"
-            }
-          ]
-        }
-      }
-    ],
-    "MySQL1": [
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "ADRIANA_IPS"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "ADRIANA_IPS_ORG"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "ADRIANA_LINKS"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "ADRIANA_LINKS_ORG"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "ARZA_CEJAS_IPS"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "ARZA_CEJAS_LINKS"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "ARZA_UÑAS_IPS"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "ARZA_UÑAS_LINKS"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "C_IPS"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "C_LINKS"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS_ORG"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS_TIKTOK"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_IPS_VIP"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS_ORG"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS_TIKTOK"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "GERSSON_LINKS_VIP"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "pruebas"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "redirect_limit"
-        }
-      },
-      {
-        "json": {
-          "Tables_in_u698892974_REDIRECCIONES": "redirect_limit_org"
-        }
-      }
-    ],
-    "BodySql": [
-      {
-        "json": {
-          "fieldLabel": "Que tabla?",
-          "fieldType": "dropdown",
-          "fieldOptions": {
-            "values": [
-              {
-                "option": "ADRIANA_LINKS"
-              },
-              {
-                "option": "ADRIANA_LINKS_ORG"
-              },
-              {
-                "option": "ARZA_CEJAS_LINKS"
-              },
-              {
-                "option": "ARZA_UÑAS_LINKS"
-              },
-              {
-                "option": "C_LINKS"
-              },
-              {
-                "option": "GERSSON_LINKS"
-              },
-              {
-                "option": "GERSSON_LINKS_ORG"
-              },
-              {
-                "option": "GERSSON_LINKS_TIKTOK"
-              },
-              {
-                "option": "GERSSON_LINKS_VIP"
-              },
-              {
-                "option": "pruebas"
-              }
-            ]
-          },
-          "requiredField": false
-        }
-      }
-    ],
-    "MySQL": [
-      {
-        "json": {
-          "#": 1,
-          "nombre": "Semana de las Uñas #1",
-          "link": "https://chat.whatsapp.com/C0QrgvaN8fFHUAZHRVw0TQ",
-          "id": "120363399392076843@g.us",
-          "Total": 1000,
-          "bienvenida": "no"
-        }
-      },
-      {
-        "json": {
-          "#": 2,
-          "nombre": "Semana de las Uñas #2",
-          "link": "https://chat.whatsapp.com/EPnrtPIVzk77bB7wV5aool",
-          "id": "120363399582298928@g.us",
-          "Total": 735,
-          "bienvenida": "no"
-        }
-      },
-      {
-        "json": {
-          "#": 3,
-          "nombre": "Semana de las Uñas #3",
-          "link": "https://chat.whatsapp.com/EP4XW5Zwe0P6BkSShLhani",
-          "id": "120363382097708139@g.us",
-          "Total": 0,
-          "bienvenida": "no"
-        }
-      },
-      {
-        "json": {
-          "#": 4,
-          "nombre": "Semana de las uñas #4",
-          "link": "https://chat.whatsapp.com/LcWYtGIyv7m2UIpZgHDqnX",
-          "id": "120363404032549152@g.us",
-          "Total": 0,
-          "bienvenida": "no"
-        }
-      },
-      {
-        "json": {
-          "#": 5,
-          "nombre": "Semana de las uñas #5",
-          "link": "https://chat.whatsapp.com/FwlzF2FxrInK3KnlMgzCnV",
-          "id": "120363404692395378@g.us",
-          "Total": 0,
-          "bienvenida": "no"
-        }
-      },
-      {
-        "json": {
-          "#": 6,
-          "nombre": "Semana de las uñas #6",
-          "link": "https://chat.whatsapp.com/J6pDC2TnuYs3ayW6ZGh6cJ",
-          "id": "120363402089292116@g.us",
-          "Total": 0,
-          "bienvenida": "no"
-        }
-      },
-      {
-        "json": {
-          "#": 7,
-          "nombre": "Semana de las uñas #7",
-          "link": "https://chat.whatsapp.com/Fpq5KBGL7pr5SYnxnicUyV",
-          "id": "120363385877180375@g.us",
-          "Total": 0,
-          "bienvenida": "no"
-        }
-      },
-      {
-        "json": {
-          "#": 8,
-          "nombre": "Semana de las uñas #8",
-          "link": "https://chat.whatsapp.com/E9QJHu7goCZ9JI6UHT0h7H",
-          "id": "120363384154461383@g.us",
-          "Total": 0,
-          "bienvenida": "no"
-        }
-      }
-    ],
-    "Code1": [
-      {
-        "json": {
-          "#": 1,
-          "nombre": " #1",
-          "link": "https://chat.whatsapp.com/C0QrgvaN8fFHUAZHRVw0TQ",
-          "id": "120363399392076843@g.us",
-          "Total": 1000,
-          "bienvenida": "no"
-        }
-      },
-      {
-        "json": {
-          "#": 2,
-          "nombre": " #2",
-          "link": "https://chat.whatsapp.com/EPnrtPIVzk77bB7wV5aool",
-          "id": "120363399582298928@g.us",
-          "Total": 735,
-          "bienvenida": "no"
-        }
-      },
-      {
-        "json": {
-          "#": 3,
-          "nombre": " #3",
-          "link": "https://chat.whatsapp.com/EP4XW5Zwe0P6BkSShLhani",
-          "id": "120363382097708139@g.us",
-          "Total": 0,
-          "bienvenida": "no"
-        }
-      },
-      {
-        "json": {
-          "#": 4,
-          "nombre": " #4",
-          "link": "https://chat.whatsapp.com/LcWYtGIyv7m2UIpZgHDqnX",
-          "id": "120363404032549152@g.us",
-          "Total": 0,
-          "bienvenida": "no"
-        }
-      },
-      {
-        "json": {
-          "#": 5,
-          "nombre": " #5",
-          "link": "https://chat.whatsapp.com/FwlzF2FxrInK3KnlMgzCnV",
-          "id": "120363404692395378@g.us",
-          "Total": 0,
-          "bienvenida": "no"
-        }
-      },
-      {
-        "json": {
-          "#": 6,
-          "nombre": " #6",
-          "link": "https://chat.whatsapp.com/J6pDC2TnuYs3ayW6ZGh6cJ",
-          "id": "120363402089292116@g.us",
-          "Total": 0,
-          "bienvenida": "no"
-        }
-      },
-      {
-        "json": {
-          "#": 7,
-          "nombre": " #7",
-          "link": "https://chat.whatsapp.com/Fpq5KBGL7pr5SYnxnicUyV",
-          "id": "120363385877180375@g.us",
-          "Total": 0,
-          "bienvenida": "no"
-        }
-      },
-      {
-        "json": {
-          "#": 8,
-          "nombre": " #8",
-          "link": "https://chat.whatsapp.com/E9QJHu7goCZ9JI6UHT0h7H",
-          "id": "120363384154461383@g.us",
-          "Total": 0,
-          "bienvenida": "no"
         }
       }
     ]
@@ -1759,6 +1252,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-02-18T20:31:35.000Z",
-  "versionId": "64e8420a-8756-49b3-bfa2-80291ee33706"
+  "updatedAt": "2025-02-20T01:57:53.000Z",
+  "versionId": "7f412bdc-cc2d-4618-b73e-3ff400729be6"
 }
