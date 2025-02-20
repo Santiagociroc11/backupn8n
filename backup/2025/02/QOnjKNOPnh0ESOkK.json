@@ -16,11 +16,6 @@
       "main": [
         [
           {
-            "node": "Google Sheets",
-            "type": "main",
-            "index": 0
-          },
-          {
             "node": "Edit Fields1",
             "type": "main",
             "index": 0
@@ -55,29 +50,6 @@
         [
           {
             "node": "HTTP Request3",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Sheets": {
-      "main": [
-        [],
-        [
-          {
-            "node": "Wait",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Wait": {
-      "main": [
-        [
-          {
-            "node": "Google Sheets",
             "type": "main",
             "index": 0
           }
@@ -146,117 +118,6 @@
       "id": "d6fdc744-5bae-4992-8d4e-9d7afad0a5e6",
       "name": "Webhook",
       "webhookId": "5eefd8bb-687d-4e06-a2ab-244b6090dad1"
-    },
-    {
-      "parameters": {
-        "operation": "append",
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1B-AZgzqX2eYe-8XZq5buwdZzq0GBz2FwX5xDRUIEFrA/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1B-AZgzqX2eYe-8XZq5buwdZzq0GBz2FwX5xDRUIEFrA/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "columns": {
-          "mappingMode": "autoMapInputData",
-          "value": {},
-          "matchingColumns": [
-            "CORREO"
-          ],
-          "schema": [
-            {
-              "id": "FECHA REGISTRO",
-              "displayName": "FECHA REGISTRO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "HORA",
-              "displayName": "HORA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "CORREO",
-              "displayName": "CORREO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "CAMPAÑA",
-              "displayName": "CAMPAÑA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "SEGMENTACION",
-              "displayName": "SEGMENTACION",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "ANUNCIO",
-              "displayName": "ANUNCIO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "PLATAFORMA",
-              "displayName": "PLATAFORMA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        620,
-        120
-      ],
-      "id": "4b94bda3-75f4-46f8-85bc-30cef79f8b38",
-      "name": "Google Sheets",
-      "retryOnFail": true,
-      "maxTries": 5,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "Google Sheets account"
-        }
-      },
-      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -439,20 +300,6 @@
       ],
       "id": "feb9d42e-4e5e-4fcc-97d0-ee16ea241b5a",
       "name": "Edit Fields1"
-    },
-    {
-      "parameters": {
-        "amount": 10
-      },
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
-      "position": [
-        860,
-        160
-      ],
-      "id": "1c20e0f5-caee-48e6-b954-ae7487674b42",
-      "name": "Wait",
-      "webhookId": "b606e5ea-48cb-48b1-bae5-3fb5f9ef127b"
     },
     {
       "parameters": {
@@ -657,8 +504,21 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2025-02-20T03:14:39.493Z",
+      "updatedAt": "2025-02-20T03:14:39.493Z",
+      "id": "fMteddKWhaFhuYHk",
+      "name": "MYSQL"
+    },
+    {
+      "createdAt": "2025-02-04T22:36:43.008Z",
+      "updatedAt": "2025-02-04T22:36:43.008Z",
+      "id": "ux9yUSYJLDIzqblK",
+      "name": "CARLOS ARZA"
+    }
+  ],
   "triggerCount": 1,
-  "updatedAt": "2025-02-19T01:37:18.000Z",
-  "versionId": "ce806b66-a603-465d-903c-1da605ed9946"
+  "updatedAt": "2025-02-20T03:15:03.000Z",
+  "versionId": "e68a68ea-df55-4940-8751-2653d56caefb"
 }
