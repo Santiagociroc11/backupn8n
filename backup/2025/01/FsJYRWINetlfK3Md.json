@@ -283,6 +283,11 @@
             "node": "Edit Fields2",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -329,6 +334,17 @@
     "HTTP Request": {
       "main": [
         []
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
@@ -508,7 +524,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1320,
+        1540,
         500
       ],
       "id": "5a7ea418-76ed-448a-9468-cf5b3959fe86",
@@ -525,7 +541,7 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        380,
+        600,
         380
       ],
       "alwaysOutputData": true,
@@ -566,7 +582,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        580,
+        800,
         380
       ]
     },
@@ -629,7 +645,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -240,
+        -20,
         520
       ],
       "id": "499c49b3-9825-45d7-95b1-83cb3766554b",
@@ -663,7 +679,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        140,
+        360,
         400
       ],
       "id": "ce00007f-6f5c-4421-bee5-789315dff189",
@@ -678,7 +694,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        960,
+        1180,
         500
       ],
       "id": "ceeb0df9-0276-4200-8430-28c7bb2b7939",
@@ -691,7 +707,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1140,
+        1360,
         500
       ],
       "id": "3c4cefcf-3db5-43f5-a62a-c5aecb30a11a",
@@ -705,7 +721,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        240,
+        460,
         220
       ],
       "id": "b6465234-a1c2-4df3-89ff-eacfa72727ce",
@@ -720,7 +736,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        780,
+        1000,
         240
       ],
       "id": "3effd55b-bf6e-4a9e-8a5e-1c9b63a896bd",
@@ -879,7 +895,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -440,
+        -480,
         520
       ],
       "id": "7d3ef75a-d40f-4d66-8b36-3bdb922ad9ed",
@@ -1345,7 +1361,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        1140,
+        1360,
         680
       ],
       "id": "98524808-4e5d-461b-a0e5-a1bcea4c789d",
@@ -1487,6 +1503,37 @@
           "name": "Google Sheets account"
         }
       }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"chat_id\": \"-1002459933143\",\n  \"message_thread_id\": 63,\n  {{ $json.toJsonString().replace(/^\\{|\\}$/g, \"\")\n }},\n  \"parse_mode\": \"Markdown\"\n}\n",
+        "options": {}
+      },
+      "id": "b24c0596-e7f5-4567-ae10-317c1c61d2be",
+      "name": "HTTP Request3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -40,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "jsonventa = $input.first().json.body.data;\n\n// Extraer datos relevantes\nconst transaction = jsonventa.purchase?.transaction || \"N/A\";\nconst buyerName = jsonventa.buyer?.name || \"N/A\";\nconst pais = jsonventa.buyer?.address?.country || \"N/A\";\nconst buyerEmail = jsonventa.buyer?.email || \"N/A\";\nconst productName = jsonventa.product?.name || \"N/A\";\nconst purchaseDate = new Date(jsonventa.purchase?.order_date).toLocaleString();\n\n// Construir el mensaje\nconst text = `\\n🔔 *Notificación de Venta* \\n\\n` +\n  `🛍 *Producto:* ${productName}\\n` +\n  `💰 *Pais:* ${pais}\\n` +\n  `👤 *Comprador:* ${buyerName}\\n` +\n  `📧 *Correo:* ${buyerEmail}\\n` +\n  `📦 *Transacción:* ${transaction}\\n` +\n  `📅 *Fecha de compra:* ${purchaseDate}\\n`;\n\n// Retornar el JSON con el mensaje\nreturn {\n  json: {\n    text,\n  },\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -240,
+        700
+      ],
+      "id": "f8f7cda9-a9dc-4e04-bee9-e8f48012138f",
+      "name": "Code2"
     }
   ],
   "pinData": {
@@ -1701,6 +1748,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2025-01-27T16:29:48.000Z",
-  "versionId": "f9ca0dda-bb8d-453b-a346-49002e746840"
+  "updatedAt": "2025-02-20T06:27:14.000Z",
+  "versionId": "10684112-7dce-46e0-9ec7-a38ef361fcfd"
 }
