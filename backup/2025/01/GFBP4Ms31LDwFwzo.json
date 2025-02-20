@@ -190,11 +190,6 @@
       "main": [
         [
           {
-            "node": "Google Sheets1",
-            "type": "main",
-            "index": 0
-          },
-          {
             "node": "MySQL1",
             "type": "main",
             "index": 0
@@ -379,11 +374,6 @@
       "main": [
         [
           {
-            "node": "Google Sheets",
-            "type": "main",
-            "index": 0
-          },
-          {
             "node": "MySQL3",
             "type": "main",
             "index": 0
@@ -480,52 +470,6 @@
         ]
       ]
     },
-    "Google Sheets": {
-      "main": [
-        [],
-        [
-          {
-            "node": "Wait",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Wait": {
-      "main": [
-        [
-          {
-            "node": "Google Sheets",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Sheets1": {
-      "main": [
-        [],
-        [
-          {
-            "node": "Wait1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Wait1": {
-      "main": [
-        [
-          {
-            "node": "Google Sheets1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "MySQL1": {
       "main": [
         [
@@ -607,8 +551,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -600,
-        820
+        -660,
+        480
       ],
       "id": "3cb07121-c02b-46cd-bdd7-30032de3b3ad",
       "name": "ENCUESTA",
@@ -643,8 +587,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -340,
-        660
+        -400,
+        320
       ],
       "id": "f0fa67a8-c54e-4ad0-aa21-b75f456527c5",
       "name": "Edit Fields1"
@@ -662,8 +606,8 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        80,
-        660
+        20,
+        320
       ],
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -688,8 +632,8 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        760,
-        780
+        700,
+        440
       ],
       "credentials": {
         "mongoDb": {
@@ -728,8 +672,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        280,
-        660
+        220,
+        320
       ]
     },
     {
@@ -743,8 +687,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        500,
-        780
+        440,
+        440
       ]
     },
     {
@@ -756,8 +700,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        260,
-        880
+        200,
+        540
       ],
       "id": "177a4d34-bfb7-4e1b-87f0-0511b7a50d5c",
       "name": "Merge3"
@@ -774,8 +718,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -340,
-        820
+        -400,
+        480
       ],
       "id": "e07cf4cf-2361-4c19-8834-5f7953ac6878",
       "name": "HTTP Request1",
@@ -792,8 +736,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -340,
-        1000
+        -400,
+        660
       ],
       "id": "65f5481a-bd61-410c-acd1-8b3a479d8362",
       "name": "Edit Fields3"
@@ -807,8 +751,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        20,
-        980
+        -40,
+        640
       ],
       "id": "ed2db3a0-9a66-4475-8584-376768d5adbb",
       "name": "Merge4"
@@ -830,8 +774,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -160,
-        820
+        -220,
+        480
       ],
       "id": "65eded4a-f1c4-4366-bfd0-6065660bc799",
       "name": "Edit Fields4"
@@ -863,8 +807,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        920,
-        780
+        860,
+        440
       ],
       "id": "f3a2c9c4-e00d-4e77-8d3d-0c9e37d8c49d",
       "name": "If2"
@@ -880,8 +824,8 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        1120,
-        720
+        1060,
+        380
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -898,8 +842,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1280,
-        720
+        1220,
+        380
       ],
       "id": "1df4b314-954d-4468-9cda-01481d1a8099",
       "name": "Code"
@@ -925,251 +869,11 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1460,
-        720
+        1400,
+        380
       ],
       "id": "89a5ef53-0afb-4176-896b-ccbe114aa266",
       "name": "HTTP Request2"
-    },
-    {
-      "parameters": {
-        "operation": "appendOrUpdate",
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1QSrLnfia_k5CIy0RS_kX1bQZ90IkQnBKJLsFNYEziUI/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1QSrLnfia_k5CIy0RS_kX1bQZ90IkQnBKJLsFNYEziUI/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "ID": "={{ $json.ID }}",
-            "FECHA ENCUESTA": "={{ $json[\"FECHA ENCUESTA\"] }}",
-            "HORA ENCUESTA": "={{ $json[\"HORA ENCUESTA\"] }}",
-            "EDAD": "={{ $json.EDAD }}",
-            "INGRESOS": "={{ $json.INGRESOS }}",
-            "ESTUDIOS": "={{ $json.ESTUDIOS }}",
-            "OCUPACION": "={{ $json.OCUPACION }}",
-            "PROPOSITO": "={{ $json.PROPOSITO }}",
-            "PUNTAJE": "={{ $json.PUNTAJE }}"
-          },
-          "matchingColumns": [
-            "ID"
-          ],
-          "schema": [
-            {
-              "id": "FECHA REGISTRO",
-              "displayName": "FECHA REGISTRO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "HORA",
-              "displayName": "HORA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "ID",
-              "displayName": "ID",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "CORREO",
-              "displayName": "CORREO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "WHATSAPP",
-              "displayName": "WHATSAPP",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "CAMPAÑA",
-              "displayName": "CAMPAÑA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "SEGMENTACION",
-              "displayName": "SEGMENTACION",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "ANUNCIO",
-              "displayName": "ANUNCIO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "PLATAFORMA",
-              "displayName": "PLATAFORMA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "PAIS",
-              "displayName": "PAIS",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "FECHA ENCUESTA",
-              "displayName": "FECHA ENCUESTA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "HORA ENCUESTA",
-              "displayName": "HORA ENCUESTA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "EDAD",
-              "displayName": "EDAD",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "INGRESOS",
-              "displayName": "INGRESOS",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "ESTUDIOS",
-              "displayName": "ESTUDIOS",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "OCUPACION",
-              "displayName": "OCUPACION",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "PROPOSITO",
-              "displayName": "PROPOSITO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "PUNTAJE",
-              "displayName": "PUNTAJE",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "QLEAD",
-              "displayName": "QLEAD",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        1020,
-        1260
-      ],
-      "id": "3c7c41e6-331d-4e4b-939a-0775d9c0af5b",
-      "name": "Google Sheets1",
-      "retryOnFail": true,
-      "maxTries": 5,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "Google Sheets account"
-        }
-      },
-      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -1236,8 +940,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        660,
-        960
+        600,
+        620
       ],
       "id": "68d4867e-8f77-47f8-aa13-a62d479e5ef7",
       "name": "Edit Fields7"
@@ -1271,8 +975,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        760,
-        620
+        700,
+        280
       ],
       "id": "61da8a27-2175-469c-a75b-be82c6262ecd",
       "name": "HTTP Request5",
@@ -1310,8 +1014,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        760,
-        440
+        700,
+        100
       ],
       "id": "ae7ca953-50e7-4701-b24c-1f1a282d2c75",
       "name": "HTTP Request6",
@@ -1327,8 +1031,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -120,
-        660
+        -180,
+        320
       ],
       "id": "1b7239fe-cf3f-4b1d-96d9-875ba891b608",
       "name": "Code1"
@@ -1629,247 +1333,6 @@
       ],
       "id": "764279a9-9f8f-4031-a63b-c7a68735ec3b",
       "name": "Edit Fields5"
-    },
-    {
-      "parameters": {
-        "operation": "append",
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1QSrLnfia_k5CIy0RS_kX1bQZ90IkQnBKJLsFNYEziUI/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1QSrLnfia_k5CIy0RS_kX1bQZ90IkQnBKJLsFNYEziUI/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "ID": "={{ $json.ID }}",
-            "FECHA REGISTRO": "={{ $json[\"FECHA REGISTRO\"] }}",
-            "CORREO": "={{ $json.CORREO }}",
-            "CAMPAÑA": "={{ $json[\"CAMPAÑA\"] }}",
-            "SEGMENTACION": "={{ $json.SEGMENTACION }}",
-            "ANUNCIO": "={{ $json.ANUNCIO }}",
-            "PLATAFORMA": "={{ $json.PLATAFORMA }}",
-            "HORA": "={{ $json.HORA }}",
-            "WHATSAPP": "={{ $json.WHATSAPP }}",
-            "PAIS": "={{ $json.PAIS }}"
-          },
-          "matchingColumns": [
-            "ID"
-          ],
-          "schema": [
-            {
-              "id": "FECHA REGISTRO",
-              "displayName": "FECHA REGISTRO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "HORA",
-              "displayName": "HORA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "ID",
-              "displayName": "ID",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "CORREO",
-              "displayName": "CORREO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "WHATSAPP",
-              "displayName": "WHATSAPP",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "CAMPAÑA",
-              "displayName": "CAMPAÑA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "SEGMENTACION",
-              "displayName": "SEGMENTACION",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "ANUNCIO",
-              "displayName": "ANUNCIO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "PLATAFORMA",
-              "displayName": "PLATAFORMA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "PAIS",
-              "displayName": "PAIS",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "FECHA ENCUESTA",
-              "displayName": "FECHA ENCUESTA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "HORA ENCUESTA",
-              "displayName": "HORA ENCUESTA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "EDAD",
-              "displayName": "EDAD",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "INGRESOS",
-              "displayName": "INGRESOS",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "ESTUDIOS",
-              "displayName": "ESTUDIOS",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "OCUPACION",
-              "displayName": "OCUPACION",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "PROPOSITO",
-              "displayName": "PROPOSITO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "PUNTAJE",
-              "displayName": "PUNTAJE",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "QLEAD",
-              "displayName": "QLEAD",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        900,
-        20
-      ],
-      "id": "d7e242d5-fe46-482c-8339-2bbb7e75332a",
-      "name": "Google Sheets",
-      "retryOnFail": true,
-      "maxTries": 5,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "Google Sheets account"
-        }
-      },
-      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -2221,34 +1684,6 @@
     },
     {
       "parameters": {
-        "amount": 10
-      },
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
-      "position": [
-        1120,
-        40
-      ],
-      "id": "61485a72-8d56-491d-9566-1bea908364d6",
-      "name": "Wait",
-      "webhookId": "27c54fb9-bfb8-4dea-89f7-c310fd0ad8fe"
-    },
-    {
-      "parameters": {
-        "amount": 10
-      },
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
-      "position": [
-        1260,
-        1280
-      ],
-      "id": "303aa77b-1732-489e-9976-4ad3a330a27b",
-      "name": "Wait1",
-      "webhookId": "27c54fb9-bfb8-4dea-89f7-c310fd0ad8fe"
-    },
-    {
-      "parameters": {
         "operation": "update",
         "table": {
           "__rl": true,
@@ -2295,7 +1730,7 @@
             },
             {
               "column": "QLEAD",
-              "value": "={{ $json.PUNTAJE > 500 ? 1: 0 }}"
+              "value": "={{ $json.PUNTAJE > 500 ? \"si\": null }}"
             }
           ]
         },
@@ -2306,8 +1741,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        1480,
-        980
+        1420,
+        640
       ],
       "id": "673b3116-6d6f-44ae-9eab-be277b89a9b9",
       "name": "MySQL",
@@ -2342,8 +1777,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        940,
-        1060
+        880,
+        720
       ],
       "id": "5b8f495c-49ed-41dc-a2ee-2a366039c26a",
       "name": "MySQL1",
@@ -2383,8 +1818,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1100,
-        1060
+        1040,
+        720
       ],
       "id": "4512d232-3d0c-4654-8e2f-6e47b4655289",
       "name": "If4"
@@ -2396,8 +1831,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        1280,
-        980
+        1220,
+        640
       ],
       "id": "2b296f41-2e41-4980-94ec-822ddf5c5fb3",
       "name": "Merge6"
@@ -2666,9 +2101,15 @@
       "updatedAt": "2025-02-04T22:36:35.108Z",
       "id": "HjNWwvqlBnseDfSA",
       "name": "GERSSON"
+    },
+    {
+      "createdAt": "2025-02-20T03:14:39.493Z",
+      "updatedAt": "2025-02-20T03:14:39.493Z",
+      "id": "fMteddKWhaFhuYHk",
+      "name": "MYSQL"
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-02-19T06:21:04.000Z",
-  "versionId": "20179478-15f6-4c94-b721-bf3e1754f898"
+  "updatedAt": "2025-02-20T03:53:15.000Z",
+  "versionId": "07bcaeb1-7861-413c-8d11-fe573bcfdc39"
 }
