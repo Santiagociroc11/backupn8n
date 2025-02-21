@@ -123,14 +123,14 @@
   "nodes": [
     {
       "parameters": {
-        "jsCode": "let jsonACTUAL = $('OBTENER GRUPO').first().json\nlet linkNUEVO = $('LINK').first().json.inviteUrl\nlet tabla = $('Loop Over Items').first().json.tablaIPS\n\n// Generar la consulta SQL\nconst query = `\n  UPDATE ${tabla}\n  SET grupo = '${linkNUEVO}'\n  WHERE grupo = '${jsonACTUAL.link}';\n`;\n\n// Devolver el resultado\nreturn [\n  {\n    json: {\n      query: query\n    }\n  }\n];"
+        "jsCode": "let jsonACTUAL = $('OBTENER GRUPO').first().json\nlet linkNUEVO = $('LINK').first().json.data.inviteUrl\nlet tabla = $('Loop Over Items').first().json.tablaIPS\n\n// Generar la consulta SQL\nconst query = `\n  UPDATE ${tabla}\n  SET grupo = '${linkNUEVO}'\n  WHERE grupo = '${jsonACTUAL.link}';\n`;\n\n// Devolver el resultado\nreturn [\n  {\n    json: {\n      query: query\n    }\n  }\n];"
       },
       "id": "8105dee4-06c7-4be6-9022-9272253d7421",
       "name": "Code",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        180,
+        200,
         0
       ]
     },
@@ -139,7 +139,7 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "={{ $('LINK').item.json.tablaLINK}}",
+          "value": "={{ $('Loop Over Items').item.json.tablaLINK }}",
           "mode": "name"
         },
         "returnAll": true,
@@ -158,7 +158,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        0,
+        40,
         0
       ],
       "credentials": {
@@ -204,7 +204,7 @@
           "values": [
             {
               "column": "link",
-              "value": "={{ $('LINK').first().json.inviteUrl }}"
+              "value": "={{ $('LINK').first().json.data.inviteUrl }}"
             }
           ]
         },
@@ -237,8 +237,8 @@
           "conditions": [
             {
               "id": "bb5a03d3-49fb-4a7d-82b8-b82e4051e36c",
-              "leftValue": "={{ $json.inviteUrl }}",
-              "rightValue": "={{ $('LINK').item.json.inviteUrl }}",
+              "leftValue": "={{ $json.data.inviteUrl }}",
+              "rightValue": "={{ $('Loop Over Items').item.json.link }}",
               "operator": {
                 "type": "string",
                 "operation": "notEquals"
@@ -265,7 +265,7 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        -680,
+        -620,
         80
       ],
       "id": "a6b8c7cf-18a5-4bf9-b822-af705c1493c8",
@@ -278,16 +278,14 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
       "position": [
-        -920,
+        -840,
         60
       ],
       "id": "3f23dac2-94ff-4fd1-b40b-4c458e13bf12",
       "name": "When Executed by Another Workflow"
     },
     {
-      "parameters": {
-        "amount": 10
-      },
+      "parameters": {},
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
@@ -308,7 +306,7 @@
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        -460,
+        -420,
         100
       ],
       "id": "7a617895-a6f4-4457-a058-967d15d3469f",
@@ -319,7 +317,7 @@
       "credentials": {
         "evolutionApi": {
           "id": "Png3VbsnUeyqI5UL",
-          "name": "vps 1"
+          "name": "VPS-EASYPANEL"
         }
       },
       "onError": "continueErrorOutput"
@@ -329,131 +327,170 @@
     "When Executed by Another Workflow": [
       {
         "json": {
-          "#": 0,
-          "nombre": "Masterclass Postres Saludable 21/01 #1",
-          "link": "https://chat.whatsapp.com/FSvS8FRcxYt83v2LpmxY95",
-          "id": "120363388875702874@g.us",
-          "Total": 1000,
-          "bienvenida": "no",
-          "tablaLINK": "ADRIANA_LINKS",
-          "tablaIPS": "ADRIANA_IPS",
-          "SESION": "JUANCA"
-        }
-      },
-      {
-        "json": {
           "#": 1,
-          "nombre": "Masterclass Postres Saludable 21/01 #2",
-          "link": "https://chat.whatsapp.com/K5HvoHNq3RCJeya2lUMXy6",
-          "id": "120363369032330372@g.us",
+          "nombre": "Semana de las Uñas #1",
+          "link": "https://chat.whatsapp.com/E9WRbgOHje61ENObHGTgDn",
+          "id": "120363399392076843@g.us",
           "Total": 1000,
           "bienvenida": "no",
-          "tablaLINK": "ADRIANA_LINKS",
-          "tablaIPS": "ADRIANA_IPS",
+          "tablaLINK": "ARZA_UÑAS_LINKS",
+          "tablaIPS": "ARZA_UÑAS_IPS",
           "SESION": "JUANCA"
         }
       },
       {
         "json": {
           "#": 2,
-          "nombre": "Masterclass Postres Saludable 21/01 #3",
-          "link": "https://chat.whatsapp.com/De9P5qmYjByLoH9eFar9k7",
-          "id": "120363391778274687@g.us",
+          "nombre": "Semana de las Uñas #2",
+          "link": "https://chat.whatsapp.com/DimMM1876ADKpKGm3MgwQU",
+          "id": "120363399582298928@g.us",
           "Total": 1000,
           "bienvenida": "no",
-          "tablaLINK": "ADRIANA_LINKS",
-          "tablaIPS": "ADRIANA_IPS",
+          "tablaLINK": "ARZA_UÑAS_LINKS",
+          "tablaIPS": "ARZA_UÑAS_IPS",
           "SESION": "JUANCA"
         }
       },
       {
         "json": {
           "#": 3,
-          "nombre": "Masterclass Postres Saludable 21/01 #4",
-          "link": "https://chat.whatsapp.com/FQoNYkLq0lfDlDgK4NZIaz",
-          "id": "120363372701025562@g.us",
+          "nombre": "Semana de las Uñas #3",
+          "link": "https://chat.whatsapp.com/IfnGDFUFV0w9Y9CbYoT0g6",
+          "id": "120363382097708139@g.us",
           "Total": 1000,
           "bienvenida": "no",
-          "tablaLINK": "ADRIANA_LINKS",
-          "tablaIPS": "ADRIANA_IPS",
+          "tablaLINK": "ARZA_UÑAS_LINKS",
+          "tablaIPS": "ARZA_UÑAS_IPS",
           "SESION": "JUANCA"
         }
       },
       {
         "json": {
           "#": 4,
-          "nombre": "Masterclass Postres Saludable 21/01 #5",
-          "link": "https://chat.whatsapp.com/Cst7TI0UZZ72IAhXMWgsIP",
-          "id": "120363371717732736@g.us",
+          "nombre": "Semana de las uñas #4",
+          "link": "https://chat.whatsapp.com/LcWYtGIyv7m2UIpZgHDqnX",
+          "id": "120363404032549152@g.us",
           "Total": 1000,
           "bienvenida": "no",
-          "tablaLINK": "ADRIANA_LINKS",
-          "tablaIPS": "ADRIANA_IPS",
+          "tablaLINK": "ARZA_UÑAS_LINKS",
+          "tablaIPS": "ARZA_UÑAS_IPS",
           "SESION": "JUANCA"
         }
       },
       {
         "json": {
           "#": 5,
-          "nombre": "Masterclass Postres Saludable 21/01 #6",
-          "link": "https://chat.whatsapp.com/JbRvSs3awqJIkpqh0ZWBtB",
-          "id": "120363390295207559@g.us",
-          "Total": 477,
+          "nombre": "Semana de las uñas #5",
+          "link": "https://chat.whatsapp.com/FwlzF2FxrInK3KnlMgzCnV",
+          "id": "120363404692395378@g.us",
+          "Total": 1000,
           "bienvenida": "no",
-          "tablaLINK": "ADRIANA_LINKS",
-          "tablaIPS": "ADRIANA_IPS",
+          "tablaLINK": "ARZA_UÑAS_LINKS",
+          "tablaIPS": "ARZA_UÑAS_IPS",
           "SESION": "JUANCA"
         }
       },
       {
         "json": {
           "#": 6,
-          "nombre": "Masterclass Postres Saludable 21/01 #7",
-          "link": "https://chat.whatsapp.com/CMnYrznvhuNJu7OXmTSv1n",
-          "id": "120363374188909031@g.us",
-          "Total": 0,
+          "nombre": "Semana de las uñas #6",
+          "link": "https://chat.whatsapp.com/J6pDC2TnuYs3ayW6ZGh6cJ",
+          "id": "120363402089292116@g.us",
+          "Total": 1000,
           "bienvenida": "no",
-          "tablaLINK": "ADRIANA_LINKS",
-          "tablaIPS": "ADRIANA_IPS",
+          "tablaLINK": "ARZA_UÑAS_LINKS",
+          "tablaIPS": "ARZA_UÑAS_IPS",
           "SESION": "JUANCA"
         }
       },
       {
         "json": {
           "#": 7,
-          "nombre": "Masterclass Postres Saludable 21/01 #8",
-          "link": "https://chat.whatsapp.com/Luar5dsQ2ey0NeDop8ayvH",
-          "id": "120363390792241827@g.us",
-          "Total": 0,
+          "nombre": "Semana de las uñas #7",
+          "link": "https://chat.whatsapp.com/Fpq5KBGL7pr5SYnxnicUyV",
+          "id": "120363385877180375@g.us",
+          "Total": 739,
           "bienvenida": "no",
-          "tablaLINK": "ADRIANA_LINKS",
-          "tablaIPS": "ADRIANA_IPS",
+          "tablaLINK": "ARZA_UÑAS_LINKS",
+          "tablaIPS": "ARZA_UÑAS_IPS",
           "SESION": "JUANCA"
         }
       },
       {
         "json": {
           "#": 8,
-          "nombre": "Masterclass Postres Saludable 21/01 #9",
-          "link": "https://chat.whatsapp.com/EcpmQ4C83y5DkHnMiuKnBc",
-          "id": "120363388988823139@g.us",
+          "nombre": "Semana de las uñas #8",
+          "link": "https://chat.whatsapp.com/E9QJHu7goCZ9JI6UHT0h7H",
+          "id": "120363384154461383@g.us",
           "Total": 0,
           "bienvenida": "no",
-          "tablaLINK": "ADRIANA_LINKS",
-          "tablaIPS": "ADRIANA_IPS",
+          "tablaLINK": "ARZA_UÑAS_LINKS",
+          "tablaIPS": "ARZA_UÑAS_IPS",
           "SESION": "JUANCA"
         }
       },
       {
         "json": {
-          "#": 9,
-          "nombre": "Masterclass Postres Saludable 21/01 #10",
-          "link": "https://chat.whatsapp.com/KBfdMIeYVRWIbEgaRbOauY",
-          "id": "120363373869294163@g.us",
+          "#": 10,
+          "nombre": "Semana de las uñas #9",
+          "link": "https://chat.whatsapp.com/CvEh4137UfXA7fBTrBpD1D",
+          "id": "120363403097205660@g.us",
           "Total": 0,
           "bienvenida": "no",
-          "tablaLINK": "ADRIANA_LINKS",
-          "tablaIPS": "ADRIANA_IPS",
+          "tablaLINK": "ARZA_UÑAS_LINKS",
+          "tablaIPS": "ARZA_UÑAS_IPS",
+          "SESION": "JUANCA"
+        }
+      },
+      {
+        "json": {
+          "#": 11,
+          "nombre": "Semana de las uñas #10",
+          "link": "https://chat.whatsapp.com/GgJROGIG5mdDotUMpD50Oq",
+          "id": "120363402165813515@g.us",
+          "Total": 0,
+          "bienvenida": "no",
+          "tablaLINK": "ARZA_UÑAS_LINKS",
+          "tablaIPS": "ARZA_UÑAS_IPS",
+          "SESION": "JUANCA"
+        }
+      },
+      {
+        "json": {
+          "#": 12,
+          "nombre": "Semana de las uñas #11",
+          "link": "https://chat.whatsapp.com/GUN9mor4WuUDFoZEaMs4dW",
+          "id": "120363385260449526@g.us",
+          "Total": 0,
+          "bienvenida": "no",
+          "tablaLINK": "ARZA_UÑAS_LINKS",
+          "tablaIPS": "ARZA_UÑAS_IPS",
+          "SESION": "JUANCA"
+        }
+      },
+      {
+        "json": {
+          "#": 13,
+          "nombre": "Semana de las uñas #12",
+          "link": "https://chat.whatsapp.com/JLCZu7QRofgGnqY9vs7atq",
+          "id": "120363387908257309@g.us",
+          "Total": 0,
+          "bienvenida": "no",
+          "tablaLINK": "ARZA_UÑAS_LINKS",
+          "tablaIPS": "ARZA_UÑAS_IPS",
+          "SESION": "JUANCA"
+        }
+      },
+      {
+        "json": {
+          "#": 14,
+          "nombre": "Semana de las uñas #13",
+          "link": "https://chat.whatsapp.com/GleVkeSvmXD5MNYaB1ywek",
+          "id": "120363405084984357@g.us",
+          "Total": 0,
+          "bienvenida": "no",
+          "tablaLINK": "ARZA_UÑAS_LINKS",
+          "tablaIPS": "ARZA_UÑAS_IPS",
           "SESION": "JUANCA"
         }
       }
@@ -466,8 +503,15 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2025-02-20T03:14:39.493Z",
+      "updatedAt": "2025-02-20T03:14:39.493Z",
+      "id": "fMteddKWhaFhuYHk",
+      "name": "MYSQL"
+    }
+  ],
   "triggerCount": 0,
-  "updatedAt": "2025-02-18T20:46:45.000Z",
-  "versionId": "57d01f21-8eef-4585-b81a-f9c891464b27"
+  "updatedAt": "2025-02-21T06:26:09.000Z",
+  "versionId": "bb38d67e-8ccd-4b3a-9ecf-353a553e2a14"
 }
