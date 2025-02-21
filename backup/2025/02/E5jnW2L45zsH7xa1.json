@@ -1,0 +1,74 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-20T21:23:41.641Z",
+  "id": "E5jnW2L45zsH7xa1",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        -40
+      ],
+      "id": "e71ed5ba-a614-43bc-a715-b85067f1823b",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_LINKS",
+          "mode": "list",
+          "cachedResultName": "GERSSON_LINKS"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -180,
+        -40
+      ],
+      "id": "3b2733b6-d560-42d5-acae-3ee84b01c37a",
+      "name": "MySQL",
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-20T21:23:41.641Z",
+  "versionId": "3c508ba7-6cbe-41ad-a24d-29ec86d92085"
+}
