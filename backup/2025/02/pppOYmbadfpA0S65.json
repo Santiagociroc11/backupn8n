@@ -1,0 +1,896 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "BUSCA ASESOR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Renderizar Último Reporte1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "asesor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "reporte1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "reporte2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BUSCA ASESOR": {
+      "main": [
+        [
+          {
+            "node": "BUSCA ASESOR1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BUSCA ASESOR1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort1": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Renderizar Último Reporte1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Renderizar Último Reporte1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Sort1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "asesor": {
+      "main": [
+        [
+          {
+            "node": "reporte",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "reporte": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "reporte1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "reporte2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-22T15:58:59.201Z",
+  "id": "pppOYmbadfpA0S65",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[GERSSON] SISTEMA DE HISTORIA DEL LEAD",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "reporte",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -500,
+        -320
+      ],
+      "id": "32c761a3-e7ce-4b90-94df-d71d2671f554",
+      "name": "Webhook",
+      "webhookId": "ecda7a20-9d3d-4f71-9162-6efb94152b81"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "guardar-descripcion-cliente",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -720,
+        200
+      ],
+      "id": "51ee7a40-13bc-4a79-a61c-5acbc5b6f495",
+      "name": "Webhook1",
+      "webhookId": "1d5088dd-14d8-4975-bb18-aaae75cec72c"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.html }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1020,
+        -320
+      ],
+      "id": "e562cb12-9142-4295-b9a1-d62ef80adf36",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e26a11b5-aa20-4c7c-8023-b0d81582899b",
+              "name": "numero",
+              "value": "={{ $json.query.numero }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -300,
+        -320
+      ],
+      "id": "e4f63f7c-f58c-447d-aee8-d5bb4de803b9",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "html": "<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Registro de Cliente</title>\n    <style>\n        /* Estilos generales */\n        * {\n            box-sizing: border-box;\n            margin: 0;\n            padding: 0;\n            font-family: 'Arial', sans-serif;\n        }\n\n        body {\n            background: linear-gradient(135deg, #6e8efb, #a777e3);\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            min-height: 100vh;\n            padding: 20px;\n            font-size: 16px;\n        }\n\n        /* Contenedor principal */\n        .container {\n            background: white;\n            padding: 25px;\n            border-radius: 12px;\n            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);\n            max-width: 450px;\n            width: 100%;\n            text-align: center;\n            transition: all 0.3s ease;\n        }\n\n        .container:hover {\n            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);\n        }\n\n        h2 {\n            color: #333;\n            margin-bottom: 20px;\n            font-size: 24px;\n            font-weight: 600;\n        }\n\n        label {\n            font-weight: bold;\n            font-size: 14px;\n            color: #555;\n            display: block;\n            text-align: left;\n            margin-top: 12px;\n        }\n\n        input, textarea, select {\n            width: 100%;\n            padding: 12px;\n            margin-top: 8px;\n            border: 1px solid #ccc;\n            border-radius: 8px;\n            font-size: 16px;\n            outline: none;\n            transition: all 0.3s ease;\n        }\n\n        input:focus, textarea:focus, select:focus {\n            border-color: #6e8efb;\n            box-shadow: 0px 0px 5px rgba(110, 142, 251, 0.5);\n        }\n\n        .readonly {\n            background-color: #f4f4f4;\n            cursor: not-allowed;\n        }\n\n        textarea {\n            resize: none;\n            height: 100px;\n        }\n\n        .checkbox-container {\n            display: flex;\n            align-items: center;\n            margin-top: 12px;\n            text-align: left;\n        }\n\n        .checkbox-container input {\n            width: auto;\n            margin-right: 10px;\n            transform: scale(1.2);\n        }\n\n        #fechaSeguimiento {\n            display: none;\n        }\n\n        .report-section {\n            margin-top: 15px;\n            padding: 10px;\n            background: #eaf0ff;\n            border-radius: 6px;\n            text-align: left;\n            font-size: 14px;\n        }\n\n        .report-section p {\n            margin: 5px 0;\n        }\n\n        .report-section strong {\n            color: #444;\n        }\n\n        button {\n            background: #6e8efb;\n            color: white;\n            border: none;\n            padding: 14px;\n            width: 100%;\n            border-radius: 8px;\n            font-size: 18px;\n            font-weight: bold;\n            cursor: pointer;\n            transition: background 0.3s ease;\n            margin-top: 15px;\n        }\n\n        button:hover {\n            background: #5a7bf0;\n        }\n\n        /* Estilos para pantallas pequeñas */\n        @media (max-width: 500px) {\n            .container {\n                padding: 20px;\n                max-width: 100%;\n            }\n\n            h2 {\n                font-size: 22px;\n            }\n\n            button {\n                font-size: 16px;\n            }\n        }\n\n        /* Estilos adicionales para animación del formulario */\n        .form-container {\n            transition: opacity 0.5s ease;\n        }\n\n        .form-container.hidden {\n            opacity: 0;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h2>Registro de Cliente</h2>\n        <form action=\"/webhook/guardar-descripcion-cliente\" method=\"POST\">\n            <label for=\"cliente\">📞 Número de Cliente:</label>\n            <input type=\"text\" id=\"cliente\" name=\"cliente\" value=\"{{ $('Edit Fields1').item.json.numero }}\" class=\"readonly\" readonly>\n            \n            <label for=\"estado\">📌 Estado del Cliente:</label>\n            <select id=\"estado\" name=\"estado\" required>\n                <option value=\"\" disabled selected>Seleccione un estado...</option>\n                <option value=\"pendiente\">Pendiente</option>\n                <option value=\"en-progreso\">En progreso</option>\n                <option value=\"cerrado\">Cerrado</option>\n                <option value=\"no-interesado\">No interesado</option>\n                <option value=\"seguimiento\">Requiere Seguimiento</option>\n            </select>\n            \n            <label for=\"comentario\">✍️ Comentario:</label>\n            <textarea id=\"comentario\" name=\"comentario\" placeholder=\"Escribe aquí los detalles de la conversación...\" required></textarea>\n            \n            <div class=\"checkbox-container\">\n                <input type=\"checkbox\" id=\"seguimiento\" name=\"seguimiento\" onclick=\"toggleFechaSeguimiento()\">\n                <label for=\"seguimiento\">📅 Requiere Seguimiento</label>\n            </div>\n            \n            <div id=\"fechaSeguimiento\">\n                <label for=\"fecha\">📅 Fecha de Seguimiento:</label>\n                <input type=\"date\" id=\"fecha\" name=\"fecha\">\n            </div>\n            \n            <button type=\"submit\">Guardar</button>\n        </form>\n        <br>\n        <h3>📜 Último Reporte</h3>\n        <div id=\"report-section\" class=\"report-section\">\n            <p><strong>📅 Última actualización:</strong> {{ $json.FECHA_REPORTE?.toDateTime().toLocal().format(\"ff\") || \"no encontrado\" }}</p>\n            <p><strong>📌 Estado:</strong> {{ $json.ESTADO_ANTERIOR ?? \"no encontrado\" }} ➡ {{ $json.ESTADO_NUEVO ?? \"no encontrado\" }}</p>\n            <p><strong>✍️ Comentario:</strong> {{ $json.COMENTARIO ?? \"no encontrado\" }}</p>\n        </div>\n    </div>\n\n    <script>\n        // Función para mostrar la fecha de seguimiento cuando se marca el checkbox\n        function toggleFechaSeguimiento() {\n            var seguimientoCheckbox = document.getElementById('seguimiento');\n            var fechaSeguimientoDiv = document.getElementById('fechaSeguimiento');\n            \n            if (seguimientoCheckbox.checked) {\n                fechaSeguimientoDiv.style.display = 'block';\n            } else {\n                fechaSeguimientoDiv.style.display = 'none';\n            }\n        }\n    </script>\n</body>\n</html>\n"
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1,
+      "position": [
+        840,
+        -320
+      ],
+      "id": "793285ac-4fea-497b-b456-df814cc40c57",
+      "name": "Renderizar Último Reporte1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "687ab076-8791-43d1-b11c-9bd187b0f63c",
+              "name": "cliente",
+              "value": "={{ $json.body.cliente }}",
+              "type": "string"
+            },
+            {
+              "id": "ef6c291f-dd6f-4055-8c0c-aaf82516ebe1",
+              "name": "estado",
+              "value": "={{ $json.body.estado }}",
+              "type": "string"
+            },
+            {
+              "id": "a68d64a6-a73c-4e20-9e5d-fb17f58b0330",
+              "name": "comentario",
+              "value": "={{ $json.body.comentario }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -540,
+        200
+      ],
+      "id": "2b0429f0-ac0d-49f0-8588-3173dd09d5b4",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "REGISTRO ACTUALIZADO",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1000,
+        340
+      ],
+      "id": "5f4dcf77-1bf4-4cd5-9edc-612faad25da6",
+      "name": "Respond to Webhook1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "object",
+                      "operation": "empty",
+                      "singleValue": true
+                    },
+                    "id": "95c39966-cdaf-42ea-b324-678d15897974"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NO EXISTE"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "9004ad35-7eab-4933-b451-d0765c005f83",
+                    "leftValue": "={{ $json }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "object",
+                      "operation": "notEmpty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "EXISTE"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        540,
+        200
+      ],
+      "id": "3781afaa-09d3-4589-821a-9bca58cbe58e",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "REGISTRO ACTUALIZADO",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1000,
+        100
+      ],
+      "id": "66bf3e74-27e3-4ee1-b995-1b7c0f6190f1",
+      "name": "Respond to Webhook2"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "GERSSON_CLIENTES",
+        "limit": 1,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "WHATSAPP",
+              "condition": "like",
+              "keyValue": "=*{{$('Edit Fields1').item.json.numero.toString().slice(-6)}}*"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -120,
+        -320
+      ],
+      "id": "5a4260f3-7e68-4d9d-9f66-ed2073f549c9",
+      "name": "BUSCA ASESOR",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "GERSSON_REPORTES",
+        "returnAll": true,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ID_CLIENTE",
+              "condition": "eq",
+              "keyValue": "={{ $json.ID }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        80,
+        -320
+      ],
+      "id": "315dd87e-1d17-4fcd-a848-8f83014335a0",
+      "name": "BUSCA ASESOR1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        640,
+        -220
+      ],
+      "id": "5f064449-13e7-4085-ba12-e849c4c10154",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "FECHA_REPORTE",
+              "order": "descending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        500,
+        -220
+      ],
+      "id": "302d91b9-ffca-4ea2-bbd2-68adac66538e",
+      "name": "Sort1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "0687696a-b978-48e4-ab72-6be8ff206ec3",
+              "leftValue": "={{ $json.isEmpty() }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        300,
+        -320
+      ],
+      "id": "25b1f073-95f1-4874-9f06-b1de9ed8810e",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "GERSSON_CLIENTES",
+        "limit": 1,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "WHATSAPP",
+              "condition": "like",
+              "keyValue": "=*{{$('Edit Fields').item.json.cliente.toString().slice(-6)}}*"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -360,
+        200
+      ],
+      "id": "ec9ffc7c-2f19-4e88-8296-5637fcd9b345",
+      "name": "asesor",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        340,
+        320
+      ],
+      "id": "23d8c961-9f62-4916-b20b-a5fb709d8bfc",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "FECHA_REPORTE",
+              "order": "descending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        160,
+        320
+      ],
+      "id": "fe3719b8-bb5a-40f7-9a21-649eb8591ed2",
+      "name": "Sort"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "GERSSON_REPORTES",
+        "limit": 1,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ID_CLIENTE",
+              "condition": "eq",
+              "keyValue": "={{ $json.ID }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -180,
+        200
+      ],
+      "id": "df0792e4-acf6-4898-b919-343e4ccd0278",
+      "name": "reporte",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "0687696a-b978-48e4-ab72-6be8ff206ec3",
+              "leftValue": "={{ $json.isEmpty() }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -20,
+        200
+      ],
+      "id": "734c8b71-765e-40e2-bb9e-ac786fb791d6",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "tableId": "GERSSON_REPORTES",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "ID_ASESOR",
+              "fieldValue": "={{ $('asesor').item.json.ID_ASESOR }}"
+            },
+            {
+              "fieldId": "NOMBRE_ASESOR",
+              "fieldValue": "={{ $('asesor').item.json.NOMBRE_ASESOR }}"
+            },
+            {
+              "fieldId": "ESTADO_NUEVO",
+              "fieldValue": "={{ $('Edit Fields').item.json.estado }}"
+            },
+            {
+              "fieldId": "ID_CLIENTE",
+              "fieldValue": "={{ $('asesor').item.json.ID }}"
+            },
+            {
+              "fieldId": "COMENTARIO",
+              "fieldValue": "={{ $('Edit Fields').item.json.comentario }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        800,
+        100
+      ],
+      "id": "9b307a98-17ef-4a5d-9511-bb61fa8a4925",
+      "name": "reporte1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "GERSSON_REPORTES",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ID_CLIENTE",
+              "condition": "eq",
+              "keyValue": "={{ $('asesor').item.json.ID }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "ID_ASESOR",
+              "fieldValue": "={{ $('asesor').item.json.ID_ASESOR }}"
+            },
+            {
+              "fieldId": "NOMBRE_ASESOR",
+              "fieldValue": "={{ $('asesor').item.json.NOMBRE_ASESOR }}"
+            },
+            {
+              "fieldId": "ESTADO_NUEVO",
+              "fieldValue": "={{ $('Edit Fields').item.json.estado }}"
+            },
+            {
+              "fieldId": "COMENTARIO",
+              "fieldValue": "={{ $('Edit Fields').item.json.comentario }}"
+            },
+            {
+              "fieldId": "ESTADO_ANTERIOR",
+              "fieldValue": "={{ $('Limit1').item.json.ESTADO_NUEVO }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        800,
+        340
+      ],
+      "id": "e1755592-485b-4cfd-994d-d71d304b38d1",
+      "name": "reporte2",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "es-419,es;q=0.9,pt;q=0.8,en;q=0.7",
+            "cookie": "rl_page_init_referrer=RudderEncrypt%3AU2FsdGVkX19IWjOqqfYpk4o1ziGEdrS9c9uvPMRAzrk%3D; rl_page_init_referring_domain=RudderEncrypt%3AU2FsdGVkX1%2Br6w72PJG2JTAzCSaiSPOIMqv5HzXdngw%3D; hotid=eyJzaWQiOiIwNGY0Y2IyNjg4NmY0OWQ1YjgwOTQyZWE2NjVjZDE4YyIsImNpZCI6IjE3MzkzNzQ4MTE3OTkxMTM0MTM5OTU4ODEyNTc0NDAiLCJiaWQiOiIxNzM5Mzc0ODExNzk5MTEzNDEzOTk1ODgxMjU3NDQwIn0=; _fbp=fb.1.1739764419513.944709556931231285; n8n-auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ3YWMyYzQzLTM4M2UtNDhlMS05YjMyLWU3YWE3MWNkZDgyMSIsImhhc2giOiJMWlE0QmhwNW83IiwiYnJvd3NlcklkIjoieHNySFFZa0ROS2NFdnpQMUc2TjlBclIzekFySkZpbnZ3aXZMblM4Q0FVcz0iLCJpYXQiOjE3Mzk4ODg5OTIsImV4cCI6MTc0MDQ5Mzc5Mn0.knf-1COS7Unmg2TTjZSrvYJLbpMAwNXWJFyRaT5tpJs; rl_anonymous_id=RudderEncrypt%3AU2FsdGVkX19Mj95SLLtd8vWRaCaLDVCeVSLJ6TslVob%2BqrGlqWjpfcndxEXp5xDR7H3BcKYBm%2FPNlbpc7yfh4g%3D%3D; rl_user_id=RudderEncrypt%3AU2FsdGVkX183RUqha5E%2BtxyE7GB5utKe5QfiQT9LEv3vuWMNO6s%2FeeKnjEEpJSKEBjklfCHSvAk9SGdmsmmQSxJFxW2i0fXnBhA9ywchGn9e%2FHvow4jTXUYs4sfcnm5PQP5fBB3a%2BXTiwBfvwmrTrovX%2FTWBQv5QDnUxziChZ6I%3D; rl_trait=RudderEncrypt%3AU2FsdGVkX19c4yiXwb9z6aV7sWzG7THt7iNwhIFA32Q1W3COpn%2BatTUbMoiP%2F5CInvLW2adVB78jLk0HAVO4wCJgmzk%2FZ05PzX3eg54fBzzaY64gHMt5BSkh6uvpFj7x4J6BQDtQB2idXbUYvXvLHw%3D%3D; ph_phc_4URIAm1uYfJO7j8kWSe0J8lc8IqnstRLS7Jx8NcakHo_posthog=%7B%22distinct_id%22%3A%227f2729b6912993883b7a01075663f0bebc4d1327170894f4cb4d1836ba9a5acd%2347ac2c43-383e-48e1-9b32-e7aa71cdd821%22%2C%22%24sesid%22%3A%5B1740274730475%2C%220195306c-7df3-7c56-bfeb-c51d54a5fdb5%22%2C1740274171379%5D%2C%22%24epp%22%3Atrue%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22%24direct%22%2C%22u%22%3A%22https%3A%2F%2Fn8n.automscc.com%2Fsignin%3Fredirect%3D%25252F%22%7D%7D; rl_session=RudderEncrypt%3AU2FsdGVkX18rKjlGz2GGYEjkRbBku7iDgu2x2S5gKkpQSOyqJYw6yzTJfzvcheGqQNCCEeByxAjw3ib7uBLIRuGqurpXN8cD6G0Nr1SG5m0GfO5geQkqIdqtXnNman92uSrlMkw9%2BJlWAJ7R%2FH5G5g%3D%3D",
+            "priority": "u=0, i",
+            "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Google Chrome\";v=\"133\", \"Chromium\";v=\"133\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "document",
+            "sec-fetch-mode": "navigate",
+            "sec-fetch-site": "none",
+            "sec-fetch-user": "?1",
+            "upgrade-insecure-requests": "1",
+            "x-forwarded-for": "186.98.225.215",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3051a3bb6625",
+            "x-real-ip": "186.98.225.215"
+          },
+          "params": {},
+          "query": {
+            "numero": "573136298562"
+          },
+          "body": {},
+          "webhookUrl": "https://n8n.automscc.com/webhook/reporte",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "Webhook1": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
+            "content-length": "128",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "es-419,es;q=0.9,pt;q=0.8,en;q=0.7",
+            "cache-control": "max-age=0",
+            "content-type": "application/x-www-form-urlencoded",
+            "cookie": "rl_page_init_referrer=RudderEncrypt%3AU2FsdGVkX19IWjOqqfYpk4o1ziGEdrS9c9uvPMRAzrk%3D; rl_page_init_referring_domain=RudderEncrypt%3AU2FsdGVkX1%2Br6w72PJG2JTAzCSaiSPOIMqv5HzXdngw%3D; hotid=eyJzaWQiOiIwNGY0Y2IyNjg4NmY0OWQ1YjgwOTQyZWE2NjVjZDE4YyIsImNpZCI6IjE3MzkzNzQ4MTE3OTkxMTM0MTM5OTU4ODEyNTc0NDAiLCJiaWQiOiIxNzM5Mzc0ODExNzk5MTEzNDEzOTk1ODgxMjU3NDQwIn0=; _fbp=fb.1.1739764419513.944709556931231285; n8n-auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ3YWMyYzQzLTM4M2UtNDhlMS05YjMyLWU3YWE3MWNkZDgyMSIsImhhc2giOiJMWlE0QmhwNW83IiwiYnJvd3NlcklkIjoieHNySFFZa0ROS2NFdnpQMUc2TjlBclIzekFySkZpbnZ3aXZMblM4Q0FVcz0iLCJpYXQiOjE3Mzk4ODg5OTIsImV4cCI6MTc0MDQ5Mzc5Mn0.knf-1COS7Unmg2TTjZSrvYJLbpMAwNXWJFyRaT5tpJs; rl_anonymous_id=RudderEncrypt%3AU2FsdGVkX188fclwn2jzL09uFaMHiuGr%2BPL4j7s8x4XWLxBJ9gJA1ldwJHQjrKUzZNbgfMjdQEXR3Fq1XOrvFA%3D%3D; rl_user_id=RudderEncrypt%3AU2FsdGVkX19Q7GuvX%2F4D%2FHwHuN57ITdRlyR3LxEQFaeloUq%2BvzQTRn9wj1peyHE%2FWPvP0bAxuhVTzPEqI9xhHsu5LFeUcbSAt5gKS6fasGE4uUmM8%2BQNcHWEPsnd9QfIGkiaBdcGnSdYZ4YRcLJRW8HIgduIsK%2FARJf%2BHjOAaig%3D; rl_trait=RudderEncrypt%3AU2FsdGVkX1%2FJDvvgl6m%2F81PqlXmh7MMNbD18gb%2F65Qrq%2FaLt6TtV1HqSKbE3DjZGFGpK06ppgc%2BsCFKcLlllbVvQ729B3giu05ffRYKaDp3GQCraCNSUfWql95YiQUS4kWr9ua8KQNUcG67MisTKtQ%3D%3D; ph_phc_4URIAm1uYfJO7j8kWSe0J8lc8IqnstRLS7Jx8NcakHo_posthog=%7B%22distinct_id%22%3A%227f2729b6912993883b7a01075663f0bebc4d1327170894f4cb4d1836ba9a5acd%2347ac2c43-383e-48e1-9b32-e7aa71cdd821%22%2C%22%24sesid%22%3A%5B1740275736211%2C%220195306c-7df3-7c56-bfeb-c51d54a5fdb5%22%2C1740274171379%5D%2C%22%24epp%22%3Atrue%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22%24direct%22%2C%22u%22%3A%22https%3A%2F%2Fn8n.automscc.com%2Fsignin%3Fredirect%3D%25252F%22%7D%7D; rl_session=RudderEncrypt%3AU2FsdGVkX1860YjuXdXV7Lxs2MAg%2BmEHMN2SiCZ78M0jd2cZLD0n0N9xgd4bTlZCxcndJXQIGUTje56j%2B1dtjKxnbrJACoM%2FbwG89UuMPy25PkmEaV7BTbXBZW2ue0KxvMirXvRpBakSqaeVZKklEQ%3D%3D",
+            "if-none-match": "W/\"14-LnYxEoCX4kD9IqM/7goPozHxI5Y\"",
+            "origin": "https://n8n.automscc.com",
+            "priority": "u=0, i",
+            "referer": "https://n8n.automscc.com/webhook/reporte?numero=573136298562",
+            "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Google Chrome\";v=\"133\", \"Chromium\";v=\"133\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "document",
+            "sec-fetch-mode": "navigate",
+            "sec-fetch-site": "same-origin",
+            "sec-fetch-user": "?1",
+            "upgrade-insecure-requests": "1",
+            "x-forwarded-for": "186.98.225.215",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3051a3bb6625",
+            "x-real-ip": "186.98.225.215"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "cliente": "573136298562",
+            "estado": "en-progreso",
+            "comentario": "el cliente quiere que lo contacte mañana",
+            "seguimiento": "on",
+            "fecha": "2025-02-23"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/guardar-descripcion-cliente",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2025-02-23T01:57:07.000Z",
+  "versionId": "383d6fdb-3993-430c-8d97-21257a819e81"
+}
