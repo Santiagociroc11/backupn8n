@@ -92,17 +92,7 @@
       "main": [
         [
           {
-            "node": "BUSCA",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "busqueda",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "MAILERLITE1",
+            "node": "BUSCA1",
             "type": "main",
             "index": 0
           }
@@ -120,50 +110,6 @@
         ]
       ]
     },
-    "CONT + ": {
-      "main": [
-        [
-          {
-            "node": "REGISTRO",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "ASIGNA": {
-      "main": [
-        [
-          {
-            "node": "conteo + 1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "REGISTRO": {
-      "main": [
-        [
-          {
-            "node": "BUSCA ASESOR",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "BUSCA": {
-      "main": [
-        [
-          {
-            "node": "COMPRAS?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "ESTADO": {
       "main": [
         [
@@ -175,7 +121,7 @@
         ],
         [
           {
-            "node": "UPDATE EVENTO",
+            "node": "EVENTO +",
             "type": "main",
             "index": 0
           }
@@ -200,22 +146,11 @@
         ]
       ]
     },
-    "CONT + 1": {
-      "main": [
-        [
-          {
-            "node": "UPDATE COMPRA",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "ASIGNADA?": {
       "main": [
         [
           {
-            "node": "CONT + 1",
+            "node": "REVISAR",
             "type": "main",
             "index": 0
           }
@@ -223,61 +158,6 @@
         [
           {
             "node": "REGISTRO1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "UPDATE COMPRA": {
-      "main": [
-        [
-          {
-            "node": "BUSCA ASESOR1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "REGISTRO1": {
-      "main": [
-        [
-          {
-            "node": "AVISO COMPRA SIN CERRADOR",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "BUSCA ASESOR1": {
-      "main": [
-        [
-          {
-            "node": "AVISO COMPRA CON CERRADOR",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "BUSCA ASESOR": {
-      "main": [
-        [
-          {
-            "node": "CLIENTE NUEVO - CERRADOR",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "UPDATE EVENTO": {
-      "main": [
-        [
-          {
-            "node": "BUSCA ASESOR2",
             "type": "main",
             "index": 0
           }
@@ -295,17 +175,6 @@
         ]
       ]
     },
-    "BUSCA ASESOR2": {
-      "main": [
-        [
-          {
-            "node": "CLIENTE EXISTENTE - CERRADOR",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "existe en manychat?": {
       "main": [
         [
@@ -317,29 +186,7 @@
         ],
         [
           {
-            "node": "crear",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "busqueda": {
-      "main": [
-        [
-          {
-            "node": "existe en manychat?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "crear": {
-      "main": [
-        [
-          {
-            "node": "id",
+            "node": "CREAR",
             "type": "main",
             "index": 0
           }
@@ -367,12 +214,306 @@
           }
         ]
       ]
+    },
+    "mensaje": {
+      "main": [
+        [
+          {
+            "node": "TG COMPRA ASIGNADA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mensaje1": {
+      "main": [
+        [
+          {
+            "node": "TG COMPRA SIN ASIGNAR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CREAR": {
+      "main": [
+        [
+          {
+            "node": "id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BUSQUEDA": {
+      "main": [
+        [
+          {
+            "node": "existe en manychat?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EXISTE?": {
+      "main": [
+        [
+          {
+            "node": "PAGADO?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "No Operation, do nothing": {
+      "main": [
+        [
+          {
+            "node": "BUSCA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PAGADO?": {
+      "main": [
+        [],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BUSCA1": {
+      "main": [
+        [
+          {
+            "node": "EXISTE?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BUSCA": {
+      "main": [
+        [
+          {
+            "node": "COMPRAS?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "REVISAR": {
+      "main": [
+        [
+          {
+            "node": "CONT + 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CONT + 1": {
+      "main": [
+        [
+          {
+            "node": "UPDATE CLIENTE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UPDATE CLIENTE": {
+      "main": [
+        [
+          {
+            "node": "EVENTO COMPRA +1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EVENTO COMPRA +1": {
+      "main": [
+        [
+          {
+            "node": "BUSCA ASESOR1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BUSCA ASESOR1": {
+      "main": [
+        [
+          {
+            "node": "mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "REGISTRO1": {
+      "main": [
+        [
+          {
+            "node": "REGISTRO COMPRA +",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "REGISTRO COMPRA +": {
+      "main": [
+        [
+          {
+            "node": "mensaje1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ASIGNA": {
+      "main": [
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "conteo + 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CONT + ": {
+      "main": [
+        [
+          {
+            "node": "CLIENTE +1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EVENTO +1": {
+      "main": [
+        [
+          {
+            "node": "BUSCA ASESOR3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CLIENTE +1": {
+      "main": [
+        [
+          {
+            "node": "EVENTO +1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BUSCA ASESOR3": {
+      "main": [
+        [
+          {
+            "node": "CLIENTE NUEVO - CERRADOR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EVENTO +2": {
+      "main": [
+        [
+          {
+            "node": "BUSCA ASESOR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BUSCA ASESOR": {
+      "main": [
+        [
+          {
+            "node": "CLIENTE EXISTENTE - CERRADOR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EVENTO +": {
+      "main": [
+        [
+          {
+            "node": "EVENTO +2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-02-22T03:16:54.088Z",
   "id": "imQuNIZ0Ky9wqfir",
   "meta": null,
-  "name": "[GERSSON] HOTMART",
+  "name": "🔨 [GERSSON] EVENTOS HOTMART",
   "nodes": [
     {
       "parameters": {
@@ -671,7 +812,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const valores = {\n  numericos: {\n    CARRITOS: \"f129997s1063853\",\n    RECHAZADOS: \"f129997s1048609\",\n    COMPRAS: \"f129997s1049811\",\n    TICKETS: \"asdasd\"\n  },\n  mailer: {\n    CARRITOS: \"112554445482493399\",\n    RECHAZADOS: \"112554438393071296\",\n    COMPRAS: \"112554427903116632\",\n    TICKETS: \"asdasdf\"\n  },\n  tablas: {\n    CARRITOS: \"FECHA_ABANDONADO\",\n    RECHAZADOS: \"FECHA_RECHAZADO\",\n    COMPRAS: \"FECHA_COMPRA\",\n    TICKETS: \"FECHA_TICKET\"\n  },\n};\n\nreturn {\n  json: {\n    numero: $json.numero,\n    nombre: $json.nombre,\n    correo: $json.correo,\n    flujo: $json.flujo,\n    flujomany: valores.numericos[$json.flujo] || 0,\n    grupomailer: valores.mailer[$json.flujo] || 0,\n    tabla: valores.tablas[$json.flujo] || 0\n  }\n};\n"
+        "jsCode": "const valores = {\n  numericos: {\n    CARRITOS: \"content20250222080111_909145\",\n    RECHAZADOS: \"content20250222082908_074257\",\n    COMPRAS: \"content20250222083048_931507\",\n    TICKETS: \"content20250222083004_157122\"\n  },\n  mailer: {\n    CARRITOS: \"112554445482493399\",\n    RECHAZADOS: \"112554438393071296\",\n    COMPRAS: \"112554427903116632\",\n    TICKETS: \"147071027455723326\"\n  },\n  tablas: {\n    CARRITOS: \"FECHA_ABANDONADO\",\n    RECHAZADOS: \"FECHA_RECHAZADO\",\n    COMPRAS: \"FECHA_COMPRA\",\n    TICKETS: \"FECHA_TICKET\"\n  },\n};\n\nreturn {\n  json: {\n    numero: $json.numero,\n    nombre: $json.nombre,\n    correo: $json.correo,\n    flujo: $json.flujo,\n    flujomany: valores.numericos[$json.flujo] || 0,\n    grupomailer: valores.mailer[$json.flujo] || 0,\n    tabla: valores.tablas[$json.flujo] || 0\n  }\n};\n"
       },
       "id": "41070488-d638-4392-933f-0b2d6ea47df0",
       "name": "ASIGNACION",
@@ -718,149 +859,6 @@
     },
     {
       "parameters": {
-        "operation": "update",
-        "table": {
-          "__rl": true,
-          "value": "GERSSON_ASESORES",
-          "mode": "list",
-          "cachedResultName": "GERSSON_ASESORES"
-        },
-        "dataMode": "defineBelow",
-        "columnToMatchOn": "ID",
-        "valueToMatchOn": "={{ $('ASIGNA').first().json.ID }}",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "={{$('ASIGNACION').item.json.flujo}}",
-              "value": "={{ $json.conteo }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        1640,
-        500
-      ],
-      "id": "c670e193-1f00-417a-8b59-78e63022082f",
-      "name": "CONT + ",
-      "credentials": {
-        "mySql": {
-          "id": "YgRAfJP9ukWRONi9",
-          "name": "CIERRES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "select",
-        "table": {
-          "__rl": true,
-          "value": "GERSSON_ASESORES",
-          "mode": "list",
-          "cachedResultName": "GERSSON_ASESORES"
-        },
-        "limit": 1,
-        "sort": {
-          "values": [
-            {
-              "column": "={{$('ASIGNACION').item.json.flujo}}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        1360,
-        500
-      ],
-      "id": "568314b4-7959-4e9e-98af-df8f76f7206c",
-      "name": "ASIGNA",
-      "credentials": {
-        "mySql": {
-          "id": "YgRAfJP9ukWRONi9",
-          "name": "CIERRES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "table": {
-          "__rl": true,
-          "value": "GERSSON_REGISTROS",
-          "mode": "list",
-          "cachedResultName": "GERSSON_REGISTROS"
-        },
-        "dataMode": "defineBelow",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "WHATSAPP",
-              "value": "={{$('ASIGNACION').item.json.numero}}"
-            },
-            {
-              "column": "FECHA_LINK",
-              "value": "={{ $now.toSeconds().floor() }}"
-            },
-            {
-              "column": "NOMBRE_ASESOR",
-              "value": "={{ $('ASIGNA').item.json.NOMBRE }}"
-            },
-            {
-              "column": "ID_ASESOR",
-              "value": "={{ $('ASIGNA').item.json.ID }}"
-            },
-            {
-              "column": "WHA_ASESOR",
-              "value": "={{ $('ASIGNA').item.json.WHATSAPP }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        1780,
-        500
-      ],
-      "id": "9d8a4689-8cb7-479f-9068-514184c2cf74",
-      "name": "REGISTRO",
-      "credentials": {
-        "mySql": {
-          "id": "YgRAfJP9ukWRONi9",
-          "name": "CIERRES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "executeQuery",
-        "query": "SELECT * FROM `GERSSON_REGISTROS` WHERE `WHATSAPP` LIKE '%{{$('ASIGNACION').item.json.numero.toString().slice(-6)}}%'",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        760,
-        380
-      ],
-      "id": "8143b5e0-3f5b-4486-9cb7-1440f1f6c590",
-      "name": "BUSCA",
-      "alwaysOutputData": true,
-      "credentials": {
-        "mySql": {
-          "id": "YgRAfJP9ukWRONi9",
-          "name": "CIERRES"
-        }
-      }
-    },
-    {
-      "parameters": {
         "rules": {
           "values": [
             {
@@ -873,11 +871,11 @@
                 },
                 "conditions": [
                   {
-                    "leftValue": "={{ $json.isNotEmpty() }}",
+                    "leftValue": "={{ $json.isEmpty() }}",
                     "rightValue": "",
                     "operator": {
                       "type": "boolean",
-                      "operation": "false",
+                      "operation": "true",
                       "singleValue": true
                     },
                     "id": "16e2bc07-c05c-4e36-bd5d-d313d0d81cac"
@@ -899,11 +897,11 @@
                 "conditions": [
                   {
                     "id": "36834769-c9f1-4fc7-ac70-73892aeba8e3",
-                    "leftValue": "={{ $json.isNotEmpty() }}",
+                    "leftValue": "={{ $json.isEmpty() }}",
                     "rightValue": "",
                     "operator": {
                       "type": "boolean",
-                      "operation": "true",
+                      "operation": "false",
                       "singleValue": true
                     }
                   }
@@ -920,8 +918,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        1120,
-        580
+        2100,
+        740
       ],
       "id": "71ab8fb0-b666-460d-9d76-13543b7bd6ea",
       "name": "ESTADO"
@@ -954,8 +952,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        900,
-        380
+        1880,
+        400
       ],
       "id": "d6ba56df-16a1-44dc-82ad-282c77a47af1",
       "name": "COMPRAS?"
@@ -974,7 +972,7 @@
                 },
                 "conditions": [
                   {
-                    "leftValue": "={{ $json.isNotEmpty() }}",
+                    "leftValue": "={{ $json.isEmpty() }}",
                     "rightValue": "",
                     "operator": {
                       "type": "boolean",
@@ -1000,7 +998,7 @@
                 "conditions": [
                   {
                     "id": "36834769-c9f1-4fc7-ac70-73892aeba8e3",
-                    "leftValue": "={{ $json.isNotEmpty() }}",
+                    "leftValue": "={{ $json.isEmpty() }}",
                     "rightValue": "",
                     "operator": {
                       "type": "boolean",
@@ -1021,250 +1019,11 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        1120,
-        220
+        2100,
+        380
       ],
       "id": "2a01a731-ac59-403f-96b1-b00d5f2e7885",
       "name": "ASIGNADA?"
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "table": {
-          "__rl": true,
-          "value": "GERSSON_ASESORES",
-          "mode": "list",
-          "cachedResultName": "GERSSON_ASESORES"
-        },
-        "dataMode": "defineBelow",
-        "columnToMatchOn": "ID",
-        "valueToMatchOn": "={{ $json.ID }}",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "=COMPRAS",
-              "value": "={{ $json.COMPRA + 1 }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        1340,
-        120
-      ],
-      "id": "95ac09f0-0901-41c9-b831-00d0c75729e3",
-      "name": "CONT + 1",
-      "credentials": {
-        "mySql": {
-          "id": "YgRAfJP9ukWRONi9",
-          "name": "CIERRES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "table": {
-          "__rl": true,
-          "value": "GERSSON_REGISTROS",
-          "mode": "list",
-          "cachedResultName": "GERSSON_REGISTROS"
-        },
-        "dataMode": "defineBelow",
-        "columnToMatchOn": "ID",
-        "valueToMatchOn": "={{$('BUSCA').item.json.ID}}",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "FECHA_COMPRA",
-              "value": "={{ $now.toSeconds().floor() }}"
-            },
-            {
-              "column": "ESTADO",
-              "value": "PAGADO"
-            },
-            {
-              "column": "MEDIO_PAGO",
-              "value": "HOTMART"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        1480,
-        120
-      ],
-      "id": "1289ccc5-ce79-4a21-9222-4695fa8032fb",
-      "name": "UPDATE COMPRA",
-      "credentials": {
-        "mySql": {
-          "id": "YgRAfJP9ukWRONi9",
-          "name": "CIERRES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "table": {
-          "__rl": true,
-          "value": "GERSSON_REGISTROS",
-          "mode": "list",
-          "cachedResultName": "GERSSON_REGISTROS"
-        },
-        "dataMode": "defineBelow",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "WHATSAPP",
-              "value": "={{$('ASIGNACION').item.json.numero}}"
-            },
-            {
-              "column": "FECHA_COMPRA",
-              "value": "={{ $now.toSeconds().floor() }}"
-            },
-            {
-              "column": "NOMBRE_ASESOR",
-              "value": "=SIN ASESOR"
-            },
-            {
-              "column": "ID_ASESOR",
-              "value": "=SIN ASESOR"
-            },
-            {
-              "column": "WHA_ASESOR",
-              "value": "=SIN ASESOR"
-            },
-            {
-              "column": "ESTADO",
-              "value": "PAGADO"
-            },
-            {
-              "column": "TIEMPO"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        1340,
-        300
-      ],
-      "id": "ccd002ad-e044-4cb3-8e4d-6ee3b520c36b",
-      "name": "REGISTRO1",
-      "credentials": {
-        "mySql": {
-          "id": "YgRAfJP9ukWRONi9",
-          "name": "CIERRES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "executeQuery",
-        "query": "SELECT * FROM `GERSSON_REGISTROS` WHERE `WHATSAPP` LIKE '%{{$('ASIGNACION').item.json.numero.toString().slice(-6)}}%'",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        1920,
-        500
-      ],
-      "id": "b0ce6dc1-0c5f-4817-8db8-707f6678e6f7",
-      "name": "BUSCA ASESOR",
-      "credentials": {
-        "mySql": {
-          "id": "YgRAfJP9ukWRONi9",
-          "name": "CIERRES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "executeQuery",
-        "query": "SELECT * FROM `GERSSON_REGISTROS` WHERE `WHATSAPP` LIKE '%{{$('ASIGNACION').item.json.numero.toString().slice(-6)}}%'",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        1620,
-        120
-      ],
-      "id": "8d35906f-f499-49ba-bc12-a6f32f920a76",
-      "name": "BUSCA ASESOR1",
-      "credentials": {
-        "mySql": {
-          "id": "YgRAfJP9ukWRONi9",
-          "name": "CIERRES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "executeQuery",
-        "query": "SELECT * FROM `GERSSON_REGISTROS` WHERE `WHATSAPP` LIKE '%{{$('ASIGNACION').item.json.numero.toString().slice(-6)}}%'",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        1500,
-        660
-      ],
-      "id": "7f2cd463-8d2c-47d3-b8cb-75ad580944f4",
-      "name": "BUSCA ASESOR2",
-      "credentials": {
-        "mySql": {
-          "id": "YgRAfJP9ukWRONi9",
-          "name": "CIERRES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "table": {
-          "__rl": true,
-          "value": "GERSSON_REGISTROS",
-          "mode": "list",
-          "cachedResultName": "GERSSON_REGISTROS"
-        },
-        "dataMode": "defineBelow",
-        "columnToMatchOn": "ID",
-        "valueToMatchOn": "={{$('BUSCA').item.json.ID}}",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "={{$('ASIGNACION').item.json.tabla}}",
-              "value": "={{ $now.toSeconds().floor() }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        1360,
-        660
-      ],
-      "id": "fb1f06a1-12ba-419c-8964-a9f7c5e9c6e1",
-      "name": "UPDATE EVENTO",
-      "credentials": {
-        "mySql": {
-          "id": "YgRAfJP9ukWRONi9",
-          "name": "CIERRES"
-        }
-      }
     },
     {
       "parameters": {
@@ -1273,47 +1032,11 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1500,
-        500
+        2820,
+        640
       ],
       "id": "f0bdd5cd-a1ba-4126-9454-4e44694fbd96",
       "name": "conteo + 1"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"chat_id\": \"-1002461687342\",\n  \"message_thread_id\": 61,\n  \"text\": \"🚨 *GRUPOS*: \\n\\n {{ $json.body.mensaje }}\",\n  \"parse_mode\": \"Markdown\"\n}\n",
-        "options": {}
-      },
-      "id": "3ed06e04-1660-47e0-921a-ac0efb142b64",
-      "name": "AVISO COMPRA SIN CERRADOR",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        1500,
-        300
-      ]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"chat_id\": \"-1002461687342\",\n  \"message_thread_id\": 61,\n  \"text\": \"🚨 *GRUPOS*: \\n\\n {{ $json.body.mensaje }}\",\n  \"parse_mode\": \"Markdown\"\n}\n",
-        "options": {}
-      },
-      "id": "361c5000-ecc0-444f-9324-26a48e694717",
-      "name": "AVISO COMPRA CON CERRADOR",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        1780,
-        120
-      ]
     },
     {
       "parameters": {
@@ -1343,55 +1066,11 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        940,
-        -180
+        1800,
+        -360
       ],
       "id": "921be498-52fa-4be8-a443-3c557bce68c0",
       "name": "existe en manychat?"
-    },
-    {
-      "parameters": {
-        "url": "https://api.manychat.com/fb/subscriber/findBySystemField",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "phone",
-              "value": "=+{{ $('ASIGNACION').item.json.numero }}"
-            }
-          ]
-        },
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
-            },
-            {
-              "name": "Content-Type",
-              "value": "application/json"
-            },
-            {
-              "name": "Accept",
-              "value": "application/json"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        760,
-        -160
-      ],
-      "id": "76c20459-d98a-4080-88e3-3f90dd78db56",
-      "name": "busqueda",
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "maxTries": 5,
-      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -1422,50 +1101,11 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1460,
-        -240
+        2420,
+        -420
       ],
       "id": "851b7de7-6470-4367-afe7-b99561ed92f5",
       "name": "ENVIAR FLUJO BV",
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "maxTries": 5,
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.manychat.com/fb/subscriber/createSubscriber",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
-            },
-            {
-              "name": "Content-Type",
-              "value": "application/json"
-            },
-            {
-              "name": "Accept",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"first_name\": \"{{ $('ASIGNACION').item.json.nombre }}\",\n  \"whatsapp_phone\": \"{{ $('ASIGNACION').item.json.numero }}\"\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        1120,
-        -100
-      ],
-      "id": "65f15e76-32bb-4dbf-9c2c-a18696bbe1bc",
-      "name": "crear",
       "retryOnFail": true,
       "waitBetweenTries": 5000,
       "maxTries": 5,
@@ -1488,8 +1128,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1300,
-        -120
+        2220,
+        -300
       ],
       "id": "33731b04-de1a-4bdc-a925-aa0268a06776",
       "name": "id"
@@ -1511,8 +1151,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1120,
-        -240
+        2040,
+        -440
       ],
       "id": "14d1fcc2-8c80-406c-9683-9342b8fafc08",
       "name": "id1"
@@ -1531,9 +1171,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1680,
-        660
-      ]
+        2820,
+        840
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -1549,20 +1190,21 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2080,
-        500
-      ]
+        3620,
+        640
+      ],
+      "disabled": true
     },
     {
       "parameters": {
         "content": "## API Y CORREO\n",
         "height": 460,
-        "width": 940
+        "width": 1120
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        700,
-        -400
+        1520,
+        -580
       ],
       "typeVersion": 1,
       "id": "ed193b43-b767-425e-abfa-2980136a4c80",
@@ -1605,12 +1247,984 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        760,
-        -320
+        1580,
+        -500
       ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let jsonventa = $('HOTMART').first().json.body.data;\nlet cerrador = $input.first().json.NOMBRE_ASESOR\n\n// Extraer datos relevantes\nconst transaction = jsonventa.purchase?.transaction || \"N/A\";\nconst buyerName = jsonventa.buyer?.name || \"N/A\";\nconst pais = jsonventa.buyer?.address?.country || \"N/A\";\nconst buyerEmail = jsonventa.buyer?.email || \"N/A\";\nconst productName = jsonventa.product?.name || \"N/A\";\nconst purchaseDate = new Date(jsonventa.purchase?.order_date).toLocaleString();\n\n// Construir el mensaje\nconst text = `\\n🔔 *Notificación de VENTA* \\n\\n` +\n  `🛍 *Producto:* ${productName}\\n` +\n  `💰 *Pais:* ${pais}\\n` +\n  `👤 *Comprador:* ${buyerName}\\n` +\n  `📧 *Correo:* ${buyerEmail}\\n` +\n  `📦 *Transacción:* ${transaction}\\n` +\n  `📦 *CERRADOR:* ${cerrador}\\n` +\n  `📅 *Fecha de compra:* ${purchaseDate}\\n`;\n\n// Retornar el JSON con el mensaje\nreturn {\n  json: {\n    text,\n  },\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3140,
+        280
+      ],
+      "id": "6632db46-0264-4502-932e-272c15ba3458",
+      "name": "mensaje"
+    },
+    {
+      "parameters": {
+        "jsCode": "let jsonventa = $('HOTMART').first().json.body.data;\nlet cerrador = \"SIN CERRADOR\"\n\n// Extraer datos relevantes\nconst transaction = jsonventa.purchase?.transaction || \"N/A\";\nconst buyerName = jsonventa.buyer?.name || \"N/A\";\nconst pais = jsonventa.buyer?.address?.country || \"N/A\";\nconst buyerEmail = jsonventa.buyer?.email || \"N/A\";\nconst productName = jsonventa.product?.name || \"N/A\";\nconst purchaseDate = new Date(jsonventa.purchase?.order_date).toLocaleString();\n\n// Construir el mensaje\nconst text = `\\n🔔 *Notificación de VENTA* \\n\\n` +\n  `🛍 *Producto:* ${productName}\\n` +\n  `💰 *Pais:* ${pais}\\n` +\n  `👤 *Comprador:* ${buyerName}\\n` +\n  `📧 *Correo:* ${buyerEmail}\\n` +\n  `📦 *Transacción:* ${transaction}\\n` +\n  `📦 *CERRADOR:* ${cerrador}\\n` +\n  `📅 *Fecha de compra:* ${purchaseDate}\\n`;\n\n// Retornar el JSON con el mensaje\nreturn {\n  json: {\n    text,\n  },\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2660,
+        440
+      ],
+      "id": "92a72319-6b56-4838-9c1a-39c2ac92d0fa",
+      "name": "mensaje1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.manychat.com/fb/subscriber/createSubscriber",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"first_name\": \"{{ $('ASIGNACION').item.json.nombre }}\",\n  \"whatsapp_phone\": \"{{ $('ASIGNACION').item.json.numero }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2000,
+        -280
+      ],
+      "id": "65f15e76-32bb-4dbf-9c2c-a18696bbe1bc",
+      "name": "CREAR",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "maxTries": 5,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "url": "https://api.manychat.com/fb/subscriber/findBySystemField",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "phone",
+              "value": "=+{{ $('ASIGNACION').item.json.numero }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1580,
+        -340
+      ],
+      "id": "76c20459-d98a-4080-88e3-3f90dd78db56",
+      "name": "BUSQUEDA",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "maxTries": 5,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"chat_id\": \"-1002176532359\",\n  \"message_thread_id\": 807,\n  {{ $json.toJsonString().replace(/^\\{|\\}$/g, \"\")\n }},\n  \"parse_mode\": \"Markdown\"\n}\n",
+        "options": {}
+      },
+      "id": "8308853f-4ae7-4418-8982-c153b2ce7a5a",
+      "name": "TG COMPRA SIN ASIGNAR",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2820,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"chat_id\": \"-1002176532359\",\n  \"message_thread_id\": 807,\n  {{ $json.toJsonString().replace(/^\\{|\\}$/g, \"\")\n }},\n  \"parse_mode\": \"Markdown\"\n}\n",
+        "options": {}
+      },
+      "id": "3fc46e5d-ef86-4b0a-8c86-c99cf9652a69",
+      "name": "TG COMPRA ASIGNADA",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3300,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b0ba3677-8ec4-4669-b41b-5fff6516d2bf",
+              "leftValue": "={{ $json.isNotEmpty() }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        780,
+        0
+      ],
+      "id": "10714732-3ea7-469f-ad21-3f5342d9e688",
+      "name": "EXISTE?"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        20
+      ],
+      "id": "64f91caf-b2cb-4e78-a206-9ee6fb26db1a",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b0ba3677-8ec4-4669-b41b-5fff6516d2bf",
+              "leftValue": "={{ $json.ESTADO }}",
+              "rightValue": "PAGADO",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        960,
+        -80
+      ],
+      "id": "387659b8-acc8-4678-90ef-68bb4a53a78b",
+      "name": "PAGADO?"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "GERSSON_CLIENTES",
+        "limit": 1,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "WHATSAPP",
+              "condition": "like",
+              "keyValue": "=*{{$('ASIGNACION').item.json.numero.toString().slice(-6)}}*"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        600,
+        0
+      ],
+      "id": "6b22e1c6-1a35-4b51-9943-83e1e096961a",
+      "name": "BUSCA1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "GERSSON_CLIENTES",
+        "limit": 1,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "WHATSAPP",
+              "condition": "like",
+              "keyValue": "=*{{$('ASIGNACION').item.json.numero.toString().slice(-6)}}*"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1720,
+        400
+      ],
+      "id": "ab43656d-a38e-4f26-a003-dc80a9334478",
+      "name": "BUSCA",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "GERSSON_ASESORES",
+        "limit": 1,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ID",
+              "condition": "eq",
+              "keyValue": "={{ $json.ID_ASESOR }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        280
+      ],
+      "id": "9a3c1b2c-026a-4be3-afe4-2ee670eaf1d2",
+      "name": "REVISAR",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "GERSSON_ASESORES",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ID",
+              "condition": "eq",
+              "keyValue": "={{ $json.ID }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "COMPRAS",
+              "fieldValue": "={{ $json.COMPRAS + 1 }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2500,
+        280
+      ],
+      "id": "dce5a177-0ac3-44bf-a6fb-d9e6fc3b9f6c",
+      "name": "CONT + 1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "GERSSON_CLIENTES",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ID",
+              "condition": "eq",
+              "keyValue": "={{$('BUSCA').item.json.ID}}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "FECHA_COMPRA",
+              "fieldValue": "={{ $now.toSeconds().floor() }}"
+            },
+            {
+              "fieldId": "MEDIO_COMPRA",
+              "fieldValue": "HOTMART"
+            },
+            {
+              "fieldId": "ESTADO",
+              "fieldValue": "PAGADO"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        280
+      ],
+      "id": "53117180-218b-42f5-abd4-2d8a821c085b",
+      "name": "UPDATE CLIENTE",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "GERSSON_REGISTROS",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "FECHA_EVENTO",
+              "fieldValue": "={{ $now.toSeconds().floor() }}"
+            },
+            {
+              "fieldId": "TIPO_EVENTO",
+              "fieldValue": "COMPRA"
+            },
+            {
+              "fieldId": "ID_CLIENTE",
+              "fieldValue": "={{$('BUSCA').item.json.ID}}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2820,
+        280
+      ],
+      "id": "92996e96-9df9-4285-9df3-65acedd906f1",
+      "name": "EVENTO COMPRA +1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "GERSSON_CLIENTES",
+        "limit": 1,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "WHATSAPP",
+              "condition": "like",
+              "keyValue": "=*{{$('ASIGNACION').item.json.numero.toString().slice(-6)}}*"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2980,
+        280
+      ],
+      "id": "63d9e093-b854-4fd7-a53e-bd0d236ceb21",
+      "name": "BUSCA ASESOR1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "GERSSON_CLIENTES",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "WHATSAPP",
+              "fieldValue": "={{$('ASIGNACION').item.json.numero}}"
+            },
+            {
+              "fieldId": "ESTADO",
+              "fieldValue": "PAGADO"
+            },
+            {
+              "fieldId": "FECHA_CREACION",
+              "fieldValue": "={{ $now.toSeconds().floor() }}"
+            },
+            {
+              "fieldId": "FECHA_COMPRA",
+              "fieldValue": "={{ $now.toSeconds().floor() }}"
+            },
+            {
+              "fieldId": "MEDIO_COMPRA",
+              "fieldValue": "HOTMART"
+            },
+            {
+              "fieldId": "NOMBRE",
+              "fieldValue": "={{$('ASIGNACION').item.json.nombre}}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        440
+      ],
+      "id": "1808f4ba-0a2a-4812-8a53-9ee14e3b0087",
+      "name": "REGISTRO1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "GERSSON_REGISTROS",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "FECHA_EVENTO",
+              "fieldValue": "={{ $now.toSeconds().floor() }}"
+            },
+            {
+              "fieldId": "TIPO_EVENTO",
+              "fieldValue": "COMPRA"
+            },
+            {
+              "fieldId": "ID_CLIENTE",
+              "fieldValue": "={{ $json.ID }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2500,
+        440
+      ],
+      "id": "3fdf2514-949e-4ecd-aa58-d70891baaf27",
+      "name": "REGISTRO COMPRA +",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "={{$('ASIGNACION').item.json.flujo}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        2500,
+        640
+      ],
+      "id": "8c88d5c8-fed1-466d-bfe4-08ffafce743f",
+      "name": "Sort"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        640
+      ],
+      "id": "e4437443-e36b-459c-9748-bf54785b1045",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "GERSSON_ASESORES",
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        640
+      ],
+      "id": "096dc26b-8a76-4194-b903-41e674da31e4",
+      "name": "ASIGNA",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "GERSSON_CLIENTES",
+        "limit": 1,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "WHATSAPP",
+              "condition": "like",
+              "keyValue": "=*{{$('ASIGNACION').item.json.numero.toString().slice(-6)}}*"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3440,
+        640
+      ],
+      "id": "877832d7-ae3e-4d34-a32b-95925a1c2dca",
+      "name": "BUSCA ASESOR3",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "GERSSON_ASESORES",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ID",
+              "condition": "eq",
+              "keyValue": "={{ $('ASIGNA').first().json.ID }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "={{$('ASIGNACION').item.json.flujo}}",
+              "fieldValue": "={{ $json.conteo }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2980,
+        640
+      ],
+      "id": "59cbdf25-86ee-48b6-acdc-9a2623a950e8",
+      "name": "CONT + ",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "GERSSON_CLIENTES",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "ESTADO",
+              "fieldValue": "={{$('ASIGNACION').item.json.flujo}}"
+            },
+            {
+              "fieldId": "WHATSAPP",
+              "fieldValue": "={{$('ASIGNACION').item.json.numero}}"
+            },
+            {
+              "fieldId": "ID_ASESOR",
+              "fieldValue": "={{ $('Limit').item.json.ID }}"
+            },
+            {
+              "fieldId": "FECHA_CREACION",
+              "fieldValue": "={{ $now.toSeconds().floor() }}"
+            },
+            {
+              "fieldId": "NOMBRE",
+              "fieldValue": "={{$('ASIGNACION').item.json.nombre}}"
+            },
+            {
+              "fieldId": "NOMBRE_ASESOR",
+              "fieldValue": "={{ $('Limit').item.json.NOMBRE }}"
+            },
+            {
+              "fieldId": "WHA_ASESOR",
+              "fieldValue": "={{ $('Limit').item.json.WHATSAPP }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3120,
+        640
+      ],
+      "id": "08409873-abd7-4494-b2d7-826e8ffbce00",
+      "name": "CLIENTE +1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "GERSSON_REGISTROS",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "ID_CLIENTE",
+              "fieldValue": "={{ $json.ID }}"
+            },
+            {
+              "fieldId": "TIPO_EVENTO",
+              "fieldValue": "={{$('ASIGNACION').item.json.flujo}}"
+            },
+            {
+              "fieldId": "FECHA_EVENTO",
+              "fieldValue": "={{ $now.toSeconds().floor() }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3280,
+        640
+      ],
+      "id": "08a1a466-8e0e-4305-8b10-01ad06685165",
+      "name": "EVENTO +1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "GERSSON_REGISTROS",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "ID_CLIENTE",
+              "fieldValue": "={{$('BUSCA').item.json.ID}}"
+            },
+            {
+              "fieldId": "TIPO_EVENTO",
+              "fieldValue": "={{$('ASIGNACION').item.json.flujo}}"
+            },
+            {
+              "fieldId": "FECHA_EVENTO",
+              "fieldValue": "={{ $now.toSeconds().floor() }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        840
+      ],
+      "id": "a2f28728-39eb-44a3-8cdb-7c178a181e6a",
+      "name": "EVENTO +",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "GERSSON_CLIENTES",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ID",
+              "condition": "eq",
+              "keyValue": "={{$('BUSCA').item.json.ID}}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "ESTADO",
+              "fieldValue": "={{$('ASIGNACION').item.json.flujo}}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2480,
+        840
+      ],
+      "id": "47838789-a8f1-44d9-b5a7-6e1d8b932a87",
+      "name": "EVENTO +2",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "GERSSON_CLIENTES",
+        "limit": 1,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "WHATSAPP",
+              "condition": "like",
+              "keyValue": "=*{{$('ASIGNACION').item.json.numero.toString().slice(-6)}}*"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2640,
+        840
+      ],
+      "id": "f93ee001-5b5b-4036-ba75-9d9c7d66a64b",
+      "name": "BUSCA ASESOR",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "HOTMART": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Jodd HTTP",
+            "content-length": "1341",
+            "content-type": "application/json",
+            "x-forwarded-for": "44.211.31.4",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3051a3bb6625",
+            "x-hotmart-hottok": "rrQs3XPgg981iOyVxcVtzyVVA0kYsp1be22114-3144-4b81-9341-e1e30d733e88",
+            "x-real-ip": "44.211.31.4",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "data": {
+              "product": {
+                "has_co_production": false,
+                "name": "Produto test postback2",
+                "id": 0,
+                "ucode": "fb056612-bcc6-4217-9e6d-2a5d1110ac2f"
+              },
+              "commissions": [
+                {
+                  "currency_value": "BRL",
+                  "source": "MARKETPLACE",
+                  "value": 149.5
+                },
+                {
+                  "currency_value": "BRL",
+                  "source": "PRODUCER",
+                  "value": 1350.5
+                }
+              ],
+              "purchase": {
+                "original_offer_price": {
+                  "currency_value": "BRL",
+                  "value": 1500
+                },
+                "checkout_country": {
+                  "iso": "BR",
+                  "name": "Brasil"
+                },
+                "sckPaymentLink": "sckPaymentLinkTest",
+                "order_bump": {
+                  "parent_purchase_transaction": "HP02316330308193",
+                  "is_order_bump": true
+                },
+                "approved_date": 1511783346000,
+                "offer": {
+                  "code": "test"
+                },
+                "order_date": 1511783344000,
+                "price": {
+                  "currency_value": "BRL",
+                  "value": 1500
+                },
+                "buyer_ip": "00.00.00.00",
+                "payment": {
+                  "installments_number": 12,
+                  "type": "CREDIT_CARD"
+                },
+                "full_price": {
+                  "currency_value": "BRL",
+                  "value": 1500
+                },
+                "transaction": "HP16015479281022",
+                "status": "APPROVED"
+              },
+              "affiliates": [
+                {
+                  "affiliate_code": "Q58388177J",
+                  "name": "Affiliate name"
+                }
+              ],
+              "producer": {
+                "name": "Producer Test Name"
+              },
+              "subscription": {
+                "subscriber": {
+                  "code": "I9OT62C3"
+                },
+                "plan": {
+                  "name": "plano de teste",
+                  "id": 123
+                },
+                "status": "ACTIVE"
+              },
+              "buyer": {
+                "address": {
+                  "country": "Brasil",
+                  "country_iso": "BR"
+                },
+                "name": "Teste Comprador",
+                "checkout_phone": "99999999900",
+                "email": "testeComprador271101postman15@example.com"
+              }
+            },
+            "id": "323c419f-5dbb-42cb-8e1f-71aaab4dc567",
+            "creation_date": 1740271131510,
+            "event": "PURCHASE_APPROVED",
+            "version": "2.0.0"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/gersson-lanza-hotmart",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
   "repo_name": "backupn8n",
   "repo_owner": "Santiagociroc11",
   "repo_path": "backup/",
@@ -1618,8 +2232,27 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2025-02-21T17:25:59.004Z",
+      "updatedAt": "2025-02-21T17:25:59.004Z",
+      "id": "7jH9G2p443i4FpIv",
+      "name": "WEBHOOK"
+    },
+    {
+      "createdAt": "2025-02-04T22:36:35.108Z",
+      "updatedAt": "2025-02-04T22:36:35.108Z",
+      "id": "HjNWwvqlBnseDfSA",
+      "name": "GERSSON"
+    },
+    {
+      "createdAt": "2025-02-20T03:14:39.493Z",
+      "updatedAt": "2025-02-20T03:14:39.493Z",
+      "id": "fMteddKWhaFhuYHk",
+      "name": "MYSQL"
+    }
+  ],
   "triggerCount": 1,
-  "updatedAt": "2025-02-22T06:26:23.000Z",
-  "versionId": "a1e3e11c-f01b-4ce3-a217-0a6676e4d01a"
+  "updatedAt": "2025-02-23T00:39:51.000Z",
+  "versionId": "b67cffec-b1ff-4e13-a136-5e75831f8216"
 }
