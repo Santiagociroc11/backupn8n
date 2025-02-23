@@ -1,39 +1,6 @@
 {
   "active": true,
   "connections": {
-    "ASIGNA": {
-      "main": [
-        [
-          {
-            "node": "CONT + 1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "CONT + 1": {
-      "main": [
-        [
-          {
-            "node": "REGISTRO",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "REGISTRO": {
-      "main": [
-        [
-          {
-            "node": "BUSCA ASESOR",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "ESTADO": {
       "main": [
         [
@@ -43,17 +10,6 @@
             "index": 0
           }
         ],
-        [
-          {
-            "node": "url",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "BUSCA ASESOR": {
-      "main": [
         [
           {
             "node": "url",
@@ -107,6 +63,83 @@
         ]
       ]
     },
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "CONT + 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ASIGNA": {
+      "main": [
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CONT + 1": {
+      "main": [
+        [
+          {
+            "node": "CLIENTE +1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CLIENTE +1": {
+      "main": [
+        [
+          {
+            "node": "REGISTRO +1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "REGISTRO +1": {
+      "main": [
+        [
+          {
+            "node": "BUSCA ASESOR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BUSCA ASESOR": {
+      "main": [
+        [
+          {
+            "node": "url",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "BUSCA": {
       "main": [
         [
@@ -124,129 +157,8 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "[GERSSON] LINK",
+  "name": "🟢 [GERSSON] LINK",
   "nodes": [
-    {
-      "parameters": {
-        "operation": "select",
-        "table": {
-          "__rl": true,
-          "value": "GERSSON_ASESORES",
-          "mode": "list",
-          "cachedResultName": "GERSSON_ASESORES"
-        },
-        "limit": 1,
-        "sort": {
-          "values": [
-            {
-              "column": "LINK"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        180,
-        -180
-      ],
-      "id": "099426a0-aca1-4b12-84e2-6dd98b321642",
-      "name": "ASIGNA",
-      "credentials": {
-        "mySql": {
-          "id": "YgRAfJP9ukWRONi9",
-          "name": "CIERRES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "table": {
-          "__rl": true,
-          "value": "GERSSON_ASESORES",
-          "mode": "list",
-          "cachedResultName": "GERSSON_ASESORES"
-        },
-        "dataMode": "defineBelow",
-        "columnToMatchOn": "ID",
-        "valueToMatchOn": "={{ $json.ID }}",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "LINK",
-              "value": "={{ $json.LINK + 1 }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        360,
-        -180
-      ],
-      "id": "e23f1332-8b57-48a7-845a-a75a8cdf8d4f",
-      "name": "CONT + 1",
-      "credentials": {
-        "mySql": {
-          "id": "YgRAfJP9ukWRONi9",
-          "name": "CIERRES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "table": {
-          "__rl": true,
-          "value": "GERSSON_REGISTROS",
-          "mode": "list",
-          "cachedResultName": "GERSSON_REGISTROS"
-        },
-        "dataMode": "defineBelow",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "WHATSAPP",
-              "value": "={{ $('LINK FORM').item.json.Whastapp }}"
-            },
-            {
-              "column": "FECHA_LINK",
-              "value": "={{ $now.toSeconds().floor() }}"
-            },
-            {
-              "column": "NOMBRE_ASESOR",
-              "value": "={{ $('ASIGNA').item.json.NOMBRE }}"
-            },
-            {
-              "column": "ID_ASESOR",
-              "value": "={{ $('ASIGNA').item.json.ID }}"
-            },
-            {
-              "column": "WHA_ASESOR",
-              "value": "={{ $('ASIGNA').item.json.WHATSAPP }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        520,
-        -180
-      ],
-      "id": "14d52323-6493-4c28-9e3f-2512a1d05eb7",
-      "name": "REGISTRO",
-      "credentials": {
-        "mySql": {
-          "id": "YgRAfJP9ukWRONi9",
-          "name": "CIERRES"
-        }
-      }
-    },
     {
       "parameters": {
         "rules": {
@@ -308,32 +220,11 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -60,
+        -620,
         -80
       ],
       "id": "6db700bc-afb7-43ff-8083-28f15718d1ff",
       "name": "ESTADO"
-    },
-    {
-      "parameters": {
-        "operation": "executeQuery",
-        "query": "SELECT * FROM `GERSSON_REGISTROS` WHERE `WHATSAPP` LIKE '%{{$('LINK FORM').item.json.Whastapp.toString().slice(-6)}}%'",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        700,
-        -180
-      ],
-      "id": "c6691619-4c90-4fb4-b691-22ba3613fdc2",
-      "name": "BUSCA ASESOR",
-      "credentials": {
-        "mySql": {
-          "id": "YgRAfJP9ukWRONi9",
-          "name": "CIERRES"
-        }
-      }
     },
     {
       "parameters": {
@@ -364,7 +255,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        960,
+        1200,
         -60
       ],
       "id": "05b86cc8-3b5b-4e6d-9a20-b4f39b73ee82",
@@ -387,7 +278,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1120,
+        1360,
         -60
       ],
       "id": "493c45bc-6834-4a53-89e0-490d77953706",
@@ -439,7 +330,7 @@
       "type": "n8n-nodes-base.formTrigger",
       "typeVersion": 2.2,
       "position": [
-        -540,
+        -1100,
         -80
       ],
       "id": "1262b446-c252-4996-bc20-f94bd1f7dd8d",
@@ -475,33 +366,11 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -380,
+        -940,
         -80
       ],
       "id": "1ec083c8-f58d-46d6-8da6-c005ab6f45b4",
       "name": "ASIGNA1"
-    },
-    {
-      "parameters": {
-        "operation": "executeQuery",
-        "query": "SELECT * FROM `GERSSON_REGISTROS` WHERE `WHATSAPP` LIKE '%{{$('LINK FORM').item.json.Whastapp.toString().slice(-6)}}%'",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        -220,
-        -80
-      ],
-      "id": "e12620fa-2ab7-46f5-a328-c1f0c0185bc8",
-      "name": "BUSCA",
-      "alwaysOutputData": true,
-      "credentials": {
-        "mySql": {
-          "id": "YgRAfJP9ukWRONi9",
-          "name": "CIERRES"
-        }
-      }
     },
     {
       "parameters": {
@@ -512,53 +381,260 @@
       "type": "n8n-nodes-base.form",
       "typeVersion": 1,
       "position": [
-        1280,
+        1520,
         -60
       ],
       "id": "c7353386-de0e-4b63-aae2-cf2e0423e9e4",
       "name": "REDIRECCION",
       "webhookId": "c8fb22c9-a6bc-4f11-8b23-8dd05c2cf8ab"
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "LINK"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        -220
+      ],
+      "id": "3da6e9ac-2b27-4032-b586-75eda82c26f3",
+      "name": "Sort"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        20,
+        -220
+      ],
+      "id": "adfe19f7-4afa-4e9c-bd11-d1630851587a",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "GERSSON_ASESORES",
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        -220
+      ],
+      "id": "6e9f7516-9414-4433-9700-4f2317fe52f9",
+      "name": "ASIGNA",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "GERSSON_ASESORES",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ID",
+              "condition": "eq",
+              "keyValue": "={{ $json.ID }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "LINK",
+              "fieldValue": "={{ $json.LINK + 1 }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        180,
+        -220
+      ],
+      "id": "bf3f0f47-f5ed-4710-9332-4f85bc43560b",
+      "name": "CONT + 1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "GERSSON_CLIENTES",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "ESTADO",
+              "fieldValue": "=LINK"
+            },
+            {
+              "fieldId": "WHATSAPP",
+              "fieldValue": "={{ $('ASIGNA1').item.json.whatsapp }}"
+            },
+            {
+              "fieldId": "ID_ASESOR",
+              "fieldValue": "={{ $('ASIGNA').item.json.ID }}"
+            },
+            {
+              "fieldId": "FECHA_CREACION",
+              "fieldValue": "={{ $now.toSeconds().floor() }}"
+            },
+            {
+              "fieldId": "NOMBRE",
+              "fieldValue": "={{ $('ASIGNA1').item.json.Nombre }}"
+            },
+            {
+              "fieldId": "NOMBRE_ASESOR",
+              "fieldValue": "={{ $('ASIGNA').item.json.NOMBRE }}"
+            },
+            {
+              "fieldId": "WHA_ASESOR",
+              "fieldValue": "={{ $('ASIGNA').item.json.WHATSAPP }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        360,
+        -220
+      ],
+      "id": "ec999397-989f-4397-8067-2948afa68ade",
+      "name": "CLIENTE +1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "GERSSON_REGISTROS",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "ID_CLIENTE",
+              "fieldValue": "={{ $json.ID }}"
+            },
+            {
+              "fieldId": "TIPO_EVENTO",
+              "fieldValue": "LINK"
+            },
+            {
+              "fieldId": "FECHA_EVENTO",
+              "fieldValue": "={{ $now.toSeconds().floor() }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        540,
+        -220
+      ],
+      "id": "d39c9010-6634-401d-8f36-41c19289f369",
+      "name": "REGISTRO +1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "GERSSON_CLIENTES",
+        "limit": 1,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "WHATSAPP",
+              "condition": "like",
+              "keyValue": "=*{{$('LINK FORM').item.json.Whastapp.toString().slice(-6)}}*"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        740,
+        -220
+      ],
+      "id": "702b10e0-9b0e-4533-a53b-9f1100d3bd65",
+      "name": "BUSCA ASESOR",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "GERSSON_CLIENTES",
+        "limit": 1,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "WHATSAPP",
+              "condition": "like",
+              "keyValue": "=*{{$('LINK FORM').item.json.Whastapp.toString().slice(-6)}}*"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -780,
+        -80
+      ],
+      "id": "5e6ed90a-129e-4408-830a-aeb6f08f9e0b",
+      "name": "BUSCA",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
     }
   ],
   "pinData": {
     "LINK FORM": [
       {
         "json": {
-          "Nombre": "dfasdf",
+          "Nombre": "SANTIAGO CIRO",
           "¿Ya compraste el curso?": "no",
-          "Whastapp": 3136298562,
+          "Whastapp": 573136298562,
           "titulo": "<p>👆🏼 Pon tu Whatsapp para el registro</p>\r\n\r\n",
-          "submittedAt": "2025-02-21T22:32:36.255-05:00",
-          "formMode": "test"
-        }
-      }
-    ],
-    "ASIGNA1": [
-      {
-        "json": {
-          "compra": "no",
-          "Nombre": "dfasdf",
-          "whatsapp": 3136298562
-        }
-      }
-    ],
-    "BUSCA": [
-      {
-        "json": {
-          "ID": 7,
-          "ESTADO": "inicial",
-          "TIEMPO": "2025-02-22 02:24:39",
-          "WHATSAPP": "3136298562",
-          "FECHA_LINK": "1740191079",
-          "FECHA_ABANDONADO": null,
-          "FECHA_RECHAZADO": null,
-          "FECHA_TICKET": null,
-          "FECHA_LISTAS": null,
-          "FECHA_COMPRA": null,
-          "MEDIO_PAGO": null,
-          "NOMBRE_ASESOR": "YEZDEYLI RENDON",
-          "ID_ASESOR": 1,
-          "WHA_ASESOR": "573177866884"
+          "submittedAt": "2025-02-22T18:51:13.262-05:00",
+          "formMode": "production"
         }
       }
     ]
@@ -585,6 +661,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-02-22T03:35:15.000Z",
-  "versionId": "151524a6-abff-4a25-a5ec-ca35fbcab730"
+  "updatedAt": "2025-02-22T23:53:00.000Z",
+  "versionId": "642ab7a4-f3ec-40f2-884a-46b7b526ce36"
 }
