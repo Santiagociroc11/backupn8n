@@ -237,8 +237,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -500,
-        -320
+        -720,
+        -120
       ],
       "id": "32c761a3-e7ce-4b90-94df-d71d2671f554",
       "name": "Webhook",
@@ -255,7 +255,7 @@
       "typeVersion": 2,
       "position": [
         -720,
-        200
+        220
       ],
       "id": "51ee7a40-13bc-4a79-a61c-5acbc5b6f495",
       "name": "Webhook1",
@@ -270,8 +270,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
-        1020,
-        -320
+        680,
+        -140
       ],
       "id": "e562cb12-9142-4295-b9a1-d62ef80adf36",
       "name": "Respond to Webhook"
@@ -293,8 +293,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -300,
-        -320
+        -540,
+        -120
       ],
       "id": "e4f63f7c-f58c-447d-aee8-d5bb4de803b9",
       "name": "Edit Fields1"
@@ -306,8 +306,8 @@
       "type": "n8n-nodes-base.html",
       "typeVersion": 1,
       "position": [
-        840,
-        -320
+        520,
+        -140
       ],
       "id": "793285ac-4fea-497b-b456-df814cc40c57",
       "name": "Renderizar Último Reporte1"
@@ -342,7 +342,7 @@
       "typeVersion": 3.4,
       "position": [
         -540,
-        200
+        220
       ],
       "id": "2b0429f0-ac0d-49f0-8588-3173dd09d5b4",
       "name": "Edit Fields"
@@ -356,7 +356,7 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
-        1000,
+        900,
         340
       ],
       "id": "5f4dcf77-1bf4-4cd5-9edc-612faad25da6",
@@ -423,7 +423,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        540,
+        500,
         200
       ],
       "id": "3781afaa-09d3-4589-821a-9bca58cbe58e",
@@ -438,7 +438,7 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
-        1000,
+        900,
         100
       ],
       "id": "66bf3e74-27e3-4ee1-b995-1b7c0f6190f1",
@@ -462,8 +462,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        -120,
-        -320
+        -360,
+        -120
       ],
       "id": "5a4260f3-7e68-4d9d-9f66-ed2073f549c9",
       "name": "BUSCA ASESOR",
@@ -492,8 +492,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        80,
-        -320
+        -180,
+        -120
       ],
       "id": "315dd87e-1d17-4fcd-a848-8f83014335a0",
       "name": "BUSCA ASESOR1",
@@ -510,8 +510,8 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        640,
-        -220
+        340,
+        -20
       ],
       "id": "5f064449-13e7-4085-ba12-e849c4c10154",
       "name": "Limit"
@@ -531,8 +531,8 @@
       "type": "n8n-nodes-base.sort",
       "typeVersion": 1,
       "position": [
-        500,
-        -220
+        180,
+        -20
       ],
       "id": "302d91b9-ffca-4ea2-bbd2-68adac66538e",
       "name": "Sort1"
@@ -565,8 +565,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        300,
-        -320
+        0,
+        -120
       ],
       "id": "25b1f073-95f1-4874-9f06-b1de9ed8810e",
       "name": "If"
@@ -590,7 +590,7 @@
       "typeVersion": 1,
       "position": [
         -360,
-        200
+        220
       ],
       "id": "ec9ffc7c-2f19-4e88-8296-5637fcd9b345",
       "name": "asesor",
@@ -607,7 +607,7 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        340,
+        300,
         320
       ],
       "id": "23d8c961-9f62-4916-b20b-a5fb709d8bfc",
@@ -653,7 +653,7 @@
       "typeVersion": 1,
       "position": [
         -180,
-        200
+        220
       ],
       "id": "df0792e4-acf6-4898-b919-343e4ccd0278",
       "name": "reporte",
@@ -694,7 +694,7 @@
       "typeVersion": 2.2,
       "position": [
         -20,
-        200
+        220
       ],
       "id": "734c8b71-765e-40e2-bb9e-ac786fb791d6",
       "name": "If1"
@@ -730,7 +730,7 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        800,
+        720,
         100
       ],
       "id": "9b307a98-17ef-4a5d-9511-bb61fa8a4925",
@@ -745,17 +745,7 @@
     },
     {
       "parameters": {
-        "operation": "update",
         "tableId": "GERSSON_REPORTES",
-        "filters": {
-          "conditions": [
-            {
-              "keyName": "ID_CLIENTE",
-              "condition": "eq",
-              "keyValue": "={{ $('asesor').item.json.ID }}"
-            }
-          ]
-        },
         "fieldsUi": {
           "fieldValues": [
             {
@@ -777,6 +767,10 @@
             {
               "fieldId": "ESTADO_ANTERIOR",
               "fieldValue": "={{ $('Limit1').item.json.ESTADO_NUEVO }}"
+            },
+            {
+              "fieldId": "ID_CLIENTE",
+              "fieldValue": "={{ $('asesor').item.json.ID }}"
             }
           ]
         }
@@ -784,7 +778,7 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        800,
+        720,
         340
       ],
       "id": "e1755592-485b-4cfd-994d-d71d304b38d1",
@@ -891,6 +885,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-02-23T01:57:07.000Z",
-  "versionId": "383d6fdb-3993-430c-8d97-21257a819e81"
+  "updatedAt": "2025-02-23T19:21:03.000Z",
+  "versionId": "a6171ffc-f3f2-4704-9208-c6fea5ea67d5"
 }
