@@ -284,6 +284,16 @@
             "node": "BUSCA",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "BUSQUEDA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "MAILERLITE1",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -476,17 +486,6 @@
         ]
       ]
     },
-    "EVENTO +2": {
-      "main": [
-        [
-          {
-            "node": "BUSCA ASESOR",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "BUSCA ASESOR": {
       "main": [
         [
@@ -502,7 +501,18 @@
       "main": [
         [
           {
-            "node": "EVENTO +2",
+            "node": "UPD. ESTADO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UPD. ESTADO": {
+      "main": [
+        [
+          {
+            "node": "BUSCA ASESOR",
             "type": "main",
             "index": 0
           }
@@ -918,8 +928,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        2100,
-        740
+        1860,
+        500
       ],
       "id": "71ab8fb0-b666-460d-9d76-13543b7bd6ea",
       "name": "ESTADO"
@@ -952,8 +962,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1880,
-        400
+        1620,
+        280
       ],
       "id": "d6ba56df-16a1-44dc-82ad-282c77a47af1",
       "name": "COMPRAS?"
@@ -1019,8 +1029,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        2100,
-        380
+        1860,
+        120
       ],
       "id": "2a01a731-ac59-403f-96b1-b00d5f2e7885",
       "name": "ASIGNADA?"
@@ -1032,8 +1042,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2820,
-        640
+        2580,
+        400
       ],
       "id": "f0bdd5cd-a1ba-4126-9454-4e44694fbd96",
       "name": "conteo + 1"
@@ -1171,8 +1181,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2820,
-        840
+        2680,
+        580
       ],
       "disabled": true
     },
@@ -1190,8 +1200,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3620,
-        640
+        3480,
+        400
       ],
       "disabled": true
     },
@@ -1258,8 +1268,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3140,
-        280
+        2900,
+        20
       ],
       "id": "6632db46-0264-4502-932e-272c15ba3458",
       "name": "mensaje"
@@ -1271,8 +1281,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2660,
-        440
+        2420,
+        180
       ],
       "id": "92a72319-6b56-4838-9c1a-39c2ac92d0fa",
       "name": "mensaje1"
@@ -1374,8 +1384,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2820,
-        440
+        2580,
+        180
       ]
     },
     {
@@ -1392,8 +1402,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3300,
-        280
+        3060,
+        20
       ]
     },
     {
@@ -1523,8 +1533,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        1720,
-        400
+        1460,
+        280
       ],
       "id": "ab43656d-a38e-4f26-a003-dc80a9334478",
       "name": "BUSCA",
@@ -1554,8 +1564,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2340,
-        280
+        2100,
+        20
       ],
       "id": "9a3c1b2c-026a-4be3-afe4-2ee670eaf1d2",
       "name": "REVISAR",
@@ -1592,8 +1602,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2500,
-        280
+        2260,
+        20
       ],
       "id": "dce5a177-0ac3-44bf-a6fb-d9e6fc3b9f6c",
       "name": "CONT + 1",
@@ -1638,8 +1648,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2660,
-        280
+        2420,
+        20
       ],
       "id": "53117180-218b-42f5-abd4-2d8a821c085b",
       "name": "UPDATE CLIENTE",
@@ -1674,8 +1684,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2820,
-        280
+        2580,
+        20
       ],
       "id": "92996e96-9df9-4285-9df3-65acedd906f1",
       "name": "EVENTO COMPRA +1",
@@ -1705,8 +1715,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2980,
-        280
+        2740,
+        20
       ],
       "id": "63d9e093-b854-4fd7-a53e-bd0d236ceb21",
       "name": "BUSCA ASESOR1",
@@ -1753,8 +1763,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2340,
-        440
+        2100,
+        180
       ],
       "id": "1808f4ba-0a2a-4812-8a53-9ee14e3b0087",
       "name": "REGISTRO1",
@@ -1789,8 +1799,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2500,
-        440
+        2260,
+        180
       ],
       "id": "3fdf2514-949e-4ecd-aa58-d70891baaf27",
       "name": "REGISTRO COMPRA +",
@@ -1808,6 +1818,9 @@
           "sortField": [
             {
               "fieldName": "={{$('ASIGNACION').item.json.flujo}}"
+            },
+            {
+              "fieldName": "ID"
             }
           ]
         },
@@ -1816,8 +1829,8 @@
       "type": "n8n-nodes-base.sort",
       "typeVersion": 1,
       "position": [
-        2500,
-        640
+        2260,
+        400
       ],
       "id": "8c88d5c8-fed1-466d-bfe4-08ffafce743f",
       "name": "Sort"
@@ -1827,8 +1840,8 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        2660,
-        640
+        2420,
+        400
       ],
       "id": "e4437443-e36b-459c-9748-bf54785b1045",
       "name": "Limit"
@@ -1842,8 +1855,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2340,
-        640
+        2100,
+        400
       ],
       "id": "096dc26b-8a76-4194-b903-41e674da31e4",
       "name": "ASIGNA",
@@ -1872,8 +1885,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        3440,
-        640
+        3200,
+        400
       ],
       "id": "877832d7-ae3e-4d34-a32b-95925a1c2dca",
       "name": "BUSCA ASESOR3",
@@ -1893,14 +1906,14 @@
             {
               "keyName": "ID",
               "condition": "eq",
-              "keyValue": "={{ $('ASIGNA').first().json.ID }}"
+              "keyValue": "={{ $('Limit').first().json.ID }}"
             }
           ]
         },
         "fieldsUi": {
           "fieldValues": [
             {
-              "fieldId": "={{$('ASIGNACION').item.json.flujo}}",
+              "fieldId": "={{ $('ASIGNACION').item.json.flujo }}",
               "fieldValue": "={{ $json.conteo }}"
             }
           ]
@@ -1909,8 +1922,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2980,
-        640
+        2740,
+        400
       ],
       "id": "59cbdf25-86ee-48b6-acdc-9a2623a950e8",
       "name": "CONT + ",
@@ -1960,8 +1973,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        3120,
-        640
+        2880,
+        400
       ],
       "id": "08409873-abd7-4494-b2d7-826e8ffbce00",
       "name": "CLIENTE +1",
@@ -1995,8 +2008,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        3280,
-        640
+        3040,
+        400
       ],
       "id": "08a1a466-8e0e-4305-8b10-01ad06685165",
       "name": "EVENTO +1",
@@ -2030,11 +2043,41 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2340,
-        840
+        2100,
+        580
       ],
       "id": "a2f28728-39eb-44a3-8cdb-7c178a181e6a",
       "name": "EVENTO +",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "GERSSON_CLIENTES",
+        "limit": 1,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "WHATSAPP",
+              "condition": "like",
+              "keyValue": "=*{{$('ASIGNACION').item.json.numero.toString().slice(-6)}}*"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2400,
+        580
+      ],
+      "id": "f93ee001-5b5b-4036-ba75-9d9c7d66a64b",
+      "name": "BUSCA ASESOR",
       "credentials": {
         "supabaseApi": {
           "id": "r7GZA4DyUQZRn267",
@@ -2067,41 +2110,11 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2480,
-        840
+        2240,
+        580
       ],
       "id": "47838789-a8f1-44d9-b5a7-6e1d8b932a87",
-      "name": "EVENTO +2",
-      "credentials": {
-        "supabaseApi": {
-          "id": "r7GZA4DyUQZRn267",
-          "name": "DB CIERRES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "getAll",
-        "tableId": "GERSSON_CLIENTES",
-        "limit": 1,
-        "filters": {
-          "conditions": [
-            {
-              "keyName": "WHATSAPP",
-              "condition": "like",
-              "keyValue": "=*{{$('ASIGNACION').item.json.numero.toString().slice(-6)}}*"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.supabase",
-      "typeVersion": 1,
-      "position": [
-        2640,
-        840
-      ],
-      "id": "f93ee001-5b5b-4036-ba75-9d9c7d66a64b",
-      "name": "BUSCA ASESOR",
+      "name": "UPD. ESTADO",
       "credentials": {
         "supabaseApi": {
           "id": "r7GZA4DyUQZRn267",
@@ -2119,13 +2132,13 @@
             "user-agent": "Jodd HTTP",
             "content-length": "1341",
             "content-type": "application/json",
-            "x-forwarded-for": "44.211.31.4",
+            "x-forwarded-for": "3.236.142.49",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
             "x-forwarded-server": "3051a3bb6625",
             "x-hotmart-hottok": "rrQs3XPgg981iOyVxcVtzyVVA0kYsp1be22114-3144-4b81-9341-e1e30d733e88",
-            "x-real-ip": "44.211.31.4",
+            "x-real-ip": "3.236.142.49",
             "accept-encoding": "gzip"
           },
           "params": {},
@@ -2183,7 +2196,7 @@
                   "value": 1500
                 },
                 "transaction": "HP16015479281022",
-                "status": "APPROVED"
+                "status": "CANCELED"
               },
               "affiliates": [
                 {
@@ -2214,9 +2227,9 @@
                 "email": "testeComprador271101postman15@example.com"
               }
             },
-            "id": "323c419f-5dbb-42cb-8e1f-71aaab4dc567",
-            "creation_date": 1740271131510,
-            "event": "PURCHASE_APPROVED",
+            "id": "d50b4e6f-c3e3-4c5e-b9c8-a761d6478ef4",
+            "creation_date": 1740343656855,
+            "event": "PURCHASE_CANCELED",
             "version": "2.0.0"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/gersson-lanza-hotmart",
@@ -2253,6 +2266,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-02-23T00:39:51.000Z",
-  "versionId": "b67cffec-b1ff-4e13-a136-5e75831f8216"
+  "updatedAt": "2025-02-23T20:48:42.000Z",
+  "versionId": "4cced034-eea7-4d8b-ae43-7b49272b2042"
 }
