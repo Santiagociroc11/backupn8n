@@ -5,11 +5,6 @@
       "main": [
         [
           {
-            "node": "Google Sheets",
-            "type": "main",
-            "index": 0
-          },
-          {
             "node": "HTTP Request1",
             "type": "main",
             "index": 0
@@ -89,6 +84,11 @@
     "Webhook": {
       "main": [
         [
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          },
           {
             "node": "Switch",
             "type": "main",
@@ -186,29 +186,6 @@
         ]
       ]
     },
-    "Google Sheets": {
-      "main": [
-        [],
-        [
-          {
-            "node": "Wait2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Wait2": {
-      "main": [
-        [
-          {
-            "node": "Google Sheets",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Google Sheets4": {
       "main": [
         [
@@ -242,85 +219,67 @@
         ]
       ]
     },
-    "Schedule Trigger": {
+    "Edit Fields": {
       "main": [
         [
           {
-            "node": "Google Sheets5",
+            "node": "Edit Fields1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Google Sheets5": {
+    "Edit Fields1": {
       "main": [
         [
           {
-            "node": "Loop Over Items",
+            "node": "If4",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Loop Over Items": {
+    "If4": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets8": {
       "main": [
         [],
         [
           {
-            "node": "Google Sheets6",
+            "node": "Wait4",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Google Sheets6": {
+    "Wait4": {
       "main": [
         [
           {
-            "node": "If3",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Sheets7": {
-      "main": [
-        [
-          {
-            "node": "Wait3",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If3": {
-      "main": [
-        [
-          {
-            "node": "Wait3",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Google Sheets7",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Wait3": {
-      "main": [
-        [
-          {
-            "node": "Loop Over Items",
+            "node": "Google Sheets8",
             "type": "main",
             "index": 0
           }
@@ -342,7 +301,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -640,
+        -1400,
         100
       ],
       "id": "2f2ba063-c8e4-4906-87c2-c1342facb58c",
@@ -404,8 +363,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -180,
-        500
+        40,
+        540
       ]
     },
     {
@@ -445,7 +404,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -200,
+        20,
         -100
       ]
     },
@@ -486,7 +445,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -180,
+        40,
         180
       ]
     },
@@ -520,7 +479,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -20,
+        200,
         -180
       ]
     },
@@ -608,7 +567,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -460,
+        -240,
         100
       ]
     },
@@ -676,7 +635,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        740,
+        960,
         240
       ],
       "id": "7c9a4acc-118f-4c1e-8e29-c2b1bb2c51d8",
@@ -721,7 +680,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        60,
+        280,
         100
       ],
       "id": "eb152a91-7419-4c24-8e67-46405dea74eb",
@@ -765,7 +724,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        240,
+        460,
         100
       ],
       "id": "1893314a-086c-499a-9484-f04e8529225a",
@@ -799,7 +758,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        420,
+        640,
         -180
       ],
       "id": "b4e8243e-ed0a-4e5a-b4f9-67c31b84bd18",
@@ -812,7 +771,7 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        1020,
+        1240,
         240
       ],
       "id": "63189c1c-8be1-4f8e-bacb-132b3098a50f",
@@ -884,7 +843,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        900,
+        1120,
         -220
       ],
       "id": "7c024094-0c99-46f3-a385-37835e154e97",
@@ -906,108 +865,11 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        1140,
+        1360,
         -200
       ],
       "id": "5fafc80b-f681-468f-b73b-331598fdb351",
       "name": "Wait1",
-      "webhookId": "3122010c-e227-43fb-a8ee-b54eb61f8c9d"
-    },
-    {
-      "parameters": {
-        "operation": "appendOrUpdate",
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "columns": {
-          "mappingMode": "autoMapInputData",
-          "value": {},
-          "matchingColumns": [
-            "correo"
-          ],
-          "schema": [
-            {
-              "id": "numero",
-              "displayName": "numero",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "nombre",
-              "displayName": "nombre",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "correo",
-              "displayName": "correo",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "flujo",
-              "displayName": "flujo",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        80,
-        640
-      ],
-      "id": "5d9cacca-962c-4ca9-ba6a-a73aa482962d",
-      "name": "Google Sheets",
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "maxTries": 5,
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "CUENTA SANTIAGO"
-        }
-      },
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
-        "amount": 10
-      },
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
-      "position": [
-        320,
-        660
-      ],
-      "id": "a8b9bec8-8074-4b69-912a-ef0c428c201d",
-      "name": "Wait2",
       "webhookId": "3122010c-e227-43fb-a8ee-b54eb61f8c9d"
     },
     {
@@ -1040,7 +902,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        220,
+        440,
         -180
       ],
       "id": "b607e598-f003-4deb-9d31-d3ee5f2da154",
@@ -1065,7 +927,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        480,
+        700,
         260
       ],
       "id": "19326282-ee07-4e51-aabf-aac61d2cf5fb",
@@ -1080,204 +942,11 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        640,
+        860,
         -120
       ],
       "id": "c36416f1-80dd-4894-8c94-ab1e9c740aaa",
       "name": "Merge1"
-    },
-    {
-      "parameters": {
-        "rule": {
-          "interval": [
-            {
-              "field": "minutes",
-              "minutesInterval": 30
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.scheduleTrigger",
-      "typeVersion": 1.2,
-      "position": [
-        -640,
-        -580
-      ],
-      "id": "aad4aa8e-3376-4e8f-979e-13acedf17e73",
-      "name": "Schedule Trigger"
-    },
-    {
-      "parameters": {
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=1325970554#gid=1325970554",
-          "mode": "url"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=1325970554#gid=1325970554",
-          "mode": "url"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        -460,
-        -580
-      ],
-      "id": "8d6cb7b3-4449-4ee9-9e00-845cb75bbf3b",
-      "name": "Google Sheets5",
-      "alwaysOutputData": true,
-      "retryOnFail": true,
-      "maxTries": 5,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "CUENTA SANTIAGO"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 3,
-      "position": [
-        -240,
-        -580
-      ],
-      "id": "eb5aea6b-05d1-4fa5-b505-759927767c3c",
-      "name": "Loop Over Items"
-    },
-    {
-      "parameters": {
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "filtersUI": {
-          "values": [
-            {
-              "lookupColumn": "numero",
-              "lookupValue": "={{ $json.numero }}"
-            },
-            {
-              "lookupColumn": "correo",
-              "lookupValue": "={{ $json.correo }}"
-            }
-          ]
-        },
-        "combineFilters": "OR",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        -40,
-        -560
-      ],
-      "id": "91ba651e-8b38-40f2-bac3-1d3cd76f65a8",
-      "name": "Google Sheets6",
-      "alwaysOutputData": true,
-      "retryOnFail": true,
-      "maxTries": 5,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "CUENTA SANTIAGO"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "delete",
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=1325970554#gid=1325970554",
-          "mode": "url"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=1325970554#gid=1325970554",
-          "mode": "url"
-        },
-        "startIndex": "={{ $('Loop Over Items').item.json.row_number }}"
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        320,
-        -540
-      ],
-      "id": "eecb44d2-23bb-4c0e-9f91-42214e2d5cc5",
-      "name": "Google Sheets7",
-      "retryOnFail": true,
-      "maxTries": 5,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "CUENTA SANTIAGO"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "6915150b-c4d4-47e1-a967-ac1ac90ef388",
-              "leftValue": "={{ $json }}",
-              "rightValue": "",
-              "operator": {
-                "type": "object",
-                "operation": "empty",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        120,
-        -560
-      ],
-      "id": "26211151-90ab-45dd-a4b9-d2a187f84aec",
-      "name": "If3"
-    },
-    {
-      "parameters": {
-        "amount": 2
-      },
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
-      "position": [
-        600,
-        -540
-      ],
-      "id": "0ff103a8-3790-415f-94d6-94d660d524e5",
-      "name": "Wait3",
-      "webhookId": "016c2e39-711d-4d85-9d65-f7f0a046aec2"
     },
     {
       "parameters": {
@@ -1300,7 +969,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        640,
+        860,
         -300
       ],
       "id": "29d4ec2d-a17a-430a-be5d-1df8084d83d4",
@@ -1327,7 +996,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        500,
+        720,
         60
       ],
       "id": "8a487df7-c32b-4ea3-8a4f-d0a8320b8f7e",
@@ -1354,11 +1023,387 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        80,
-        440
+        260,
+        540
       ],
       "id": "714c121a-a71d-4a3d-b132-646c7cf39f2d",
       "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1020,
+        380
+      ],
+      "id": "f3fa9e4e-903b-435c-afa9-064efaee4428",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "25f4a5ff-c1d6-4209-953a-7c18ef4ddc99",
+              "name": "producto",
+              "value": "={{ $json.data.product.name }}",
+              "type": "string"
+            },
+            {
+              "id": "a7f92ef5-3505-491d-98e0-b69c2beeb858",
+              "name": "coproducción activa",
+              "value": "={{ $json.data.product.has_co_production }}",
+              "type": "boolean"
+            },
+            {
+              "id": "5890810b-53a9-4b5d-b23a-35b627d445ff",
+              "name": "correo",
+              "value": "={{ $json.data.buyer.email }}",
+              "type": "string"
+            },
+            {
+              "id": "b4033946-f611-442d-8a4a-12368dc5549f",
+              "name": "nombre",
+              "value": "={{ $json.data.buyer.name }}",
+              "type": "string"
+            },
+            {
+              "id": "9ea3ff08-1a8d-489a-bef7-2c7807473059",
+              "name": "telefono",
+              "value": "={{ $json.data.buyer.checkout_phone }}",
+              "type": "string"
+            },
+            {
+              "id": "97558f09-72cb-45d6-9b0c-88b4156e4814",
+              "name": "pais",
+              "value": "={{ $json.data.buyer.address.country }}",
+              "type": "string"
+            },
+            {
+              "id": "68a8ce18-fc89-476c-a314-df126129c832",
+              "name": "comision hotmart",
+              "value": "={{ $json.data.commissions[0].value }}",
+              "type": "number"
+            },
+            {
+              "id": "8bbb5436-13db-46a1-a010-38df9b0a0389",
+              "name": "parte productor",
+              "value": "={{ $json.data.commissions[1].value }}",
+              "type": "number"
+            },
+            {
+              "id": "cb21091d-3c56-46f1-92ec-008bca9d4858",
+              "name": "valor producto",
+              "value": "={{ $json.data.purchase.original_offer_price.value }}",
+              "type": "number"
+            },
+            {
+              "id": "29122817-28ff-4dde-a831-c41c95bae0a0",
+              "name": "Transacción",
+              "value": "={{ $json.data.purchase.transaction }}",
+              "type": "string"
+            },
+            {
+              "id": "c9105dd0-a611-458e-90ea-067a0538b62a",
+              "name": "fecha",
+              "value": "={{ $json.data.purchase.approved_date.toDateTime('ms').format('dd-MM-yyyy HH:mm:ss') }}",
+              "type": "string"
+            },
+            {
+              "id": "60169604-8475-429b-b65b-08da02e5d8c8",
+              "name": "oferta",
+              "value": "={{ $json.data.purchase.offer.code }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -860,
+        380
+      ],
+      "id": "fe75c888-97de-4dac-bb82-d5c0bb502656",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "Transacción"
+          ],
+          "schema": [
+            {
+              "id": "producto",
+              "displayName": "producto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "coproducción activa",
+              "displayName": "coproducción activa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "correo",
+              "displayName": "correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "nombre",
+              "displayName": "nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "telefono",
+              "displayName": "telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pais",
+              "displayName": "pais",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "comision hotmart",
+              "displayName": "comision hotmart",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "parte productor",
+              "displayName": "parte productor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "valor producto",
+              "displayName": "valor producto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "VALOR",
+              "displayName": "VALOR",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "VALOR DESPUES DE HOTMART",
+              "displayName": "VALOR DESPUES DE HOTMART",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Transacción",
+              "displayName": "Transacción",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Comisión Coproductor",
+              "displayName": "Comisión Coproductor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "fecha",
+              "displayName": "fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ORDERBUMP",
+              "displayName": "ORDERBUMP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "oferta",
+              "displayName": "oferta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -520,
+        360
+      ],
+      "id": "5646eea9-817e-47d2-a9f2-ce52bc7b53db",
+      "name": "Google Sheets8",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "86765f19-f5cf-43a7-a3f7-de1ddce62933",
+              "leftValue": "={{ $json[\"coproducción activa\"] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -700,
+        380
+      ],
+      "id": "5a36e01c-0527-405b-95b5-7864e0943a3d",
+      "name": "If4"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "73ea6f4c-add8-46df-a5bf-3fbcaf97a7d2",
+              "leftValue": "={{ $json.body.event }}",
+              "rightValue": "PURCHASE_APPROVED",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1200,
+        400
+      ],
+      "id": "2896b574-e7f1-4fc9-9b67-34a9ff462696",
+      "name": "If5"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -300,
+        400
+      ],
+      "id": "52324317-0e01-44b4-8843-cb53f1f20ec0",
+      "name": "Wait4",
+      "webhookId": "3122010c-e227-43fb-a8ee-b54eb61f8c9d"
     }
   ],
   "pinData": {
@@ -1368,15 +1413,15 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "Jodd HTTP",
-            "content-length": "1376",
+            "content-length": "1398",
             "content-type": "application/json",
-            "x-forwarded-for": "3.89.143.44",
+            "x-forwarded-for": "54.146.245.0",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "0f86eb816a4d",
+            "x-forwarded-server": "3051a3bb6625",
             "x-hotmart-hottok": "ab1MBqgzWoBGjHPbjIZRreIJv1kidlf17097fe-a50d-4ba0-83a7-d6dba52a1d6d",
-            "x-real-ip": "3.89.143.44",
+            "x-real-ip": "54.146.245.0",
             "accept-encoding": "gzip"
           },
           "params": {},
@@ -1393,55 +1438,56 @@
                 {
                   "currency_value": "USD",
                   "source": "MARKETPLACE",
-                  "value": 5.26
+                  "value": 6.13
                 },
                 {
                   "currency_conversion": {
-                    "converted_value": 130596.97,
+                    "converted_value": 150684.54,
                     "converted_to_currency": "COP",
-                    "conversion_rate": 4212.805474
+                    "conversion_rate": 4078.066026
                   },
                   "currency_value": "USD",
                   "source": "PRODUCER",
-                  "value": 31
+                  "value": 36.95
                 }
               ],
               "purchase": {
                 "original_offer_price": {
                   "currency_value": "USD",
-                  "value": 48.82
+                  "value": 60.14
                 },
                 "subscription_anticipation_purchase": false,
                 "checkout_country": {
-                  "iso": "ES",
-                  "name": "Spain"
+                  "iso": "CO",
+                  "name": "Colombia"
                 },
                 "origin": {
-                  "sck": "HOTMART_PRODUCT_PAGE"
+                  "xcod": "cd668177-c963-4dd4-a629-79af22ed1cfb",
+                  "sck": "b1"
                 },
                 "order_bump": {
                   "is_order_bump": false
                 },
-                "approved_date": 1738587487000,
+                "approved_date": 1740326374000,
                 "offer": {
                   "code": "5x8cr4tk"
                 },
-                "order_date": 1738587486000,
+                "order_date": 1740326371000,
                 "price": {
-                  "currency_value": "EUR",
-                  "value": 47.11
+                  "currency_value": "COP",
+                  "value": 245235
                 },
-                "buyer_ip": "137.101.102.4",
+                "buyer_ip": "181.53.99.137",
                 "payment": {
-                  "installments_number": 1,
+                  "installments_number": 5,
                   "type": "CREDIT_CARD"
                 },
                 "full_price": {
-                  "currency_value": "EUR",
-                  "value": 57
+                  "currency_value": "COP",
+                  "value": 245235
                 },
-                "invoice_by": "HOTMART",
-                "transaction": "HP2971683420",
+                "invoice_by": "SELLER",
+                "transaction": "HP2072880912",
                 "status": "APPROVED"
               },
               "affiliates": [
@@ -1455,40 +1501,22 @@
               },
               "buyer": {
                 "address": {
-                  "country": "Spain",
-                  "state": "ES",
-                  "country_iso": "ES"
+                  "country": "Colombia",
+                  "country_iso": "CO"
                 },
                 "document": "",
-                "name": "Erica Cuéllar ",
-                "checkout_phone": "34641107251",
-                "email": "ericacuellarcovarrubias@gmail.com"
+                "name": "Laura Correa",
+                "checkout_phone": "573216312874",
+                "email": "laprincesalaura26@hotmail.com"
               }
             },
-            "id": "28f6d9a9-8101-4d1e-9df2-b3756be83854",
-            "creation_date": 1738587492536,
+            "id": "3d5037b5-3761-4a38-8183-4221996bd0a8",
+            "creation_date": 1740326379701,
             "event": "PURCHASE_APPROVED",
             "version": "2.0.0"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/adriana-webhooks-hotmart",
           "executionMode": "production"
-        }
-      }
-    ],
-    "Schedule Trigger": [
-      {
-        "json": {
-          "timestamp": "2025-02-03T09:30:20.005-05:00",
-          "Readable date": "February 3rd 2025, 9:30:20 am",
-          "Readable time": "9:30:20 am",
-          "Day of week": "Monday",
-          "Year": "2025",
-          "Month": "February",
-          "Day of month": "03",
-          "Hour": "09",
-          "Minute": "30",
-          "Second": "20",
-          "Timezone": "America/New_York (UTC-05:00)"
         }
       }
     ]
@@ -1530,7 +1558,7 @@
       "name": "SHEET"
     }
   ],
-  "triggerCount": 2,
-  "updatedAt": "2025-02-21T17:26:07.000Z",
-  "versionId": "21e7ba45-5143-4f7a-b7dc-81da7a902a4c"
+  "triggerCount": 1,
+  "updatedAt": "2025-02-24T04:16:34.000Z",
+  "versionId": "7c6cc611-fefd-463c-b3e8-ba47650eb1b8"
 }
