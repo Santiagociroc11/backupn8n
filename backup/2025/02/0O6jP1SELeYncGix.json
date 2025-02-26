@@ -1,0 +1,216 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Evolution API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evolution API": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-25T23:37:12.727Z",
+  "id": "0O6jP1SELeYncGix",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[GERSSON] ACTUALIZAR LINKS COMUNIDADES",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "ba9de2cd-4ada-4a52-8369-4b0b8f1c7b73",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_LINKS_VIP_YT",
+          "mode": "list",
+          "cachedResultName": "GERSSON_LINKS_VIP_YT"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        220,
+        0
+      ],
+      "id": "50e92e39-5f4d-49e8-bd31-1343d28957e6",
+      "name": "MySQL",
+      "credentials": {
+        "mySql": {
+          "id": "urz5Tdw0DcSlCZt3",
+          "name": "N8N NUMEROS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        440,
+        0
+      ],
+      "id": "26f198ae-b179-4c78-b86f-dbb70a2baeed",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "resource": "groups-api",
+        "operation": "fetch-groups",
+        "instanceName": "santiago",
+        "inviteCode": "={{ $json.link.extractUrlPath().replace('/',\"\") }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        660,
+        20
+      ],
+      "id": "4a438c13-1b9a-4dd3-8eea-2e80b3cc8fb1",
+      "name": "Evolution API",
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "VPS-EASYPANEL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_LINKS_VIP_YT",
+          "mode": "list",
+          "cachedResultName": "GERSSON_LINKS_VIP_YT"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "link",
+        "valueToMatchOn": "={{ $('Loop Over Items').item.json.link }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "nombre",
+              "value": "={{ $json.data.subject }}"
+            },
+            {
+              "column": "id",
+              "value": "={{ $json.data.id }}"
+            },
+            {
+              "column": "Total",
+              "value": "0"
+            },
+            {
+              "column": "bienvenida",
+              "value": "no"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        880,
+        20
+      ],
+      "id": "7d9ebd71-089f-4acb-a254-d1dab956871e",
+      "name": "MySQL1",
+      "credentials": {
+        "mySql": {
+          "id": "urz5Tdw0DcSlCZt3",
+          "name": "N8N NUMEROS"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-02-04T22:36:35.108Z",
+      "updatedAt": "2025-02-04T22:36:35.108Z",
+      "id": "HjNWwvqlBnseDfSA",
+      "name": "GERSSON"
+    },
+    {
+      "createdAt": "2025-02-20T03:14:39.493Z",
+      "updatedAt": "2025-02-20T03:14:39.493Z",
+      "id": "fMteddKWhaFhuYHk",
+      "name": "MYSQL"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-26T03:58:47.000Z",
+  "versionId": "4d60b98b-e111-4774-bf16-4e3de4d6425f"
+}
