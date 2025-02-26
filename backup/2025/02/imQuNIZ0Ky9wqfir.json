@@ -479,7 +479,7 @@
       "main": [
         [
           {
-            "node": "CLIENTE NUEVO - CERRADOR",
+            "node": "Code",
             "type": "main",
             "index": 0
           }
@@ -490,7 +490,7 @@
       "main": [
         [
           {
-            "node": "CLIENTE EXISTENTE - CERRADOR",
+            "node": "Code1",
             "type": "main",
             "index": 0
           }
@@ -518,12 +518,34 @@
           }
         ]
       ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "CLIENTE NUEVO - CERRADOR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "CLIENTE EXISTENTE - CERRADOR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-02-22T03:16:54.088Z",
   "id": "imQuNIZ0Ky9wqfir",
   "meta": null,
-  "name": "🔨 [GERSSON] EVENTOS HOTMART",
+  "name": "🟢 [GERSSON] EVENTOS HOTMART",
   "nodes": [
     {
       "parameters": {
@@ -633,6 +655,12 @@
               "id": "fa1bd1b6-b606-4de1-a5cc-291bfa8ad403",
               "name": "flujo",
               "value": "RECHAZADOS",
+              "type": "string"
+            },
+            {
+              "id": "63570007-794a-4d17-9009-c47ba0a15e82",
+              "name": "motivo",
+              "value": "={{ $json.body.data.purchase.payment.refusal_reason?$json.body.data.purchase.payment.refusal_reason:null  }}",
               "type": "string"
             }
           ]
@@ -822,7 +850,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const valores = {\n  numericos: {\n    CARRITOS: \"content20250222080111_909145\",\n    RECHAZADOS: \"content20250222082908_074257\",\n    COMPRAS: \"content20250222083048_931507\",\n    TICKETS: \"content20250222083004_157122\"\n  },\n  mailer: {\n    CARRITOS: \"112554445482493399\",\n    RECHAZADOS: \"112554438393071296\",\n    COMPRAS: \"112554427903116632\",\n    TICKETS: \"147071027455723326\"\n  },\n  tablas: {\n    CARRITOS: \"FECHA_ABANDONADO\",\n    RECHAZADOS: \"FECHA_RECHAZADO\",\n    COMPRAS: \"FECHA_COMPRA\",\n    TICKETS: \"FECHA_TICKET\"\n  },\n};\n\nreturn {\n  json: {\n    numero: $json.numero,\n    nombre: $json.nombre,\n    correo: $json.correo,\n    flujo: $json.flujo,\n    flujomany: valores.numericos[$json.flujo] || 0,\n    grupomailer: valores.mailer[$json.flujo] || 0,\n    tabla: valores.tablas[$json.flujo] || 0\n  }\n};\n"
+        "jsCode": "const valores = {\n  numericos: {\n    CARRITOS: \"content20250222080111_909145\",\n    RECHAZADOS: \"content20250222082908_074257\",\n    COMPRAS: \"content20250222083048_931507\",\n    TICKETS: \"content20250222083004_157122\"\n  },\n  mailer: {\n    CARRITOS: \"112554445482493399\",\n    RECHAZADOS: \"112554438393071296\",\n    COMPRAS: \"112554427903116632\",\n    TICKETS: \"147071027455723326\"\n  },\n  tablas: {\n    CARRITOS: \"FECHA_ABANDONADO\",\n    RECHAZADOS: \"FECHA_RECHAZADO\",\n    COMPRAS: \"FECHA_COMPRA\",\n    TICKETS: \"FECHA_TICKET\"\n  },\n};\n\nreturn {\n  json: {\n    numero: $json.numero,\n    nombre: $json.nombre,\n    correo: $json.correo,\n    flujo: $json.flujo,\n    flujomany: valores.numericos[$json.flujo] || 0,\n    grupomailer: valores.mailer[$json.flujo] || 0,\n    tabla: valores.tablas[$json.flujo] || 0,\n    motivo: $json.motivo || null\n  }\n};\n"
       },
       "id": "41070488-d638-4392-933f-0b2d6ea47df0",
       "name": "ASIGNACION",
@@ -1173,7 +1201,7 @@
         "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"chat_id\": \"-1002461687342\",\n  \"message_thread_id\": 61,\n  \"text\": \"🚨 *GRUPOS*: \\n\\n {{ $json.body.mensaje }}\",\n  \"parse_mode\": \"Markdown\"\n}\n",
+        "jsonBody": "={{ $json }}",
         "options": {}
       },
       "id": "d144b1e5-c5c5-4d61-9108-a152c36681d9",
@@ -1181,10 +1209,9 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2680,
+        2720,
         580
-      ],
-      "disabled": true
+      ]
     },
     {
       "parameters": {
@@ -1192,7 +1219,7 @@
         "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"chat_id\": \"-1002461687342\",\n  \"message_thread_id\": 61,\n  \"text\": \"🚨 *GRUPOS*: \\n\\n {{ $json.body.mensaje }}\",\n  \"parse_mode\": \"Markdown\"\n}\n",
+        "jsonBody": "={{ $json.toJsonString() }}\n",
         "options": {}
       },
       "id": "9fc07acf-3b57-493a-83f4-bdd8771429a7",
@@ -1200,10 +1227,9 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3480,
+        3520,
         400
-      ],
-      "disabled": true
+      ]
     },
     {
       "parameters": {
@@ -1870,14 +1896,14 @@
     {
       "parameters": {
         "operation": "getAll",
-        "tableId": "GERSSON_CLIENTES",
+        "tableId": "GERSSON_ASESORES",
         "limit": 1,
         "filters": {
           "conditions": [
             {
-              "keyName": "WHATSAPP",
-              "condition": "like",
-              "keyValue": "=*{{$('ASIGNACION').item.json.numero.toString().slice(-6)}}*"
+              "keyName": "ID",
+              "condition": "eq",
+              "keyValue": "={{ $('Limit').item.json.ID }}"
             }
           ]
         }
@@ -2058,14 +2084,14 @@
     {
       "parameters": {
         "operation": "getAll",
-        "tableId": "GERSSON_CLIENTES",
+        "tableId": "GERSSON_ASESORES",
         "limit": 1,
         "filters": {
           "conditions": [
             {
-              "keyName": "WHATSAPP",
-              "condition": "like",
-              "keyValue": "=*{{$('ASIGNACION').item.json.numero.toString().slice(-6)}}*"
+              "keyName": "ID",
+              "condition": "eq",
+              "keyValue": "={{ $('BUSCA').item.json.ID_ASESOR }}"
             }
           ]
         }
@@ -2121,6 +2147,32 @@
           "name": "DB CIERRES"
         }
       }
+    },
+    {
+      "parameters": {
+        "jsCode": "const evento = $('EVENTO +1').first().json.TIPO_EVENTO;\nconst nombre_cliente = $('CLIENTE +1').first().json.NOMBRE;\nconst numero_cliente = $('CLIENTE +1').first().json.WHATSAPP;\nconst chat_asesor = $input.first().json.ID_TG;\nconst motivo_rechazo = $('ASIGNACION').first().json.motivo || \"Motivo no especificado\";\n\nconst mensajes = {\n    \"CARRITOS\": `🚨 *CARRITOS ABANDONADOS* 🚨\\n\\n👤 *Cliente:* ${nombre_cliente}\\n📲 *WhatsApp:* ${numero_cliente}\\n🛒 *Estado:* Abandonó el carrito.`,\n    \"TICKETS\": `🎟️ *SEGUIMIENTO A TICKET* 🎟️\\n\\n👤 *Cliente:* ${nombre_cliente}\\n📲 *WhatsApp:* ${numero_cliente}\\n💳 *Estado:* Generó un ticket de pago.`,\n    \"RECHAZADOS\": `❌ *COMPRA RECHAZADA* ❌\\n\\n👤 *Cliente:* ${nombre_cliente}\\n📲 *WhatsApp:* ${numero_cliente}\\n⚠️ *Motivo:* ${motivo_rechazo}`\n};\n\nconst botones = {\n    \"reply_markup\": {\n        \"inline_keyboard\": [\n            [\n                {\n                    \"text\": \"IR A ATENDER\",\n                    \"url\": `https://wa.me/${numero_cliente}`\n                }\n            ],\n            [\n                {\n                    \"text\": \"REPORTAR ESTADO\",\n                    \"url\": \"https://sistema-cierres-ger.automscc.com/\"\n                }\n            ]\n        ]\n    }\n};\n\nconst mensaje = mensajes[evento] || null;\n\nreturn mensaje ? [{ chat_id: chat_asesor, text: mensaje, parse_mode: \"Markdown\", ...botones }] : [];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3360,
+        400
+      ],
+      "id": "b14d1ef7-317d-439a-ae54-285f23c860ad",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "jsCode": "const evento = $('EVENTO +').first().json.TIPO_EVENTO;\nconst nombre_cliente = $('UPD. ESTADO').first().json.NOMBRE\nconst numero_cliente = $('UPD. ESTADO').first().json.WHATSAPP;\nconst chat_asesor = $input.first().json.ID_TG;\nconst motivo_rechazo = $('ASIGNACION').first().json.motivo || \"Motivo no especificado\";\n\nconst mensajes = {\n    \"CARRITOS\": `🚨 *TU CLIENTE HIZO CARRITO ABANDONADO* 🚨\\n\\n👤 *Cliente:* ${nombre_cliente}\\n📲 *WhatsApp:* ${numero_cliente}\\n🛒 *Estado:* Abandonó el carrito.`,\n    \"TICKETS\": `🎟️ *TU CLIENTE HIZO UN TICKET* 🎟️\\n\\n👤 *Cliente:* ${nombre_cliente}\\n📲 *WhatsApp:* ${numero_cliente}\\n💳 *Estado:* Generó un ticket de pago.`,\n    \"RECHAZADOS\": `❌ *TU CLIENTE HIZO COMPRA RECHAZADA* ❌\\n\\n👤 *Cliente:* ${nombre_cliente}\\n📲 *WhatsApp:* ${numero_cliente}\\n⚠️ *Motivo:* ${motivo_rechazo}`\n};\n\nconst botones = {\n    \"reply_markup\": {\n        \"inline_keyboard\": [\n            [\n                {\n                    \"text\": \"IR A ATENDER\",\n                    \"url\": `https://wa.me/${numero_cliente}`\n                }\n            ],\n            [\n                {\n                    \"text\": \"REPORTAR ESTADO\",\n                    \"url\": \"https://sistema-cierres-ger.automscc.com/\"\n                }\n            ]\n        ]\n    }\n};\n\nconst mensaje = mensajes[evento] || null;\n\nreturn mensaje ? [{ chat_id: chat_asesor, text: mensaje, parse_mode: \"Markdown\" ...botones }] : [];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2560,
+        580
+      ],
+      "id": "86341da3-0bf7-4d0c-95af-ab87680c718a",
+      "name": "Code1"
     }
   ],
   "pinData": {
@@ -2132,13 +2184,13 @@
             "user-agent": "Jodd HTTP",
             "content-length": "1341",
             "content-type": "application/json",
-            "x-forwarded-for": "3.236.142.49",
+            "x-forwarded-for": "44.200.25.214",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
             "x-forwarded-server": "3051a3bb6625",
             "x-hotmart-hottok": "rrQs3XPgg981iOyVxcVtzyVVA0kYsp1be22114-3144-4b81-9341-e1e30d733e88",
-            "x-real-ip": "3.236.142.49",
+            "x-real-ip": "44.200.25.214",
             "accept-encoding": "gzip"
           },
           "params": {},
@@ -2227,8 +2279,8 @@
                 "email": "testeComprador271101postman15@example.com"
               }
             },
-            "id": "d50b4e6f-c3e3-4c5e-b9c8-a761d6478ef4",
-            "creation_date": 1740343656855,
+            "id": "2cf2d8dc-da23-493f-85dc-12c6c968025f",
+            "creation_date": 1740544120963,
             "event": "PURCHASE_CANCELED",
             "version": "2.0.0"
           },
@@ -2266,6 +2318,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-02-23T20:48:42.000Z",
-  "versionId": "4cced034-eea7-4d8b-ae43-7b49272b2042"
+  "updatedAt": "2025-02-26T04:36:46.000Z",
+  "versionId": "2cd7ec75-312e-46f8-b614-8d58a06c090e"
 }
