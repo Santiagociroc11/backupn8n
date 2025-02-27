@@ -1,0 +1,144 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-02-27T03:09:28.788Z",
+  "id": "fpGxnIVU4XHwtNC7",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -420,
+        -80
+      ],
+      "id": "c54502be-9d94-4b70-9906-809ed57ee3d8",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "GERSSON_CLIENTES",
+        "returnAll": true,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ID_ASESOR",
+              "condition": "eq",
+              "keyValue": "9"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        -80
+      ],
+      "id": "d5f3ff51-7771-4269-a61e-6fb8538a48b7",
+      "name": "Supabase",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "GERSSON_CLIENTES",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ID_ASESOR",
+              "condition": "eq",
+              "keyValue": "={{ $json.ID }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "ID_ASESOR",
+              "fieldValue": "={{ $json.ID_ASESOR }}"
+            },
+            {
+              "fieldId": "NOMBRE_ASESOR",
+              "fieldValue": "={{ $json.NOMBRE_ASESOR }}"
+            },
+            {
+              "fieldId": "WHA_ASESOR",
+              "fieldValue": "={{ $json.WHA_ASESOR }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        80,
+        -80
+      ],
+      "id": "9a8a4899-35d7-45e1-a985-9c8363ce3dc3",
+      "name": "Supabase1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "When clicking ‘Test workflow’": [
+      {
+        "json": {}
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-27T03:58:37.000Z",
+  "versionId": "6adb7cd0-14bf-4269-8b03-760a62e4a707"
+}
