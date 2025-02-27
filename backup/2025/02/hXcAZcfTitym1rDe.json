@@ -147,8 +147,14 @@
             },
             {
               "id": "e6c54583-3fff-40ef-977f-b4a4d87a14f1",
-              "name": "FECHA",
-              "value": "={{ $now.format('dd-MM-yyyy HH:mm:ss') }}",
+              "name": "FECHA REGISTRO",
+              "value": "={{ $now.format('yyyy-MM-dd') }}",
+              "type": "string"
+            },
+            {
+              "id": "cda1c4b2-820a-4e68-a365-e797b1d02526",
+              "name": "HORA",
+              "value": "={{ $now.format('HH:mm:ss:s') }}",
               "type": "string"
             }
           ]
@@ -443,34 +449,39 @@
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
-            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1",
-            "content-length": "162",
+            "user-agent": "Mozilla/5.0 (Linux; Android 11; M2003J15SC Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/133.0.6943.89 Mobile Safari/537.36 Instagram 368.0.0.45.96 Android (30/11; 440dpi; 1080x2110; Xiaomi/Redmi; M2003J15SC; merlin; mt6768; es_US; 700073721)",
+            "content-length": "264",
             "accept": "*/*",
-            "accept-encoding": "gzip, deflate, br",
-            "accept-language": "es-419,es;q=0.9",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "es-US,es;q=0.9,en-US;q=0.8,en;q=0.7",
             "content-type": "application/json",
             "origin": "https://www.veru-cejasperfectas.com",
-            "referer": "https://www.veru-cejasperfectas.com/",
+            "priority": "u=1, i",
+            "referer": "https://www.veru-cejasperfectas.com/cejas?ref=T97870492E%3Futm_campaign%3D25022+%7C+GG+%7C+COMPLETAR+REGISTRO+%7C+CAPTACION+%7C+PUBLICO+F+-++MEXICO+%7C+COLOMBIA&utm_source=Instagram_Feed&utm_medium=Maquillaje+Profesional+%2B+Makeup+%2BBelleza&utm_content=ANUN3-L1-CAPTACION-CEJAS-ESTOS+3+ERRORES.mp4&utm_term=ig&fbclid=PAZXh0bgNhZW0BMABhZGlkAasYs9eYOo8BpmOvlxgK0-YUfoYGy5AnTWgcAUq2joG20wYfE3wCE3J5MRvg3hkQfu9iyw_aem_A3ujVZx8pJvu78MjAk2DMg",
+            "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Android WebView\";v=\"133\", \"Chromium\";v=\"133\"",
+            "sec-ch-ua-mobile": "?1",
+            "sec-ch-ua-platform": "\"Android\"",
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "186.98.250.151",
+            "x-forwarded-for": "179.1.125.158",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "0f86eb816a4d",
-            "x-real-ip": "186.98.250.151"
+            "x-forwarded-server": "3051a3bb6625",
+            "x-real-ip": "179.1.125.158",
+            "x-requested-with": "com.instagram.android"
           },
           "params": {},
           "query": {},
           "body": {
-            "tiemporegistro": 1738735355,
-            "email": "SANTI1@gmail.com",
+            "tiemporegistro": 1740586635,
+            "email": "yerlyscadenas123@gmail.com",
             "utmCampaign": "-",
-            "utmSource": "-",
-            "utmMedium": "-",
-            "utmContent": "-",
-            "utmTerm": "-",
+            "utmSource": "Instagram_Feed",
+            "utmMedium": "Maquillaje Profesional + Makeup +Belleza",
+            "utmContent": "ANUN3-L1-CAPTACION-CEJAS-ESTOS 3 ERRORES.mp4",
+            "utmTerm": "ig",
             "pagina": "PRINCIPAL"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/captura-cejas1",
@@ -495,6 +506,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-02-25T04:42:17.000Z",
-  "versionId": "61188f37-62bb-463f-83a4-f431868d0085"
+  "updatedAt": "2025-02-26T16:30:13.000Z",
+  "versionId": "860e8e8c-14bd-412f-a60e-f3589435ba9f"
 }
