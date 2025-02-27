@@ -1,0 +1,63 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-27T01:01:53.458Z",
+  "id": "ft54kUz5fW7HbDwr",
+  "meta": null,
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -260,
+        -40
+      ],
+      "id": "63cd7b50-e74b-4a46-9de5-43c5a66bf1da",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n.automscc.com/webhook/gersson-lanza-hotmart",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"id\": \"aac03a02-4ef7-4f14-9e11-16d7b1853b6b\",\n  \"creation_date\": 1740617462647,\n  \"event\": \"PURCHASE_CANCELED\",\n  \"version\": \"2.0.0\",\n  \"data\": {\n    \"product\": {\n      \"id\": 1707154,\n      \"ucode\": \"9c58b9dc-2eab-448f-a89e-81f9924d8e26\",\n      \"name\": \"Terapia del Dolor\",\n      \"has_co_production\": true\n    },\n    \"affiliates\": [\n      {\n        \"affiliate_code\": \"\",\n        \"name\": \"\"\n      }\n    ],\n    \"buyer\": {\n      \"email\": \"jorgcair@outlook.com\",\n      \"name\": \"Jorge Eliecer Caicedo Ramos\",\n      \"checkout_phone\": \"573107800243\",\n      \"address\": {\n        \"country\": \"Colombia\",\n        \"country_iso\": \"CO\"\n      },\n      \"document\": \"\"\n    },\n    \"producer\": {\n      \"name\": \"MAGNETIC THERAPY ACADEMY LLC\"\n    },\n    \"commissions\": [\n      {\n        \"value\": 21.51,\n        \"source\": \"MARKETPLACE\",\n        \"currency_value\": \"USD\"\n      },\n      {\n        \"value\": 112.06,\n        \"source\": \"PRODUCER\",\n        \"currency_value\": \"USD\",\n        \"currency_conversion\": {\n          \"converted_value\": 112.06,\n          \"converted_to_currency\": \"USD\",\n          \"conversion_rate\": 1\n        }\n      }\n    ],\n    \"purchase\": {\n      \"full_price\": {\n        \"value\": 1069767,\n        \"currency_value\": \"COP\"\n      },\n      \"price\": {\n        \"value\": 1069767,\n        \"currency_value\": \"COP\"\n      },\n      \"checkout_country\": {\n        \"name\": \"Colombia\",\n        \"iso\": \"CO\"\n      },\n      \"order_bump\": {\n        \"is_order_bump\": false\n      },\n      \"origin\": {\n        \"sck\": \"YOUTUBE\"\n      },\n      \"buyer_ip\": \"186.116.210.82\",\n      \"original_offer_price\": {\n        \"value\": 260.59,\n        \"currency_value\": \"USD\"\n      },\n      \"order_date\": 1740617455000,\n      \"status\": \"CANCELED\",\n      \"transaction\": \"HP0979605139\",\n      \"payment\": {\n        \"installments_number\": 1,\n        \"refusal_reason\": \"Saldo insuficiente para o cartão informado. Entre em contato com a operadora.\",\n        \"type\": \"CREDIT_CARD\"\n      },\n      \"offer\": {\n        \"code\": \"h4vy1tzz\"\n      },\n      \"invoice_by\": \"SELLER\",\n      \"subscription_anticipation_purchase\": false\n    }\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -40,
+        -40
+      ],
+      "id": "8aad9c10-5bbb-4d28-a93a-627a6f85effd",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-27T01:01:53.458Z",
+  "versionId": "997b4fcd-53ff-49c8-a7e0-419adf2d4aec"
+}
