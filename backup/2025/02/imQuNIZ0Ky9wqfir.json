@@ -512,7 +512,7 @@
       "main": [
         [
           {
-            "node": "BUSCA ASESOR",
+            "node": "ACTUALIZA DATOS",
             "type": "main",
             "index": 0
           }
@@ -523,7 +523,12 @@
       "main": [
         [
           {
-            "node": "CLIENTE NUEVO - CERRADOR",
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge1",
             "type": "main",
             "index": 0
           }
@@ -540,11 +545,69 @@
           }
         ]
       ]
+    },
+    "ACTUALIZA DATOS": {
+      "main": [
+        [
+          {
+            "node": "BUSCA ASESOR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Evolution API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evolution API": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "CLIENTE NUEVO - CERRADOR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-02-22T03:16:54.088Z",
   "id": "imQuNIZ0Ky9wqfir",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "🟢 [GERSSON] EVENTOS HOTMART",
   "nodes": [
     {
@@ -957,7 +1020,7 @@
       "typeVersion": 3.2,
       "position": [
         1860,
-        500
+        600
       ],
       "id": "71ab8fb0-b666-460d-9d76-13543b7bd6ea",
       "name": "ESTADO"
@@ -1071,7 +1134,7 @@
       "typeVersion": 2,
       "position": [
         2580,
-        400
+        500
       ],
       "id": "f0bdd5cd-a1ba-4126-9454-4e44694fbd96",
       "name": "conteo + 1"
@@ -1104,8 +1167,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1800,
-        -360
+        2100,
+        -320
       ],
       "id": "921be498-52fa-4be8-a443-3c557bce68c0",
       "name": "existe en manychat?"
@@ -1139,8 +1202,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2420,
-        -420
+        2720,
+        -380
       ],
       "id": "851b7de7-6470-4367-afe7-b99561ed92f5",
       "name": "ENVIAR FLUJO BV",
@@ -1166,8 +1229,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2220,
-        -300
+        2520,
+        -260
       ],
       "id": "33731b04-de1a-4bdc-a925-aa0268a06776",
       "name": "id"
@@ -1189,8 +1252,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2040,
-        -440
+        2340,
+        -400
       ],
       "id": "14d1fcc2-8c80-406c-9683-9342b8fafc08",
       "name": "id1"
@@ -1209,8 +1272,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2720,
-        580
+        2960,
+        680
       ]
     },
     {
@@ -1227,8 +1290,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3520,
-        400
+        4320,
+        520
       ]
     },
     {
@@ -1239,8 +1302,8 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        1520,
-        -580
+        1820,
+        -540
       ],
       "typeVersion": 1,
       "id": "ed193b43-b767-425e-abfa-2980136a4c80",
@@ -1283,9 +1346,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1580,
-        -500
-      ]
+        1880,
+        -460
+      ],
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -1307,7 +1371,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2420,
+        2440,
         180
       ],
       "id": "92a72319-6b56-4838-9c1a-39c2ac92d0fa",
@@ -1342,8 +1406,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2000,
-        -280
+        2300,
+        -240
       ],
       "id": "65f15e76-32bb-4dbf-9c2c-a18696bbe1bc",
       "name": "CREAR",
@@ -1354,12 +1418,12 @@
     },
     {
       "parameters": {
-        "url": "https://api.manychat.com/fb/subscriber/findBySystemField",
+        "url": "https://api.manychat.com/fb/subscriber/findByName",
         "sendQuery": true,
         "queryParameters": {
           "parameters": [
             {
-              "name": "phone",
+              "name": "name",
               "value": "=+{{ $('ASIGNACION').item.json.numero }}"
             }
           ]
@@ -1386,8 +1450,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1580,
-        -340
+        1880,
+        -300
       ],
       "id": "76c20459-d98a-4080-88e3-3f90dd78db56",
       "name": "BUSQUEDA",
@@ -1410,7 +1474,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2580,
+        2600,
         180
       ]
     },
@@ -1667,6 +1731,14 @@
             {
               "fieldId": "ESTADO",
               "fieldValue": "PAGADO"
+            },
+            {
+              "fieldId": "NOMBRE",
+              "fieldValue": "={{ $('ASIGNACION').item.json.nombre }}"
+            },
+            {
+              "fieldId": "WHATSAPP",
+              "fieldValue": "={{ $('ASIGNACION').item.json.numero }}"
             }
           ]
         }
@@ -1856,7 +1928,7 @@
       "typeVersion": 1,
       "position": [
         2260,
-        400
+        500
       ],
       "id": "8c88d5c8-fed1-466d-bfe4-08ffafce743f",
       "name": "Sort"
@@ -1867,7 +1939,7 @@
       "typeVersion": 1,
       "position": [
         2420,
-        400
+        500
       ],
       "id": "e4437443-e36b-459c-9748-bf54785b1045",
       "name": "Limit"
@@ -1882,7 +1954,7 @@
       "typeVersion": 1,
       "position": [
         2100,
-        400
+        500
       ],
       "id": "096dc26b-8a76-4194-b903-41e674da31e4",
       "name": "ASIGNA",
@@ -1912,7 +1984,7 @@
       "typeVersion": 1,
       "position": [
         3200,
-        400
+        500
       ],
       "id": "877832d7-ae3e-4d34-a32b-95925a1c2dca",
       "name": "BUSCA ASESOR3",
@@ -1949,7 +2021,7 @@
       "typeVersion": 1,
       "position": [
         2740,
-        400
+        500
       ],
       "id": "59cbdf25-86ee-48b6-acdc-9a2623a950e8",
       "name": "CONT + ",
@@ -2000,7 +2072,7 @@
       "typeVersion": 1,
       "position": [
         2880,
-        400
+        500
       ],
       "id": "08409873-abd7-4494-b2d7-826e8ffbce00",
       "name": "CLIENTE +1",
@@ -2035,7 +2107,7 @@
       "typeVersion": 1,
       "position": [
         3040,
-        400
+        500
       ],
       "id": "08a1a466-8e0e-4305-8b10-01ad06685165",
       "name": "EVENTO +1",
@@ -2070,7 +2142,7 @@
       "typeVersion": 1,
       "position": [
         2100,
-        580
+        680
       ],
       "id": "a2f28728-39eb-44a3-8cdb-7c178a181e6a",
       "name": "EVENTO +",
@@ -2099,8 +2171,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2400,
-        580
+        2620,
+        680
       ],
       "id": "f93ee001-5b5b-4036-ba75-9d9c7d66a64b",
       "name": "BUSCA ASESOR",
@@ -2136,8 +2208,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2240,
-        580
+        2280,
+        680
       ],
       "id": "47838789-a8f1-44d9-b5a7-6e1d8b932a87",
       "name": "UPD. ESTADO",
@@ -2155,24 +2227,144 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3360,
-        400
+        3380,
+        500
       ],
       "id": "b14d1ef7-317d-439a-ae54-285f23c860ad",
       "name": "Code"
     },
     {
       "parameters": {
-        "jsCode": "const evento = $('EVENTO +').first().json.TIPO_EVENTO;\nconst nombre_cliente = $('UPD. ESTADO').first().json.NOMBRE\nconst numero_cliente = $('UPD. ESTADO').first().json.WHATSAPP;\nconst chat_asesor = $input.first().json.ID_TG;\nconst motivo_rechazo = $('ASIGNACION').first().json.motivo || \"Motivo no especificado\";\n\nconst mensajes = {\n    \"CARRITOS\": `🚨 *TU CLIENTE HIZO CARRITO ABANDONADO* 🚨\\n\\n👤 *Cliente:* ${nombre_cliente}\\n📲 *WhatsApp:* ${numero_cliente}\\n🛒 *Estado:* Abandonó el carrito.`,\n    \"TICKETS\": `🎟️ *TU CLIENTE HIZO UN TICKET* 🎟️\\n\\n👤 *Cliente:* ${nombre_cliente}\\n📲 *WhatsApp:* ${numero_cliente}\\n💳 *Estado:* Generó un ticket de pago.`,\n    \"RECHAZADOS\": `❌ *TU CLIENTE HIZO COMPRA RECHAZADA* ❌\\n\\n👤 *Cliente:* ${nombre_cliente}\\n📲 *WhatsApp:* ${numero_cliente}\\n⚠️ *Motivo:* ${motivo_rechazo}`\n};\n\nconst botones = {\n    \"reply_markup\": {\n        \"inline_keyboard\": [\n            [\n                {\n                    \"text\": \"IR A ATENDER\",\n                    \"url\": `https://wa.me/${numero_cliente}`\n                }\n            ],\n            [\n                {\n                    \"text\": \"REPORTAR ESTADO\",\n                    \"url\": \"https://sistema-cierres-ger.automscc.com/\"\n                }\n            ]\n        ]\n    }\n};\n\nconst mensaje = mensajes[evento] || null;\n\nreturn mensaje ? [{ chat_id: chat_asesor, text: mensaje, parse_mode: \"Markdown\" ...botones }] : [];"
+        "jsCode": "const evento = $('EVENTO +').first().json.TIPO_EVENTO;\nconst nombre_cliente = $('UPD. ESTADO').first().json.NOMBRE\nconst numero_cliente = $('UPD. ESTADO').first().json.WHATSAPP;\nconst chat_asesor = $input.first().json.ID_TG;\nconst motivo_rechazo = $('ASIGNACION').first().json.motivo || \"Motivo no especificado\";\n\nconst mensajes = {\n    \"CARRITOS\": `🚨 *TU CLIENTE HIZO CARRITO ABANDONADO* 🚨\\n\\n👤 *Cliente:* ${nombre_cliente}\\n📲 *WhatsApp:* ${numero_cliente}\\n🛒 *Estado:* Abandonó el carrito.`,\n    \"TICKETS\": `🎟️ *TU CLIENTE HIZO UN TICKET* 🎟️\\n\\n👤 *Cliente:* ${nombre_cliente}\\n📲 *WhatsApp:* ${numero_cliente}\\n💳 *Estado:* Generó un ticket de pago.`,\n    \"RECHAZADOS\": `❌ *TU CLIENTE HIZO COMPRA RECHAZADA* ❌\\n\\n👤 *Cliente:* ${nombre_cliente}\\n📲 *WhatsApp:* ${numero_cliente}\\n⚠️ *Motivo:* ${motivo_rechazo}`\n};\n\nconst botones = {\n    \"reply_markup\": {\n        \"inline_keyboard\": [\n            [\n                {\n                    \"text\": \"IR A ATENDER\",\n                    \"url\": `https://wa.me/${numero_cliente}`\n                }\n            ],\n            [\n                {\n                    \"text\": \"REPORTAR ESTADO\",\n                    \"url\": \"https://sistema-cierres-ger.automscc.com/\"\n                }\n            ]\n        ]\n    }\n};\n\nconst mensaje = mensajes[evento] || null;\n\nreturn mensaje ? [{ chat_id: chat_asesor, text: mensaje, parse_mode: \"Markdown\", ...botones }] : [];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2560,
-        580
+        2780,
+        680
       ],
       "id": "86341da3-0bf7-4d0c-95af-ab87680c718a",
       "name": "Code1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "GERSSON_CLIENTES",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ID",
+              "condition": "eq",
+              "keyValue": "={{$('BUSCA').item.json.ID}}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "NOMBRE",
+              "fieldValue": "={{ $('ASIGNACION').item.json.nombre }}"
+            },
+            {
+              "fieldId": "WHATSAPP",
+              "fieldValue": "={{ $('ASIGNACION').item.json.numero }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2440,
+        680
+      ],
+      "id": "375dd5e4-bcfc-4bac-a1ee-0b1b7ae3c493",
+      "name": "ACTUALIZA DATOS",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "={{ $('BUSCA ASESOR3').item.json.NOMBRE }}",
+        "remoteJid": "={{ $('CLIENTE +1').item.json.WHATSAPP }}",
+        "messageText": "={{ $json.output }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        3920,
+        580
+      ],
+      "id": "7cb6b5a0-977d-4bc4-900f-95eac51330cf",
+      "name": "Evolution API",
+      "retryOnFail": false,
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "VPS-EASYPANEL"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "agent": "conversationalAgent",
+        "promptType": "define",
+        "text": "=Actua como un asesor de ventas llamado: \"\"{{ $('CLIENTE +1').first().json.NOMBRE }} el cual impulsa “La Terapia del Dolor” de Gerson López (Terapias Magnéticas Academy). Tu misión es crear mensajes irresistibles para WhatsApp que abran conversaciones y motiven al cliente a responder.\n\nDatos clave para personalizar el mensaje:\n\nNombre del cliente: {{ $('ASIGNACION').first().json.nombre }}\nTipo de evento Hotmart del cliente: {{ $('ASIGNACION').first().json.flujo }}\nMotivo de rechazo del cliente: {{ $('ASIGNACION').first().json.motivo ? $('ASIGNACION').first().json.motivo : \"no disponible\" }}\nTipos de eventos Hotmart:\n\nCarrito 🛒: El cliente abandonó el proceso de pago con los datos ya ingresados.\nRechazado ❌: Intentó pagar, pero su tarjeta fue rechazada (motivo disponible).\nTicket 💵: Generó un ticket de pago en efectivo y requiere seguimiento.\n🎯 Objetivo\nDiseñar mensajes cortos y poderosos que despierten curiosidad, urgencia y cercanía, logrando que el cliente responda rápido. Queremos entender qué pasó en su proceso de compra y guiarlo para cerrar la venta.\n\n⚡ Estilo del mensaje:\n✅ Corto, directo y con gancho (WhatsApp no es un blog).\n✅ Conversacional y fresco, con un tono que combina amistad y profesionalismo.\n✅ Urgencia real, sin sonar desesperado.\n✅ Personalizado y relevante según su caso (Carrito, Rechazado o Ticket).\n✅ Sutilmente persuasivo, enfocándose en el valor de la terapia.\n\n📜 Instrucciones:\nSaluda por su nombre y menciona su situación específica en Hotmart.\nSi su pago fue rechazado, incluye (sutilmente) el motivo.\nPara los que abandonaron el carrito, pregunta qué los detuvo.\nSi hicieron un ticket de pago, recuérdales que el tiempo es clave.\nCierra con una pregunta o llamada a la acción que los motive a responder.\n\nhazle saltos de linea para que sea mas facil de leer y que no suene generico, que sea humano y con dialecto de colombia sin ser coloquial ni vulgar ni atrevido, totalmente formal y amigable y por nada del mundo digas nada alarmante, como algo de fraude o cosas asi.\n\npor nada del mundo pongas variables a rellenar estilo [tu nombre], manda mensajes como el asesor que estas encarnando.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        3600,
+        580
+      ],
+      "id": "5f9714e9-5e77-4379-a2f2-42214efc0e4d",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        3620,
+        760
+      ],
+      "id": "667834cd-ca3a-4a52-bbb6-42a3b44f26c0",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        4160,
+        520
+      ],
+      "id": "77e55a00-fcd6-4557-9a3b-99cdb80285c5",
+      "name": "Merge1"
     }
   ],
   "pinData": {
@@ -2182,15 +2374,15 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "Jodd HTTP",
-            "content-length": "1341",
+            "content-length": "1392",
             "content-type": "application/json",
-            "x-forwarded-for": "44.200.25.214",
+            "x-forwarded-for": "3.238.25.76",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
             "x-forwarded-server": "3051a3bb6625",
-            "x-hotmart-hottok": "rrQs3XPgg981iOyVxcVtzyVVA0kYsp1be22114-3144-4b81-9341-e1e30d733e88",
-            "x-real-ip": "44.200.25.214",
+            "x-hotmart-hottok": "6SJkhfjuD6Bm4cha7tF8loEMs92JzG11852721",
+            "x-real-ip": "3.238.25.76",
             "accept-encoding": "gzip"
           },
           "params": {},
@@ -2198,89 +2390,88 @@
           "body": {
             "data": {
               "product": {
-                "has_co_production": false,
-                "name": "Produto test postback2",
-                "id": 0,
-                "ucode": "fb056612-bcc6-4217-9e6d-2a5d1110ac2f"
+                "has_co_production": true,
+                "name": "Terapia del Dolor",
+                "id": 1707154,
+                "ucode": "9c58b9dc-2eab-448f-a89e-81f9924d8e26"
               },
               "commissions": [
                 {
-                  "currency_value": "BRL",
+                  "currency_value": "USD",
                   "source": "MARKETPLACE",
-                  "value": 149.5
+                  "value": 21.52
                 },
                 {
-                  "currency_value": "BRL",
+                  "currency_conversion": {
+                    "converted_value": 112.11,
+                    "converted_to_currency": "USD",
+                    "conversion_rate": 1
+                  },
+                  "currency_value": "USD",
                   "source": "PRODUCER",
-                  "value": 1350.5
+                  "value": 112.11
                 }
               ],
               "purchase": {
                 "original_offer_price": {
-                  "currency_value": "BRL",
-                  "value": 1500
+                  "currency_value": "USD",
+                  "value": 260.83
                 },
+                "subscription_anticipation_purchase": false,
                 "checkout_country": {
-                  "iso": "BR",
-                  "name": "Brasil"
+                  "iso": "PE",
+                  "name": "Peru"
                 },
-                "sckPaymentLink": "sckPaymentLinkTest",
+                "origin": {
+                  "sck": "GRUPOSWHATSAPP"
+                },
                 "order_bump": {
-                  "parent_purchase_transaction": "HP02316330308193",
-                  "is_order_bump": true
+                  "is_order_bump": false
                 },
-                "approved_date": 1511783346000,
                 "offer": {
-                  "code": "test"
+                  "code": "h4vy1tzz"
                 },
-                "order_date": 1511783344000,
+                "order_date": 1740632471000,
                 "price": {
-                  "currency_value": "BRL",
-                  "value": 1500
+                  "currency_value": "PEN",
+                  "value": 960
                 },
-                "buyer_ip": "00.00.00.00",
+                "buyer_ip": "190.234.20.203",
                 "payment": {
+                  "refusal_reason": "O cartão encontra-se vencido. Entre em contato com a operadora.",
                   "installments_number": 12,
                   "type": "CREDIT_CARD"
                 },
                 "full_price": {
-                  "currency_value": "BRL",
-                  "value": 1500
+                  "currency_value": "PEN",
+                  "value": 960
                 },
-                "transaction": "HP16015479281022",
+                "invoice_by": "HOTMART",
+                "transaction": "HP2998260025",
                 "status": "CANCELED"
               },
               "affiliates": [
                 {
-                  "affiliate_code": "Q58388177J",
-                  "name": "Affiliate name"
+                  "affiliate_code": "",
+                  "name": ""
                 }
               ],
               "producer": {
-                "name": "Producer Test Name"
-              },
-              "subscription": {
-                "subscriber": {
-                  "code": "I9OT62C3"
-                },
-                "plan": {
-                  "name": "plano de teste",
-                  "id": 123
-                },
-                "status": "ACTIVE"
+                "name": "MAGNETIC THERAPY ACADEMY LLC"
               },
               "buyer": {
                 "address": {
-                  "country": "Brasil",
-                  "country_iso": "BR"
+                  "country": "Peru",
+                  "country_iso": "PE"
                 },
-                "name": "Teste Comprador",
-                "checkout_phone": "99999999900",
-                "email": "testeComprador271101postman15@example.com"
+                "document": "",
+                "name": "Miguel Angel Deza Rodríguez",
+                "checkout_phone": "51959901111",
+                "email": "migueldeza420@gmail.com"
               }
             },
-            "id": "2cf2d8dc-da23-493f-85dc-12c6c968025f",
-            "creation_date": 1740544120963,
+            "id": "083fb524-8c65-409b-b333-f2b56af04e87",
+            "creation_date": 1740632479443,
             "event": "PURCHASE_CANCELED",
             "version": "2.0.0"
           },
@@ -2318,6 +2509,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-02-26T04:36:46.000Z",
-  "versionId": "2cd7ec75-312e-46f8-b614-8d58a06c090e"
+  "updatedAt": "2025-02-27T05:40:57.000Z",
+  "versionId": "4a3572b5-31c1-4770-a848-4de54402e8ed"
 }
