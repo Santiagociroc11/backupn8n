@@ -512,7 +512,7 @@
       "main": [
         [
           {
-            "node": "ACTUALIZA DATOS",
+            "node": "Evolution API1",
             "type": "main",
             "index": 0
           }
@@ -540,17 +540,6 @@
         [
           {
             "node": "CLIENTE EXISTENTE - CERRADOR",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "ACTUALIZA DATOS": {
-      "main": [
-        [
-          {
-            "node": "BUSCA ASESOR",
             "type": "main",
             "index": 0
           }
@@ -596,6 +585,57 @@
         [
           {
             "node": "CLIENTE NUEVO - CERRADOR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evolution API1": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "nombre + wha",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "actualiza nombre",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "actualiza nombre": {
+      "main": [
+        [
+          {
+            "node": "BUSCA ASESOR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "nombre + wha": {
+      "main": [
+        [
+          {
+            "node": "BUSCA ASESOR",
             "type": "main",
             "index": 0
           }
@@ -1019,8 +1059,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        1860,
-        600
+        1780,
+        460
       ],
       "id": "71ab8fb0-b666-460d-9d76-13543b7bd6ea",
       "name": "ESTADO"
@@ -1053,8 +1093,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1620,
-        280
+        1540,
+        240
       ],
       "id": "d6ba56df-16a1-44dc-82ad-282c77a47af1",
       "name": "COMPRAS?"
@@ -1120,8 +1160,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        1860,
-        120
+        1780,
+        80
       ],
       "id": "2a01a731-ac59-403f-96b1-b00d5f2e7885",
       "name": "ASIGNADA?"
@@ -1133,8 +1173,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2580,
-        500
+        2500,
+        360
       ],
       "id": "f0bdd5cd-a1ba-4126-9454-4e44694fbd96",
       "name": "conteo + 1"
@@ -1203,7 +1243,7 @@
       "typeVersion": 4.2,
       "position": [
         2720,
-        -380
+        -400
       ],
       "id": "851b7de7-6470-4367-afe7-b99561ed92f5",
       "name": "ENVIAR FLUJO BV",
@@ -1272,8 +1312,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2960,
-        680
+        3180,
+        620
       ]
     },
     {
@@ -1290,8 +1330,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        4320,
-        520
+        4220,
+        380
       ]
     },
     {
@@ -1353,26 +1393,26 @@
     },
     {
       "parameters": {
-        "jsCode": "let jsonventa = $('HOTMART').first().json.body.data;\nlet cerrador = $input.first().json.NOMBRE_ASESOR\n\n// Extraer datos relevantes\nconst transaction = jsonventa.purchase?.transaction || \"N/A\";\nconst buyerName = jsonventa.buyer?.name || \"N/A\";\nconst pais = jsonventa.buyer?.address?.country || \"N/A\";\nconst buyerEmail = jsonventa.buyer?.email || \"N/A\";\nconst productName = jsonventa.product?.name || \"N/A\";\nconst purchaseDate = new Date(jsonventa.purchase?.order_date).toLocaleString();\n\n// Construir el mensaje\nconst text = `\\n🔔 *Notificación de VENTA* \\n\\n` +\n  `🛍 *Producto:* ${productName}\\n` +\n  `💰 *Pais:* ${pais}\\n` +\n  `👤 *Comprador:* ${buyerName}\\n` +\n  `📧 *Correo:* ${buyerEmail}\\n` +\n  `📦 *Transacción:* ${transaction}\\n` +\n  `📦 *CERRADOR:* ${cerrador}\\n` +\n  `📅 *Fecha de compra:* ${purchaseDate}\\n`;\n\n// Retornar el JSON con el mensaje\nreturn {\n  json: {\n    text,\n  },\n};\n"
+        "jsCode": "let jsonventa = $('HOTMART').first().json.body.data;\nlet cerrador = $input.first().json.NOMBRE_ASESOR\n\n// Extraer datos relevantes\nconst transaction = jsonventa.purchase?.transaction || \"N/A\";\nconst buyerName = jsonventa.buyer?.name || \"N/A\";\nconst pais = jsonventa.buyer?.address?.country || \"N/A\";\nconst buyerEmail = jsonventa.buyer?.email || \"N/A\";\nconst productName = jsonventa.product?.name || \"N/A\";\nconst purchaseDate = new Date(jsonventa.purchase?.order_date).toLocaleString();\n\n// Construir el mensaje\nconst text = `<b>Notificación de VENTA</b>\\n\\n` +\n  `<b>Producto:</b> ${productName}\\n` +\n  `<b>Pais:</b> ${pais}\\n` +\n  `<b>Comprador:</b> ${buyerName}\\n` +\n  `<b>Correo:</b> ${buyerEmail}\\n` +\n  `<b>Transacción:</b> ${transaction}\\n` +\n  `<b>CERRADOR:</b> ${cerrador}\\n` +\n  `<b>Fecha de compra:</b> ${purchaseDate}\\n`;\n\n\nreturn {\n  json: {\n    text,\n  },\n};\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2900,
-        20
+        2820,
+        -20
       ],
       "id": "6632db46-0264-4502-932e-272c15ba3458",
       "name": "mensaje"
     },
     {
       "parameters": {
-        "jsCode": "let jsonventa = $('HOTMART').first().json.body.data;\nlet cerrador = \"SIN CERRADOR\"\n\n// Extraer datos relevantes\nconst transaction = jsonventa.purchase?.transaction || \"N/A\";\nconst buyerName = jsonventa.buyer?.name || \"N/A\";\nconst pais = jsonventa.buyer?.address?.country || \"N/A\";\nconst buyerEmail = jsonventa.buyer?.email || \"N/A\";\nconst productName = jsonventa.product?.name || \"N/A\";\nconst purchaseDate = new Date(jsonventa.purchase?.order_date).toLocaleString();\n\n// Construir el mensaje\nconst text = `\\n🔔 *Notificación de VENTA* \\n\\n` +\n  `🛍 *Producto:* ${productName}\\n` +\n  `💰 *Pais:* ${pais}\\n` +\n  `👤 *Comprador:* ${buyerName}\\n` +\n  `📧 *Correo:* ${buyerEmail}\\n` +\n  `📦 *Transacción:* ${transaction}\\n` +\n  `📦 *CERRADOR:* ${cerrador}\\n` +\n  `📅 *Fecha de compra:* ${purchaseDate}\\n`;\n\n// Retornar el JSON con el mensaje\nreturn {\n  json: {\n    text,\n  },\n};\n"
+        "jsCode": "let jsonventa = $('HOTMART').first().json.body.data;\nlet cerrador = \"SIN CERRADOR\"\n\n// Extraer datos relevantes\nconst transaction = jsonventa.purchase?.transaction || \"N/A\";\nconst buyerName = jsonventa.buyer?.name || \"N/A\";\nconst pais = jsonventa.buyer?.address?.country || \"N/A\";\nconst buyerEmail = jsonventa.buyer?.email || \"N/A\";\nconst productName = jsonventa.product?.name || \"N/A\";\nconst purchaseDate = new Date(jsonventa.purchase?.order_date).toLocaleString();\n\nconst text = `<b>Notificación de VENTA</b>\\n\\n` +\n  `<b>Producto:</b> ${productName}\\n` +\n  `<b>Pais:</b> ${pais}\\n` +\n  `<b>Comprador:</b> ${buyerName}\\n` +\n  `<b>Correo:</b> ${buyerEmail}\\n` +\n  `<b>Transacción:</b> ${transaction}\\n` +\n  `<b>CERRADOR:</b> ${cerrador}\\n` +\n  `<b>Fecha de compra:</b> ${purchaseDate}\\n`;\n\nreturn {\n  json: {\n    text,\n  },\n};\n\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2440,
-        180
+        2360,
+        140
       ],
       "id": "92a72319-6b56-4838-9c1a-39c2ac92d0fa",
       "name": "mensaje1"
@@ -1466,7 +1506,7 @@
         "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"chat_id\": \"-1002176532359\",\n  \"message_thread_id\": 807,\n  {{ $json.toJsonString().replace(/^\\{|\\}$/g, \"\")\n }},\n  \"parse_mode\": \"Markdown\"\n}\n",
+        "jsonBody": "={\n  \"chat_id\": \"-1002176532359\",\n  \"message_thread_id\": 807,\n  {{ $json.toJsonString().replace(/^\\{|\\}$/g, \"\") }},\n  \"parse_mode\": \"HTML\"\n}\n",
         "options": {}
       },
       "id": "8308853f-4ae7-4418-8982-c153b2ce7a5a",
@@ -1474,8 +1514,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2600,
-        180
+        2520,
+        140
       ]
     },
     {
@@ -1484,7 +1524,7 @@
         "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"chat_id\": \"-1002176532359\",\n  \"message_thread_id\": 807,\n  {{ $json.toJsonString().replace(/^\\{|\\}$/g, \"\")\n }},\n  \"parse_mode\": \"Markdown\"\n}\n",
+        "jsonBody": "={\n  \"chat_id\": \"-1002176532359\",\n  \"message_thread_id\": 807,\n   {{ $json.toJsonString().replace(/^\\{|\\}$/g, \"\") }},\n  \"parse_mode\": \"HTML\"\n}\n",
         "options": {}
       },
       "id": "3fc46e5d-ef86-4b0a-8c86-c99cf9652a69",
@@ -1492,8 +1532,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3060,
-        20
+        2980,
+        -20
       ]
     },
     {
@@ -1623,8 +1663,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        1460,
-        280
+        1380,
+        240
       ],
       "id": "ab43656d-a38e-4f26-a003-dc80a9334478",
       "name": "BUSCA",
@@ -1654,8 +1694,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2100,
-        20
+        2020,
+        -20
       ],
       "id": "9a3c1b2c-026a-4be3-afe4-2ee670eaf1d2",
       "name": "REVISAR",
@@ -1692,8 +1732,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2260,
-        20
+        2180,
+        -20
       ],
       "id": "dce5a177-0ac3-44bf-a6fb-d9e6fc3b9f6c",
       "name": "CONT + 1",
@@ -1746,8 +1786,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2420,
-        20
+        2340,
+        -20
       ],
       "id": "53117180-218b-42f5-abd4-2d8a821c085b",
       "name": "UPDATE CLIENTE",
@@ -1782,8 +1822,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2580,
-        20
+        2500,
+        -20
       ],
       "id": "92996e96-9df9-4285-9df3-65acedd906f1",
       "name": "EVENTO COMPRA +1",
@@ -1813,8 +1853,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2740,
-        20
+        2660,
+        -20
       ],
       "id": "63d9e093-b854-4fd7-a53e-bd0d236ceb21",
       "name": "BUSCA ASESOR1",
@@ -1861,8 +1901,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2100,
-        180
+        2020,
+        140
       ],
       "id": "1808f4ba-0a2a-4812-8a53-9ee14e3b0087",
       "name": "REGISTRO1",
@@ -1897,8 +1937,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2260,
-        180
+        2180,
+        140
       ],
       "id": "3fdf2514-949e-4ecd-aa58-d70891baaf27",
       "name": "REGISTRO COMPRA +",
@@ -1927,8 +1967,8 @@
       "type": "n8n-nodes-base.sort",
       "typeVersion": 1,
       "position": [
-        2260,
-        500
+        2180,
+        360
       ],
       "id": "8c88d5c8-fed1-466d-bfe4-08ffafce743f",
       "name": "Sort"
@@ -1938,8 +1978,8 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        2420,
-        500
+        2340,
+        360
       ],
       "id": "e4437443-e36b-459c-9748-bf54785b1045",
       "name": "Limit"
@@ -1953,8 +1993,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2100,
-        500
+        2020,
+        360
       ],
       "id": "096dc26b-8a76-4194-b903-41e674da31e4",
       "name": "ASIGNA",
@@ -1983,8 +2023,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        3200,
-        500
+        3120,
+        360
       ],
       "id": "877832d7-ae3e-4d34-a32b-95925a1c2dca",
       "name": "BUSCA ASESOR3",
@@ -2020,8 +2060,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2740,
-        500
+        2660,
+        360
       ],
       "id": "59cbdf25-86ee-48b6-acdc-9a2623a950e8",
       "name": "CONT + ",
@@ -2071,8 +2111,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2880,
-        500
+        2800,
+        360
       ],
       "id": "08409873-abd7-4494-b2d7-826e8ffbce00",
       "name": "CLIENTE +1",
@@ -2106,8 +2146,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        3040,
-        500
+        2960,
+        360
       ],
       "id": "08a1a466-8e0e-4305-8b10-01ad06685165",
       "name": "EVENTO +1",
@@ -2141,8 +2181,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2100,
-        680
+        2020,
+        600
       ],
       "id": "a2f28728-39eb-44a3-8cdb-7c178a181e6a",
       "name": "EVENTO +",
@@ -2171,8 +2211,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2620,
-        680
+        2900,
+        620
       ],
       "id": "f93ee001-5b5b-4036-ba75-9d9c7d66a64b",
       "name": "BUSCA ASESOR",
@@ -2208,8 +2248,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2280,
-        680
+        2180,
+        600
       ],
       "id": "47838789-a8f1-44d9-b5a7-6e1d8b932a87",
       "name": "UPD. ESTADO",
@@ -2227,8 +2267,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3380,
-        500
+        3300,
+        360
       ],
       "id": "b14d1ef7-317d-439a-ae54-285f23c860ad",
       "name": "Code"
@@ -2240,11 +2280,215 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2780,
-        680
+        3040,
+        620
       ],
       "id": "86341da3-0bf7-4d0c-95af-ab87680c718a",
       "name": "Code1"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "={{ $('BUSCA ASESOR3').item.json.NOMBRE }}",
+        "remoteJid": "={{ $('CLIENTE +1').item.json.WHATSAPP }}",
+        "messageText": "={{ $json.output }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        3820,
+        440
+      ],
+      "id": "7cb6b5a0-977d-4bc4-900f-95eac51330cf",
+      "name": "Evolution API",
+      "retryOnFail": false,
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "VPS-EASYPANEL"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "agent": "conversationalAgent",
+        "promptType": "define",
+        "text": "=Actua como un asesor de ventas llamado: \"{{ $('CLIENTE +1').first().json.NOMBRE_ASESOR }}\"\" el cual impulsa “La Terapia del Dolor” de Gerson López (Terapias Magnéticas Academy). Tu misión es crear mensajes irresistibles para WhatsApp que abran conversaciones y motiven al cliente a responder.\n\nDatos clave para personalizar el mensaje:\n\nNombre del cliente: {{ $('ASIGNACION').first().json.nombre }}\nTipo de evento Hotmart del cliente: {{ $('ASIGNACION').first().json.flujo }}\nMotivo de rechazo del cliente: {{ $('ASIGNACION').first().json.motivo ? $('ASIGNACION').first().json.motivo : \"no disponible\" }}\nTipos de eventos Hotmart:\n\nCarrito 🛒: El cliente abandonó el proceso de pago con los datos ya ingresados.\nRechazado ❌: Intentó pagar, pero su tarjeta fue rechazada (motivo disponible).\nTicket 💵: Generó un ticket de pago en efectivo y requiere seguimiento.\n🎯 Objetivo\nDiseñar mensajes cortos y poderosos que despierten curiosidad, urgencia y cercanía, logrando que el cliente responda rápido. Queremos entender qué pasó en su proceso de compra y guiarlo para cerrar la venta.\n\n⚡ Estilo del mensaje:\n✅ Corto, directo y con gancho (WhatsApp no es un blog).\n✅ Conversacional y fresco, con un tono que combina amistad y profesionalismo.\n✅ Urgencia real, sin sonar desesperado.\n✅ Personalizado y relevante según su caso (Carrito, Rechazado o Ticket).\n✅ Sutilmente persuasivo, enfocándose en el valor de la terapia.\n\n📜 Instrucciones:\nSaluda por su nombre y menciona su situación específica en Hotmart.\nSi su pago fue rechazado, incluye (sutilmente) el motivo.\nPara los que abandonaron el carrito, pregunta qué los detuvo.\nSi hicieron un ticket de pago, recuérdales que el tiempo es clave.\nCierra con una pregunta o llamada a la acción que los motive a responder.\n\nhazle saltos de linea para que sea mas facil de leer y que no suene generico, que sea humano y con dialecto de colombia sin ser coloquial ni vulgar ni atrevido, totalmente formal y amigable y por nada del mundo digas nada alarmante, como algo de fraude o cosas asi.\n\npor nada del mundo pongas variables a rellenar estilo [tu nombre], manda mensajes como el asesor que estas encarnando.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        3500,
+        440
+      ],
+      "id": "5f9714e9-5e77-4379-a2f2-42214efc0e4d",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        3500,
+        620
+      ],
+      "id": "667834cd-ca3a-4a52-bbb6-42a3b44f26c0",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        4060,
+        380
+      ],
+      "id": "77e55a00-fcd6-4557-9a3b-99cdb80285c5",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "resource": "chat-api",
+        "instanceName": "={{ $('BUSCA').item.json.NOMBRE_ASESOR }}",
+        "numbers": "={{ $json.WHATSAPP }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        600
+      ],
+      "id": "1948ba80-e2c2-4e3f-84d8-34c37d226ca7",
+      "name": "Evolution API1",
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "VPS-EASYPANEL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.data[0].exists }}",
+                    "rightValue": "true",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "id": "523eb970-b474-43de-b07a-f7b49dc5ed29"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "EXISTE"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f3d12bb0-313d-4311-b333-566f0be176f9",
+                    "leftValue": "={{ $json.data[0].exists }}",
+                    "rightValue": "false",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "false",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NO EXISTE"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        2500,
+        600
+      ],
+      "id": "f6885e80-12ff-42a3-9276-02915803e786",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "GERSSON_CLIENTES",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ID",
+              "condition": "eq",
+              "keyValue": "={{$('BUSCA').item.json.ID}}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "NOMBRE",
+              "fieldValue": "={{ $('ASIGNACION').item.json.nombre }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2700,
+        720
+      ],
+      "id": "547e5586-9715-4aa8-bf65-8bc5c25d5874",
+      "name": "actualiza nombre",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
     },
     {
       "parameters": {
@@ -2275,114 +2519,73 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2440,
-        680
+        2700,
+        540
       ],
       "id": "375dd5e4-bcfc-4bac-a1ee-0b1b7ae3c493",
-      "name": "ACTUALIZA DATOS",
+      "name": "nombre + wha",
       "credentials": {
         "supabaseApi": {
           "id": "r7GZA4DyUQZRn267",
           "name": "DB CIERRES"
         }
       }
-    },
-    {
-      "parameters": {
-        "resource": "messages-api",
-        "instanceName": "={{ $('BUSCA ASESOR3').item.json.NOMBRE }}",
-        "remoteJid": "={{ $('CLIENTE +1').item.json.WHATSAPP }}",
-        "messageText": "={{ $json.output }}",
-        "options_message": {}
-      },
-      "type": "n8n-nodes-evolution-api.evolutionApi",
-      "typeVersion": 1,
-      "position": [
-        3920,
-        580
-      ],
-      "id": "7cb6b5a0-977d-4bc4-900f-95eac51330cf",
-      "name": "Evolution API",
-      "retryOnFail": false,
-      "credentials": {
-        "evolutionApi": {
-          "id": "Png3VbsnUeyqI5UL",
-          "name": "VPS-EASYPANEL"
-        }
-      },
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
-        "agent": "conversationalAgent",
-        "promptType": "define",
-        "text": "=Actua como un asesor de ventas llamado: \"\"{{ $('CLIENTE +1').first().json.NOMBRE }} el cual impulsa “La Terapia del Dolor” de Gerson López (Terapias Magnéticas Academy). Tu misión es crear mensajes irresistibles para WhatsApp que abran conversaciones y motiven al cliente a responder.\n\nDatos clave para personalizar el mensaje:\n\nNombre del cliente: {{ $('ASIGNACION').first().json.nombre }}\nTipo de evento Hotmart del cliente: {{ $('ASIGNACION').first().json.flujo }}\nMotivo de rechazo del cliente: {{ $('ASIGNACION').first().json.motivo ? $('ASIGNACION').first().json.motivo : \"no disponible\" }}\nTipos de eventos Hotmart:\n\nCarrito 🛒: El cliente abandonó el proceso de pago con los datos ya ingresados.\nRechazado ❌: Intentó pagar, pero su tarjeta fue rechazada (motivo disponible).\nTicket 💵: Generó un ticket de pago en efectivo y requiere seguimiento.\n🎯 Objetivo\nDiseñar mensajes cortos y poderosos que despierten curiosidad, urgencia y cercanía, logrando que el cliente responda rápido. Queremos entender qué pasó en su proceso de compra y guiarlo para cerrar la venta.\n\n⚡ Estilo del mensaje:\n✅ Corto, directo y con gancho (WhatsApp no es un blog).\n✅ Conversacional y fresco, con un tono que combina amistad y profesionalismo.\n✅ Urgencia real, sin sonar desesperado.\n✅ Personalizado y relevante según su caso (Carrito, Rechazado o Ticket).\n✅ Sutilmente persuasivo, enfocándose en el valor de la terapia.\n\n📜 Instrucciones:\nSaluda por su nombre y menciona su situación específica en Hotmart.\nSi su pago fue rechazado, incluye (sutilmente) el motivo.\nPara los que abandonaron el carrito, pregunta qué los detuvo.\nSi hicieron un ticket de pago, recuérdales que el tiempo es clave.\nCierra con una pregunta o llamada a la acción que los motive a responder.\n\nhazle saltos de linea para que sea mas facil de leer y que no suene generico, que sea humano y con dialecto de colombia sin ser coloquial ni vulgar ni atrevido, totalmente formal y amigable y por nada del mundo digas nada alarmante, como algo de fraude o cosas asi.\n\npor nada del mundo pongas variables a rellenar estilo [tu nombre], manda mensajes como el asesor que estas encarnando.",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 1.7,
-      "position": [
-        3600,
-        580
-      ],
-      "id": "5f9714e9-5e77-4379-a2f2-42214efc0e4d",
-      "name": "AI Agent"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "gpt-4o-mini",
-          "mode": "list",
-          "cachedResultName": "gpt-4o-mini"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        3620,
-        760
-      ],
-      "id": "667834cd-ca3a-4a52-bbb6-42a3b44f26c0",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "nZ98FVO8dD6bJnEc",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "mode": "chooseBranch"
-      },
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 3,
-      "position": [
-        4160,
-        520
-      ],
-      "id": "77e55a00-fcd6-4557-9a3b-99cdb80285c5",
-      "name": "Merge1"
     }
   ],
   "pinData": {
+    "Asignar datos TICKET": [
+      {
+        "json": {
+          "numero": "528448690970",
+          "nombre": "MA ANGELICA JAIME DURAN",
+          "correo": "siemprehay9@gmail.com",
+          "flujo": "TICKETS"
+        }
+      }
+    ],
+    "EVENTO +": [
+      {
+        "json": {
+          "ID": 1062,
+          "ID_CLIENTE": 662,
+          "TIPO_EVENTO": "TICKETS",
+          "FECHA_EVENTO": "1740679374"
+        }
+      }
+    ],
+    "UPD. ESTADO": [
+      {
+        "json": {
+          "ID": 662,
+          "NOMBRE": "MA. ANGELICA JAIME DURAN",
+          "ESTADO": "TICKETS",
+          "WHATSAPP": "528448690970",
+          "ID_ASESOR": 3,
+          "NOMBRE_ASESOR": "VALENTINA CASTILLO",
+          "WHA_ASESOR": "17865908617",
+          "FECHA_CREACION": "1740671922",
+          "FECHA_COMPRA": null,
+          "MEDIO_COMPRA": null,
+          "MONTO_COMPRA": null,
+          "MONEDA_COMPRA": null
+        }
+      }
+    ],
     "HOTMART": [
       {
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "Jodd HTTP",
-            "content-length": "1392",
+            "content-length": "1323",
             "content-type": "application/json",
-            "x-forwarded-for": "3.238.25.76",
+            "x-forwarded-for": "3.236.122.162",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
             "x-forwarded-server": "3051a3bb6625",
             "x-hotmart-hottok": "6SJkhfjuD6Bm4cha7tF8loEMs92JzG11852721",
-            "x-real-ip": "3.238.25.76",
+            "x-real-ip": "3.236.122.162",
             "accept-encoding": "gzip"
           },
           "params": {},
@@ -2399,28 +2602,28 @@
                 {
                   "currency_value": "USD",
                   "source": "MARKETPLACE",
-                  "value": 21.52
+                  "value": 21.6
                 },
                 {
                   "currency_conversion": {
-                    "converted_value": 112.11,
+                    "converted_value": 112.58,
                     "converted_to_currency": "USD",
                     "conversion_rate": 1
                   },
                   "currency_value": "USD",
                   "source": "PRODUCER",
-                  "value": 112.11
+                  "value": 112.58
                 }
               ],
               "purchase": {
                 "original_offer_price": {
                   "currency_value": "USD",
-                  "value": 260.83
+                  "value": 261.91
                 },
                 "subscription_anticipation_purchase": false,
                 "checkout_country": {
-                  "iso": "PE",
-                  "name": "Peru"
+                  "iso": "PA",
+                  "name": "Panama"
                 },
                 "origin": {
                   "sck": "GRUPOSWHATSAPP"
@@ -2428,27 +2631,27 @@
                 "order_bump": {
                   "is_order_bump": false
                 },
+                "approved_date": 1740681132000,
                 "offer": {
                   "code": "h4vy1tzz"
                 },
-                "order_date": 1740632471000,
+                "order_date": 1740681130000,
                 "price": {
-                  "currency_value": "PEN",
-                  "value": 960
+                  "currency_value": "PAB",
+                  "value": 262
                 },
-                "buyer_ip": "190.234.20.203",
+                "buyer_ip": "190.34.18.211",
                 "payment": {
-                  "refusal_reason": "O cartão encontra-se vencido. Entre em contato com a operadora.",
-                  "installments_number": 12,
+                  "installments_number": 1,
                   "type": "CREDIT_CARD"
                 },
                 "full_price": {
-                  "currency_value": "PEN",
-                  "value": 960
+                  "currency_value": "PAB",
+                  "value": 262
                 },
                 "invoice_by": "HOTMART",
-                "transaction": "HP2998260025",
-                "status": "CANCELED"
+                "transaction": "HP2499974093",
+                "status": "APPROVED"
               },
               "affiliates": [
                 {
@@ -2461,18 +2664,18 @@
               },
               "buyer": {
                 "address": {
-                  "country": "Peru",
-                  "country_iso": "PE"
+                  "country": "Panama",
+                  "country_iso": "PA"
                 },
                 "document": "",
-                "name": "Miguel Angel Deza Rodríguez",
-                "checkout_phone": "51959901111",
-                "email": "migueldeza420@gmail.com"
+                "name": "Hjalmar Guerra ",
+                "checkout_phone": "50765454099",
+                "email": "distguerra@gmail.com"
               }
             },
-            "id": "083fb524-8c65-409b-b333-f2b56af04e87",
-            "creation_date": 1740632479443,
-            "event": "PURCHASE_CANCELED",
+            "id": "1892b5f5-a02b-49b7-954a-ba1270061958",
+            "creation_date": 1740681138748,
+            "event": "PURCHASE_APPROVED",
             "version": "2.0.0"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/gersson-lanza-hotmart",
@@ -2509,6 +2712,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-02-27T05:40:57.000Z",
-  "versionId": "4a3572b5-31c1-4770-a848-4de54402e8ed"
+  "updatedAt": "2025-02-27T19:13:24.000Z",
+  "versionId": "8f8b94a2-d4eb-4ddd-93ae-19adaafd68f9"
 }
