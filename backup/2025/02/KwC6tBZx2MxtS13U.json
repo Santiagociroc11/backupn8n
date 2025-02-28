@@ -1,0 +1,318 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Supabase3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase3": {
+      "main": [
+        [
+          {
+            "node": "Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-27T07:51:49.922Z",
+  "id": "KwC6tBZx2MxtS13U",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[CIERRES] REASIGNACION",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "reasigna-cierres",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -240,
+        -60
+      ],
+      "id": "7e050a49-6b8f-4627-b1e5-f9b66c21dfd9",
+      "name": "Webhook",
+      "webhookId": "bfa190c3-5bcc-4540-9bf4-e277760326f4"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "GERSSON_ASESORES",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ID",
+              "keyValue": "={{ $json.body.asesor_viejo_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        -160
+      ],
+      "id": "67049506-4092-4327-a21d-373470abeda7",
+      "name": "Supabase",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Supabase').item.json.ID_TG }}",
+        "text": "=*CLIENTE DESASIGNADO* ⚠️ \n\nnombre: {{ $json.NOMBRE }}\nWha: {{ $json.WHATSAPP }}\n\nSe reasignó tu cliente por decisión de la gerencia 🚨",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        400,
+        -160
+      ],
+      "id": "4ee6b0d8-74c9-409a-9aa4-c9f314f5fbf1",
+      "name": "Telegram",
+      "webhookId": "497098d3-7d07-4620-a5f0-b6b9c242df52",
+      "credentials": {
+        "telegramApi": {
+          "id": "QruLAfRq4u80XCVX",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "GERSSON_CLIENTES",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ID",
+              "keyValue": "={{ $('Webhook').item.json.body.cliente_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        200,
+        -160
+      ],
+      "id": "2879a01e-47ab-4cae-afd3-0fb0de7be6a6",
+      "name": "Supabase2",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "GERSSON_ASESORES",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ID",
+              "keyValue": "={{ $json.body.asesor_nuevo_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        40
+      ],
+      "id": "161e73f2-d838-4324-b3ce-ff440f169cf9",
+      "name": "Supabase1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Supabase1').item.json.ID_TG }}",
+        "text": "=*CLIENTE REASIGNADO A TI* ⚠️ \n\nnombre: {{ $json.NOMBRE }}\nWha: {{ $json.WHATSAPP }}\n\nSe reasignó este cliente a ti por decisión de la gerencia 🚨",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "IR AL CHAT",
+                    "additionalFields": {
+                      "url": "=wa.me/{{ $json.WHATSAPP }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        400,
+        40
+      ],
+      "id": "dba86abc-0656-4bda-8fda-49bf58e0a28f",
+      "name": "Telegram1",
+      "webhookId": "497098d3-7d07-4620-a5f0-b6b9c242df52",
+      "credentials": {
+        "telegramApi": {
+          "id": "QruLAfRq4u80XCVX",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "GERSSON_CLIENTES",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ID",
+              "keyValue": "={{ $('Webhook').item.json.body.cliente_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        200,
+        40
+      ],
+      "id": "47a0a98b-0b77-444d-bbc7-fb3db704bcb0",
+      "name": "Supabase3",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
+            "content-length": "59",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "es-419,es;q=0.9,pt;q=0.8,en;q=0.7",
+            "content-type": "application/json",
+            "origin": "https://cierresger-gvfo--5173--7f809d15.local-credentialless.webcontainer.io",
+            "priority": "u=1, i",
+            "referer": "https://cierresger-gvfo--5173--7f809d15.local-credentialless.webcontainer.io/",
+            "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Google Chrome\";v=\"133\", \"Chromium\";v=\"133\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "186.98.232.252",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3051a3bb6625",
+            "x-real-ip": "186.98.232.252"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "cliente_id": 50,
+            "asesor_viejo_id": 1,
+            "asesor_nuevo_id": "1"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/reasigna-cierres",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-02-27T08:03:43.000Z",
+  "versionId": "694cd294-89d9-4686-a79e-8890c3e812c9"
+}
