@@ -599,6 +599,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "actualiza nombre",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -648,7 +655,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "🟢 [GERSSON] EVENTOS HOTMART",
+  "name": "🟢 [BACKEND-GERSSON] EVENTOS HOTMART",
   "nodes": [
     {
       "parameters": {
@@ -1624,7 +1631,7 @@
             {
               "keyName": "WHATSAPP",
               "condition": "like",
-              "keyValue": "=*{{$('ASIGNACION').item.json.numero.toString().slice(-6)}}*"
+              "keyValue": "=*{{$('ASIGNACION').item.json.numero.toString().slice(-4)}}*"
             }
           ]
         }
@@ -1655,7 +1662,7 @@
             {
               "keyName": "WHATSAPP",
               "condition": "like",
-              "keyValue": "=*{{$('ASIGNACION').item.json.numero.toString().slice(-6)}}*"
+              "keyValue": "=*{{$('ASIGNACION').item.json.numero.toString().slice(-4)}}*"
             }
           ]
         }
@@ -2181,7 +2188,7 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2020,
+        1980,
         600
       ],
       "id": "a2f28728-39eb-44a3-8cdb-7c178a181e6a",
@@ -2248,7 +2255,7 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        2180,
+        2140,
         600
       ],
       "id": "47838789-a8f1-44d9-b5a7-6e1d8b932a87",
@@ -2374,7 +2381,7 @@
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        2340,
+        2300,
         600
       ],
       "id": "1948ba80-e2c2-4e3f-84d8-34c37d226ca7",
@@ -2384,7 +2391,8 @@
           "id": "Png3VbsnUeyqI5UL",
           "name": "VPS-EASYPANEL"
         }
-      }
+      },
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -2447,8 +2455,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        2500,
-        600
+        2520,
+        580
       ],
       "id": "f6885e80-12ff-42a3-9276-02915803e786",
       "name": "Switch1"
@@ -2479,7 +2487,7 @@
       "typeVersion": 1,
       "position": [
         2700,
-        720
+        760
       ],
       "id": "547e5586-9715-4aa8-bf65-8bc5c25d5874",
       "name": "actualiza nombre",
@@ -2520,7 +2528,7 @@
       "typeVersion": 1,
       "position": [
         2700,
-        540
+        520
       ],
       "id": "375dd5e4-bcfc-4bac-a1ee-0b1b7ae3c493",
       "name": "nombre + wha",
@@ -2543,49 +2551,21 @@
         }
       }
     ],
-    "EVENTO +": [
-      {
-        "json": {
-          "ID": 1062,
-          "ID_CLIENTE": 662,
-          "TIPO_EVENTO": "TICKETS",
-          "FECHA_EVENTO": "1740679374"
-        }
-      }
-    ],
-    "UPD. ESTADO": [
-      {
-        "json": {
-          "ID": 662,
-          "NOMBRE": "MA. ANGELICA JAIME DURAN",
-          "ESTADO": "TICKETS",
-          "WHATSAPP": "528448690970",
-          "ID_ASESOR": 3,
-          "NOMBRE_ASESOR": "VALENTINA CASTILLO",
-          "WHA_ASESOR": "17865908617",
-          "FECHA_CREACION": "1740671922",
-          "FECHA_COMPRA": null,
-          "MEDIO_COMPRA": null,
-          "MONTO_COMPRA": null,
-          "MONEDA_COMPRA": null
-        }
-      }
-    ],
     "HOTMART": [
       {
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "Jodd HTTP",
-            "content-length": "1323",
+            "content-length": "1422",
             "content-type": "application/json",
-            "x-forwarded-for": "3.236.122.162",
+            "x-forwarded-for": "3.238.76.171",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
             "x-forwarded-server": "3051a3bb6625",
             "x-hotmart-hottok": "6SJkhfjuD6Bm4cha7tF8loEMs92JzG11852721",
-            "x-real-ip": "3.236.122.162",
+            "x-real-ip": "3.238.76.171",
             "accept-encoding": "gzip"
           },
           "params": {},
@@ -2602,56 +2582,56 @@
                 {
                   "currency_value": "USD",
                   "source": "MARKETPLACE",
-                  "value": 21.6
+                  "value": 21.5
                 },
                 {
                   "currency_conversion": {
-                    "converted_value": 112.58,
+                    "converted_value": 112.02,
                     "converted_to_currency": "USD",
                     "conversion_rate": 1
                   },
                   "currency_value": "USD",
                   "source": "PRODUCER",
-                  "value": 112.58
+                  "value": 112.02
                 }
               ],
               "purchase": {
                 "original_offer_price": {
                   "currency_value": "USD",
-                  "value": 261.91
+                  "value": 260.62
                 },
                 "subscription_anticipation_purchase": false,
                 "checkout_country": {
-                  "iso": "PA",
-                  "name": "Panama"
+                  "iso": "GT",
+                  "name": "Guatemala"
                 },
                 "origin": {
-                  "sck": "GRUPOSWHATSAPP"
+                  "sck": "PAGINAVENTA"
                 },
                 "order_bump": {
                   "is_order_bump": false
                 },
-                "approved_date": 1740681132000,
                 "offer": {
                   "code": "h4vy1tzz"
                 },
-                "order_date": 1740681130000,
+                "order_date": 1740769547000,
                 "price": {
-                  "currency_value": "PAB",
-                  "value": 262
+                  "currency_value": "GTQ",
+                  "value": 2010
                 },
-                "buyer_ip": "190.34.18.211",
+                "buyer_ip": "190.56.51.57",
                 "payment": {
+                  "refusal_reason": "Saldo insuficiente para o cartão informado. Entre em contato com a operadora.",
                   "installments_number": 1,
                   "type": "CREDIT_CARD"
                 },
                 "full_price": {
-                  "currency_value": "PAB",
-                  "value": 262
+                  "currency_value": "GTQ",
+                  "value": 2010
                 },
                 "invoice_by": "HOTMART",
-                "transaction": "HP2499974093",
-                "status": "APPROVED"
+                "transaction": "HP4282929500",
+                "status": "CANCELED"
               },
               "affiliates": [
                 {
@@ -2664,18 +2644,18 @@
               },
               "buyer": {
                 "address": {
-                  "country": "Panama",
-                  "country_iso": "PA"
+                  "country": "Guatemala",
+                  "country_iso": "GT"
                 },
                 "document": "",
-                "name": "Hjalmar Guerra ",
-                "checkout_phone": "50765454099",
-                "email": "distguerra@gmail.com"
+                "name": "Leonel Estuardo Hernández Girón ",
+                "checkout_phone": "50242976931",
+                "email": "chicharitoleonel18@gmail.com"
               }
             },
-            "id": "1892b5f5-a02b-49b7-954a-ba1270061958",
-            "creation_date": 1740681138748,
-            "event": "PURCHASE_APPROVED",
+            "id": "f63f72a2-dc54-49ec-81e5-0e2e7bd39d00",
+            "creation_date": 1740769553882,
+            "event": "PURCHASE_CANCELED",
             "version": "2.0.0"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/gersson-lanza-hotmart",
@@ -2712,6 +2692,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-02-27T19:13:24.000Z",
-  "versionId": "8f8b94a2-d4eb-4ddd-93ae-19adaafd68f9"
+  "updatedAt": "2025-02-28T22:55:30.000Z",
+  "versionId": "c4d48c1e-694e-4d6c-b3f7-226d8bc21346"
 }
