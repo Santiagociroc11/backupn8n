@@ -12,7 +12,7 @@
         ],
         [
           {
-            "node": "url",
+            "node": "If",
             "type": "main",
             "index": 0
           }
@@ -34,18 +34,12 @@
       "main": [
         [
           {
-            "node": "REDIRECCION",
+            "node": "Respond to Webhook",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "LINK FORM": {
-      "main": [
-        [
+          },
           {
-            "node": "ASIGNA1",
+            "node": "Supabase",
             "type": "main",
             "index": 0
           }
@@ -150,6 +144,57 @@
           }
         ]
       ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "ASIGNA1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Form",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "url",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-02-21T19:52:05.746Z",
@@ -157,7 +202,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "🟢 [GERSSON] LINK",
+  "name": "🟢 [BACKEND-GERSSON] LINK",
   "nodes": [
     {
       "parameters": {
@@ -247,6 +292,18 @@
               "name": "mensaje_nocompradores",
               "value": "Hola, quiero inscribirme a la terapia del dolor pero tengo unas dudas o problemas, mi nombre es",
               "type": "string"
+            },
+            {
+              "id": "fca4add6-f9db-4ce7-9e77-7aa58de8c5e8",
+              "name": "whatsapp",
+              "value": "={{ $json.WHATSAPP }}",
+              "type": "string"
+            },
+            {
+              "id": "c1e5a862-7966-48fc-92b7-ba8b41fce268",
+              "name": "ID_ASESOR",
+              "value": "={{ $json.ID_ASESOR }}",
+              "type": "string"
             }
           ]
         },
@@ -255,8 +312,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        920,
-        -60
+        880,
+        -40
       ],
       "id": "05b86cc8-3b5b-4e6d-9a20-b4f39b73ee82",
       "name": "url"
@@ -278,64 +335,11 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1080,
-        -60
+        1040,
+        -40
       ],
       "id": "493c45bc-6834-4a53-89e0-490d77953706",
       "name": "mensaje"
-    },
-    {
-      "parameters": {
-        "formTitle": "SOPORTE GERSSON LOPEZ",
-        "formDescription": "Antes de ingresar al chat con el asesor, danos estos datos para que te puedan atender rapidamente.\n\nNo evites ningún dato para poder contactarte en caso que el asesor no esté disponible.",
-        "formFields": {
-          "values": [
-            {
-              "fieldLabel": "Nombre",
-              "placeholder": "Tu nombre",
-              "requiredField": true
-            },
-            {
-              "fieldLabel": "¿Ya compraste el curso?",
-              "fieldType": "dropdown",
-              "fieldOptions": {
-                "values": [
-                  {
-                    "option": "si"
-                  },
-                  {
-                    "option": "no"
-                  }
-                ]
-              },
-              "requiredField": true
-            },
-            {
-              "fieldLabel": "Whastapp",
-              "fieldType": "number",
-              "placeholder": "Tu whatsapp con indicativo sin espacios ni +",
-              "requiredField": true
-            },
-            {
-              "fieldType": "html",
-              "elementName": "titulo",
-              "html": "<p>👆🏼 Pon tu Whatsapp CORRECTO para dirigirte con soporte</p>\n<p>Ejemplo: 573138976544 | 525219512149999</p>\n\n\n"
-            }
-          ]
-        },
-        "options": {
-          "path": "soporte-td"
-        }
-      },
-      "type": "n8n-nodes-base.formTrigger",
-      "typeVersion": 2.2,
-      "position": [
-        -1100,
-        -80
-      ],
-      "id": "1262b446-c252-4996-bc20-f94bd1f7dd8d",
-      "name": "LINK FORM",
-      "webhookId": "f5aafb77-fec9-4f79-b521-cb5f7c34f0d7"
     },
     {
       "parameters": {
@@ -344,19 +348,19 @@
             {
               "id": "e1694f53-f949-4b5b-a117-26e31093c173",
               "name": "compra",
-              "value": "={{ $json['¿Ya compraste el curso?'] }}",
+              "value": "={{ $json.body.courseStatus }}",
               "type": "string"
             },
             {
               "id": "a706139e-ebc8-4d42-93ab-65e2e4cf848b",
               "name": "Nombre",
-              "value": "={{ $json.Nombre }}",
+              "value": "={{ $json.body.name }}",
               "type": "string"
             },
             {
               "id": "a51e8ec7-802b-42be-a956-0217e0abeb96",
               "name": "whatsapp",
-              "value": "={{ $json.Whastapp }}",
+              "value": "={{ $json.body.whatsapp.replace(\"+\",\"\") }}",
               "type": "number"
             }
           ]
@@ -371,22 +375,6 @@
       ],
       "id": "1ec083c8-f58d-46d6-8da6-c005ab6f45b4",
       "name": "ASIGNA1"
-    },
-    {
-      "parameters": {
-        "operation": "completion",
-        "respondWith": "redirect",
-        "redirectUrl": "={{ $('url').item.json.url }}?text={{ encodeURIComponent($('mensaje').item.json.mensaje) }}+{{ $('LINK FORM').item.json.Nombre }}\n"
-      },
-      "type": "n8n-nodes-base.form",
-      "typeVersion": 1,
-      "position": [
-        1240,
-        -60
-      ],
-      "id": "c7353386-de0e-4b63-aae2-cf2e0423e9e4",
-      "name": "REDIRECCION",
-      "webhookId": "c8fb22c9-a6bc-4f11-8b23-8dd05c2cf8ab"
     },
     {
       "parameters": {
@@ -406,7 +394,7 @@
       "typeVersion": 1,
       "position": [
         -240,
-        -220
+        -180
       ],
       "id": "3da6e9ac-2b27-4032-b586-75eda82c26f3",
       "name": "Sort"
@@ -417,7 +405,7 @@
       "typeVersion": 1,
       "position": [
         -80,
-        -220
+        -180
       ],
       "id": "adfe19f7-4afa-4e9c-bd11-d1630851587a",
       "name": "Limit"
@@ -432,7 +420,7 @@
       "typeVersion": 1,
       "position": [
         -400,
-        -220
+        -180
       ],
       "id": "6e9f7516-9414-4433-9700-4f2317fe52f9",
       "name": "ASIGNA",
@@ -469,7 +457,7 @@
       "typeVersion": 1,
       "position": [
         80,
-        -220
+        -180
       ],
       "id": "bf3f0f47-f5ed-4710-9332-4f85bc43560b",
       "name": "CONT + 1",
@@ -495,7 +483,7 @@
             },
             {
               "fieldId": "ID_ASESOR",
-              "fieldValue": "={{ $('ASIGNA').item.json.ID }}"
+              "fieldValue": "={{ $('Limit').item.json.ID }}"
             },
             {
               "fieldId": "FECHA_CREACION",
@@ -507,11 +495,11 @@
             },
             {
               "fieldId": "NOMBRE_ASESOR",
-              "fieldValue": "={{ $('ASIGNA').item.json.NOMBRE }}"
+              "fieldValue": "={{ $('Limit').item.json.NOMBRE }}"
             },
             {
               "fieldId": "WHA_ASESOR",
-              "fieldValue": "={{ $('ASIGNA').item.json.WHATSAPP }}"
+              "fieldValue": "={{ $('Limit').item.json.WHATSAPP }}"
             }
           ]
         }
@@ -520,7 +508,7 @@
       "typeVersion": 1,
       "position": [
         260,
-        -220
+        -180
       ],
       "id": "ec999397-989f-4397-8067-2948afa68ade",
       "name": "CLIENTE +1",
@@ -554,8 +542,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        440,
-        -220
+        420,
+        -180
       ],
       "id": "d39c9010-6634-401d-8f36-41c19289f369",
       "name": "REGISTRO +1",
@@ -576,7 +564,7 @@
             {
               "keyName": "WHATSAPP",
               "condition": "like",
-              "keyValue": "=*{{$('LINK FORM').item.json.Whastapp.toString().slice(-6)}}*"
+              "keyValue": "=*{{$('ASIGNA1').item.json.whatsapp.toString().slice(-5)}}*"
             }
           ]
         }
@@ -584,8 +572,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        640,
-        -220
+        580,
+        -180
       ],
       "id": "702b10e0-9b0e-4533-a53b-9f1100d3bd65",
       "name": "BUSCA ASESOR",
@@ -606,7 +594,7 @@
             {
               "keyName": "WHATSAPP",
               "condition": "like",
-              "keyValue": "=*{{$('LINK FORM').item.json.Whastapp.toString().slice(-6)}}*"
+              "keyValue": "=*{{$('ASIGNA1').item.json.whatsapp.toString().slice(-5)}}*"
             }
           ]
         }
@@ -626,18 +614,257 @@
           "name": "DB CIERRES"
         }
       }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "formulario-soporte",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1120,
+        -80
+      ],
+      "id": "30578ba2-bcb1-4774-812a-fc28af8a9e79",
+      "name": "Webhook",
+      "webhookId": "b517267d-174d-4a12-9a1d-2595fa0d9899"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"url\": \"{{ $('url').item.json.url }}?text={{ encodeURIComponent($('mensaje').item.json.mensaje) }}+{{ $('ASIGNA1').item.json.Nombre }}\"\n\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1260,
+        20
+      ],
+      "id": "0130811b-1d67-4684-8107-5a920d2314ae",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "formTitle": "SOPORTE GERSSON LOPEZ",
+        "formFields": {
+          "values": [
+            {
+              "fieldType": "html",
+              "html": "<br></br>"
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {
+          "buttonLabel": "IR CON SOPORTE",
+          "path": "soporte-td"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -1120,
+        -340
+      ],
+      "id": "a7d5c1f4-f76e-44a0-8788-d886d853cbef",
+      "name": "On form submission",
+      "webhookId": "a0747e10-8149-4ec0-a3e8-be02aefd882e"
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "respondWith": "redirect",
+        "redirectUrl": "https://automscc.com/asesores-tdolor/"
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        -940,
+        -340
+      ],
+      "id": "77681ab4-aa10-4804-9ce6-5179cb2ae275",
+      "name": "Form",
+      "webhookId": "294efd8a-5f03-4e1e-a0e4-e27b3d45817c"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.ID_TG }}",
+        "text": "=*CLIENTE INGRESÓ SUS DATOS EN LINK DE SOPORTE*\n\nUn clinte puso sus datos en el link de soporte, te debe llegar directamente a tu whatsapp, si no llega, escribele 👇🏻\n\nNombre: {{ $('ASIGNA1').item.json.Nombre }}\nWhatsapp ingresado: {{ $('ASIGNA1').item.json.whatsapp }}\n",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "IR AL CHAT",
+                    "additionalFields": {
+                      "url": "=wa.me/{{ $('ASIGNA1').item.json.whatsapp }}"
+                    }
+                  },
+                  {
+                    "text": "IR A REPORTAR",
+                    "additionalFields": {
+                      "url": "https://sistema-cierres-ger.automscc.com/"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1420,
+        -180
+      ],
+      "id": "ce2eff48-98f3-48aa-8c29-a3c201c1de36",
+      "name": "Telegram",
+      "webhookId": "67ebeb4d-e22b-47dd-9f70-0c0201c1eb26",
+      "credentials": {
+        "telegramApi": {
+          "id": "QruLAfRq4u80XCVX",
+          "name": "Telegram account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "GERSSON_ASESORES",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ID",
+              "keyValue": "={{ $('url').item.json.ID_ASESOR }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        -180
+      ],
+      "id": "d388e6cc-d566-4828-b22b-b6127ec82d8a",
+      "name": "Supabase",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7fbd224f-ebd3-4e33-93bd-e640cdd3b467",
+              "leftValue": "={{ $json.ESTADO }}",
+              "rightValue": "PAGADO",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "e7b7e260-8688-4ce7-b84f-d678057d8bec",
+              "leftValue": "={{ $json.WHA_ASESOR }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        60,
+        60
+      ],
+      "id": "83f45a57-d347-4f26-90b3-3b3b608552ba",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"url\": \"wa.me/573012904922?text=Ya+compre+y+necesito+ayuda.\"\n\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        280,
+        240
+      ],
+      "id": "ae683def-97ff-4d36-80d2-09c8d1f33197",
+      "name": "Respond to Webhook1"
     }
   ],
   "pinData": {
-    "LINK FORM": [
+    "Webhook": [
       {
         "json": {
-          "Nombre": "SANTIAGO CIRO",
-          "¿Ya compraste el curso?": "no",
-          "Whastapp": 573136298562,
-          "titulo": "<p>👆🏼 Pon tu Whatsapp para el registro</p>\r\n\r\n",
-          "submittedAt": "2025-02-22T18:51:13.262-05:00",
-          "formMode": "production"
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/27.0 Chrome/125.0.0.0 Mobile Safari/537.36",
+            "content-length": "60",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "es-US,es-419;q=0.9,es;q=0.8",
+            "content-type": "application/json",
+            "origin": "https://automscc.com",
+            "priority": "u=1, i",
+            "referer": "https://automscc.com/",
+            "sec-ch-ua": "\"Chromium\";v=\"125\", \"Not.A/Brand\";v=\"24\", \"Samsung Internet\";v=\"27.0\"",
+            "sec-ch-ua-mobile": "?1",
+            "sec-ch-ua-platform": "\"Android\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-site",
+            "x-forwarded-for": "190.211.118.0",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3051a3bb6625",
+            "x-real-ip": "190.211.118.0"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "name": "Dei",
+            "courseStatus": "si",
+            "whatsapp": "+50685911134"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/formulario-soporte",
+          "executionMode": "production"
         }
       }
     ]
@@ -651,6 +878,9 @@
   "staticData": {
     "node:LINK FORM": {
       "fbclid": "IwZXh0bgNhZW0CMTEAAR20kFkfVxe1QME8-axpcta5iS2z_wUmQruHWb2Kx28iVZeVgAc7ujeoVMI_aem_M0gGPxGOdOkJiejxRbxUjQ"
+    },
+    "node:On form submission": {
+      "fbclid": "IwZXh0bgNhZW0CMTEAAR2CIOOGiSYwMrnCBwLy-e7YZweuAe9-pCWy-skahOiAtJJYgVX6Z5AEWsg_aem_hZHGteXhMmIn1PILILfc8g"
     }
   },
   "tags": [
@@ -667,7 +897,7 @@
       "name": "MYSQL"
     }
   ],
-  "triggerCount": 2,
-  "updatedAt": "2025-02-26T21:43:52.000Z",
-  "versionId": "52cec86c-34f3-4705-85e3-8a10f1a6d19e"
+  "triggerCount": 3,
+  "updatedAt": "2025-02-28T22:55:39.000Z",
+  "versionId": "ad7fb28e-e521-4bbf-8943-516422b017bf"
 }
