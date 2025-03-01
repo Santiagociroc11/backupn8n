@@ -1,0 +1,165 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-28T23:00:52.262Z",
+  "id": "OlQKOWqsTROuFAqr",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "🟢 [BACKEND-CIERRES] PAGOS EXTERNOS TG",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "reporte-venta-tg",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -740,
+        -140
+      ],
+      "id": "1d0f4835-dd3d-445a-a566-ce7eb22e7514",
+      "name": "Webhook",
+      "webhookId": "4b8a6c3b-db35-4a95-acc9-37d42869ccfd"
+    },
+    {
+      "parameters": {
+        "operation": "sendPhoto",
+        "chatId": "-1002117516396",
+        "file": "={{ $('Webhook').item.json.body.imagenPagoUrl }}",
+        "additionalFields": {
+          "caption": "=Nombre: {{ $json.NOMBRE }}\nPais: {{ $('Webhook').item.json.body.pais }}\nMedio: {{ $('Webhook').item.json.body.medioPago }}\nTelefono: {{ $('Webhook').item.json.body.telefono }}\nCorreo inscripción:  {{ $('Webhook').item.json.body.correoInscripcion }}\nCorreo Pago (stripe):  {{ $('Webhook').item.json.body.correoPago?$('Webhook').item.json.body.correoPago: \"no aplica\" }}\nASESOR QUE REPORTA: {{ $('Webhook').item.json.body.nombreAsesor }}\n\n-> CONFIRMAR INGRESO E INSCRIBIR <- 🔥",
+          "message_thread_id": 3
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -300,
+        -140
+      ],
+      "id": "ee05c63a-c16c-4220-9b59-b4943cb2df39",
+      "name": "Telegram",
+      "webhookId": "8a7e1ec8-5194-4e5a-88ed-217a9abefb57",
+      "credentials": {
+        "telegramApi": {
+          "id": "QruLAfRq4u80XCVX",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "GERSSON_CLIENTES",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ID",
+              "keyValue": "={{ $json.body.clienteID }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -540,
+        -140
+      ],
+      "id": "0c8f3eb3-25fc-43ca-82ee-30ad8d6c0fb4",
+      "name": "Supabase",
+      "credentials": {
+        "supabaseApi": {
+          "id": "r7GZA4DyUQZRn267",
+          "name": "DB CIERRES"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
+            "content-length": "383",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "es-419,es;q=0.9,pt;q=0.8,en;q=0.7",
+            "content-type": "application/json",
+            "origin": "https://cierresger-gvfo--5173--31ca1d38.local-credentialless.webcontainer.io",
+            "priority": "u=1, i",
+            "referer": "https://cierresger-gvfo--5173--31ca1d38.local-credentialless.webcontainer.io/",
+            "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Google Chrome\";v=\"133\", \"Chromium\";v=\"133\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "186.98.232.252",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "810e17e1473f",
+            "x-real-ip": "186.98.232.252"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "clienteID": 1004,
+            "asesorID": 4,
+            "nombreAsesor": "NELLY CASTILLO",
+            "tipoVenta": "EXTERNA",
+            "comentario": "asdasd",
+            "imagenPagoUrl": "https://n8n-minio.wc2hpx.easypanel.host/reportes/pagos/1740784486712-PERFIL PARA GRUPOS - GERSON_Mesa de trabajo 1 (1).png",
+            "medioPago": "western",
+            "pais": "colombia",
+            "correoInscripcion": "preuba@gmail.com",
+            "telefono": "3136298562",
+            "correoPago": "preuba@gmail.com"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/reporte-venta-tg",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-01T00:05:49.000Z",
+  "versionId": "0c50a7df-59b5-485a-a470-b899019cafab"
+}
