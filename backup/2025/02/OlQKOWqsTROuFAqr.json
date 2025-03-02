@@ -5,14 +5,14 @@
       "main": [
         [
           {
-            "node": "Supabase",
+            "node": "Postgres",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Supabase": {
+    "Postgres": {
       "main": [
         [
           {
@@ -60,7 +60,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        -300,
+        -280,
         -140
       ],
       "id": "ee05c63a-c16c-4220-9b59-b4943cb2df39",
@@ -75,29 +75,41 @@
     },
     {
       "parameters": {
-        "operation": "get",
-        "tableId": "GERSSON_CLIENTES",
-        "filters": {
-          "conditions": [
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_CLIENTES",
+          "mode": "list",
+          "cachedResultName": "GERSSON_CLIENTES"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
             {
-              "keyName": "ID",
-              "keyValue": "={{ $json.body.clienteID }}"
+              "column": "ID",
+              "value": "={{ $json.body.clienteID }}"
             }
           ]
-        }
+        },
+        "options": {}
       },
-      "type": "n8n-nodes-base.supabase",
-      "typeVersion": 1,
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
       "position": [
-        -540,
+        -500,
         -140
       ],
-      "id": "0c8f3eb3-25fc-43ca-82ee-30ad8d6c0fb4",
-      "name": "Supabase",
+      "id": "e4a691c7-42b5-4fd3-bd17-9213c9de9390",
+      "name": "Postgres",
       "credentials": {
-        "supabaseApi": {
-          "id": "r7GZA4DyUQZRn267",
-          "name": "DB CIERRES"
+        "postgres": {
+          "id": "Y9DYFWSCuPRQbP2H",
+          "name": "POSTGRESS PROPIO"
         }
       }
     }
@@ -108,42 +120,41 @@
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
-            "content-length": "383",
+            "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Mobile Safari/537.36",
+            "content-length": "357",
             "accept": "*/*",
             "accept-encoding": "gzip, deflate, br, zstd",
-            "accept-language": "es-419,es;q=0.9,pt;q=0.8,en;q=0.7",
+            "accept-language": "es-US,es-419;q=0.9,es;q=0.8",
             "content-type": "application/json",
-            "origin": "https://cierresger-gvfo--5173--31ca1d38.local-credentialless.webcontainer.io",
+            "origin": "https://sistema-cierres-ger.automscc.com",
             "priority": "u=1, i",
-            "referer": "https://cierresger-gvfo--5173--31ca1d38.local-credentialless.webcontainer.io/",
+            "referer": "https://sistema-cierres-ger.automscc.com/",
             "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Google Chrome\";v=\"133\", \"Chromium\";v=\"133\"",
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-ch-ua-mobile": "?1",
+            "sec-ch-ua-platform": "\"Android\"",
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
-            "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "186.98.232.252",
+            "sec-fetch-site": "same-site",
+            "x-forwarded-for": "186.98.1.185",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
             "x-forwarded-server": "810e17e1473f",
-            "x-real-ip": "186.98.232.252"
+            "x-real-ip": "186.98.1.185"
           },
           "params": {},
           "query": {},
           "body": {
-            "clienteID": 1004,
-            "asesorID": 4,
-            "nombreAsesor": "NELLY CASTILLO",
+            "clienteID": 926,
+            "asesorID": 6,
+            "nombreAsesor": "PAULO QUIÑONES",
             "tipoVenta": "EXTERNA",
-            "comentario": "asdasd",
-            "imagenPagoUrl": "https://n8n-minio.wc2hpx.easypanel.host/reportes/pagos/1740784486712-PERFIL PARA GRUPOS - GERSON_Mesa de trabajo 1 (1).png",
-            "medioPago": "western",
-            "pais": "colombia",
-            "correoInscripcion": "preuba@gmail.com",
-            "telefono": "3136298562",
-            "correoPago": "preuba@gmail.com"
+            "comentario": "Pago en Efecty , Colombia",
+            "imagenPagoUrl": "https://n8n-minio.wc2hpx.easypanel.host/reportes/pagos/1740854254216-1000058742.jpg",
+            "medioPago": "Efecty , efectivo ",
+            "pais": "Colombia ",
+            "correoInscripcion": "oscarduarteloaiza@gmail.com",
+            "telefono": "+573225229373"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/reporte-venta-tg",
           "executionMode": "production"
@@ -158,8 +169,15 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2025-03-01T20:15:02.889Z",
+      "updatedAt": "2025-03-01T20:15:16.011Z",
+      "id": "lxeXBAFtbakepnEg",
+      "name": "BACKEND-CIERRES"
+    }
+  ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-01T00:05:49.000Z",
-  "versionId": "0c50a7df-59b5-485a-a470-b899019cafab"
+  "updatedAt": "2025-03-01T20:18:33.000Z",
+  "versionId": "014ed57b-10c7-472c-a1f9-e153475fce31"
 }
