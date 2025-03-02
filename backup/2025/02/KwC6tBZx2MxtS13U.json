@@ -5,30 +5,30 @@
       "main": [
         [
           {
-            "node": "Supabase",
+            "node": "asesor",
             "type": "main",
             "index": 0
           },
           {
-            "node": "Supabase1",
+            "node": "asesor1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Supabase": {
+    "asesor": {
       "main": [
         [
           {
-            "node": "Supabase2",
+            "node": "cliente",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Supabase2": {
+    "cliente": {
       "main": [
         [
           {
@@ -39,18 +39,18 @@
         ]
       ]
     },
-    "Supabase1": {
+    "asesor1": {
       "main": [
         [
           {
-            "node": "Supabase3",
+            "node": "cliente1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Supabase3": {
+    "cliente1": {
       "main": [
         [
           {
@@ -78,7 +78,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -240,
+        -340,
         -60
       ],
       "id": "7e050a49-6b8f-4627-b1e5-f9b66c21dfd9",
@@ -87,35 +87,7 @@
     },
     {
       "parameters": {
-        "operation": "get",
-        "tableId": "GERSSON_ASESORES",
-        "filters": {
-          "conditions": [
-            {
-              "keyName": "ID",
-              "keyValue": "={{ $json.body.asesor_viejo_id }}"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.supabase",
-      "typeVersion": 1,
-      "position": [
-        -20,
-        -160
-      ],
-      "id": "67049506-4092-4327-a21d-373470abeda7",
-      "name": "Supabase",
-      "credentials": {
-        "supabaseApi": {
-          "id": "r7GZA4DyUQZRn267",
-          "name": "DB CIERRES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "chatId": "={{ $('Supabase').item.json.ID_TG }}",
+        "chatId": "={{ $('asesor').item.json.ID_TG }}",
         "text": "=*CLIENTE DESASIGNADO* ⚠️ \n\nnombre: {{ $json.NOMBRE }}\nWha: {{ $json.WHATSAPP }}\n\nSe reasignó tu cliente por decisión de la gerencia 🚨",
         "additionalFields": {
           "parse_mode": "Markdown"
@@ -139,63 +111,7 @@
     },
     {
       "parameters": {
-        "operation": "get",
-        "tableId": "GERSSON_CLIENTES",
-        "filters": {
-          "conditions": [
-            {
-              "keyName": "ID",
-              "keyValue": "={{ $('Webhook').item.json.body.cliente_id }}"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.supabase",
-      "typeVersion": 1,
-      "position": [
-        200,
-        -160
-      ],
-      "id": "2879a01e-47ab-4cae-afd3-0fb0de7be6a6",
-      "name": "Supabase2",
-      "credentials": {
-        "supabaseApi": {
-          "id": "r7GZA4DyUQZRn267",
-          "name": "DB CIERRES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "get",
-        "tableId": "GERSSON_ASESORES",
-        "filters": {
-          "conditions": [
-            {
-              "keyName": "ID",
-              "keyValue": "={{ $json.body.asesor_nuevo_id }}"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.supabase",
-      "typeVersion": 1,
-      "position": [
-        -20,
-        40
-      ],
-      "id": "161e73f2-d838-4324-b3ce-ff440f169cf9",
-      "name": "Supabase1",
-      "credentials": {
-        "supabaseApi": {
-          "id": "r7GZA4DyUQZRn267",
-          "name": "DB CIERRES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "chatId": "={{ $('Supabase1').item.json.ID_TG }}",
+        "chatId": "={{ $('asesor1').item.json.ID_TG }}",
         "text": "=*CLIENTE REASIGNADO A TI* ⚠️ \n\nnombre: {{ $json.NOMBRE }}\nWha: {{ $json.WHATSAPP }}\n\nSe reasignó este cliente a ti por decisión de la gerencia 🚨",
         "replyMarkup": "inlineKeyboard",
         "inlineKeyboard": {
@@ -236,29 +152,157 @@
     },
     {
       "parameters": {
-        "operation": "get",
-        "tableId": "GERSSON_CLIENTES",
-        "filters": {
-          "conditions": [
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_ASESORES",
+          "mode": "list",
+          "cachedResultName": "GERSSON_ASESORES"
+        },
+        "where": {
+          "values": [
             {
-              "keyName": "ID",
-              "keyValue": "={{ $('Webhook').item.json.body.cliente_id }}"
+              "column": "ID",
+              "value": "={{ $json.body.asesor_viejo_id }}"
             }
           ]
-        }
+        },
+        "options": {}
       },
-      "type": "n8n-nodes-base.supabase",
-      "typeVersion": 1,
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        -20,
+        -160
+      ],
+      "id": "5abf535d-8e4f-4832-9f8b-3527432651d7",
+      "name": "asesor",
+      "credentials": {
+        "postgres": {
+          "id": "Y9DYFWSCuPRQbP2H",
+          "name": "POSTGRESS PROPIO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_CLIENTES",
+          "mode": "list",
+          "cachedResultName": "GERSSON_CLIENTES"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "ID",
+              "value": "={{ $('Webhook').item.json.body.cliente_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        200,
+        -160
+      ],
+      "id": "edaaf343-25ee-466c-85f4-d8dac16be4b1",
+      "name": "cliente",
+      "credentials": {
+        "postgres": {
+          "id": "Y9DYFWSCuPRQbP2H",
+          "name": "POSTGRESS PROPIO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_ASESORES",
+          "mode": "list",
+          "cachedResultName": "GERSSON_ASESORES"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "ID",
+              "value": "={{ $json.body.asesor_nuevo_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        -20,
+        40
+      ],
+      "id": "1a4ae4ff-b7c0-4c9a-a9d2-86afd3aa7dfb",
+      "name": "asesor1",
+      "credentials": {
+        "postgres": {
+          "id": "Y9DYFWSCuPRQbP2H",
+          "name": "POSTGRESS PROPIO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_CLIENTES",
+          "mode": "list",
+          "cachedResultName": "GERSSON_CLIENTES"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "ID",
+              "value": "={{ $('Webhook').item.json.body.cliente_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
       "position": [
         200,
         40
       ],
-      "id": "47a0a98b-0b77-444d-bbc7-fb3db704bcb0",
-      "name": "Supabase3",
+      "id": "b0b9618f-0c32-46a5-a41d-b8e711f8d40e",
+      "name": "cliente1",
       "credentials": {
-        "supabaseApi": {
-          "id": "r7GZA4DyUQZRn267",
-          "name": "DB CIERRES"
+        "postgres": {
+          "id": "Y9DYFWSCuPRQbP2H",
+          "name": "POSTGRESS PROPIO"
         }
       }
     }
@@ -311,8 +355,27 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2025-02-21T17:25:59.004Z",
+      "updatedAt": "2025-02-21T17:25:59.004Z",
+      "id": "7jH9G2p443i4FpIv",
+      "name": "WEBHOOK"
+    },
+    {
+      "createdAt": "2025-02-04T22:36:35.108Z",
+      "updatedAt": "2025-02-04T22:36:35.108Z",
+      "id": "HjNWwvqlBnseDfSA",
+      "name": "GERSSON"
+    },
+    {
+      "createdAt": "2025-03-01T20:15:02.889Z",
+      "updatedAt": "2025-03-01T20:15:16.011Z",
+      "id": "lxeXBAFtbakepnEg",
+      "name": "BACKEND-CIERRES"
+    }
+  ],
   "triggerCount": 1,
-  "updatedAt": "2025-02-28T22:55:22.000Z",
-  "versionId": "6b7bf2d3-9cf4-42d0-8997-c7ca7acce687"
+  "updatedAt": "2025-03-01T20:23:22.000Z",
+  "versionId": "b7d9d120-e494-4c29-8e16-ff74c8a690fa"
 }
