@@ -1775,7 +1775,7 @@
       "typeVersion": 3.2,
       "position": [
         2500,
-        680
+        640
       ],
       "id": "f6885e80-12ff-42a3-9276-02915803e786",
       "name": "Switch1"
@@ -1800,7 +1800,7 @@
             {
               "column": "WHATSAPP",
               "condition": "LIKE",
-              "value": "=%{{$('ASIGNACION').item.json.numero.toString().slice(-4)}}%"
+              "value": "=%{{$('ASIGNACION').item.json.numero.toString().slice(-5)}}"
             }
           ]
         },
@@ -1842,7 +1842,7 @@
             {
               "column": "WHATSAPP",
               "condition": "LIKE",
-              "value": "=%{{$('ASIGNACION').item.json.numero.toString().slice(-4)}}%"
+              "value": "=%{{$('ASIGNACION').item.json.numero.toString().slice(-5)}}"
             }
           ]
         },
@@ -3714,6 +3714,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-01T22:37:52.000Z",
-  "versionId": "e3866087-2c10-47c2-ba1e-a5a7dc92c99b"
+  "updatedAt": "2025-03-03T05:54:04.000Z",
+  "versionId": "0fabdd37-b6cd-44e1-a73f-d00fc50ec957"
 }
