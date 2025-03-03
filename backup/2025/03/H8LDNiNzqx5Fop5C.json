@@ -1,0 +1,230 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-02T18:42:28.229Z",
+  "id": "H8LDNiNzqx5Fop5C",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "ESCRITURA ETIQUETAS MANYCHAT",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "manychat-clase1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -380,
+        -80
+      ],
+      "id": "c1de5270-0985-484c-ae96-7e36fad70a08",
+      "name": "Webhook",
+      "webhookId": "b470693c-e4b3-42ff-b29e-2f81f9547b56"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2e1b4ea4-2859-4806-a789-371ab293b2d9",
+              "name": "id_manychat",
+              "value": "={{ $json.body.id }}",
+              "type": "string"
+            },
+            {
+              "id": "3d9cc5e1-98e7-40a1-b020-e85c5da79e1d",
+              "name": "ingresoclase1",
+              "value": true,
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -120,
+        -80
+      ],
+      "id": "d6317dbd-1f7d-42c2-b15c-bda2a0901fd9",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "exporta_manychat",
+          "mode": "list",
+          "cachedResultName": "exporta_manychat"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "id_manychat",
+              "value": "={{ $json.id_manychat }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        140,
+        -80
+      ],
+      "id": "84de87c3-adf1-483f-a1a4-b65e33819606",
+      "name": "MySQL",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "mySql": {
+          "id": "urz5Tdw0DcSlCZt3",
+          "name": "N8N NUMEROS"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        360,
+        -20
+      ],
+      "id": "29319913-6d8b-4590-be5d-c4e59fe6ffc2",
+      "name": "Wait",
+      "webhookId": "37f3ba73-37b3-4b23-b6b8-7a3072dedeb5"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "ManyChat",
+            "content-length": "874",
+            "content-type": "application/json; charset=utf-8",
+            "x-forwarded-for": "3.72.232.123",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "810e17e1473f",
+            "x-real-ip": "3.72.232.123",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "key": "user:1105655484",
+            "id": "1105655484",
+            "page_id": "288702267651723",
+            "user_refs": [],
+            "status": "active",
+            "first_name": "+593991524488",
+            "last_name": "",
+            "name": "+593991524488",
+            "gender": null,
+            "profile_pic": null,
+            "locale": null,
+            "language": null,
+            "timezone": "UTC±00",
+            "live_chat_url": "https://app.manychat.com/fb288702267651723/chat/1105655484",
+            "last_input_text": "No puedo acceder",
+            "optin_phone": false,
+            "phone": null,
+            "optin_email": false,
+            "email": null,
+            "subscribed": "2025-02-20T14:50:09-05:00",
+            "last_interaction": null,
+            "ig_last_interaction": null,
+            "last_seen": null,
+            "ig_last_seen": null,
+            "is_followup_enabled": true,
+            "ig_username": null,
+            "ig_id": null,
+            "whatsapp_phone": "+593991524488",
+            "optin_whatsapp": true,
+            "phone_country_code": null,
+            "last_growth_tool": null,
+            "custom_fields": {
+              "CLICS-POSITIVOS": 1,
+              "ImagenDINAMICA": null,
+              "NombrecompletoUSER": null,
+              "PROBABILIDAD-ENC": 3,
+              "PUNTAJE-ACCIONES": null,
+              "URLfoto": null
+            }
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/manychat-clase1",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-02T20:04:11.000Z",
+  "versionId": "d3a49ba8-a5d2-40ad-b70c-eff4b677044b"
+}
