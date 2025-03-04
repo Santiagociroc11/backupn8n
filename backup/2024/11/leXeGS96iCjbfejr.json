@@ -97,6 +97,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "BD CEJAS",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -197,6 +204,79 @@
         [
           {
             "node": "escritura1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VENEZUELA?2": {
+      "main": [
+        [
+          {
+            "node": "ELIMINAR +1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NOMBRE2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NOMBRE2": {
+      "main": [
+        [
+          {
+            "node": "busqueda2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "busqueda2": {
+      "main": [
+        [
+          {
+            "node": "no existe?2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "no existe?2": {
+      "main": [
+        [
+          {
+            "node": "escritura2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ES CEJAS?": {
+      "main": [
+        [
+          {
+            "node": "VENEZUELA?2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BD CEJAS": {
+      "main": [
+        [
+          {
+            "node": "ES CEJAS?",
             "type": "main",
             "index": 0
           }
@@ -364,7 +444,7 @@
       "typeVersion": 4.2,
       "position": [
         2100,
-        240
+        300
       ],
       "id": "90bfcb71-0192-47a5-ad03-4c60f2df0b83",
       "name": "NOMBRE"
@@ -394,7 +474,7 @@
       "typeVersion": 2.4,
       "position": [
         2260,
-        240
+        300
       ],
       "id": "aaef5c4c-e6d2-4c6e-b81b-bc298198a2b4",
       "name": "busqueda",
@@ -450,8 +530,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        2620,
-        220
+        2600,
+        240
       ],
       "id": "32a3c67d-3849-40bc-b9d2-a732f3a87c10",
       "name": "escritura",
@@ -491,7 +571,7 @@
       "typeVersion": 2.2,
       "position": [
         2400,
-        240
+        300
       ],
       "id": "abde33a3-3532-4158-8ef1-0894541dd9ca",
       "name": "no existe?"
@@ -520,7 +600,7 @@
       "typeVersion": 4.2,
       "position": [
         2100,
-        -100
+        -40
       ]
     },
     {
@@ -535,7 +615,7 @@
       "typeVersion": 1.1,
       "position": [
         2100,
-        60
+        120
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -575,7 +655,7 @@
       "typeVersion": 4.2,
       "position": [
         2280,
-        60
+        120
       ],
       "id": "f8d1b083-0e2c-4ddc-b657-deefee2de178",
       "name": "tag manychat",
@@ -751,7 +831,7 @@
       "typeVersion": 2.2,
       "position": [
         1920,
-        100
+        160
       ]
     },
     {
@@ -778,7 +858,7 @@
       "typeVersion": 4.2,
       "position": [
         2480,
-        480
+        500
       ]
     },
     {
@@ -895,7 +975,7 @@
       "typeVersion": 2.4,
       "position": [
         3000,
-        620
+        580
       ],
       "id": "7a25cc11-8719-4090-80b6-f7a7737a471f",
       "name": "escritura1",
@@ -939,6 +1019,295 @@
       ],
       "id": "19423da8-51b0-4db7-90e5-29b2e23cd75f",
       "name": "no existe?1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6e074b0d-4663-476d-ae90-8be442f648cd",
+              "leftValue": "={{ $('Edit Fields').item.json.numero }}",
+              "rightValue": "58",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "25c499e3-8a5c-4a0d-afdb-2cb74e739218",
+      "name": "VENEZUELA?2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2720,
+        940
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('Webhook').item.json.body.instance }}?groupJid={{ $('Edit Fields').item.json.grupo }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{ \"action\": \"remove\", \n  \n  \"participants\": [ \"{{ $('Edit Fields').item.json.numero }}\" ] } ",
+        "options": {}
+      },
+      "id": "9aa73e0d-3d4c-4f7e-988e-2a0cb8f9c3f1",
+      "name": "ELIMINAR +1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2880,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://evolution.automscc.com/group/findGroupInfos/{{ $('Edit Fields').item.json.instancia }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "groupJid",
+              "value": "={{ $json.id }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2880,
+        1000
+      ],
+      "id": "ec91bd65-9b51-4ed9-8129-7b3d542b355b",
+      "name": "NOMBRE2"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "ARZA_CEJAS_WHA",
+          "mode": "list",
+          "cachedResultName": "ARZA_CEJAS_WHA"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "whatsapp",
+              "condition": "LIKE",
+              "value": "=%{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}%"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        3040,
+        1000
+      ],
+      "id": "37f55191-4ea4-495c-9b1f-5aa0d7c8f6d8",
+      "name": "busqueda2",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "ARZA_CEJAS_WHA",
+          "mode": "list",
+          "cachedResultName": "ARZA_CEJAS_WHA"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "dia",
+              "value": "={{ $now.format('yyyy-MM-dd') }}"
+            },
+            {
+              "column": "hora",
+              "value": "={{ $now.format('HH:mm:ss') }}"
+            },
+            {
+              "column": "whatsapp",
+              "value": "=+{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}"
+            },
+            {
+              "column": "grupo",
+              "value": "={{ $('Edit Fields').item.json.grupo }}"
+            },
+            {
+              "column": "nombre_grupo",
+              "value": "={{ $('NOMBRE2').item.json.subject }}"
+            },
+            {
+              "column": "fuente",
+              "value": "FB ADS"
+            }
+          ]
+        },
+        "options": {
+          "detailedOutput": true
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        3400,
+        940
+      ],
+      "id": "671d552c-ddd3-4ecd-8c3b-0beaeeb449c5",
+      "name": "escritura2",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7f3e8099-ae55-4534-a5be-217d413c0ff2",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3200,
+        1000
+      ],
+      "id": "35466bc9-7cbf-4ef4-9b48-4157787ddbfb",
+      "name": "no existe?2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8d2037fa-e2a7-4668-901e-4ca0a27a93ab",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "eab4e53b-93ee-40f5-92e0-2c16ad5058af",
+      "name": "ES CEJAS?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2500,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "ARZA_CEJAS_LINKS",
+          "mode": "list",
+          "cachedResultName": "ARZA_CEJAS_LINKS"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $('If').item.json.grupo }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "cc10a74c-fc32-4319-b802-4ec081e7e6e4",
+      "name": "BD CEJAS",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        2340,
+        960
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
     }
   ],
   "pinData": {
@@ -1013,6 +1382,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-02-20T05:07:50.000Z",
-  "versionId": "156fd951-b1bb-4201-aaed-9847b274c67f"
+  "updatedAt": "2025-03-04T05:20:18.000Z",
+  "versionId": "a475312b-3acf-42ad-9774-6be1a1000967"
 }
