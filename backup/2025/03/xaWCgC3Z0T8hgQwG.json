@@ -1,0 +1,106 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-03T17:47:59.598Z",
+  "id": "xaWCgC3Z0T8hgQwG",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "ETIQUETAS MASIVAS MANYCHAT",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1340,
+        -200
+      ],
+      "id": "938de5ea-87c1-48bd-8b16-5c1fd060ca91",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/10A46nicMdTmKlmimk4Meu2-fXK8CAqvTzFTeOXuDZ2I/edit?gid=1195106602#gid=1195106602",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/10A46nicMdTmKlmimk4Meu2-fXK8CAqvTzFTeOXuDZ2I/edit?gid=1195106602#gid=1195106602",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -1120,
+        -200
+      ],
+      "id": "3bf16366-fc94-43ce-b097-ffecbe5d172a",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Función para esperar un tiempo determinado (ms)\nfunction delay(ms) {\n  return new Promise(resolve => setTimeout(resolve, ms));\n}\n\nconst items = $input.all();\nconst totalItems = items.length;\n\nconsole.log(`Iniciando proceso con ${totalItems} items...`);\n\nfor (let i = 0; i < totalItems; i++) {\n  const item = items[i];\n  const id = item.json.id_manychat;\n  const ocupacion = item.json.Eliminar_dolor_para;\n  let tag = null;\n\n  // Determinamos el tag según las condiciones\n  if (/crear/.test(ocupacion)) {\n    tag = \"GR2-PARACREAR\";\n  } else if (/familia/.test(ocupacion)) {\n    tag = \"GR1-FAMILIAYAMIGOS\";\n  } else if (/mismo/.test(ocupacion)) {\n    tag = \"GR3-PARATIMISMO\";\n  } \n\n  if (tag) {\n    // Esperamos para respetar el límite de 10 RPS (aprox. 110 ms)\n    await delay(110);\n\n    const options = {\n      method: 'POST',\n      url: 'https://api.manychat.com/fb/subscriber/addTagByName',\n      headers: {\n        \"Authorization\": \"Bearer 288702267651723:f96a1f26344892df99c98292741de8c9\",\n        \"Content-Type\": \"application/json\",\n        \"Accept\": \"application/json\"\n      },\n      body: {\n         subscriber_id: id,\n         tag_name: tag\n      },\n      json: true,\n    };\n\n    try {\n      const response = await this.helpers.request(options);\n      item.json.manychatResponse = response;\n      console.log(`Proceso ${i + 1} de ${totalItems}: id: ${id} estado: completado`);\n    } catch (error) {\n      console.log(`Proceso ${i + 1} de ${totalItems}: id: ${id} estado: error`);\n    }\n  } else {\n    console.log(`Proceso ${i + 1} de ${totalItems}: id: ${id} estado: sin asignación`);\n  }\n}\n\nconsole.log(\"Proceso completado. ¡Todos los items han sido procesados!\");\nreturn items;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -920,
+        -200
+      ],
+      "id": "1956773d-8b2d-4b8d-b830-ba3cd19ec1e6",
+      "name": "Code"
+    }
+  ],
+  "pinData": {
+    "When clicking ‘Test workflow’": [
+      {
+        "json": {}
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-03T20:45:52.000Z",
+  "versionId": "aca43733-6410-4a0f-a740-09f22afaa0f8"
+}
