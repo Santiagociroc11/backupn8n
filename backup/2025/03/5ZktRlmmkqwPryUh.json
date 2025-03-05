@@ -1,0 +1,63 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-05T02:23:07.260Z",
+  "id": "5ZktRlmmkqwPryUh",
+  "meta": null,
+  "name": "My workflow 5",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d22a0821-21b8-4be3-926a-0f76e2a22305",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://lovely-cuchufli-025911.netlify.app/api/track",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"type\": \"hotmart_click\",\n    \"tracking_id\": \"10185aae-ef60-4e90-8c2b-3e543138b78f\",\n    \"visitor_id\": \"test-visitor-123\",\n    \"session_id\": \"test-session-123\",\n    \"page_view_id\": \"1234567890\",\n    \"url\": \"https://pay.hotmart.com/X1234567?off=abc123\",\n    \"event_data\": {\n      \"browser_info\": {\n        \"userAgent\": \"Mozilla/5.0 (Test)\",\n        \"platform\": \"Win32\",\n        \"language\": \"es-ES\",\n        \"cookiesEnabled\": true\n      },\n      \"fbc\": \"fb.1.1234567890.abc123\",\n      \"fbp\": \"fb.1.1234567890.xyz789\",\n      \"utm_data\": {\n        \"utm_source\": \"Facebook_Desktop_Feed\",\n        \"utm_medium\": \"cpc\",\n        \"utm_campaign\": \"test_campaign\",\n        \"utm_content\": \"test_content\",\n        \"utm_term\": \"test_term\"\n      }\n    }\n  }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "dbfd93d9-6670-41d2-8ab0-67e23706dbb1",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-05T02:23:07.260Z",
+  "versionId": "8abbebc9-2107-4d1e-855f-220ea365f6b4"
+}
