@@ -1,0 +1,194 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-03-04T18:54:43.239Z",
+  "id": "HnD8QrUqVBjQhWPW",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[ARZA-CEJAS] AVISOS/ERRORES TELEGRAM",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tg-arza-cejas",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -920,
+        -140
+      ],
+      "id": "dfc070dc-4188-4ba5-8526-2a7b9b4c848d",
+      "name": "Webhook",
+      "webhookId": "935b81bf-5572-4eb0-8eac-35c9ea21e81b"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"chat_id\": \"-1002216643127\",\n  \"message_thread_id\": 40,\n  \"text\": \"🚨 *GRUPOS*: \\n\\n {{ $json.body.mensaje }}\",\n  \"parse_mode\": \"Markdown\"\n}\n",
+        "options": {}
+      },
+      "id": "5ff46d57-bbe3-4364-9011-4bdb0301d07f",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -400,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.tipo }}",
+                    "rightValue": "llenado",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "LLENADO DE GRUPOS"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "7f54525c-fd25-48ee-9df2-63bc6f4dbcef",
+                    "leftValue": "={{ $json.body.tipo }}",
+                    "rightValue": "emergencia",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "EMERGENCIA"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -700,
+        -140
+      ],
+      "id": "7c806c37-f4d0-4efa-909f-7d452552e518",
+      "name": "Switch"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (Linux; Android 8.0.0; WAS-LX3 Build/HUAWEIWAS-LX3; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/133.0.6943.50 Mobile Safari/537.36",
+            "content-length": "70",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "es-CO,es;q=0.9,en-US;q=0.8,en;q=0.7",
+            "content-type": "application/json",
+            "origin": "https://terapiasmagneticas.com",
+            "priority": "u=1, i",
+            "referer": "https://terapiasmagneticas.com/",
+            "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Android WebView\";v=\"133\", \"Chromium\";v=\"133\"",
+            "sec-ch-ua-mobile": "?1",
+            "sec-ch-ua-platform": "\"Android\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "186.28.5.137",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3051a3bb6625",
+            "x-real-ip": "186.28.5.137",
+            "x-requested-with": "com.hearts.solitaire.plus.offline.free.card.games"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "mensaje": "xxx",
+            "tipo": "llenado"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/gtm-avisos",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-02-21T17:25:59.004Z",
+      "updatedAt": "2025-02-21T17:25:59.004Z",
+      "id": "7jH9G2p443i4FpIv",
+      "name": "WEBHOOK"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-04T19:00:50.000Z",
+  "versionId": "3d8c8113-9740-4c61-8b0a-986a33b56bcd"
+}
