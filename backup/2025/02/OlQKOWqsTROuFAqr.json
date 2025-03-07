@@ -16,6 +16,17 @@
       "main": [
         [
           {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
             "node": "Telegram",
             "type": "main",
             "index": 0
@@ -40,7 +51,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -740,
+        -680,
         -140
       ],
       "id": "1d0f4835-dd3d-445a-a566-ce7eb22e7514",
@@ -51,16 +62,16 @@
       "parameters": {
         "operation": "sendPhoto",
         "chatId": "-1002117516396",
-        "file": "={{ $('Webhook').item.json.body.imagenPagoUrl }}",
+        "binaryData": true,
         "additionalFields": {
-          "caption": "=Nombre: {{ $json.NOMBRE }}\nPais: {{ $('Webhook').item.json.body.pais }}\nMedio: {{ $('Webhook').item.json.body.medioPago }}\nTelefono: {{ $('Webhook').item.json.body.telefono }}\nCorreo inscripción:  {{ $('Webhook').item.json.body.correoInscripcion }}\nCorreo Pago (stripe):  {{ $('Webhook').item.json.body.correoPago?$('Webhook').item.json.body.correoPago: \"no aplica\" }}\nASESOR QUE REPORTA: {{ $('Webhook').item.json.body.nombreAsesor }}\n\n-> CONFIRMAR INGRESO E INSCRIBIR <- 🔥",
+          "caption": "=Nombre: {{ $('Postgres').item.json.NOMBRE }}\nPais: {{ $('Webhook').item.json.body.pais }}\nMedio: {{ $('Webhook').item.json.body.medioPago }}\nTelefono: {{ $('Webhook').item.json.body.telefono }}\nCorreo inscripción:  {{ $('Webhook').item.json.body.correoInscripcion }}\nCorreo Pago (stripe):  {{ $('Webhook').item.json.body.correoPago?$('Webhook').item.json.body.correoPago: \"no aplica\" }}\nASESOR QUE REPORTA: {{ $('Webhook').item.json.body.nombreAsesor }}\n\n-> CONFIRMAR INGRESO E INSCRIBIR <- 🔥",
           "message_thread_id": 3
         }
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        -280,
+        -120,
         -140
       ],
       "id": "ee05c63a-c16c-4220-9b59-b4943cb2df39",
@@ -109,9 +120,23 @@
       "credentials": {
         "postgres": {
           "id": "Y9DYFWSCuPRQbP2H",
-          "name": "POSTGRESS PROPIO"
+          "name": "POSTGRESS GERSSON"
         }
       }
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Webhook').item.json.body.imagenPagoUrl }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -300,
+        -140
+      ],
+      "id": "6e3d3cb6-4609-4069-8572-8b1048dad87a",
+      "name": "HTTP Request"
     }
   ],
   "pinData": {
@@ -121,7 +146,7 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Mobile Safari/537.36",
-            "content-length": "357",
+            "content-length": "385",
             "accept": "*/*",
             "accept-encoding": "gzip, deflate, br, zstd",
             "accept-language": "es-US,es-419;q=0.9,es;q=0.8",
@@ -135,26 +160,27 @@
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "same-site",
-            "x-forwarded-for": "186.98.1.185",
+            "x-forwarded-for": "167.58.103.29",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
             "x-forwarded-server": "810e17e1473f",
-            "x-real-ip": "186.98.1.185"
+            "x-real-ip": "167.58.103.29"
           },
           "params": {},
           "query": {},
           "body": {
-            "clienteID": 926,
-            "asesorID": 6,
-            "nombreAsesor": "PAULO QUIÑONES",
+            "clienteID": 1319,
+            "asesorID": 11,
+            "nombreAsesor": "MAURICIO FRANCO",
             "tipoVenta": "EXTERNA",
-            "comentario": "Pago en Efecty , Colombia",
-            "imagenPagoUrl": "https://n8n-minio.wc2hpx.easypanel.host/reportes/pagos/1740854254216-1000058742.jpg",
-            "medioPago": "Efecty , efectivo ",
-            "pais": "Colombia ",
-            "correoInscripcion": "oscarduarteloaiza@gmail.com",
-            "telefono": "+573225229373"
+            "comentario": "No hay comentarios ",
+            "imagenPagoUrl": "https://n8n-minio.wc2hpx.easypanel.host/reportes/pagos/1741306348070-1000003325.jpg",
+            "medioPago": "Stripe ",
+            "pais": "Ecuador ",
+            "correoInscripcion": "miguelangelguaman7@gmail.com",
+            "telefono": "593939081485",
+            "correoPago": "miguelangelguaman7@gmail.com"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/reporte-venta-tg",
           "executionMode": "production"
@@ -184,6 +210,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-04T18:55:09.000Z",
-  "versionId": "92efec37-0cb5-4cb4-8c16-44c582b8d85c"
+  "updatedAt": "2025-03-07T01:36:31.000Z",
+  "versionId": "699e5705-f500-43c4-963f-3fe27dba1984"
 }
