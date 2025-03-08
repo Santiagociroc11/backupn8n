@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "asignar datos COMPRA": {
       "main": [
@@ -36,13 +36,7 @@
     },
     "Switch": {
       "main": [
-        [
-          {
-            "node": "Asignar datos CARRITO",
-            "type": "main",
-            "index": 0
-          }
-        ],
+        [],
         [
           {
             "node": "asignar datos COMPRA",
@@ -50,20 +44,8 @@
             "index": 0
           }
         ],
-        [
-          {
-            "node": "Asignar datos RECHAZADOS",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Asignar datos TICKET",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        [],
+        []
       ]
     },
     "Asignar datos TICKET": {
@@ -593,7 +575,8 @@
       "position": [
         -60,
         -280
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -640,7 +623,8 @@
       "position": [
         -60,
         40
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -795,7 +779,8 @@
       "position": [
         -60,
         220
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -859,7 +844,8 @@
       "position": [
         100,
         -280
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -3254,6 +3240,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-07T02:02:33.000Z",
-  "versionId": "c04bf894-950a-414c-a574-e8795b9640f4"
+  "updatedAt": "2025-03-08T00:43:14.000Z",
+  "versionId": "38cc2922-5670-4039-926c-cec7de51aedb"
 }
