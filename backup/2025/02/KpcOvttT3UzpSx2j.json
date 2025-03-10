@@ -156,7 +156,7 @@
       "main": [
         [
           {
-            "node": "Text Classifier",
+            "node": "If2",
             "type": "main",
             "index": 0
           }
@@ -253,6 +253,24 @@
           }
         ]
       ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "traer comentario",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-02-11T02:17:35.084Z",
@@ -293,7 +311,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        560,
+        780,
         -160
       ],
       "id": "ef541453-271f-4a79-ba72-aacdc40610a8",
@@ -312,7 +330,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        560,
+        780,
         40
       ],
       "id": "615a8507-7d01-4eef-8786-8b9d72f97b83",
@@ -370,8 +388,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -340,
-        -240
+        -380,
+        -340
       ],
       "id": "a7c63025-29a1-4338-9c81-40e0f5321270",
       "name": "If"
@@ -407,7 +425,7 @@
       "type": "@n8n/n8n-nodes-langchain.textClassifier",
       "typeVersion": 1,
       "position": [
-        160,
+        380,
         -160
       ],
       "id": "b664eb85-9f8b-4d65-8e04-5d8609898043",
@@ -425,7 +443,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        160,
+        380,
         20
       ],
       "id": "3b652948-f00a-400e-971e-8cf64ab1da53",
@@ -447,7 +465,7 @@
       "type": "n8n-nodes-base.facebookGraphApi",
       "typeVersion": 1,
       "position": [
-        640,
+        860,
         -460
       ],
       "id": "5419edeb-fa1e-4d4c-9110-89f20faaf704",
@@ -479,7 +497,7 @@
       "type": "n8n-nodes-base.facebookGraphApi",
       "typeVersion": 1,
       "position": [
-        820,
+        1040,
         -460
       ],
       "id": "76ad8b10-35b9-4341-b7d1-a6a42d710fa3",
@@ -509,7 +527,7 @@
       "type": "n8n-nodes-base.facebookGraphApi",
       "typeVersion": 1,
       "position": [
-        180,
+        400,
         -420
       ],
       "id": "2db0fb3d-ee40-4109-971c-d88d33bf9cfb",
@@ -539,7 +557,7 @@
       "type": "n8n-nodes-base.facebookGraphApi",
       "typeVersion": 1,
       "position": [
-        900,
+        1120,
         -160
       ],
       "id": "d3dc57aa-8af1-4fd5-a0a5-31a158f61fd0",
@@ -579,7 +597,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        380,
+        600,
         -420
       ],
       "id": "1c6e5c64-3b0c-4552-b49c-cfcf989e1469",
@@ -604,7 +622,7 @@
       "type": "n8n-nodes-base.facebookGraphApi",
       "typeVersion": 1,
       "position": [
-        1240,
+        1460,
         -240
       ],
       "id": "44e5d356-7c35-453f-ab55-e560fc90acb6",
@@ -651,8 +669,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -100,
-        -260
+        -160,
+        -360
       ],
       "id": "17f8303c-4892-4163-bb99-dfa7b9cb7389",
       "name": "asignacion"
@@ -677,7 +695,7 @@
       "type": "n8n-nodes-base.facebookGraphApi",
       "typeVersion": 1,
       "position": [
-        1400,
+        1620,
         -140
       ],
       "id": "43e5a340-00d9-4842-aa0e-57e03a963028",
@@ -700,7 +718,7 @@
       "type": "n8n-nodes-base.facebookGraphApi",
       "typeVersion": 1,
       "position": [
-        1580,
+        1800,
         -140
       ],
       "id": "597aa43a-47fe-4b7f-a7d1-5e95800cec9b",
@@ -740,7 +758,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1060,
+        1280,
         -160
       ],
       "id": "803cd3c6-a4cb-470d-abd2-3f2bfd277122",
@@ -932,6 +950,39 @@
       ],
       "id": "c4220d34-45ea-4dd3-b238-be2be5938a41",
       "name": "puedo borrar?1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "15847941-b999-4bee-b8fd-8aa0e2c8238e",
+              "leftValue": "={{ $json.comentario.toLowerCase() }}",
+              "rightValue": "/magi|ip|estafa|mala|no sirve|ojo/",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        60,
+        -360
+      ],
+      "id": "d3d1a6ac-04a7-4a24-a2ba-99abe3380236",
+      "name": "If2"
     }
   ],
   "pinData": {
@@ -941,17 +992,17 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "Webhooks/1.0 (https://fb.me/webhooks)",
-            "content-length": "1202",
+            "content-length": "819",
             "accept": "*/*",
             "content-type": "application/json",
-            "x-forwarded-for": "173.252.95.10",
+            "x-forwarded-for": "69.171.251.115",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "3051a3bb6625",
-            "x-hub-signature": "sha1=6a08e59dba2ffa375b07eda78ec7e036370cd83e",
-            "x-hub-signature-256": "sha256=381d3aecce6df4278113dcf445e350fc25ef6b13696cde893d9dda88916596fb",
-            "x-real-ip": "173.252.95.10",
+            "x-forwarded-server": "5e598da44e1a",
+            "x-hub-signature": "sha1=09ba984fcf3053988b7006d3d0c478d4df96341a",
+            "x-hub-signature-256": "sha256=44216e00673dbf8e701d8c4aac0ec2bb25295111e3db534f07c001674bac9414",
+            "x-real-ip": "69.171.251.115",
             "accept-encoding": "gzip"
           },
           "params": {},
@@ -960,28 +1011,28 @@
             "entry": [
               {
                 "id": "234154656454626",
-                "time": 1739720865,
+                "time": 1741555511,
                 "changes": [
                   {
                     "value": {
                       "from": {
-                        "id": "10015949751771034",
-                        "name": "Hamid Rujana Quintero"
+                        "id": "9318172154967212",
+                        "name": "Cardenas Eduardo Antonio"
                       },
                       "post": {
                         "status_type": "shared_story",
                         "is_published": false,
-                        "updated_time": "2025-02-16T15:47:39+0000",
-                        "permalink_url": "https://www.facebook.com/122202764534239176/posts/pfbid0zoAsxZruxZhGcdpB9sShHYEEknbmALgV6gZMKxXCqbmmZXinaWSBTVahxsBns29gl",
+                        "updated_time": "2025-03-09T21:25:05+0000",
+                        "permalink_url": "https://www.facebook.com/122202764534239176/posts/pfbid02ZoxtHmBNQiVbM9v5mkUz5H5nqRtBWBQgD3zxgjg8k7WkgTD8kopX32KMMvscP6ZDl",
                         "promotion_status": "inactive",
-                        "id": "234154656454626_122198742674239176"
+                        "id": "234154656454626_122204437334239176"
                       },
-                      "photo": "https://scontent.fnva2-1.fna.fbcdn.net/v/t39.30808-6/480385472_10236236919167911_1613593301826840415_n.jpg?stp=cp0_dst-jpg_e15_fr_q65_tt6&cstp=mx2000x1496&ctp=s2000x1496&_nc_cat=107&cb=64d46a15-2fffe086&ccb=1-7&_nc_sid=5a4fcb&_nc_ohc=Kv9uV4QFP3YQ7kNvgFyt853&_nc_oc=Adh_g_1odcoxoKVHMNCcquKJIl-_yXzE0qWj1k0WfU27ekeudUlUea008Qifrn7CpLY&_nc_ad=z-m&_nc_cid=1142&_nc_zt=23&_nc_ht=scontent.fnva2-1.fna&oh=00_AYBwu9eIKiTeOWyri15-IcYp1RGfqiDzrvI8Bq06ZN-mzw&oe=67B7CD24",
-                      "post_id": "234154656454626_122198742674239176",
-                      "comment_id": "122198742674239176_1777519306123107",
-                      "created_time": 1739720859,
+                      "message": "Chapin Paisaestaa  estás en lo cierto amigó eso no sirve ojo",
+                      "post_id": "234154656454626_122204437334239176",
+                      "comment_id": "122204437334239176_1065692108718894",
+                      "created_time": 1741555505,
                       "item": "comment",
-                      "parent_id": "234154656454626_122198742674239176",
+                      "parent_id": "122204437334239176_1144093830284212",
                       "verb": "add"
                     },
                     "field": "feed"
@@ -1025,6 +1076,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-02-21T17:26:39.000Z",
-  "versionId": "763adb01-6a24-4b35-8d25-9e966ad02cb7"
+  "updatedAt": "2025-03-09T23:14:45.000Z",
+  "versionId": "70bd75d4-be66-418a-a64a-6e98b056d982"
 }
