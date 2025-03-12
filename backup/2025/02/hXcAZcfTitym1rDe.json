@@ -104,8 +104,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -360,
-        -40
+        -320,
+        -180
       ],
       "id": "6d3ffc4e-6b56-48e7-a7c1-6be7870ae3c0",
       "name": "Webhook",
@@ -230,7 +230,7 @@
       "typeVersion": 3.2,
       "position": [
         -120,
-        -40
+        -180
       ],
       "id": "2fd13eb8-fb8a-4cbc-8f85-600f76016451",
       "name": "Switch"
@@ -402,13 +402,13 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"email\": \"{{ $('Edit Fields').first().json.CORREO }}\",\n    \"segment_ids\": [\n       \"67ac51b5444e7ec7d3c0b539\"\n    ]\n}",
+        "jsonBody": "={\n    \"email\": \"{{ $('Edit Fields').first().json.CORREO }}\",\n    \"segment_ids\": [\n       \"67c86472bf867dc6f82248f7\"\n    ]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        480,
+        440,
         -380
       ],
       "id": "3561c95c-7d64-49db-9aa8-84a55173b112",
@@ -416,7 +416,6 @@
       "retryOnFail": true,
       "maxTries": 5,
       "waitBetweenTries": 5000,
-      "disabled": true,
       "onError": "continueRegularOutput"
     },
     {
@@ -506,6 +505,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-02-26T16:30:13.000Z",
-  "versionId": "860e8e8c-14bd-412f-a60e-f3589435ba9f"
+  "updatedAt": "2025-03-12T00:34:05.000Z",
+  "versionId": "87c89a8d-b60e-4f81-b135-a238d79f6922"
 }
