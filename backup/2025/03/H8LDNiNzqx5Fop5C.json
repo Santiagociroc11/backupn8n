@@ -5,41 +5,18 @@
       "main": [
         [
           {
-            "node": "Edit Fields",
+            "node": "Edit Fields1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Edit Fields": {
+    "Edit Fields1": {
       "main": [
         [
           {
-            "node": "MySQL",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "MySQL": {
-      "main": [
-        [],
-        [
-          {
-            "node": "Wait",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Wait": {
-      "main": [
-        [
-          {
-            "node": "MySQL",
+            "node": "MongoDB",
             "type": "main",
             "index": 0
           }
@@ -63,7 +40,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -380,
+        -420,
         -80
       ],
       "id": "c1de5270-0985-484c-ae96-7e36fad70a08",
@@ -72,19 +49,42 @@
     },
     {
       "parameters": {
+        "operation": "findOneAndUpdate",
+        "collection": "TD-l6",
+        "updateKey": "whatsapp",
+        "fields": "clics-positivos",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        20,
+        -80
+      ],
+      "id": "07f92f3c-c6f6-4713-98f6-f921bdfc2b64",
+      "name": "MongoDB",
+      "credentials": {
+        "mongoDb": {
+          "id": "vbsT0SoMA5A3acgH",
+          "name": "BASE DE DATOS GERSSON"
+        }
+      }
+    },
+    {
+      "parameters": {
         "assignments": {
           "assignments": [
             {
-              "id": "2e1b4ea4-2859-4806-a789-371ab293b2d9",
-              "name": "id_manychat",
-              "value": "={{ $json.body.id }}",
+              "id": "4223756b-8453-4575-9f26-4b707e1e64c3",
+              "name": "whatsapp",
+              "value": "={{ $json.body.first_name }}",
               "type": "string"
             },
             {
-              "id": "3d9cc5e1-98e7-40a1-b020-e85c5da79e1d",
-              "name": "ingresoclase1",
-              "value": true,
-              "type": "boolean"
+              "id": "327adeca-ed58-4575-8944-5c5720455fb8",
+              "name": "clics-positivos",
+              "value": "={{ $json.body.custom_fields[\"CLICS-POSITIVOS\"]>0?$json.body.custom_fields[\"CLICS-POSITIVOS\"]:0 }}",
+              "type": "string"
             }
           ]
         },
@@ -93,61 +93,11 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -120,
+        -200,
         -80
       ],
-      "id": "d6317dbd-1f7d-42c2-b15c-bda2a0901fd9",
-      "name": "Edit Fields"
-    },
-    {
-      "parameters": {
-        "table": {
-          "__rl": true,
-          "value": "exporta_manychat",
-          "mode": "list",
-          "cachedResultName": "exporta_manychat"
-        },
-        "dataMode": "defineBelow",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "id_manychat",
-              "value": "={{ $json.id_manychat }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        140,
-        -80
-      ],
-      "id": "84de87c3-adf1-483f-a1a4-b65e33819606",
-      "name": "MySQL",
-      "retryOnFail": true,
-      "maxTries": 5,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "mySql": {
-          "id": "urz5Tdw0DcSlCZt3",
-          "name": "N8N NUMEROS"
-        }
-      },
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
-      "position": [
-        360,
-        -20
-      ],
-      "id": "29319913-6d8b-4590-be5d-c4e59fe6ffc2",
-      "name": "Wait",
-      "webhookId": "37f3ba73-37b3-4b23-b6b8-7a3072dedeb5"
+      "id": "ef800086-3092-459b-89e6-87b595cc86c5",
+      "name": "Edit Fields1"
     }
   ],
   "pinData": {
@@ -225,6 +175,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-03-02T20:04:11.000Z",
-  "versionId": "d3a49ba8-a5d2-40ad-b70c-eff4b677044b"
+  "updatedAt": "2025-03-13T02:23:22.000Z",
+  "versionId": "4896bf5a-0cae-41fe-8a54-d85e26c964f0"
 }
