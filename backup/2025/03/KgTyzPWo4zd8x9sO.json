@@ -1,0 +1,63 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-13T03:18:44.859Z",
+  "id": "KgTyzPWo4zd8x9sO",
+  "meta": null,
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "70b5b543-caf0-4bda-9e0e-29e7b2be79d3",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://hotapi.automscc.com/api/hotmart/webhook",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": " {\n      \"data\": {\n        \"product\": {\n          \"has_co_production\": true,\n          \"name\": \"Sanar con Imanes\",\n          \"id\": 2584300,\n          \"ucode\": \"3f646245-863e-4287-98fd-422437484163\"\n        },\n        \"commissions\": [\n          {\n            \"currency_value\": \"USD\",\n            \"source\": \"MARKETPLACE\",\n            \"value\": 2.97\n          },\n          {\n            \"currency_conversion\": {\n              \"converted_value\": 4.91,\n              \"converted_to_currency\": \"USD\",\n              \"conversion_rate\": 1\n            },\n            \"currency_value\": \"USD\",\n            \"source\": \"PRODUCER\",\n            \"value\": 4.91\n          }\n        ],\n        \"purchase\": {\n          \"original_offer_price\": {\n            \"currency_value\": \"USD\",\n            \"value\": 30.6\n          },\n          \"subscription_anticipation_purchase\": false,\n          \"checkout_country\": {\n            \"iso\": \"MX\",\n            \"name\": \"Mexico\"\n          },\n          \"origin\": {\n            \"xcod\": \"41393204-a970-41bc-9207-d74bc293aa9e\"\n          },\n          \"order_bump\": {\n            \"is_order_bump\": false\n          },\n          \"approved_date\": 1736784313000,\n          \"offer\": {\n            \"code\": \"wokrsz9w\"\n          },\n          \"order_date\": 1736784311000,\n          \"price\": {\n            \"currency_value\": \"MXN\",\n            \"value\": 634\n          },\n          \"buyer_ip\": \"187.207.41.220\",\n          \"payment\": {\n            \"installments_number\": 1,\n            \"type\": \"CREDIT_CARD\"\n          },\n          \"full_price\": {\n            \"currency_value\": \"MXN\",\n            \"value\": 735.44\n          },\n          \"invoice_by\": \"HOTMART\",\n          \"transaction\": \"HP0015950793\",\n          \"status\": \"APPROVED\"\n        },\n        \"affiliates\": [\n          {\n            \"affiliate_code\": \"\",\n            \"name\": \"\"\n          }\n        ],\n        \"producer\": {\n          \"name\": \"MAGNETIC THERAPY ACADEMY LLC\"\n        },\n        \"buyer\": {\n          \"address\": {\n            \"country\": \"Mexico\",\n            \"country_iso\": \"MX\"\n          },\n          \"document\": \"\",\n          \"name\": \"Humberto ortega\",\n          \"checkout_phone\": \"525522492462\",\n          \"email\": \"humbertoortegaruiz@yahoo.com.mx\"\n        }\n      },\n      \"id\": \"fe1ec664-b91b-4ebc-a6f7-50ce0ff41688\",\n      \"creation_date\": 1736784317893,\n      \"event\": \"PURCHASE_APPROVED\",\n      \"version\": \"2.0.0\"\n    }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "1c9237b3-417a-44da-8779-4c4e6c5126dd",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-13T03:38:52.000Z",
+  "versionId": "e4a7c168-6a64-4c4b-8012-caba1f2bc2ef"
+}
