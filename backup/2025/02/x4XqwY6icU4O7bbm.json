@@ -34,7 +34,7 @@
       "main": [
         [
           {
-            "node": "Respond to Webhook",
+            "node": "ENVIAR CON ASESOR",
             "type": "main",
             "index": 0
           },
@@ -83,14 +83,14 @@
       "main": [
         [
           {
-            "node": "Respond to Webhook1",
+            "node": "ENVIAR A ACADEMIA",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "url",
+            "node": "REGISTRO +",
             "type": "main",
             "index": 0
           }
@@ -168,6 +168,17 @@
         [
           {
             "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "REGISTRO +": {
+      "main": [
+        [
+          {
+            "node": "url",
             "type": "main",
             "index": 0
           }
@@ -373,21 +384,6 @@
     },
     {
       "parameters": {
-        "respondWith": "json",
-        "responseBody": "={\n  \"url\": \"{{ $('url').item.json.url }}?text={{ encodeURIComponent($('mensaje').item.json.mensaje) }}+{{ $('ASIGNA1').item.json.Nombre }}\"\n\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.1,
-      "position": [
-        820,
-        40
-      ],
-      "id": "0130811b-1d67-4684-8107-5a920d2314ae",
-      "name": "Respond to Webhook"
-    },
-    {
-      "parameters": {
         "formTitle": "SOPORTE GERSSON LOPEZ",
         "formFields": {
           "values": [
@@ -407,7 +403,7 @@
       "typeVersion": 2.2,
       "position": [
         -1120,
-        -320
+        -340
       ],
       "id": "a7d5c1f4-f76e-44a0-8788-d886d853cbef",
       "name": "On form submission",
@@ -423,7 +419,7 @@
       "typeVersion": 1,
       "position": [
         -940,
-        -320
+        -340
       ],
       "id": "77681ab4-aa10-4804-9ce6-5179cb2ae275",
       "name": "Form",
@@ -497,16 +493,6 @@
                 "operation": "equals",
                 "name": "filter.operator.equals"
               }
-            },
-            {
-              "id": "e7b7e260-8688-4ce7-b84f-d678057d8bec",
-              "leftValue": "={{ $json.WHA_ASESOR }}",
-              "rightValue": "",
-              "operator": {
-                "type": "string",
-                "operation": "empty",
-                "singleValue": true
-              }
             }
           ],
           "combinator": "and"
@@ -516,26 +502,11 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -160,
-        -20
+        -220,
+        100
       ],
       "id": "83f45a57-d347-4f26-90b3-3b3b608552ba",
       "name": "If"
-    },
-    {
-      "parameters": {
-        "respondWith": "json",
-        "responseBody": "={\n  \"url\": \"wa.me/573012904922?text=Ya+compre+y+necesito+ayuda.\"\n\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.1,
-      "position": [
-        60,
-        80
-      ],
-      "id": "ae683def-97ff-4d36-80d2-09c8d1f33197",
-      "name": "Respond to Webhook1"
     },
     {
       "parameters": {
@@ -575,7 +546,7 @@
       "credentials": {
         "postgres": {
           "id": "Y9DYFWSCuPRQbP2H",
-          "name": "POSTGRESS PROPIO"
+          "name": "POSTGRESS GERSSON"
         }
       }
     },
@@ -617,7 +588,7 @@
       "credentials": {
         "postgres": {
           "id": "Y9DYFWSCuPRQbP2H",
-          "name": "POSTGRESS PROPIO"
+          "name": "POSTGRESS GERSSON"
         }
       }
     },
@@ -772,7 +743,7 @@
       "credentials": {
         "postgres": {
           "id": "Y9DYFWSCuPRQbP2H",
-          "name": "POSTGRESS PROPIO"
+          "name": "POSTGRESS GERSSON"
         }
       }
     },
@@ -942,7 +913,7 @@
       "credentials": {
         "postgres": {
           "id": "Y9DYFWSCuPRQbP2H",
-          "name": "POSTGRESS PROPIO"
+          "name": "POSTGRESS GERSSON"
         }
       }
     },
@@ -1022,7 +993,7 @@
       "credentials": {
         "postgres": {
           "id": "Y9DYFWSCuPRQbP2H",
-          "name": "POSTGRESS PROPIO"
+          "name": "POSTGRESS GERSSON"
         }
       }
     },
@@ -1063,7 +1034,7 @@
       "credentials": {
         "postgres": {
           "id": "Y9DYFWSCuPRQbP2H",
-          "name": "POSTGRESS PROPIO"
+          "name": "POSTGRESS GERSSON"
         }
       }
     },
@@ -1103,9 +1074,119 @@
       "credentials": {
         "postgres": {
           "id": "Y9DYFWSCuPRQbP2H",
-          "name": "POSTGRESS PROPIO"
+          "name": "POSTGRESS GERSSON"
         }
       }
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_REGISTROS",
+          "mode": "list",
+          "cachedResultName": "GERSSON_REGISTROS"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID_CLIENTE": "={{ $json.ID }}",
+            "TIPO_EVENTO": "LINK",
+            "FECHA_EVENTO": "={{ $now.toSeconds().floor() }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ID_CLIENTE",
+              "displayName": "ID_CLIENTE",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TIPO_EVENTO",
+              "displayName": "TIPO_EVENTO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "FECHA_EVENTO",
+              "displayName": "FECHA_EVENTO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        100,
+        120
+      ],
+      "id": "7bffcb17-e165-49ae-bb80-f2c1d0dffad2",
+      "name": "REGISTRO +",
+      "credentials": {
+        "postgres": {
+          "id": "Y9DYFWSCuPRQbP2H",
+          "name": "POSTGRESS GERSSON"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"url\": \"wa.me/573012904922?text=Ya+compre+y+necesito+ayuda.\"\n\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        100,
+        -20
+      ],
+      "id": "ae683def-97ff-4d36-80d2-09c8d1f33197",
+      "name": "ENVIAR A ACADEMIA"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"url\": \"{{ $('url').item.json.url }}?text={{ encodeURIComponent($('mensaje').item.json.mensaje) }}+{{ $('ASIGNA1').item.json.Nombre }}\"\n\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        820,
+        40
+      ],
+      "id": "0130811b-1d67-4684-8107-5a920d2314ae",
+      "name": "ENVIAR CON ASESOR"
     }
   ],
   "pinData": {
@@ -1114,34 +1195,34 @@
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
-            "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/27.0 Chrome/125.0.0.0 Mobile Safari/537.36",
-            "content-length": "60",
+            "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Mobile Safari/537.36",
+            "content-length": "80",
             "accept": "*/*",
-            "accept-encoding": "gzip, deflate, br",
+            "accept-encoding": "gzip, deflate, br, zstd",
             "accept-language": "es-US,es-419;q=0.9,es;q=0.8",
             "content-type": "application/json",
             "origin": "https://automscc.com",
             "priority": "u=1, i",
             "referer": "https://automscc.com/",
-            "sec-ch-ua": "\"Chromium\";v=\"125\", \"Not.A/Brand\";v=\"24\", \"Samsung Internet\";v=\"27.0\"",
+            "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Google Chrome\";v=\"133\", \"Chromium\";v=\"133\"",
             "sec-ch-ua-mobile": "?1",
             "sec-ch-ua-platform": "\"Android\"",
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "same-site",
-            "x-forwarded-for": "190.211.118.0",
+            "x-forwarded-for": "157.100.141.73",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "3051a3bb6625",
-            "x-real-ip": "190.211.118.0"
+            "x-forwarded-server": "5e598da44e1a",
+            "x-real-ip": "157.100.141.73"
           },
           "params": {},
           "query": {},
           "body": {
-            "name": "Dei",
+            "name": "Esperanza Guaman Macao",
             "courseStatus": "si",
-            "whatsapp": "+50685911134"
+            "whatsapp": "+593995840202"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/formulario-soporte",
           "executionMode": "production"
@@ -1184,6 +1265,6 @@
     }
   ],
   "triggerCount": 3,
-  "updatedAt": "2025-03-03T05:54:19.000Z",
-  "versionId": "884fecf0-40d0-41e9-bdfa-33995fa6cdbe"
+  "updatedAt": "2025-03-13T03:06:59.000Z",
+  "versionId": "73ee06cf-9b4f-476c-bcf6-c55e5a1e3a0c"
 }
