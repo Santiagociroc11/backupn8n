@@ -168,55 +168,55 @@
           "values": [
             {
               "column": "fecha",
-              "value": "={{ new Date($json.TIEMPO.split(\" \")[0].split('/').reverse().join('-')).toISOString().slice(0, 10) }}\n"
+              "value": "={{ new Date($json['Marca temporal'].split(\" \")[0].split('/').reverse().join('-')).toISOString().slice(0, 10) }}\n"
             },
             {
               "column": "correo",
-              "value": "={{ $json.CORREO }}"
+              "value": "={{ $json['¿Cuál es tu correo electrónico?'] }}"
             },
             {
               "column": "edad",
-              "value": "={{ $json.EDAD }}"
+              "value": "={{ $json['¿Cuál es tu edad?'] }}"
             },
             {
               "column": "pais",
-              "value": "={{ $json.PAIS }}"
+              "value": "={{ $json['¿Dónde vives?'] }}"
             },
             {
               "column": "genero",
-              "value": "={{ $json.GENERO }}"
+              "value": "={{ $json['¿Cuál es tu género?'] }}"
             },
             {
               "column": "ingresos",
-              "value": "={{ $json.INGRESOS }}"
+              "value": "={{ $json['¿Cuál es tu ingreso mensual aproximado?'] }}"
             },
             {
               "column": "tiempo_conoces",
-              "value": "={{ $json[\"HACE CUANTO\"] }}"
+              "value": "={{ $json['¿Hace cuánto tiempo me conoces?'] }}"
             },
             {
               "column": "fuente",
-              "value": "={{ $json.CONOCISTE }}"
+              "value": "={{ $json['¿Cómo me conociste?'] }}"
             },
             {
               "column": "deseo",
-              "value": "={{ $json.DESEO }}"
+              "value": "={{ $json['¿Qué quieres lograr con la Semana de las uñas?'] }}"
             },
             {
               "column": "proposito",
-              "value": "={{ $json.PROPOSITO }}"
+              "value": "={{ $json['Si supieras hacer manicura, ¿Para qué usarías esa habilidad?'] }}"
             },
             {
               "column": "dificultad",
-              "value": "={{ $json.DIFICULTAD }}"
+              "value": "={{ $json['¿Cuál es la mayor dificultad con respecto a la manicura que hoy en día estás atravesando?'] }}"
             },
             {
               "column": "pregunta",
-              "value": "={{ $json.PREGUNTA }}"
+              "value": "={{ $json['Si tuvieras la oportunidad de preguntarme algo sobre la semana de las uñas, ¿qué me preguntarías?'] }}"
             },
             {
               "column": "estudios",
-              "value": "={{ $json.ESTUDIOS }}"
+              "value": "={{ $json['¿Cuál es tu nivel de escolaridad?'] }}"
             }
           ]
         },
@@ -228,7 +228,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        0,
+        20,
         40
       ],
       "id": "808d75a1-b378-4c37-b40b-59e9efd0b169",
@@ -361,6 +361,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-02-21T17:24:52.000Z",
-  "versionId": "bac6d2d0-a897-424a-bfb8-329123e9ceee"
+  "updatedAt": "2025-03-12T22:43:13.000Z",
+  "versionId": "c24ebead-32bc-405a-b21d-cca9ff80f31f"
 }
