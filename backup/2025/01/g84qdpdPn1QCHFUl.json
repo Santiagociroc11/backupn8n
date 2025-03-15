@@ -254,6 +254,11 @@
             "node": "Edit Fields",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -280,6 +285,17 @@
           }
         ]
       ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-01-21T18:56:07.734Z",
@@ -296,8 +312,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -1640,
-        760
+        -1660,
+        1060
       ],
       "id": "2f2ba063-c8e4-4906-87c2-c1342facb58c",
       "name": "Webhook",
@@ -358,8 +374,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1400,
-        460
+        -1440,
+        695
       ]
     },
     {
@@ -399,8 +415,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1400,
-        20
+        -1440,
+        -55
       ]
     },
     {
@@ -440,8 +456,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1400,
-        240
+        -1440,
+        370
       ]
     },
     {
@@ -474,8 +490,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -1100,
-        -140
+        -1220,
+        -130
       ]
     },
     {
@@ -562,8 +578,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -1640,
-        250
+        -1660,
+        370
       ]
     },
     {
@@ -630,8 +646,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        -640,
-        320
+        -560,
+        470
       ],
       "id": "7c9a4acc-118f-4c1e-8e29-c2b1bb2c51d8",
       "name": "Google Sheets1",
@@ -675,8 +691,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        -1180,
-        140
+        -1220,
+        295
       ],
       "id": "eb152a91-7419-4c24-8e67-46405dea74eb",
       "name": "Google Sheets2",
@@ -719,8 +735,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -1020,
-        140
+        -1000,
+        295
       ],
       "id": "1893314a-086c-499a-9484-f04e8529225a",
       "name": "If1"
@@ -753,8 +769,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -680,
-        -160
+        -780,
+        -130
       ],
       "id": "b4e8243e-ed0a-4e5a-b4f9-67c31b84bd18",
       "name": "If2"
@@ -766,8 +782,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        -400,
-        340
+        -340,
+        470
       ],
       "id": "63189c1c-8be1-4f8e-bacb-132b3098a50f",
       "name": "Wait",
@@ -838,8 +854,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        -220,
-        -20
+        -340,
+        45
       ],
       "id": "7c024094-0c99-46f3-a385-37835e154e97",
       "name": "Google Sheets3",
@@ -860,8 +876,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        20,
-        0
+        -120,
+        45
       ],
       "id": "5fafc80b-f681-468f-b73b-331598fdb351",
       "name": "Wait1",
@@ -897,8 +913,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        -880,
-        -160
+        -1000,
+        -130
       ],
       "id": "b607e598-f003-4deb-9d31-d3ee5f2da154",
       "name": "Google Sheets4",
@@ -922,8 +938,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        -840,
-        300
+        -780,
+        470
       ],
       "id": "19326282-ee07-4e51-aabf-aac61d2cf5fb",
       "name": "Merge"
@@ -937,8 +953,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        -420,
-        0
+        -560,
+        45
       ],
       "id": "c36416f1-80dd-4894-8c94-ab1e9c740aaa",
       "name": "Merge1"
@@ -964,7 +980,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -440,
+        -560,
         -180
       ],
       "id": "29d4ec2d-a17a-430a-be5d-1df8084d83d4",
@@ -992,7 +1008,7 @@
       "typeVersion": 4.2,
       "position": [
         -780,
-        120
+        245
       ],
       "id": "8a487df7-c32b-4ea3-8a4f-d0a8320b8f7e",
       "name": "HTTP Request"
@@ -1018,8 +1034,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -1180,
-        460
+        -1220,
+        695
       ],
       "id": "714c121a-a71d-4a3d-b132-646c7cf39f2d",
       "name": "HTTP Request1",
@@ -1034,8 +1050,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1200,
-        760
+        -1220,
+        1155
       ],
       "id": "f3fa9e4e-903b-435c-afa9-064efaee4428",
       "name": "Edit Fields"
@@ -1123,8 +1139,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -980,
-        760
+        -1000,
+        1155
       ],
       "id": "fe75c888-97de-4dac-bb82-d5c0bb502656",
       "name": "Edit Fields1"
@@ -1304,8 +1320,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        -540,
-        760
+        -560,
+        1155
       ],
       "id": "5646eea9-817e-47d2-a9f2-ce52bc7b53db",
       "name": "Google Sheets8",
@@ -1348,8 +1364,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -760,
-        760
+        -780,
+        1155
       ],
       "id": "5a36e01c-0527-405b-95b5-7864e0943a3d",
       "name": "If4"
@@ -1381,8 +1397,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -1420,
-        760
+        -1440,
+        1055
       ],
       "id": "2896b574-e7f1-4fc9-9b67-34a9ff462696",
       "name": "If5"
@@ -1394,12 +1410,43 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        -320,
-        760
+        -340,
+        1155
       ],
       "id": "52324317-0e01-44b4-8843-cb53f1f20ec0",
       "name": "Wait4",
       "webhookId": "3122010c-e227-43fb-a8ee-b54eb61f8c9d"
+    },
+    {
+      "parameters": {
+        "jsCode": "jsonventa = $input.first().json.body.data;\n\n// Extraer datos relevantes\nconst transaction = jsonventa.purchase?.transaction || \"N/A\";\nconst buyerName = jsonventa.buyer?.name || \"N/A\";\nconst pais = jsonventa.buyer?.address?.country || \"N/A\";\nconst buyerEmail = jsonventa.buyer?.email || \"N/A\";\nconst productName = jsonventa.product?.name || \"N/A\";\nconst purchaseDate = new Date(jsonventa.purchase?.order_date).toLocaleString('es-CO', {\n  timeZone: 'America/Bogota'\n});\n\n// Construir el mensaje\nconst text = `\\n🔔 *Notificación de Venta* \\n\\n` +\n  `🛍 *Producto:* ${productName}\\n` +\n  `💰 *Pais:* ${pais}\\n` +\n  `👤 *Comprador:* ${buyerName}\\n` +\n  `📧 *Correo:* ${buyerEmail}\\n` +\n  `📦 *Transacción:* ${transaction}\\n` +\n  `📅 *Fecha de compra:* ${purchaseDate}\\n`;\n\n// Retornar el JSON con el mensaje\nreturn {\n  json: {\n    text,\n  },\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1220,
+        960
+      ],
+      "id": "5461c6b8-dd22-4c9c-abb7-e5fc1315c245",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"chat_id\": \"-1002459933143\",\n  \"message_thread_id\": 63,\n  {{ $json.toJsonString().replace(/^\\{|\\}$/g, \"\")\n }},\n  \"parse_mode\": \"Markdown\"\n}\n",
+        "options": {}
+      },
+      "id": "866c7e7c-7730-4a80-9296-25b1939cafc2",
+      "name": "HTTP Request4",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1000,
+        955
+      ]
     }
   ],
   "pinData": {
@@ -1409,15 +1456,15 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "Jodd HTTP",
-            "content-length": "1398",
+            "content-length": "1579",
             "content-type": "application/json",
-            "x-forwarded-for": "54.146.245.0",
+            "x-forwarded-for": "54.156.83.24",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "3051a3bb6625",
+            "x-forwarded-server": "5e598da44e1a",
             "x-hotmart-hottok": "ab1MBqgzWoBGjHPbjIZRreIJv1kidlf17097fe-a50d-4ba0-83a7-d6dba52a1d6d",
-            "x-real-ip": "54.146.245.0",
+            "x-real-ip": "54.156.83.24",
             "accept-encoding": "gzip"
           },
           "params": {},
@@ -1427,6 +1474,7 @@
               "product": {
                 "has_co_production": true,
                 "name": "Repostería Saludable Comercial",
+                "warranty_date": "2025-03-21T00:00:00Z",
                 "id": 4889120,
                 "ucode": "741d1303-989c-493c-ba1f-4adf392144f2"
               },
@@ -1434,17 +1482,17 @@
                 {
                   "currency_value": "USD",
                   "source": "MARKETPLACE",
-                  "value": 6.13
+                  "value": 6.12
                 },
                 {
                   "currency_conversion": {
-                    "converted_value": 150684.54,
+                    "converted_value": 152100.5,
                     "converted_to_currency": "COP",
-                    "conversion_rate": 4078.066026
+                    "conversion_rate": 4124.2
                   },
                   "currency_value": "USD",
                   "source": "PRODUCER",
-                  "value": 36.95
+                  "value": 36.88
                 }
               ],
               "purchase": {
@@ -1458,32 +1506,34 @@
                   "name": "Colombia"
                 },
                 "origin": {
-                  "xcod": "cd668177-c963-4dd4-a629-79af22ed1cfb",
+                  "xcod": "a3a0c981-033d-4db1-ba62-fd2f40d39f3e",
                   "sck": "b1"
                 },
                 "order_bump": {
                   "is_order_bump": false
                 },
-                "approved_date": 1740326374000,
+                "approved_date": 1741974499000,
                 "offer": {
                   "code": "5x8cr4tk"
                 },
-                "order_date": 1740326371000,
+                "is_funnel": false,
+                "order_date": 1741974264000,
                 "price": {
                   "currency_value": "COP",
-                  "value": 245235
+                  "value": 248009
                 },
-                "buyer_ip": "181.53.99.137",
+                "buyer_ip": "190.145.240.14",
                 "payment": {
-                  "installments_number": 5,
-                  "type": "CREDIT_CARD"
+                  "installments_number": 1,
+                  "type": "NEQUI"
                 },
                 "full_price": {
                   "currency_value": "COP",
-                  "value": 245235
+                  "value": 248009
                 },
+                "business_model": "A",
                 "invoice_by": "SELLER",
-                "transaction": "HP2072880912",
+                "transaction": "HP1879125044",
                 "status": "APPROVED"
               },
               "affiliates": [
@@ -1493,6 +1543,8 @@
                 }
               ],
               "producer": {
+                "legal_nature": "Pessoa Física",
+                "document": "26946295",
                 "name": "Adriana Maria Rueda Cabarcas"
               },
               "buyer": {
@@ -1501,13 +1553,16 @@
                   "country_iso": "CO"
                 },
                 "document": "",
-                "name": "Laura Correa",
-                "checkout_phone": "573216312874",
-                "email": "laprincesalaura26@hotmail.com"
+                "name": "Marian suarez",
+                "last_name": "suarez",
+                "checkout_phone": "573005268037",
+                "first_name": "Marian",
+                "email": "suarezyenifer016@gmail.com",
+                "document_type": ""
               }
             },
-            "id": "3d5037b5-3761-4a38-8183-4221996bd0a8",
-            "creation_date": 1740326379701,
+            "id": "ade2aaa7-7071-45b4-89da-de1f95ebef2c",
+            "creation_date": 1741974502989,
             "event": "PURCHASE_APPROVED",
             "version": "2.0.0"
           },
@@ -1521,7 +1576,9 @@
   "repo_owner": "Santiagociroc11",
   "repo_path": "backup/",
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timezone": "America/Bogota",
+    "callerPolicy": "workflowsFromSameOwner"
   },
   "staticData": {
     "node:Schedule Trigger": {
@@ -1555,6 +1612,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-14T00:26:12.000Z",
-  "versionId": "ec6986db-2c62-4487-87c6-3c3b92002a59"
+  "updatedAt": "2025-03-15T00:18:12.000Z",
+  "versionId": "10688c8b-8310-426d-90d1-d5f4d54306cd"
 }
