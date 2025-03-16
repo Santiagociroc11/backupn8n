@@ -1044,7 +1044,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        1740,
+        1760,
         560
       ],
       "id": "71ab8fb0-b666-460d-9d76-13543b7bd6ea",
@@ -1284,7 +1284,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3220,
+        3240,
         720
       ]
     },
@@ -1302,7 +1302,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3960,
+        3980,
         380
       ]
     },
@@ -1593,7 +1593,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2940,
+        2960,
         360
       ],
       "id": "b14d1ef7-317d-439a-ae54-285f23c860ad",
@@ -1606,7 +1606,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3080,
+        3100,
         720
       ],
       "id": "86341da3-0bf7-4d0c-95af-ab87680c718a",
@@ -1623,7 +1623,7 @@
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        3560,
+        3580,
         440
       ],
       "id": "7cb6b5a0-977d-4bc4-900f-95eac51330cf",
@@ -1647,7 +1647,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        3240,
+        3260,
         440
       ],
       "id": "5f9714e9-5e77-4379-a2f2-42214efc0e4d",
@@ -1666,7 +1666,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        3260,
+        3280,
         600
       ],
       "id": "667834cd-ca3a-4a52-bbb6-42a3b44f26c0",
@@ -1685,7 +1685,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        3800,
+        3820,
         380
       ],
       "id": "77e55a00-fcd6-4557-9a3b-99cdb80285c5",
@@ -1700,7 +1700,7 @@
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        2280,
+        2300,
         700
       ],
       "id": "1948ba80-e2c2-4e3f-84d8-34c37d226ca7",
@@ -1774,7 +1774,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        2500,
+        2520,
         640
       ],
       "id": "f6885e80-12ff-42a3-9276-02915803e786",
@@ -1800,7 +1800,7 @@
             {
               "column": "WHATSAPP",
               "condition": "LIKE",
-              "value": "=%{{$('ASIGNACION').item.json.numero.toString().slice(-6)}}"
+              "value": "=%{{$('ASIGNACION').item.json.numero.toString().slice(-7)}}"
             }
           ]
         },
@@ -1842,7 +1842,7 @@
             {
               "column": "WHATSAPP",
               "condition": "LIKE",
-              "value": "=%{{$('ASIGNACION').item.json.numero.toString().slice(-6)}}"
+              "value": "=%{{$('ASIGNACION').item.json.numero.toString().slice(-7)}}"
             }
           ]
         },
@@ -2645,7 +2645,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        1960,
+        1980,
         360
       ],
       "id": "df04905a-5c57-4860-b4f1-2db4bf0de8a4",
@@ -2664,7 +2664,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2120,
+        2140,
         360
       ],
       "id": "d2f2512e-0b23-4777-9dc6-833f1124b3c0",
@@ -2679,7 +2679,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2280,
+        2300,
         360
       ],
       "id": "975db236-6614-45f2-b337-d62bac99c3f7",
@@ -2849,7 +2849,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2440,
+        2460,
         360
       ],
       "id": "62b61c09-9598-4b43-9b18-d06750cc2432",
@@ -2929,7 +2929,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2600,
+        2620,
         360
       ],
       "id": "66d2a19d-d0bf-4556-ba80-d0c4e263e3f7",
@@ -2969,7 +2969,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2760,
+        2780,
         360
       ],
       "id": "e3ef06a7-dc7c-406f-a7cc-c0c7ffd96fbd",
@@ -3049,7 +3049,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        1960,
+        1980,
         700
       ],
       "id": "417d8790-9970-4ef6-a10a-2fa8c013b764",
@@ -3224,7 +3224,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2120,
+        2140,
         700
       ],
       "id": "f9d80a4f-3e66-411d-8e38-5ad235f08c90",
@@ -3400,7 +3400,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2720,
+        2740,
         620
       ],
       "id": "a40fb77b-9b1a-4819-bcbc-352b581da667",
@@ -3575,7 +3575,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2720,
+        2740,
         780
       ],
       "id": "672fe2ea-65c6-4e8a-9ba5-b5b9cc388319",
@@ -3615,7 +3615,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2920,
+        2940,
         720
       ],
       "id": "7aefa8f7-2c24-4ac0-b167-f9f31af30334",
@@ -3714,6 +3714,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-13T02:13:11.000Z",
-  "versionId": "a16680b2-052b-4421-b89d-09b71336448d"
+  "updatedAt": "2025-03-15T19:19:49.000Z",
+  "versionId": "f601a15b-7aca-4332-94a1-6749882bc8f8"
 }
