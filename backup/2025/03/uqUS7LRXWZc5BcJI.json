@@ -1,0 +1,63 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-16T01:33:24.593Z",
+  "id": "uqUS7LRXWZc5BcJI",
+  "meta": null,
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a7893d5c-250c-41a1-99ec-636ed6374590",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://evolution-api-postgrest-api.wc2hpx.easypanel.host/GERSSON_REPORTES",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"ID_CLIENTE\": 2163,\n  \"ID_ASESOR\": 1,\n  \"ESTADO_ANTERIOR\": \"VENTA CONSOLIDADA\",\n  \"ESTADO_NUEVO\": \"VENTA CONSOLIDADA\",\n  \"COMENTARIO\": \"Sin comentarios\",\n  \"NOMBRE_ASESOR\": \"YEZDEYLI RENDON\",\n  \"FECHA_REPORTE\": 1742088608,\n  \"consolidado\": true,\n  \"imagen_inicio_conversacion\": \"https://n8n-minio.wc2hpx.easypanel.host/reportes/consolidaciones/1742088592302-WhatsApp Image 2025-03-13 at 5.31.37 PM (1).jpeg\",\n  \"imagen_fin_conversacion\": \"https://n8n-minio.wc2hpx.easypanel.host/reportes/consolidaciones/1742088595418-WhatsApp Image 2025-03-13 at 5.31.38 PM.jpeg\",\n  \"video_conversacion\": \"https://n8n-minio.wc2hpx.easypanel.host/reportes/consolidaciones/1742088596910-ScreenRecording_03-15-2025 19-45-52_1.MP4\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "5c6f9867-ad39-474f-a28c-839a4589ac00",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-16T01:33:24.593Z",
+  "versionId": "0305d12e-61fe-41f9-a3fa-708ae77e7bb7"
+}
