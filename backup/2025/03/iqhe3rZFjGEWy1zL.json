@@ -1,0 +1,113 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-17T01:09:06.792Z",
+  "id": "iqhe3rZFjGEWy1zL",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "0cc8359a-3a76-4f13-9121-ca5c1ff36b18",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list",
+          "cachedResultName": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_ASESORES",
+          "mode": "list",
+          "cachedResultName": "GERSSON_ASESORES"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        260,
+        0
+      ],
+      "id": "4f1a6135-48cf-4fc4-8184-3d0e0a2e0e01",
+      "name": "Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "ZfOE9MniAqSzUTvd",
+          "name": "POSTGRESS CEJAS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.ID_TG }}",
+        "text": "CONFIRMEN QUE LES LLEGÓ ESTO...",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        480,
+        0
+      ],
+      "id": "45c0bce0-116a-4058-9a48-7d741696bf3f",
+      "name": "Telegram",
+      "webhookId": "1d723196-b9d6-4b56-9f62-7fd59f63d90d",
+      "credentials": {
+        "telegramApi": {
+          "id": "pZuvWEceEP10tbiQ",
+          "name": "BOT CEJAS"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-17T01:13:45.000Z",
+  "versionId": "18811f69-2d26-456c-a685-930d6a4c5369"
+}
