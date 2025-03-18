@@ -16,7 +16,30 @@
       "main": [
         [
           {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
             "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
             "type": "main",
             "index": 0
           }
@@ -46,12 +69,12 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1Pe6UH5m6uJ25gPZ5iysthW0lIBs8srTmJr4ZE0lTixw/edit?gid=0#gid=0",
+          "value": "https://docs.google.com/spreadsheets/d/131NfGig7lOy3aS3uULdiSVAQ3OfEMBbp82VUC4itVVw/edit?gid=0#gid=0",
           "mode": "url"
         },
         "sheetName": {
           "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1Pe6UH5m6uJ25gPZ5iysthW0lIBs8srTmJr4ZE0lTixw/edit?gid=0#gid=0",
+          "value": "https://docs.google.com/spreadsheets/d/131NfGig7lOy3aS3uULdiSVAQ3OfEMBbp82VUC4itVVw/edit?gid=0#gid=0",
           "mode": "url"
         },
         "options": {}
@@ -74,16 +97,33 @@
     {
       "parameters": {
         "method": "POST",
+        "url": "https://n8n.automscc.com/webhook/hotmart-cejas",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"data\":{\n      \"product\":{\n         \"name\":\"Cejas\",\n         \"id\":1\n      },\n      \"checkout_country\":{\n         \"iso\":\"x\",\n         \"name\":\"x\"\n      },\n      \"buyer_ip\":\"x\",\n      \"affiliate\":true,\n      \"buyer\":{\n         \"phone\":\"{{ $json[\"Teléfono\"]?$json['Teléfono']:0 }}\",\n         \"name\":\"{{ $json.Nombre?$json.Nombre:0 }}\",\n         \"email\":\"{{ $json.Email ?$json.Email:0}}\"\n      }\n   },\n   \"id\":\"X\",\n   \"creation_date\":\"{{$now.toMillis()}}\",\n   \"event\":\"PURCHASE_OUT_OF_SHOPPING_CART\",\n   \"version\":\"2.0.0\"\n} ",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -40,
-        -40
+        200,
+        20
       ],
       "id": "ad2754e3-8c0b-48a7-950a-3d675f79da82",
       "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -40,
+        -40
+      ],
+      "id": "0d9e824a-06d6-4b0b-9842-14b5927922e1",
+      "name": "Loop Over Items"
     }
   ],
   "pinData": {},
@@ -96,6 +136,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-03-17T03:46:24.000Z",
-  "versionId": "bd7bee31-cec3-422d-b649-0e0a51e6a8d4"
+  "updatedAt": "2025-03-18T01:50:19.000Z",
+  "versionId": "99e50fa8-69b8-4092-b5c8-c25afaeb5eae"
 }
