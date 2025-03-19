@@ -269,6 +269,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "BD PASTELERIA",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -277,6 +284,95 @@
         [
           {
             "node": "ES CEJAS?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VENEZUELA?3": {
+      "main": [
+        [
+          {
+            "node": "ELIMINAR +2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NOMBRE3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "encontrar1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NOMBRE3": {
+      "main": [
+        [
+          {
+            "node": "busqueda3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "busqueda3": {
+      "main": [
+        [
+          {
+            "node": "no existe?3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "no existe?3": {
+      "main": [
+        [
+          {
+            "node": "escritura3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BD PASTELERIA": {
+      "main": [
+        [
+          {
+            "node": "ES PASTELERIA?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ES PASTELERIA?": {
+      "main": [
+        [
+          {
+            "node": "VENEZUELA?3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "encontrar1": {
+      "main": [
+        [
+          {
+            "node": "tag manychat1",
             "type": "main",
             "index": 0
           }
@@ -1308,6 +1404,358 @@
           "name": "REDIRECCIONES"
         }
       }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6e074b0d-4663-476d-ae90-8be442f648cd",
+              "leftValue": "={{ $('Edit Fields').item.json.numero }}",
+              "rightValue": "58",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "f777e5fb-427b-4f80-ac85-d3b64a5e1186",
+      "name": "VENEZUELA?3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3120,
+        1320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('Webhook').item.json.body.instance }}?groupJid={{ $('Edit Fields').item.json.grupo }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{ \"action\": \"remove\", \n  \n  \"participants\": [ \"{{ $('Edit Fields').item.json.numero }}\" ] } ",
+        "options": {}
+      },
+      "id": "d2c77d16-abb9-4af2-afa1-23cab0822d30",
+      "name": "ELIMINAR +2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3320,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://evolution.automscc.com/group/findGroupInfos/{{ $('Edit Fields').item.json.instancia }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "groupJid",
+              "value": "={{ $json.id }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3320,
+        1480
+      ],
+      "id": "1330f65b-3946-4274-af1c-1742272a7d8f",
+      "name": "NOMBRE3"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "ARZA_PASTELERIA_L1_WHA",
+          "mode": "list",
+          "cachedResultName": "ARZA_PASTELERIA_L1_WHA"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "whatsapp",
+              "condition": "LIKE",
+              "value": "=%{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}%"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        3480,
+        1480
+      ],
+      "id": "398cefa0-790a-45b9-abfe-13b9871517ba",
+      "name": "busqueda3",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "ARZA_PASTELERIA_L1_WHA",
+          "mode": "list",
+          "cachedResultName": "ARZA_PASTELERIA_L1_WHA"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "dia",
+              "value": "={{ $now.format('yyyy-MM-dd') }}"
+            },
+            {
+              "column": "hora",
+              "value": "={{ $now.format('HH:mm:ss') }}"
+            },
+            {
+              "column": "whatsapp",
+              "value": "=+{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}"
+            },
+            {
+              "column": "grupo",
+              "value": "={{ $('Edit Fields').item.json.grupo }}"
+            },
+            {
+              "column": "nombre_grupo",
+              "value": "={{ $('NOMBRE3').item.json.subject }}"
+            },
+            {
+              "column": "fuente",
+              "value": "FB ADS"
+            }
+          ]
+        },
+        "options": {
+          "detailedOutput": true
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        3840,
+        1420
+      ],
+      "id": "28c3cb0f-a2a5-4732-957e-521cc6c1a209",
+      "name": "escritura3",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7f3e8099-ae55-4534-a5be-217d413c0ff2",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3640,
+        1480
+      ],
+      "id": "f959e58a-944e-47db-992d-985857f9823e",
+      "name": "no existe?3"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "ARZA_PASTELERIA_LINKS",
+          "mode": "list",
+          "cachedResultName": "ARZA_PASTELERIA_LINKS"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $('If').item.json.grupo }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "08012130-e49f-40cf-8f88-fa72b936d1f0",
+      "name": "BD PASTELERIA",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        2740,
+        1340
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8d2037fa-e2a7-4668-901e-4ca0a27a93ab",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "70927ae3-36d8-45df-aba6-f85f49613ff6",
+      "name": "ES PASTELERIA?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2900,
+        1340
+      ]
+    },
+    {
+      "parameters": {
+        "collection": "=pasteleria",
+        "options": {},
+        "query": "={\n  \"whatsapp\": {\n    \"$regex\": \".*{{ $('Edit Fields').item.json.numero.replace(/\\D/g, \"\").slice(-6) }}.*\",\n    \"$options\": \"i\"\n  }\n}"
+      },
+      "id": "f73e458c-427f-4978-b7ba-116ebaebb8ac",
+      "name": "encontrar1",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        3320,
+        1300
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mongoDb": {
+          "id": "vbsT0SoMA5A3acgH",
+          "name": "BASE DE DATOS GERSSON"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.manychat.com/fb/subscriber/addTagByName",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"tag_name\": \"INGRESOGRUPO-L6\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3500,
+        1300
+      ],
+      "id": "88e50a4d-b139-4885-a818-cb0cd2b5f7b1",
+      "name": "tag manychat1",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "maxTries": 5,
+      "disabled": true,
+      "onError": "continueErrorOutput"
     }
   ],
   "pinData": {
@@ -1382,6 +1830,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-04T05:20:18.000Z",
-  "versionId": "a475312b-3acf-42ad-9774-6be1a1000967"
+  "updatedAt": "2025-03-18T08:48:06.000Z",
+  "versionId": "dd696e12-8680-461d-9430-4879082f3283"
 }
