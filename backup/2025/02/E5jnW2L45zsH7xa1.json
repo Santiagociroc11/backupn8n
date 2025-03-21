@@ -17,9 +17,25 @@
         []
       ]
     },
-    "MySQL": {
+    "Sort": {
       "main": [
         [
+          {
+            "node": "Compare Datasets",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          },
           {
             "node": "Compare Datasets",
             "type": "main",
@@ -36,55 +52,6 @@
         [
           {
             "node": "MySQL1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Sort": {
-      "main": [
-        [
-          {
-            "node": "Compare Datasets",
-            "type": "main",
-            "index": 1
-          }
-        ]
-      ]
-    },
-    "No Operation, do nothing": {
-      "main": [
-        [
-          {
-            "node": "MySQL",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Google Sheets",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "When clicking ‘Test workflow’": {
-      "main": [
-        [
-          {
-            "node": "No Operation, do nothing",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Schedule Trigger": {
-      "main": [
-        [
-          {
-            "node": "No Operation, do nothing",
             "type": "main",
             "index": 0
           }
@@ -130,44 +97,20 @@
     },
     {
       "parameters": {
-        "operation": "select",
+        "operation": "update",
         "table": {
           "__rl": true,
-          "value": "ARZA_UÑAS_ENCUESTAS",
+          "value": "ARZA_UÑAS",
           "mode": "list",
-          "cachedResultName": "ARZA_UÑAS_ENCUESTAS"
-        },
-        "returnAll": true,
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        -820,
-        -160
-      ],
-      "id": "e1c10e69-0ca9-47c2-a3e8-680859e520af",
-      "name": "MySQL",
-      "credentials": {
-        "mySql": {
-          "id": "n8fCALXWnGdmJkBN",
-          "name": "CAPTACIONES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "table": {
-          "__rl": true,
-          "value": "ARZA_UÑAS_ENCUESTAS",
-          "mode": "list",
-          "cachedResultName": "ARZA_UÑAS_ENCUESTAS"
+          "cachedResultName": "ARZA_UÑAS"
         },
         "dataMode": "defineBelow",
+        "columnToMatchOn": "correo",
+        "valueToMatchOn": "={{ $json[\"¿Cuál es tu correo electrónico?\"] }}",
         "valuesToSend": {
           "values": [
             {
-              "column": "fecha",
+              "column": "FECHA_ENCUESTA",
               "value": "={{ new Date($json['Marca temporal'].split(\" \")[0].split('/').reverse().join('-')).toISOString().slice(0, 10) }}\n"
             },
             {
@@ -175,61 +118,49 @@
               "value": "={{ $json['¿Cuál es tu correo electrónico?'] }}"
             },
             {
-              "column": "edad",
+              "column": "EDAD",
               "value": "={{ $json['¿Cuál es tu edad?'] }}"
             },
             {
-              "column": "pais",
+              "column": "PAIS",
               "value": "={{ $json['¿Dónde vives?'] }}"
             },
             {
-              "column": "genero",
-              "value": "={{ $json['¿Cuál es tu género?'] }}"
-            },
-            {
-              "column": "ingresos",
+              "column": "INGRESOS",
               "value": "={{ $json['¿Cuál es tu ingreso mensual aproximado?'] }}"
             },
             {
-              "column": "tiempo_conoces",
+              "column": "TIEMPO_CONOCES",
               "value": "={{ $json['¿Hace cuánto tiempo me conoces?'] }}"
             },
             {
-              "column": "fuente",
+              "column": "COMO_CONOCES",
               "value": "={{ $json['¿Cómo me conociste?'] }}"
             },
             {
-              "column": "deseo",
+              "column": "DESEO",
               "value": "={{ $json['¿Qué quieres lograr con la Semana de las uñas?'] }}"
             },
             {
-              "column": "proposito",
+              "column": "PROPOSITO",
               "value": "={{ $json['Si supieras hacer manicura, ¿Para qué usarías esa habilidad?'] }}"
             },
             {
-              "column": "dificultad",
-              "value": "={{ $json['¿Cuál es la mayor dificultad con respecto a la manicura que hoy en día estás atravesando?'] }}"
-            },
-            {
-              "column": "pregunta",
-              "value": "={{ $json['Si tuvieras la oportunidad de preguntarme algo sobre la semana de las uñas, ¿qué me preguntarías?'] }}"
-            },
-            {
-              "column": "estudios",
+              "column": "ESTUDIOS",
               "value": "={{ $json['¿Cuál es tu nivel de escolaridad?'] }}"
             }
           ]
         },
         "options": {
-          "replaceEmptyStrings": true,
-          "detailedOutput": true
+          "replaceEmptyStrings": false,
+          "detailedOutput": false
         }
       },
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        20,
-        40
+        -80,
+        80
       ],
       "id": "808d75a1-b378-4c37-b40b-59e9efd0b169",
       "name": "MySQL1",
@@ -239,32 +170,6 @@
           "name": "CAPTACIONES"
         }
       }
-    },
-    {
-      "parameters": {
-        "mergeByFields": {
-          "values": [
-            {
-              "field1": "correo",
-              "field2": "CORREO"
-            },
-            {
-              "field1": "fuente",
-              "field2": "CONOCISTE"
-            }
-          ]
-        },
-        "resolve": "preferInput2",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.compareDatasets",
-      "typeVersion": 2.3,
-      "position": [
-        -280,
-        -60
-      ],
-      "id": "1f44335a-16d1-42a2-955d-4d47432837d5",
-      "name": "Compare Datasets"
     },
     {
       "parameters": {
@@ -288,44 +193,40 @@
     },
     {
       "parameters": {},
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        -1040,
-        -80
-      ],
-      "id": "b36edabd-8864-42b1-94d0-348ab029a93b",
-      "name": "No Operation, do nothing"
-    },
-    {
-      "parameters": {},
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -1280,
-        0
+        -1140,
+        -80
       ],
       "id": "96bd48c9-5fdc-4165-8416-df0cf6826fd2",
       "name": "When clicking ‘Test workflow’"
     },
     {
       "parameters": {
-        "rule": {
-          "interval": [
+        "mergeByFields": {
+          "values": [
             {
-              "field": "hours"
+              "field1": "correo",
+              "field2": "CORREO"
+            },
+            {
+              "field1": "fuente",
+              "field2": "CONOCISTE"
             }
           ]
-        }
+        },
+        "resolve": "preferInput2",
+        "options": {}
       },
-      "type": "n8n-nodes-base.scheduleTrigger",
-      "typeVersion": 1.2,
+      "type": "n8n-nodes-base.compareDatasets",
+      "typeVersion": 2.3,
       "position": [
-        -1280,
-        -180
+        -380,
+        -80
       ],
-      "id": "06481ac9-a931-4e82-9391-7cc88c624d92",
-      "name": "Schedule Trigger"
+      "id": "1f44335a-16d1-42a2-955d-4d47432837d5",
+      "name": "Compare Datasets"
     }
   ],
   "pinData": {},
@@ -361,6 +262,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-20T04:29:53.000Z",
-  "versionId": "c24ebead-32bc-405a-b21d-cca9ff80f31f"
+  "updatedAt": "2025-03-21T05:29:37.000Z",
+  "versionId": "0dec95bf-53be-43b4-8532-82e19fbbab94"
 }
