@@ -1,0 +1,273 @@
+{
+  "active": false,
+  "connections": {
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-21T05:31:55.121Z",
+  "id": "nx5F2nguRjwbNHDY",
+  "meta": null,
+  "name": "My workflow 6",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        -80
+      ],
+      "id": "03d29a38-5d3c-4ac3-9c12-3690a8b29e71",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1vB0tyCv2tSZT616V4-ErlFzJWWjRnZeuQ1hsG174Fe0/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1vB0tyCv2tSZT616V4-ErlFzJWWjRnZeuQ1hsG174Fe0/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -200,
+        -80
+      ],
+      "id": "f7b8c7cb-8597-4ce0-aaf1-225349957a2f",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_L6",
+          "mode": "list",
+          "cachedResultName": "GERSSON_L6"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "WHATSAPP",
+              "condition": "LIKE",
+              "value": "=%{{ $json[\"Teléfono\"].toString().slice(-7) }}"
+            },
+            {
+              "column": "CORREO",
+              "condition": "LIKE",
+              "value": "={{ $json[\"Email del Comprador(a)\"] }}"
+            }
+          ]
+        },
+        "combineConditions": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        280,
+        -180
+      ],
+      "id": "ec986d9c-07a4-46d8-9699-74e0cf7bd0ff",
+      "name": "MySQL",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4b919dab-0f77-47ee-832e-e104a79dbace",
+              "leftValue": "={{$json.isEmpty()}}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        500,
+        -180
+      ],
+      "id": "b8c13c99-881f-4cea-a133-bdee2bda4bdb",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_L6_VENTAS",
+          "mode": "list",
+          "cachedResultName": "GERSSON_L6_VENTAS"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "cliente_id",
+              "value": "={{ $json[\"#\"] }}"
+            },
+            {
+              "column": "producto_nombre",
+              "value": "={{ $('Loop Over Items').item.json.Producto }}"
+            },
+            {
+              "column": "fecha",
+              "value": "={{ \n(()=>{ const s=$(\"Loop Over Items\").item.json[\"Confirmación del pago\"].split(\" \"); const [d,m,y]=s[0].split(\"/\").map(Number); const [H,Mi,S]=s[1].split(\":\").map(Number); return Date.UTC(y, m-1, d, H+5, Mi, S); })()\n}}\n"
+            },
+            {
+              "column": "monto",
+              "value": "={{ $('Google Sheets').item.json[\"Facturación bruta\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        720,
+        -80
+      ],
+      "id": "654849c6-1119-401d-8d6a-3215a75a5fd9",
+      "name": "MySQL1",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        60,
+        -80
+      ],
+      "id": "63925603-1fa6-4b8b-aec6-45f2e6f0fbd2",
+      "name": "Loop Over Items"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-21T05:31:55.121Z",
+  "versionId": "b6c9f871-a65f-455f-b7fd-6ca9f2a4d8b0"
+}
