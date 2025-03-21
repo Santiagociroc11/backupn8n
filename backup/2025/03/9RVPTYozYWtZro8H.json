@@ -171,7 +171,7 @@
       "main": [
         [
           {
-            "node": "MySQL5",
+            "node": "Loop Over Items1",
             "type": "main",
             "index": 0
           }
@@ -213,17 +213,6 @@
           }
         ]
       ]
-    },
-    "MySQL5": {
-      "main": [
-        [
-          {
-            "node": "Loop Over Items1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
     }
   },
   "createdAt": "2025-03-19T19:39:49.884Z",
@@ -238,7 +227,7 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -480,
+        -600,
         360
       ],
       "id": "80992552-0555-481d-836f-1ebbc2da0c49",
@@ -673,7 +662,7 @@
           "values": [
             {
               "column": "cliente_id",
-              "value": "={{ $('existe?').item.json[\"#\"] }}"
+              "value": "={{ $('MySQL2').item.json[\"#\"] }}"
             },
             {
               "column": "producto_nombre",
@@ -681,7 +670,7 @@
             },
             {
               "column": "fecha",
-              "value": "={{ $('Loop Over Items1').item.json.FECHA_COMPRA }}"
+              "value": "={{ $('Loop Over Items1').item.json.FECHA_COMPRA? $('Loop Over Items1').item.json.FECHA_COMPRA: $now.toSeconds().round() }}"
             },
             {
               "column": "monto",
@@ -694,8 +683,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        1820,
-        520
+        1840,
+        660
       ],
       "id": "4fbc6579-0c6c-47cb-8f74-ad13df39a890",
       "name": "MySQL3",
@@ -734,56 +723,10 @@
       "typeVersion": 2.2,
       "position": [
         1640,
-        400
+        480
       ],
       "id": "edcaa2d8-8356-45d3-b90d-f4b2a4767a44",
       "name": "If3"
-    },
-    {
-      "parameters": {
-        "table": {
-          "__rl": true,
-          "value": "GERSSON_L6_VENTAS",
-          "mode": "list",
-          "cachedResultName": "GERSSON_L6_VENTAS"
-        },
-        "dataMode": "defineBelow",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "cliente_id",
-              "value": "={{ $('existe?').item.json[\"#\"] }}"
-            },
-            {
-              "column": "producto_nombre",
-              "value": "=Terapia del Dolor"
-            },
-            {
-              "column": "fecha",
-              "value": "={{ $('Loop Over Items1').item.json.FECHA_COMPRA }}"
-            },
-            {
-              "column": "monto",
-              "value": "=55"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        2140,
-        560
-      ],
-      "id": "916f1abd-805b-44d0-87b6-eb7f3827dc13",
-      "name": "MySQL5",
-      "credentials": {
-        "mySql": {
-          "id": "n8fCALXWnGdmJkBN",
-          "name": "CAPTACIONES"
-        }
-      }
     },
     {
       "parameters": {
@@ -820,7 +763,13 @@
       "name": "If4"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "When clicking ‘Test workflow’": [
+      {
+        "json": {}
+      }
+    ]
+  },
   "repo_name": "backupn8n",
   "repo_owner": "Santiagociroc11",
   "repo_path": "backup/",
@@ -830,6 +779,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-03-20T05:33:02.000Z",
-  "versionId": "d659c25d-f265-4005-8ef6-aa3838fb4435"
+  "updatedAt": "2025-03-20T06:21:32.000Z",
+  "versionId": "57fa223e-7087-49fb-8461-6fd0d577ee50"
 }
