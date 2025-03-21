@@ -5,12 +5,34 @@
       "main": [
         [
           {
-            "node": "Google Sheets",
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
             "type": "main",
             "index": 0
           },
           {
-            "node": "MySQL",
+            "node": "Telegram",
             "type": "main",
             "index": 0
           }
@@ -23,7 +45,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "[BOT-WHA] CODIGOS CHATGPT - DAINES",
+  "name": "[BACKEND-AUTOFINANZAS] CORREOS Y TG",
   "nodes": [
     {
       "parameters": {
@@ -35,143 +57,191 @@
           ]
         },
         "filters": {
-          "sender": "noreply@email.openai.com"
+          "includeSpamTrash": true,
+          "sender": "alertasynotificaciones@notificacionesbancolombia.com"
         }
       },
       "type": "n8n-nodes-base.gmailTrigger",
       "typeVersion": 1.2,
       "position": [
-        -300,
-        -60
+        -720,
+        -280
       ],
       "id": "473dfcf8-0cb3-44f0-8155-24b28d2eb69b",
       "name": "Gmail Trigger",
       "credentials": {
         "gmailOAuth2": {
           "id": "DOPWTzPin0EZKjQY",
-          "name": "Gmail account"
+          "name": "GMAIL SANTIAGO"
         }
       }
     },
     {
       "parameters": {
-        "operation": "appendOrUpdate",
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1heUJFUr-ikiqtGnrvUZhy616HmFTTZ1z_WffSTTio8w/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1heUJFUr-ikiqtGnrvUZhy616HmFTTZ1z_WffSTTio8w/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "FECHA": "={{ $now.format('dd-MM-yyyy HH:mm:ss') }}",
-            "CODIGO": "={{ $json.Subject.match(/\\d+/g)?.join('') }}"
-          },
-          "matchingColumns": [
-            "FECHA"
-          ],
-          "schema": [
+        "assignments": {
+          "assignments": [
             {
-              "id": "FECHA",
-              "displayName": "FECHA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "CODIGO",
-              "displayName": "CODIGO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        -20,
-        20
-      ],
-      "id": "4e99254d-8b11-4600-bd39-a1e75d811242",
-      "name": "Google Sheets",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "Google Sheets account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "table": {
-          "__rl": true,
-          "value": "access_codes",
-          "mode": "list",
-          "cachedResultName": "access_codes"
-        },
-        "dataMode": "defineBelow",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "code",
-              "value": "={{ $json.Subject.match(/\\d+/g)?.join('') }}"
+              "id": "8a09502d-cbfd-437a-ae53-96089ceb6cc4",
+              "name": "correo",
+              "value": "={{ $json.snippet }}",
+              "type": "string"
             }
           ]
         },
         "options": {}
       },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -480,
+        -280
+      ],
+      "id": "ffc2b0b7-55a0-4bd9-be24-74320b63dd9a",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const email = $input.first().json.correo;\n\n// Definir expresiones regulares robustas y tolerantes\nconst amountRegex = /\\$([\\d,.]+)/;\nconst dateRegex = /(\\d{2}\\/\\d{2}\\/\\d{4})/;\nconst timeRegex = /a las (\\d{2}:\\d{2})/;\nconst cuentaOrigenRegex = /desde .*?cuenta\\s*(\\*\\d+)/;\nconst cuentaDestinoRegex = /a la cuenta (\\*\\d+)/;\nconst empresaRegex = /en ([A-Z0-9\\s]+)/;\nconst facturaRegex = /Factura Programada ([A-Za-z\\s]+) Ref/;\nconst bancoDestinoRegex = /a ([A-Z\\s]+) desde/;\n\n// Extraer valores\nconst amountMatch = email.match(amountRegex);\nconst dateMatch = email.match(dateRegex);\nconst timeMatch = email.match(timeRegex);\nconst cuentaOrigenMatch = email.match(cuentaOrigenRegex);\nconst cuentaDestinoMatch = email.match(cuentaDestinoRegex);\nconst empresaMatch = email.match(empresaRegex);\nconst facturaMatch = email.match(facturaRegex);\nconst bancoDestinoMatch = email.match(bancoDestinoRegex);\n\n// Procesar valores\nconst amount = amountMatch ? parseFloat(amountMatch[1].replace(/,/g, \"\")) : null;\nconst dateExtracted = dateMatch ? dateMatch[1] : null;\nconst timeExtracted = timeMatch ? timeMatch[1] : \"00:00\";\nconst transactionDate = dateExtracted ? `${dateExtracted.split('/').reverse().join('-')} ${timeExtracted}:00-05` : null;\nconst cuentaOrigen = cuentaOrigenMatch ? cuentaOrigenMatch[1] : \"No encontrada\";\nconst cuentaDestino = cuentaDestinoMatch ? cuentaDestinoMatch[1] : \"No encontrada\";\nconst empresa = empresaMatch ? empresaMatch[1] : null;\nconst factura = facturaMatch ? facturaMatch[1] : null;\nconst bancoDestino = bancoDestinoMatch ? bancoDestinoMatch[1] : null;\n\n// Detectar tipo\nlet transactionType = \"otros\";\nlet description = email;\n\nif (email.includes(\"Transferiste\")) {\n  transactionType = \"transferencia\";\n  description = `Transferencia desde ${cuentaOrigen} a ${cuentaDestino}`;\n} else if (email.includes(\"Compraste\")) {\n  transactionType = \"compra con tarjeta\";\n  description = `Compra en ${empresa} con tarjeta ${cuentaOrigen}`;\n} else if (email.includes(\"Pagaste\")) {\n  transactionType = \"pago por pse\";\n  description = `Pago por PSE a ${bancoDestino} desde ${cuentaOrigen}`;\n} else if (email.includes(\"Factura Programada\")) {\n  transactionType = \"pago programado\";\n  description = `Pago programado de ${factura} desde ${cuentaOrigen}`;\n}\n\n// Devolver valores listos para base de datos\nreturn [{\n  values: {\n    amount,\n    description,\n    transaction_date: transactionDate,\n    transaction_type: transactionType,\n    type: \"gasto\"\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -260,
+        -280
+      ],
+      "id": "38c47266-a959-4bed-8c40-1e1c4f3441e7",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "tableId": "transactions",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "amount",
+              "fieldValue": "={{ $json.values.amount }}"
+            },
+            {
+              "fieldId": "description",
+              "fieldValue": "={{ $json.values.description }}"
+            },
+            {
+              "fieldId": "transaction_date",
+              "fieldValue": "={{ $json.values.transaction_date }}"
+            },
+            {
+              "fieldId": "transaction_type",
+              "fieldValue": "={{ $json.values.transaction_type }}"
+            },
+            {
+              "fieldId": "type",
+              "fieldValue": "={{ $json.values.type }}"
+            },
+            {
+              "fieldId": "notification_email",
+              "fieldValue": "={{ $('Gmail Trigger').item.json.To }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
       "position": [
         -20,
-        -160
+        -220
       ],
-      "id": "6ee66f14-ed61-44b8-84e9-bf29079bb30a",
-      "name": "MySQL",
+      "id": "7a6b257e-7184-4e16-9edb-5063633cd014",
+      "name": "Supabase",
       "credentials": {
-        "mySql": {
-          "id": "9FejfbSkUP2zfGdA",
-          "name": "MySQL account"
+        "supabaseApi": {
+          "id": "hekxcEm0GzZoyhoO",
+          "name": "Supabase account"
         }
       }
+    },
+    {
+      "parameters": {
+        "chatId": "552780004",
+        "text": "=⚡ *NUEVO MOVIMIENTO DETECTADO EN BANCOLOMBIA*\n\nSe acaba de registrar un nuevo movimiento con estos datos:\n\n*VALOR*: ${{ $json.values.amount.format() }}\n*DESCRIPCIÓN*: {{ $json.values.description }}\n*TIPO*: {{ $json.values.transaction_type }}",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "REPORTAR TRANSACCIÓN",
+                    "additionalFields": {
+                      "url": "https://auto-finanzas.automscc.com/"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -20,
+        -420
+      ],
+      "id": "ed45b8da-f16b-4291-a114-8d943ab3d24d",
+      "name": "Telegram",
+      "webhookId": "709cc4b4-8ba5-428c-8b5d-0b00c99b23d5",
+      "credentials": {
+        "telegramApi": {
+          "id": "D5fwEGb7XJShZzzS",
+          "name": "BOT FINANZAS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "*"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -720,
+        40
+      ],
+      "id": "78e8f12d-4788-4754-a8c3-a499876cf7ff",
+      "name": "Telegram Trigger",
+      "webhookId": "2c327f70-6d3f-4b8f-ae6a-5001c1db4833",
+      "credentials": {
+        "telegramApi": {
+          "id": "D5fwEGb7XJShZzzS",
+          "name": "BOT FINANZAS"
+        }
+      },
+      "disabled": true
     }
   ],
   "pinData": {
     "Gmail Trigger": [
       {
         "json": {
-          "id": "194f280ad637932c",
-          "threadId": "194f280ad637932c",
-          "snippet": "Enter this temporary verification code to continue: 627382. ChatGPT Log-in Code Hi there, We noticed a suspicious log-in on your account. If that was you, enter this code: 627382 If you were not trying",
+          "id": "195b629e9afafce5",
+          "threadId": "195b4c2ccc8f267b",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Transferiste $1000.00 desde tu cuenta *6138 a la cuenta *0000003009937799 el 20/03/2025 a las 19:45. ¿Dudas? Llamanos al 018000931987. Estamos",
           "payload": {
             "mimeType": "text/html"
           },
-          "sizeEstimate": 22518,
-          "historyId": "6555312",
-          "internalDate": "1739235303000",
+          "sizeEstimate": 51976,
+          "historyId": "6711812",
+          "internalDate": "1742517953000",
           "labels": [
             {
               "id": "INBOX",
               "name": "INBOX"
-            },
-            {
-              "id": "IMPORTANT",
-              "name": "IMPORTANT"
             },
             {
               "id": "CATEGORY_UPDATES",
@@ -182,9 +252,9 @@
               "name": "UNREAD"
             }
           ],
-          "From": "noreply@email.openai.com",
-          "Subject": "Your ChatGPT code is 627382",
-          "To": "cuentagptv1@gmail.com"
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
         }
       }
     ]
@@ -198,15 +268,15 @@
   "staticData": {
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1741988204,
+        "lastTimeChecked": 1742531928,
         "possibleDuplicates": [
-          "19596969e1338ea4"
+          "195b6ff238636228"
         ]
       }
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-02-13T03:29:43.000Z",
-  "versionId": "660fa48b-3a40-43d4-bceb-93205f6ed3c3"
+  "updatedAt": "2025-03-21T04:47:54.000Z",
+  "versionId": "c416b42d-bf0e-4e9b-8297-7f43b553d7c5"
 }
