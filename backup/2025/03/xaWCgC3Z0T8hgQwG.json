@@ -3,13 +3,7 @@
   "connections": {
     "When clicking ‘Test workflow’": {
       "main": [
-        [
-          {
-            "node": "Google Sheets",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Google Sheets": {
@@ -17,6 +11,39 @@
         [
           {
             "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "MongoDB1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB1": {
+      "main": [
+        [
+          {
+            "node": "Code2",
             "type": "main",
             "index": 0
           }
@@ -36,8 +63,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -1340,
-        -200
+        -1600,
+        60
       ],
       "id": "938de5ea-87c1-48bd-8b16-5c1fd060ca91",
       "name": "When clicking ‘Test workflow’"
@@ -59,8 +86,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        -1120,
-        -200
+        -1060,
+        -180
       ],
       "id": "3bf16366-fc94-43ce-b097-ffecbe5d172a",
       "name": "Google Sheets",
@@ -78,11 +105,106 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -920,
-        -200
+        -860,
+        -180
       ],
       "id": "1956773d-8b2d-4b8d-b830-ba3cd19ec1e6",
       "name": "Code"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Función para esperar un tiempo determinado (ms)\nfunction delay(ms) {\n  return new Promise(resolve => setTimeout(resolve, ms));\n}\n\nconst items = $input.all();\nconst totalItems = items.length;\n\nconsole.log(`Iniciando proceso con ${totalItems} items...`);\n\nfor (let i = 0; i < totalItems; i++) {\n  const item = items[i];\n  const id = item.json.id_manychat;\n  let tag = \"ENCUESTA-L1\";\n\n  if (tag) {\n    // Esperamos para respetar el límite de 10 RPS (aprox. 110 ms)\n    await delay(110);\n\n    const options = {\n      method: 'POST',\n      url: 'https://api.manychat.com/fb/subscriber/addTagByName',\n      headers: {\n        \"Authorization\": \"Bearer 1189237:5ad48c01d73704bf48fc266399a867f6\",\n        \"Content-Type\": \"application/json\",\n        \"Accept\": \"application/json\"\n      },\n      body: {\n         subscriber_id: id,\n         tag_name: tag\n      },\n      json: true,\n    };\n\n    try {\n      const response = await this.helpers.request(options);\n      item.json.manychatResponse = response;\n      console.log(`Proceso ${i + 1} de ${totalItems}: id: ${id} estado: completado`);\n    } catch (error) {\n      console.log(`Proceso ${i + 1} de ${totalItems}: id: ${id} estado: error`);\n    }\n  } else {\n    console.log(`Proceso ${i + 1} de ${totalItems}: id: ${id} estado: sin asignación`);\n  }\n}\n\nconsole.log(\"Proceso completado. ¡Todos los items han sido procesados!\");\nreturn items;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -820,
+        40
+      ],
+      "id": "7518445f-f6bb-4bdc-99c7-6edfab87a50b",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "collection": "pasteleria",
+        "options": {},
+        "query": "{ \"tiempoencuesta\": { \"$exists\": true } }\n"
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        -1080,
+        40
+      ],
+      "id": "f7466851-6959-427a-a065-df369d517884",
+      "name": "MongoDB",
+      "credentials": {
+        "mongoDb": {
+          "id": "JAKPCevXk5GvKOt9",
+          "name": "MONGO CARLOS ARZA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "ARZA_PASTELERIA_L1_WHA",
+          "mode": "list",
+          "cachedResultName": "ARZA_PASTELERIA_L1_WHA"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -1180,
+        240
+      ],
+      "id": "b705c6cc-6318-496f-aada-e197caca3ac4",
+      "name": "MySQL",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Función para esperar un tiempo determinado (ms)\nfunction delay(ms) {\n  return new Promise(resolve => setTimeout(resolve, ms));\n}\n\nconst items = $input.all();\nconst totalItems = items.length;\n\nconsole.log(`Iniciando proceso con ${totalItems} items...`);\n\nfor (let i = 0; i < totalItems; i++) {\n  const item = items[i];\n  const id = item.json.id_manychat;\n  let tag = \"INGRESOGRUPO-L1\";\n\n  if (tag) {\n    // Esperamos para respetar el límite de 10 RPS (aprox. 110 ms)\n    await delay(110);\n\n    const options = {\n      method: 'POST',\n      url: 'https://api.manychat.com/fb/subscriber/addTagByName',\n      headers: {\n        \"Authorization\": \"Bearer 1189237:5ad48c01d73704bf48fc266399a867f6\",\n        \"Content-Type\": \"application/json\",\n        \"Accept\": \"application/json\"\n      },\n      body: {\n         subscriber_id: id,\n         tag_name: tag\n      },\n      json: true,\n    };\n\n    try {\n      const response = await this.helpers.request(options);\n      item.json.manychatResponse = response;\n      console.log(`Proceso ${i + 1} de ${totalItems}: id: ${id} estado: completado`);\n    } catch (error) {\n      console.log(`Proceso ${i + 1} de ${totalItems}: id: ${id} estado: error`);\n    }\n  } else {\n    console.log(`Proceso ${i + 1} de ${totalItems}: id: ${id} estado: sin asignación`);\n  }\n}\n\nconsole.log(\"Proceso completado. ¡Todos los items han sido procesados!\");\nreturn items;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -640,
+        240
+      ],
+      "id": "ac7feac2-ad5c-413d-9136-62018ec047aa",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "collection": "pasteleria",
+        "options": {},
+        "query": "={\n  \"whatsapp\": {\n    \"$regex\": \".*{{ $('MySQL').item.json.whatsapp.replace(/\\D/g, \"\").slice(-6) }}.*\",\n    \"$options\": \"i\"\n  }\n}"
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        -960,
+        240
+      ],
+      "id": "165553f1-7944-4418-96b4-3be97efc4a2b",
+      "name": "MongoDB1",
+      "credentials": {
+        "mongoDb": {
+          "id": "JAKPCevXk5GvKOt9",
+          "name": "MONGO CARLOS ARZA"
+        }
+      }
     }
   ],
   "pinData": {
@@ -101,6 +223,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-03-03T20:45:52.000Z",
-  "versionId": "aca43733-6410-4a0f-a740-09f22afaa0f8"
+  "updatedAt": "2025-03-21T20:40:49.000Z",
+  "versionId": "c4243fb7-1a5d-4d51-81a6-61431061151d"
 }
