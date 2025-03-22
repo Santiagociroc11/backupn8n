@@ -540,7 +540,7 @@
   "createdAt": "2025-03-18T07:29:19.688Z",
   "id": "vbRmm4zkfzVPc4cy",
   "meta": null,
-  "name": "🟢 [PASTELERIA] CAPTURA TD - REGISTRO Y ENCUESTAS",
+  "name": "🟢 [ARZA-PASTELERIA] CAPTURA TD - REGISTRO Y ENCUESTAS",
   "nodes": [
     {
       "parameters": {
@@ -928,7 +928,7 @@
           "parameters": [
             {
               "name": "Authorization",
-              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+              "value": "Bearer 1189237:5ad48c01d73704bf48fc266399a867f6"
             },
             {
               "name": "Content-Type",
@@ -956,7 +956,6 @@
       "retryOnFail": true,
       "waitBetweenTries": 5000,
       "maxTries": 5,
-      "disabled": true,
       "onError": "continueErrorOutput"
     },
     {
@@ -968,7 +967,7 @@
           "parameters": [
             {
               "name": "Authorization",
-              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+              "value": "Bearer 1189237:5ad48c01d73704bf48fc266399a867f6"
             },
             {
               "name": "Content-Type",
@@ -982,21 +981,20 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"tag_name\": \"ENCUESTA-L6\"\n}",
+        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"tag_name\": \"ENCUESTA-L1\"\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
         920,
-        60
+        80
       ],
       "id": "a5caeaa3-39e2-4f82-9cde-86f404498040",
       "name": "HTTP Request6",
       "retryOnFail": true,
       "waitBetweenTries": 5000,
       "maxTries": 5,
-      "disabled": true,
       "onError": "continueErrorOutput"
     },
     {
@@ -1202,7 +1200,7 @@
           "parameters": [
             {
               "name": "Authorization",
-              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+              "value": "Bearer 1189237:5ad48c01d73704bf48fc266399a867f6"
             },
             {
               "name": "Content-Type",
@@ -1230,7 +1228,6 @@
       "retryOnFail": true,
       "waitBetweenTries": 5000,
       "maxTries": 5,
-      "disabled": true,
       "onError": "continueErrorOutput"
     },
     {
@@ -1246,8 +1243,7 @@
         -380
       ],
       "id": "abe7208f-5acc-4d16-b4e9-cdf4b37e1216",
-      "name": "Merge5",
-      "disabled": true
+      "name": "Merge5"
     },
     {
       "parameters": {
@@ -1270,8 +1266,7 @@
         -520
       ],
       "id": "70fe962f-5eed-4e0e-95ab-c708c42946c6",
-      "name": "Edit Fields5",
-      "disabled": true
+      "name": "Edit Fields5"
     },
     {
       "parameters": {
@@ -1415,8 +1410,7 @@
         -380
       ],
       "id": "3c020105-7abe-45d7-a521-d018fefa147e",
-      "name": "existe?",
-      "disabled": true
+      "name": "existe?"
     },
     {
       "parameters": {
@@ -1450,8 +1444,7 @@
         -620
       ],
       "id": "575a88be-9775-4d10-8855-692f6979dc37",
-      "name": "existe en manychat?",
-      "disabled": true
+      "name": "existe en manychat?"
     },
     {
       "parameters": {
@@ -1474,8 +1467,7 @@
           "id": "JAKPCevXk5GvKOt9",
           "name": "MONGO CARLOS ARZA"
         }
-      },
-      "disabled": true
+      }
     },
     {
       "parameters": {
@@ -1486,7 +1478,7 @@
           "parameters": [
             {
               "name": "Authorization",
-              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+              "value": "Bearer 1189237:5ad48c01d73704bf48fc266399a867f6"
             },
             {
               "name": "Content-Type",
@@ -1500,7 +1492,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"flow_ns\": \"content20250124045214_190466\"\n}",
+        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"flow_ns\": \"content20250321190458_817899\"\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -1514,7 +1506,6 @@
       "retryOnFail": true,
       "waitBetweenTries": 5000,
       "maxTries": 5,
-      "disabled": true,
       "onError": "continueErrorOutput"
     },
     {
@@ -1534,7 +1525,7 @@
           "parameters": [
             {
               "name": "Authorization",
-              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+              "value": "Bearer 1189237:5ad48c01d73704bf48fc266399a867f6"
             },
             {
               "name": "Content-Type",
@@ -1559,7 +1550,6 @@
       "retryOnFail": true,
       "waitBetweenTries": 5000,
       "maxTries": 5,
-      "disabled": true,
       "onError": "continueErrorOutput"
     },
     {
@@ -1589,8 +1579,7 @@
         -660
       ],
       "id": "885f9d61-4bed-4283-a0f0-8b47bdafffdd",
-      "name": "Edit Fields8",
-      "disabled": true
+      "name": "Edit Fields8"
     },
     {
       "parameters": {
@@ -2099,6 +2088,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-03-18T09:02:30.000Z",
-  "versionId": "a2487421-60a4-403f-aad5-05aa1c57082b"
+  "updatedAt": "2025-03-21T20:41:41.000Z",
+  "versionId": "c8a1907b-742b-4bbe-96cb-add861eaa8ba"
 }
