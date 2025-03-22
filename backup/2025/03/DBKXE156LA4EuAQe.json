@@ -54,7 +54,7 @@
         "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"chat_id\": \"-1002216643127\",\n  \"message_thread_id\": 40,\n  \"text\": \"🚨 *GRUPOS*: \\n\\n {{ $json.body.mensaje }}\",\n  \"parse_mode\": \"Markdown\"\n}\n",
+        "jsonBody": "={\n  \"chat_id\": \"-1002282272068\",\n  \"message_thread_id\": 44,\n  \"text\": \"🚨 *GRUPOS*: \\n\\n {{ $json.body.mensaje }}\",\n  \"parse_mode\": \"Markdown\"\n}\n",
         "options": {}
       },
       "id": "10fa636b-7482-44c9-8999-c88f94690036",
@@ -138,36 +138,23 @@
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
-            "user-agent": "Mozilla/5.0 (Linux; Android 8.0.0; WAS-LX3 Build/HUAWEIWAS-LX3; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/133.0.6943.50 Mobile Safari/537.36",
-            "content-length": "70",
-            "accept": "*/*",
-            "accept-encoding": "gzip, deflate, br, zstd",
-            "accept-language": "es-CO,es;q=0.9,en-US;q=0.8,en;q=0.7",
-            "content-type": "application/json",
-            "origin": "https://terapiasmagneticas.com",
-            "priority": "u=1, i",
-            "referer": "https://terapiasmagneticas.com/",
-            "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Android WebView\";v=\"133\", \"Chromium\";v=\"133\"",
-            "sec-ch-ua-mobile": "?1",
-            "sec-ch-ua-platform": "\"Android\"",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "186.28.5.137",
+            "content-length": "149",
+            "content-type": "application/x-www-form-urlencoded",
+            "x-forwarded-for": "195.35.41.28",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "3051a3bb6625",
-            "x-real-ip": "186.28.5.137",
-            "x-requested-with": "com.hearts.solitaire.plus.offline.free.card.games"
+            "x-forwarded-server": "e90ae4fad82e",
+            "x-real-ip": "195.35.41.28",
+            "accept-encoding": "gzip"
           },
           "params": {},
           "query": {},
           "body": {
-            "mensaje": "xxx",
+            "mensaje": "🟢 GRUPO *Masterclass pastelería rentable #1* LLENADO EN *76 HORAS*. Quedan *4* grupos disponibles.",
             "tipo": "llenado"
           },
-          "webhookUrl": "https://n8n.automscc.com/webhook/gtm-avisos",
+          "webhookUrl": "https://n8n.automscc.com/webhook/tg-arza-pasteleria",
           "executionMode": "production"
         }
       }
@@ -189,6 +176,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-18T08:38:51.000Z",
-  "versionId": "d0669d99-9041-4d86-9add-04e70cc4f468"
+  "updatedAt": "2025-03-21T15:26:04.000Z",
+  "versionId": "d5178082-d2ff-427b-bed1-228c4bb9fed2"
 }
