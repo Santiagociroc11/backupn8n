@@ -1711,11 +1711,10 @@
       "alwaysOutputData": true,
       "credentials": {
         "mongoDb": {
-          "id": "vbsT0SoMA5A3acgH",
-          "name": "BASE DE DATOS GERSSON"
+          "id": "JAKPCevXk5GvKOt9",
+          "name": "MONGO CARLOS ARZA"
         }
-      },
-      "disabled": true
+      }
     },
     {
       "parameters": {
@@ -1726,7 +1725,7 @@
           "parameters": [
             {
               "name": "Authorization",
-              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+              "value": "Bearer 1189237:5ad48c01d73704bf48fc266399a867f6"
             },
             {
               "name": "Content-Type",
@@ -1740,7 +1739,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"tag_name\": \"INGRESOGRUPO-L6\"\n}",
+        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"tag_name\": \"INGRESOGRUPO-L1\"\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -1754,7 +1753,6 @@
       "retryOnFail": true,
       "waitBetweenTries": 5000,
       "maxTries": 5,
-      "disabled": true,
       "onError": "continueErrorOutput"
     }
   ],
@@ -1830,6 +1828,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-18T08:48:06.000Z",
-  "versionId": "dd696e12-8680-461d-9430-4879082f3283"
+  "updatedAt": "2025-03-21T19:59:07.000Z",
+  "versionId": "ae39bf75-bc93-4412-8207-866672232e52"
 }
