@@ -58,14 +58,16 @@
         },
         "filters": {
           "includeSpamTrash": true,
-          "sender": "alertasynotificaciones@notificacionesbancolombia.com"
+          "labelIds": [
+            "Label_5009391565458069770"
+          ]
         }
       },
       "type": "n8n-nodes-base.gmailTrigger",
       "typeVersion": 1.2,
       "position": [
-        -720,
-        -280
+        -700,
+        -320
       ],
       "id": "473dfcf8-0cb3-44f0-8155-24b28d2eb69b",
       "name": "Gmail Trigger",
@@ -93,21 +95,21 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -480,
-        -280
+        -500,
+        -320
       ],
       "id": "ffc2b0b7-55a0-4bd9-be24-74320b63dd9a",
       "name": "Edit Fields1"
     },
     {
       "parameters": {
-        "jsCode": "const email = $input.first().json.correo;\n\n// Definir expresiones regulares robustas y tolerantes\nconst amountRegex = /\\$([\\d,.]+)/;\nconst dateRegex = /(\\d{2}\\/\\d{2}\\/\\d{4})/;\nconst timeRegex = /a las (\\d{2}:\\d{2})/;\nconst cuentaOrigenRegex = /desde .*?cuenta\\s*(\\*\\d+)/;\nconst cuentaDestinoRegex = /a la cuenta (\\*\\d+)/;\nconst empresaRegex = /en ([A-Z0-9\\s]+)/;\nconst facturaRegex = /Factura Programada ([A-Za-z\\s]+) Ref/;\nconst bancoDestinoRegex = /a ([A-Z\\s]+) desde/;\n\n// Extraer valores\nconst amountMatch = email.match(amountRegex);\nconst dateMatch = email.match(dateRegex);\nconst timeMatch = email.match(timeRegex);\nconst cuentaOrigenMatch = email.match(cuentaOrigenRegex);\nconst cuentaDestinoMatch = email.match(cuentaDestinoRegex);\nconst empresaMatch = email.match(empresaRegex);\nconst facturaMatch = email.match(facturaRegex);\nconst bancoDestinoMatch = email.match(bancoDestinoRegex);\n\n// Procesar valores\nconst amount = amountMatch ? parseFloat(amountMatch[1].replace(/,/g, \"\")) : null;\nconst dateExtracted = dateMatch ? dateMatch[1] : null;\nconst timeExtracted = timeMatch ? timeMatch[1] : \"00:00\";\nconst transactionDate = dateExtracted ? `${dateExtracted.split('/').reverse().join('-')} ${timeExtracted}:00-05` : null;\nconst cuentaOrigen = cuentaOrigenMatch ? cuentaOrigenMatch[1] : \"No encontrada\";\nconst cuentaDestino = cuentaDestinoMatch ? cuentaDestinoMatch[1] : \"No encontrada\";\nconst empresa = empresaMatch ? empresaMatch[1] : null;\nconst factura = facturaMatch ? facturaMatch[1] : null;\nconst bancoDestino = bancoDestinoMatch ? bancoDestinoMatch[1] : null;\n\n// Detectar tipo\nlet transactionType = \"otros\";\nlet description = email;\n\nif (email.includes(\"Transferiste\")) {\n  transactionType = \"transferencia\";\n  description = `Transferencia desde ${cuentaOrigen} a ${cuentaDestino}`;\n} else if (email.includes(\"Compraste\")) {\n  transactionType = \"compra con tarjeta\";\n  description = `Compra en ${empresa} con tarjeta ${cuentaOrigen}`;\n} else if (email.includes(\"Pagaste\")) {\n  transactionType = \"pago por pse\";\n  description = `Pago por PSE a ${bancoDestino} desde ${cuentaOrigen}`;\n} else if (email.includes(\"Factura Programada\")) {\n  transactionType = \"pago programado\";\n  description = `Pago programado de ${factura} desde ${cuentaOrigen}`;\n}\n\n// Devolver valores listos para base de datos\nreturn [{\n  values: {\n    amount,\n    description,\n    transaction_date: transactionDate,\n    transaction_type: transactionType,\n    type: \"gasto\"\n  }\n}];\n"
+        "jsCode": "// Obtener el arreglo completo de labels\nconst labels = $('Gmail Trigger').first().json.labels;\nconst labelObj = labels.find(l => l && l.name && /transacciones/i.test(l.name));\nconst label = labelObj ? labelObj.name : '';\nconst email = $input.first().json.correo;\n\n// Expresiones regulares actualizadas y con alternativas\nconst bancoregex = /bancolombia/i;\nconst amountRegex = /\\$([\\d,.]+)/;\n// Para fecha: acepta dd/mm/yyyy o yyyy/mm/dd\nconst dateRegex = /((\\d{2}\\/\\d{2}\\/\\d{4})|(\\d{4}\\/\\d{2}\\/\\d{2}))/;\n// Para hora: acepta con o sin el prefijo \"a las\"\nconst timeRegex = /(?:a las\\s*)?(\\d{2}:\\d{2})/;\n// Para cuenta: permite que el asterisco sea opcional\nconst cuentaOrigenRegex = /desde .*?cuenta\\s*\\*?(\\d+)/;\nconst cuentaDestinoRegex = /a la cuenta\\s*\\*?(\\d+)/;\n// Se dejan los demás, aunque se podrían ajustar según el correo\nconst empresaRegex = /en ([A-Z0-9\\s]+)/;\nconst facturaRegex = /Factura Programada ([A-Za-z\\s]+) Ref/;\nconst bancoDestinoRegex = /a ([A-Z\\s]+) desde/;\n\n// Extraer valores\nconst amountMatch = email.match(amountRegex);\nconst dateMatch = email.match(dateRegex);\nconst timeMatch = email.match(timeRegex);\nconst cuentaOrigenMatch = email.match(cuentaOrigenRegex);\nconst cuentaDestinoMatch = email.match(cuentaDestinoRegex);\nconst empresaMatch = email.match(empresaRegex);\nconst facturaMatch = email.match(facturaRegex);\nconst bancoDestinoMatch = email.match(bancoDestinoRegex);\nconst bancoMatch = label.match(bancoregex);\n\n// Procesar valores\nconst amount = amountMatch ? parseFloat(amountMatch[1].replace(/,/g, \"\")) : null;\nconst dateExtracted = dateMatch ? dateMatch[1] : null;\nconst timeExtracted = timeMatch ? timeMatch[1] : \"00:00\";\n\n// Formatear la fecha detectando el orden\nlet transactionDate = null;\nif (dateExtracted) {\n  const dateParts = dateExtracted.split('/');\n  // Si el primer elemento tiene 4 dígitos, asumimos formato yyyy/mm/dd\n  if (dateParts[0].length === 4) {\n    transactionDate = `${dateParts.join('-')} ${timeExtracted}:00-05`;\n  } else {\n    transactionDate = `${dateParts.reverse().join('-')} ${timeExtracted}:00-05`;\n  }\n}\n\nconst cuentaOrigen = cuentaOrigenMatch ? cuentaOrigenMatch[1] : \"No encontrada\";\nconst cuentaDestino = cuentaDestinoMatch ? cuentaDestinoMatch[1] : \"No encontrada\";\nconst empresa = empresaMatch ? empresaMatch[1] : null;\nconst factura = facturaMatch ? facturaMatch[1] : null;\nconst bancoDestino = bancoDestinoMatch ? bancoDestinoMatch[1] : null;\nconst banco = bancoMatch ? \"Bancolombia\" : null;\n\n// Detectar tipo de transacción\nlet transactionType = \"otros\";\nlet description = email;\n\nif (email.includes(\"Transferiste\")) {\n  transactionType = \"transferencia\";\n  description = `Transferencia desde ${cuentaOrigen} a ${cuentaDestino}`;\n} else if (email.includes(\"Compraste\")) {\n  transactionType = \"compra con tarjeta\";\n  description = `Compra en ${empresa} con tarjeta ${cuentaOrigen}`;\n} else if (email.includes(\"Pagaste\")) {\n  transactionType = \"pago por pse\";\n  description = `Pago por PSE a ${bancoDestino} desde ${cuentaOrigen}`;\n} else if (email.includes(\"Factura Programada\")) {\n  transactionType = \"pago programado\";\n  description = `Pago programado de ${factura} desde ${cuentaOrigen}`;\n}\n\n// Devolver valores listos para base de datos\nreturn [{\n  values: {\n    amount,\n    description,\n    transaction_date: transactionDate,\n    transaction_type: transactionType,\n    type: \"gasto\",\n    banco\n  }\n}];\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -260,
-        -280
+        -280,
+        -320
       ],
       "id": "38c47266-a959-4bed-8c40-1e1c4f3441e7",
       "name": "Code"
@@ -140,6 +142,10 @@
             {
               "fieldId": "notification_email",
               "fieldValue": "={{ $('Gmail Trigger').item.json.To }}"
+            },
+            {
+              "fieldId": "banco",
+              "fieldValue": "={{ $json.values.banco }}"
             }
           ]
         }
@@ -147,7 +153,7 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        -20,
+        -60,
         -220
       ],
       "id": "7a6b257e-7184-4e16-9edb-5063633cd014",
@@ -162,7 +168,7 @@
     {
       "parameters": {
         "chatId": "552780004",
-        "text": "=⚡ *NUEVO MOVIMIENTO DETECTADO EN BANCOLOMBIA*\n\nSe acaba de registrar un nuevo movimiento con estos datos:\n\n*VALOR*: ${{ $json.values.amount.format() }}\n*DESCRIPCIÓN*: {{ $json.values.description }}\n*TIPO*: {{ $json.values.transaction_type }}",
+        "text": "=⚡ *NUEVO MOVIMIENTO DETECTADO EN: {{ $json.values.banco.toUpperCase() }}*\n\nSe acaba de registrar un nuevo movimiento con estos datos:\n\n*VALOR*: ${{ $json.values.amount.format() }}\n*DESCRIPCIÓN*: {{ $json.values.description }}\n*TIPO*: {{ $json.values.transaction_type }}",
         "replyMarkup": "inlineKeyboard",
         "inlineKeyboard": {
           "rows": [
@@ -187,7 +193,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        -20,
+        -60,
         -420
       ],
       "id": "ed45b8da-f16b-4291-a114-8d943ab3d24d",
@@ -199,57 +205,41 @@
           "name": "BOT FINANZAS"
         }
       }
-    },
-    {
-      "parameters": {
-        "updates": [
-          "*"
-        ],
-        "additionalFields": {}
-      },
-      "type": "n8n-nodes-base.telegramTrigger",
-      "typeVersion": 1.1,
-      "position": [
-        -720,
-        40
-      ],
-      "id": "78e8f12d-4788-4754-a8c3-a499876cf7ff",
-      "name": "Telegram Trigger",
-      "webhookId": "2c327f70-6d3f-4b8f-ae6a-5001c1db4833",
-      "credentials": {
-        "telegramApi": {
-          "id": "D5fwEGb7XJShZzzS",
-          "name": "BOT FINANZAS"
-        }
-      },
-      "disabled": true
     }
   ],
   "pinData": {
     "Gmail Trigger": [
       {
         "json": {
-          "id": "195b629e9afafce5",
-          "threadId": "195b4c2ccc8f267b",
-          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Transferiste $1000.00 desde tu cuenta *6138 a la cuenta *0000003009937799 el 20/03/2025 a las 19:45. ¿Dudas? Llamanos al 018000931987. Estamos",
+          "id": "195bc27ad8d9c1d7",
+          "threadId": "195b9ea86904c20a",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Transferiste $45100.00 por QR desde tu cuenta 6138 a la cuenta 1961, el 2025/03/21 23:41. ¿Dudas? Llamanos al 018000931987. Estamos cerca. ¿",
           "payload": {
             "mimeType": "text/html"
           },
-          "sizeEstimate": 51976,
-          "historyId": "6711812",
-          "internalDate": "1742517953000",
+          "sizeEstimate": 52000,
+          "historyId": "6720811",
+          "internalDate": "1742618471000",
           "labels": [
             {
               "id": "INBOX",
               "name": "INBOX"
             },
             {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
               "id": "CATEGORY_UPDATES",
               "name": "CATEGORY_UPDATES"
             },
             {
-              "id": "UNREAD",
-              "name": "UNREAD"
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
             }
           ],
           "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
@@ -268,15 +258,23 @@
   "staticData": {
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1742531928,
+        "lastTimeChecked": 1742618471,
         "possibleDuplicates": [
-          "195b6ff238636228"
+          "195bc27ad8d9c1d7"
+        ]
+      }
+    },
+    "node:Gmail Trigger1": {
+      "Gmail Trigger1": {
+        "lastTimeChecked": 1742584038,
+        "possibleDuplicates": [
+          "195ba1a48dfe315f"
         ]
       }
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-03-21T04:47:54.000Z",
-  "versionId": "c416b42d-bf0e-4e9b-8297-7f43b553d7c5"
+  "updatedAt": "2025-03-22T05:17:07.000Z",
+  "versionId": "6f587e21-430f-4dae-be50-1c8d19bc6750"
 }
