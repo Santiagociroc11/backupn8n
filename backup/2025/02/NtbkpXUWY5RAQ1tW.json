@@ -16,14 +16,14 @@
       "main": [
         [
           {
-            "node": "Code",
+            "node": "Information Extractor",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Code": {
+    "Information Extractor": {
       "main": [
         [
           {
@@ -34,6 +34,17 @@
           {
             "node": "Telegram",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -66,8 +77,8 @@
       "type": "n8n-nodes-base.gmailTrigger",
       "typeVersion": 1.2,
       "position": [
-        -700,
-        -320
+        -980,
+        -340
       ],
       "id": "473dfcf8-0cb3-44f0-8155-24b28d2eb69b",
       "name": "Gmail Trigger",
@@ -95,24 +106,11 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -500,
-        -320
+        -780,
+        -340
       ],
       "id": "ffc2b0b7-55a0-4bd9-be24-74320b63dd9a",
       "name": "Edit Fields1"
-    },
-    {
-      "parameters": {
-        "jsCode": "// Obtener el arreglo completo de labels\nconst labels = $('Gmail Trigger').first().json.labels;\nconst labelObj = labels.find(l => l && l.name && /transacciones/i.test(l.name));\nconst label = labelObj ? labelObj.name : '';\nconst email = $input.first().json.correo;\n\n// Expresiones regulares actualizadas y con alternativas\nconst bancoregex = /bancolombia/i;\nconst amountRegex = /\\$([\\d,.]+)/;\n// Para fecha: acepta dd/mm/yyyy o yyyy/mm/dd\nconst dateRegex = /((\\d{2}\\/\\d{2}\\/\\d{4})|(\\d{4}\\/\\d{2}\\/\\d{2}))/;\n// Para hora: acepta con o sin el prefijo \"a las\"\nconst timeRegex = /(?:a las\\s*)?(\\d{2}:\\d{2})/;\n// Para cuenta: permite que el asterisco sea opcional\nconst cuentaOrigenRegex = /desde .*?cuenta\\s*\\*?(\\d+)/;\nconst cuentaDestinoRegex = /a la cuenta\\s*\\*?(\\d+)/;\n// Se dejan los demás, aunque se podrían ajustar según el correo\nconst empresaRegex = /en ([A-Z0-9\\s]+)/;\nconst facturaRegex = /Factura Programada ([A-Za-z\\s]+) Ref/;\nconst bancoDestinoRegex = /a ([A-Z\\s]+) desde/;\n\n// Extraer valores\nconst amountMatch = email.match(amountRegex);\nconst dateMatch = email.match(dateRegex);\nconst timeMatch = email.match(timeRegex);\nconst cuentaOrigenMatch = email.match(cuentaOrigenRegex);\nconst cuentaDestinoMatch = email.match(cuentaDestinoRegex);\nconst empresaMatch = email.match(empresaRegex);\nconst facturaMatch = email.match(facturaRegex);\nconst bancoDestinoMatch = email.match(bancoDestinoRegex);\nconst bancoMatch = label.match(bancoregex);\n\n// Procesar valores\nconst amount = amountMatch ? parseFloat(amountMatch[1].replace(/,/g, \"\")) : null;\nconst dateExtracted = dateMatch ? dateMatch[1] : null;\nconst timeExtracted = timeMatch ? timeMatch[1] : \"00:00\";\n\n// Formatear la fecha detectando el orden\nlet transactionDate = null;\nif (dateExtracted) {\n  const dateParts = dateExtracted.split('/');\n  // Si el primer elemento tiene 4 dígitos, asumimos formato yyyy/mm/dd\n  if (dateParts[0].length === 4) {\n    transactionDate = `${dateParts.join('-')} ${timeExtracted}:00-05`;\n  } else {\n    transactionDate = `${dateParts.reverse().join('-')} ${timeExtracted}:00-05`;\n  }\n}\n\nconst cuentaOrigen = cuentaOrigenMatch ? cuentaOrigenMatch[1] : \"No encontrada\";\nconst cuentaDestino = cuentaDestinoMatch ? cuentaDestinoMatch[1] : \"No encontrada\";\nconst empresa = empresaMatch ? empresaMatch[1] : null;\nconst factura = facturaMatch ? facturaMatch[1] : null;\nconst bancoDestino = bancoDestinoMatch ? bancoDestinoMatch[1] : null;\nconst banco = bancoMatch ? \"Bancolombia\" : null;\n\n// Detectar tipo de transacción\nlet transactionType = \"otros\";\nlet description = email;\n\nif (email.includes(\"Transferiste\")) {\n  transactionType = \"transferencia\";\n  description = `Transferencia desde ${cuentaOrigen} a ${cuentaDestino}`;\n} else if (email.includes(\"Compraste\")) {\n  transactionType = \"compra con tarjeta\";\n  description = `Compra en ${empresa} con tarjeta ${cuentaOrigen}`;\n} else if (email.includes(\"Pagaste\")) {\n  transactionType = \"pago por pse\";\n  description = `Pago por PSE a ${bancoDestino} desde ${cuentaOrigen}`;\n} else if (email.includes(\"Factura Programada\")) {\n  transactionType = \"pago programado\";\n  description = `Pago programado de ${factura} desde ${cuentaOrigen}`;\n}\n\n// Devolver valores listos para base de datos\nreturn [{\n  values: {\n    amount,\n    description,\n    transaction_date: transactionDate,\n    transaction_type: transactionType,\n    type: \"gasto\",\n    banco\n  }\n}];\n"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -280,
-        -320
-      ],
-      "id": "38c47266-a959-4bed-8c40-1e1c4f3441e7",
-      "name": "Code"
     },
     {
       "parameters": {
@@ -121,23 +119,23 @@
           "fieldValues": [
             {
               "fieldId": "amount",
-              "fieldValue": "={{ $json.values.amount }}"
+              "fieldValue": "={{ $json.output.amount }}"
             },
             {
               "fieldId": "description",
-              "fieldValue": "={{ $json.values.description }}"
+              "fieldValue": "={{ $json.output.description }}"
             },
             {
               "fieldId": "transaction_date",
-              "fieldValue": "={{ $json.values.transaction_date }}"
+              "fieldValue": "={{ $json.output.transaction_date }}"
             },
             {
               "fieldId": "transaction_type",
-              "fieldValue": "={{ $json.values.transaction_type }}"
+              "fieldValue": "={{ $json.output.transaction_type }}"
             },
             {
               "fieldId": "type",
-              "fieldValue": "={{ $json.values.type }}"
+              "fieldValue": "={{ $json.output.type }}"
             },
             {
               "fieldId": "notification_email",
@@ -145,7 +143,7 @@
             },
             {
               "fieldId": "banco",
-              "fieldValue": "={{ $json.values.banco }}"
+              "fieldValue": "={{ $json.output.banco }}"
             }
           ]
         }
@@ -153,7 +151,7 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        -60,
+        0,
         -220
       ],
       "id": "7a6b257e-7184-4e16-9edb-5063633cd014",
@@ -168,7 +166,7 @@
     {
       "parameters": {
         "chatId": "552780004",
-        "text": "=⚡ *NUEVO MOVIMIENTO DETECTADO EN: {{ $json.values.banco.toUpperCase() }}*\n\nSe acaba de registrar un nuevo movimiento con estos datos:\n\n*VALOR*: ${{ $json.values.amount.format() }}\n*DESCRIPCIÓN*: {{ $json.values.description }}\n*TIPO*: {{ $json.values.transaction_type }}",
+        "text": "=⚡ *NUEVO MOVIMIENTO DETECTADO EN: {{ $json.output.banco.toUpperCase() }}*\n\nSe acaba de registrar un nuevo movimiento con estos datos:\n\n*VALOR*: ${{ $json.output.amount.format() }}\n*DESCRIPCIÓN*: {{ $json.output.description }}\n*TIPO*: {{ $json.output.transaction_type }}\n*FECHA*: {{ $json.output.transaction_date.toDateTime().format('yyyy-MM-dd hh:mm a') }}",
         "replyMarkup": "inlineKeyboard",
         "inlineKeyboard": {
           "rows": [
@@ -193,7 +191,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        -60,
+        0,
         -420
       ],
       "id": "ed45b8da-f16b-4291-a114-8d943ab3d24d",
@@ -205,21 +203,94 @@
           "name": "BOT FINANZAS"
         }
       }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.correo }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "transaction_type",
+              "description": "=sigue estas instrucciones:\n\n\"if (email.includes(\"Transferiste\")) {\n  transactionType = \"transferencia\";\n  description = `Transferencia desde ${cuentaOrigen} a ${cuentaDestino}`;\n} else if (email.includes(\"Compraste\")) {\n  transactionType = \"compra con tarjeta\";\n  description = `Compra en ${empresa} con tarjeta ${cuentaOrigen}`;\n} else if (email.includes(\"Pagaste\")) {\n  transactionType = \"pago por pse\";\n  description = `Pago por PSE a ${bancoDestino} desde ${cuentaOrigen}`;\n} else if (email.includes(\"Factura Programada\")) {\n  transactionType = \"pago programado\";\n  description = `Pago programado de ${factura} desde ${cuentaOrigen}`;\n}\"\n\npara determinar el tipo de transaccion",
+              "required": true
+            },
+            {
+              "name": "amount",
+              "type": "number",
+              "description": "el monto de la transaccion en formato plano, ejemplo: 15700",
+              "required": true
+            },
+            {
+              "name": "description",
+              "description": "descripcion de la transacción quitando cualquier caracter especial como asteriscos o cualquier otro",
+              "required": true
+            },
+            {
+              "name": "transaction_date",
+              "description": "=fecha en este formato: \"2025-03-22 13:25:00-05\"",
+              "required": true
+            },
+            {
+              "name": "type",
+              "description": "especificar en \"gasto\"",
+              "required": true
+            },
+            {
+              "name": "banco",
+              "description": "que banco reporta en minuscula",
+              "required": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        -340
+      ],
+      "id": "93988b04-2a97-4d15-88cf-deedc6126ddd",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -560,
+        -160
+      ],
+      "id": "6f457512-68af-4389-a7d1-2072d513294d",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "OpenAi account"
+        }
+      }
     }
   ],
   "pinData": {
     "Gmail Trigger": [
       {
         "json": {
-          "id": "195bc27ad8d9c1d7",
-          "threadId": "195b9ea86904c20a",
-          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Transferiste $45100.00 por QR desde tu cuenta 6138 a la cuenta 1961, el 2025/03/21 23:41. ¿Dudas? Llamanos al 018000931987. Estamos cerca. ¿",
+          "id": "195bf2d578731f20",
+          "threadId": "195bef54a21638d7",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $68.000,00 en SORAYA BUENAVISTA con tu T.Deb *1155, el 22/03/2025 a las 13:46. Si tienes dudas, encuentranos aqui: 6045109095 o",
           "payload": {
             "mimeType": "text/html"
           },
-          "sizeEstimate": 52000,
-          "historyId": "6720811",
-          "internalDate": "1742618471000",
+          "sizeEstimate": 51407,
+          "historyId": "6722056",
+          "internalDate": "1742669172000",
           "labels": [
             {
               "id": "INBOX",
@@ -236,6 +307,10 @@
             {
               "id": "STARRED",
               "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
             },
             {
               "id": "Label_5009391565458069770",
@@ -258,9 +333,10 @@
   "staticData": {
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1742618471,
+        "lastTimeChecked": 1742686190,
         "possibleDuplicates": [
-          "195bc27ad8d9c1d7"
+          "195c03102bbe462b",
+          "195bf2d578731f20"
         ]
       }
     },
@@ -275,6 +351,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-03-22T05:17:07.000Z",
-  "versionId": "6f587e21-430f-4dae-be50-1c8d19bc6750"
+  "updatedAt": "2025-03-22T19:46:26.000Z",
+  "versionId": "dd018074-7a86-4247-8999-93d474122cb5"
 }
