@@ -16,7 +16,7 @@
       "main": [
         [
           {
-            "node": "Information Extractor",
+            "node": "If",
             "type": "main",
             "index": 0
           }
@@ -49,6 +49,18 @@
           }
         ]
       ]
+    },
+    "If": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-02-11T00:40:37.142Z",
@@ -77,7 +89,7 @@
       "type": "n8n-nodes-base.gmailTrigger",
       "typeVersion": 1.2,
       "position": [
-        -980,
+        -860,
         -340
       ],
       "id": "473dfcf8-0cb3-44f0-8155-24b28d2eb69b",
@@ -106,7 +118,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -780,
+        -660,
         -340
       ],
       "id": "ffc2b0b7-55a0-4bd9-be24-74320b63dd9a",
@@ -151,7 +163,7 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        0,
+        220,
         -220
       ],
       "id": "7a6b257e-7184-4e16-9edb-5063633cd014",
@@ -191,7 +203,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        0,
+        220,
         -420
       ],
       "id": "ed45b8da-f16b-4291-a114-8d943ab3d24d",
@@ -247,8 +259,8 @@
       "type": "@n8n/n8n-nodes-langchain.informationExtractor",
       "typeVersion": 1,
       "position": [
-        -560,
-        -340
+        -220,
+        -320
       ],
       "id": "93988b04-2a97-4d15-88cf-deedc6126ddd",
       "name": "Information Extractor"
@@ -265,8 +277,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        -560,
-        -160
+        -180,
+        -140
       ],
       "id": "6f457512-68af-4389-a7d1-2072d513294d",
       "name": "OpenAI Chat Model",
@@ -276,21 +288,63 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a450213d-34b2-49de-a798-3e2a2dced55c",
+              "leftValue": "={{ $json.correo.toLowerCase() }}",
+              "rightValue": "/recibiste/",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            },
+            {
+              "id": "0b178cc6-9749-4007-8065-e5753b5665bb",
+              "leftValue": "={{ $json.correo.toLowerCase() }}",
+              "rightValue": "/\\$/",
+              "operator": {
+                "type": "string",
+                "operation": "notRegex"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -460,
+        -340
+      ],
+      "id": "9ffedd0c-58b2-460c-bfb1-8d8279ee5915",
+      "name": "If"
     }
   ],
   "pinData": {
     "Gmail Trigger": [
       {
         "json": {
-          "id": "195bf2d578731f20",
-          "threadId": "195bef54a21638d7",
-          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $68.000,00 en SORAYA BUENAVISTA con tu T.Deb *1155, el 22/03/2025 a las 13:46. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "id": "195d491601ad248a",
+          "threadId": "195ce29088061e41",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Transferiste $200000 desde tu cuenta *6138 a la cuenta *51783803015 el 26/03/2025 a las 17:27. ¿Dudas? Llamanos al 018000931987. Estamos cerca.",
           "payload": {
             "mimeType": "text/html"
           },
-          "sizeEstimate": 51407,
-          "historyId": "6722056",
-          "internalDate": "1742669172000",
+          "sizeEstimate": 52072,
+          "historyId": "6739581",
+          "internalDate": "1743028051000",
           "labels": [
             {
               "id": "INBOX",
@@ -333,10 +387,9 @@
   "staticData": {
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1742951167,
+        "lastTimeChecked": 1743028051,
         "possibleDuplicates": [
-          "195cffc399275aa0",
-          "195cfb8965e2d3b2"
+          "195d491601ad248a"
         ]
       }
     },
@@ -351,6 +404,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-03-22T19:46:26.000Z",
-  "versionId": "dd018074-7a86-4247-8999-93d474122cb5"
+  "updatedAt": "2025-03-26T22:45:04.000Z",
+  "versionId": "c0fbff40-a646-400f-a50a-40293867791b"
 }
