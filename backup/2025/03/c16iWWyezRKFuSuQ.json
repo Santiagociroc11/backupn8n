@@ -1,0 +1,64 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-26T17:48:38.402Z",
+  "id": "c16iWWyezRKFuSuQ",
+  "meta": null,
+  "name": "[NELLY-ASESOR]  REDIRECCIÓN",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "form-nelly",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -400,
+        -100
+      ],
+      "id": "15f747bf-f2f7-4caa-8914-eca5abcbb533",
+      "name": "Webhook",
+      "webhookId": "7e8894b7-58e7-4e95-a3c3-529d3557ba8c"
+    },
+    {
+      "parameters": {
+        "respondWith": "redirect",
+        "redirectURL": "wa.me/16452215853?text=Quiero+mi+compensación.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        -200,
+        -100
+      ],
+      "id": "f838cb9d-0d76-4c07-be75-e54b9ba036a5",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-26T22:08:23.000Z",
+  "versionId": "2464dee8-34bd-41bf-819f-59f470b15298"
+}
