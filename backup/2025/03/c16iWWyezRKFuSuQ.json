@@ -1,11 +1,22 @@
 {
   "active": true,
   "connections": {
-    "Webhook": {
+    "BOTÓN CONTACTAR FORM": {
       "main": [
         [
           {
-            "node": "Respond to Webhook",
+            "node": "DIRECCIÓN A WHA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OBTENER FORMULARIO": {
+      "main": [
+        [
+          {
+            "node": "ESCRIBIR EN SHEET",
             "type": "main",
             "index": 0
           }
@@ -16,7 +27,7 @@
   "createdAt": "2025-03-26T17:48:38.402Z",
   "id": "c16iWWyezRKFuSuQ",
   "meta": null,
-  "name": "[NELLY-ASESOR]  REDIRECCIÓN",
+  "name": "[NELLY] EMBUDO FORMULARIO",
   "nodes": [
     {
       "parameters": {
@@ -27,27 +38,204 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -400,
-        -100
+        -480,
+        -320
       ],
       "id": "15f747bf-f2f7-4caa-8914-eca5abcbb533",
-      "name": "Webhook",
+      "name": "BOTÓN CONTACTAR FORM",
       "webhookId": "7e8894b7-58e7-4e95-a3c3-529d3557ba8c"
     },
     {
       "parameters": {
         "respondWith": "redirect",
-        "redirectURL": "wa.me/16452215853?text=Quiero+mi+compensacion.",
+        "redirectURL": "wa.me/16452215853?text=Vengo+del+formulario+y+quiero+obtener+la+compensacion+por+mi+caso.",
         "options": {}
       },
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
-        -200,
-        -100
+        -240,
+        -320
       ],
       "id": "f838cb9d-0d76-4c07-be75-e54b9ba036a5",
-      "name": "Respond to Webhook"
+      "name": "DIRECCIÓN A WHA"
+    },
+    {
+      "parameters": {
+        "page": {
+          "__rl": true,
+          "value": "599511043237826",
+          "mode": "list",
+          "cachedResultName": "Road Compensation Experts",
+          "cachedResultUrl": "https://facebook.com/599511043237826"
+        },
+        "form": {
+          "__rl": true,
+          "value": "2636665656695872",
+          "mode": "list",
+          "cachedResultName": "CAPTURA NELLY-copy"
+        },
+        "options": {
+          "simplifyOutput": true
+        }
+      },
+      "type": "n8n-nodes-base.facebookLeadAdsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        -120
+      ],
+      "id": "4a61d0d8-3421-4656-9e85-3647ebe4f897",
+      "name": "OBTENER FORMULARIO",
+      "webhookId": "5b270ed1-240d-4734-a6c7-895a1dda02e4",
+      "credentials": {
+        "facebookLeadAdsOAuth2Api": {
+          "id": "JUBnFhhwNB19tcsK",
+          "name": "APP WHACOL1 + ROAD COMPENSATION"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1yBBuE58YiVmp86FkoFsSBd7TGxlYES9FczKBTdy4gBg/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1yBBuE58YiVmp86FkoFsSBd7TGxlYES9FczKBTdy4gBg/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "NOMBRE": "={{ $json.data.full_name }}",
+            "CORREO": "={{ $json.data.email }}",
+            "TELEFONO": "={{ $json.data.phone_number }}",
+            "CULPA": "={{ $json.data[\"¿el_accidente_fue_tu_culpa?\"] }}",
+            "HACE CUANTO": "={{ $json.data[\"¿hace_cuanto_ocurrió_el_accidente?\"] }}",
+            "REPORTE": "={{ $json.data[\"¿tienes_reporte_policial_del_accidente?\"] }}",
+            "TRATAMIENTO": "={{ $json.data[\"¿ha_recibido_tratamiento_médico_después_del_accidente?\"] }}",
+            "FOTOS": "={{ $json.data[\"¿tienes_fotos_del_accidente?\"] }}",
+            "REPRESENTADO": "={{ $json.data[\"¿estás_actualmente_representado_por_un_abogado?\"] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "NOMBRE",
+              "displayName": "NOMBRE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CORREO",
+              "displayName": "CORREO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "TELEFONO",
+              "displayName": "TELEFONO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CULPA",
+              "displayName": "CULPA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "HACE CUANTO",
+              "displayName": "HACE CUANTO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "REPORTE",
+              "displayName": "REPORTE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "TRATAMIENTO",
+              "displayName": "TRATAMIENTO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "FOTOS",
+              "displayName": "FOTOS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "REPRESENTADO",
+              "displayName": "REPRESENTADO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -240,
+        -120
+      ],
+      "id": "b242c22c-1f7f-402a-a210-562ca4cf1a72",
+      "name": "ESCRIBIR EN SHEET",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -59,7 +247,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 1,
-  "updatedAt": "2025-03-28T05:29:48.000Z",
-  "versionId": "3432f20b-03ef-4fcc-9bbc-2f0a195d855d"
+  "triggerCount": 3,
+  "updatedAt": "2025-03-28T15:18:24.000Z",
+  "versionId": "fedadbdd-302a-4e8f-b53b-c0e5dc475b16"
 }
