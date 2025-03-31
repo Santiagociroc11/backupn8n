@@ -38,8 +38,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -480,
-        -320
+        -460,
+        -400
       ],
       "id": "15f747bf-f2f7-4caa-8914-eca5abcbb533",
       "name": "BOTÓN CONTACTAR FORM",
@@ -54,8 +54,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
-        -240,
-        -320
+        -220,
+        -380
       ],
       "id": "f838cb9d-0d76-4c07-be75-e54b9ba036a5",
       "name": "DIRECCIÓN A WHA"
@@ -111,9 +111,9 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "NOMBRE": "={{ $json.data.full_name }}",
-            "CORREO": "={{ $json.data.email }}",
-            "TELEFONO": "={{ $json.data.phone_number }}",
+            "NOMBRE": "={{ $json.data.nombre_y_apellidos }}",
+            "CORREO": "={{ $json.data[\"correo_electrónico\"] }}",
+            "TELEFONO": "={{ $json.data[\"número_de_teléfono\"] }}",
             "CULPA": "={{ $json.data[\"¿el_accidente_fue_tu_culpa?\"] }}",
             "HACE CUANTO": "={{ $json.data[\"¿hace_cuanto_ocurrió_el_accidente?\"] }}",
             "REPORTE": "={{ $json.data[\"¿tienes_reporte_policial_del_accidente?\"] }}",
@@ -222,7 +222,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        -240,
+        -260,
         -120
       ],
       "id": "b242c22c-1f7f-402a-a210-562ca4cf1a72",
@@ -238,7 +238,45 @@
       }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "OBTENER FORMULARIO": [
+      {
+        "json": {
+          "id": "1483524003033308",
+          "data": {
+            "nombre_y_apellidos": "Isabel Lugo",
+            "correo_electrónico": "isabellugo@yahoo.com",
+            "número_de_teléfono": "+16627824821",
+            "¿el_accidente_fue_tu_culpa?": "no",
+            "¿hace_cuanto_ocurrió_el_accidente?": "menos_de_1_a_3_meses",
+            "¿tienes_reporte_policial_del_accidente?": "si",
+            "¿ha_recibido_tratamiento_médico_después_del_accidente?": "no",
+            "¿tienes_fotos_del_accidente?": "si",
+            "¿estás_actualmente_representado_por_un_abogado?": "no"
+          },
+          "form": {
+            "id": "2636665656695872",
+            "name": "CAPTURA NELLY-copy",
+            "locale": "es_ES",
+            "status": "ACTIVE"
+          },
+          "ad": {
+            "id": "120217733920300519",
+            "name": "ANUN5-VERTICAL-NELLY-POSPONER.mp4"
+          },
+          "adset": {
+            "id": "120217733920250519",
+            "name": "MARCAS / SEGUROS"
+          },
+          "page": {
+            "name": "Road Compensation Experts",
+            "id": "599511043237826"
+          },
+          "created_time": "2025-03-30T22:20:24+0000"
+        }
+      }
+    ]
+  },
   "repo_name": "backupn8n",
   "repo_owner": "Santiagociroc11",
   "repo_path": "backup/",
@@ -248,6 +286,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2025-03-28T15:18:24.000Z",
-  "versionId": "fedadbdd-302a-4e8f-b53b-c0e5dc475b16"
+  "updatedAt": "2025-03-31T00:51:35.000Z",
+  "versionId": "16caeff9-3263-4ff7-b988-22956ae6b11f"
 }
