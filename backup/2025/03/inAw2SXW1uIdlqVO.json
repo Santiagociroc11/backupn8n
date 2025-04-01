@@ -1,0 +1,69 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Facebook Graph API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-31T06:11:20.183Z",
+  "id": "inAw2SXW1uIdlqVO",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "4033eda9-38f0-4356-93d1-b3fcaed75e74",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v22.0",
+        "node": "act_1115030869503290",
+        "edge": "ads",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "3f090bd2-d284-4586-82a1-3f2374573848",
+      "name": "Facebook Graph API",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "4iHCs0jnWOKmz6vc",
+          "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-31T06:11:20.183Z",
+  "versionId": "8c2fff68-0db6-40bc-b739-c797a7c4dace"
+}
