@@ -1,0 +1,76 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Facebook Graph API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-02T04:52:51.713Z",
+  "id": "zUL8ulNrqo9GOHht",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 5",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "compra-wha-api",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -440,
+        -80
+      ],
+      "id": "695c0e99-9662-49f0-b107-934d45f03f42",
+      "name": "Webhook",
+      "webhookId": "afa48f73-835b-4e80-b934-df2840f3c170"
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "v22.0",
+        "node": "1168871054778835",
+        "edge": "events",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        -220,
+        -80
+      ],
+      "id": "ea6b1030-32b1-4213-9dd6-ab4df55070bb",
+      "name": "Facebook Graph API",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "uuBSbCYIAqZd7kcJ",
+          "name": "ACCESS TOKEN - API WHATSAPP"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-02T04:52:51.713Z",
+  "versionId": "8437d433-f1b6-4f60-8d7e-f7f68c1db910"
+}
