@@ -1,11 +1,286 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
-    "Webhook": {
+    "If": {
       "main": [
         [
           {
-            "node": "Facebook Graph API",
+            "node": "[COMPRA] PIXEL + PAGE_ID",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "ANUNCIO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "COMPRA APROBADA": {
+      "main": [
+        [
+          {
+            "node": "WHA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ANUNCIO": {
+      "main": [
+        [
+          {
+            "node": "CONJUNTO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CONJUNTO": {
+      "main": [
+        [
+          {
+            "node": "CAMPAÑA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CAMPAÑA": {
+      "main": [
+        [
+          {
+            "node": "DATA API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "DATA SIN REF",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ANUNCIO1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ANUNCIO1": {
+      "main": [
+        [
+          {
+            "node": "CONJUNTO1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CONJUNTO1": {
+      "main": [
+        [
+          {
+            "node": "CAMPAÑA1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CAMPAÑA1": {
+      "main": [
+        [
+          {
+            "node": "DATA SIN API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets2": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BUSQUEDA EN BD": {
+      "main": [
+        [
+          {
+            "node": "OBTENER DATASET",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DATA SIN REF": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DATA SIN API": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DATA API": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OBTENER DATASET": {
+      "main": [
+        [
+          {
+            "node": "FILEDS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HASH PHONE": {
+      "main": [
+        [
+          {
+            "node": "OBTENER BD",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OBTENER BD": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WHA": {
+      "main": [
+        [
+          {
+            "node": "BUSQUEDA EN BD",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FILEDS": {
+      "main": [
+        [
+          {
+            "node": "HASH PHONE",
             "type": "main",
             "index": 0
           }
@@ -18,50 +293,1071 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "My workflow 5",
+  "name": "[WIN+] API CONVERSIONES WHASTAPP",
   "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d9cb8071-ce48-4cbd-a36a-783f5103a7cc",
+              "leftValue": "={{ $json.ctwa_clid }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "70c31c99-391f-4676-9ac4-0eaf38532c88",
+              "leftValue": "={{ $json.ctwa_clid }}",
+              "rightValue": "-",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1200,
+        -140
+      ],
+      "id": "254e7d9a-f3fd-4939-ace1-c7d69db6fd06",
+      "name": "If"
+    },
     {
       "parameters": {
         "httpMethod": "POST",
         "path": "compra-wha-api",
-        "responseMode": "responseNode",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -440,
-        -80
+        -340,
+        -140
       ],
       "id": "695c0e99-9662-49f0-b107-934d45f03f42",
-      "name": "Webhook",
+      "name": "COMPRA APROBADA",
       "webhookId": "afa48f73-835b-4e80-b934-df2840f3c170"
     },
     {
       "parameters": {
-        "httpRequestMethod": "POST",
         "graphApiVersion": "v22.0",
-        "node": "1168871054778835",
-        "edge": "events",
-        "options": {}
+        "node": "={{ $json.source_id }}",
+        "options": {
+          "fields": {
+            "field": [
+              {
+                "name": "name,adset,campaign"
+              }
+            ]
+          }
+        }
       },
       "type": "n8n-nodes-base.facebookGraphApi",
       "typeVersion": 1,
       "position": [
-        -220,
-        -80
+        1420,
+        -340
       ],
-      "id": "ea6b1030-32b1-4213-9dd6-ab4df55070bb",
-      "name": "Facebook Graph API",
+      "id": "ced7f9f2-1462-4a77-9620-400aeb3fe37a",
+      "name": "ANUNCIO",
       "credentials": {
         "facebookGraphApi": {
-          "id": "uuBSbCYIAqZd7kcJ",
-          "name": "ACCESS TOKEN - API WHATSAPP"
+          "id": "4iHCs0jnWOKmz6vc",
+          "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v22.0",
+        "node": "={{ $json.adset.id }}",
+        "options": {
+          "fields": {
+            "field": [
+              {
+                "name": "name"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        -340
+      ],
+      "id": "f557bb3e-0ef8-4a1e-959f-9e7531f9fed9",
+      "name": "CONJUNTO",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "4iHCs0jnWOKmz6vc",
+          "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v22.0",
+        "node": "={{ $('ANUNCIO').item.json.campaign.id }}",
+        "options": {
+          "fields": {
+            "field": [
+              {
+                "name": "name"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        1860,
+        -340
+      ],
+      "id": "246ce672-18fb-4821-8c19-f2f032a79a97",
+      "name": "CAMPAÑA",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "4iHCs0jnWOKmz6vc",
+          "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "WHATSAPP": "={{ $json.whatsapp }}",
+            "DIA COMPRA": "={{ $json.dia }}",
+            "HORA COMPRA": "={{ $json.hora }}",
+            "CAMPAÑA": "={{ $json[\"campaña\"] }}",
+            "CONJUNTO": "={{ $json.conjunto }}",
+            "ANUNCIO": "={{ $json.anuncio }}",
+            "API": "SI",
+            "AD ID": "={{ $json.source_id }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "WHATSAPP",
+              "displayName": "WHATSAPP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "DIA COMPRA",
+              "displayName": "DIA COMPRA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "HORA COMPRA",
+              "displayName": "HORA COMPRA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CAMPAÑA",
+              "displayName": "CAMPAÑA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CONJUNTO",
+              "displayName": "CONJUNTO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ANUNCIO",
+              "displayName": "ANUNCIO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AD ID",
+              "displayName": "AD ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "API",
+              "displayName": "API",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2300,
+        -340
+      ],
+      "id": "4177f0b4-5f8f-4ef2-b5cd-84c4aef388e6",
+      "name": "Google Sheets",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "0e3d318b-581f-4176-bbb0-194329eaf206",
+              "leftValue": "={{ $json.source_id }}",
+              "rightValue": "-",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1420,
+        60
+      ],
+      "id": "703b77c1-c6eb-46d6-be98-b71cb223409f",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "WHATSAPP": "={{ $json.whatsapp }}",
+            "DIA COMPRA": "={{ $json.dia }}",
+            "HORA COMPRA": "={{ $json.hora }}",
+            "CAMPAÑA": "={{ $json[\"campaña\"] }}",
+            "CONJUNTO": "={{ $json.conjunto }}",
+            "ANUNCIO": "={{ $json.anuncio }}",
+            "API": "NO",
+            "AD ID": "={{ $json.source_id }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "WHATSAPP",
+              "displayName": "WHATSAPP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "DIA COMPRA",
+              "displayName": "DIA COMPRA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "HORA COMPRA",
+              "displayName": "HORA COMPRA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CAMPAÑA",
+              "displayName": "CAMPAÑA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CONJUNTO",
+              "displayName": "CONJUNTO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ANUNCIO",
+              "displayName": "ANUNCIO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AD ID",
+              "displayName": "AD ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "API",
+              "displayName": "API",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1860,
+        -40
+      ],
+      "id": "fa97e9f0-614d-4c43-b331-161da54df452",
+      "name": "Google Sheets1",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v22.0",
+        "node": "={{ $json.source_id }}",
+        "options": {
+          "fields": {
+            "field": [
+              {
+                "name": "name,adset,campaign"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        160
+      ],
+      "id": "745c30c5-05c7-4820-9ae2-7cd60333fb79",
+      "name": "ANUNCIO1",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "4iHCs0jnWOKmz6vc",
+          "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v22.0",
+        "node": "={{ $json.adset.id }}",
+        "options": {
+          "fields": {
+            "field": [
+              {
+                "name": "name"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        1860,
+        160
+      ],
+      "id": "cdc86a50-f4dd-4f2e-937d-be2d19b15433",
+      "name": "CONJUNTO1",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "4iHCs0jnWOKmz6vc",
+          "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v22.0",
+        "node": "={{ $('ANUNCIO1').item.json.campaign.id }}",
+        "options": {
+          "fields": {
+            "field": [
+              {
+                "name": "name"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        160
+      ],
+      "id": "f0ae65c1-d2b9-4ef8-8fc6-2f338d8ec465",
+      "name": "CAMPAÑA1",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "4iHCs0jnWOKmz6vc",
+          "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "WHATSAPP": "={{ $json.whatsapp }}",
+            "DIA COMPRA": "={{ $json.dia }}",
+            "HORA COMPRA": "={{ $json.hora }}",
+            "CAMPAÑA": "={{ $json[\"campaña\"] }}",
+            "CONJUNTO": "={{ $json.conjunto }}",
+            "ANUNCIO": "={{ $json.anuncio }}",
+            "API": "NO",
+            "AD ID": "={{ $json.source_id }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "WHATSAPP",
+              "displayName": "WHATSAPP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "DIA COMPRA",
+              "displayName": "DIA COMPRA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "HORA COMPRA",
+              "displayName": "HORA COMPRA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CAMPAÑA",
+              "displayName": "CAMPAÑA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CONJUNTO",
+              "displayName": "CONJUNTO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ANUNCIO",
+              "displayName": "ANUNCIO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AD ID",
+              "displayName": "AD ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "API",
+              "displayName": "API",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2520,
+        160
+      ],
+      "id": "933c4b3b-e54b-4c28-80d4-650d0d674ec0",
+      "name": "Google Sheets2",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "collection": "bot-win+2",
+        "options": {},
+        "query": "={\"whatsapp\": \"{{ $('WHA').item.json.whatsapp }}\"}"
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        100,
+        -140
+      ],
+      "id": "0664d24b-a4d7-4a42-bb62-7c1866d09b2b",
+      "name": "BUSQUEDA EN BD",
+      "credentials": {
+        "mongoDb": {
+          "id": "jDujtIdwD5ws13s0",
+          "name": "BD WIN+2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "120bdec2-bff7-46e4-ab8a-2d3586adb894",
+              "name": "campaña",
+              "value": "=NO REF",
+              "type": "string"
+            },
+            {
+              "id": "732f67de-5135-4897-956e-f3c830a63eae",
+              "name": "anuncio",
+              "value": "=NO REF",
+              "type": "string"
+            },
+            {
+              "id": "dcca4300-5388-4161-901b-f5028142c5ef",
+              "name": "conjunto",
+              "value": "=NO REF",
+              "type": "string"
+            },
+            {
+              "id": "efef1875-7471-4563-b87b-a9379e73e47e",
+              "name": "whatsapp",
+              "value": "={{ $('If').item.json.whatsapp }}",
+              "type": "string"
+            },
+            {
+              "id": "074ee409-7b83-4fd2-922d-aad632ef26f5",
+              "name": "dia",
+              "value": "={{ $('If').item.json.pagado_at.toDateTime('s').format('yyyy-MM-dd') }}",
+              "type": "string"
+            },
+            {
+              "id": "76a3a6d3-4304-44ae-a439-6050db72e562",
+              "name": "hora",
+              "value": "={{ $('If').item.json.pagado_at.toDateTime('s').format('HH:mm:ss') }}",
+              "type": "string"
+            },
+            {
+              "id": "f1a99699-fedb-4726-8ed8-767a91a241c6",
+              "name": "source_id",
+              "value": "={{ $('If').item.json.source_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1640,
+        -40
+      ],
+      "id": "d0f279a2-2107-4988-b300-a3fb52814c84",
+      "name": "DATA SIN REF"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "120bdec2-bff7-46e4-ab8a-2d3586adb894",
+              "name": "campaña",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "732f67de-5135-4897-956e-f3c830a63eae",
+              "name": "anuncio",
+              "value": "={{ $('ANUNCIO1').item.json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "dcca4300-5388-4161-901b-f5028142c5ef",
+              "name": "conjunto",
+              "value": "={{ $('CONJUNTO1').item.json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "efef1875-7471-4563-b87b-a9379e73e47e",
+              "name": "whatsapp",
+              "value": "={{ $('If').item.json.whatsapp }}",
+              "type": "string"
+            },
+            {
+              "id": "074ee409-7b83-4fd2-922d-aad632ef26f5",
+              "name": "dia",
+              "value": "={{ $('If').item.json.pagado_at.toDateTime('s').format('yyyy-MM-dd') }}",
+              "type": "string"
+            },
+            {
+              "id": "76a3a6d3-4304-44ae-a439-6050db72e562",
+              "name": "hora",
+              "value": "={{ $('If').item.json.pagado_at.toDateTime('s').format('HH:mm:ss') }}",
+              "type": "string"
+            },
+            {
+              "id": "13d3671f-cdac-47c3-ade6-85801b8f782b",
+              "name": "source_id",
+              "value": "={{ $('If').item.json.source_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2300,
+        160
+      ],
+      "id": "127f7ef4-a1b8-4a68-a83f-f1cf60722073",
+      "name": "DATA SIN API"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "120bdec2-bff7-46e4-ab8a-2d3586adb894",
+              "name": "campaña",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "732f67de-5135-4897-956e-f3c830a63eae",
+              "name": "anuncio",
+              "value": "={{ $('ANUNCIO').item.json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "dcca4300-5388-4161-901b-f5028142c5ef",
+              "name": "conjunto",
+              "value": "={{ $('CONJUNTO').item.json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "efef1875-7471-4563-b87b-a9379e73e47e",
+              "name": "whatsapp",
+              "value": "={{ $('If').item.json.whatsapp }}",
+              "type": "string"
+            },
+            {
+              "id": "074ee409-7b83-4fd2-922d-aad632ef26f5",
+              "name": "dia",
+              "value": "={{ $('If').item.json.pagado_at.toDateTime('s').format('yyyy-MM-dd') }}",
+              "type": "string"
+            },
+            {
+              "id": "76a3a6d3-4304-44ae-a439-6050db72e562",
+              "name": "hora",
+              "value": "={{ $('If').item.json.pagado_at.toDateTime('s').format('HH:mm:ss') }}",
+              "type": "string"
+            },
+            {
+              "id": "ba843ade-2156-4005-b922-1c7cbb2a70aa",
+              "name": "source_id",
+              "value": "={{ $('If').item.json.source_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2080,
+        -340
+      ],
+      "id": "825e7d04-9a8e-4dd5-b2ff-a3645c245e22",
+      "name": "DATA API"
+    },
+    {
+      "parameters": {
+        "amount": 60
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2520,
+        -340
+      ],
+      "id": "d54f8cc3-1faa-4a18-a209-dfc389e878c7",
+      "name": "Wait",
+      "webhookId": "c70b6b50-d9a4-4162-b79f-71b02e26d5a7"
+    },
+    {
+      "parameters": {
+        "amount": 60
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2080,
+        -40
+      ],
+      "id": "f4928fae-5b54-4b57-8e10-208c7e433d61",
+      "name": "Wait1",
+      "webhookId": "e6e3475e-1487-4315-99a5-2dfe68c5e9fb"
+    },
+    {
+      "parameters": {
+        "amount": 60
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2740,
+        160
+      ],
+      "id": "2ab51d05-eab6-4d3c-8d6d-1a77a2feba68",
+      "name": "Wait2",
+      "webhookId": "6df6d6d1-bd42-4f87-8a3a-84f59a522645"
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v22.0",
+        "node": "={{ $json.source_id }}",
+        "options": {
+          "fields": {
+            "field": [
+              {
+                "name": "tracking_specs"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        320,
+        -140
+      ],
+      "id": "5d8bd310-552e-4dc2-8dd7-1edd7d9e52ce",
+      "name": "OBTENER DATASET",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "4iHCs0jnWOKmz6vc",
+          "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "type": "SHA256",
+        "value": "={{ $('BUSQUEDA EN BD').item.json.whatsapp }}",
+        "dataPropertyName": "dataphone"
+      },
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        760,
+        -140
+      ],
+      "id": "9c7d5a0b-0bc6-4534-ac45-310f4f51880c",
+      "name": "HASH PHONE"
+    },
+    {
+      "parameters": {
+        "collection": "bot-win+2",
+        "options": {},
+        "query": "={\"whatsapp\": \"{{ $('WHA').item.json.whatsapp }}\"}"
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        980,
+        -140
+      ],
+      "id": "8be7ee8c-3417-4184-9baf-91e93a5cf2c0",
+      "name": "OBTENER BD",
+      "credentials": {
+        "mongoDb": {
+          "id": "jDujtIdwD5ws13s0",
+          "name": "BD WIN+2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "56769947-bf02-4cc6-b1d2-2dfe43b9ff05",
+              "name": "whatsapp",
+              "value": "={{ $json.body.whatsapp }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -120,
+        -140
+      ],
+      "id": "fec25260-302e-4a0a-b764-f381676eb949",
+      "name": "WHA"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c361e726-8532-4be5-addb-68fb38e08bde",
+              "name": "pixel",
+              "value": "={{ $json.tracking_specs[0].fb_pixel[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "574837ae-4373-49cd-bf41-832bb550a2d6",
+              "name": "page_id",
+              "value": "={{ $json.tracking_specs[3].page[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "fb64aece-470f-4181-9383-056b52b65d37",
+              "name": "whatsapp",
+              "value": "={{ $('WHA').item.json.whatsapp }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        540,
+        -140
+      ],
+      "id": "f2dbc325-d040-4649-adda-35eeff0077c5",
+      "name": "FILEDS"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v22.0/{{ $('HASH PHONE').item.json.pixel }}/events",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendQuery": true,
+        "specifyQuery": "json",
+        "jsonQuery": "={\n  \"data\": [\n    {\n      \"action_source\": \"business_messaging\",\n      \"custom_data\": {\n        \"currency\": \"USD\",\n        \"value\": {{ (18000 / 4100).toFixed(2) }}\n      },\n      \"event_name\": \"Purchase\",\n      \"event_time\": {{$now.toSeconds().floor()}},\n      \"event_id\": \"{{ $json.whatsapp }}\",\n      \"messaging_channel\": \"whatsapp\",\n      \"user_data\": {\n        \"ph\": \"{{ $('HASH PHONE').item.json.dataphone }}\",\n        \"ctwa_clid\": \"{{ $json.ctwa_clid }}\",\n        \"page_id\": \"{{ $('HASH PHONE').item.json.page_id }}\"\n      }\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1420,
+        -140
+      ],
+      "id": "a8a10e8d-1e82-4e8c-b768-5db841ccb493",
+      "name": "[COMPRA] PIXEL + PAGE_ID",
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "1HbOG0Vq2L9CY1PH",
+          "name": "token api win+"
         }
       }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "COMPRA APROBADA": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "axios/0.20.0",
+            "content-length": "27",
+            "accept": "application/json, text/plain, */*",
+            "content-type": "application/json",
+            "x-forwarded-for": "82.180.130.193",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "e90ae4fad82e",
+            "x-real-ip": "82.180.130.193",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "whatsapp": "573225528271"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/compra-wha-api",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
   "repo_name": "backupn8n",
   "repo_owner": "Santiagociroc11",
   "repo_path": "backup/",
@@ -70,7 +1366,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-04-02T04:52:51.713Z",
-  "versionId": "8437d433-f1b6-4f60-8d7e-f7f68c1db910"
+  "triggerCount": 1,
+  "updatedAt": "2025-04-03T05:21:18.000Z",
+  "versionId": "b8f1b53a-7a29-4b3a-a79f-57e0c6711437"
 }
