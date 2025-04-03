@@ -1,0 +1,321 @@
+{
+  "active": true,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Facebook Graph API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Graph API": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Facebook Graph API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-02T18:35:21.177Z",
+  "id": "Nv9QJB8URccLhd6s",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[WIN+] GASTOS ADS",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -740,
+        80
+      ],
+      "id": "a136fea3-fece-4074-bb26-6303e37ea739",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v22.0",
+        "node": "act_1115030869503290",
+        "edge": "insights",
+        "options": {
+          "fields": {
+            "field": [
+              {
+                "name": "ad_id,ad_name,adset_name,campaign_name,spend,cpm,ctr,clicks,cpc,impressions"
+              }
+            ]
+          },
+          "queryParameters": {
+            "parameter": [
+              {
+                "name": "level",
+                "value": "ad"
+              },
+              {
+                "name": "date_preset",
+                "value": "today"
+              },
+              {
+                "name": "filtering",
+                "value": "[{\"field\":\"ad.effective_status\",\"operator\":\"IN\",\"value\":[\"ACTIVE\"]}]"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        -520,
+        -20
+      ],
+      "id": "bc83f6d0-a1e2-499c-a48c-77b3ade7e00a",
+      "name": "Facebook Graph API",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "vs1aiwMtMvP5wfcx",
+          "name": "TOKEN ADS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=278362918#gid=278362918",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=278362918#gid=278362918",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "AD ID": "={{ $json.ad_id }}",
+            "FECHA": "={{ $json.date_start }}",
+            "CAMPAÑA": "={{ $json.campaign_name }}",
+            "CONJUNTO": "={{ $json.adset_name }}",
+            "ANUNCIO": "={{ $json.ad_name }}",
+            "GASTO": "={{ $json.spend?.toNumber() }}",
+            "CTR": "={{ $json.ctr.toNumber() }}",
+            "CPM": "={{ $json.cpm?.toNumber() }}",
+            "CPC": "={{ $json.cpc?.toNumber() }}",
+            "IMPRESIONES": "={{ $json.impressions?.toNumber() }}",
+            "CLICS": "={{ $json.clicks?.toNumber() }}"
+          },
+          "matchingColumns": [
+            "AD ID"
+          ],
+          "schema": [
+            {
+              "id": "FECHA",
+              "displayName": "FECHA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CAMPAÑA",
+              "displayName": "CAMPAÑA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CONJUNTO",
+              "displayName": "CONJUNTO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ANUNCIO",
+              "displayName": "ANUNCIO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GASTO",
+              "displayName": "GASTO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CTR",
+              "displayName": "CTR",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CPM",
+              "displayName": "CPM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CPC",
+              "displayName": "CPC",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "IMPRESIONES",
+              "displayName": "IMPRESIONES",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CLICS",
+              "displayName": "CLICS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "AD ID",
+              "displayName": "AD ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -80,
+        -20
+      ],
+      "id": "0aad0818-a08e-4386-b1d5-065a2b36964d",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        -20
+      ],
+      "id": "eea9d18c-fa4a-4fd1-b61f-d9b5d2560d56",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -740,
+        -120
+      ],
+      "id": "0647c652-d5e4-46cd-8d9c-eca39a9a3b66",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-02T23:01:36.000Z",
+  "versionId": "3b802e47-784c-46ae-bcd5-8abdf097e464"
+}
