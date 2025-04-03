@@ -1,0 +1,779 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "MongoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Graph API": {
+      "main": [
+        [
+          {
+            "node": "Facebook Graph API1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Graph API1": {
+      "main": [
+        [
+          {
+            "node": "Facebook Graph API2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Graph API2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Facebook Graph API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-02T16:45:36.266Z",
+  "id": "Fv0vNwwo2r3M4xKt",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[WIN+] ESCRITURA DE VENTAS MTV",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -800,
+        -20
+      ],
+      "id": "46242a52-bf8e-4868-949a-5ee02d2c5dc7",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "collection": "bot-win+2",
+        "options": {
+          "sort": "{\"pagado_at\":1}"
+        },
+        "query": "={ \"estado\": \"pagado\", \"pagado_at\": { \"$gte\": {{ $json.hoy }} } }"
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        -360,
+        -20
+      ],
+      "id": "4d29b4a9-5ba1-4222-adde-1e731b04f1ee",
+      "name": "MongoDB",
+      "credentials": {
+        "mongoDb": {
+          "id": "jDujtIdwD5ws13s0",
+          "name": "BD WIN+2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0083a5fd-5f47-42b9-9a56-308d976f9ef5",
+              "name": "hoy",
+              "value": "={{$now.format('yyyy-MM-dd').toDateTime().toUTC().toSeconds()}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -580,
+        -20
+      ],
+      "id": "a8e7bdee-3ce5-45aa-93fc-09253350077d",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -100,
+        -20
+      ],
+      "id": "5cc10c21-12b5-4b3c-b5d5-ccfa76dbff5a",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v22.0",
+        "node": "={{ $json.source_id }}",
+        "options": {
+          "fields": {
+            "field": [
+              {
+                "name": "name,adset,campaign"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        500,
+        80
+      ],
+      "id": "90b20fe1-36fb-409b-80f7-b7a0ed5ed29b",
+      "name": "Facebook Graph API",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "4iHCs0jnWOKmz6vc",
+          "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "WHATSAPP": "={{ $json.whatsapp }}",
+            "DIA COMPRA": "={{ $json.dia }}",
+            "HORA COMPRA": "={{ $json.hora }}",
+            "CAMPAÑA": "={{ $json[\"campaña\"] }}",
+            "CONJUNTO": "={{ $json.conjunto }}",
+            "ANUNCIO": "={{ $json.anuncio }}",
+            "AD ID": "={{ $json.source_id }}"
+          },
+          "matchingColumns": [
+            "WHATSAPP"
+          ],
+          "schema": [
+            {
+              "id": "WHATSAPP",
+              "displayName": "WHATSAPP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "DIA COMPRA",
+              "displayName": "DIA COMPRA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "HORA COMPRA",
+              "displayName": "HORA COMPRA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CAMPAÑA",
+              "displayName": "CAMPAÑA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CONJUNTO",
+              "displayName": "CONJUNTO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ANUNCIO",
+              "displayName": "ANUNCIO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AD ID",
+              "displayName": "AD ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "API",
+              "displayName": "API",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1300,
+        80
+      ],
+      "id": "ab718984-bb95-4d78-9c0b-f1a9e8cfc6ff",
+      "name": "Google Sheets",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v22.0",
+        "node": "={{ $json.adset.id }}",
+        "options": {
+          "fields": {
+            "field": [
+              {
+                "name": "name"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        740,
+        80
+      ],
+      "id": "ba0db39e-7a68-484d-b359-f87b03b6f13f",
+      "name": "Facebook Graph API1",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "4iHCs0jnWOKmz6vc",
+          "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v22.0",
+        "node": "={{ $('Facebook Graph API').item.json.campaign.id }}",
+        "options": {
+          "fields": {
+            "field": [
+              {
+                "name": "name"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        920,
+        80
+      ],
+      "id": "3893449a-96a8-4a3b-98dd-bbcb98a3c9ce",
+      "name": "Facebook Graph API2",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "4iHCs0jnWOKmz6vc",
+          "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "120bdec2-bff7-46e4-ab8a-2d3586adb894",
+              "name": "campaña",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "732f67de-5135-4897-956e-f3c830a63eae",
+              "name": "anuncio",
+              "value": "={{ $('Facebook Graph API').item.json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "dcca4300-5388-4161-901b-f5028142c5ef",
+              "name": "conjunto",
+              "value": "={{ $('Facebook Graph API1').item.json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "efef1875-7471-4563-b87b-a9379e73e47e",
+              "name": "whatsapp",
+              "value": "={{ $('Loop Over Items').item.json.whatsapp }}",
+              "type": "string"
+            },
+            {
+              "id": "074ee409-7b83-4fd2-922d-aad632ef26f5",
+              "name": "dia",
+              "value": "={{ $('Loop Over Items').item.json.pagado_at.toDateTime('s').format('yyyy-MM-dd') }}",
+              "type": "string"
+            },
+            {
+              "id": "76a3a6d3-4304-44ae-a439-6050db72e562",
+              "name": "hora",
+              "value": "={{ $('Loop Over Items').item.json.pagado_at.toDateTime('s').format('HH:mm:ss') }}",
+              "type": "string"
+            },
+            {
+              "id": "a4a6f5bf-b4d3-428d-bca3-cc927bc8dec9",
+              "name": "source_id",
+              "value": "={{ $('Loop Over Items').item.json.source_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1100,
+        80
+      ],
+      "id": "cd1ea4c9-f3f7-4264-b234-e4dd5634429c",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4b496545-0242-4930-ae54-7c617b4b451c",
+              "leftValue": "={{ $json.source_id }}",
+              "rightValue": "-",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        200,
+        40
+      ],
+      "id": "d301e1f2-247c-4e26-98b0-d88dc89fd9a5",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "WHATSAPP": "={{ $json.whatsapp }}",
+            "DIA COMPRA": "={{ $json.dia }}",
+            "HORA COMPRA": "={{ $json.hora }}",
+            "CAMPAÑA": "={{ $json[\"campaña\"] }}",
+            "CONJUNTO": "={{ $json.conjunto }}",
+            "ANUNCIO": "={{ $json.anuncio }}",
+            "AD ID": "={{ $json.source_id }}"
+          },
+          "matchingColumns": [
+            "WHATSAPP"
+          ],
+          "schema": [
+            {
+              "id": "WHATSAPP",
+              "displayName": "WHATSAPP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "DIA COMPRA",
+              "displayName": "DIA COMPRA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "HORA COMPRA",
+              "displayName": "HORA COMPRA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CAMPAÑA",
+              "displayName": "CAMPAÑA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CONJUNTO",
+              "displayName": "CONJUNTO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ANUNCIO",
+              "displayName": "ANUNCIO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AD ID",
+              "displayName": "AD ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "API",
+              "displayName": "API",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        600,
+        -140
+      ],
+      "id": "a5c8f560-7b70-4fb7-af38-e31584b7d3ec",
+      "name": "Google Sheets1",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "efef1875-7471-4563-b87b-a9379e73e47e",
+              "name": "whatsapp",
+              "value": "={{ $json.whatsapp }}",
+              "type": "string"
+            },
+            {
+              "id": "074ee409-7b83-4fd2-922d-aad632ef26f5",
+              "name": "dia",
+              "value": "={{ $json.pagado_at.toDateTime('s').format('yyyy-MM-dd') }}",
+              "type": "string"
+            },
+            {
+              "id": "76a3a6d3-4304-44ae-a439-6050db72e562",
+              "name": "hora",
+              "value": "={{ $json.pagado_at.toDateTime('s').format('HH:mm:ss') }}",
+              "type": "string"
+            },
+            {
+              "id": "7fb7b15b-10cc-4310-8e0a-572617546fba",
+              "name": "source_id",
+              "value": "={{ $json.source_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        400,
+        -80
+      ],
+      "id": "a79d4d08-cb74-4c49-96a2-c4b7f8352fa5",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1520,
+        160
+      ],
+      "id": "45ce84fe-b58e-4e0b-aec1-8b0b37a2fd1b",
+      "name": "Wait",
+      "webhookId": "47e7875d-74bd-4f5e-aaa1-4c982d24fec9"
+    }
+  ],
+  "pinData": {
+    "When clicking ‘Test workflow’": [
+      {
+        "json": {}
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-02T23:10:05.000Z",
+  "versionId": "402504de-18fb-4a25-99d5-7560f9df9dd3"
+}
