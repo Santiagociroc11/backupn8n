@@ -1,0 +1,386 @@
+{
+  "active": true,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-04-03T19:21:29.000Z",
+  "id": "ruw4h8iVf9BZFGcf",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[WIN+] GASTOS ADS TABLA MTV",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -740,
+        80
+      ],
+      "id": "04a1a966-cf08-455d-91d8-dae39095934d",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1hzlOJVWJUHndUDvmXaF5pHPWU_PTvJDyIMsfOUqrMzc/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1hzlOJVWJUHndUDvmXaF5pHPWU_PTvJDyIMsfOUqrMzc/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Day": "={{ $json.date_start }}",
+            "Ad ID": "={{ $json.ad_id }}",
+            "Ad Name": "={{ $json.ad_name }}",
+            "Amount Spent": "={{ $json.spend?.toNumber() }}",
+            "Unique Link Clicks": "={{ $json.actions.find(item => item.action_type == \"link_click\").value }}",
+            "CPM (Cost per 1,000 Impressions)": "={{ $json.cpm?.toNumber() }}",
+            "CTR (Link Click-Through Rate)": "={{ $json.ctr?.toNumber() }}",
+            "Purchases": "={{ $json.actions.find(item => item.action_type == \"purchase\").value }}",
+            "Ad Set Name": "={{ $json.adset_name }}",
+            "Campaign Name": "={{ $json.campaign_name }}"
+          },
+          "matchingColumns": [
+            "AD ID"
+          ],
+          "schema": [
+            {
+              "id": "Day",
+              "displayName": "Day",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Ad ID",
+              "displayName": "Ad ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Ad Name",
+              "displayName": "Ad Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Amount Spent",
+              "displayName": "Amount Spent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Unique Link Clicks",
+              "displayName": "Unique Link Clicks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CPM (Cost per 1,000 Impressions)",
+              "displayName": "CPM (Cost per 1,000 Impressions)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CTR (Link Click-Through Rate)",
+              "displayName": "CTR (Link Click-Through Rate)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Account Name",
+              "displayName": "Account Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Purchases",
+              "displayName": "Purchases",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Ad Set Name",
+              "displayName": "Ad Set Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Campaign Name",
+              "displayName": "Campaign Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ACTIVO",
+              "displayName": "ACTIVO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        340,
+        -20
+      ],
+      "id": "16db8ff9-d243-4f34-a5a2-9aa15287fe09",
+      "name": "Google Sheets",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        -20
+      ],
+      "id": "3125b328-ea02-4b38-8fa7-3f7e30f27f24",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 20
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -740,
+        -120
+      ],
+      "id": "a1f93dbd-8303-406e-8bc5-17a31cea7771",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://graph.facebook.com/v22.0/act_1115030869503290/insights?access_token=EAAI0NYgS2EkBO7bcwmujq1BIC95Vy5zir6hzccIL7WSunMppEIJg9AZCyKLgT3ZC2sNTNwgEUvZB8DGYfedKBfsMZCDjzyALKyjwZBEXtgipRagRp7nCV6aWAZC8wGa14p5SPH53TrNaXss4ZCrlaaTZBFI2UkZC30VIznyx4keHBQ5Kq8vHCGZCOTqACkwB6e6f1YgPxA29YZD&fields=ad_id%2Cad_name%2Cadset_name%2Cactions%2Ccampaign_name%2Cspend%2Ccpm%2Cctr%2Cclicks%2Ccpc%2Cimpressions&level=ad&date_preset=today&&time_range=%7B%22since%22%3A%222025-01-01%22%2C%22until%22%3A%222025-12-31%22%7D&time_increment=1&limit=10000",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -360,
+        -20
+      ],
+      "id": "b1527428-4482-4d42-a423-4341c47196f1",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "date_start"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        120,
+        -20
+      ],
+      "id": "0268a94c-5038-4758-b5ff-af71e52a7947",
+      "name": "Sort"
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1hzlOJVWJUHndUDvmXaF5pHPWU_PTvJDyIMsfOUqrMzc/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1hzlOJVWJUHndUDvmXaF5pHPWU_PTvJDyIMsfOUqrMzc/edit#gid=0"
+        },
+        "clear": "specificRange",
+        "range": "A2:K5000"
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -100,
+        -200
+      ],
+      "id": "52fe8906-f829-4544-ac8b-6dd85144a70f",
+      "name": "Google Sheets1",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-03T20:05:09.000Z",
+  "versionId": "5471ffa7-f183-49ca-b1f5-52c63c794f42"
+}
