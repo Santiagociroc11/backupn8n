@@ -5,18 +5,7 @@
       "main": [
         [
           {
-            "node": "Facebook Graph API",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Facebook Graph API": {
-      "main": [
-        [
-          {
-            "node": "Split Out",
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
           }
@@ -27,7 +16,7 @@
       "main": [
         [
           {
-            "node": "Google Sheets",
+            "node": "Sort",
             "type": "main",
             "index": 0
           }
@@ -38,11 +27,43 @@
       "main": [
         [
           {
-            "node": "Facebook Graph API",
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
           }
         ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        []
       ]
     }
   },
@@ -66,53 +87,7 @@
     },
     {
       "parameters": {
-        "graphApiVersion": "v22.0",
-        "node": "act_1115030869503290",
-        "edge": "insights",
-        "options": {
-          "fields": {
-            "field": [
-              {
-                "name": "ad_id,ad_name,adset_name,campaign_name,spend,cpm,ctr,clicks,cpc,impressions"
-              }
-            ]
-          },
-          "queryParameters": {
-            "parameter": [
-              {
-                "name": "level",
-                "value": "ad"
-              },
-              {
-                "name": "date_preset",
-                "value": "today"
-              },
-              {
-                "name": "filtering",
-                "value": "[{\"field\":\"ad.effective_status\",\"operator\":\"IN\",\"value\":[\"ACTIVE\"]}]"
-              }
-            ]
-          }
-        }
-      },
-      "type": "n8n-nodes-base.facebookGraphApi",
-      "typeVersion": 1,
-      "position": [
-        -520,
-        -20
-      ],
-      "id": "bc83f6d0-a1e2-499c-a48c-77b3ade7e00a",
-      "name": "Facebook Graph API",
-      "credentials": {
-        "facebookGraphApi": {
-          "id": "vs1aiwMtMvP5wfcx",
-          "name": "TOKEN ADS"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "appendOrUpdate",
+        "operation": "append",
         "documentId": {
           "__rl": true,
           "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=278362918#gid=278362918",
@@ -255,11 +230,14 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        -80,
+        340,
         -20
       ],
       "id": "0aad0818-a08e-4386-b1d5-065a2b36964d",
       "name": "Google Sheets",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "zruD3ONGC9HU2i7s",
@@ -275,7 +253,7 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        -300,
+        -100,
         -20
       ],
       "id": "eea9d18c-fa4a-4fd1-b61f-d9b5d2560d56",
@@ -300,6 +278,76 @@
       ],
       "id": "0647c652-d5e4-46cd-8d9c-eca39a9a3b66",
       "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://graph.facebook.com/v22.0/act_1115030869503290/insights?access_token=EAAI0NYgS2EkBO7bcwmujq1BIC95Vy5zir6hzccIL7WSunMppEIJg9AZCyKLgT3ZC2sNTNwgEUvZB8DGYfedKBfsMZCDjzyALKyjwZBEXtgipRagRp7nCV6aWAZC8wGa14p5SPH53TrNaXss4ZCrlaaTZBFI2UkZC30VIznyx4keHBQ5Kq8vHCGZCOTqACkwB6e6f1YgPxA29YZD&fields=ad_id%2Cad_name%2Cadset_name%2Ccampaign_name%2Cspend%2Ccpm%2Cctr%2Cclicks%2Ccpc%2Cimpressions&level=ad&date_preset=today&filtering=%5B%7B%22field%22%3A%22ad.effective_status%22%2C%22operator%22%3A%22IN%22%2C%22value%22%3A%5B%22ACTIVE%22%5D%7D%5D&time_range=%7B%22since%22%3A%222025-04-01%22%2C%22until%22%3A%222025-12-31%22%7D&time_increment=1&limit=500",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -360,
+        -20
+      ],
+      "id": "cfe15819-c2ea-46cb-b538-68b6b4ca3a28",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "date_start"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        120,
+        -20
+      ],
+      "id": "ef2ca87b-f077-4c2b-bd62-eeea2f9a4fd3",
+      "name": "Sort"
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=278362918#gid=278362918",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 278362918,
+          "mode": "list",
+          "cachedResultName": "TABLA GASTO",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit#gid=278362918"
+        },
+        "clear": "specificRange",
+        "range": "A2:K10000"
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -100,
+        -200
+      ],
+      "id": "88a01803-7af1-4adb-8061-b932f2105b2d",
+      "name": "Google Sheets1",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -316,6 +364,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-02T23:01:36.000Z",
-  "versionId": "3b802e47-784c-46ae-bcd5-8abdf097e464"
+  "updatedAt": "2025-04-03T17:24:39.000Z",
+  "versionId": "c169584e-eb93-4fe5-abd8-d71f43f41290"
 }
