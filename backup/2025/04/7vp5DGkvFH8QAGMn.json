@@ -1,0 +1,209 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "GASTO EN ADS",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "ROAS REAL",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "VENTAS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GASTO EN ADS": {
+      "main": [
+        []
+      ]
+    },
+    "VENTAS": {
+      "main": [
+        [
+          {
+            "node": "Summarize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-04T05:26:24.697Z",
+  "id": "7vp5DGkvFH8QAGMn",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        0
+      ],
+      "id": "79718c14-1f07-4f52-8cc6-57be65ee4a82",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1sDv2vkexbHWcnR4SxVUAZW747rXFeyqKhWbldwLvrRQ/edit?gid=524839648#gid=524839648",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2042987742,
+          "mode": "list",
+          "cachedResultName": "VENTAS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1sDv2vkexbHWcnR4SxVUAZW747rXFeyqKhWbldwLvrRQ/edit#gid=2042987742"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "2025-01-18",
+              "lookupValue": "={{ $now.format('yyyy-MM-dd') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -340,
+        -140
+      ],
+      "id": "07437b6e-266c-4d9b-8aee-47f5f5a19545",
+      "name": "ROAS REAL",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1sDv2vkexbHWcnR4SxVUAZW747rXFeyqKhWbldwLvrRQ/edit?gid=524839648#gid=524839648",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1sDv2vkexbHWcnR4SxVUAZW747rXFeyqKhWbldwLvrRQ/edit?gid=524839648#gid=524839648",
+          "mode": "url"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Day",
+              "lookupValue": "={{ $now.format('yyyy-MM-dd') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -340,
+        40
+      ],
+      "id": "254f9fa5-86a5-42f2-b70a-e33124d769ab",
+      "name": "GASTO EN ADS",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "TRACKING VENTAS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "DIA COMPRA",
+              "lookupValue": "={{ $now.format('yyyy-MM-dd') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -340,
+        220
+      ],
+      "id": "f7d11fc5-2692-4c2d-9c85-0de36ab598d1",
+      "name": "VENTAS",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "field": "AD ID"
+            }
+          ]
+        },
+        "fieldsToSplitBy": "[\"AD ID\"]",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1.1,
+      "position": [
+        -120,
+        220
+      ],
+      "id": "b2945b8f-6bf3-40c8-af76-6882c9e3aa07",
+      "name": "Summarize"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-04T05:32:51.000Z",
+  "versionId": "34210f45-22bd-4895-97d3-f0e621f43f2c"
+}
