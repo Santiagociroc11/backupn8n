@@ -159,7 +159,7 @@
       "main": [
         [
           {
-            "node": "OBTENER DATASET",
+            "node": "FILEDS",
             "type": "main",
             "index": 0
           }
@@ -226,17 +226,6 @@
         [
           {
             "node": "Google Sheets2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OBTENER DATASET": {
-      "main": [
-        [
-          {
-            "node": "FILEDS",
             "type": "main",
             "index": 0
           }
@@ -347,7 +336,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -340,
+        -100,
         -140
       ],
       "id": "695c0e99-9662-49f0-b107-934d45f03f42",
@@ -948,7 +937,7 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        100,
+        340,
         -140
       ],
       "id": "0664d24b-a4d7-4a42-bb62-7c1866d09b2b",
@@ -1181,35 +1170,6 @@
     },
     {
       "parameters": {
-        "graphApiVersion": "v22.0",
-        "node": "={{ $json.source_id }}",
-        "options": {
-          "fields": {
-            "field": [
-              {
-                "name": "tracking_specs"
-              }
-            ]
-          }
-        }
-      },
-      "type": "n8n-nodes-base.facebookGraphApi",
-      "typeVersion": 1,
-      "position": [
-        320,
-        -140
-      ],
-      "id": "5d8bd310-552e-4dc2-8dd7-1edd7d9e52ce",
-      "name": "OBTENER DATASET",
-      "credentials": {
-        "facebookGraphApi": {
-          "id": "4iHCs0jnWOKmz6vc",
-          "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
-        }
-      }
-    },
-    {
-      "parameters": {
         "type": "SHA256",
         "value": "={{ $('BUSQUEDA EN BD').item.json.whatsapp }}",
         "dataPropertyName": "dataphone"
@@ -1261,7 +1221,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -120,
+        120,
         -140
       ],
       "id": "fec25260-302e-4a0a-b764-f381676eb949",
@@ -1274,13 +1234,13 @@
             {
               "id": "c361e726-8532-4be5-addb-68fb38e08bde",
               "name": "pixel",
-              "value": "={{ $json.tracking_specs[0].fb_pixel[0] }}",
+              "value": "=823731829860705",
               "type": "string"
             },
             {
               "id": "574837ae-4373-49cd-bf41-832bb550a2d6",
               "name": "page_id",
-              "value": "={{ $json.tracking_specs[3].page[0] }}",
+              "value": "=234154656454626",
               "type": "string"
             },
             {
@@ -1350,7 +1310,7 @@
           "params": {},
           "query": {},
           "body": {
-            "whatsapp": "573225528271"
+            "whatsapp": "573122396100"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/compra-wha-api",
           "executionMode": "production"
@@ -1362,11 +1322,13 @@
   "repo_owner": "Santiagociroc11",
   "repo_path": "backup/",
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timezone": "America/Bogota",
+    "callerPolicy": "workflowsFromSameOwner"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-03T05:21:18.000Z",
-  "versionId": "b8f1b53a-7a29-4b3a-a79f-57e0c6711437"
+  "updatedAt": "2025-04-03T17:24:30.000Z",
+  "versionId": "7b9616bf-bcc1-43a3-bc42-1a8562b992fa"
 }
