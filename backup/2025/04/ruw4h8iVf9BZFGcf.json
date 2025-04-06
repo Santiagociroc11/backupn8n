@@ -5,7 +5,7 @@
       "main": [
         [
           {
-            "node": "HTTP Request",
+            "node": "Code",
             "type": "main",
             "index": 0
           }
@@ -27,7 +27,7 @@
       "main": [
         [
           {
-            "node": "HTTP Request",
+            "node": "Code",
             "type": "main",
             "index": 0
           }
@@ -61,9 +61,15 @@
         ]
       ]
     },
-    "Google Sheets1": {
+    "Code": {
       "main": [
-        []
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
@@ -79,10 +85,10 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -740,
-        80
+        -720,
+        60
       ],
-      "id": "04a1a966-cf08-455d-91d8-dae39095934d",
+      "id": "f42a3f20-1fb2-4019-b58c-3ee62e702403",
       "name": "When clicking ‘Test workflow’"
     },
     {
@@ -247,10 +253,10 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        340,
+        600,
         -20
       ],
-      "id": "16db8ff9-d243-4f34-a5a2-9aa15287fe09",
+      "id": "0e8affe2-f1a9-4ae4-8b2a-800e7d1d90a5",
       "name": "Google Sheets",
       "retryOnFail": true,
       "maxTries": 5,
@@ -270,10 +276,10 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        -100,
+        160,
         -20
       ],
-      "id": "3125b328-ea02-4b38-8fa7-3f7e30f27f24",
+      "id": "dd076bcc-04fe-4c94-a725-daac77dd2abe",
       "name": "Split Out"
     },
     {
@@ -290,24 +296,28 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -740,
-        -120
+        -720,
+        -140
       ],
-      "id": "a1f93dbd-8303-406e-8bc5-17a31cea7771",
+      "id": "5c3eae4a-efb4-48e9-8965-1ee993a41322",
       "name": "Schedule Trigger"
     },
     {
       "parameters": {
-        "url": "https://graph.facebook.com/v22.0/act_1115030869503290/insights?access_token=EAAI0NYgS2EkBO7bcwmujq1BIC95Vy5zir6hzccIL7WSunMppEIJg9AZCyKLgT3ZC2sNTNwgEUvZB8DGYfedKBfsMZCDjzyALKyjwZBEXtgipRagRp7nCV6aWAZC8wGa14p5SPH53TrNaXss4ZCrlaaTZBFI2UkZC30VIznyx4keHBQ5Kq8vHCGZCOTqACkwB6e6f1YgPxA29YZD&fields=ad_id%2Cad_name%2Cadset_name%2Cactions%2Ccampaign_name%2Cspend%2Ccpm%2Cctr%2Cclicks%2Ccpc%2Cimpressions&level=ad&date_preset=today&&time_range=%7B%22since%22%3A%222025-01-01%22%2C%22until%22%3A%222025-12-31%22%7D&time_increment=1&limit=10000",
-        "options": {}
+        "url": "=https://graph.facebook.com/v22.0/act_1115030869503290/insights?access_token=EAAI0NYgS2EkBO7bcwmujq1BIC95Vy5zir6hzccIL7WSunMppEIJg9AZCyKLgT3ZC2sNTNwgEUvZB8DGYfedKBfsMZCDjzyALKyjwZBEXtgipRagRp7nCV6aWAZC8wGa14p5SPH53TrNaXss4ZCrlaaTZBFI2UkZC30VIznyx4keHBQ5Kq8vHCGZCOTqACkwB6e6f1YgPxA29YZD&fields=ad_id,ad_name,adset_name,actions,campaign_name,spend,cpm,ctr,clicks,cpc,impressions&level=ad&time_range={\"since\":\"{{$json.since}}\",\"until\":\"{{$json.until}}\"}&time_increment=1&limit=2000",
+        "options": {
+          "batching": {
+            "batch": {}
+          }
+        }
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -360,
+        -220,
         -20
       ],
-      "id": "b1527428-4482-4d42-a423-4341c47196f1",
+      "id": "48d531fe-e46c-4a6e-9b2e-d66642c10b86",
       "name": "HTTP Request"
     },
     {
@@ -324,10 +334,10 @@
       "type": "n8n-nodes-base.sort",
       "typeVersion": 1,
       "position": [
-        120,
+        380,
         -20
       ],
-      "id": "0268a94c-5038-4758-b5ff-af71e52a7947",
+      "id": "f099ec2d-93c6-4cc1-83e0-13ba09c1297a",
       "name": "Sort"
     },
     {
@@ -351,10 +361,10 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        -100,
+        160,
         -200
       ],
-      "id": "52fe8906-f829-4544-ac8b-6dd85144a70f",
+      "id": "79882d09-ba20-41e4-93b1-a15d4da7cd4a",
       "name": "Google Sheets1",
       "retryOnFail": true,
       "maxTries": 5,
@@ -365,9 +375,40 @@
           "name": "CUENTA SANTIAGO"
         }
       }
+    },
+    {
+      "parameters": {
+        "jsCode": "const startDate = new Date(\"2025-01-01\");\n\n// Hoy\nconst now = new Date();\n\n// Primer día del mes actual (máximo para el since)\nconst maxSince = new Date(now.getFullYear(), now.getMonth(), 1);\n\n// Fecha final permitida para \"until\"\nconst finalUntil = new Date(\"2025-12-31\");\n\nconst dayInMs = 1000 * 60 * 60 * 24;\nconst range = 15;\nconst output = [];\n\nfor (let date = new Date(startDate); date <= maxSince; date = new Date(date.getTime() + range * dayInMs)) {\n\tconst from = new Date(date);\n\tlet to = new Date(date.getTime() + (range - 1) * dayInMs);\n\n\t// No pasar del 31 de diciembre con el \"until\"\n\tif (to > finalUntil) {\n\t\tto = new Date(finalUntil);\n\t}\n\n\toutput.push({\n\t\tjson: {\n\t\t\tsince: from.toISOString().split(\"T\")[0],\n\t\t\tuntil: to.toISOString().split(\"T\")[0],\n\t\t}\n\t});\n}\n\nreturn output;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -440,
+        -20
+      ],
+      "id": "5132e68b-126d-4a02-b8be-494b65ea0ef8",
+      "name": "Code"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Schedule Trigger": [
+      {
+        "json": {
+          "timestamp": "2025-04-05T12:00:23.006-04:00",
+          "Readable date": "April 5th 2025, 12:00:23 pm",
+          "Readable time": "12:00:23 pm",
+          "Day of week": "Saturday",
+          "Year": "2025",
+          "Month": "April",
+          "Day of month": "05",
+          "Hour": "12",
+          "Minute": "00",
+          "Second": "23",
+          "Timezone": "America/New_York (UTC-04:00)"
+        }
+      }
+    ]
+  },
   "repo_name": "backupn8n",
   "repo_owner": "Santiagociroc11",
   "repo_path": "backup/",
@@ -381,6 +422,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-03T20:05:09.000Z",
-  "versionId": "5471ffa7-f183-49ca-b1f5-52c63c794f42"
+  "updatedAt": "2025-04-05T17:16:17.000Z",
+  "versionId": "aee9496b-f1c7-4a8a-a483-832e876c113f"
 }
