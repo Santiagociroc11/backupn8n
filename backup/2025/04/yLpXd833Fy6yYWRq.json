@@ -1,0 +1,655 @@
+{
+  "active": true,
+  "connections": {
+    "REGISTRO": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "CONSULTAR MONGO",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "INSERTAR EN MONGO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "INSERTAR EN MONGO": {
+      "main": [
+        [
+          {
+            "node": "BUSQUEDA EN FLODESK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CONSULTAR MONGO": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "ESCRITURA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BUSQUEDA EN FLODESK": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-06T22:57:29.725Z",
+  "id": "yLpXd833Fy6yYWRq",
+  "meta": null,
+  "name": "🟢 [GERSSON-L7] LISTA DE ESPERA",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "captura-listaespera-l7",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -560,
+        -605
+      ],
+      "id": "3de2dd52-06cd-4430-8b0c-02ab3a01583d",
+      "name": "REGISTRO",
+      "webhookId": "67c6d499-7ff3-4d4f-8535-1b7860222892"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -340,
+        -505
+      ],
+      "id": "99204156-ca60-47d8-9fb0-7c5aef49dabc",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "eb31eaf1-7f83-4773-a663-4213a227c9e8",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "6297f203-b365-4f70-8eb5-a28894c63e14",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        100,
+        -430
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "a3a64812-0f78-4f99-92f9-c528a0aa6163",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        320,
+        -605
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8a258913-16e5-4c77-bc40-13e5d18f740f",
+              "name": "ip",
+              "value": "={{ $json.headers['x-real-ip'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -340,
+        -780
+      ],
+      "id": "125f9d7e-cfc7-4a57-96e5-6b3cdd300691",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "id": "2f329f2b-45d0-4306-b5ee-8fb5ee4d1579",
+      "name": "Merge2",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        100,
+        -705
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=http://ip-api.com/json/{{ $json.ip }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -120,
+        -780
+      ],
+      "id": "3c815ca4-f9fa-494c-925f-d21f86241aef",
+      "name": "HTTP Request",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "collection": "espera-l7",
+        "fields": "=query,country,city,zip,regionName,timezone,email,whatsapp,utmCampaign,utmSource,utmMedium,utmContent,utmTerm,userAgent,platform,language,tiemporegistro,fbc,fbp,isFbcGenerated",
+        "options": {}
+      },
+      "id": "a0a11184-2874-4097-a44b-3d6a4e4a4974",
+      "name": "INSERTAR EN MONGO",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        540,
+        -605
+      ],
+      "credentials": {
+        "mongoDb": {
+          "id": "vbsT0SoMA5A3acgH",
+          "name": "BASE DE DATOS GERSSON"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "collection": "=espera-l7",
+        "options": {
+          "limit": 1
+        },
+        "query": "={\"whatsapp\": \"{{ $json.whatsapp }}\", \"email\": \"{{$json.email}}\"}"
+      },
+      "id": "99aa3c7f-73ea-4eb8-aedb-ed5c50630f2a",
+      "name": "CONSULTAR MONGO",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        -120,
+        -430
+      ],
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "mongoDb": {
+          "id": "vbsT0SoMA5A3acgH",
+          "name": "BASE DE DATOS GERSSON"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ff9f56d5-3bdc-45e2-b7f3-5fec484a6f1c",
+              "leftValue": "={{ $json.error.status }}",
+              "rightValue": 404,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        980,
+        -605
+      ],
+      "id": "01998ad4-66ec-499b-9e3c-f5328876ceb1",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.flodesk.com/v1/subscribers/{{ $json.email }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "n8n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        760,
+        -605
+      ],
+      "id": "871ace1f-35f2-4a2a-bf10-c00335023d88",
+      "name": "BUSQUEDA EN FLODESK",
+      "retryOnFail": false,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "JzZ2saBcDbEsbcOC",
+          "name": "API FLODESK N8N GERSSON"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.flodesk.com/v1/subscribers",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "n8n"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"email\": \"{{ $('INSERTAR EN MONGO').item.json.email }}\",\n    \"segment_ids\": [\n       \"67f30b49d8b134f84c6228ee\"\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1200,
+        -605
+      ],
+      "id": "4fad4077-b303-424b-9778-35038c294fc8",
+      "name": "ESCRITURA",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "JzZ2saBcDbEsbcOC",
+          "name": "API FLODESK N8N GERSSON"
+        }
+      },
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "pinData": {
+    "REGISTRO": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+            "content-length": "516",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "es-ES,es;q=0.9,en;q=0.8",
+            "content-type": "application/json",
+            "origin": "https://terapiasmagneticas.com",
+            "priority": "u=1, i",
+            "referer": "https://terapiasmagneticas.com/",
+            "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "181.68.8.38",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "e90ae4fad82e",
+            "x-real-ip": "181.68.8.38"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "tiemporegistro": 1743981854,
+            "email": "frankgonzalezm21@gmail.com",
+            "whatsapp": "+573218504711",
+            "utmCampaign": "-",
+            "utmSource": "-",
+            "utmMedium": "-",
+            "utmContent": "-",
+            "utmTerm": "-",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+            "platform": "Win32",
+            "language": "es-ES",
+            "fbc": "fb.1.1742832669178.PAZXh0bgNhZW0CMTEAAaaGeK1p29AQ4t0mAkdeQHFU5iLFO219CRvY3xKQjf9pmxISVmpKzdoraPU_aem_QMINrS4bLoSRflbaAAgf7A",
+            "fbp": "fb.1.1725231972150.160652841744841634"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/captura-listaespera-l7",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "Edit Fields": [
+      {
+        "json": {
+          "tiemporegistro": 1743981854,
+          "email": "frankgonzalezm21@gmail.com",
+          "whatsapp": "+573218504711",
+          "utmCampaign": "-",
+          "utmSource": "-",
+          "utmMedium": "-",
+          "utmContent": "-",
+          "utmTerm": "-",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+          "platform": "Win32",
+          "language": "es-ES",
+          "fbc": "fb.1.1742832669178.PAZXh0bgNhZW0CMTEAAaaGeK1p29AQ4t0mAkdeQHFU5iLFO219CRvY3xKQjf9pmxISVmpKzdoraPU_aem_QMINrS4bLoSRflbaAAgf7A",
+          "fbp": "fb.1.1725231972150.160652841744841634"
+        }
+      }
+    ],
+    "If": [
+      {
+        "json": {}
+      }
+    ],
+    "Merge": [
+      {
+        "json": {
+          "status": "success",
+          "country": "Colombia",
+          "countryCode": "CO",
+          "region": "LAG",
+          "regionName": "La Guajira Department",
+          "city": "Riohacha",
+          "zip": "440001",
+          "lat": 11.5424,
+          "lon": -72.9019,
+          "timezone": "America/Bogota",
+          "isp": "Colombia Móvil",
+          "org": "Colombia Móvil",
+          "as": "AS27831 Colombia Móvil",
+          "query": "181.68.8.38",
+          "tiemporegistro": 1743981854,
+          "email": "frankgonzalezm21@gmail.com",
+          "whatsapp": "+573218504711",
+          "utmCampaign": "-",
+          "utmSource": "-",
+          "utmMedium": "-",
+          "utmContent": "-",
+          "utmTerm": "-",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+          "platform": "Win32",
+          "language": "es-ES",
+          "fbc": "fb.1.1742832669178.PAZXh0bgNhZW0CMTEAAaaGeK1p29AQ4t0mAkdeQHFU5iLFO219CRvY3xKQjf9pmxISVmpKzdoraPU_aem_QMINrS4bLoSRflbaAAgf7A",
+          "fbp": "fb.1.1725231972150.160652841744841634"
+        }
+      }
+    ],
+    "Edit Fields2": [
+      {
+        "json": {
+          "ip": "181.68.8.38"
+        }
+      }
+    ],
+    "Merge2": [
+      {
+        "json": {
+          "status": "success",
+          "country": "Colombia",
+          "countryCode": "CO",
+          "region": "LAG",
+          "regionName": "La Guajira Department",
+          "city": "Riohacha",
+          "zip": "440001",
+          "lat": 11.5424,
+          "lon": -72.9019,
+          "timezone": "America/Bogota",
+          "isp": "Colombia Móvil",
+          "org": "Colombia Móvil",
+          "as": "AS27831 Colombia Móvil",
+          "query": "181.68.8.38",
+          "tiemporegistro": 1743981854,
+          "email": "frankgonzalezm21@gmail.com",
+          "whatsapp": "+573218504711",
+          "utmCampaign": "-",
+          "utmSource": "-",
+          "utmMedium": "-",
+          "utmContent": "-",
+          "utmTerm": "-",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+          "platform": "Win32",
+          "language": "es-ES",
+          "fbc": "fb.1.1742832669178.PAZXh0bgNhZW0CMTEAAaaGeK1p29AQ4t0mAkdeQHFU5iLFO219CRvY3xKQjf9pmxISVmpKzdoraPU_aem_QMINrS4bLoSRflbaAAgf7A",
+          "fbp": "fb.1.1725231972150.160652841744841634"
+        }
+      }
+    ],
+    "HTTP Request": [
+      {
+        "json": {
+          "status": "success",
+          "country": "Colombia",
+          "countryCode": "CO",
+          "region": "LAG",
+          "regionName": "La Guajira Department",
+          "city": "Riohacha",
+          "zip": "440001",
+          "lat": 11.5424,
+          "lon": -72.9019,
+          "timezone": "America/Bogota",
+          "isp": "Colombia Móvil",
+          "org": "Colombia Móvil",
+          "as": "AS27831 Colombia Móvil",
+          "query": "181.68.8.38"
+        }
+      }
+    ],
+    "INSERTAR EN MONGO": [
+      {
+        "json": {
+          "query": "181.68.8.38",
+          "country": "Colombia",
+          "city": "Riohacha",
+          "zip": "440001",
+          "regionName": "La Guajira Department",
+          "timezone": "America/Bogota",
+          "email": "frankgonzalezm21@gmail.com",
+          "whatsapp": "+573218504711",
+          "utmCampaign": "-",
+          "utmSource": "-",
+          "utmMedium": "-",
+          "utmContent": "-",
+          "utmTerm": "-",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+          "platform": "Win32",
+          "language": "es-ES",
+          "tiemporegistro": 1743981854,
+          "fbc": "fb.1.1742832669178.PAZXh0bgNhZW0CMTEAAaaGeK1p29AQ4t0mAkdeQHFU5iLFO219CRvY3xKQjf9pmxISVmpKzdoraPU_aem_QMINrS4bLoSRflbaAAgf7A",
+          "fbp": "fb.1.1725231972150.160652841744841634",
+          "isFbcGenerated": null,
+          "_id": "67f30d1cd6f959bfa249e610",
+          "id": "67f30d1cd6f959bfa249e610"
+        }
+      }
+    ],
+    "CONSULTAR MONGO": [
+      {
+        "json": {}
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-02-04T22:36:35.108Z",
+      "updatedAt": "2025-02-04T22:36:35.108Z",
+      "id": "HjNWwvqlBnseDfSA",
+      "name": "GERSSON"
+    },
+    {
+      "createdAt": "2025-02-20T03:14:39.493Z",
+      "updatedAt": "2025-02-20T03:14:39.493Z",
+      "id": "fMteddKWhaFhuYHk",
+      "name": "MYSQL"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-07T00:36:37.000Z",
+  "versionId": "e52cb811-8506-461f-8c5d-df340433a7a9"
+}
