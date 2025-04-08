@@ -1,0 +1,156 @@
+{
+  "active": true,
+  "connections": {
+    "If": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-04-08T04:08:48.539Z",
+  "id": "Z3zt0DKVUDrlCDdZ",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        340,
+        -120
+      ],
+      "id": "3864ee9f-6a3f-458f-9ba8-7469c056f456",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c3a98415-52fb-452f-8615-a27d208e2d48",
+              "leftValue": "={{ $json.body.data.messageType }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -220,
+        -100
+      ],
+      "id": "b5b91c56-ef06-4693-b642-ef202cc08eeb",
+      "name": "If"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "377a43ca-3f8b-4738-af5a-98552050a66b",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.whatsAppTool",
+      "typeVersion": 1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "ed2b5b6f-771c-450f-926f-2f07daf840f6",
+      "name": "WhatsApp Business Cloud",
+      "webhookId": "41a0ee5b-7b4f-4ba2-987b-b1570c6da196"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "api-lui",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1440,
+        -240
+      ],
+      "id": "40b5e8a3-c4ce-4f5b-b617-7d098cc5e20c",
+      "name": "Webhook",
+      "webhookId": "2d1b4460-d2de-403f-8e3c-5fefeef9f8df"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "facebookplatform/1.0 (+http://developers.facebook.com)",
+            "accept": "*/*",
+            "accept-encoding": "deflate, gzip",
+            "x-forwarded-for": "69.63.184.13",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "e90ae4fad82e",
+            "x-real-ip": "69.63.184.13"
+          },
+          "params": {},
+          "query": {
+            "hub.mode": "subscribe",
+            "hub.challenge": "684682866",
+            "hub.verify_token": "evolution"
+          },
+          "body": {},
+          "webhookUrl": "https://n8n.automscc.com/webhook/api-lui",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-08T05:29:01.000Z",
+  "versionId": "e9c3b780-1d26-45aa-91fe-fd89a3ba8af5"
+}
