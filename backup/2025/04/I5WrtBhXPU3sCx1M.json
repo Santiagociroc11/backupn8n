@@ -1,0 +1,623 @@
+{
+  "active": true,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Supabase Vector Store1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Supabase Vector Store1",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase Vector Store": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-08T22:30:17.619Z",
+  "id": "I5WrtBhXPU3sCx1M",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -740,
+        -320
+      ],
+      "id": "26889c9f-5ca1-4bf9-94b9-ac4f97e3bc56",
+      "name": "When chat message received",
+      "webhookId": "bc5b9cd2-05ba-45ee-9249-07f899bd6c45"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "\"Eres Luisa Buitrago, una asesora de 35 años especializada en servicios de entretenimiento digital.\n\nIMPORTANTE - ACCESO A BASE DE CONOCIMIENTO:\nEste asistente está conectado a un sistema RAG (Retrieval-Augmented Generation) que debe consultar activamente antes de responder. Cuando recibas una consulta:\n\n1. PRIMERO: Analiza la pregunta y extrae las palabras clave relevantes\n2. SEGUNDO: Utiliza estas palabras clave para realizar una búsqueda en la base de conocimiento vectorial\n3. TERCERO: Recupera la información relevante de los vectores\n4. CUARTO: Formula tu respuesta basándote en la información recuperada\n\nINSTRUCCIONES TÉCNICAS PARA EL SISTEMA:\n- Debes buscar activamente en los vectores de conocimiento para cada consulta\n- Consulta específicamente el vector \"codigowin\" para mensajes de venta efectivos\n- Si no encuentras información específica en la base de conocimiento, indícalo claramente\n- La respuesta DEBE incluir información recuperada del RAG\n- No inventes respuestas si no tienes la información en la base de conocimiento\n\nPersonalidad y enfoque:\n- Eres cálida y empática, construyes una conexión real con la persona.\n- Hablas de manera conversacional y natural, usando frases cortas y directas.\n- Añades pequeños detalles personales ocasionalmente para sonar auténtica.\n- Utilizas saltos de línea para que tus mensajes sean fáciles de leer.\n- Evitas sonar como un guion, adaptándote a cada conversación.\n\nSobre la oferta:\nLa persona ha recibido información sobre nuestro servicio de streaming que incluye:\n- Acceso a todos los canales de televisión mundiales\n- Más de 5,000 series y 30,000 películas en alta calidad\n- Contenido sin anuncios, con señal en vivo y full HD\n- Precio especial: $17.900 pesos colombianos al AÑO (pago único)\n- Contenido deportivo completo (WIN+, ESPN, FOX, DIRECTV, STAR+)\n- Eventos deportivos: Champions League, Europa League, fútbol colombiano, MLS, etc.\n- Compatible con múltiples dispositivos: Android, TV con Android, Windows, TV BOX y FIRETV\n- Instalación sencilla (menos de 5 minutos)\n\nEstrategia de conversación:\n1. Pregunta el nombre de la persona para personalizar la conversación.\n2. Consulta SIEMPRE la base de conocimiento vectorial para responder inquietudes.\n3. Utiliza el vector \"codigowin\" para inspirar mensajes persuasivos pero naturales.\n4. Menciona sutilmente que la oferta tiene cupos limitados (7 disponibles).\n5. Comenta que el precio regular es $39.900, por lo que el descuento es temporal.\n6. Comparte ocasionalmente experiencias de otros clientes satisfechos.\n7. Ofrece ayuda con el proceso de instalación y uso.\n8. Guía naturalmente hacia la decisión de compra sin presionar agresivamente.\""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -488,
+        -320
+      ],
+      "id": "10f802e1-d7e6-4590-849c-7e968967758a",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        -400,
+        -100
+      ],
+      "id": "8461d69c-cc86-4262-815b-3c28d1ab85c0",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "zN9ad5TTzt9GY5dt",
+          "name": "SUPABASE N8N"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -520,
+        -100
+      ],
+      "id": "744053d4-a1da-4edd-a594-53cbea3409c0",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "1YThUTJxEpivH9VwT9gKE0BPsWsiT-jQI",
+          "mode": "list",
+          "cachedResultName": "RAG_N8N_WIN",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1YThUTJxEpivH9VwT9gKE0BPsWsiT-jQI"
+        },
+        "event": "fileCreated",
+        "options": {
+          "fileType": "all"
+        }
+      },
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        -740,
+        490
+      ],
+      "id": "5f55c3dd-cc15-488b-8ad0-baeb265dc6b8",
+      "name": "Google Drive Trigger",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "3ZyaLVr7oKCDvQUn",
+          "name": "DRIVE SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "00d37bef-fc54-46ad-b2bf-ca8a2dc53f48",
+              "name": "TIPO",
+              "value": "={{ $json.mimeType }}",
+              "type": "string"
+            },
+            {
+              "id": "2c29ad1c-bc60-4883-8fa4-0b45047919d9",
+              "name": "ID",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -520,
+        490
+      ],
+      "id": "1228523a-6b3a-493b-acfa-a53ba4aae305",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -300,
+        490
+      ],
+      "id": "415f5cad-4499-444e-be38-f856419a4f7b",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.ID }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -80,
+        540
+      ],
+      "id": "0d439544-8153-494d-b605-a52b3f7a26d5",
+      "name": "Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "3ZyaLVr7oKCDvQUn",
+          "name": "DRIVE SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        340
+      ],
+      "id": "e1bd532b-53d8-45e6-b1be-7f3f4e9687e1",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": {
+          "__rl": true,
+          "value": "documents",
+          "mode": "list",
+          "cachedResultName": "documents"
+        },
+        "options": {
+          "queryName": "match_documents"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1.1,
+      "position": [
+        156,
+        340
+      ],
+      "id": "c9ddc783-caf6-432d-8e14-756acb5a7294",
+      "name": "Supabase Vector Store1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "rWqAXBEFEAWGepWi",
+          "name": "RAG N8N"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        140,
+        560
+      ],
+      "id": "06c5f302-bfb2-411e-b23a-a744ed0af4a2",
+      "name": "Embeddings OpenAI1",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        260,
+        562.5
+      ],
+      "id": "9b41e176-4b9e-490b-9656-13872e7c5bac",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "chunkSize": 2000,
+        "chunkOverlap": 200,
+        "options": {
+          "splitCode": "markdown"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        348,
+        760
+      ],
+      "id": "ea2155ae-332a-4992-b1da-ca5fec3c14bc",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
+      "typeVersion": 1,
+      "position": [
+        -740,
+        800
+      ],
+      "id": "44f23923-b05c-40c2-8bdd-917d763d8609",
+      "name": "Answer questions with a vector store"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolName": "codigowin",
+        "toolDescription": "usa esto para traer la informacion del chatbot de venta de win+",
+        "tableName": {
+          "__rl": true,
+          "value": "documents",
+          "mode": "list",
+          "cachedResultName": "documents"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1.1,
+      "position": [
+        -280,
+        -97.5
+      ],
+      "id": "44a2f824-f7fd-4cdf-a40a-2e7cbd0913de",
+      "name": "Supabase Vector Store",
+      "credentials": {
+        "supabaseApi": {
+          "id": "rWqAXBEFEAWGepWi",
+          "name": "RAG N8N"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -192,
+        100
+      ],
+      "id": "18738e1c-c21f-435f-b113-ef5a1d6f6629",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Google Drive Trigger": [
+      {
+        "json": {
+          "kind": "drive#file",
+          "fileExtension": "js",
+          "copyRequiresWriterPermission": false,
+          "md5Checksum": "e4fcc6785a6ae4ebb930025ce09c5c8c",
+          "writersCanShare": true,
+          "viewedByMe": true,
+          "mimeType": "text/javascript",
+          "parents": [
+            "1YThUTJxEpivH9VwT9gKE0BPsWsiT-jQI"
+          ],
+          "thumbnailLink": "https://lh3.googleusercontent.com/drive-storage/AJQWtBOsMb5NJLYXRdJOZKrwQsTv-ndU6ztWMYzJuiD8ENP__fYUuSh6ZNBH9Gv29UnH4P7FIQxmP_BW0P8NanQ4ojg-EA9m5qCRxCpazTe2bGDkjyk=s220",
+          "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/text/javascript",
+          "shared": false,
+          "lastModifyingUser": {
+            "displayName": "Santiago Ciro",
+            "kind": "drive#user",
+            "me": true,
+            "permissionId": "05709682256076479936",
+            "emailAddress": "santiagociiro12@gmail.com",
+            "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocI6LSRHeAZ0ACHS45m26f3qCCb5uYF93bUXhC0gvMUzIiPL7Pg=s64"
+          },
+          "owners": [
+            {
+              "displayName": "Santiago Ciro",
+              "kind": "drive#user",
+              "me": true,
+              "permissionId": "05709682256076479936",
+              "emailAddress": "santiagociiro12@gmail.com",
+              "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocI6LSRHeAZ0ACHS45m26f3qCCb5uYF93bUXhC0gvMUzIiPL7Pg=s64"
+            }
+          ],
+          "headRevisionId": "0B6gkdRSzWJNaR3V6R1RpSmxmd2FHOUszVVJrUUFRVmM1Z1lvPQ",
+          "webViewLink": "https://drive.google.com/file/d/1crkEbEavB2VNMYfAGcCj9HLdamotL2Vk/view?usp=drivesdk",
+          "webContentLink": "https://drive.google.com/uc?id=1crkEbEavB2VNMYfAGcCj9HLdamotL2Vk&export=download",
+          "size": "67015",
+          "viewersCanCopyContent": true,
+          "permissions": [
+            {
+              "id": "05709682256076479936",
+              "displayName": "Santiago Ciro",
+              "type": "user",
+              "kind": "drive#permission",
+              "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocI6LSRHeAZ0ACHS45m26f3qCCb5uYF93bUXhC0gvMUzIiPL7Pg=s64",
+              "emailAddress": "santiagociiro12@gmail.com",
+              "role": "owner",
+              "deleted": false,
+              "pendingOwner": false
+            }
+          ],
+          "hasThumbnail": true,
+          "spaces": [
+            "drive"
+          ],
+          "id": "1crkEbEavB2VNMYfAGcCj9HLdamotL2Vk",
+          "name": "webhook-facebook.js",
+          "starred": false,
+          "trashed": false,
+          "explicitlyTrashed": false,
+          "createdTime": "2025-04-09T03:36:02.471Z",
+          "modifiedTime": "2025-04-08T20:40:28.000Z",
+          "modifiedByMeTime": "2025-04-08T20:40:28.000Z",
+          "viewedByMeTime": "2025-04-09T03:36:02.471Z",
+          "quotaBytesUsed": "67015",
+          "version": "3",
+          "originalFilename": "webhook-facebook.js",
+          "ownedByMe": true,
+          "fullFileExtension": "js",
+          "isAppAuthorized": false,
+          "capabilities": {
+            "canChangeViewersCanCopyContent": true,
+            "canEdit": true,
+            "canCopy": true,
+            "canComment": true,
+            "canAddChildren": false,
+            "canDelete": true,
+            "canDownload": true,
+            "canListChildren": false,
+            "canRemoveChildren": false,
+            "canRename": true,
+            "canTrash": true,
+            "canReadRevisions": true,
+            "canChangeCopyRequiresWriterPermission": true,
+            "canMoveItemIntoTeamDrive": true,
+            "canUntrash": true,
+            "canModifyContent": true,
+            "canMoveItemOutOfDrive": true,
+            "canAddMyDriveParent": false,
+            "canRemoveMyDriveParent": true,
+            "canMoveItemWithinDrive": true,
+            "canShare": true,
+            "canMoveChildrenWithinDrive": false,
+            "canModifyContentRestriction": true,
+            "canChangeSecurityUpdateEnabled": false,
+            "canAcceptOwnership": false,
+            "canReadLabels": false,
+            "canModifyLabels": false,
+            "canModifyEditorContentRestriction": true,
+            "canModifyOwnerContentRestriction": true,
+            "canRemoveContentRestriction": false,
+            "canDisableInheritedPermissions": false,
+            "canEnableInheritedPermissions": true
+          },
+          "thumbnailVersion": "1",
+          "modifiedByMe": true,
+          "permissionIds": [
+            "05709682256076479936"
+          ],
+          "linkShareMetadata": {
+            "securityUpdateEligible": false,
+            "securityUpdateEnabled": true
+          },
+          "sha1Checksum": "5f01011c6cfbddd8e84d96e8817e90668a100a43",
+          "sha256Checksum": "7cbf7ce2c8dec275710a01caa97427beaf074a48a6a879da5e6a3e6fd300ce73",
+          "inheritedPermissionsDisabled": false
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Google Drive Trigger": {
+      "lastTimeChecked": "2025-04-09T04:22:32Z"
+    }
+  },
+  "tags": [],
+  "triggerCount": 3,
+  "updatedAt": "2025-04-09T04:22:32.000Z",
+  "versionId": "34c3ba07-6560-4a61-b088-15388768e26f"
+}
