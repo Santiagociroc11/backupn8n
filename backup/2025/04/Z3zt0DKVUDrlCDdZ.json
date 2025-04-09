@@ -1,7 +1,74 @@
 {
   "active": true,
   "connections": {
-    "If": {
+    "MENSAJES ENTRANTES": {
+      "main": [
+        [
+          {
+            "node": "FILTRAR ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FILTRAR ID": {
+      "main": [
+        [
+          {
+            "node": "TIPO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TIPO": {
+      "main": [
+        [
+          {
+            "node": "BD MASIVOS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BD MASIVOS": {
+      "main": [
+        [
+          {
+            "node": "EXISTE?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EXISTE?": {
+      "main": [
+        [
+          {
+            "node": "MASIVO?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "MASIVO?": {
+      "main": [
+        [
+          {
+            "node": "TIPOS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MENSAJE": {
       "main": [
         [
           {
@@ -12,9 +79,378 @@
         ]
       ]
     },
-    "Webhook": {
+    "OBTENER LINK AUDIO": {
       "main": [
+        [
+          {
+            "node": "DESCARGAR AUDIO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DESCARGAR AUDIO": {
+      "main": [
+        [
+          {
+            "node": "AI_AUDIO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OBTENER LINK IMAGEN": {
+      "main": [
+        [
+          {
+            "node": "DESCARGAR IMAGEN",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DESCARGAR IMAGEN": {
+      "main": [
+        [
+          {
+            "node": "AI_IMAGEN",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ESTADO": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ],
         []
+      ]
+    },
+    "bv1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "bv2": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "bv3": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "bv1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "bv2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "bv3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "SSH",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "bv": {
+      "main": [
+        [
+          {
+            "node": "Wait4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait4": {
+      "main": [
+        [
+          {
+            "node": "bv4 CTA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SSH": {
+      "main": [
+        [
+          {
+            "node": "bv",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "bv4 CTA": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "BD MASIVOS1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI_IMAGEN": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI_AUDIO": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "BD MASIVOS2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Classifier": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TIPOS": {
+      "main": [
+        [
+          {
+            "node": "OBTENER LINK AUDIO1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        []
+      ]
+    },
+    "OBTENER LINK AUDIO1": {
+      "main": [
+        [
+          {
+            "node": "DESCARGAR AUDIO1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DESCARGAR AUDIO1": {
+      "main": [
+        [
+          {
+            "node": "AI_AUDIO1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI_AUDIO1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "MENSAJE1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "MENSAJE1",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
@@ -27,17 +463,26 @@
   "nodes": [
     {
       "parameters": {
-        "promptType": "define",
+        "updates": [
+          "messages"
+        ],
         "options": {}
       },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 1.8,
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
       "position": [
-        340,
-        -120
+        -2560,
+        20
       ],
-      "id": "3864ee9f-6a3f-458f-9ba8-7469c056f456",
-      "name": "AI Agent"
+      "id": "32760981-2acc-47ff-afee-269ac84f5280",
+      "name": "MENSAJES ENTRANTES",
+      "webhookId": "984f8b44-2349-483d-9302-d15717cb8c72",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "zb5kaWDZNFSlAvGs",
+          "name": "LUISA"
+        }
+      }
     },
     {
       "parameters": {
@@ -50,9 +495,393 @@
           },
           "conditions": [
             {
-              "id": "c3a98415-52fb-452f-8615-a27d208e2d48",
-              "leftValue": "={{ $json.body.data.messageType }}",
+              "id": "27da9b92-3a4c-4059-b6f6-252260eac6bd",
+              "leftValue": "={{$json.metadata.phone_number_id}}",
+              "rightValue": "269199792942973",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "171ba0cd-62cc-48e6-9057-8206c6b72e97",
+              "leftValue": "={{ $json.messages[0]?.type }}",
               "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -2340,
+        20
+      ],
+      "id": "4e9ca6d8-0ad9-4444-8eaa-8c8b5214107b",
+      "name": "FILTRAR ID"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "74b9bf13-a0e5-47b9-8cc9-5c7fb030795d",
+              "name": "type",
+              "value": "={{ $json.messages[0].type }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2120,
+        20
+      ],
+      "id": "e2459574-4b93-4753-a8f6-75caca85ab4c",
+      "name": "TIPO"
+    },
+    {
+      "parameters": {
+        "collection": "win_masivos",
+        "options": {},
+        "query": "={\n  \"whatsapp\": {\n    \"$regex\": \"{{ $('FILTRAR ID').item.json.messages[0].from }}\",\n    \"$options\": \"i\"\n  }\n}"
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        -1900,
+        20
+      ],
+      "id": "1b857975-5e31-4170-952b-2ff77c2838a3",
+      "name": "BD MASIVOS",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mongoDb": {
+          "id": "6G1XA88uGGFTXKm7",
+          "name": "BD WIN MASIVOS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "3a4bd337-602b-4502-9ea9-150ed4d25ba3",
+                    "leftValue": "={{$json.isEmpty()}}",
+                    "rightValue": "false",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "false",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "EXISTE"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{$json.isEmpty()}}",
+                    "rightValue": "true",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "id": "33c23586-3623-4f96-856d-0422904b28d4"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NO EXISTE"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -1680,
+        20
+      ],
+      "id": "204f6aa2-c17f-47e9-b805-e454a7bd0b9c",
+      "name": "EXISTE?"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "27da9b92-3a4c-4059-b6f6-252260eac6bd",
+              "leftValue": "={{$json.masivo1}}",
+              "rightValue": "269199792942973",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -1440,
+        0
+      ],
+      "id": "66e51210-73af-479c-bda7-5ac64ec41daf",
+      "name": "MASIVO?"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4674965d-4b86-48f4-be13-f8fa0b3b8ae4",
+              "name": "mensaje",
+              "value": "={{ $('FILTRAR ID').item.json.messages[0].text.body }}",
+              "type": "string"
+            },
+            {
+              "id": "98fdc9e0-3378-4274-853c-5110e881972f",
+              "name": "estado",
+              "value": "={{ $('ESTADO').item.json.estado }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1220,
+        -20
+      ],
+      "id": "26f68c53-dc0d-40a1-90b6-8f3ddeb20855",
+      "name": "MENSAJE"
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "operation": "mediaUrlGet",
+        "mediaGetId": "={{ $('FILTRAR ID').item.json.messages[0].audio.id }}"
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        780,
+        470.5
+      ],
+      "id": "d7618f5a-e6d0-452b-b203-2d41ea5e7bce",
+      "name": "OBTENER LINK AUDIO",
+      "webhookId": "5f82ed99-11da-4fac-896c-acb9918b2570",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "iLhFMRlYKpgKiMOO",
+          "name": "LUISA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer EAAFrfQY0m5QBOwAXZBrJI057mI6Wg9xIAW3QWCX9l7qFs76fV88fyu2IqeGTSpdJhD63meiz4zuTTVxS6IYuJmN8hn8nlojIOQwFKgbdyiiZASR2RZBDbTN3kLmHz7JgZC1ZBZBpPr6IZCCtTzKY24QCXQvd4574su5EOOBn1RZAuKQV3KzZBJ0Tew753bZBXkm1LK"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1000,
+        470.5
+      ],
+      "id": "02198fd2-77fa-407a-b210-77f40416bf56",
+      "name": "DESCARGAR AUDIO"
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "operation": "mediaUrlGet",
+        "mediaGetId": "={{ $('FILTRAR ID').item.json.messages[0].image.id }}"
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        780,
+        270.5
+      ],
+      "id": "8f74dfc9-5039-475e-a131-9693d4bdf842",
+      "name": "OBTENER LINK IMAGEN",
+      "webhookId": "5f82ed99-11da-4fac-896c-acb9918b2570",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "iLhFMRlYKpgKiMOO",
+          "name": "LUISA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer EAAFrfQY0m5QBOwAXZBrJI057mI6Wg9xIAW3QWCX9l7qFs76fV88fyu2IqeGTSpdJhD63meiz4zuTTVxS6IYuJmN8hn8nlojIOQwFKgbdyiiZASR2RZBDbTN3kLmHz7JgZC1ZBZBpPr6IZCCtTzKY24QCXQvd4574su5EOOBn1RZAuKQV3KzZBJ0Tew753bZBXkm1LK"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1000,
+        270.5
+      ],
+      "id": "27e86310-461c-4349-a260-d53008fd9390",
+      "name": "DESCARGAR IMAGEN"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "text": "Revisa la imagen y da una descripcion detallada de lo que en ella hay, se muy claro y parafrasea.",
+        "inputType": "base64",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1220,
+        270.5
+      ],
+      "id": "f1cd3fc5-6baf-4af1-87c6-b6b8820d63dd",
+      "name": "AI_IMAGEN",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {
+          "language": "Es"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1220,
+        470.5
+      ],
+      "id": "5de468b9-8098-40a2-a7ae-dc3896e24537",
+      "name": "AI_AUDIO",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "19288ac2-a3c3-48f1-909c-f06360107e14",
+              "name": "estado",
+              "value": "={{ $json.estado_masivos }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        20,
+        -160
+      ],
+      "id": "6f693505-15de-4464-8f8c-b526d0d0b6d4",
+      "name": "ESTADO"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cd0055ad-29b5-4047-8bf2-db0faaea1f2d",
+              "leftValue": "={{ $json.estado }}",
+              "rightValue": "inicio",
               "operator": {
                 "type": "string",
                 "operation": "equals",
@@ -67,77 +896,774 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -220,
-        -100
+        160,
+        -40
       ],
-      "id": "b5b91c56-ef06-4693-b642-ef202cc08eeb",
+      "id": "ecb040cf-685f-44d8-be8f-7e05878021dc",
       "name": "If"
     },
     {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "269199792942973",
+        "recipientPhoneNumber": "={{$('MASIVO?').item.json.whatsapp}}",
+        "textBody": "=Me alegra mucho que hayas respondido nuestro mensaje 🥰\n\nMi nombre es Luisa buitrago y quiero darte la mejor atención posible.\n\nTe mando la info acá abajo 👇🏻",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        0,
-        0
+        560,
+        -240
       ],
-      "id": "377a43ca-3f8b-4738-af5a-98552050a66b",
-      "name": "When clicking ‘Test workflow’"
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.whatsAppTool",
-      "typeVersion": 1,
-      "position": [
-        220,
-        0
-      ],
-      "id": "ed2b5b6f-771c-450f-926f-2f07daf840f6",
-      "name": "WhatsApp Business Cloud",
-      "webhookId": "41a0ee5b-7b4f-4ba2-987b-b1570c6da196"
+      "id": "728bb203-b2b7-4e83-a7d8-805feee019a6",
+      "name": "bv1",
+      "webhookId": "7723678e-95d4-48e9-b0b2-169991d437cb",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "iLhFMRlYKpgKiMOO",
+          "name": "LUISA"
+        }
+      }
     },
     {
       "parameters": {
-        "httpMethod": "POST",
-        "path": "api-lui",
-        "options": {}
+        "operation": "send",
+        "phoneNumberId": "269199792942973",
+        "recipientPhoneNumber": "={{$('MASIVO?').item.json.whatsapp}}",
+        "textBody": "=🚨 *TODOS LOS CANALES DE TV Y DEPORTES MÁS PELICULAS Y SERIES DE TODAS LAS PLATAFORMAS POR SOLO $17.900 PESOS COLOMBIANOS - ÚNICO PAGO AL AÑO - SIN ANUNCIOS* 😱\n\n*Todos los canales del mundo, más de 5 mil series y mas de 30 mil peliculas* en tu celular y en tu TV  *SOLO POR $17.900 HOY - SIN PAGAR MENSUALIDADES* 🔥\n\n- 🖥 *SEÑAL EN VIVO,  FULL HD, SIN INTERRUPCIONES Y SIN ANUNCIOS*\n- 💥 Incluye *TODOS* los canales de deportes (*WIN+, ESPN, FOX, DIRECTV, STAR + y cientos más*)\n- 🫵🏻 Incluye los partidos de la champions league, Europa league, futbol colombiano, MLS y todas las ligas del mundo.\n\n- ✅ Disponible para _*ANDROID, TV CON SISTEMA ANDROID, WINDOWS, TV BOX Y FIRETV*_ 🫵🏻\n\n*INSTALACIÓN SENCILLA* _en menos de *5 MINUTOS* estarás disfrutando de todo el contenido_  🥳",
+        "additionalFields": {}
       },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
       "position": [
-        -1440,
+        1000,
         -240
       ],
-      "id": "40b5e8a3-c4ce-4f5b-b617-7d098cc5e20c",
-      "name": "Webhook",
-      "webhookId": "2d1b4460-d2de-403f-8e3c-5fefeef9f8df"
+      "id": "20bb6a76-db1c-4140-8606-a55047be4a12",
+      "name": "bv2",
+      "webhookId": "7723678e-95d4-48e9-b0b2-169991d437cb",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "iLhFMRlYKpgKiMOO",
+          "name": "LUISA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "269199792942973",
+        "recipientPhoneNumber": "={{$('MASIVO?').item.json.whatsapp}}",
+        "textBody": "=🎁 *Disfruta contenido actualizado de NETFLIX, PRIME, DISNEY, HBO, CRUNCHYROLLL* y muchas plataformas populares además de todos los canales de televisión DEL MUNDO *¡TODO VIENE INCLUIDO EN LA MISMA APP!* 🤯\n\nTodo esto SOLO por...\n\n❌ Antes ~$39.000 AL MES~\n✅ *HOY $17.900 POR EL AÑO COMPLETO*\n_(Sí, un ÚNICO pago hoy de 17.900 sin pagar nada mensual)_\n\n🚨 _*OFERTA EXCLUSIVA SOLO POR HOY O HASTA AGOTAR CUPOS: Solo 7 CUPOS disponibles*_\n\n⚠️ *ADVERTENCIA: EL PRECIO SUBE A $39.900 AL ACABARSE LOS CUPOS* ⚠️",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1518,
+        -240
+      ],
+      "id": "607ce3b5-0f87-4ef6-a3be-deb582d36092",
+      "name": "bv3",
+      "webhookId": "7723678e-95d4-48e9-b0b2-169991d437cb",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "iLhFMRlYKpgKiMOO",
+          "name": "LUISA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "269199792942973",
+        "recipientPhoneNumber": "={{$('MASIVO?').item.json.whatsapp}}",
+        "textBody": "=Despues de leerlo todo y tener clara nuestra oferta... \n\nMe puedes escribir acá abajo si deseas adquirir la oferta o si deseas mas información.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2852,
+        -240
+      ],
+      "id": "93b09073-904b-493a-98b0-ffb7033251b7",
+      "name": "bv4 CTA",
+      "webhookId": "7723678e-95d4-48e9-b0b2-169991d437cb",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "iLhFMRlYKpgKiMOO",
+          "name": "LUISA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        340,
+        -240
+      ],
+      "id": "7a9b9cba-daf9-4625-942b-f53d99432047",
+      "name": "Wait",
+      "webhookId": "0ea79d63-ee1f-4a1a-9286-00d0e1d15052"
+    },
+    {
+      "parameters": {
+        "amount": 8
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        780,
+        -240
+      ],
+      "id": "27db6226-2184-475b-bc64-7d2fdd9b7ba8",
+      "name": "Wait1",
+      "webhookId": "e86896fe-798b-41d1-a41f-028e9ccb3786"
+    },
+    {
+      "parameters": {
+        "amount": 8
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1220,
+        -240
+      ],
+      "id": "da2f4629-6f63-4209-aea5-528a6f08e23b",
+      "name": "Wait2",
+      "webhookId": "21cdc0e7-e9cc-4118-986a-229d85be776d"
+    },
+    {
+      "parameters": {
+        "amount": 8
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1894,
+        -240
+      ],
+      "id": "aff4dc14-1d23-45e0-b374-bf4f41b0cdb1",
+      "name": "Wait3",
+      "webhookId": "8d1cadd5-0f6b-440f-b0d6-cc0dd4d591f0"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "269199792942973",
+        "recipientPhoneNumber": "={{$('MASIVO?').item.json.whatsapp}}",
+        "messageType": "image",
+        "mediaLink": "={{ $json.stdout }}",
+        "additionalFields": {
+          "mediaCaption": "Acá te muestro los ultimos 6 pagos que nos han enviado 👆🏻"
+        }
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2412,
+        -240
+      ],
+      "id": "9cbac912-c304-46af-ba5e-0339c35c771c",
+      "name": "bv",
+      "webhookId": "7723678e-95d4-48e9-b0b2-169991d437cb",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "iLhFMRlYKpgKiMOO",
+          "name": "LUISA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 8
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2632,
+        -240
+      ],
+      "id": "5d45fef2-33e4-4e69-a556-8ac5ed837b07",
+      "name": "Wait4",
+      "webhookId": "8d1cadd5-0f6b-440f-b0d6-cc0dd4d591f0"
+    },
+    {
+      "parameters": {
+        "command": "=montage $(ls -t /root/bot-zdg/pagos_win/*.jpg | head -n 6) \\\n-tile 3x2 -gravity center -geometry 540x1200+0+0 -background none -border 0 \\\n/root/bot-zdg/pagos_win/collage/collage-{{ $now.toMillis() }}.jpg && \\\nconvert /root/bot-zdg/pagos_win/collage/collage-{{ $now.toMillis() }}.jpg \\\n-resize 1080x1500\\> \\\n/root/bot-zdg/pagos_win/collage/collage-{{ $now.toMillis() }}.jpg && \\\necho \"https://webhook-peru.automscc.com/pagos_win/collage/collage-{{ $now.toMillis() }}.jpg\"\n",
+        "cwd": "/root/bot-zdg/pagos_win"
+      },
+      "type": "n8n-nodes-base.ssh",
+      "typeVersion": 1,
+      "position": [
+        2192,
+        -240
+      ],
+      "id": "f5711993-1323-4480-a269-9d019d4a29b6",
+      "name": "SSH",
+      "credentials": {
+        "sshPassword": {
+          "id": "oIzr4tKjBJJ4Gorn",
+          "name": "SSH Password account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "findOneAndUpdate",
+        "collection": "win_masivos",
+        "updateKey": "_id",
+        "fields": "estado_masivos",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        3292,
+        -240
+      ],
+      "id": "3e21eff6-4559-4050-9883-7766e4a1c799",
+      "name": "BD MASIVOS1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mongoDb": {
+          "id": "6G1XA88uGGFTXKm7",
+          "name": "BD WIN MASIVOS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "975719dd-e5a1-4fd4-8610-56a8b7696804",
+              "name": "_id",
+              "value": "={{ $('BD MASIVOS').item.json._id.toJsonString().replaceAll('\"',\"\") }}",
+              "type": "string"
+            },
+            {
+              "id": "0b5320fc-3e76-404f-b35e-8f5c236cb4f8",
+              "name": "estado_masivos",
+              "value": "respondido",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3072,
+        -240
+      ],
+      "id": "72430594-83e8-4d56-974c-4b79d148968a",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{$json.toJsonString()}}",
+        "options": {
+          "systemMessage": "Eres un asistente que responde en un chat al que las personas responden luego de recibir un mensaje de marketing masivo.\n\nDebes vender a como de lugar, eres implacable y eres pupilo de alex hormozi, sabes como vender y tienes mas de 50 años vendiendo... debes ser voraz.\n\nantes de esto recibieron:\n\n\"[8:02 p. m., 8/4/2025] +57 324 3015535: Me alegra mucho que hayas respondido nuestro mensaje 🥰\n\nMi nombre es Luisa buitrago y quiero darte la mejor atención posible.\n\nTe mando la info acá abajo 👇🏻\n[8:02 p. m., 8/4/2025] +57 324 3015535: 🚨 TODOS LOS CANALES DE TV Y DEPORTES MÁS PELICULAS Y SERIES DE TODAS LAS PLATAFORMAS POR SOLO $17.900 PESOS COLOMBIANOS - ÚNICO PAGO AL AÑO - SIN ANUNCIOS 😱\n\nTodos los canales del mundo, más de 5 mil series y mas de 30 mil peliculas en tu celular y en tu TV  SOLO POR $17.900 HOY - SIN PAGAR MENSUALIDADES 🔥\n\n- 🖥 SEÑAL EN VIVO,  FULL HD, SIN INTERRUPCIONES Y SIN ANUNCIOS\n- 💥 Incluye TODOS los canales de deportes (WIN+, ESPN, FOX, DIRECTV, STAR + y cientos más)\n- 🫵🏻 Incluye los partidos de la champions league, Europa league, futbol colombiano, MLS y todas las ligas del mundo.\n\n- ✅ Disponible para ANDROID, TV CON SISTEMA ANDROID, WINDOWS, TV BOX Y FIRETV 🫵🏻\n\nINSTALACIÓN SENCILLA en menos de 5 MINUTOS estarás disfrutando de todo el contenido  🥳\n[8:02 p. m., 8/4/2025] +57 324 3015535: 🎁 Disfruta contenido actualizado de *NETFLIX, PRIME, DISNEY, HBO, CRUNCHYROLLL y muchas plataformas populares además de todos los canales de televisión DEL MUNDO ¡TODO VIENE INCLUIDO EN LA MISMA APP! 🤯\n\nTodo esto SOLO por...\n\n❌ Antes $39.000 AL MES\n✅ HOY $17.900 POR EL AÑO COMPLETO\n(Sí, un ÚNICO pago hoy de 17.900 sin pagar nada mensual)\n\n🚨 OFERTA EXCLUSIVA SOLO POR HOY O HASTA AGOTAR CUPOS: Solo 7 CUPOS disponibles\n\n⚠️ ADVERTENCIA: EL PRECIO SUBE A $39.900 AL ACABARSE LOS CUPOS ⚠️\"\n\nJunto con un collage de los ultimos 6 pagos recibidos como muestra de la veracidad del servicio y \n\n\"Despues de leerlo todo y tener clara nuestra oferta... \n\nMe puedes escribir acá abajo si deseas adquirir la oferta o si deseas mas información.\"\n\nAcá entras tu\n\n...\n\nRecibes \"mensaje\" y \"estado\": los posibles estados son... \"respondido\", \"medios\" y \"pagado\"\n\nRespondido es todo aquel que respondio el mensaje masivo y luego recibieron la cadena inicial... puede que quieran comprar de inmediato o que quieran resolver dudas.\n\nMedios es todo aquel que pidio medio de pago, es decir, va a pagar\n\npagado es pagado.\n\nTu labor es vender a toda costa.\n\nTe doy mas info :\n\n\"let mensajebv1 = `🚨 TODOS LOS CANALES DE DEPORTES *POR TODO UN AÑO POR SOLO $17.900 PESOS COLOMBIANOS - SIN ANUNCIOS* + *BONO DE REGALO INCREÍBLE*  😱\n\n⚽ Más de *400 canales de deportes DE TODO EL MUNDO* en tu celular y en tu TV  *SOLO POR $17.900 HOY - SIN PAGAR MENSUALIDADES* 🔥\n\n_*ABAJO TE ENVIO UN VIDEO DE DEMOSTRACIÓN*_ 🫵🏻\n\n- 🖥 *SEÑAL EN VIVO,  FULL HD, SIN INTERRUPCIONES Y SIN ANUNCIOS*\n- 💥 Incluye *TODOS* los canales de deportes (*WIN+, ESPN, FOX, DIRECTV, STAR + y cientos más*)\n- 🫵🏻 Incluye los partidos de la champions league, Europa league, futbol colombiano, MLS y todas las ligas del mundo.\n\n- ✅ Disponible para _*ANDROID, TV ANDROID, WINDOWS, TV BOX Y FIRETV*_ 🫵🏻\n\n*INSTALACIÓN SENCILLA* _en menos de *5 MINUTOS* estarás disfrutando de todo el contenido_  🥳`;\nlet mensajebv2 = `🎁 *BONO DE REGALO*: Además de deportes, disfruta contenido actualizado de *NETFLIX, PRIME, DISNEY, HBO*, Anime y muchas plataformas populares además de todos los canales de televisión DEL MUNDO *¡TODO VIENE INCLUIDO EN LA MISMA APP!* 🤯\n\nTodo esto SOLO por...\n\n❌ Antes ~$39.000 AL MES~\n✅ *HOY $17.900 POR EL AÑO COMPLETO*\n_(Sí, un ÚNICO pago hoy de 17.900 sin pagar nada mensual)_\n\n🚨 _*OFERTA EXCLUSIVA SOLO POR HOY O HASTA AGOTAR CUPOS: Solo 7 CUPOS disponibles*_\n\n⚠️ *ADVERTENCIA: EL PRECIO SUBE A $39.900 AL ACABARSE LOS CUPOS* ⚠️`;\n\nlet mensaje1 = `Presiona el botón de abajo, solo si ya viste el video completo y hazlo *ANTES QUE SE ACABEN LOS CUPOS DE HOY* 👇🏻`;\n\nlet mensaje2 = `👉🏼 Disponible para _*ANDROID, _TV CON ANDROID_, MAC, WINDOWS, TV BOX Y FIRETV*_ 🫵🏻\n\n*INSTALACIÓN SENCILLA* _en menos de *5 MINUTOS* estarás disfrutando de todo el contenido_  🥳\n\n*CÓMO ADQUIRIR LA PROMOCIÓN:*\n\n📲 Realizas el pago: *$17.900 PESOS* _ÚNICO PAGO POR EL AÑO_\n\n📷 Nos envías la captura del pago por este chat\n📩 Y en menos de 1 minuto recibes *EL ACCESO A LA APLICACIÓN CON TODAS LAS INSTRUCCIONES*.\n\n🛒 *PARA CONTINUAR LA COMPRA:*\n\n*SELECCIONA* con el método de pago que prefieras 👇`;\nlet mensajePARACOMPRAR = `🛒 *PARA ADQUIRIR EL AÑO:*\n\n*RESPONDE* con el método de pago que tengas disponible 👇\n\n*NEQUI | BANCOLOMBIA | DAVIPLATA | TRANSFIYA*`;\n\nlet mensajecontraentrega = `Nuestra APP es *COMPLETAMENTE DIGITAL* lo recibes en tu WhatsApp en menos de 1 minuto. ⚡\n\nLo podrás tener en tu teléfono y verlo cuando y donde quieras 🔥\n\n¿Quieres adquirir el tuyo?`;\n\nlet mensajeINSTRUCCIONES = `🔴 *INSTRUCCIONES IMPORTANTES:*\n\n*1.* Sigue las INSTRUCCIONES del link de la compra.\n\n*2.* Si te pide permisos, activalos, es normal.\n\n*3.* Si te salta un aviso de INSTALACION BLOQUEADA, dale en \"mas detalles\" y luego en \"instalar de todas formas\".\n\n*4.* Despues de instalar te saldrá un aviso de VINCULAR CORREO, dale donde dice VINCULAR AHORA, pones tu correo (debe ser gmail) y le das en enviar o solicitar codigo, a tu correo llega el codigo, lo escribes en la casilla y le das al botón grande de abajo y luego creas tu contraseña y finalizas.\n\n*5.* Si te pide actualizar, dale actualizar y le das permisos a la aplicación para hacer la instalación.\n\n*DISFRUTA TU COMPRA* 🥳`;\n\nlet mensajeconfirmacion = `*RECUERDA:*\n\nEl valor: *$17.900 PESOS*\n\nLa cuenta la tienes arriba 😊\n\nCon la captura se te envía *DE INMEDIATO* el acceso`;\nlet mensajeconfirmacion14 = `*RECUERDA:*\n\nEl valor: *$14.900 PESOS* \n\n_Este valor es SOLO POR LA PROMOCIÓN AUTORIZADA EL DÍA DE HOY_\n\nLa cuenta la tienes arriba 😊\n\nCon la captura se te envía *DE INMEDIATO* el acceso`;\nlet mensajerevisando = \"Dame un momento mientras reviso... 😊\";\nlet mensajeatenta = \"Quedo super atenta al comprobante 💖\";\n\nlet mensajepost_IPH = `Recuerda que en el primer mensaje de esta conversación dice que solo sirve para _celulares y tablets ANDROID o ANDROID TV_, leela de nuevo porfa.`;\nlet mensajepost_TUTORIAL = `Recuerda que si tienes cualquier inconveniente al momento de instalar la aplicación, dentro del link de la compra que te enviamos arriba (no el de la pagina de ofertas) vas a encontrar un tutorial, ahi encuentras toda la instalación para todos los dispositivos.\n\nAhora, si no puedes a pesar de la indicación que te acabo de decir, por favor, envia una *FOTO O VIDEO* donde se evidencie el problema.\n\nSIN FOTO O VIDEO no podemos brindar soporte.`;\n\nlet mensajeTV = `Si claro la app sirve para dispositivos ANDROID, PC y TV\n\n_El tv debe tener sistema android tv o tener tv box_\n\nJunto con la compra viene el instructivo para instalarlo super sencillo. 😊`;\nlet mensajeprueba = `La prueba la puedes ver en el video que te enviamos con la bienvenida, ahi se ve todo el funcionamiento.\n\nTe garantizo que funciona igual de bien con todos los clientes 😊`;\n\nlet mensajeCONFIANZA = `Tenga la seguridad que al momento de realizar su compra, recibirá conforme todo lo que le hemos dicho, por un año y con acceso en los dispositivos sin problema 😊`;\nlet mensajeMES = `Es con acceso *ANUAL*, no se necesita pagar mensualidad, la app se actualiza mes a mes automaticamente.\n\nTodo eso significa que la puedes usar *TODO EL AÑO SIN PAGAR NI UN PESO ADICIONAL*.\n\n👉🏼 Al terminar el año, se contacta para renovar.`;\nlet mensajeAPP = `La app te la entregamos al momento de hacer la compra, es muy facil de instalar, viene con instructivo y acceso sin limites, la app no se encuentra en play store, es una app *EXCLUSIVA*, la instalas desde la aplicacion que te enviamos con la compra`;\nlet RecuperaMedio = `Hola, estas por acá de nuevo, recuerda que ya recibiste la info anteriormente y solo debes enviar el *COMPROBANTE DE PAGO (LA CAPTURA)* con los datos que ya solicitaste o puedes solicitar otro medio para pago y enviarnos la captura, se te envía de inmediato el acceso tras confirmar el pago🥰\n\n*AUN NOS QUEDAN 3 CUPOS ADICIONALES* 🏃🏼💨`;\n\nlet mensajepostventa = `🚨 *¡OFERTA FLASH POR 10 MINUTOS!* 🚨  \n\nAccede al *PLAN VITALICIO* de nuestra plataforma por solo *$19,000 adicionales*.  \nEstamos premiando a los primeros usuarios que confían en nosotros con esta oferta única.  \n\n*¿Qué incluye?*  \n✅ *Acceso ilimitado* a la app y todas las actualizaciones.  \n✅ *Uso en cualquier dispositivo*, sin restricciones.  \n✅ *Sin pagos adicionales*: ¡una sola vez y para siempre!  \n\n⏳ *IMPORTANTE:* Solo tienes *10 MINUTOS* para aprovechar. Después, el precio regresa a *$249,900*.  \n\n📩 *Actívalo ya* realizando el pago a la *MISMA CUENTA*.`;\nlet mensajeOFERTAS = `🫵🏻 *ESTOS SON OTROS PRODUCTOS DISPONIBLES* en oferta 👇🏻\n\n- 🟢 *SPOTIFY PREMIUM - SIN ANUNCIOS (1 AÑO): $17.000* - *Para ANDROID*\n\n- 🔴 *YOUTUBE PREMIUM + YOUTUBE MUSIC - SIN ANUNCIOS (1 AÑO): $17.000* - *Para ANDROID*\n\n- 🔵 *CANVA PRO + CURSO (1 AÑO): $25.000* - Todos los efectos, recursos y herramientas PRO desbloqueadas - *CUALQUIER DISPOSITIVO*\n\nSolo están disponibles *POR HOY*, adquiere *AHORA*, pagando a la misma cuenta y mandas el comprobante con el nombre de la app escogida 🫵🏻\n\n*SI NECESITAS ALGUNA OTRA APP, PREGUNTAME Y TE CONFIRMO SI LA TENEMOS* 🥳`;\n\nlet mensajeCALIDAD = `la imagen el 100% full hd, no se traba nunca debido a que la hemos optimizado al maximo para funcionar usando el menor internet posible con la mayor calidad posible`;\nlet mensajeDEPORTES = `si claro, vienen incluidos TODOS los canales de deportes mundiales, todos los que existan y se trasmitan, aqui estan 😊`;\nlet mensajeIPTV = `no es iptv ni ninguna app que conozcas, somos nuevos en el mercado y nuestra app es lo mejor que encontrarás.`;\nlet mensajeINTERNET = `la app funciona con internet y funciona con internet del celular o wifi hasta de 5 megas`;\nlet mensajePANTALLAS = `La app no tiene limite de pantallas, puedes verlo en todos al mismo tiempo`;\nlet mensajeNOFUNCIONA = `Mira, la app funciona perfectamente en dispositivos con android, android tv y tambien firetv stick, *PERO* en productos apple, televisores SAMSUNG o LG o ROKU no funcionan porque no traen el sistema android instalado, en esos casos puedes adquirir un tv box con android tv para usar la app. 😊\n\n_O puedes compartirle pantalla del celular al tv, que tambien es super fácil_`;\nlet mensajeMAÑANA = `Si claro, pero los cupos son limitados, si el día de mañana se agotan me debe escribir para confirmar antes de hacer su compra.\n\nEn este momento tengo cupos, deberia aprovechar, a veces se demora bastante en volver a salir mas.`;\n\nlet mensajePOSTCOMPRA = `Hola, ya compraste correctamente, ¿que duda tienes?`;\nlet mensajeAUDIOS = `Disculpa, no me suenan las notas de voz, ¿podrías por favor escribir? 🙏🏻`;\n\nlet TRANSFIYA = `3162351670`;\nlet NEQUI = ` TRANSFIYA: ${TRANSFIYA}`;\n\nlet mensajeNEQUI = `*💜PARA NEQUI, sigue estos pasos*  \n\nEN TU APP DE NEQUI dale a la opción de ENVIAR y seleccionas TRANSFIYA y pones estos datos 👇🏻\n\n${NEQUI}\n\n*Es lo mismo que enviar a nequi*\n\n*😊Estas a 1 PASO: 👇*\n\n📷 Envia el *LA CAPTURA DE LOS MOVIMIENTOS* para verificar.\n\n_Iré preparando el link 🫵🏼_`;\nlet mensajeBANCOLOMBIA = `*💜PARA BANCOLOMBIA, sigue estos pasos*  \n\nEN TU APP DE BANCOLOMBIA dale a la opción de TRANSFERIR y seleccionas *A OTROS BANCOS CON TRANSFIYA* y pones estos datos *EN NUEVO NUMERO* 👇🏻\n\n${NEQUI}\n\n*😊Estas a 1 PASO: 👇*\n\n📷 Envia el *LA CAPTURA DEL PAGO* para verificar.\n\n_Iré preparando el link 🫵🏼_`;\nlet mensajeDAVIPLATA = `*💜PARA DAVIPLATA, sigue estos pasos*  \n\nEN TU APP DE DAVIPLATA dale a la opción de ENVIAR y seleccionas TRANSFIYA y pones estos datos 👇🏻\n\n${NEQUI}\n\n*😊Estas a 1 PASO: 👇*\n\n📷 Envia el *LA CAPTURA DE LOS MOVIMIENTOS* para verificar.\n\n_Iré preparando el link 🫵🏼_`;\nlet mensajeNUMERO = `Si te refieres al *NEQUI*\n\nEN TU APP DE NEQUI dale a la opción de ENVIAR y seleccionas *TRANSFIYA* y pones estos datos 👇🏻\n\n${NEQUI}\n\n*Es lo mismo que enviar a nequi*\n\no *DAVIPLATA*: \n\nal mismo numero de *TRANSFIYA*\n\n*😊Estas a 1 PASO: 👇*\n\n📷 Envia el *LA CAPTURA DE LOS MOVIMIENTOS* para verificar.\n\n_Iré preparando el link 🫵🏼_`;\nlet mensajeTRANSFIYA = `*💜TRANSFIYA*  \n\n${TRANSFIYA}\n\n*😊Estas a 1 PASO: 👇*\n\n📷 Envia el *LA CAPTURA DE LOS MOVIMIENTOS* para verificar.\n\n_Iré preparando el link 🫵🏼_`;\n\nlet mensajeEFECTIVO = `No tenemos opción de pago en efectivo, *SOLO TRANSFERENCIAS*`;\n\nlet recx1 = `*ATENCIÓN* 🚨\n\nEl transfiya que te dimos *LLEGÓ AL TOPE MAXIMO* 🫵🏻\n\nEnvia por transfiya a este numero 👇🏻\n\n${NEQUI}\n\n*Es lo mismo que enviar a nequi, dale en ENVIAR en tu app de nequi, escoge TRANSFIYA y pones el numero*\n\nGracias 😊`;\n\n//COPYS REMARKETING:________________________________________________________________\n\nlet RMKTGR1 = `🚨 *¡ATENCIÓN! ESTÁS A PUNTO DE PERDER UNA OPORTUNIDAD IRREPETIBLE.*  \n\n*¿Te imaginas seguir botando tu plata en aplicaciones CARAS mes a mes y que no tengan todo lo que quieres ver?*  \n\nPor solo *17.900 PESOS AL AÑO*, *puedes acceder a más de 1400 canales de todo el mundo, más de 400 canales de deportes y más de 1000 series de todas las plataformas, SIN INTERRUPCIONES ni ANUNCIOS.*  \n\nEsto no es una opción, ¡es una SOLUCIÓN! \n\nSolo has EL PAGO A LA CUENTA QUE TE PASÉ para reclamar tu cupo y *CAMBIARÁS tu forma de ver canales, peliculas y series para SIEMPRE.* ⏳\n\n🔴 *SOLO QUEDAN 3 CUPOS DE LA PROMOCIÓN* 🔴\n\n_Luego vuelve al precio de 34.900 *al MES*_`;\nlet RMKTGR2 = `😈 *Mira esto* 👇🏻\n\nNetflix: $16.900 al mes\nAmazon prime: $22.900 al mes\nwin+: $34.900 al mes\n\nY si tienes niños sumale $15.000 al mes de disney\n\n*TODO ESO MES A MES* y claro me dirás, \"yo pago las cuentas piratas y no sale en todo eso\", pero igual tienes que pagar *MES A MES*\n\nTe estoy ofreciendo un plan por solo *$17.900 PESOS* y un *ÚNICO PAGO* y te aseguro que vas a tener todo lo que ves en todas esas plataformas y *MUCHISIMO MÁS*\n\nYa te aseguré tu cupo, si quieres aprovecharlo solo has EL PAGO A LA CUENTA QUE TE PASÉ para reclamar tu cupo`;\nlet RMKTGR3 = `📺 ¡URGENTE! *TU CUPO ESTÁ RESERVADO*, pero solo por poco tiempo. No dejes que otro cliente se lo lleve. \n\nAl acabarse los cupos, pasa a costar *$39.000 MENSUAL* 🔴\n\nAprovecha esta oportunidad para conseguir la app AHORA MISMO antes de que se acaben los cupos.\n\nPor solo *$17.900 pesos* obtienes un *AÑO COMPLETO* de TV, series y peliculas sin limites ni anuncios. 🫵🏻\n\nEstoy acá para ayudarte si tienes alguna duda o pregunta 😊`;\""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        1440,
+        270.5
+      ],
+      "id": "e671dfba-4a1a-433e-b416-724112156147",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1420,
+        500
+      ],
+      "id": "78896a22-e31a-4733-b333-121baf867de0",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "269199792942973",
+        "recipientPhoneNumber": "={{ $('MASIVO?').item.json.whatsapp }}",
+        "textBody": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2200,
+        80
+      ],
+      "id": "e002edfd-2acf-4962-a4a8-5d6273d94603",
+      "name": "WhatsApp Business Cloud",
+      "webhookId": "70f7770a-eec4-4555-9e31-458bd4bc01cd",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "iLhFMRlYKpgKiMOO",
+          "name": "LUISA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "findOneAndUpdate",
+        "collection": "win_masivos",
+        "updateKey": "_id",
+        "fields": "estado_masivos",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        2412,
+        460
+      ],
+      "id": "021df768-9722-46ab-9a10-6c678cac6890",
+      "name": "BD MASIVOS2",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mongoDb": {
+          "id": "6G1XA88uGGFTXKm7",
+          "name": "BD WIN MASIVOS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "975719dd-e5a1-4fd4-8610-56a8b7696804",
+              "name": "_id",
+              "value": "={{ $('BD MASIVOS').item.json._id.toJsonString().replaceAll('\"',\"\") }}",
+              "type": "string"
+            },
+            {
+              "id": "13a2e090-f728-4e10-b1e1-351f5fbae1db",
+              "name": "estado_masivos",
+              "value": "intencion",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2192,
+        460
+      ],
+      "id": "9c825e53-41fa-4201-ae21-9ce535b39468",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('MASIVO?').item.json.whatsapp }}",
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        1560,
+        480
+      ],
+      "id": "8347dc33-d95c-47d2-80d5-6b8ce0994ff6",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "zN9ad5TTzt9GY5dt",
+          "name": "SUPABASE N8N"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputText": "=respuesta ia:{{ $json.output }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "dudas",
+              "description": "esta clasificacion es si el cliente está teniendo dudas pero no está hablandose de medios de pago ni procesos de compra"
+            },
+            {
+              "category": "intencion",
+              "description": "Esta clasificacion es si ya estan encaminado hacia la compra, es decir, ya se está hablando de como adquirir el producto"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1,
+      "position": [
+        1816,
+        270.5
+      ],
+      "id": "a6d596b1-5622-42fa-a6b0-13f222552744",
+      "name": "Text Classifier"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1820,
+        480
+      ],
+      "id": "5d9d1f22-1f87-4e25-ba46-a11547de80d0",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "269199792942973",
+        "recipientPhoneNumber": "={{ $('MASIVO?').item.json.whatsapp }}",
+        "textBody": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2192,
+        260
+      ],
+      "id": "58b1c334-1eba-4ba2-ba1d-6c54f5a1540d",
+      "name": "WhatsApp Business Cloud1",
+      "webhookId": "70f7770a-eec4-4555-9e31-458bd4bc01cd",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "iLhFMRlYKpgKiMOO",
+          "name": "LUISA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "74c09ad0-8287-4148-893d-32608faa5e53",
+                    "leftValue": "={{ $('TIPO').item.json.type }}",
+                    "rightValue": "audio",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "audio"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('TIPO').item.json.type }}",
+                    "rightValue": "text",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "cbed0c3f-0d00-49dd-8c0a-8e3f82b1c230"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "text"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "46e87792-ea0b-466d-88e9-ac02f7aba4e8",
+                    "leftValue": "={{ $('TIPO').item.json.type }}",
+                    "rightValue": "interactive",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "interactive"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "8987f7e5-83d9-4fc4-bd39-b027e79deda4",
+                    "leftValue": "={{ $('TIPO').item.json.type }}",
+                    "rightValue": "image",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "image"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -1260,
+        20
+      ],
+      "id": "7296e71b-085c-4502-b309-9f58a4a49917",
+      "name": "TIPOS"
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "operation": "mediaUrlGet",
+        "mediaGetId": "={{ $('FILTRAR ID').item.json.messages[0].audio.id }}"
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -1040,
+        -120
+      ],
+      "id": "b214de37-0c93-4dfb-b0e7-fb818cbda059",
+      "name": "OBTENER LINK AUDIO1",
+      "webhookId": "5f82ed99-11da-4fac-896c-acb9918b2570",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "iLhFMRlYKpgKiMOO",
+          "name": "LUISA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer EAAFrfQY0m5QBOwAXZBrJI057mI6Wg9xIAW3QWCX9l7qFs76fV88fyu2IqeGTSpdJhD63meiz4zuTTVxS6IYuJmN8hn8nlojIOQwFKgbdyiiZASR2RZBDbTN3kLmHz7JgZC1ZBZBpPr6IZCCtTzKY24QCXQvd4574su5EOOBn1RZAuKQV3KzZBJ0Tew753bZBXkm1LK"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -860,
+        -120
+      ],
+      "id": "bf9700b4-33d8-4bd2-814f-f5f7b37223c4",
+      "name": "DESCARGAR AUDIO1"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {
+          "language": "Es"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -700,
+        -120
+      ],
+      "id": "ccbac4ce-1e27-427e-af74-ec3750c7d446",
+      "name": "AI_AUDIO1",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4674965d-4b86-48f4-be13-f8fa0b3b8ae4",
+              "name": "mensaje",
+              "value": "={{ $json.mensaje }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -300,
+        20
+      ],
+      "id": "12250daf-75ff-4c56-bfdd-da1787c6ccd9",
+      "name": "MENSAJE1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d9e2341a-0fb2-4f70-8a32-9849398cdc2c",
+              "name": "mensaje",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -520,
+        -120
+      ],
+      "id": "c5b03392-a11c-4792-ab75-ed21dd0b96d5",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "642499ea-bbf7-47b5-9507-0d18184f3dcb",
+              "name": "mensaje",
+              "value": "={{ $('FILTRAR ID').item.json.messages[0].type }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -840,
+        20
+      ],
+      "id": "1f1089e3-c445-41b0-b206-bb1b36e52e93",
+      "name": "Edit Fields3"
     }
   ],
   "pinData": {
-    "Webhook": [
+    "MENSAJES ENTRANTES": [
       {
         "json": {
-          "headers": {
-            "host": "n8n.automscc.com",
-            "user-agent": "facebookplatform/1.0 (+http://developers.facebook.com)",
-            "accept": "*/*",
-            "accept-encoding": "deflate, gzip",
-            "x-forwarded-for": "69.63.184.13",
-            "x-forwarded-host": "n8n.automscc.com",
-            "x-forwarded-port": "443",
-            "x-forwarded-proto": "https",
-            "x-forwarded-server": "e90ae4fad82e",
-            "x-real-ip": "69.63.184.13"
+          "messaging_product": "whatsapp",
+          "metadata": {
+            "display_phone_number": "573243015535",
+            "phone_number_id": "269199792942973"
           },
-          "params": {},
-          "query": {
-            "hub.mode": "subscribe",
-            "hub.challenge": "684682866",
-            "hub.verify_token": "evolution"
-          },
-          "body": {},
-          "webhookUrl": "https://n8n.automscc.com/webhook/api-lui",
-          "executionMode": "production"
+          "contacts": [
+            {
+              "profile": {
+                "name": "Santi C"
+              },
+              "wa_id": "573136298562"
+            }
+          ],
+          "messages": [
+            {
+              "from": "573136298562",
+              "id": "wamid.HBgMNTczMTM2Mjk4NTYyFQIAEhgWM0VCMEZEN0I1NTUwNjYwNDA5RTExMwA=",
+              "timestamp": "1744174814",
+              "text": {
+                "body": "hola"
+              },
+              "type": "text"
+            }
+          ],
+          "field": "messages"
         }
       }
     ]
@@ -150,7 +1676,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 1,
-  "updatedAt": "2025-04-08T05:29:01.000Z",
-  "versionId": "e9c3b780-1d26-45aa-91fe-fd89a3ba8af5"
+  "triggerCount": 2,
+  "updatedAt": "2025-04-09T05:01:31.000Z",
+  "versionId": "cb90458c-941f-4ee8-9226-8c3a83d1e324"
 }
