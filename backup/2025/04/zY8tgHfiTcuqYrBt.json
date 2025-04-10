@@ -1,0 +1,174 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "CREAR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "BORRAR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CREAR": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-10T02:03:20.636Z",
+  "id": "zY8tgHfiTcuqYrBt",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[WIN+][BACKEND] COLLAGE Y BORRADO CRON",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "collage-win-pagos",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -320,
+        -60
+      ],
+      "id": "6fc1a990-9fa7-4a3b-8144-09720fbec418",
+      "name": "Webhook",
+      "webhookId": "7fae9b73-097f-4ca0-8755-6935672a10f5"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.stdout }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        100,
+        -60
+      ],
+      "id": "d59893b1-7567-4df9-8bff-f43e3e40463b",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -320,
+        180
+      ],
+      "id": "c24d3095-3cc0-4249-ae9a-b8ba1ef1fe6b",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "command": "=rm -rf /root/bot-zdg/pagos_win/collage/*",
+        "cwd": "/root/bot-zdg/pagos_win/collage/"
+      },
+      "type": "n8n-nodes-base.ssh",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        180
+      ],
+      "id": "57c52039-6a8d-474d-96ad-4bc60c5d7d34",
+      "name": "BORRAR",
+      "credentials": {
+        "sshPassword": {
+          "id": "oIzr4tKjBJJ4Gorn",
+          "name": "SSH Password account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "command": "=montage $(ls -t /root/bot-zdg/pagos_win/*.jpg | head -n 6) \\\n-tile 3x2 -gravity center -geometry 540x1200+0+0 -background none -border 0 \\\n/root/bot-zdg/pagos_win/collage/collage-{{ $now.toMillis() }}.jpg && \\\nconvert /root/bot-zdg/pagos_win/collage/collage-{{ $now.toMillis() }}.jpg \\\n-resize 1080x1500\\> \\\n/root/bot-zdg/pagos_win/collage/collage-{{ $now.toMillis() }}.jpg && \\\necho \"https://webhook-peru.automscc.com/pagos_win/collage/collage-{{ $now.toMillis() }}.jpg\"\n",
+        "cwd": "/root/bot-zdg/pagos_win"
+      },
+      "type": "n8n-nodes-base.ssh",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        -60
+      ],
+      "id": "2218fd49-06fa-4d75-9f88-b41a403a4977",
+      "name": "CREAR",
+      "credentials": {
+        "sshPassword": {
+          "id": "oIzr4tKjBJJ4Gorn",
+          "name": "SSH Password account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "axios/0.20.0",
+            "accept": "application/json, text/plain, */*",
+            "x-forwarded-for": "82.180.130.193",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "697dd9cbf981",
+            "x-real-ip": "82.180.130.193",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {},
+          "webhookUrl": "https://n8n.automscc.com/webhook/collage-win-pagos",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2025-04-10T04:01:26.000Z",
+  "versionId": "a9ce5d7d-0534-4e0b-9c19-007f1c818da0"
+}
