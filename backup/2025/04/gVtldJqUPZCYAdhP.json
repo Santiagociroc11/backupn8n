@@ -1,0 +1,338 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "OBTENER LINK AUDIO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OBTENER LINK AUDIO": {
+      "main": [
+        [
+          {
+            "node": "DESCARGAR AUDIO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DESCARGAR AUDIO": {
+      "main": [
+        [
+          {
+            "node": "AI_AUDIO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI_AUDIO": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-09T18:24:00.295Z",
+  "id": "gVtldJqUPZCYAdhP",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[WIN+][BACKEND] AUDIOS",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "win-audio",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -200,
+        -20
+      ],
+      "id": "f88e1867-2f76-4030-8017-67877af2ef2a",
+      "name": "Webhook",
+      "webhookId": "cc8a0e2e-8366-4144-ae67-d7642aa73758"
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "operation": "mediaUrlGet",
+        "mediaGetId": "={{ $json.body.mediaId }}"
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        20,
+        -20
+      ],
+      "id": "3dba4ffd-1dfe-4467-8944-3041f8bbdc7d",
+      "name": "OBTENER LINK AUDIO",
+      "webhookId": "5f82ed99-11da-4fac-896c-acb9918b2570",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "iLhFMRlYKpgKiMOO",
+          "name": "LUISA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Webhook').item.json.body.token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        -20
+      ],
+      "id": "c0b42878-16ee-415c-baa7-c60dfa9f37fc",
+      "name": "DESCARGAR AUDIO"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {
+          "language": "Es"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        460,
+        -20
+      ],
+      "id": "401da69e-47ac-48fb-9f1c-f134fc39fe2d",
+      "name": "AI_AUDIO",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"text\": \"{{ $('AI_AUDIO').item.json.text }}\"\n} ",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1340,
+        -120
+      ],
+      "id": "6048d09e-f7f6-4908-a141-df3aed967fdf",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.text }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=revisa si es una frase coherente o inteligible\n\nResponde en JSON:\n\ncoherente: true/false"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        680,
+        -20
+      ],
+      "id": "ea4fa947-7977-45c0-b2c4-b656b0bd608b",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {
+          "responseFormat": "json_object"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        680,
+        160
+      ],
+      "id": "3a94990f-257c-4d26-ae1c-8b457dc30493",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "be6609ef-08ef-4b52-b4a8-ec273d1a8f61",
+              "leftValue": "={{ $json.coherente }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1040,
+        -20
+      ],
+      "id": "f4e9bb41-4216-417b-94c2-d2fcef916442",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "respondWith": "noData",
+        "options": {
+          "responseCode": 100
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1340,
+        60
+      ],
+      "id": "56dadf53-f731-429d-af78-03a509e667cf",
+      "name": "Respond to Webhook1"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "axios/0.20.0",
+            "content-length": "261",
+            "accept": "application/json",
+            "content-type": "application/json",
+            "x-forwarded-for": "82.180.130.193",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "697dd9cbf981",
+            "x-real-ip": "82.180.130.193",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "whatsapp": "573136298562",
+            "mediaId": "1371593017195937",
+            "token": "EAAFrfQY0m5QBOZB3ZCV294qwxQHzim0boCiCewwsFRAbCPUL4kb07GzgK2QzECkXvyZAeEl7UGlIYMgAZAOjxUotyre1wSIkLZCrfDAKMXivN6ZCVbHfKgBW3QKAnR3ljVcrRHF7EGBd73coiKzsQ1PljBuG3Wzzukshqts9a63ZC0dnY9DEGR1aPnZCdy6ZC"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/win-audio",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-09T19:34:43.000Z",
+  "versionId": "5b434dd0-7ae0-476e-8e7b-f6807a48ad82"
+}
