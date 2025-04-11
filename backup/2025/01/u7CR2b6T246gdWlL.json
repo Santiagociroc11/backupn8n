@@ -226,8 +226,40 @@
               "type": "string",
               "canBeUsedToMatch": true,
               "removed": false
+            },
+            {
+              "id": "TIMESTAMP",
+              "displayName": "TIMESTAMP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ORDERBUMP",
+              "displayName": "ORDERBUMP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "oferta",
+              "displayName": "oferta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
             }
-          ]
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
         },
         "options": {}
       },
@@ -336,6 +368,12 @@
               "name": "oferta",
               "value": "={{ $json.data.purchase.offer.code }}",
               "type": "string"
+            },
+            {
+              "id": "ecaebebc-8d49-496c-8b1e-d1c731333eec",
+              "name": "TIMESTAMP",
+              "value": "={{ $json.data.purchase.approved_date.toDateTime().toMillis() }}",
+              "type": "string"
             }
           ]
         },
@@ -392,81 +430,32 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "Jodd HTTP",
-            "content-length": "1365",
+            "content-length": "1883",
             "content-type": "application/json",
-            "x-forwarded-for": "100.27.244.124",
+            "x-forwarded-for": "13.218.78.87",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "0f86eb816a4d",
+            "x-forwarded-server": "697dd9cbf981",
             "x-hotmart-hottok": "6SJkhfjuD6Bm4cha7tF8loEMs92JzG11852721",
-            "x-real-ip": "100.27.244.124",
+            "x-real-ip": "13.218.78.87",
             "accept-encoding": "gzip"
           },
           "params": {},
           "query": {},
           "body": {
+            "id": "75ce0d34-6793-4efc-a9b4-484554e52caf",
+            "creation_date": 1744340727244,
+            "event": "PURCHASE_APPROVED",
+            "version": "2.0.0",
             "data": {
               "product": {
-                "has_co_production": true,
-                "name": "Sanar con Imanes",
-                "id": 2584300,
-                "ucode": "3f646245-863e-4287-98fd-422437484163"
-              },
-              "commissions": [
-                {
-                  "currency_value": "USD",
-                  "source": "MARKETPLACE",
-                  "value": 2.97
-                },
-                {
-                  "currency_conversion": {
-                    "converted_value": 4.92,
-                    "converted_to_currency": "USD",
-                    "conversion_rate": 1
-                  },
-                  "currency_value": "USD",
-                  "source": "PRODUCER",
-                  "value": 4.92
-                }
-              ],
-              "purchase": {
-                "original_offer_price": {
-                  "currency_value": "USD",
-                  "value": 30.66
-                },
-                "subscription_anticipation_purchase": false,
-                "checkout_country": {
-                  "iso": "MX",
-                  "name": "Mexico"
-                },
-                "origin": {
-                  "xcod": "9b73d4d1-c8c6-4ec8-9aba-2ca7b135af9f"
-                },
-                "order_bump": {
-                  "is_order_bump": false
-                },
-                "approved_date": 1738534531000,
-                "offer": {
-                  "code": "wokrsz9w"
-                },
-                "order_date": 1738534529000,
-                "price": {
-                  "currency_value": "MXN",
-                  "value": 649
-                },
-                "buyer_ip": "189.217.49.56",
-                "payment": {
-                  "installments_number": 6,
-                  "type": "CREDIT_CARD"
-                },
-                "full_price": {
-                  "currency_value": "MXN",
-                  "value": 833.52
-                },
-                "invoice_by": "HOTMART",
-                "transaction": "HP4220224249",
-                "status": "APPROVED"
+                "id": 2587858,
+                "ucode": "963ab841-7bbc-4025-8ba9-0737a9c1d151",
+                "name": "Cero Dolor",
+                "warranty_date": "2025-04-18T00:00:00Z",
+                "support_email": "terapiasmagneticasonline@gmail.com",
+                "has_co_production": true
               },
               "affiliates": [
                 {
@@ -474,24 +463,82 @@
                   "name": ""
                 }
               ],
-              "producer": {
-                "name": "MAGNETIC THERAPY ACADEMY LLC"
-              },
               "buyer": {
+                "email": "castrolili682@gmail.com",
+                "name": "Lilia Castro Casarrubias ",
+                "first_name": "Lilia",
+                "last_name": "Casarrubias",
+                "checkout_phone": "529542048508",
                 "address": {
                   "country": "Mexico",
                   "country_iso": "MX"
                 },
                 "document": "",
-                "name": "Héctor Jesús De la Rosa Olivar",
-                "checkout_phone": "525540443352",
-                "email": "gpoholistico77@gmail.com"
+                "document_type": ""
+              },
+              "producer": {
+                "name": "MAGNETIC THERAPY ACADEMY LLC",
+                "document": "320729076",
+                "legal_nature": "Pessoa Jurídica"
+              },
+              "commissions": [
+                {
+                  "value": 3.65,
+                  "source": "MARKETPLACE",
+                  "currency_value": "USD"
+                },
+                {
+                  "value": 6.38,
+                  "source": "PRODUCER",
+                  "currency_value": "USD",
+                  "currency_conversion": {
+                    "converted_value": 6.38,
+                    "converted_to_currency": "USD",
+                    "conversion_rate": 1
+                  }
+                }
+              ],
+              "purchase": {
+                "approved_date": 1744340722000,
+                "full_price": {
+                  "value": 926.84,
+                  "currency_value": "MXN"
+                },
+                "price": {
+                  "value": 799,
+                  "currency_value": "MXN"
+                },
+                "checkout_country": {
+                  "name": "Mexico",
+                  "iso": "MX"
+                },
+                "order_bump": {
+                  "is_order_bump": false
+                },
+                "origin": {
+                  "xcod": "f6f0630a-db0a-4244-8fa0-da518a36b6ab"
+                },
+                "buyer_ip": "187.171.214.206",
+                "original_offer_price": {
+                  "value": 39.07,
+                  "currency_value": "USD"
+                },
+                "order_date": 1744340718000,
+                "status": "APPROVED",
+                "transaction": "HP2627353560",
+                "payment": {
+                  "installments_number": 1,
+                  "type": "CREDIT_CARD"
+                },
+                "offer": {
+                  "code": "pz2z9byp"
+                },
+                "invoice_by": "SELLER",
+                "subscription_anticipation_purchase": false,
+                "is_funnel": true,
+                "business_model": "A"
               }
-            },
-            "id": "c52b4747-3d79-4a0c-9a36-8e615986e462",
-            "creation_date": 1738534536262,
-            "event": "PURCHASE_APPROVED",
-            "version": "2.0.0"
+            }
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/hotmart-gersson-ventas",
           "executionMode": "production"
@@ -527,6 +574,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-04-03T17:32:49.000Z",
-  "versionId": "65df9d93-1316-4ba7-aeed-ce6c5a461d59"
+  "updatedAt": "2025-04-11T04:01:20.000Z",
+  "versionId": "50d1c731-2fa1-48dc-bd9c-7f43f9647547"
 }
