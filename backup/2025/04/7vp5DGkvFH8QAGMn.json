@@ -64,6 +64,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -97,6 +104,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -126,47 +140,36 @@
       "main": [
         [
           {
-            "node": "AI Agent1",
+            "node": "Google Sheets1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "OpenAI Chat Model1": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent1",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "AI Agent1": {
+    "Wait1": {
       "main": [
         [
           {
-            "node": "Edit Fields1",
+            "node": "VENTAS TRACKEADAS",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Edit Fields1": {
+    "Wait2": {
       "main": [
         [
           {
-            "node": "If",
+            "node": "ROAS REAL",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Telegram": {
+    "Google Sheets1": {
       "main": [
         [
           {
@@ -174,14 +177,21 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
-    "If": {
+    "Wait": {
       "main": [
         [
           {
-            "node": "Telegram",
+            "node": "Google Sheets1",
             "type": "main",
             "index": 0
           }
@@ -201,8 +211,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -800,
-        320
+        -1000,
+        860
       ],
       "id": "79718c14-1f07-4f52-8cc6-57be65ee4a82",
       "name": "When clicking ‘Test workflow’"
@@ -234,17 +244,21 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        80,
-        220
+        -20,
+        1240
       ],
       "id": "07437b6e-266c-4d9b-8aee-47f5f5a19545",
       "name": "ROAS REAL",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "zruD3ONGC9HU2i7s",
           "name": "CUENTA SANTIAGO"
         }
-      }
+      },
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -254,8 +268,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -580,
-        320
+        -780,
+        860
       ],
       "id": "801a4738-5cc5-465f-b521-ab39e3a8d0dc",
       "name": "GASTO EN ADS"
@@ -268,8 +282,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        -360,
-        320
+        -600,
+        860
       ],
       "id": "16097016-5861-4194-b843-a3a03c51464d",
       "name": "Split Out"
@@ -281,8 +295,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        -140,
-        320
+        -400,
+        860
       ],
       "id": "5dbbf29e-0550-4807-9178-8ce0383d7445",
       "name": "Loop Over Items"
@@ -382,8 +396,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        740,
-        220
+        920,
+        1040
       ],
       "id": "40a1ee1c-724a-4c43-bc57-60c7476afe44",
       "name": "Edit Fields"
@@ -397,8 +411,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.1,
       "position": [
-        300,
-        320
+        440,
+        1460
       ],
       "id": "7ad754b1-cfeb-473d-894f-cad082e6c80e",
       "name": "Merge"
@@ -412,8 +426,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.1,
       "position": [
-        520,
-        220
+        720,
+        1040
       ],
       "id": "b5c36a33-8163-49cf-8295-24daef8a6869",
       "name": "Merge1"
@@ -449,18 +463,22 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        80,
-        20
+        -20,
+        900
       ],
       "id": "ef0a9f7a-60d1-4e9e-9f17-0d74a8ac8ad4",
       "name": "VENTAS TRACKEADAS",
       "alwaysOutputData": true,
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "zruD3ONGC9HU2i7s",
           "name": "CUENTA SANTIAGO"
         }
-      }
+      },
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -477,8 +495,8 @@
       "type": "n8n-nodes-base.summarize",
       "typeVersion": 1.1,
       "position": [
-        300,
-        20
+        400,
+        900
       ],
       "id": "080c5e01-9717-43ab-8b7d-2b6fbb8f0294",
       "name": "CONTEO"
@@ -491,136 +509,242 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        80,
-        420
+        0,
+        1500
       ],
       "id": "016bc5c4-c024-4fc1-813d-e431c2ebece6",
       "name": "AD"
     },
     {
       "parameters": {
-        "promptType": "define",
-        "text": "={{ $json.toJsonString() }}",
-        "options": {
-          "systemMessage": "=ESTUDIA ESTAS METRICAS Y ACTUA COMO UN ESPECIALISTA EN TRAFICO y gasto en fb ads... revisa la decisión de subir o bajar presupuesto basado en el roas del anuncio..\nel roas tracking es un roas capturado por el sistema interno, que reporta un porcentaje de las ventas alto... pero son confiables las que están.\nEl roas fb es un roas calculado con las ventas que cayeron trackeadas por meta, a veces falla debido a que puede atribuir ventas de otros dias o quizas duplicadas.\nel roas general es como va el negocio en general con el gasto de todos los anuncios en general.\ntu unico análisis es decidir si subir, mantener o bajar el presupuesto.\nmis reglas son:\nsi el roas es menor que 1, se debe bajar el presupuesto a la mitad hasta llegar a 4.\nSi el roas es mayor que 1 pero menor que 1.3 se mantiene.\nSi el roas es mayor que 1.6 pero menor que 2 se incrementa el presupuesto un 50%\nSi el roas es mayor que 2 se dobla el presupuesto, solo si el resultado es menor que 30, si el resultado del doble es mayor que 30, se dobla a 50 y si el resultado es mayor que 80, se sube a 70 y si el resultado de doblar es mayor que 120, se sube a 100.\nEn cualquier caso se deben revisar las reglas... si, está el presupuesto en mas de 30 y el roas empieza a bajar, se le baja el 20%.\ntu analisis debe ir en un json con 3 parametros: decisión(subir, bajar o mantener),monto nuevo,  razón.\ntu análisis no solo debe basarse en el roas como las reglas que tengo sino que deben ser sustentadas en las metricas aportadas adicionales... debes ver cual es el roas real... meterle logica y razonamiento a cual roas usar..."
-        }
+        "amount": 20
       },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 1.8,
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
       "position": [
-        960,
-        220
+        140,
+        1000
       ],
-      "id": "fb8515a2-0d8b-4ffd-bd70-1f4cd2dfe804",
-      "name": "AI Agent1"
+      "id": "73e41fb4-c7de-4e76-b734-6880826e0d90",
+      "name": "Wait1",
+      "webhookId": "e2184928-7d54-4b7c-906a-efe75cb848e5"
     },
     {
       "parameters": {
-        "model": {
+        "amount": 20
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        200,
+        1260
+      ],
+      "id": "76b10efc-9e53-4e15-ae09-df8ce4e8fe44",
+      "name": "Wait2",
+      "webhookId": "e2184928-7d54-4b7c-906a-efe75cb848e5"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
           "__rl": true,
-          "value": "o3-mini",
+          "value": "https://docs.google.com/spreadsheets/d/1wJXPI-UG6-1ahm1_D97lhqcMbZ_DMqnE96xSZmMC7Lk/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 358816937,
           "mode": "list",
-          "cachedResultName": "o3-mini"
+          "cachedResultName": "ADS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wJXPI-UG6-1ahm1_D97lhqcMbZ_DMqnE96xSZmMC7Lk/edit#gid=358816937"
         },
-        "options": {
-          "responseFormat": "json_object"
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        960,
-        400
-      ],
-      "id": "3e9ead78-0b0b-4246-bb53-c6a8a8f3e760",
-      "name": "OpenAI Chat Model1",
-      "credentials": {
-        "openAiApi": {
-          "id": "nZ98FVO8dD6bJnEc",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "sendAndWait",
-        "chatId": "552780004",
-        "message": "=📊 *DECISIÓN PARA ADSET:* {{ $('Loop Over Items').item.json.adset_name }}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n✅ *DECISIÓN:* {{ $json[\"decisión\"].toUpperCase() }}\n💰 *NUEVO PRESUPUESTO:* ${{ $json[\"monto nuevo\"] }}\n💵 *PRESUPUESTO ACTUAL:* ${{ $('Edit Fields').item.json.presupuesto }}\n📈 *GASTO HASTA AHORA:* ${{ $('Edit Fields').item.json.spend }}\n📊 *ROAS GENERAL:* {{ $('Edit Fields').item.json.ROAS_NEGOCIO_GENERAL }}\n\n📊 *ROAS FB:* {{ $('Edit Fields').item.json.ROAS_AD_FB }}\n📊 *ROAS TRACKING:* {{ $('Edit Fields').item.json.ROAS_AD_TRACKING }}\n\n📝 *ANÁLISIS DETALLADO:*\n- *Justificación:* {{ $json[\"razón\"] }}\n\n👉 *¿Confirmas esta decisión?* [SÍ] [NO]",
-        "approvalOptions": {
-          "values": {
-            "approvalType": "double",
-            "approveLabel": "✅ APROBAR",
-            "disapproveLabel": "❌ RECHAZAR"
-          }
-        },
-        "options": {
-          "appendAttribution": false
-        }
-      },
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.2,
-      "position": [
-        1780,
-        380
-      ],
-      "id": "6a407d22-1ca9-449f-9a96-c5399af18141",
-      "name": "Telegram",
-      "webhookId": "7a4a129b-3b05-4e38-b0ba-bb97f38a14ad",
-      "credentials": {
-        "telegramApi": {
-          "id": "v4LDB7igBOVfhj9k",
-          "name": "BOT TRAFICKER"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "mode": "raw",
-        "jsonOutput": "={{$json.output}}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        1336,
-        220
-      ],
-      "id": "265f74c9-28b7-4ab6-b1b2-3b11d3f6db2e",
-      "name": "Edit Fields1"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "anuncio"
+          ],
+          "schema": [
             {
-              "id": "32610e94-5054-4501-9b0e-7552a8897362",
-              "leftValue": "",
-              "rightValue": "",
-              "operator": {
-                "type": "string",
-                "operation": "equals",
-                "name": "filter.operator.equals"
-              }
+              "id": "conjunto",
+              "displayName": "conjunto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "presupuesto",
+              "displayName": "presupuesto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "anuncio",
+              "displayName": "anuncio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "spend",
+              "displayName": "spend",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "VENTAS FB",
+              "displayName": "VENTAS FB",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "cpm",
+              "displayName": "cpm",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ctr",
+              "displayName": "ctr",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "clicks",
+              "displayName": "clicks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "cpc",
+              "displayName": "cpc",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "impressions",
+              "displayName": "impressions",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ROAS_NEGOCIO_GENERAL",
+              "displayName": "ROAS_NEGOCIO_GENERAL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "VENTAS TRACKEADAS",
+              "displayName": "VENTAS TRACKEADAS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ROAS_AD_FB",
+              "displayName": "ROAS_AD_FB",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ROAS_AD_TRACKING",
+              "displayName": "ROAS_AD_TRACKING",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
             }
           ],
-          "combinator": "and"
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
         },
-        "options": {}
+        "options": {
+          "useAppend": true
+        }
       },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
       "position": [
-        1560,
-        220
+        1260,
+        1520
       ],
-      "id": "b397e071-72be-466f-be36-18c7d850e612",
-      "name": "If"
+      "id": "53450031-187c-4cfa-9681-e93b89c4f1c9",
+      "name": "Google Sheets1",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "amount": 20
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1460,
+        1540
+      ],
+      "id": "6e2c1a1e-503f-45e4-a4a4-440cc85d15d8",
+      "name": "Wait",
+      "webhookId": "e2184928-7d54-4b7c-906a-efe75cb848e5"
     }
   ],
   "pinData": {},
@@ -635,6 +759,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-06T04:02:26.000Z",
-  "versionId": "1a920977-4112-490d-8d2e-65cf6dbb46ef"
+  "updatedAt": "2025-04-12T04:58:17.000Z",
+  "versionId": "b0163856-6ecb-495e-9caa-555e1b1bb8f4"
 }
