@@ -1,0 +1,277 @@
+{
+  "active": true,
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-11T21:44:45.553Z",
+  "id": "9dN17LUBsh5GmByU",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[BACKEND] EXTRACTOR CODIGOS JSD",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "filters": {
+          "labelIds": [
+            "Label_8699261861478154218"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -120,
+        -80
+      ],
+      "id": "eb3aff2e-0435-4279-8dbd-798bc8ff0c8b",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "TQIc6MxJVwS0cvQg",
+          "name": "GMAIL JSD COMPANY"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1LWr9XZ0mr7C5SSvHU7K7tfMddMpSIT72-o-RKs4ygRs",
+          "mode": "list",
+          "cachedResultName": "CODIGOS JSD HOTMART",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LWr9XZ0mr7C5SSvHU7K7tfMddMpSIT72-o-RKs4ygRs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LWr9XZ0mr7C5SSvHU7K7tfMddMpSIT72-o-RKs4ygRs/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "TIMESTAMP": "={{$now.toMillis()}}",
+            "CODIGO": "={{$json.snippet.match(/Tu código de verificación es: (\\d+)/)[1]}}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "TIMESTAMP",
+              "displayName": "TIMESTAMP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CODIGO",
+              "displayName": "CODIGO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        100,
+        -80
+      ],
+      "id": "de3e0a21-f5b3-449a-a7c3-3a038422b51a",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "codigos-jsd",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -240,
+        -260
+      ],
+      "id": "950110ad-4483-477a-8533-83d3c23a94f1",
+      "name": "Webhook",
+      "webhookId": "d22cf953-07f1-4c05-a256-907e671c4479"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1LWr9XZ0mr7C5SSvHU7K7tfMddMpSIT72-o-RKs4ygRs",
+          "mode": "list",
+          "cachedResultName": "CODIGOS JSD HOTMART",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LWr9XZ0mr7C5SSvHU7K7tfMddMpSIT72-o-RKs4ygRs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LWr9XZ0mr7C5SSvHU7K7tfMddMpSIT72-o-RKs4ygRs/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -60,
+        -260
+      ],
+      "id": "9de1e07d-45f4-4626-9ef9-d0e8ef0e8108",
+      "name": "Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "TIMESTAMP",
+              "order": "descending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        100,
+        -260
+      ],
+      "id": "32bed587-7478-4bef-a2fb-552f4ce9f2b6",
+      "name": "Sort"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        280,
+        -260
+      ],
+      "id": "af0d86e2-223f-44e9-b421-14b206675dad",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        460,
+        -260
+      ],
+      "id": "30e6accd-c864-47f9-80a6-8300e8262597",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Gmail Trigger": {
+      "Gmail Trigger": {
+        "lastTimeChecked": 1744419965,
+        "possibleDuplicates": [
+          "19627884c8a8a726"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2025-04-11T21:56:27.000Z",
+  "versionId": "d95ec909-f11a-41e8-8494-33f88f053080"
+}
