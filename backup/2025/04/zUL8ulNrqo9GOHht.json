@@ -45,18 +45,6 @@
         ]
       ]
     },
-    "Google Sheets": {
-      "main": [
-        [],
-        [
-          {
-            "node": "Wait",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "ANUNCIO1": {
       "main": [
         [
@@ -90,18 +78,6 @@
         ]
       ]
     },
-    "Google Sheets2": {
-      "main": [
-        [],
-        [
-          {
-            "node": "Wait2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "BUSQUEDA EN BD": {
       "main": [
         [
@@ -117,7 +93,7 @@
       "main": [
         [
           {
-            "node": "Google Sheets2",
+            "node": "Postgres2",
             "type": "main",
             "index": 0
           }
@@ -128,29 +104,7 @@
       "main": [
         [
           {
-            "node": "Google Sheets",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Wait": {
-      "main": [
-        [
-          {
-            "node": "Google Sheets",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Wait2": {
-      "main": [
-        [
-          {
-            "node": "Google Sheets2",
+            "node": "Postgres1",
             "type": "main",
             "index": 0
           }
@@ -253,34 +207,11 @@
         ]
       ]
     },
-    "Google Sheets1": {
-      "main": [
-        [],
-        [
-          {
-            "node": "Wait1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "DATA SIN REF": {
       "main": [
         [
           {
-            "node": "Google Sheets1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Wait1": {
-      "main": [
-        [
-          {
-            "node": "Google Sheets1",
+            "node": "Postgres",
             "type": "main",
             "index": 0
           }
@@ -400,132 +331,6 @@
     },
     {
       "parameters": {
-        "operation": "append",
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "WHATSAPP": "={{ $json.whatsapp }}",
-            "DIA COMPRA": "={{ $json.dia }}",
-            "HORA COMPRA": "={{ $json.hora }}",
-            "CAMPAÑA": "={{ $json[\"campaña\"] }}",
-            "CONJUNTO": "={{ $json.conjunto }}",
-            "ANUNCIO": "={{ $json.anuncio }}",
-            "API": "SI",
-            "AD ID": "={{ $json.source_id }}"
-          },
-          "matchingColumns": [],
-          "schema": [
-            {
-              "id": "WHATSAPP",
-              "displayName": "WHATSAPP",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "DIA COMPRA",
-              "displayName": "DIA COMPRA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "HORA COMPRA",
-              "displayName": "HORA COMPRA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "CAMPAÑA",
-              "displayName": "CAMPAÑA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "CONJUNTO",
-              "displayName": "CONJUNTO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "ANUNCIO",
-              "displayName": "ANUNCIO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "AD ID",
-              "displayName": "AD ID",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "API",
-              "displayName": "API",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        2680,
-        -400
-      ],
-      "id": "4177f0b4-5f8f-4ef2-b5cd-84c4aef388e6",
-      "name": "Google Sheets",
-      "retryOnFail": true,
-      "maxTries": 5,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "CUENTA SANTIAGO"
-        }
-      },
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
         "graphApiVersion": "v22.0",
         "node": "={{ $json.source_id }}",
         "options": {
@@ -610,132 +415,6 @@
           "name": "ACCES TOKEN - APP COMENTARIOS"
         }
       }
-    },
-    {
-      "parameters": {
-        "operation": "append",
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "WHATSAPP": "={{ $json.whatsapp }}",
-            "DIA COMPRA": "={{ $json.dia }}",
-            "HORA COMPRA": "={{ $json.hora }}",
-            "CAMPAÑA": "={{ $json[\"campaña\"] }}",
-            "CONJUNTO": "={{ $json.conjunto }}",
-            "ANUNCIO": "={{ $json.anuncio }}",
-            "API": "NO",
-            "AD ID": "={{ $json.source_id }}"
-          },
-          "matchingColumns": [],
-          "schema": [
-            {
-              "id": "WHATSAPP",
-              "displayName": "WHATSAPP",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "DIA COMPRA",
-              "displayName": "DIA COMPRA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "HORA COMPRA",
-              "displayName": "HORA COMPRA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "CAMPAÑA",
-              "displayName": "CAMPAÑA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "CONJUNTO",
-              "displayName": "CONJUNTO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "ANUNCIO",
-              "displayName": "ANUNCIO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "AD ID",
-              "displayName": "AD ID",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "API",
-              "displayName": "API",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        2680,
-        -200
-      ],
-      "id": "933c4b3b-e54b-4c28-80d4-650d0d674ec0",
-      "name": "Google Sheets2",
-      "retryOnFail": true,
-      "maxTries": 5,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "CUENTA SANTIAGO"
-        }
-      },
-      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -875,34 +554,6 @@
       ],
       "id": "825e7d04-9a8e-4dd5-b2ff-a3645c245e22",
       "name": "DATA API"
-    },
-    {
-      "parameters": {
-        "amount": 60
-      },
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
-      "position": [
-        2900,
-        -400
-      ],
-      "id": "d54f8cc3-1faa-4a18-a209-dfc389e878c7",
-      "name": "Wait",
-      "webhookId": "c70b6b50-d9a4-4162-b79f-71b02e26d5a7"
-    },
-    {
-      "parameters": {
-        "amount": 60
-      },
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
-      "position": [
-        2900,
-        -200
-      ],
-      "id": "2ab51d05-eab6-4d3c-8d6d-1a77a2feba68",
-      "name": "Wait2",
-      "webhookId": "6df6d6d1-bd42-4f87-8a3a-84f59a522645"
     },
     {
       "parameters": {
@@ -1132,132 +783,6 @@
     },
     {
       "parameters": {
-        "operation": "append",
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "WHATSAPP": "={{ $json.whatsapp }}",
-            "DIA COMPRA": "={{ $json.dia }}",
-            "HORA COMPRA": "={{ $json.hora }}",
-            "CAMPAÑA": "={{ $json[\"campaña\"] }}",
-            "CONJUNTO": "={{ $json.conjunto }}",
-            "ANUNCIO": "={{ $json.anuncio }}",
-            "API": "NO",
-            "AD ID": "={{ $json.source_id }}"
-          },
-          "matchingColumns": [],
-          "schema": [
-            {
-              "id": "WHATSAPP",
-              "displayName": "WHATSAPP",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "DIA COMPRA",
-              "displayName": "DIA COMPRA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "HORA COMPRA",
-              "displayName": "HORA COMPRA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "CAMPAÑA",
-              "displayName": "CAMPAÑA",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "CONJUNTO",
-              "displayName": "CONJUNTO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "ANUNCIO",
-              "displayName": "ANUNCIO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "AD ID",
-              "displayName": "AD ID",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "API",
-              "displayName": "API",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        920,
-        -200
-      ],
-      "id": "8ec45485-1641-4386-99d3-754d93e4e72e",
-      "name": "Google Sheets1",
-      "retryOnFail": true,
-      "maxTries": 5,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "CUENTA SANTIAGO"
-        }
-      },
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
         "assignments": {
           "assignments": [
             {
@@ -1317,17 +842,456 @@
     },
     {
       "parameters": {
-        "amount": 60
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tracked_sales",
+          "mode": "list",
+          "cachedResultName": "tracked_sales"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "api_verified": false,
+            "whatsapp": "={{ $json.whatsapp }}",
+            "purchase_date": "={{ $json.dia.toDateTime() }}",
+            "purchase_time": "={{ $json.hora }}",
+            "campaign": "={{ $json['campaña'] }}",
+            "ad_set": "={{ $json.conjunto }}",
+            "ad": "={{ $json.anuncio }}",
+            "ad_id": "={{ $json.source_id }}",
+            "user_id": "9fd01dee-77cd-4f15-a0d6-635b2908e834"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "whatsapp",
+              "displayName": "whatsapp",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "purchase_date",
+              "displayName": "purchase_date",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "purchase_time",
+              "displayName": "purchase_time",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "campaign",
+              "displayName": "campaign",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ad_set",
+              "displayName": "ad_set",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ad",
+              "displayName": "ad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ad_id",
+              "displayName": "ad_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "api_verified",
+              "displayName": "api_verified",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "user_id",
+              "displayName": "user_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
       },
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
       "position": [
-        1140,
+        900,
         -200
       ],
-      "id": "32b9728e-b475-42b3-89e2-1c0f17fbc0f2",
-      "name": "Wait1",
-      "webhookId": "e6e3475e-1487-4315-99a5-2dfe68c5e9fb"
+      "id": "615594cc-1666-4093-aee1-817c07b1ffc1",
+      "name": "Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "LfRlwFVXDaoGZWcP",
+          "name": "POSTGRESS ADACCOUNT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tracked_sales",
+          "mode": "list",
+          "cachedResultName": "tracked_sales"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "api_verified": true,
+            "whatsapp": "={{ $json.whatsapp }}",
+            "purchase_date": "={{ $json.dia.toDateTime() }}",
+            "purchase_time": "={{ $json.hora }}",
+            "campaign": "={{ $json['campaña'] }}",
+            "ad_set": "={{ $json.conjunto }}",
+            "ad": "={{ $json.anuncio }}",
+            "ad_id": "={{ $json.source_id }}",
+            "user_id": "9fd01dee-77cd-4f15-a0d6-635b2908e834"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "whatsapp",
+              "displayName": "whatsapp",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "purchase_date",
+              "displayName": "purchase_date",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "purchase_time",
+              "displayName": "purchase_time",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "campaign",
+              "displayName": "campaign",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ad_set",
+              "displayName": "ad_set",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ad",
+              "displayName": "ad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ad_id",
+              "displayName": "ad_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "api_verified",
+              "displayName": "api_verified",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "user_id",
+              "displayName": "user_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2680,
+        -400
+      ],
+      "id": "663e981a-b60f-4aaf-adac-4428dfcc4c7e",
+      "name": "Postgres1",
+      "credentials": {
+        "postgres": {
+          "id": "LfRlwFVXDaoGZWcP",
+          "name": "POSTGRESS ADACCOUNT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tracked_sales",
+          "mode": "list",
+          "cachedResultName": "tracked_sales"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "api_verified": false,
+            "whatsapp": "={{ $json.whatsapp }}",
+            "purchase_date": "={{ $json.dia.toDateTime() }}",
+            "purchase_time": "={{ $json.hora }}",
+            "campaign": "={{ $json['campaña'] }}",
+            "ad_set": "={{ $json.conjunto }}",
+            "ad": "={{ $json.anuncio }}",
+            "ad_id": "={{ $json.source_id }}",
+            "user_id": "9fd01dee-77cd-4f15-a0d6-635b2908e834"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "whatsapp",
+              "displayName": "whatsapp",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "purchase_date",
+              "displayName": "purchase_date",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "purchase_time",
+              "displayName": "purchase_time",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "campaign",
+              "displayName": "campaign",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ad_set",
+              "displayName": "ad_set",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ad",
+              "displayName": "ad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ad_id",
+              "displayName": "ad_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "api_verified",
+              "displayName": "api_verified",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "user_id",
+              "displayName": "user_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2680,
+        -200
+      ],
+      "id": "30d70727-7d2c-4d69-88dd-67f5d39363e0",
+      "name": "Postgres2",
+      "credentials": {
+        "postgres": {
+          "id": "LfRlwFVXDaoGZWcP",
+          "name": "POSTGRESS ADACCOUNT"
+        }
+      }
     }
   ],
   "pinData": {
@@ -1344,14 +1308,14 @@
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "e90ae4fad82e",
+            "x-forwarded-server": "697dd9cbf981",
             "x-real-ip": "82.180.130.193",
             "accept-encoding": "gzip"
           },
           "params": {},
           "query": {},
           "body": {
-            "whatsapp": "573127571042"
+            "whatsapp": "573115518185"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/compra-wha-api",
           "executionMode": "production"
@@ -1370,6 +1334,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-05T02:35:08.000Z",
-  "versionId": "c21afa80-f435-45cd-944c-85e8cf0a6c64"
+  "updatedAt": "2025-04-12T18:15:39.000Z",
+  "versionId": "b735e25f-5c5c-42a2-96af-9b1e630f9b81"
 }
