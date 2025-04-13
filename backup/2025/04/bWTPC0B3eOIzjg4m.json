@@ -1,0 +1,319 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-12T20:32:59.553Z",
+  "id": "bWTPC0B3eOIzjg4m",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[BACKEND][AD_ACCOUNT] AGENTE REVISOR DECISIONES",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ai-analisis-backend",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -400,
+        -80
+      ],
+      "id": "d66b8615-a2a8-4f88-a709-91aaa6531d96",
+      "name": "Webhook",
+      "webhookId": "58c54ad1-0481-4c43-aaab-55bf8c9b70af"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.toJsonString() }}",
+        "options": {
+          "systemMessage": "Revisa toda la información y los datos proporcionados y determina si se recomienda aumentar o reducir el presupuesto. Proporciona una respuesta breve y directa basada en la data.\n\nDando prioridad al dia de hoy y los ultimos 3 dias\n\nEntendiendo que todo funciona con audiencias en facebook y que qquizas hoye stamos en un segmento ganador... basicamente el historico lo debes usar para saber si en dias pasados trajo roas altos en algun dia, con mas de 4 ventas. en los dias de roas alto\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -180,
+        -80
+      ],
+      "id": "ef344243-a410-4d2f-a2a8-20b6aa5ed299",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -200,
+        120
+      ],
+      "id": "eec173a2-c0ad-41cf-b8a6-be903ccf8236",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        180,
+        -80
+      ],
+      "id": "5ea33d07-4533-4c0f-ad42-a86950247719",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+            "content-length": "2235",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "es-419,es;q=0.9,pt;q=0.8,en;q=0.7",
+            "content-type": "application/json",
+            "origin": "https://zp1v56uxy8rdx5ypatb0ockcb9tr6a-oci3--5173--fb22cd3d.local-credentialless.webcontainer-api.io",
+            "priority": "u=1, i",
+            "referer": "https://zp1v56uxy8rdx5ypatb0ockcb9tr6a-oci3--5173--fb22cd3d.local-credentialless.webcontainer-api.io/",
+            "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "181.235.106.83",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "697dd9cbf981",
+            "x-real-ip": "181.235.106.83"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "adSetName": "[TU TUENDA DIGITAL] COL 18+ | AD 9",
+            "adSetId": "120222495896850742",
+            "currentMetrics": {
+              "budget": 4,
+              "spend": 4.03,
+              "maxRoas": 4.357562186043697,
+              "sales": 4,
+              "trackedSales": 1
+            },
+            "historicalPerformance": [
+              {
+                "date": "2025-04-12",
+                "metrics": {
+                  "totalSpend": 4.11,
+                  "totalSales": 4,
+                  "totalTrackedSales": 1,
+                  "maxRoas": 4.2725060827250605,
+                  "ads": [
+                    {
+                      "name": "[TU TUENDA DIGITAL] AD9",
+                      "spend": 4.11,
+                      "sales": 4,
+                      "trackedSales": 1,
+                      "roasFb": 4.2725060827250605,
+                      "roasNegocio": 1.0681858643403952,
+                      "maxRoas": 4.2725060827250605
+                    }
+                  ]
+                }
+              },
+              {
+                "date": "2025-04-11",
+                "metrics": {
+                  "totalSpend": 16.49,
+                  "totalSales": 0,
+                  "totalTrackedSales": 3,
+                  "maxRoas": 0.7987102308864206,
+                  "ads": [
+                    {
+                      "name": "[TU TUENDA DIGITAL] AD9",
+                      "spend": 16.49,
+                      "sales": 0,
+                      "trackedSales": 3,
+                      "roasFb": 0,
+                      "roasNegocio": 0.7987102308864206,
+                      "maxRoas": 0.7987102308864206
+                    }
+                  ]
+                }
+              },
+              {
+                "date": "2025-04-10",
+                "metrics": {
+                  "totalSpend": 5.09,
+                  "totalSales": 2,
+                  "totalTrackedSales": 1,
+                  "maxRoas": 1.724950884086444,
+                  "ads": [
+                    {
+                      "name": "[TU TUENDA DIGITAL] AD9",
+                      "spend": 5.09,
+                      "sales": 2,
+                      "trackedSales": 1,
+                      "roasFb": 1.724950884086444,
+                      "roasNegocio": 0.8625233600076669,
+                      "maxRoas": 1.724950884086444
+                    }
+                  ]
+                }
+              },
+              {
+                "date": "2025-04-09",
+                "metrics": {
+                  "totalSpend": 19.08,
+                  "totalSales": 7,
+                  "totalTrackedSales": 2,
+                  "maxRoas": 1.6105870020964361,
+                  "ads": [
+                    {
+                      "name": "[TU TUENDA DIGITAL] AD9",
+                      "spend": 19.08,
+                      "sales": 7,
+                      "trackedSales": 2,
+                      "roasFb": 1.6105870020964361,
+                      "roasNegocio": 0.4601932811780949,
+                      "maxRoas": 1.6105870020964361
+                    }
+                  ]
+                }
+              },
+              {
+                "date": "2025-04-08",
+                "metrics": {
+                  "totalSpend": 26.32,
+                  "totalSales": 13,
+                  "totalTrackedSales": 4,
+                  "maxRoas": 2.1683130699088147,
+                  "ads": [
+                    {
+                      "name": "[TU TUENDA DIGITAL] AD9",
+                      "spend": 26.32,
+                      "sales": 13,
+                      "trackedSales": 4,
+                      "roasFb": 2.1683130699088147,
+                      "roasNegocio": 0.6672103195196086,
+                      "maxRoas": 2.1683130699088147
+                    }
+                  ]
+                }
+              },
+              {
+                "date": "2025-04-07",
+                "metrics": {
+                  "totalSpend": 27.74,
+                  "totalSales": 10,
+                  "totalTrackedSales": 3,
+                  "maxRoas": 1.5825522710886806,
+                  "ads": [
+                    {
+                      "name": "[TU TUENDA DIGITAL] AD9",
+                      "spend": 27.74,
+                      "sales": 10,
+                      "trackedSales": 3,
+                      "roasFb": 1.5825522710886806,
+                      "roasNegocio": 0.4747920586631966,
+                      "maxRoas": 1.5825522710886806
+                    }
+                  ]
+                }
+              },
+              {
+                "date": "2025-04-06",
+                "metrics": {
+                  "totalSpend": 20.91,
+                  "totalSales": 12,
+                  "totalTrackedSales": 3,
+                  "maxRoas": 2.519846963175514,
+                  "ads": [
+                    {
+                      "name": "[TU TUENDA DIGITAL] AD9",
+                      "spend": 20.91,
+                      "sales": 12,
+                      "trackedSales": 3,
+                      "roasFb": 2.519846963175514,
+                      "roasNegocio": 0.6298771739510796,
+                      "maxRoas": 2.519846963175514
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/ai-analisis-backend",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-12T20:43:17.000Z",
+  "versionId": "365d45fe-bee0-49f8-86aa-2d2835f8b9ff"
+}
