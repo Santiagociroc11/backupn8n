@@ -197,6 +197,46 @@
           }
         ]
       ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "VENTAS TRACKEADAS1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VENTAS TRACKEADAS1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "VENTAS TRACKEADAS1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-04-04T05:26:24.697Z",
@@ -745,6 +785,93 @@
       "id": "6e2c1a1e-503f-45e4-a4a4-440cc85d15d8",
       "name": "Wait",
       "webhookId": "e2184928-7d54-4b7c-906a-efe75cb848e5"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "TRACKING VENTAS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FAUh9pusRNQBIEa5yG0IMlD6h7Mdg3ywWjy8jKBGeos/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "DIA COMPRA",
+              "lookupValue": "={{ $now.format('yyyy-MM-dd') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -240,
+        380
+      ],
+      "id": "ec7dbf4e-32cf-4462-bd5f-053a2bcf4395",
+      "name": "VENTAS TRACKEADAS1",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "path": "backend-roasnegocio",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -480,
+        380
+      ],
+      "id": "6a760298-5361-4913-b62e-2a95b3cf4c74",
+      "name": "Webhook",
+      "webhookId": "b68d8daa-ca4e-4fd4-bb2e-524992136de7"
+    },
+    {
+      "parameters": {
+        "amount": 20
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -20,
+        460
+      ],
+      "id": "2d7a68dd-b3d0-41ff-8a5b-5fad3981b0c3",
+      "name": "Wait3",
+      "webhookId": "e2184928-7d54-4b7c-906a-efe75cb848e5"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        200,
+        380
+      ],
+      "id": "7e997244-92d1-4c3e-a3f5-48ae902b95fa",
+      "name": "Respond to Webhook"
     }
   ],
   "pinData": {},
@@ -758,7 +885,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-04-12T04:58:17.000Z",
-  "versionId": "b0163856-6ecb-495e-9caa-555e1b1bb8f4"
+  "triggerCount": 1,
+  "updatedAt": "2025-04-12T16:47:20.000Z",
+  "versionId": "d0af1f7a-8f89-4091-b168-d2eee5f3b9fa"
 }
