@@ -1,0 +1,196 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-15T04:46:45.279Z",
+  "id": "aduhv1FWgRlHWpE7",
+  "meta": null,
+  "name": "[BACKEND] PRECIO DINAMICO",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://pay.hotmart.com/api/next/load",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"items\": [\n  {\"offer\": \"pz2z9byp\"}\n],\n\"countryIsoCode\":\"{{ $json.countryCode }}\"} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        60,
+        20
+      ],
+      "id": "c34cddb4-8232-40e3-9a0e-5d070c07ce3c",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "precio-dinamico",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -380,
+        20
+      ],
+      "id": "52bfcab8-b4f5-45af-9da1-062abd94a878",
+      "name": "Webhook",
+      "webhookId": "e38c0c2a-8bd6-4517-8ca8-71508a910038"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        500,
+        20
+      ],
+      "id": "b8f88a96-e172-4181-a0b1-a9d41a565cf4",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "url": "=http://ip-api.com/json/{{ $json.body.ip }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -160,
+        20
+      ],
+      "id": "556b1eff-1d7b-420c-928a-70f6c7cc0a3c",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1409d342-5052-4bda-a053-71c8457a72f5",
+              "name": "price",
+              "value": "={{ $json.data.products[0].offer.paymentMethods.find(p => p.type === \"CREDIT_CARD\").amount.value }}",
+              "type": "string"
+            },
+            {
+              "id": "70fb2927-d460-4ea1-ba7e-2655f9d311e6",
+              "name": "currency",
+              "value": "={{ $json.data.products[0].offer.paymentMethods.find(p => p.type === \"CREDIT_CARD\").amount.currency }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        20
+      ],
+      "id": "0ac6267c-65ca-4ce8-9a09-a0366398fd34",
+      "name": "Edit Fields"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+            "content-length": "23",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "es-419,es;q=0.9,pt;q=0.8,en;q=0.7",
+            "content-type": "application/json",
+            "origin": "https://automscc.com",
+            "priority": "u=1, i",
+            "referer": "https://automscc.com/",
+            "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-site",
+            "x-forwarded-for": "181.235.106.83",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "697dd9cbf981",
+            "x-real-ip": "181.235.106.83"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "ip": "181.235.106.83"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/precio-dinamico",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-15T05:26:54.000Z",
+  "versionId": "2751b6b8-9846-4c5a-98c4-6fd760831bed"
+}
