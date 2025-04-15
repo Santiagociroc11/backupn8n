@@ -96,6 +96,11 @@
             "node": "Postgres2",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -105,6 +110,11 @@
         [
           {
             "node": "Postgres1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request2",
             "type": "main",
             "index": 0
           }
@@ -212,6 +222,11 @@
         [
           {
             "node": "Postgres",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
           }
@@ -1292,6 +1307,141 @@
           "name": "POSTGRESS ADACCOUNT"
         }
       }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n-gotify.wc2hpx.easypanel.host/message",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Gotify-Key\t",
+              "value": "Ao9hMmrWwJKd4Rz"
+            },
+            {
+              "name": "Content-Type\t",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "title",
+              "value": "Venta Magis Efectuada"
+            },
+            {
+              "name": "message",
+              "value": "=Recibes ${{ (18000/4200).toFixed(2) }} USD - {{ $json.whatsapp }}"
+            },
+            {
+              "name": "priority",
+              "value": "={{ 6 }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        920,
+        -20
+      ],
+      "id": "b2d11397-2f2a-4af0-a126-5d9bae957f26",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n-gotify.wc2hpx.easypanel.host/message",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Gotify-Key\t",
+              "value": "Ao9hMmrWwJKd4Rz"
+            },
+            {
+              "name": "Content-Type\t",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "title",
+              "value": "Venta Magis Efectuada"
+            },
+            {
+              "name": "message",
+              "value": "=Recibes ${{ (18000/4200).toFixed(2) }} USD - {{ $json.whatsapp }}"
+            },
+            {
+              "name": "priority",
+              "value": "={{ 6 }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2680,
+        -20
+      ],
+      "id": "869947db-ad19-44d0-9820-589e4b9ff521",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n-gotify.wc2hpx.easypanel.host/message",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Gotify-Key\t",
+              "value": "Ao9hMmrWwJKd4Rz"
+            },
+            {
+              "name": "Content-Type\t",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "title",
+              "value": "Venta Magis Efectuada"
+            },
+            {
+              "name": "message",
+              "value": "=Recibes ${{ (18000/4200).toFixed(2) }} USD - {{ $json.whatsapp }}"
+            },
+            {
+              "name": "priority",
+              "value": "={{ 6 }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2680,
+        -560
+      ],
+      "id": "bdc0517d-cc26-40e0-b62e-db7d6fb78b73",
+      "name": "HTTP Request2"
     }
   ],
   "pinData": {
@@ -1315,7 +1465,7 @@
           "params": {},
           "query": {},
           "body": {
-            "whatsapp": "573115518185"
+            "whatsapp": "573045566494"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/compra-wha-api",
           "executionMode": "production"
@@ -1334,6 +1484,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-12T18:15:39.000Z",
-  "versionId": "b735e25f-5c5c-42a2-96af-9b1e630f9b81"
+  "updatedAt": "2025-04-14T23:56:13.000Z",
+  "versionId": "f36d7e06-6e98-4721-b91c-177d1c2e0fcc"
 }
