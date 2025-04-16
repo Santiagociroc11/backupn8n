@@ -57,7 +57,7 @@
         "url": "https://pay.hotmart.com/api/next/load",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\"items\": [\n  {\"offer\": \"pz2z9byp\"}\n],\n\"countryIsoCode\":\"{{ $json.countryCode }}\"} ",
+        "jsonBody": "={\"items\": [\n  {\"offer\": \"{{ $('Webhook').item.json.body.offer }}\"}\n],\n\"countryIsoCode\":\"{{ $json.countryCode }}\"} ",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -150,20 +150,20 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
-            "content-length": "23",
+            "content-length": "42",
             "accept": "*/*",
             "accept-encoding": "gzip, deflate, br, zstd",
             "accept-language": "es-419,es;q=0.9,pt;q=0.8,en;q=0.7",
             "content-type": "application/json",
-            "origin": "https://automscc.com",
+            "origin": "https://terapiasmagneticas.com",
             "priority": "u=1, i",
-            "referer": "https://automscc.com/",
+            "referer": "https://terapiasmagneticas.com/",
             "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
             "sec-ch-ua-mobile": "?0",
             "sec-ch-ua-platform": "\"Windows\"",
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
-            "sec-fetch-site": "same-site",
+            "sec-fetch-site": "cross-site",
             "x-forwarded-for": "181.235.106.83",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
@@ -174,7 +174,8 @@
           "params": {},
           "query": {},
           "body": {
-            "ip": "181.235.106.83"
+            "ip": "181.235.106.83",
+            "offer": "pz2z9byp"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/precio-dinamico",
           "executionMode": "production"
@@ -191,6 +192,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-15T05:26:54.000Z",
-  "versionId": "2751b6b8-9846-4c5a-98c4-6fd760831bed"
+  "updatedAt": "2025-04-15T06:02:47.000Z",
+  "versionId": "2cea516d-573b-49f2-91dc-8e13ff36bf8f"
 }
