@@ -1,11 +1,11 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "When clicking ‘Test workflow’": {
       "main": [
         [
           {
-            "node": "HTTP Request",
+            "node": "Telegram",
             "type": "main",
             "index": 0
           }
@@ -15,7 +15,9 @@
   },
   "createdAt": "2025-04-15T22:21:32.864Z",
   "id": "ANLqejYG6t2QhZcF",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "My workflow 2",
   "nodes": [
     {
@@ -23,41 +25,35 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        0,
-        0
+        -400,
+        -60
       ],
       "id": "0284688a-f037-4a6a-9a59-80d7bce5c648",
       "name": "When clicking ‘Test workflow’"
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "https://n8n-gotify.wc2hpx.easypanel.host/message",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {}
-          ]
-        },
-        "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "message",
-              "value": "asdas"
-            }
-          ]
-        },
-        "options": {}
+        "chatId": "552780004",
+        "text": "=Venta Efectuada - MTV\nRecibes $18.000 ({{ (18000/4200).toFixed(2) }} $US)\nFuente: ",
+        "additionalFields": {
+          "appendAttribution": false
+        }
       },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
       "position": [
-        220,
-        0
+        -180,
+        -60
       ],
-      "id": "b3142b00-a9a8-4c09-9da6-5fc6ac4aa96c",
-      "name": "HTTP Request"
+      "id": "088e9d80-6c41-4f8d-8736-7beb7275bfa3",
+      "name": "Telegram",
+      "webhookId": "25dfd7e8-af1d-44af-a562-58792ef8fa48",
+      "credentials": {
+        "telegramApi": {
+          "id": "71o9DQe5tCOu17F5",
+          "name": "BOT AVISOS WHA"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -70,6 +66,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-15T22:21:43.000Z",
-  "versionId": "fdee1963-01b2-4a7d-a21e-734f2d69f0e3"
+  "updatedAt": "2025-04-16T18:54:39.000Z",
+  "versionId": "7fcd4603-9969-4dee-ae4b-637c7c380938"
 }
