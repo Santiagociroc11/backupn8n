@@ -98,7 +98,7 @@
             "index": 0
           },
           {
-            "node": "HTTP Request1",
+            "node": "Telegram1",
             "type": "main",
             "index": 0
           }
@@ -114,7 +114,7 @@
             "index": 0
           },
           {
-            "node": "HTTP Request2",
+            "node": "Telegram2",
             "type": "main",
             "index": 0
           }
@@ -198,11 +198,6 @@
       "main": [
         [
           {
-            "node": "[COMPRA] PIXEL + PAGE_ID",
-            "type": "main",
-            "index": 0
-          },
-          {
             "node": "ANUNCIO",
             "type": "main",
             "index": 0
@@ -226,7 +221,7 @@
             "index": 0
           },
           {
-            "node": "HTTP Request",
+            "node": "Telegram",
             "type": "main",
             "index": 0
           }
@@ -251,7 +246,7 @@
       "typeVersion": 2,
       "position": [
         -180,
-        -300
+        -60
       ],
       "id": "695c0e99-9662-49f0-b107-934d45f03f42",
       "name": "COMPRA APROBADA",
@@ -275,7 +270,7 @@
       "typeVersion": 1,
       "position": [
         1800,
-        -400
+        -460
       ],
       "id": "ced7f9f2-1462-4a77-9620-400aeb3fe37a",
       "name": "ANUNCIO",
@@ -304,7 +299,7 @@
       "typeVersion": 1,
       "position": [
         2020,
-        -400
+        -460
       ],
       "id": "f557bb3e-0ef8-4a1e-959f-9e7531f9fed9",
       "name": "CONJUNTO",
@@ -333,7 +328,7 @@
       "typeVersion": 1,
       "position": [
         2240,
-        -400
+        -460
       ],
       "id": "246ce672-18fb-4821-8c19-f2f032a79a97",
       "name": "CAMPAÑA",
@@ -362,7 +357,7 @@
       "typeVersion": 1,
       "position": [
         1800,
-        -200
+        -60
       ],
       "id": "745c30c5-05c7-4820-9ae2-7cd60333fb79",
       "name": "ANUNCIO1",
@@ -391,7 +386,7 @@
       "typeVersion": 1,
       "position": [
         2020,
-        -200
+        -60
       ],
       "id": "cdc86a50-f4dd-4f2e-937d-be2d19b15433",
       "name": "CONJUNTO1",
@@ -420,7 +415,7 @@
       "typeVersion": 1,
       "position": [
         2240,
-        -200
+        -60
       ],
       "id": "f0ae65c1-d2b9-4ef8-8fc6-2f338d8ec465",
       "name": "CAMPAÑA1",
@@ -441,7 +436,7 @@
       "typeVersion": 1.1,
       "position": [
         260,
-        -300
+        -60
       ],
       "id": "0664d24b-a4d7-4a42-bb62-7c1866d09b2b",
       "name": "BUSQUEDA EN BD",
@@ -506,7 +501,7 @@
       "typeVersion": 3.4,
       "position": [
         2460,
-        -200
+        -60
       ],
       "id": "127f7ef4-a1b8-4a68-a83f-f1cf60722073",
       "name": "DATA SIN API"
@@ -565,7 +560,7 @@
       "typeVersion": 3.4,
       "position": [
         2460,
-        -400
+        -460
       ],
       "id": "825e7d04-9a8e-4dd5-b2ff-a3645c245e22",
       "name": "DATA API"
@@ -580,7 +575,7 @@
       "typeVersion": 1,
       "position": [
         1140,
-        -400
+        -260
       ],
       "id": "9c7d5a0b-0bc6-4534-ac45-310f4f51880c",
       "name": "HASH PHONE"
@@ -603,37 +598,10 @@
       "typeVersion": 3.4,
       "position": [
         40,
-        -300
+        -60
       ],
       "id": "fec25260-302e-4a0a-b764-f381676eb949",
       "name": "WHA"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://graph.facebook.com/v22.0/{{ $('HASH PHONE').item.json.pixel }}/events",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpQueryAuth",
-        "sendQuery": true,
-        "specifyQuery": "json",
-        "jsonQuery": "={\n  \"data\": [\n    {\n      \"action_source\": \"business_messaging\",\n      \"custom_data\": {\n        \"currency\": \"USD\",\n        \"value\": {{ (18000 / 4100).toFixed(2) }}\n      },\n      \"event_name\": \"Purchase\",\n      \"event_time\": {{$now.toSeconds().floor()}},\n      \"event_id\": \"{{ $json.whatsapp }}\",\n      \"messaging_channel\": \"whatsapp\",\n      \"user_data\": {\n        \"ph\": \"{{ $('HASH PHONE').item.json.dataphone }}\",\n        \"ctwa_clid\": \"{{ $json.ctwa_clid }}\",\n        \"page_id\": \"{{ $('HASH PHONE').item.json.page_id }}\"\n      }\n    }\n  ], \n\"test_event_code\": \"TEST8458\"\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        1800,
-        -600
-      ],
-      "id": "a8a10e8d-1e82-4e8c-b768-5db841ccb493",
-      "name": "[COMPRA] PIXEL + PAGE_ID",
-      "credentials": {
-        "httpQueryAuth": {
-          "id": "1HbOG0Vq2L9CY1PH",
-          "name": "token api win+"
-        }
-      },
-      "disabled": true
     },
     {
       "parameters": {
@@ -653,6 +621,16 @@
                 "type": "string",
                 "operation": "notEquals"
               }
+            },
+            {
+              "id": "033254a0-08a4-4145-af0c-1d3eea4ed841",
+              "leftValue": "={{ $json.ctwa_clid }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
             }
           ],
           "combinator": "and"
@@ -663,7 +641,7 @@
       "typeVersion": 2.2,
       "position": [
         480,
-        -300
+        -60
       ],
       "id": "ce24d359-d3fb-4c3d-bf0d-08670f36ea14",
       "name": "SOURCE ID?"
@@ -686,7 +664,7 @@
       "typeVersion": 1,
       "position": [
         700,
-        -400
+        -260
       ],
       "id": "bd76ac47-5d1f-42b2-9b69-44c76047342d",
       "name": "ENCONTRAR PIXEL Y PAGE",
@@ -727,7 +705,7 @@
       "typeVersion": 3.4,
       "position": [
         920,
-        -400
+        -260
       ],
       "id": "f2dbc325-d040-4649-adda-35eeff0077c5",
       "name": "FIELDS"
@@ -742,7 +720,7 @@
       "typeVersion": 1.1,
       "position": [
         1360,
-        -400
+        -260
       ],
       "id": "8be7ee8c-3417-4184-9baf-91e93a5cf2c0",
       "name": "OBTENER PERSONA",
@@ -764,16 +742,6 @@
           },
           "conditions": [
             {
-              "id": "d9cb8071-ce48-4cbd-a36a-783f5103a7cc",
-              "leftValue": "={{ $json.ctwa_clid }}",
-              "rightValue": "",
-              "operator": {
-                "type": "string",
-                "operation": "exists",
-                "singleValue": true
-              }
-            },
-            {
               "id": "70c31c99-391f-4676-9ac4-0eaf38532c88",
               "leftValue": "={{ $json.ctwa_clid }}",
               "rightValue": "-",
@@ -791,7 +759,7 @@
       "typeVersion": 2.2,
       "position": [
         1580,
-        -400
+        -260
       ],
       "id": "254e7d9a-f3fd-4939-ace1-c7d69db6fd06",
       "name": "CTWA_CLID?"
@@ -850,7 +818,7 @@
       "typeVersion": 3.4,
       "position": [
         700,
-        -200
+        40
       ],
       "id": "0fe331fd-5f9a-4b10-b7c2-598d7e7f1162",
       "name": "DATA SIN REF"
@@ -994,8 +962,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        900,
-        -200
+        920,
+        -60
       ],
       "id": "615594cc-1666-4093-aee1-817c07b1ffc1",
       "name": "Postgres",
@@ -1146,7 +1114,7 @@
       "typeVersion": 2.6,
       "position": [
         2680,
-        -400
+        -360
       ],
       "id": "663e981a-b60f-4aaf-adac-4428dfcc4c7e",
       "name": "Postgres1",
@@ -1297,7 +1265,7 @@
       "typeVersion": 2.6,
       "position": [
         2680,
-        -200
+        -160
       ],
       "id": "30d70727-7d2c-4d69-88dd-67f5d39363e0",
       "name": "Postgres2",
@@ -1310,138 +1278,75 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "https://n8n-gotify.wc2hpx.easypanel.host/message",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "X-Gotify-Key\t",
-              "value": "Ao9hMmrWwJKd4Rz"
-            },
-            {
-              "name": "Content-Type\t",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "title",
-              "value": "Venta Magis Efectuada"
-            },
-            {
-              "name": "message",
-              "value": "=Recibes ${{ (18000/4200).toFixed(2) }} USD - {{ $json.whatsapp }}"
-            },
-            {
-              "name": "priority",
-              "value": "={{ 6 }}"
-            }
-          ]
-        },
-        "options": {}
+        "chatId": "552780004",
+        "text": "=Recibes $18.000 ({{ (18000/4200).toFixed(2) }} $US)\nFuente: {{ $json.conjunto }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
       },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
       "position": [
         920,
-        -20
+        100
       ],
-      "id": "b2d11397-2f2a-4af0-a126-5d9bae957f26",
-      "name": "HTTP Request"
+      "id": "b729c32f-6412-4768-9534-b1242da92b3e",
+      "name": "Telegram",
+      "webhookId": "25dfd7e8-af1d-44af-a562-58792ef8fa48",
+      "credentials": {
+        "telegramApi": {
+          "id": "71o9DQe5tCOu17F5",
+          "name": "BOT AVISOS WHA"
+        }
+      }
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "https://n8n-gotify.wc2hpx.easypanel.host/message",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "X-Gotify-Key\t",
-              "value": "Ao9hMmrWwJKd4Rz"
-            },
-            {
-              "name": "Content-Type\t",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "title",
-              "value": "Venta Magis Efectuada"
-            },
-            {
-              "name": "message",
-              "value": "=Recibes ${{ (18000/4200).toFixed(2) }} USD - {{ $json.whatsapp }}"
-            },
-            {
-              "name": "priority",
-              "value": "={{ 6 }}"
-            }
-          ]
-        },
-        "options": {}
+        "chatId": "552780004",
+        "text": "=Recibes $18.000 ({{ (18000/4200).toFixed(2) }} $US)\nFuente: {{ $json.conjunto }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
       },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
       "position": [
         2680,
-        -20
+        40
       ],
-      "id": "869947db-ad19-44d0-9820-589e4b9ff521",
-      "name": "HTTP Request1"
+      "id": "f369a290-4cab-4114-8b6f-9e4dd341cf4b",
+      "name": "Telegram1",
+      "webhookId": "25dfd7e8-af1d-44af-a562-58792ef8fa48",
+      "credentials": {
+        "telegramApi": {
+          "id": "71o9DQe5tCOu17F5",
+          "name": "BOT AVISOS WHA"
+        }
+      }
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "https://n8n-gotify.wc2hpx.easypanel.host/message",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "X-Gotify-Key\t",
-              "value": "Ao9hMmrWwJKd4Rz"
-            },
-            {
-              "name": "Content-Type\t",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "title",
-              "value": "Venta Magis Efectuada"
-            },
-            {
-              "name": "message",
-              "value": "=Recibes ${{ (18000/4200).toFixed(2) }} USD - {{ $json.whatsapp }}"
-            },
-            {
-              "name": "priority",
-              "value": "={{ 6 }}"
-            }
-          ]
-        },
-        "options": {}
+        "chatId": "552780004",
+        "text": "=Recibes $18.000 ({{ (18000/4200).toFixed(2) }} $US)\nFuente: {{ $json.conjunto }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
       },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
       "position": [
         2680,
-        -560
+        -540
       ],
-      "id": "bdc0517d-cc26-40e0-b62e-db7d6fb78b73",
-      "name": "HTTP Request2"
+      "id": "6219ba53-2072-478a-af6e-dc1963832dc9",
+      "name": "Telegram2",
+      "webhookId": "25dfd7e8-af1d-44af-a562-58792ef8fa48",
+      "credentials": {
+        "telegramApi": {
+          "id": "71o9DQe5tCOu17F5",
+          "name": "BOT AVISOS WHA"
+        }
+      }
     }
   ],
   "pinData": {
@@ -1465,7 +1370,7 @@
           "params": {},
           "query": {},
           "body": {
-            "whatsapp": "573045566494"
+            "whatsapp": "573112931762"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/compra-wha-api",
           "executionMode": "production"
@@ -1484,6 +1389,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-14T23:56:13.000Z",
-  "versionId": "f36d7e06-6e98-4721-b91c-177d1c2e0fcc"
+  "updatedAt": "2025-04-16T18:57:42.000Z",
+  "versionId": "bd6af915-09a6-4495-9151-735080907a3c"
 }
