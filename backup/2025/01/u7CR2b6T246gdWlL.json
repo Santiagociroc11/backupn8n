@@ -41,6 +41,29 @@
             "node": "Google Sheets",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram1",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -48,7 +71,9 @@
   },
   "createdAt": "2025-01-27T16:05:08.928Z",
   "id": "u7CR2b6T246gdWlL",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "[GERSSON] TRACKEO DE VENTAS HOTMART",
   "nodes": [
     {
@@ -61,7 +86,7 @@
       "typeVersion": 2,
       "position": [
         -500,
-        -40
+        -200
       ],
       "id": "e0e94a10-c406-40f9-959a-3cf5d0b656f3",
       "name": "Webhook",
@@ -266,8 +291,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        400,
-        -60
+        380,
+        -100
       ],
       "id": "c5af5793-07f9-4628-b819-7ab5cb172c5f",
       "name": "Google Sheets",
@@ -288,7 +313,7 @@
       "typeVersion": 3.4,
       "position": [
         -280,
-        -40
+        -200
       ],
       "id": "e9cf4c05-dc66-4cb0-9443-e683f31967bc",
       "name": "Edit Fields"
@@ -382,8 +407,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -80,
-        -40
+        -60,
+        -200
       ],
       "id": "b1ed6d9c-b16f-40b9-8385-4af2e371c097",
       "name": "Edit Fields1"
@@ -416,11 +441,127 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        140,
-        -40
+        160,
+        -200
       ],
       "id": "c208df9d-71e1-4deb-af42-73153c4b5677",
       "name": "If"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.producto }}",
+                    "rightValue": "Sanar con Imanes",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "f31dbd42-efea-4ce9-9f82-224c074612a8"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "SANAR CON IMANES"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "616ce06c-c0a5-47a4-bf46-9c8328887122",
+                    "leftValue": "={{ $json.producto }}",
+                    "rightValue": "Cero Dolor",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "CERO DOLOR"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        380,
+        -300
+      ],
+      "id": "945fa065-04d3-4ce8-9252-630f4ab731a2",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "chatId": "-1002557397507",
+        "text": "=Notificación de VENTA\n\nProducto: {{ $('If').item.json.producto }}\nPaís: {{ $('If').item.json.pais }}\nComprador: {{ $('If').item.json.nombre }}\nCorreo: {{ $('If').item.json.correo }}\nTransacción: {{ $('If').item.json['Transacción'] }}\nvalor: {{ $('If').item.json['valor producto'] }}\nFecha de compra: {{ $('If').item.json.fecha }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "message_thread_id": 4
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        600,
+        -400
+      ],
+      "id": "57068fc6-432b-499d-a594-f77d6600514a",
+      "name": "Telegram",
+      "webhookId": "0344b7fa-87f9-42cd-80a3-975523622bb7",
+      "credentials": {
+        "telegramApi": {
+          "id": "QruLAfRq4u80XCVX",
+          "name": "BOT AGENCIA X"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "-1002557397507",
+        "text": "=Notificación de VENTA\n\nProducto: {{ $('If').item.json.producto }}\nPaís: {{ $('If').item.json.pais }}\nComprador: {{ $('If').item.json.nombre }}\nCorreo: {{ $('If').item.json.correo }}\nTransacción: {{ $('If').item.json['Transacción'] }}\nvalor: {{ $('If').item.json['valor producto'] }}\nFecha de compra: {{ $('If').item.json.fecha }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "message_thread_id": 2
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        600,
+        -240
+      ],
+      "id": "181bed36-ad18-4464-8ded-a56c87f0562a",
+      "name": "Telegram1",
+      "webhookId": "0344b7fa-87f9-42cd-80a3-975523622bb7",
+      "credentials": {
+        "telegramApi": {
+          "id": "QruLAfRq4u80XCVX",
+          "name": "BOT AGENCIA X"
+        }
+      }
     }
   ],
   "pinData": {
@@ -430,32 +571,85 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "Jodd HTTP",
-            "content-length": "1883",
+            "content-length": "1670",
             "content-type": "application/json",
-            "x-forwarded-for": "13.218.78.87",
+            "x-forwarded-for": "3.82.57.135",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "697dd9cbf981",
+            "x-forwarded-server": "5e236941e778",
             "x-hotmart-hottok": "6SJkhfjuD6Bm4cha7tF8loEMs92JzG11852721",
-            "x-real-ip": "13.218.78.87",
+            "x-real-ip": "3.82.57.135",
             "accept-encoding": "gzip"
           },
           "params": {},
           "query": {},
           "body": {
-            "id": "75ce0d34-6793-4efc-a9b4-484554e52caf",
-            "creation_date": 1744340727244,
-            "event": "PURCHASE_APPROVED",
-            "version": "2.0.0",
             "data": {
               "product": {
-                "id": 2587858,
-                "ucode": "963ab841-7bbc-4025-8ba9-0737a9c1d151",
-                "name": "Cero Dolor",
-                "warranty_date": "2025-04-18T00:00:00Z",
-                "support_email": "terapiasmagneticasonline@gmail.com",
-                "has_co_production": true
+                "support_email": "",
+                "has_co_production": true,
+                "name": "Sanar con Imanes",
+                "warranty_date": "2025-04-23T00:00:00Z",
+                "id": 2584300,
+                "ucode": "3f646245-863e-4287-98fd-422437484163"
+              },
+              "commissions": [
+                {
+                  "currency_value": "USD",
+                  "source": "MARKETPLACE",
+                  "value": 2.97
+                },
+                {
+                  "currency_conversion": {
+                    "converted_value": 4.91,
+                    "converted_to_currency": "USD",
+                    "conversion_rate": 1
+                  },
+                  "currency_value": "USD",
+                  "source": "PRODUCER",
+                  "value": 4.91
+                }
+              ],
+              "purchase": {
+                "original_offer_price": {
+                  "currency_value": "USD",
+                  "value": 29
+                },
+                "subscription_anticipation_purchase": false,
+                "checkout_country": {
+                  "iso": "US",
+                  "name": "United States"
+                },
+                "origin": {
+                  "xcod": "1ca43ad5-a8cb-4cf6-943a-6fa2d676faf8"
+                },
+                "order_bump": {
+                  "is_order_bump": true
+                },
+                "approved_date": 1744841115000,
+                "offer": {
+                  "code": "wokrsz9w"
+                },
+                "is_funnel": true,
+                "order_date": 1744841101000,
+                "price": {
+                  "currency_value": "USD",
+                  "value": 29
+                },
+                "buyer_ip": "108.189.228.118",
+                "payment": {
+                  "installments_number": 1,
+                  "type": "APPLE_PAY"
+                },
+                "full_price": {
+                  "currency_value": "USD",
+                  "value": 29
+                },
+                "business_model": "A",
+                "invoice_by": "SELLER",
+                "transaction": "HP0196590442",
+                "status": "APPROVED"
               },
               "affiliates": [
                 {
@@ -463,82 +657,34 @@
                   "name": ""
                 }
               ],
+              "producer": {
+                "legal_nature": "Pessoa Jurídica",
+                "document": "320729076",
+                "name": "MAGNETIC THERAPY ACADEMY LLC"
+              },
               "buyer": {
-                "email": "castrolili682@gmail.com",
-                "name": "Lilia Castro Casarrubias ",
-                "first_name": "Lilia",
-                "last_name": "Casarrubias",
-                "checkout_phone": "529542048508",
                 "address": {
-                  "country": "Mexico",
-                  "country_iso": "MX"
+                  "zipcode": "32829",
+                  "country": "United States",
+                  "address": "6265 CONTESSA DR",
+                  "city": "Orlando",
+                  "state": "Florida",
+                  "complement": "Apt 208",
+                  "country_iso": "US"
                 },
                 "document": "",
+                "name": "Rosario Aybar",
+                "last_name": "Aybar",
+                "checkout_phone": "13212170224",
+                "first_name": "Rosario",
+                "email": "rosarioaybar9@hotmail.com",
                 "document_type": ""
-              },
-              "producer": {
-                "name": "MAGNETIC THERAPY ACADEMY LLC",
-                "document": "320729076",
-                "legal_nature": "Pessoa Jurídica"
-              },
-              "commissions": [
-                {
-                  "value": 3.65,
-                  "source": "MARKETPLACE",
-                  "currency_value": "USD"
-                },
-                {
-                  "value": 6.38,
-                  "source": "PRODUCER",
-                  "currency_value": "USD",
-                  "currency_conversion": {
-                    "converted_value": 6.38,
-                    "converted_to_currency": "USD",
-                    "conversion_rate": 1
-                  }
-                }
-              ],
-              "purchase": {
-                "approved_date": 1744340722000,
-                "full_price": {
-                  "value": 926.84,
-                  "currency_value": "MXN"
-                },
-                "price": {
-                  "value": 799,
-                  "currency_value": "MXN"
-                },
-                "checkout_country": {
-                  "name": "Mexico",
-                  "iso": "MX"
-                },
-                "order_bump": {
-                  "is_order_bump": false
-                },
-                "origin": {
-                  "xcod": "f6f0630a-db0a-4244-8fa0-da518a36b6ab"
-                },
-                "buyer_ip": "187.171.214.206",
-                "original_offer_price": {
-                  "value": 39.07,
-                  "currency_value": "USD"
-                },
-                "order_date": 1744340718000,
-                "status": "APPROVED",
-                "transaction": "HP2627353560",
-                "payment": {
-                  "installments_number": 1,
-                  "type": "CREDIT_CARD"
-                },
-                "offer": {
-                  "code": "pz2z9byp"
-                },
-                "invoice_by": "SELLER",
-                "subscription_anticipation_purchase": false,
-                "is_funnel": true,
-                "business_model": "A"
               }
-            }
+            },
+            "id": "1bbdc1df-f4fd-40a3-961a-362186db839a",
+            "creation_date": 1744841118604,
+            "event": "PURCHASE_APPROVED",
+            "version": "2.0.0"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/hotmart-gersson-ventas",
           "executionMode": "production"
@@ -574,6 +720,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-04-11T04:01:20.000Z",
-  "versionId": "50d1c731-2fa1-48dc-bd9c-7f43f9647547"
+  "updatedAt": "2025-04-17T00:15:47.000Z",
+  "versionId": "decde2fc-1c07-4583-be9e-998f1ed6cdd2"
 }
