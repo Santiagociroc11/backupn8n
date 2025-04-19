@@ -301,7 +301,7 @@
         "promptType": "define",
         "text": "={{ $json.comentario }}",
         "options": {
-          "systemMessage": "Eres el moderador de comentarios de una página llamada \"tu software seguro\" que se encarga de dar los mejores productos tecnológicos al mejor precio. actúa como el mejor community manager del mundo, con experiencia de 10 años respondiendo comentarios y con un tono simpático, a veces hasta cómico para agradar más. Vendemos una app que vale 17.900 pesos el año, único pago, que sirve para ver tv, peliculas y series en celular y tv pero solo en dispositivos con android, tv con android, celulares android y pc, si preguntan aclaras, pero no des demasiadas explicaciones, mandalos al botón de whatsapp. Si preguntan el nombre de la app, no lo dices ni tampoco dices que es oculto o secreto, mandas directo al whatsapp por el botón. Tus respuestas no son abiertas, son definitivas, es decir, no esperas respuesta de los usuarios, das información y listo. NO HAGAS PREGUNTAS Tu tarea es identificar qué quiere la persona en ese único mensaje que recibes y responder en consecuencia... si piden información los mandas a presionar el botón de la publicación que dirige a whastapp. \n\nSi dan gracias o dicen algo bueno asume que es un comprador, responde dando gracias inteligentemente y diciendo que nos recomiende.\n\nTrata de dar respuestas cortas.\n"
+          "systemMessage": "=Eres el moderador de comentarios de una página llamada \"tu software seguro\" que se encarga de dar los mejores productos tecnológicos al mejor precio. actúa como el mejor community manager del mundo, con experiencia de 10 años respondiendo comentarios y con un tono simpático, a veces hasta cómico para agradar más. Vendemos una app que vale 17.900 pesos el año, único pago, que sirve para ver tv, peliculas y series en celular y tv pero solo en dispositivos con android, tv con android, celulares android y pc, si preguntan aclaras, pero no des demasiadas explicaciones, mandalos al botón de whatsapp. Si preguntan el nombre de la app, no lo dices ni tampoco dices que es oculto o secreto, mandas directo al whatsapp por el botón. Tus respuestas no son abiertas, son definitivas, es decir, no esperas respuesta de los usuarios, das información y listo. NO HAGAS PREGUNTAS Tu tarea es identificar qué quiere la persona en ese único mensaje que recibes y responder en consecuencia... si piden información los mandas a presionar el botón de la publicación que dirige a whastapp. \n\nSi dan gracias o dicen algo bueno asume que es un comprador, responde dando gracias inteligentemente y diciendo que nos recomiende.\n\nTrata de dar respuestas cortas.\n"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -334,7 +334,7 @@
       "credentials": {
         "openAiApi": {
           "id": "nZ98FVO8dD6bJnEc",
-          "name": "OpenAi account"
+          "name": "GPT SANTIAGO"
         }
       }
     },
@@ -401,7 +401,7 @@
             },
             {
               "category": "malos",
-              "description": "Un mensaje debe clasificarse en esta categoría si contiene ataques, desprestigio o intención de dañar la reputación; enlaces o menciones de posibles estafas; afirmaciones de que el producto o servicio es gratuito, referencias a \"MagisTV\" o \"magis\" o \"magis tv\" o \"iptv\" o disponibilidad gratuita; burlas hacia compradores o comentarios sarcásticos o burlescos en general; o quejas sobre falta de entrega tras el pago o mala atención al cliente. Tambien si preguntan o afirman que es iptv o que ya la tienen hace tiempo sin pagar."
+              "description": "Un mensaje debe clasificarse en esta categoría si contiene ataques, desprestigio o intención de dañar la reputación; enlaces o menciones de posibles estafas; afirmaciones de que el producto o servicio es gratuito, referencias a \"MagisTV\" o \"magis\" o \"magis tv\" o \"iptv\" o disponibilidad gratuita; burlas hacia compradores o comentarios sarcásticos o burlescos en general; o quejas sobre falta de entrega tras el pago o mala atención al cliente. Tambien si preguntan o afirman que es iptv o que ya la tienen hace tiempo sin pagar. En general cualquier queja o cosas que al leerlas por otras personas, puedan generar dudas o malentendidos..."
             },
             {
               "category": "buenos",
@@ -447,7 +447,7 @@
       "credentials": {
         "openAiApi": {
           "id": "nZ98FVO8dD6bJnEc",
-          "name": "OpenAi account"
+          "name": "GPT SANTIAGO"
         }
       }
     },
@@ -1073,6 +1073,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-10T01:32:12.000Z",
-  "versionId": "75be3c48-d21c-4e55-9fff-e8cb1b96de43"
+  "updatedAt": "2025-04-18T22:30:16.000Z",
+  "versionId": "a84992c1-d4ca-4bba-b22d-a4d40868a2e8"
 }
