@@ -1,0 +1,187 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-04-23T03:21:56.081Z",
+  "id": "GLOo3q8aMCF1TU13",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[VCAPITAL] AVISOS/ERRORES TELEGRAM",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "gtm-avisos-vcapital",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -920,
+        -140
+      ],
+      "id": "23edf328-41c7-4bf1-8fe6-ccdc81dd1a31",
+      "name": "Webhook",
+      "webhookId": "1c46f26c-ba59-4b7a-b170-666799fe5872"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.tipo }}",
+                    "rightValue": "llenado",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "LLENADO DE GRUPOS"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "7f54525c-fd25-48ee-9df2-63bc6f4dbcef",
+                    "leftValue": "={{ $json.body.tipo }}",
+                    "rightValue": "emergencia",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "EMERGENCIA"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -700,
+        -140
+      ],
+      "id": "0e6e869f-abd3-4d41-9708-bf88b78ba1f2",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "chatId": "-1002569675549",
+        "text": "=🚨 *GRUPOS*:\n\n{{ $json.body.mensaje }}",
+        "additionalFields": {
+          "message_thread_id": 112
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -420,
+        -200
+      ],
+      "id": "3cd6c4e2-682b-49f9-94d0-228abb051f4a",
+      "name": "Telegram",
+      "webhookId": "c1c72553-08ba-43b1-b009-d941ed750300",
+      "credentials": {
+        "telegramApi": {
+          "id": "QruLAfRq4u80XCVX",
+          "name": "BOT AGENCIA X"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "content-length": "149",
+            "content-type": "application/x-www-form-urlencoded",
+            "x-forwarded-for": "195.35.41.28",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "e90ae4fad82e",
+            "x-real-ip": "195.35.41.28",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "mensaje": "🟢 GRUPO *Masterclass pastelería rentable #1* LLENADO EN *76 HORAS*. Quedan *4* grupos disponibles.",
+            "tipo": "llenado"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/tg-arza-pasteleria",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-02-21T17:25:59.004Z",
+      "updatedAt": "2025-02-21T17:25:59.004Z",
+      "id": "7jH9G2p443i4FpIv",
+      "name": "WEBHOOK"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-23T04:46:02.000Z",
+  "versionId": "e583bb82-3cec-4239-9cca-48e34175d226"
+}
