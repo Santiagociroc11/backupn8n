@@ -551,7 +551,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -440,
+        -560,
         460
       ],
       "id": "0b1371d6-31bb-46f6-9748-39bb1b6e2d40",
@@ -587,8 +587,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -220,
-        300
+        -340,
+        200
       ],
       "id": "3c5ae4cc-c6e1-4cd0-9dec-2ae763d3aded",
       "name": "Edit Fields1"
@@ -606,8 +606,8 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        220,
-        300
+        100,
+        160
       ],
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -632,16 +632,15 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        880,
-        480
+        760,
+        500
       ],
       "credentials": {
         "mongoDb": {
           "id": "hz4IXA3OoMp5QuC5",
           "name": "VCAPITAL"
         }
-      },
-      "disabled": true
+      }
     },
     {
       "parameters": {
@@ -673,8 +672,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        440,
-        300
+        320,
+        160
       ]
     },
     {
@@ -688,8 +687,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        660,
-        380
+        540,
+        400
       ]
     },
     {
@@ -701,8 +700,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        440,
-        480
+        320,
+        500
       ],
       "id": "b4209f43-a217-4bbb-9820-415097f39741",
       "name": "Merge3"
@@ -716,8 +715,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        0,
-        700
+        -120,
+        720
       ],
       "id": "0d64220d-e3a6-4771-8065-f97498b03ff9",
       "name": "Edit Fields3"
@@ -731,8 +730,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        220,
-        540
+        100,
+        560
       ],
       "id": "3e1e983a-ed9c-4708-9078-5b6cf89e6478",
       "name": "Merge4"
@@ -754,8 +753,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        0,
-        500
+        -120,
+        520
       ],
       "id": "b71d9cfc-44f1-4641-aec8-71478ba02cf9",
       "name": "Edit Fields4"
@@ -787,12 +786,11 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1100,
-        480
+        980,
+        500
       ],
       "id": "f5ea8471-2f80-46fc-91ce-08371763df26",
-      "name": "If2",
-      "disabled": true
+      "name": "If2"
     },
     {
       "parameters": {
@@ -805,8 +803,8 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        1320,
-        480
+        1200,
+        500
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -814,8 +812,7 @@
           "id": "hz4IXA3OoMp5QuC5",
           "name": "VCAPITAL"
         }
-      },
-      "disabled": true
+      }
     },
     {
       "parameters": {
@@ -824,23 +821,22 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1540,
-        480
+        1420,
+        500
       ],
       "id": "7fc0943a-0260-44de-a2b6-b8b670fbe28d",
-      "name": "Code",
-      "disabled": true
+      "name": "Code"
     },
     {
       "parameters": {
         "method": "POST",
-        "url": " https://graph.facebook.com/v21.0/955463382793763/events",
+        "url": " https://graph.facebook.com/v21.0/9905959946090673/events",
         "sendQuery": true,
         "queryParameters": {
           "parameters": [
             {
               "name": "access_token",
-              "value": "EAAIVssPYpKgBO1wzkrZAXkfpNnGVscKTnQXj6HMx0yEZChO7P7IQzKQ3SLHVhZATiqVEHJ0GkO8SrRZBnyGbjs7VClk0gvEX4dKJ3PQbfdrAumiidVS3Tqno2nYR1cycUHkOzV4ZAOwAbssSvyvehZARRg1Jo9KZBpYe4QVHfILx49pmhOPle5DTTqbo4QhSYHQZAgZDZD"
+              "value": "EAAQ0vn5fFSIBO0ZCd4CHjUsVZA1f3TwfyyZCrSnaSQ5LoziUuJlpeXDsZAVzQZCnhZCICeNtPX90dUfLoXKzjLNY6xjxGpR765DZB8rNZCx9RzPBW4TJtePhAcMxWAxnKONDYj0M1ZCKJfqdQNuE5QErO9BIJYZAjXVc3GwKeAIIEOdY621ufEBCba3q9JA0xVEhjkTgZDZD"
             }
           ]
         },
@@ -852,12 +848,11 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1760,
-        480
+        1640,
+        500
       ],
       "id": "b89ee643-af9f-4e52-bdb9-31730d25e19c",
-      "name": "HTTP Request2",
-      "disabled": true
+      "name": "HTTP Request2"
     },
     {
       "parameters": {
@@ -924,8 +919,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        880,
-        680
+        760,
+        740
       ],
       "id": "5c8e6802-c7f6-455b-aedc-eb8b4b4dda60",
       "name": "Edit Fields7"
@@ -959,8 +954,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        880,
-        280
+        760,
+        300
       ],
       "id": "35e87484-4de2-4b6b-bb04-499ddaef19fe",
       "name": "HTTP Request5",
@@ -999,8 +994,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        880,
-        80
+        760,
+        100
       ],
       "id": "993b41c6-2d28-430b-bb1c-807facf9ca2f",
       "name": "HTTP Request6",
@@ -1017,8 +1012,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        0,
-        300
+        -120,
+        160
       ],
       "id": "c609475b-f5fd-43a4-a5e1-370f03d0e6a5",
       "name": "Code1"
@@ -1147,7 +1142,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2300,
+        2320,
         -460
       ],
       "id": "1aff8de7-7a8a-4c81-b6d1-47c8a3ba59a2",
@@ -1217,8 +1212,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        1760,
-        680
+        1640,
+        740
       ],
       "id": "a60e6bc7-fe92-4a36-a209-315b1c65c9a7",
       "name": "MySQL",
@@ -1253,8 +1248,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        1100,
-        760
+        980,
+        820
       ],
       "id": "84404c04-5b5b-400e-8b3f-b19c3009ae84",
       "name": "MySQL1",
@@ -1294,8 +1289,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1320,
-        760
+        1200,
+        820
       ],
       "id": "5355e261-796f-47f0-9f16-902c7373abb1",
       "name": "If4"
@@ -1307,8 +1302,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        1540,
-        680
+        1420,
+        740
       ],
       "id": "31d2334f-303d-465a-b223-05c9864eecc5",
       "name": "Merge6"
@@ -1328,13 +1323,13 @@
     },
     {
       "parameters": {
-        "jsCode": "// Código para el nodo \"Code\" en n8n que calcula el puntaje del perfil comprador\n\n// Parsear las respuestas del JSON recibido (aquí estamos parseando el string JSON)\nconst answersJsonString = $input.first().json.body.answersJson;\nconsole.log(\"Respuestas recibidas como string:\", answersJsonString); // Depuración: Ver respuestas como string\n\n// Convertir el string JSON a un objeto JSON\nlet answersJson = {};\ntry {\n  answersJson = JSON.parse(answersJsonString);  // Convertir el string en un objeto JSON\n  console.log(\"Respuestas parseadas:\", answersJson);  // Depuración: Ver respuestas después del parseo\n} catch (error) {\n  console.log(\"Error al parsear el JSON:\", error);\n  return {\n    json: {\n      error: \"No se pudo parsear el JSON de respuestas.\"\n    }\n  };\n}\n\n// Verificar si answersJson tiene las claves correctas\nif (!answersJson || !answersJson[\"Edad\"] || !answersJson[\"Ocupación\"] || !answersJson[\"Proposito\"] || !answersJson[\"Ingresos\"]) {\n  console.log(\"Algunas respuestas no están presentes o están mal formateadas.\");\n  return {\n    json: {\n      error: \"Algunas respuestas no están presentes o están mal formateadas.\"\n    }\n  };\n}\n\n// Extraer respuestas individuales y mostrar depuración\nconst edad = (answersJson[\"Edad\"] || \"\").trim();\nconst ocupacion = (answersJson[\"Ocupacion\"] || \"\").trim();\nconst proposito = (answersJson[\"Proposito\"] || \"\").trim();\nconst ingresos = (answersJson[\"Ingresos\"] || \"\").trim();\n\n// Depuración: Ver respuestas extraídas\nconsole.log(\"Edad seleccionada:\", edad); // Depuración: Ver respuesta de edad\nconsole.log(\"Ocupación seleccionada:\", ocupacion); // Depuración: Ver respuesta de ocupación\nconsole.log(\"Propósito seleccionado:\", proposito); // Depuración: Ver respuesta de propósito\nconsole.log(\"Ingresos seleccionados:\", ingresos); // Depuración: Ver respuesta de ingresos\n\n// Sistema de puntuación (de 0 a 1000)\nlet puntajeTotal = 0;\nconsole.log(\"Puntaje inicial:\", puntajeTotal); // Depuración: Ver puntaje inicial\n\n// 1. Puntaje por edad (250 puntos máx)\nswitch (edad) {\n  case \"18-24 años\": \n    puntajeTotal += 150; // Jóvenes con potencial de emprender\n    break;\n  case \"25-34 años\": \n    puntajeTotal += 250; // Edad óptima para emprender\n    break;\n  case \"35-44 años\": \n    puntajeTotal += 220; // Buena edad para emprender con más experiencia\n    break;\n  case \"45-54 años\": \n    puntajeTotal += 180; // Aún con potencial pero menos propensión\n    break;\n  case \"55-64 años\": \n    puntajeTotal += 120; // Menos propensión a emprender nuevos negocios\n    break;\n  case \"65+ años\": \n    puntajeTotal += 80; // Menor probabilidad de iniciar nuevo emprendimiento\n    break;\n}\n\n// 2. Puntaje por ocupación (250 puntos máx)\nswitch (ocupacion) {\n  case \"Ama de casa\": \n    puntajeTotal += 220; // Alto potencial para emprender desde casa\n    break;\n  case \"Dueña de negocio de pastelería\": \n    puntajeTotal += 180; // Ya tiene negocio pero podría querer perfeccionarlo\n    break;\n  case \"Colaboras en una pastelería\": \n    puntajeTotal += 250; // Conocimiento del sector + potencial emprendedor\n    break;\n  case \"Desempleada\": \n    puntajeTotal += 200; // Alta motivación para generar ingresos\n    break;\n  case \"Otra\": \n    puntajeTotal += 120; // Menor afinidad directa con repostería\n    break;\n}\n\n// 3. Puntaje por propósito (300 puntos máx)\nswitch (proposito) {\n  case \"Iniciar tu propio negocio de pastelería\": \n    puntajeTotal += 300; // Alineación perfecta con el curso\n    break;\n  case \"Perfeccionar los productos de tu negocio actual\": \n    puntajeTotal += 200; // Interés en mejorar, pero ya tiene negocio\n    break;\n  case \"Lo hago por distraerme\": \n    puntajeTotal += 50; // Bajo interés en emprender\n    break;\n}\n\n// 4. Puntaje por capacidad económica (200 puntos máx)\nswitch (ingresos) {\n  case \"0-100 USD\": \n    puntajeTotal += 40; // Capacidad económica muy limitada\n    break;\n  case \"101-250 USD\": \n    puntajeTotal += 80; // Capacidad económica limitada\n    break;\n  case \"251-500 USD\": \n    puntajeTotal += 120; // Capacidad económica moderada-baja\n    break;\n  case \"501-800 USD\": \n    puntajeTotal += 150; // Capacidad económica moderada\n    break;\n  case \"801-1200 USD\": \n    puntajeTotal += 170; // Buena capacidad económica\n    break;\n  case \"1201-1700 USD\": \n    puntajeTotal += 190; // Muy buena capacidad económica\n    break;\n  case \"+1700 USD\": \n    puntajeTotal += 200; // Excelente capacidad económica\n    break;\n}\n\n// Asegurar que el puntaje no supere los 1000 puntos\npuntajeTotal = Math.min(puntajeTotal, 1000);\n\n// Devolver el resultado como objeto para n8n\nreturn {\n  json: {\n    puntaje: puntajeTotal\n  }\n};\n"
+        "jsCode": "let answersJsonOptions = {};\nconst inputData = $input.first(); // Obtener el primer item de entrada\nconst rawBody = inputData.json.body; // Acceder al cuerpo de la solicitud (común en webhooks)\n\nconsole.log(\"Datos de entrada recibidos (rawBody):\", JSON.stringify(rawBody, null, 2));\n\ntry {\n  let potentialJsonString = null;\n\n  if (typeof rawBody === 'string') {\n    potentialJsonString = rawBody;\n    console.log(\"Input body es un string.\");\n  } else if (typeof rawBody === 'object' && rawBody !== null) {\n    if (typeof rawBody.answersJsonOptions === 'string') {\n      potentialJsonString = rawBody.answersJsonOptions;\n      console.log(\"Input body es objeto, usando 'answersJsonOptions' como string.\");\n    } else if (typeof rawBody.answersJsonOptions === 'object' && rawBody.answersJsonOptions !== null) {\n      answersJsonOptions = rawBody.answersJsonOptions;\n      console.log(\"Input body es objeto, usando 'answersJsonOptions' como objeto.\");\n    } else {\n      answersJsonOptions = rawBody;\n       console.log(\"Input body es objeto, usándolo directamente como contenedor de respuestas.\");\n    }\n  } else {\n     console.log(\"Formato de 'body' no procesable directamente:\", rawBody);\n     // Intentar buscar en la raíz del json de entrada si no está en 'body'\n     // *** CORRECCIÓN AQUÍ: Usar 'q1' para la comprobación, no 'q1_edad' ***\n     if (typeof inputData.json.q1 !== 'undefined') { // Comprobar si q1 existe en la raíz\n        answersJsonOptions = inputData.json;\n        console.log(\"Respuestas encontradas en la raíz del JSON de entrada.\");\n     } else {\n        throw new Error(\"Formato de entrada no reconocido o respuestas no encontradas en 'body' ni en la raíz.\");\n     }\n  }\n\n  if (potentialJsonString !== null) {\n     console.log(\"Intentando parsear string JSON:\", potentialJsonString);\n     // *** CORRECCIÓN AQUÍ: Asegurar que el parseo maneje casos donde el string no sea un objeto JSON válido ***\n     try {\n       answersJsonOptions = JSON.parse(potentialJsonString);\n     } catch (parseError) {\n       // Intentar verificar si el string ya contiene las claves directamente (menos común)\n       if (potentialJsonString.includes('\"q1\":')) {\n          console.warn(\"El string no era JSON válido, pero parece contener claves. Intentando extraer.\");\n          // Lógica simple de extracción si es necesario (más compleja y frágil)\n          // Por ahora, lanzaremos error si el parseo falla\n          throw new Error(`Error al parsear JSON string: ${parseError.message}`);\n       } else {\n          throw new Error(`El string recibido no es un JSON válido ni contiene claves reconocibles: ${parseError.message}`);\n       }\n     }\n  }\n\n  if (typeof answersJsonOptions !== 'object' || answersJsonOptions === null) {\n      throw new Error(`El resultado del parseo no es un objeto válido. Tipo: ${typeof answersJsonOptions}`);\n  }\n  console.log(\"Respuestas parseadas y listas para usar:\", JSON.stringify(answersJsonOptions, null, 2));\n\n} catch (error) {\n  console.error(\"Error crítico al procesar las respuestas:\", error);\n  return [{ json: { error: `Error procesando JSON de entrada: ${error.message}` } }];\n}\n\nconst q1_respuesta = (answersJsonOptions[\"q1\"] || \"\").toString().trim();\nconst q2_respuesta = (answersJsonOptions[\"q2\"] || \"\").toString().trim();\nconst q3_respuesta = (answersJsonOptions[\"q3\"] || \"\").toString().trim(); // Capital Listo\nconst q4_respuesta = (answersJsonOptions[\"q4\"] || \"\").toString().trim(); // Objetivo\nconst q5_respuesta = (answersJsonOptions[\"q5\"] || \"\").toString().trim(); // Ingresos\n\n// Depuración: Mostrar valores extraídos\nconsole.log(\"--- Respuestas Extraídas ---\");\nconsole.log(\"q1 (Edad - Valor):\", q1_respuesta);\nconsole.log(\"q2 (Estudios - Valor):\", q2_respuesta);\nconsole.log(\"q3 (Capital Listo - Valor):\", q3_respuesta);\nconsole.log(\"q4 (Objetivo - Valor):\", q4_respuesta);\nconsole.log(\"q5 (Ingresos USD - Valor):\", q5_respuesta);\n\nif (!q1_respuesta || !q2_respuesta || !q3_respuesta || !q4_respuesta || !q5_respuesta) {\n  console.warn(\"ADVERTENCIA: Una o más respuestas faltan. El puntaje se calculará con valor 0 para las faltantes.\");\n}\n\nlet puntajeTotal = 0;\nconsole.log(\"--- Calculando Puntaje ---\");\nconsole.log(\"Puntaje inicial:\", puntajeTotal);\n\nswitch (q1_respuesta) {\n  case \"a\": puntajeTotal += 180; console.log(\"Puntos Edad (a): +180\"); break; // Menor de 30 años\n  case \"b\": puntajeTotal += 200; console.log(\"Puntos Edad (b): +200\"); break; // 31 a 40 años\n  case \"c\": puntajeTotal += 170; console.log(\"Puntos Edad (c): +170\"); break; // 41 a 50 años\n  case \"d\": puntajeTotal += 120; console.log(\"Puntos Edad (d): +120\"); break; // 51 a 60 años\n  case \"e\": puntajeTotal += 80;  console.log(\"Puntos Edad (e): +80\"); break;  // 61 a 75 años\n  default: console.log(\"Puntos Edad: +0 (Valor no reconocido o faltante)\"); break;\n}\nconsole.log(\"Subtotal después de Edad:\", puntajeTotal);\n\nswitch (q2_respuesta) {\n  case \"a\": puntajeTotal += 30;  console.log(\"Puntos Estudios (a): +30\"); break; // Básica - Medios\n  case \"b\": puntajeTotal += 50;  console.log(\"Puntos Estudios (b): +50\"); break; // Secundaria\n  case \"c\": puntajeTotal += 80;  console.log(\"Puntos Estudios (c): +80\"); break; // Técnico\n  case \"d\": puntajeTotal += 100; console.log(\"Puntos Estudios (d): +100\"); break; // Tecnólogo\n  case \"e\": puntajeTotal += 130; console.log(\"Puntos Estudios (e): +130\"); break; // Profesional\n  case \"f\": puntajeTotal += 150; console.log(\"Puntos Estudios (f): +150\"); break; // Posgrado\n  default: console.log(\"Puntos Estudios: +0 (Valor no reconocido o faltante)\"); break;\n}\nconsole.log(\"Subtotal después de Estudios:\", puntajeTotal);\n\nswitch (q3_respuesta) {\n  case \"a\": puntajeTotal += 250; console.log(\"Puntos Capital (a): +250\"); break; // Sí, tengo ahorros para invertir.\n  case \"b\": puntajeTotal += 120; console.log(\"Puntos Capital (b): +120\"); break; // Estoy ahorrando para invertir en los próximos meses.\n  case \"c\": puntajeTotal += 30;  console.log(\"Puntos Capital (c): +30\"); break;  // No, por ahora no tengo capital para invertir.\n  default: console.log(\"Puntos Capital: +0 (Valor no reconocido o faltante)\"); break;\n}\nconsole.log(\"Subtotal después de Capital:\", puntajeTotal);\n\nswitch (q4_respuesta) {\n  case \"a\": puntajeTotal += 200; console.log(\"Puntos Objetivo (a): +200\"); break; // Tener una segunda fuente de ingresos\n  case \"b\": puntajeTotal += 250; console.log(\"Puntos Objetivo (b): +250\"); break; // Reemplazar mi trabajo actual\n  case \"c\": puntajeTotal += 100; console.log(\"Puntos Objetivo (c): +100\"); break; // Entender cómo invertir\n  default: console.log(\"Puntos Objetivo: +0 (Valor no reconocido o faltante)\"); break;\n}\nconsole.log(\"Subtotal después de Objetivo:\", puntajeTotal);\n\nswitch (q5_respuesta) {\n  case \"a\": puntajeTotal += 20;  console.log(\"Puntos Ingresos (a): +20\"); break; // 0 - 100 USD\n  case \"b\": puntajeTotal += 40;  console.log(\"Puntos Ingresos (b): +40\"); break; // 101 - 300 USD\n  case \"c\": puntajeTotal += 80;  console.log(\"Puntos Ingresos (c): +80\"); break; // 301 - 600 USD\n  case \"d\": puntajeTotal += 120; console.log(\"Puntos Ingresos (d): +120\"); break; // 1001 - 1500 USD\n  case \"e\": puntajeTotal += 150; console.log(\"Puntos Ingresos (e): +150\"); break; // +1500 USD\n  default: console.log(\"Puntos Ingresos: +0 (Valor no reconocido o faltante)\"); break;\n}\nconsole.log(\"Subtotal antes de ajuste final:\", puntajeTotal);\n\n// --- 4. Ajuste Final y Retorno ---\n\npuntajeTotal = Math.min(puntajeTotal, 1000);\npuntajeTotal = Math.max(puntajeTotal, 0);\n\nconsole.log(\"==============================\");\nconsole.log(\" PUNTAJE FINAL CALCULADO:\", puntajeTotal);\nconsole.log(\"==============================\");\n\nreturn [{\n  json: {\n    puntaje: puntajeTotal\n  }\n}];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -220,
-        500
+        -340,
+        520
       ],
       "id": "91aa9f63-4047-4983-9c4a-a5fb4139b15d",
       "name": "Code2"
@@ -1467,7 +1462,7 @@
       "typeVersion": 1.1,
       "position": [
         540,
-        -440
+        -490
       ],
       "credentials": {
         "mongoDb": {
@@ -1484,7 +1479,7 @@
           "parameters": [
             {
               "name": "Authorization",
-              "value": "Basic fd_key_bed3808a2b6748a396f136e0d372f967.Q5pfUMnJ7PEyyqUTZQ39TLIQPrjzjR2AXOG0hWsHPbqmUP38Sd0WPpUkivr4WAgGEjFJYLpY7z8g3xjNfUJaDjkTNXj5SZ8GgRfR075zrPN2RIZ0vXwsagyhtjyLlUZ9zJ7nGqtuHrBCfyKL24LtUwMmcFC6Zr8YLC2M9UwImXKwpJ8SaNs5ktdXVMQcDYIk"
+              "value": "Basic fd_key_41414c492eed4e848cab8ede25805007.5XWcPcP2n9TpBTdfgqGGrtUu9IiKNE7oc7htks1ALgk9RhHY0hun1UhEvWjs88rEB6Z5TkrHlv4Uy40CphPccLkWyYlo4lE84cFQc2EbheJsiRWwent73VAqVQ8yqOR73Ls5iQLAibUPBtRQRCiWBjzYMj72OETmEdkstygX59NfptA7fkDENb1pXLvgC1us"
             },
             {
               "name": "User-Agent",
@@ -1505,7 +1500,6 @@
       "retryOnFail": false,
       "maxTries": 5,
       "waitBetweenTries": 5000,
-      "disabled": true,
       "onError": "continueRegularOutput"
     },
     {
@@ -1517,7 +1511,7 @@
           "parameters": [
             {
               "name": "Authorization",
-              "value": "=Basic fd_key_bed3808a2b6748a396f136e0d372f967.Q5pfUMnJ7PEyyqUTZQ39TLIQPrjzjR2AXOG0hWsHPbqmUP38Sd0WPpUkivr4WAgGEjFJYLpY7z8g3xjNfUJaDjkTNXj5SZ8GgRfR075zrPN2RIZ0vXwsagyhtjyLlUZ9zJ7nGqtuHrBCfyKL24LtUwMmcFC6Zr8YLC2M9UwImXKwpJ8SaNs5ktdXVMQcDYIk"
+              "value": "=Basic fd_key_41414c492eed4e848cab8ede25805007.5XWcPcP2n9TpBTdfgqGGrtUu9IiKNE7oc7htks1ALgk9RhHY0hun1UhEvWjs88rEB6Z5TkrHlv4Uy40CphPccLkWyYlo4lE84cFQc2EbheJsiRWwent73VAqVQ8yqOR73Ls5iQLAibUPBtRQRCiWBjzYMj72OETmEdkstygX59NfptA7fkDENb1pXLvgC1us"
             },
             {
               "name": "User-Agent",
@@ -1527,21 +1521,20 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"email\": \"{{ $('INSERTAR').item.json.email }}\",\n    \"segment_ids\": [\n       \"67d92530f2613d21826bab85\"\n    ]\n}",
+        "jsonBody": "={\n    \"email\": \"{{ $('INSERTAR').item.json.email }}\",\n    \"segment_ids\": [\n       \"680951a56a906413c7d64501\"\n    ]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
         1200,
-        -840
+        -900
       ],
       "id": "f6d13d0e-a3b2-46a2-8df1-4d649c796574",
       "name": "INSERTA FLODESK",
       "retryOnFail": true,
       "maxTries": 5,
       "waitBetweenTries": 5000,
-      "disabled": true,
       "onError": "continueRegularOutput"
     },
     {
@@ -1575,8 +1568,7 @@
         -840
       ],
       "id": "0bfb86f0-7ddd-4688-b26f-1cc17499600e",
-      "name": "EXISTE FLODESK?",
-      "disabled": true
+      "name": "EXISTE FLODESK?"
     },
     {
       "parameters": {
@@ -1739,7 +1731,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2080,
+        2060,
         -440
       ],
       "id": "ef78842a-3786-42b0-9489-1479790cfd23",
@@ -1769,8 +1761,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1280,
-        -680
+        1300,
+        -700
       ],
       "id": "6d2248f6-e0ce-4177-a959-61a46410b795",
       "name": "DATOS EXISTENTES",
@@ -1848,7 +1840,7 @@
       "typeVersion": 3.4,
       "position": [
         760,
-        -240
+        -220
       ],
       "id": "0b3a35b4-cc81-45e4-9941-e287816a03fa",
       "name": "DATOS PARA SQL"
@@ -1882,7 +1874,7 @@
       "typeVersion": 2.2,
       "position": [
         1200,
-        -160
+        -140
       ],
       "id": "106efc34-80f1-4a86-b50c-eb03c2f1b9cc",
       "name": "EXISTE SQL"
@@ -1947,7 +1939,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        1600,
+        1640,
         -220
       ],
       "id": "08c4ff6b-9232-4a1a-a39b-075ef9f7c0fb",
@@ -1983,8 +1975,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        1020,
-        -160
+        980,
+        -140
       ],
       "id": "20f12dc7-4d85-48ce-b45e-f048cde0f33e",
       "name": "CONSULTA SQL",
@@ -2003,57 +1995,8 @@
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
-            "content-length": "631",
-            "accept": "*/*",
-            "accept-encoding": "gzip, deflate, br, zstd",
-            "accept-language": "es-419,es;q=0.9,pt;q=0.8,en;q=0.7",
-            "content-type": "application/json",
-            "origin": "https://www.academyreposteria.com",
-            "priority": "u=1, i",
-            "referer": "https://www.academyreposteria.com/captura-l1?utm_source=Facebook_Desktop_Feed&utm_medium=L2H+-+CO+Conjunto+de+anuncios&utm_campaign=L2H+-+CO+Campa%C3%B1a+-+Copia+3&utm_content=6+-+V+%2A&utm_term=L2H+-+CO+Conjunto+de+anuncios&fbc_id=120217851133250303&h_ad_id=120217851132590303&utm_id=120217851132600303&fbclid=IwY2xjawI0kBNleHRuA2FlbQEwAGFkaWQBqxmABkO6TwEdb0QtHnx1mPzqJ2YqYtBz0S9gIm9CPRrm4408Cv0S2ODmfpMKBhvzKYIb_aem_f2m4NPuYWvdseXIKQmpSAg",
-            "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-platform": "\"Windows\"",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "179.33.148.186",
-            "x-forwarded-host": "n8n.automscc.com",
-            "x-forwarded-port": "443",
-            "x-forwarded-proto": "https",
-            "x-forwarded-server": "d534a86674cc",
-            "x-real-ip": "179.33.148.186"
-          },
-          "params": {},
-          "query": {},
-          "body": {
-            "tiemporegistro": 1742283592,
-            "email": "a@m.com",
-            "whatsapp": "+573136289675",
-            "utmCampaign": "L2H - CO Campaña - Copia 3",
-            "utmSource": "Facebook_Desktop_Feed",
-            "utmMedium": "L2H - CO Conjunto de anuncios",
-            "utmContent": "6 - V *",
-            "utmTerm": "L2H - CO Conjunto de anuncios",
-            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
-            "platform": "Win32",
-            "language": "es-419",
-            "fbc": "fb.1.1742283583161.IwY2xjawI0kBNleHRuA2FlbQEwAGFkaWQBqxmABkO6TwEdb0QtHnx1mPzqJ2YqYtBz0S9gIm9CPRrm4408Cv0S2ODmfpMKBhvzKYIb_aem_f2m4NPuYWvdseXIKQmpSAg",
-            "fbp": "fb.1.1742283576211.465554259624197000"
-          },
-          "webhookUrl": "https://n8n.automscc.com/webhook/captura-pasteleria-l1",
-          "executionMode": "production"
-        }
-      }
-    ],
-    "ENCUESTA": [
-      {
-        "json": {
-          "headers": {
-            "host": "n8n.automscc.com",
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
-            "content-length": "362",
+            "content-length": "412",
             "accept": "*/*",
             "accept-encoding": "gzip, deflate, br, zstd",
             "accept-language": "es-419,es;q=0.9,pt;q=0.8,en;q=0.7",
@@ -2077,11 +2020,61 @@
           "params": {},
           "query": {},
           "body": {
-            "answersJson": "{\"q1\":\"Menor de 30 años\",\"q2\":\"Técnico\",\"q3\":\"No, quiero buscar dinero para empezar a ser un inversionista\",\"q4\":\"Entender cómo invertir mi dinero de forma inteligente\",\"q5\":\"101 - 300\"}",
-            "referrer": "https://www.academyvcapital.com/registro",
-            "email": "prueba@mail.com",
-            "whatsapp": "+573136298569",
-            "tiempoencuesta": 1745384158
+            "tiemporegistro": 1745438530,
+            "email": "santiagoc@gmail.com",
+            "whatsapp": "+573136298562",
+            "utmCampaign": "-",
+            "utmSource": "-",
+            "utmMedium": "-",
+            "utmContent": "-",
+            "utmTerm": "-",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+            "platform": "Win32",
+            "language": "es-419",
+            "fbc": "fb.1.1745438518.undefined",
+            "fbp": "fb.1.1745438515977.391299648676255945"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/captura-vcapital",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "ENCUESTA": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+            "content-length": "395",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "es-419,es;q=0.9,pt;q=0.8,en;q=0.7",
+            "content-type": "application/json",
+            "origin": "https://view.greatpages.com.br",
+            "priority": "u=1, i",
+            "referer": "https://view.greatpages.com.br/",
+            "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "181.235.98.156",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "5e236941e778",
+            "x-real-ip": "181.235.98.156"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "answersJson": "{\"q1\":\"Menor de 30 años\",\"q2\":\"Secundaria\",\"q3\":\"Sí, tengo ahorros para invertir.\",\"q4\":\"Reemplazar mi trabajo actual y vivir 100% de las inversiones\",\"q5\":\"301 - 600\"}",
+            "answersJsonOptions": "{\"q1\":\"a\",\"q2\":\"b\",\"q3\":\"a\",\"q4\":\"b\",\"q5\":\"c\"}",
+            "referrer": "https://app.greatpages.com.br/",
+            "email": "",
+            "whatsapp": "",
+            "tiempoencuesta": 1745442092
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/encuesta-vcapital",
           "executionMode": "production"
@@ -2111,6 +2104,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-04-23T05:02:42.000Z",
-  "versionId": "b1890196-491d-4781-8804-a8ee23ccd42b"
+  "updatedAt": "2025-04-23T22:22:41.000Z",
+  "versionId": "117571f9-d655-4f96-8f77-d1300a9cd53c"
 }
