@@ -640,8 +640,7 @@
           "id": "093AXEduqEk5QtV8",
           "name": "GIORGIO"
         }
-      },
-      "disabled": true
+      }
     },
     {
       "parameters": {
@@ -791,8 +790,7 @@
         500
       ],
       "id": "456a93e7-2016-4084-92a1-df6657b615d1",
-      "name": "If2",
-      "disabled": true
+      "name": "If2"
     },
     {
       "parameters": {
@@ -814,12 +812,11 @@
           "id": "093AXEduqEk5QtV8",
           "name": "GIORGIO"
         }
-      },
-      "disabled": true
+      }
     },
     {
       "parameters": {
-        "jsCode": "const crypto = require('crypto-js'); // Asegúrate de que la librería está disponible\n\nconst item = $input.first().json;\n\nfunction hashSHA256(value) {\n  return crypto.SHA256(value).toString(crypto.enc.Hex);\n}\n\nconst encryptedData = {\n  em: [hashSHA256(item.email)],  // Correo electrónico\n  ph: [hashSHA256(Number(item.whatsapp))],  // Número de teléfono\n  country: [hashSHA256(item.country)],  // País\n  zp: [hashSHA256(item.zip)], //zip\n  ct: [hashSHA256(item.city)], //ciudad\n  st: [hashSHA256(item.regionName)], //estado\n  // Datos no cifrados deben estar directamente accesibles\n  client_ip_address: item.query,\n  client_user_agent: item.userAgent,\n  fbc: item.fbc,\n  fbp: item.fbp,\n};\n\nconst facebookEvent = {\n  data: [\n    {\n      event_name: \"QLEAD\",\n      event_time: Math.floor(Date.now() / 1000), // Tiempo actual en segundos\n      action_source: \"website\",\n      original_event_data: {\n        event_name: \"QLEAD\",\n        event_time: Math.floor(Date.now() / 1000)\n      },\n      user_data: encryptedData,\n    }\n  ]\n};\n\nreturn facebookEvent;"
+        "jsCode": "const crypto = require('crypto-js'); // Asegúrate de que la librería está disponible\n\nconst item = $input.first().json;\n\nfunction hashSHA256(value) {\n  return crypto.SHA256(value).toString(crypto.enc.Hex);\n}\n\nconst encryptedData = {\n  em: [hashSHA256(item.email)],  // Correo electrónico\n  ph: [hashSHA256(Number(item.whatsapp))],  // Número de teléfono\n  country: [hashSHA256(item.country)],  // País\n  zp: [hashSHA256(item.zip)], //zip\n  ct: [hashSHA256(item.city)], //ciudad\n  st: [hashSHA256(item.regionName)], //estado\n  // Datos no cifrados deben estar directamente accesibles\n  client_ip_address: item.query,\n  client_user_agent: item.userAgent,\n  fbc: item.fbc,\n  fbp: item.fbp,\n};\n\nconst facebookEvent = {\n  data: [\n    {\n      event_name: \"CompleteRegistration\",\n      event_time: Math.floor(Date.now() / 1000), // Tiempo actual en segundos\n      action_source: \"website\",\n      original_event_data: {\n        event_name: \"CompleteRegistration\",\n        event_time: Math.floor(Date.now() / 1000)\n      },\n      user_data: encryptedData,\n    }\n  ]\n};\n\nreturn facebookEvent;"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -828,19 +825,18 @@
         500
       ],
       "id": "91f6bff7-9e43-4485-8519-2d69c6810246",
-      "name": "Code",
-      "disabled": true
+      "name": "Code"
     },
     {
       "parameters": {
         "method": "POST",
-        "url": " https://graph.facebook.com/v21.0/9905959946090673/events",
+        "url": " https://graph.facebook.com/v21.0/9587006794754210/events",
         "sendQuery": true,
         "queryParameters": {
           "parameters": [
             {
               "name": "access_token",
-              "value": "EAAQ0vn5fFSIBO0ZCd4CHjUsVZA1f3TwfyyZCrSnaSQ5LoziUuJlpeXDsZAVzQZCnhZCICeNtPX90dUfLoXKzjLNY6xjxGpR765DZB8rNZCx9RzPBW4TJtePhAcMxWAxnKONDYj0M1ZCKJfqdQNuE5QErO9BIJYZAjXVc3GwKeAIIEOdY621ufEBCba3q9JA0xVEhjkTgZDZD"
+              "value": "EAAJu1pxDvqABO7KlvaLGhxsO2W0HmcdJkq7ZCwcJ7UryV7r0RK1luSLTuR0jMOLbjkbSS6UNhyyQ28JDhDeGXYhlEBD9HaZAUke29G6Hy3rzrVUc1TkYMtaYdfxi9mEV4eziwaZA566xmhQcyQKtqZBO988PiJQCChjYaN65DWcZAnu6tws4gPbZB4yhHrwAZDZD"
             }
           ]
         },
@@ -856,8 +852,7 @@
         500
       ],
       "id": "cdff3c96-404c-4323-abdf-6a49691b5b1e",
-      "name": "HTTP Request2",
-      "disabled": true
+      "name": "HTTP Request2"
     },
     {
       "parameters": {
@@ -1328,7 +1323,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let answersJsonOptions = {};\nconst inputData = $input.first(); // Obtener el primer item de entrada\nconst rawBody = inputData.json.body; // Acceder al cuerpo de la solicitud (común en webhooks)\n\nconsole.log(\"Datos de entrada recibidos (rawBody):\", JSON.stringify(rawBody, null, 2));\n\ntry {\n  let potentialJsonString = null;\n\n  if (typeof rawBody === 'string') {\n    potentialJsonString = rawBody;\n    console.log(\"Input body es un string.\");\n  } else if (typeof rawBody === 'object' && rawBody !== null) {\n    if (typeof rawBody.answersJsonOptions === 'string') {\n      potentialJsonString = rawBody.answersJsonOptions;\n      console.log(\"Input body es objeto, usando 'answersJsonOptions' como string.\");\n    } else if (typeof rawBody.answersJsonOptions === 'object' && rawBody.answersJsonOptions !== null) {\n      answersJsonOptions = rawBody.answersJsonOptions;\n      console.log(\"Input body es objeto, usando 'answersJsonOptions' como objeto.\");\n    } else {\n      answersJsonOptions = rawBody;\n       console.log(\"Input body es objeto, usándolo directamente como contenedor de respuestas.\");\n    }\n  } else {\n     console.log(\"Formato de 'body' no procesable directamente:\", rawBody);\n     // Intentar buscar en la raíz del json de entrada si no está en 'body'\n     // *** CORRECCIÓN AQUÍ: Usar 'q1' para la comprobación, no 'q1_edad' ***\n     if (typeof inputData.json.q1 !== 'undefined') { // Comprobar si q1 existe en la raíz\n        answersJsonOptions = inputData.json;\n        console.log(\"Respuestas encontradas en la raíz del JSON de entrada.\");\n     } else {\n        throw new Error(\"Formato de entrada no reconocido o respuestas no encontradas en 'body' ni en la raíz.\");\n     }\n  }\n\n  if (potentialJsonString !== null) {\n     console.log(\"Intentando parsear string JSON:\", potentialJsonString);\n     // *** CORRECCIÓN AQUÍ: Asegurar que el parseo maneje casos donde el string no sea un objeto JSON válido ***\n     try {\n       answersJsonOptions = JSON.parse(potentialJsonString);\n     } catch (parseError) {\n       // Intentar verificar si el string ya contiene las claves directamente (menos común)\n       if (potentialJsonString.includes('\"q1\":')) {\n          console.warn(\"El string no era JSON válido, pero parece contener claves. Intentando extraer.\");\n          // Lógica simple de extracción si es necesario (más compleja y frágil)\n          // Por ahora, lanzaremos error si el parseo falla\n          throw new Error(`Error al parsear JSON string: ${parseError.message}`);\n       } else {\n          throw new Error(`El string recibido no es un JSON válido ni contiene claves reconocibles: ${parseError.message}`);\n       }\n     }\n  }\n\n  if (typeof answersJsonOptions !== 'object' || answersJsonOptions === null) {\n      throw new Error(`El resultado del parseo no es un objeto válido. Tipo: ${typeof answersJsonOptions}`);\n  }\n  console.log(\"Respuestas parseadas y listas para usar:\", JSON.stringify(answersJsonOptions, null, 2));\n\n} catch (error) {\n  console.error(\"Error crítico al procesar las respuestas:\", error);\n  return [{ json: { error: `Error procesando JSON de entrada: ${error.message}` } }];\n}\n\nconst q1_respuesta = (answersJsonOptions[\"q1\"] || \"\").toString().trim();\nconst q2_respuesta = (answersJsonOptions[\"q2\"] || \"\").toString().trim();\nconst q3_respuesta = (answersJsonOptions[\"q3\"] || \"\").toString().trim(); // Capital Listo\nconst q4_respuesta = (answersJsonOptions[\"q4\"] || \"\").toString().trim(); // Objetivo\nconst q5_respuesta = (answersJsonOptions[\"q5\"] || \"\").toString().trim(); // Ingresos\n\n// Depuración: Mostrar valores extraídos\nconsole.log(\"--- Respuestas Extraídas ---\");\nconsole.log(\"q1 (Edad - Valor):\", q1_respuesta);\nconsole.log(\"q2 (Estudios - Valor):\", q2_respuesta);\nconsole.log(\"q3 (Capital Listo - Valor):\", q3_respuesta);\nconsole.log(\"q4 (Objetivo - Valor):\", q4_respuesta);\nconsole.log(\"q5 (Ingresos USD - Valor):\", q5_respuesta);\n\nif (!q1_respuesta || !q2_respuesta || !q3_respuesta || !q4_respuesta || !q5_respuesta) {\n  console.warn(\"ADVERTENCIA: Una o más respuestas faltan. El puntaje se calculará con valor 0 para las faltantes.\");\n}\n\nlet puntajeTotal = 0;\nconsole.log(\"--- Calculando Puntaje ---\");\nconsole.log(\"Puntaje inicial:\", puntajeTotal);\n\nswitch (q1_respuesta) {\n  case \"a\": puntajeTotal += 180; console.log(\"Puntos Edad (a): +180\"); break; // Menor de 30 años\n  case \"b\": puntajeTotal += 200; console.log(\"Puntos Edad (b): +200\"); break; // 31 a 40 años\n  case \"c\": puntajeTotal += 170; console.log(\"Puntos Edad (c): +170\"); break; // 41 a 50 años\n  case \"d\": puntajeTotal += 120; console.log(\"Puntos Edad (d): +120\"); break; // 51 a 60 años\n  case \"e\": puntajeTotal += 80;  console.log(\"Puntos Edad (e): +80\"); break;  // 61 a 75 años\n  default: console.log(\"Puntos Edad: +0 (Valor no reconocido o faltante)\"); break;\n}\nconsole.log(\"Subtotal después de Edad:\", puntajeTotal);\n\nswitch (q2_respuesta) {\n  case \"a\": puntajeTotal += 30;  console.log(\"Puntos Estudios (a): +30\"); break; // Básica - Medios\n  case \"b\": puntajeTotal += 50;  console.log(\"Puntos Estudios (b): +50\"); break; // Secundaria\n  case \"c\": puntajeTotal += 80;  console.log(\"Puntos Estudios (c): +80\"); break; // Técnico\n  case \"d\": puntajeTotal += 100; console.log(\"Puntos Estudios (d): +100\"); break; // Tecnólogo\n  case \"e\": puntajeTotal += 130; console.log(\"Puntos Estudios (e): +130\"); break; // Profesional\n  case \"f\": puntajeTotal += 150; console.log(\"Puntos Estudios (f): +150\"); break; // Posgrado\n  default: console.log(\"Puntos Estudios: +0 (Valor no reconocido o faltante)\"); break;\n}\nconsole.log(\"Subtotal después de Estudios:\", puntajeTotal);\n\nswitch (q3_respuesta) {\n  case \"a\": puntajeTotal += 250; console.log(\"Puntos Capital (a): +250\"); break; // Sí, tengo ahorros para invertir.\n  case \"b\": puntajeTotal += 120; console.log(\"Puntos Capital (b): +120\"); break; // Estoy ahorrando para invertir en los próximos meses.\n  case \"c\": puntajeTotal += 30;  console.log(\"Puntos Capital (c): +30\"); break;  // No, por ahora no tengo capital para invertir.\n  default: console.log(\"Puntos Capital: +0 (Valor no reconocido o faltante)\"); break;\n}\nconsole.log(\"Subtotal después de Capital:\", puntajeTotal);\n\nswitch (q4_respuesta) {\n  case \"a\": puntajeTotal += 200; console.log(\"Puntos Objetivo (a): +200\"); break; // Tener una segunda fuente de ingresos\n  case \"b\": puntajeTotal += 250; console.log(\"Puntos Objetivo (b): +250\"); break; // Reemplazar mi trabajo actual\n  case \"c\": puntajeTotal += 100; console.log(\"Puntos Objetivo (c): +100\"); break; // Entender cómo invertir\n  default: console.log(\"Puntos Objetivo: +0 (Valor no reconocido o faltante)\"); break;\n}\nconsole.log(\"Subtotal después de Objetivo:\", puntajeTotal);\n\nswitch (q5_respuesta) {\n  case \"a\": puntajeTotal += 20;  console.log(\"Puntos Ingresos (a): +20\"); break; // 0 - 100 USD\n  case \"b\": puntajeTotal += 40;  console.log(\"Puntos Ingresos (b): +40\"); break; // 101 - 300 USD\n  case \"c\": puntajeTotal += 80;  console.log(\"Puntos Ingresos (c): +80\"); break; // 301 - 600 USD\n  case \"d\": puntajeTotal += 120; console.log(\"Puntos Ingresos (d): +120\"); break; // 1001 - 1500 USD\n  case \"e\": puntajeTotal += 150; console.log(\"Puntos Ingresos (e): +150\"); break; // +1500 USD\n  default: console.log(\"Puntos Ingresos: +0 (Valor no reconocido o faltante)\"); break;\n}\nconsole.log(\"Subtotal antes de ajuste final:\", puntajeTotal);\n\n// --- 4. Ajuste Final y Retorno ---\n\npuntajeTotal = Math.min(puntajeTotal, 1000);\npuntajeTotal = Math.max(puntajeTotal, 0);\n\nconsole.log(\"==============================\");\nconsole.log(\" PUNTAJE FINAL CALCULADO:\", puntajeTotal);\nconsole.log(\"==============================\");\n\nreturn [{\n  json: {\n    puntaje: puntajeTotal\n  }\n}];"
+        "jsCode": "let answersJsonOptions = {};\nconst inputData = $input.first(); // Obtener el primer item de entrada\nconst rawBody = inputData.json.body; // Acceder al cuerpo de la solicitud (común en webhooks)\n\nconsole.log(\"Datos de entrada recibidos (rawBody):\", JSON.stringify(rawBody, null, 2));\n\ntry {\n  let potentialJsonString = null;\n\n  if (typeof rawBody === 'string') {\n    potentialJsonString = rawBody;\n    console.log(\"Input body es un string.\");\n  } else if (typeof rawBody === 'object' && rawBody !== null) {\n    if (typeof rawBody.answersJsonOptions === 'string') {\n      potentialJsonString = rawBody.answersJsonOptions;\n      console.log(\"Input body es objeto, usando 'answersJsonOptions' como string.\");\n    } else if (typeof rawBody.answersJsonOptions === 'object' && rawBody.answersJsonOptions !== null) {\n      answersJsonOptions = rawBody.answersJsonOptions;\n      console.log(\"Input body es objeto, usando 'answersJsonOptions' como objeto.\");\n    } else {\n      answersJsonOptions = rawBody;\n      console.log(\"Input body es objeto, usándolo directamente como contenedor de respuestas.\");\n    }\n  } else {\n    console.log(\"Formato de 'body' no procesable directamente:\", rawBody);\n    // Intentar buscar en la raíz del json de entrada si no está en 'body'\n    // *** CORRECCIÓN AQUÍ: Usar 'q1' para la comprobación, no 'q1_edad' ***\n    if (typeof inputData.json.q1 !== 'undefined') { // Comprobar si q1 existe en la raíz\n      answersJsonOptions = inputData.json;\n      console.log(\"Respuestas encontradas en la raíz del JSON de entrada.\");\n    } else {\n      throw new Error(\"Formato de entrada no reconocido o respuestas no encontradas en 'body' ni en la raíz.\");\n    }\n  }\n\n  if (potentialJsonString !== null) {\n    console.log(\"Intentando parsear string JSON:\", potentialJsonString);\n    try {\n      answersJsonOptions = JSON.parse(potentialJsonString);\n    } catch (parseError) {\n      if (potentialJsonString.includes('\"q1\":')) {\n        console.warn(\"El string no era JSON válido, pero parece contener claves. Intentando extraer.\");\n        throw new Error(`Error al parsear JSON string: ${parseError.message}`);\n      } else {\n        throw new Error(`El string recibido no es un JSON válido ni contiene claves reconocibles: ${parseError.message}`);\n      }\n    }\n  }\n\n  if (typeof answersJsonOptions !== 'object' || answersJsonOptions === null) {\n    throw new Error(`El resultado del parseo no es un objeto válido. Tipo: ${typeof answersJsonOptions}`);\n  }\n  console.log(\"Respuestas parseadas y listas para usar:\", JSON.stringify(answersJsonOptions, null, 2));\n\n} catch (error) {\n  console.error(\"Error crítico al procesar las respuestas:\", error);\n  return [{ json: { error: `Error procesando JSON de entrada: ${error.message}` } }];\n}\n\n// Extraer cada respuesta, ajustando comentarios a las nuevas preguntas\nconst q1_respuesta = (answersJsonOptions[\"q1\"] || \"\").toString().trim(); // Edad\nconst q2_respuesta = (answersJsonOptions[\"q2\"] || \"\").toString().trim(); // Estudios\nconst q3_respuesta = (answersJsonOptions[\"q3\"] || \"\").toString().trim(); // Ocupación actual\nconst q4_respuesta = (answersJsonOptions[\"q4\"] || \"\").toString().trim(); // Razón para aprender publicidad digital\nconst q5_respuesta = (answersJsonOptions[\"q5\"] || \"\").toString().trim(); // Ingresos USD\n\n// Depuración: Mostrar valores extraídos\nconsole.log(\"--- Respuestas Extraídas ---\");\nconsole.log(\"q1 (Edad - Valor):\", q1_respuesta);\nconsole.log(\"q2 (Estudios - Valor):\", q2_respuesta);\nconsole.log(\"q3 (Ocupación - Valor):\", q3_respuesta);\nconsole.log(\"q4 (Publicidad Digital - Valor):\", q4_respuesta);\nconsole.log(\"q5 (Ingresos USD - Valor):\", q5_respuesta);\n\nif (!q1_respuesta || !q2_respuesta || !q3_respuesta || !q4_respuesta || !q5_respuesta) {\n  console.warn(\"ADVERTENCIA: Una o más respuestas faltan. El puntaje se calculará con valor 0 para las faltantes.\");\n}\n\nlet puntajeTotal = 0;\nconsole.log(\"--- Calculando Puntaje ---\");\nconsole.log(\"Puntaje inicial:\", puntajeTotal);\n\n// Edad\nswitch (q1_respuesta) {\n  case \"a\": puntajeTotal += 180; console.log(\"Puntos Edad (18-24): +180\"); break;\n  case \"b\": puntajeTotal += 200; console.log(\"Puntos Edad (25-34): +200\"); break;\n  case \"c\": puntajeTotal += 170; console.log(\"Puntos Edad (35-44): +170\"); break;\n  case \"d\": puntajeTotal += 120; console.log(\"Puntos Edad (45-54): +120\"); break;\n  case \"e\": puntajeTotal += 80;  console.log(\"Puntos Edad (55-64): +80\"); break;\n  case \"f\": puntajeTotal += 50;  console.log(\"Puntos Edad (65+): +50\"); break;\n  default: console.log(\"Puntos Edad: +0 (Valor no reconocido o faltante)\"); break;\n}\nconsole.log(\"Subtotal después de Edad:\", puntajeTotal);\n\n// Estudios\nswitch (q2_respuesta) {\n  case \"a\": puntajeTotal += 30;  console.log(\"Puntos Estudios (Básica - Medios): +30\"); break;\n  case \"b\": puntajeTotal += 50;  console.log(\"Puntos Estudios (Secundaria): +50\"); break;\n  case \"c\": puntajeTotal += 80;  console.log(\"Puntos Estudios (Técnico): +80\"); break;\n  case \"d\": puntajeTotal += 100; console.log(\"Puntos Estudios (Tecnólogo): +100\"); break;\n  case \"e\": puntajeTotal += 130; console.log(\"Puntos Estudios (Profesional): +130\"); break;\n  case \"f\": puntajeTotal += 150; console.log(\"Puntos Estudios (Posgrado): +150\"); break;\n  default: console.log(\"Puntos Estudios: +0 (Valor no reconocido o faltante)\"); break;\n}\nconsole.log(\"Subtotal después de Estudios:\", puntajeTotal);\n\n// Ocupación actual\nswitch (q3_respuesta) {\n  case \"a\": puntajeTotal += 250; console.log(\"Puntos Ocupación (Negocio físico): +200\"); break;\n  case \"b\": puntajeTotal += 200; console.log(\"Puntos Ocupación (Marca personal): +180\"); break;\n  case \"c\": puntajeTotal += 100; console.log(\"Puntos Ocupación (Otro + interés online): +100\"); break;\n  case \"d\": puntajeTotal += 50; console.log(\"Puntos Ocupación (Aún no negocio): +120\"); break;\n  default: console.log(\"Puntos Ocupación: +0 (Valor no reconocido o faltante)\"); break;\n}\nconsole.log(\"Subtotal después de Ocupación:\", puntajeTotal);\n\n// Razón para aprender publicidad digital\nswitch (q4_respuesta) {\n  case \"a\": puntajeTotal += 250; console.log(\"Puntos Publicidad (Aumentar ventas): +200\"); break;\n  case \"b\": puntajeTotal += 120; console.log(\"Puntos Publicidad (Ayudar a otros): +50\"); break;\n  case \"c\": puntajeTotal += 100; console.log(\"Puntos Publicidad (Habilidad extra): +150\"); break;\n  default: console.log(\"Puntos Publicidad: +0 (Valor no reconocido o faltante)\"); break;\n}\nconsole.log(\"Subtotal después de Publicidad:\", puntajeTotal);\n\n// Ingresos USD\nswitch (q5_respuesta) {\n  case \"a\": puntajeTotal += 20;  console.log(\"Puntos Ingresos (0-100): +20\"); break;\n  case \"b\": puntajeTotal += 40;  console.log(\"Puntos Ingresos (101-300): +40\"); break;\n  case \"c\": puntajeTotal += 120;  console.log(\"Puntos Ingresos (301-600): +80\"); break;\n  case \"d\": puntajeTotal += 150; console.log(\"Puntos Ingresos (1001-1500): +120\"); break;\n  case \"e\": puntajeTotal += 180; console.log(\"Puntos Ingresos (+1500): +150\"); break;\n  default: console.log(\"Puntos Ingresos: +0 (Valor no reconocido o faltante)\"); break;\n}\nconsole.log(\"Subtotal antes de ajuste final:\", puntajeTotal);\n\n// --- Ajuste Final y Retorno ---\npuntajeTotal = Math.min(Math.max(puntajeTotal, 0), 1000);\n\nconsole.log(\"==============================\");\nconsole.log(\" PUNTAJE FINAL CALCULADO:\", puntajeTotal);\nconsole.log(\"==============================\");\n\nreturn [{\n  json: {\n    puntaje: puntajeTotal\n  }\n}];\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1408,7 +1403,7 @@
       "typeVersion": 1.1,
       "position": [
         -120,
-        -315
+        -320
       ],
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -1484,7 +1479,7 @@
           "parameters": [
             {
               "name": "Authorization",
-              "value": "Basic fd_key_41414c492eed4e848cab8ede25805007.5XWcPcP2n9TpBTdfgqGGrtUu9IiKNE7oc7htks1ALgk9RhHY0hun1UhEvWjs88rEB6Z5TkrHlv4Uy40CphPccLkWyYlo4lE84cFQc2EbheJsiRWwent73VAqVQ8yqOR73Ls5iQLAibUPBtRQRCiWBjzYMj72OETmEdkstygX59NfptA7fkDENb1pXLvgC1us"
+              "value": "Basic fd_key_ab66d423650a4f3ca003d587da2aa823.7Lt20nFuO8txwhtSL6jMyX5AtnrSk32ARtlIkOSvnyMLtg7pJuodAHWqcV4R2ZVfUGbYcYZDyPMIADE48OEHxrbbnGxV1CLELjktjMd43nHxNC9GeY0SIKBhmLmfDMY3e96u4fP9XBLSF9KecftO8FmkP4ydeCAklmew33N6rDejcMAwU6ZYNemtggxeLtaW"
             },
             {
               "name": "User-Agent",
@@ -1505,7 +1500,6 @@
       "retryOnFail": false,
       "maxTries": 5,
       "waitBetweenTries": 5000,
-      "disabled": true,
       "onError": "continueRegularOutput"
     },
     {
@@ -1517,7 +1511,7 @@
           "parameters": [
             {
               "name": "Authorization",
-              "value": "=Basic fd_key_41414c492eed4e848cab8ede25805007.5XWcPcP2n9TpBTdfgqGGrtUu9IiKNE7oc7htks1ALgk9RhHY0hun1UhEvWjs88rEB6Z5TkrHlv4Uy40CphPccLkWyYlo4lE84cFQc2EbheJsiRWwent73VAqVQ8yqOR73Ls5iQLAibUPBtRQRCiWBjzYMj72OETmEdkstygX59NfptA7fkDENb1pXLvgC1us"
+              "value": "=Basic fd_key_ab66d423650a4f3ca003d587da2aa823.7Lt20nFuO8txwhtSL6jMyX5AtnrSk32ARtlIkOSvnyMLtg7pJuodAHWqcV4R2ZVfUGbYcYZDyPMIADE48OEHxrbbnGxV1CLELjktjMd43nHxNC9GeY0SIKBhmLmfDMY3e96u4fP9XBLSF9KecftO8FmkP4ydeCAklmew33N6rDejcMAwU6ZYNemtggxeLtaW"
             },
             {
               "name": "User-Agent",
@@ -1527,7 +1521,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"email\": \"{{ $('INSERTAR').item.json.email }}\",\n    \"segment_ids\": [\n       \"680951a56a906413c7d64501\"\n    ]\n}",
+        "jsonBody": "={\n    \"email\": \"{{ $('INSERTAR').item.json.email }}\",\n    \"segment_ids\": [\n       \"6812ff17feecf979d5f5372a\"\n    ]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -1541,7 +1535,6 @@
       "retryOnFail": true,
       "maxTries": 5,
       "waitBetweenTries": 5000,
-      "disabled": true,
       "onError": "continueRegularOutput"
     },
     {
@@ -1575,8 +1568,7 @@
         -840
       ],
       "id": "e1159eec-abb7-44fa-acf5-10ef06a9060d",
-      "name": "EXISTE FLODESK?",
-      "disabled": true
+      "name": "EXISTE FLODESK?"
     },
     {
       "parameters": {
@@ -2047,38 +2039,38 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
-            "content-length": "395",
+            "content-length": "428",
             "accept": "*/*",
             "accept-encoding": "gzip, deflate, br, zstd",
             "accept-language": "es-419,es;q=0.9,pt;q=0.8,en;q=0.7",
             "content-type": "application/json",
-            "origin": "https://view.greatpages.com.br",
+            "origin": "https://www.academyrengel.com",
             "priority": "u=1, i",
-            "referer": "https://view.greatpages.com.br/",
+            "referer": "https://www.academyrengel.com/",
             "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
             "sec-ch-ua-mobile": "?0",
             "sec-ch-ua-platform": "\"Windows\"",
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "181.235.98.156",
+            "x-forwarded-for": "179.33.145.180",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
             "x-forwarded-server": "5e236941e778",
-            "x-real-ip": "181.235.98.156"
+            "x-real-ip": "179.33.145.180"
           },
           "params": {},
           "query": {},
           "body": {
-            "answersJson": "{\"q1\":\"Menor de 30 años\",\"q2\":\"Secundaria\",\"q3\":\"Sí, tengo ahorros para invertir.\",\"q4\":\"Reemplazar mi trabajo actual y vivir 100% de las inversiones\",\"q5\":\"301 - 600\"}",
-            "answersJsonOptions": "{\"q1\":\"a\",\"q2\":\"b\",\"q3\":\"a\",\"q4\":\"b\",\"q5\":\"c\"}",
-            "referrer": "https://app.greatpages.com.br/",
-            "email": "",
-            "whatsapp": "",
-            "tiempoencuesta": 1745442092
+            "answersJson": "{\"q1\":\"Menor de 30 años\",\"q2\":\"Profesional\",\"q3\":\"Tengo un negocio físico (tienda, salón, restaurante, etc.)\",\"q4\":\"Aumentar las ventas de mi propio negocio.\",\"q5\":\"+1500\"}",
+            "answersJsonOptions": "{\"q1\":\"a\",\"q2\":\"e\",\"q3\":\"a\",\"q4\":\"a\",\"q5\":\"e\"}",
+            "referrer": "https://www.academyrengel.com/registro",
+            "email": "a@m.com",
+            "whatsapp": "+573136298561",
+            "tiempoencuesta": 1746072649
           },
-          "webhookUrl": "https://n8n.automscc.com/webhook/encuesta-vcapital",
+          "webhookUrl": "https://n8n.automscc.com/webhook/encuesta-giorgio",
           "executionMode": "production"
         }
       }
@@ -2106,6 +2098,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-04-26T23:55:42.000Z",
-  "versionId": "75b25dcf-d10f-4d9a-a0a8-b149d3e0d3b0"
+  "updatedAt": "2025-05-01T04:57:09.000Z",
+  "versionId": "86644f63-0597-4327-94bc-452d123d8898"
 }
