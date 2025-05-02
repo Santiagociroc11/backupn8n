@@ -486,9 +486,9 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "GERSSON_L6_WHA",
+          "value": "GERSSON_L7_WHA",
           "mode": "list",
-          "cachedResultName": "GERSSON_L6_WHA"
+          "cachedResultName": "GERSSON_L7_WHA"
         },
         "returnAll": true,
         "where": {
@@ -522,9 +522,9 @@
       "parameters": {
         "table": {
           "__rl": true,
-          "value": "GERSSON_L6_WHA",
+          "value": "GERSSON_L7_WHA",
           "mode": "list",
-          "cachedResultName": "GERSSON_L6_WHA"
+          "cachedResultName": "GERSSON_L7_WHA"
         },
         "dataMode": "defineBelow",
         "valuesToSend": {
@@ -637,9 +637,11 @@
     },
     {
       "parameters": {
-        "collection": "=TD-l6",
-        "options": {},
-        "query": "={\n  \"whatsapp\": {\n    \"$regex\": \".*{{ $('Edit Fields').item.json.numero.replace(/\\D/g, \"\").slice(-6) }}.*\",\n    \"$options\": \"i\"\n  }\n}"
+        "collection": "=TD-L7",
+        "options": {
+          "limit": 1
+        },
+        "query": "={\n  \"whatsapp\": {\n    \"$regex\": \".*{{ $('Edit Fields').item.json.numero.replace(/\\D/g, \"\").slice(-6) }}\",\n    \"$options\": \"i\"\n  }\n}"
       },
       "id": "5050bc71-0a7f-4743-8e5c-2990400df735",
       "name": "encontrar",
@@ -1473,7 +1475,7 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "axios/1.7.9",
-            "content-length": "408",
+            "content-length": "407",
             "accept-encoding": "gzip, compress, deflate, br",
             "content-type": "application/json",
             "x-forwarded-for": "172.18.0.1",
@@ -1489,15 +1491,15 @@
             "event": "group-participants.update",
             "instance": "JUAN CARLOS",
             "data": {
-              "id": "120363415173403374@g.us",
+              "id": "120363400844553414@g.us",
               "author": "",
               "participants": [
-                "573008549759@s.whatsapp.net"
+                "51966763813@s.whatsapp.net"
               ],
               "action": "add"
             },
             "destination": "https://n8n.automscc.com/webhook/webhooks-wha",
-            "date_time": "2025-04-23T18:44:06.362Z",
+            "date_time": "2025-05-01T12:54:12.300Z",
             "sender": "573017817643@s.whatsapp.net",
             "server_url": "http://evolution.automscc.com",
             "apikey": "EBB08797B573-4069-9146-C8A15A6B3348"
@@ -1538,6 +1540,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-05-01T02:04:44.000Z",
-  "versionId": "8f1fdd6d-328b-4e44-974b-c790d5527e39"
+  "updatedAt": "2025-05-01T15:58:23.000Z",
+  "versionId": "744d80df-1308-41a4-aae4-870830c06f66"
 }
