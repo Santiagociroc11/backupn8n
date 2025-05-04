@@ -1,0 +1,95 @@
+{
+  "active": false,
+  "connections": {
+    "Notion1": {
+      "main": [
+        []
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Notion1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-04T05:24:58.577Z",
+  "id": "LHGiwqFfdixArWDp",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[GERSSON] ENCOLADOR DE BV GRUPOS",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": {
+          "__rl": true,
+          "value": "1e900880-d85d-80a2-ab5a-fd125e34619a",
+          "mode": "list",
+          "cachedResultName": "TABLA BV GRUPOS",
+          "cachedResultUrl": "https://www.notion.so/1e900880d85d80a2ab5afd125e34619a"
+        },
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "ESTADO|status",
+              "statusValue": "PENDIENTE"
+            },
+            {
+              "key": "GRUPO|title"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        -500,
+        -200
+      ],
+      "id": "34de5deb-0739-4826-8e9b-477c2db61d17",
+      "name": "Notion1",
+      "credentials": {
+        "notionApi": {
+          "id": "96gd5czBYIXX6Aw7",
+          "name": "NOTION SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "bv-grupos",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -760,
+        -200
+      ],
+      "id": "8d756946-ae75-4458-bb8b-d7555389cf99",
+      "name": "Webhook",
+      "webhookId": "577c4e20-59c5-4b58-a95b-b41937a78d0c"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-04T05:28:59.000Z",
+  "versionId": "3d29d429-4f04-4a8a-932f-f346ab644cdd"
+}
