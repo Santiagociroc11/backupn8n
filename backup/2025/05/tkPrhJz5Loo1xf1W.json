@@ -1,0 +1,899 @@
+{
+  "active": true,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "busqueda BD",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "busqueda BD",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "CreateGroup",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "contadorinciail": {
+      "main": [
+        [
+          {
+            "node": "ModificaNombres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BodysCreate": {
+      "main": [
+        [
+          {
+            "node": "contadorinciail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ModificaNombres": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CreateGroup": {
+      "main": [
+        [
+          {
+            "node": "5 seg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "5 seg": {
+      "main": [
+        [
+          {
+            "node": "ObtenerLink",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ObtenerLink": {
+      "main": [
+        [
+          {
+            "node": "EscribirGrupo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EscribirGrupo": {
+      "main": [
+        [
+          {
+            "node": "PromoveAdmins",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PromoveAdmins": {
+      "main": [
+        [
+          {
+            "node": "Config1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config1": {
+      "main": [
+        [
+          {
+            "node": "Config2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config2": {
+      "main": [
+        [
+          {
+            "node": "Setfoto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setfoto": {
+      "main": [
+        [
+          {
+            "node": "Evolution API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evolution API": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "busqueda BD": {
+      "main": [
+        [
+          {
+            "node": "grupos vacios",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "grupos vacios": {
+      "main": [
+        [
+          {
+            "node": "conteo grupos vacios",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "conteo grupos vacios": {
+      "main": [
+        [
+          {
+            "node": "# del ultimo grupo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "# del ultimo grupo": {
+      "main": [
+        [
+          {
+            "node": "hay menos de 3 grupos?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "hay menos de 3 grupos?": {
+      "main": [
+        [
+          {
+            "node": "obtener datos de creacion",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "obtener datos de creacion": {
+      "main": [
+        [
+          {
+            "node": "establecer variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "establecer variables": {
+      "main": [
+        [
+          {
+            "node": "BodysCreate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "No Operation, do nothing": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-04T03:28:13.731Z",
+  "id": "tkPrhJz5Loo1xf1W",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[GERSSON-L7] AUTO CREACIÓN DE GRUPOS",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -580,
+        -185
+      ],
+      "id": "a7e14bf2-073e-4232-a4f7-9166041256af",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -580,
+        -385
+      ],
+      "id": "719e6fd7-8bd5-4376-a344-147f0ff6d807",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "batchSize": "=1",
+        "options": {}
+      },
+      "id": "d4470e17-75e8-459a-bd7c-ca98ab8c156f",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1840,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "\nconst inicia = $('# del ultimo grupo').first().json.conteo_grupo;\n\nreturn [{ contador: inicia + 1}];\n"
+      },
+      "id": "1c8b98a1-2502-43de-ab4f-093d7bfa87ee",
+      "name": "contadorinciail",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1400,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtener todos los items de un nodo anterior\nconst adminsArray = $input.all();\n\n// Obtener el subject y la description del primer item\nconst subject = adminsArray[0]?.json['nombre'] || ''; // Usando el primer item\nconst description = adminsArray[0]?.json['descripcion'] || ''; // Usando el primer item\n\n// Extraer y dividir los participantes en un array\nconst participants = adminsArray.map(item => item.json['admins'] || '')\n                               .flatMap(admins => admins.split(',').map(participant => participant.trim()));\n\n// Crear el objeto con los datos\nconst data = {\n  subject: subject,\n  description: description,\n  participants: participants\n};\n\nreturn Array(adminsArray[0].json['cantidad']).fill({ json: data });\n"
+      },
+      "id": "ca9106a2-e03c-4934-a4b6-7a2aaff4181a",
+      "name": "BodysCreate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1180,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let contador = $('contadorinciail').all()[0].json['contador'];\n\nconst items = $('BodysCreate').all();\n\nconst updatedItems = items.map(item => {\n  const updatedItem = { ...item.json };  // Copia el contenido dentro de `json`\n  updatedItem.subject = `${updatedItem.subject} #${contador}`; // Actualiza el `subject`\n  contador++; \n  return { json: updatedItem };  // Envuelve en `json` para que n8n lo procese correctamente\n});\n\nreturn updatedItems;\n"
+      },
+      "id": "771e49df-b80f-4e2f-a4f7-e8a3240b410d",
+      "name": "ModificaNombres",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1620,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/create/{{ $('establecer variables').first().json['sesion creadora'] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.toJsonString() }}",
+        "options": {}
+      },
+      "id": "4d8e5a9b-776c-45cd-af93-ebcbc945f898",
+      "name": "CreateGroup",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2060,
+        -260
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3c0e3f8c-fea3-4908-8eed-e57ca62526e5",
+      "name": "5 seg",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2280,
+        -260
+      ],
+      "webhookId": "5a1e03a6-5052-4f92-b342-aee6ce6ce8ea"
+    },
+    {
+      "parameters": {
+        "url": "=https://evolution.automscc.com/group/inviteCode/{{ $('establecer variables').first().json['sesion creadora'] }}?groupJid={{ $json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7d1bcef0-b0a2-437c-83d7-479ab8330f04",
+      "name": "ObtenerLink",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2500,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "={{ $('establecer variables').all()[0].json.TABLA_BD }}",
+          "mode": "name"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "nombre",
+              "value": "={{ $('CreateGroup').all()[0].json.subject }}"
+            },
+            {
+              "column": "link",
+              "value": "={{ $json.inviteUrl }}"
+            },
+            {
+              "column": "id",
+              "value": "={{ $('CreateGroup').item.json.id }}"
+            },
+            {
+              "column": "Total",
+              "value": "0"
+            },
+            {
+              "column": "bienvenida",
+              "value": "no"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f5e098f2-089f-4c4e-8b44-ba68bfcf4fcc",
+      "name": "EscribirGrupo",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        2720,
+        -260
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('establecer variables').first().json['sesion creadora'] }}?groupJid={{ $('CreateGroup').item.json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"action\": \"promote\", \n  \n  \"participants\": {{ $('BodysCreate').all()[0].json['participants'].toJsonString() }}\n}",
+        "options": {}
+      },
+      "id": "3931d351-41b6-4ace-a8ef-190f4c8d6c50",
+      "name": "PromoveAdmins",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2940,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/updateSetting/{{ $('establecer variables').first().json['sesion creadora'] }}?groupJid={{ $('CreateGroup').item.json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"action\": \"announcement\"\n}",
+        "options": {}
+      },
+      "id": "c8f0d238-d60f-4f60-bb7f-e1d3abf30996",
+      "name": "Config1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3160,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/updateSetting/{{ $('establecer variables').first().json['sesion creadora'] }}?groupJid={{ $('CreateGroup').item.json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"action\": \"locked\"\n}",
+        "options": {}
+      },
+      "id": "d985c536-fb6b-43bb-b993-6e6a987bbbca",
+      "name": "Config2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3380,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/updateGroupPicture/{{ $('establecer variables').first().json['sesion creadora'] }}?groupJid={{ $('CreateGroup').item.json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"image\": \"{{ $('establecer variables').item.json.url_imagen }}\"\n}",
+        "options": {}
+      },
+      "id": "992472e3-c8a1-4a87-a344-932f7d4f6bfa",
+      "name": "Setfoto",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3600,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "groups-api",
+        "operation": "leave-group",
+        "instanceName": "={{ $('establecer variables').first().json['sesion creadora'] }}",
+        "groupJid": "={{ $('CreateGroup').item.json.id }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        3820,
+        -260
+      ],
+      "id": "0b86d0d8-308f-4d38-b328-0a9575ccd5ae",
+      "name": "Evolution API",
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "VPS-EASYPANEL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_LINKS",
+          "mode": "list",
+          "cachedResultName": "GERSSON_LINKS"
+        },
+        "returnAll": true,
+        "sort": {
+          "values": [
+            {
+              "column": "#",
+              "direction": "DESC"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -360,
+        -260
+      ],
+      "id": "1a31f213-7b4d-457f-8608-27fc38be2cfe",
+      "name": "busqueda BD",
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "573915c0-241e-4857-be6f-098c4b898057",
+              "leftValue": "={{ $json.Total }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -140,
+        -260
+      ],
+      "id": "89525dc6-b39d-4816-9d38-0f02a37c799b",
+      "name": "grupos vacios"
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "field": "id"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1.1,
+      "position": [
+        80,
+        -260
+      ],
+      "id": "3ca37b8c-e62e-4940-8e26-4d3a48a2868e",
+      "name": "conteo grupos vacios"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2d7cdac5-d2b8-4566-8f63-3176f52ea52e",
+              "name": "conteo_grupo",
+              "value": "={{ $('busqueda BD').first().json.nombre.match(/#(\\d+)/)[1] }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        300,
+        -260
+      ],
+      "id": "7274b97b-a5c6-4f29-9733-88cbdb5e76c4",
+      "name": "# del ultimo grupo"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cd476138-de67-4790-b014-a96284459560",
+              "leftValue": "={{ $('conteo grupos vacios').first().json.count_id }}",
+              "rightValue": 3,
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        520,
+        -260
+      ],
+      "id": "e1f8384a-6cce-464e-8cef-65e04b818704",
+      "name": "hay menos de 3 grupos?"
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "1e900880-d85d-8045-8cec-cf9803d42c6e",
+          "mode": "list",
+          "cachedResultName": "TABLA GRUPOS",
+          "cachedResultUrl": "https://www.notion.so/1e900880d85d80458ceccf9803d42c6e"
+        },
+        "returnAll": true,
+        "filterType": "manual",
+        "filters": {
+          "conditions": [
+            {
+              "key": "LANZAMIENTO|title",
+              "condition": "equals",
+              "titleValue": "GERSSON"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        740,
+        -260
+      ],
+      "id": "ff354215-3b4c-4320-aeed-79ac685689d2",
+      "name": "obtener datos de creacion",
+      "credentials": {
+        "notionApi": {
+          "id": "96gd5czBYIXX6Aw7",
+          "name": "NOTION SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "933a219e-5da4-4dd5-bfaa-af884816b358",
+              "name": "admins",
+              "value": "={{ $json.property_admins }}",
+              "type": "string"
+            },
+            {
+              "id": "0080bd4c-5a10-4a5f-aea0-da49cb470fb5",
+              "name": "sesion creadora",
+              "value": "={{ $json.property_sesion_creadora }}",
+              "type": "string"
+            },
+            {
+              "id": "22e4f59d-b064-4733-8bf6-e6bef0239d8f",
+              "name": "url_imagen",
+              "value": "={{ $json.property_imagen_grupos }}",
+              "type": "string"
+            },
+            {
+              "id": "20766276-0fee-4abf-98f5-9cbc182a9a9b",
+              "name": "nombre",
+              "value": "={{ $json.property_nombre_grupos }}",
+              "type": "string"
+            },
+            {
+              "id": "17dace3d-8455-4b94-8263-e87c4cf7a0dd",
+              "name": "descripcion",
+              "value": "={{ $json.property_descripci_n }}",
+              "type": "string"
+            },
+            {
+              "id": "84b1b411-ae75-4f1a-9ae8-c01bfcafa65b",
+              "name": "sesion admins",
+              "value": "={{ $json.property_sesion_admins }}",
+              "type": "string"
+            },
+            {
+              "id": "02ec7072-ce8e-491a-b32c-a4eb04f3c2b0",
+              "name": "cantidad",
+              "value": 5,
+              "type": "number"
+            },
+            {
+              "id": "806804b0-39a4-4461-a004-ee13cdfcb0f7",
+              "name": "TABLA_BD",
+              "value": "={{ $json.property_tabla_bd }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        960,
+        -260
+      ],
+      "id": "d6e0753e-b255-4509-88c5-3f579b57bf9b",
+      "name": "establecer variables"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        4040,
+        -185
+      ],
+      "id": "d7b08723-6e46-4e4e-96b1-bcb1ed36be40",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "chatId": "-1002176532359",
+        "text": "⚡ *5 GRUPOS CREADOS AUTOMATICAMENTE* ⚡",
+        "additionalFields": {
+          "appendAttribution": false,
+          "message_thread_id": 697
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2060,
+        -460
+      ],
+      "id": "edd937a2-1fb3-47da-9136-75f4094b9082",
+      "name": "Telegram",
+      "webhookId": "376e263b-2a85-4e61-b23d-9a28eb9ad795",
+      "credentials": {
+        "telegramApi": {
+          "id": "QruLAfRq4u80XCVX",
+          "name": "BOT AGENCIA X"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-05-04T04:51:10.000Z",
+  "versionId": "f1ddbb24-69e3-45c3-9f8d-3824ad6e408d"
+}
