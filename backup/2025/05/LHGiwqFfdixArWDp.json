@@ -1,16 +1,127 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
-    "Notion1": {
+    "ENCOLADOR": {
+      "main": [
+        [
+          {
+            "node": "ESCRIBIR BV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ESCRIBIR BV": {
       "main": [
         []
       ]
     },
-    "Webhook": {
+    "HORARIO": {
       "main": [
         [
           {
-            "node": "Notion1",
+            "node": "LEER PENDIENTES",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Evolution API1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LEER PENDIENTES": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evolution API": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evolution API1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Evolution API2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evolution API2": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Evolution API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Notion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notion": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
             "type": "main",
             "index": 0
           }
@@ -23,8 +134,24 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "[GERSSON] ENCOLADOR DE BV GRUPOS",
+  "name": "[GERSSON-L7] ENCOLADOR DE BV GRUPOS",
   "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "bv-grupos-gersson",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -560,
+        0
+      ],
+      "id": "8d756946-ae75-4458-bb8b-d7555389cf99",
+      "name": "ENCOLADOR",
+      "webhookId": "577c4e20-59c5-4b58-a95b-b41937a78d0c"
+    },
     {
       "parameters": {
         "resource": "databasePage",
@@ -35,6 +162,7 @@
           "cachedResultName": "TABLA BV GRUPOS",
           "cachedResultUrl": "https://www.notion.so/1e900880d85d80a2ab5afd125e34619a"
         },
+        "title": "={{ $json.body.grupo }}",
         "propertiesUi": {
           "propertyValues": [
             {
@@ -42,7 +170,12 @@
               "statusValue": "PENDIENTE"
             },
             {
-              "key": "GRUPO|title"
+              "key": "ID GRUPO|rich_text",
+              "textContent": "={{ $json.body.id }}"
+            },
+            {
+              "key": "LANZAMIENTO|rich_text",
+              "textContent": "={{ $json.body.lanza }}"
             }
           ]
         },
@@ -51,11 +184,11 @@
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
       "position": [
-        -500,
-        -200
+        -340,
+        0
       ],
       "id": "34de5deb-0739-4826-8e9b-477c2db61d17",
-      "name": "Notion1",
+      "name": "ESCRIBIR BV",
       "credentials": {
         "notionApi": {
           "id": "96gd5czBYIXX6Aw7",
@@ -65,19 +198,230 @@
     },
     {
       "parameters": {
-        "httpMethod": "POST",
-        "path": "bv-grupos",
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 8-20 * * *"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1160,
+        260
+      ],
+      "id": "645deb5f-0877-4d61-8577-723e478fa4e4",
+      "name": "HORARIO"
+    },
+    {
+      "parameters": {
         "options": {}
       },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
       "position": [
-        -760,
-        -200
+        -720,
+        260
       ],
-      "id": "8d756946-ae75-4458-bb8b-d7555389cf99",
-      "name": "Webhook",
-      "webhookId": "577c4e20-59c5-4b58-a95b-b41937a78d0c"
+      "id": "1da97420-2669-4014-bc08-a194c0268cbf",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "1e900880-d85d-80a2-ab5a-fd125e34619a",
+          "mode": "list",
+          "cachedResultName": "TABLA BV GRUPOS",
+          "cachedResultUrl": "https://www.notion.so/1e900880d85d80a2ab5afd125e34619a"
+        },
+        "returnAll": true,
+        "filterType": "manual",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "key": "ESTADO|status",
+              "condition": "equals",
+              "statusValue": "PENDIENTE"
+            },
+            {
+              "key": "LANZAMIENTO|rich_text",
+              "condition": "equals",
+              "richTextValue": "GERSSON"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        -940,
+        260
+      ],
+      "id": "527ba7e3-4a6f-483a-82ca-281a0e75d20a",
+      "name": "LEER PENDIENTES",
+      "credentials": {
+        "notionApi": {
+          "id": "96gd5czBYIXX6Aw7",
+          "name": "NOTION SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "GERSSON-ENVIOS",
+        "remoteJid": "={{ $('Loop Over Items').item.json.property_id_grupo }}",
+        "messageText": "=Llena la encuesta *tocando el siguiente enlace*   \n\n👉 https://forms.gle/EfqccDaq2zkFoxBE7  \n\nAl final de la misma, vas a encontrar el libro de trabajo de la clase #1 📖. \n\n*Nos vemos este LUNES 26 DE MAYO* \n\n🚨*IMPORTANTE:*🚨 No des información a *NADIE* ni respondas ningún mensaje que no provenga de los administradores del grupo",
+        "options_message": {
+          "mentions": {
+            "mentionsSettings": {
+              "mentionsEveryOne": true
+            }
+          },
+          "linkPreview": false
+        }
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        400,
+        280
+      ],
+      "id": "cbb2469b-7e6f-4281-97f5-0cc708939e94",
+      "name": "Evolution API",
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "VPS-EASYPANEL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "operation": "send-image",
+        "instanceName": "GERSSON-ENVIOS",
+        "remoteJid": "={{ $('Loop Over Items').item.json.property_id_grupo }}",
+        "media": "https://n8n-minio.wc2hpx.easypanel.host/n8n/WhatsApp%20Image%202025-05-02%20at%202.58.56%20PM.jpeg",
+        "caption": "=",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        280
+      ],
+      "id": "e664f62e-df19-4a81-80b8-3b66586649c4",
+      "name": "Evolution API1",
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "VPS-EASYPANEL"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -260,
+        280
+      ],
+      "id": "fad426e8-0e96-431b-99d8-76b290774a62",
+      "name": "Wait",
+      "webhookId": "fe7b8211-a314-4c92-8063-d30bbbb78db3"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "operation": "send-audio",
+        "instanceName": "GERSSON-ENVIOS",
+        "remoteJid": "={{ $('Loop Over Items').item.json.property_id_grupo }}",
+        "media": "https://n8n-minio.wc2hpx.easypanel.host/n8n/WhatsApp%20Audio%202025-05-02%20at%202.59.41%20PM.ogg",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        280
+      ],
+      "id": "07db6d07-95e5-4009-b755-936b6cfc251f",
+      "name": "Evolution API2",
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "VPS-EASYPANEL"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        180,
+        280
+      ],
+      "id": "086d9e0f-4603-4fd6-8e7a-36d127c97a37",
+      "name": "Wait1",
+      "webhookId": "cadc0a7a-2374-4e02-8493-85d700883395"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        620,
+        280
+      ],
+      "id": "73c2747f-c0ea-408f-a511-cd5bd3346137",
+      "name": "Wait2",
+      "webhookId": "98f015b2-7811-4939-bc87-3b7e79581f35"
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": {
+          "__rl": true,
+          "value": "={{ $('Loop Over Items').item.json.id }}",
+          "mode": "id"
+        },
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "ESTADO|status",
+              "statusValue": "ENVIADO"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        840,
+        280
+      ],
+      "id": "399b63bf-60d8-497c-a75d-ff980d821b26",
+      "name": "Notion",
+      "credentials": {
+        "notionApi": {
+          "id": "96gd5czBYIXX6Aw7",
+          "name": "NOTION SANTIAGO"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -85,11 +429,17 @@
   "repo_owner": "Santiagociroc11",
   "repo_path": "backup/",
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timezone": "America/Bogota",
+    "callerPolicy": "workflowsFromSameOwner"
   },
-  "staticData": null,
+  "staticData": {
+    "node:HORARIO": {
+      "recurrenceRules": []
+    }
+  },
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-05-04T05:28:59.000Z",
-  "versionId": "3d29d429-4f04-4a8a-932f-f346ab644cdd"
+  "triggerCount": 2,
+  "updatedAt": "2025-05-04T15:24:18.000Z",
+  "versionId": "83680c03-2cd1-40e5-aa55-1a7325ba4e91"
 }
