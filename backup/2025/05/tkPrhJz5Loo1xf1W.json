@@ -27,7 +27,7 @@
       "main": [
         [
           {
-            "node": "Telegram",
+            "node": "Summarize",
             "type": "main",
             "index": 0
           }
@@ -261,6 +261,17 @@
           }
         ]
       ]
+    },
+    "Summarize": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-05-04T03:28:13.731Z",
@@ -377,7 +388,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2060,
+        2280,
         -260
       ]
     },
@@ -388,7 +399,7 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        2280,
+        2500,
         -260
       ],
       "webhookId": "5a1e03a6-5052-4f92-b342-aee6ce6ce8ea"
@@ -412,7 +423,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2500,
+        2720,
         -260
       ]
     },
@@ -455,7 +466,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        2720,
+        2940,
         -260
       ],
       "credentials": {
@@ -488,7 +499,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2940,
+        3160,
         -260
       ]
     },
@@ -515,7 +526,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3160,
+        3380,
         -260
       ]
     },
@@ -542,7 +553,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3380,
+        3600,
         -260
       ]
     },
@@ -561,7 +572,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"image\": \"{{ $('establecer variables').item.json.url_imagen }}\"\n}",
+        "jsonBody": "={\n  \"image\": \"{{ $('establecer variables').first().json.url_imagen }}\"\n}",
         "options": {}
       },
       "id": "992472e3-c8a1-4a87-a344-932f7d4f6bfa",
@@ -569,7 +580,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3600,
+        3820,
         -260
       ]
     },
@@ -583,7 +594,7 @@
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        3820,
+        4040,
         -260
       ],
       "id": "0b86d0d8-308f-4d38-b328-0a9575ccd5ae",
@@ -848,7 +859,7 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        4040,
+        4260,
         -185
       ],
       "id": "d7b08723-6e46-4e4e-96b1-bcb1ed36be40",
@@ -857,7 +868,7 @@
     {
       "parameters": {
         "chatId": "-1002176532359",
-        "text": "⚡ *5 GRUPOS CREADOS AUTOMATICAMENTE* ⚡",
+        "text": "=⚡ * {{ ($json.count_data) }} GRUPOS CREADOS AUTOMATICAMENTE* ⚡\n\nAGREGAR ADMINS FALTANTES",
         "additionalFields": {
           "appendAttribution": false,
           "message_thread_id": 697
@@ -866,8 +877,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        2060,
-        -460
+        2260,
+        -440
       ],
       "id": "edd937a2-1fb3-47da-9136-75f4094b9082",
       "name": "Telegram",
@@ -878,9 +889,609 @@
           "name": "BOT AGENCIA X"
         }
       }
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "field": "data",
+              "includeEmpty": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1.1,
+      "position": [
+        2080,
+        -440
+      ],
+      "id": "9f5765ad-ec4f-4cd2-a2da-9fe1b5f04105",
+      "name": "Summarize"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Schedule Trigger": [
+      {
+        "json": {
+          "timestamp": "2025-05-05T12:00:55.074-05:00",
+          "Readable date": "May 5th 2025, 12:00:55 pm",
+          "Readable time": "12:00:55 pm",
+          "Day of week": "Monday",
+          "Year": "2025",
+          "Month": "May",
+          "Day of month": "05",
+          "Hour": "12",
+          "Minute": "00",
+          "Second": "55",
+          "Timezone": "America/Bogota (UTC-05:00)"
+        }
+      }
+    ],
+    "CreateGroup": [
+      {
+        "json": {
+          "id": "120363416723302643@g.us",
+          "subject": "Semana de la Terapia del Dolor #11",
+          "subjectOwner": "573245207576@s.whatsapp.net",
+          "subjectTime": 1746467127,
+          "size": 5,
+          "creation": 1746467127,
+          "owner": "573245207576@s.whatsapp.net",
+          "desc": "Bienvenidos a la *Semana de la Terapia del Dolor*\n🗓️ Fecha del evento: 26, 27 y 28 de mayo\n⏰ Hora: 7:00 PM (COL)\nEn este evento EN VIVO te mostraré cómo:\n✅ Eliminar el dolor SIN experiencia en medicina.\n✅ SIN necesidad de aparatos costosos.\n✅ SIN efectos secundarios.\n✅ En personas de todas las edades.\n💡 Practicaremos juntos para aprender a ELIMINAR EL DOLOR en menos de 12 minutos desde casa.\n🚨 IMPORTANTE:\n1️⃣ ¡No te salgas del grupo! Perderás tu acceso y no recibirás información clave.\n2️⃣ Nuestro equipo NUNCA te pedirá códigos, datos ni te contactará por privado. Solo confía en los administradores. ❌\n¡Nos vemos pronto! 👋\nGersson López",
+          "descId": "3EB0EE45ABAC8D8E658E954B298FFE52C022C3B5",
+          "restrict": false,
+          "announce": false,
+          "isCommunity": false,
+          "isCommunityAnnounce": false,
+          "joinApprovalMode": false,
+          "memberAddMode": false,
+          "participants": [
+            {
+              "id": "573017817643@s.whatsapp.net",
+              "admin": null
+            },
+            {
+              "id": "573058176936@s.whatsapp.net",
+              "admin": null
+            },
+            {
+              "id": "573136298562@s.whatsapp.net",
+              "admin": null
+            },
+            {
+              "id": "573218504711@s.whatsapp.net",
+              "admin": null
+            },
+            {
+              "id": "573245207576@s.whatsapp.net",
+              "admin": "superadmin"
+            }
+          ]
+        }
+      }
+    ],
+    "5 seg": [
+      {
+        "json": {
+          "id": "120363416723302643@g.us",
+          "subject": "Semana de la Terapia del Dolor #11",
+          "subjectOwner": "573245207576@s.whatsapp.net",
+          "subjectTime": 1746467127,
+          "size": 5,
+          "creation": 1746467127,
+          "owner": "573245207576@s.whatsapp.net",
+          "desc": "Bienvenidos a la *Semana de la Terapia del Dolor*\n🗓️ Fecha del evento: 26, 27 y 28 de mayo\n⏰ Hora: 7:00 PM (COL)\nEn este evento EN VIVO te mostraré cómo:\n✅ Eliminar el dolor SIN experiencia en medicina.\n✅ SIN necesidad de aparatos costosos.\n✅ SIN efectos secundarios.\n✅ En personas de todas las edades.\n💡 Practicaremos juntos para aprender a ELIMINAR EL DOLOR en menos de 12 minutos desde casa.\n🚨 IMPORTANTE:\n1️⃣ ¡No te salgas del grupo! Perderás tu acceso y no recibirás información clave.\n2️⃣ Nuestro equipo NUNCA te pedirá códigos, datos ni te contactará por privado. Solo confía en los administradores. ❌\n¡Nos vemos pronto! 👋\nGersson López",
+          "descId": "3EB0EE45ABAC8D8E658E954B298FFE52C022C3B5",
+          "restrict": false,
+          "announce": false,
+          "isCommunity": false,
+          "isCommunityAnnounce": false,
+          "joinApprovalMode": false,
+          "memberAddMode": false,
+          "participants": [
+            {
+              "id": "573017817643@s.whatsapp.net",
+              "admin": null
+            },
+            {
+              "id": "573058176936@s.whatsapp.net",
+              "admin": null
+            },
+            {
+              "id": "573136298562@s.whatsapp.net",
+              "admin": null
+            },
+            {
+              "id": "573218504711@s.whatsapp.net",
+              "admin": null
+            },
+            {
+              "id": "573245207576@s.whatsapp.net",
+              "admin": "superadmin"
+            }
+          ]
+        }
+      }
+    ],
+    "ObtenerLink": [
+      {
+        "json": {
+          "inviteUrl": "https://chat.whatsapp.com/Lm18AHA8Mjf8KoQvDnTmXo",
+          "inviteCode": "Lm18AHA8Mjf8KoQvDnTmXo"
+        }
+      }
+    ],
+    "EscribirGrupo": [
+      {
+        "json": {
+          "success": true
+        }
+      }
+    ],
+    "PromoveAdmins": [
+      {
+        "json": {
+          "updateParticipants": [
+            {
+              "status": "404",
+              "jid": "573158989416@s.whatsapp.net",
+              "content": {
+                "tag": "participant",
+                "attrs": {
+                  "jid": "573158989416@s.whatsapp.net",
+                  "error": "404"
+                }
+              }
+            },
+            {
+              "status": "404",
+              "jid": "573160780201@s.whatsapp.net",
+              "content": {
+                "tag": "participant",
+                "attrs": {
+                  "jid": "573160780201@s.whatsapp.net",
+                  "error": "404"
+                }
+              }
+            },
+            {
+              "status": "404",
+              "jid": "573233870781@s.whatsapp.net",
+              "content": {
+                "tag": "participant",
+                "attrs": {
+                  "jid": "573233870781@s.whatsapp.net",
+                  "error": "404"
+                }
+              }
+            },
+            {
+              "status": "200",
+              "jid": "573017817643@s.whatsapp.net",
+              "content": {
+                "tag": "participant",
+                "attrs": {
+                  "jid": "573017817643@s.whatsapp.net",
+                  "type": "admin"
+                }
+              }
+            },
+            {
+              "status": "200",
+              "jid": "573058176936@s.whatsapp.net",
+              "content": {
+                "tag": "participant",
+                "attrs": {
+                  "jid": "573058176936@s.whatsapp.net",
+                  "type": "admin"
+                }
+              }
+            },
+            {
+              "status": "200",
+              "jid": "573136298562@s.whatsapp.net",
+              "content": {
+                "tag": "participant",
+                "attrs": {
+                  "jid": "573136298562@s.whatsapp.net",
+                  "type": "admin"
+                }
+              }
+            },
+            {
+              "status": "200",
+              "jid": "573218504711@s.whatsapp.net",
+              "content": {
+                "tag": "participant",
+                "attrs": {
+                  "jid": "573218504711@s.whatsapp.net",
+                  "type": "admin"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "Config1": [
+      {
+        "json": {}
+      }
+    ],
+    "Config2": [
+      {
+        "json": {}
+      }
+    ],
+    "Setfoto": [
+      {
+        "json": {
+          "update": "success"
+        }
+      }
+    ],
+    "Evolution API": [
+      {
+        "json": {
+          "success": true,
+          "data": {
+            "groupJid": "120363416723302643@g.us",
+            "leave": true
+          }
+        }
+      }
+    ],
+    "No Operation, do nothing": [
+      {
+        "json": {
+          "success": true,
+          "data": {
+            "groupJid": "120363416723302643@g.us",
+            "leave": true
+          }
+        }
+      }
+    ],
+    "contadorinciail": [
+      {
+        "json": {
+          "contador": 11
+        }
+      }
+    ],
+    "BodysCreate": [
+      {
+        "json": {
+          "subject": "Semana de la Terapia del Dolor",
+          "description": "Bienvenidos a la *Semana de la Terapia del Dolor*\n🗓️ Fecha del evento: 26, 27 y 28 de mayo\n⏰ Hora: 7:00 PM (COL)\nEn este evento EN VIVO te mostraré cómo:\n✅ Eliminar el dolor SIN experiencia en medicina.\n✅ SIN necesidad de aparatos costosos.\n✅ SIN efectos secundarios.\n✅ En personas de todas las edades.\n💡 Practicaremos juntos para aprender a ELIMINAR EL DOLOR en menos de 12 minutos desde casa.\n🚨 IMPORTANTE:\n1️⃣ ¡No te salgas del grupo! Perderás tu acceso y no recibirás información clave.\n2️⃣ Nuestro equipo NUNCA te pedirá códigos, datos ni te contactará por privado. Solo confía en los administradores. ❌\n¡Nos vemos pronto! 👋\nGersson López",
+          "participants": [
+            "573058176936",
+            "573017817643",
+            "573158989416",
+            "573233870781",
+            "573160780201",
+            "573218504711",
+            "573136298562"
+          ]
+        }
+      },
+      {
+        "json": {
+          "subject": "Semana de la Terapia del Dolor",
+          "description": "Bienvenidos a la *Semana de la Terapia del Dolor*\n🗓️ Fecha del evento: 26, 27 y 28 de mayo\n⏰ Hora: 7:00 PM (COL)\nEn este evento EN VIVO te mostraré cómo:\n✅ Eliminar el dolor SIN experiencia en medicina.\n✅ SIN necesidad de aparatos costosos.\n✅ SIN efectos secundarios.\n✅ En personas de todas las edades.\n💡 Practicaremos juntos para aprender a ELIMINAR EL DOLOR en menos de 12 minutos desde casa.\n🚨 IMPORTANTE:\n1️⃣ ¡No te salgas del grupo! Perderás tu acceso y no recibirás información clave.\n2️⃣ Nuestro equipo NUNCA te pedirá códigos, datos ni te contactará por privado. Solo confía en los administradores. ❌\n¡Nos vemos pronto! 👋\nGersson López",
+          "participants": [
+            "573058176936",
+            "573017817643",
+            "573158989416",
+            "573233870781",
+            "573160780201",
+            "573218504711",
+            "573136298562"
+          ]
+        }
+      },
+      {
+        "json": {
+          "subject": "Semana de la Terapia del Dolor",
+          "description": "Bienvenidos a la *Semana de la Terapia del Dolor*\n🗓️ Fecha del evento: 26, 27 y 28 de mayo\n⏰ Hora: 7:00 PM (COL)\nEn este evento EN VIVO te mostraré cómo:\n✅ Eliminar el dolor SIN experiencia en medicina.\n✅ SIN necesidad de aparatos costosos.\n✅ SIN efectos secundarios.\n✅ En personas de todas las edades.\n💡 Practicaremos juntos para aprender a ELIMINAR EL DOLOR en menos de 12 minutos desde casa.\n🚨 IMPORTANTE:\n1️⃣ ¡No te salgas del grupo! Perderás tu acceso y no recibirás información clave.\n2️⃣ Nuestro equipo NUNCA te pedirá códigos, datos ni te contactará por privado. Solo confía en los administradores. ❌\n¡Nos vemos pronto! 👋\nGersson López",
+          "participants": [
+            "573058176936",
+            "573017817643",
+            "573158989416",
+            "573233870781",
+            "573160780201",
+            "573218504711",
+            "573136298562"
+          ]
+        }
+      },
+      {
+        "json": {
+          "subject": "Semana de la Terapia del Dolor",
+          "description": "Bienvenidos a la *Semana de la Terapia del Dolor*\n🗓️ Fecha del evento: 26, 27 y 28 de mayo\n⏰ Hora: 7:00 PM (COL)\nEn este evento EN VIVO te mostraré cómo:\n✅ Eliminar el dolor SIN experiencia en medicina.\n✅ SIN necesidad de aparatos costosos.\n✅ SIN efectos secundarios.\n✅ En personas de todas las edades.\n💡 Practicaremos juntos para aprender a ELIMINAR EL DOLOR en menos de 12 minutos desde casa.\n🚨 IMPORTANTE:\n1️⃣ ¡No te salgas del grupo! Perderás tu acceso y no recibirás información clave.\n2️⃣ Nuestro equipo NUNCA te pedirá códigos, datos ni te contactará por privado. Solo confía en los administradores. ❌\n¡Nos vemos pronto! 👋\nGersson López",
+          "participants": [
+            "573058176936",
+            "573017817643",
+            "573158989416",
+            "573233870781",
+            "573160780201",
+            "573218504711",
+            "573136298562"
+          ]
+        }
+      },
+      {
+        "json": {
+          "subject": "Semana de la Terapia del Dolor",
+          "description": "Bienvenidos a la *Semana de la Terapia del Dolor*\n🗓️ Fecha del evento: 26, 27 y 28 de mayo\n⏰ Hora: 7:00 PM (COL)\nEn este evento EN VIVO te mostraré cómo:\n✅ Eliminar el dolor SIN experiencia en medicina.\n✅ SIN necesidad de aparatos costosos.\n✅ SIN efectos secundarios.\n✅ En personas de todas las edades.\n💡 Practicaremos juntos para aprender a ELIMINAR EL DOLOR en menos de 12 minutos desde casa.\n🚨 IMPORTANTE:\n1️⃣ ¡No te salgas del grupo! Perderás tu acceso y no recibirás información clave.\n2️⃣ Nuestro equipo NUNCA te pedirá códigos, datos ni te contactará por privado. Solo confía en los administradores. ❌\n¡Nos vemos pronto! 👋\nGersson López",
+          "participants": [
+            "573058176936",
+            "573017817643",
+            "573158989416",
+            "573233870781",
+            "573160780201",
+            "573218504711",
+            "573136298562"
+          ]
+        }
+      }
+    ],
+    "ModificaNombres": [
+      {
+        "json": {
+          "subject": "Semana de la Terapia del Dolor #11",
+          "description": "Bienvenidos a la *Semana de la Terapia del Dolor*\n🗓️ Fecha del evento: 26, 27 y 28 de mayo\n⏰ Hora: 7:00 PM (COL)\nEn este evento EN VIVO te mostraré cómo:\n✅ Eliminar el dolor SIN experiencia en medicina.\n✅ SIN necesidad de aparatos costosos.\n✅ SIN efectos secundarios.\n✅ En personas de todas las edades.\n💡 Practicaremos juntos para aprender a ELIMINAR EL DOLOR en menos de 12 minutos desde casa.\n🚨 IMPORTANTE:\n1️⃣ ¡No te salgas del grupo! Perderás tu acceso y no recibirás información clave.\n2️⃣ Nuestro equipo NUNCA te pedirá códigos, datos ni te contactará por privado. Solo confía en los administradores. ❌\n¡Nos vemos pronto! 👋\nGersson López",
+          "participants": [
+            "573058176936",
+            "573017817643",
+            "573158989416",
+            "573233870781",
+            "573160780201",
+            "573218504711",
+            "573136298562"
+          ]
+        }
+      },
+      {
+        "json": {
+          "subject": "Semana de la Terapia del Dolor #12",
+          "description": "Bienvenidos a la *Semana de la Terapia del Dolor*\n🗓️ Fecha del evento: 26, 27 y 28 de mayo\n⏰ Hora: 7:00 PM (COL)\nEn este evento EN VIVO te mostraré cómo:\n✅ Eliminar el dolor SIN experiencia en medicina.\n✅ SIN necesidad de aparatos costosos.\n✅ SIN efectos secundarios.\n✅ En personas de todas las edades.\n💡 Practicaremos juntos para aprender a ELIMINAR EL DOLOR en menos de 12 minutos desde casa.\n🚨 IMPORTANTE:\n1️⃣ ¡No te salgas del grupo! Perderás tu acceso y no recibirás información clave.\n2️⃣ Nuestro equipo NUNCA te pedirá códigos, datos ni te contactará por privado. Solo confía en los administradores. ❌\n¡Nos vemos pronto! 👋\nGersson López",
+          "participants": [
+            "573058176936",
+            "573017817643",
+            "573158989416",
+            "573233870781",
+            "573160780201",
+            "573218504711",
+            "573136298562"
+          ]
+        }
+      },
+      {
+        "json": {
+          "subject": "Semana de la Terapia del Dolor #13",
+          "description": "Bienvenidos a la *Semana de la Terapia del Dolor*\n🗓️ Fecha del evento: 26, 27 y 28 de mayo\n⏰ Hora: 7:00 PM (COL)\nEn este evento EN VIVO te mostraré cómo:\n✅ Eliminar el dolor SIN experiencia en medicina.\n✅ SIN necesidad de aparatos costosos.\n✅ SIN efectos secundarios.\n✅ En personas de todas las edades.\n💡 Practicaremos juntos para aprender a ELIMINAR EL DOLOR en menos de 12 minutos desde casa.\n🚨 IMPORTANTE:\n1️⃣ ¡No te salgas del grupo! Perderás tu acceso y no recibirás información clave.\n2️⃣ Nuestro equipo NUNCA te pedirá códigos, datos ni te contactará por privado. Solo confía en los administradores. ❌\n¡Nos vemos pronto! 👋\nGersson López",
+          "participants": [
+            "573058176936",
+            "573017817643",
+            "573158989416",
+            "573233870781",
+            "573160780201",
+            "573218504711",
+            "573136298562"
+          ]
+        }
+      },
+      {
+        "json": {
+          "subject": "Semana de la Terapia del Dolor #14",
+          "description": "Bienvenidos a la *Semana de la Terapia del Dolor*\n🗓️ Fecha del evento: 26, 27 y 28 de mayo\n⏰ Hora: 7:00 PM (COL)\nEn este evento EN VIVO te mostraré cómo:\n✅ Eliminar el dolor SIN experiencia en medicina.\n✅ SIN necesidad de aparatos costosos.\n✅ SIN efectos secundarios.\n✅ En personas de todas las edades.\n💡 Practicaremos juntos para aprender a ELIMINAR EL DOLOR en menos de 12 minutos desde casa.\n🚨 IMPORTANTE:\n1️⃣ ¡No te salgas del grupo! Perderás tu acceso y no recibirás información clave.\n2️⃣ Nuestro equipo NUNCA te pedirá códigos, datos ni te contactará por privado. Solo confía en los administradores. ❌\n¡Nos vemos pronto! 👋\nGersson López",
+          "participants": [
+            "573058176936",
+            "573017817643",
+            "573158989416",
+            "573233870781",
+            "573160780201",
+            "573218504711",
+            "573136298562"
+          ]
+        }
+      },
+      {
+        "json": {
+          "subject": "Semana de la Terapia del Dolor #15",
+          "description": "Bienvenidos a la *Semana de la Terapia del Dolor*\n🗓️ Fecha del evento: 26, 27 y 28 de mayo\n⏰ Hora: 7:00 PM (COL)\nEn este evento EN VIVO te mostraré cómo:\n✅ Eliminar el dolor SIN experiencia en medicina.\n✅ SIN necesidad de aparatos costosos.\n✅ SIN efectos secundarios.\n✅ En personas de todas las edades.\n💡 Practicaremos juntos para aprender a ELIMINAR EL DOLOR en menos de 12 minutos desde casa.\n🚨 IMPORTANTE:\n1️⃣ ¡No te salgas del grupo! Perderás tu acceso y no recibirás información clave.\n2️⃣ Nuestro equipo NUNCA te pedirá códigos, datos ni te contactará por privado. Solo confía en los administradores. ❌\n¡Nos vemos pronto! 👋\nGersson López",
+          "participants": [
+            "573058176936",
+            "573017817643",
+            "573158989416",
+            "573233870781",
+            "573160780201",
+            "573218504711",
+            "573136298562"
+          ]
+        }
+      }
+    ],
+    "busqueda BD": [
+      {
+        "json": {
+          "#": 56,
+          "nombre": "Semana de la Terapia del Dolor #10",
+          "link": "https://chat.whatsapp.com/GWfvqYrW4oC0TiRbsrBLPV",
+          "id": "120363419107893975@g.us",
+          "Total": 0,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 55,
+          "nombre": "Semana de la Terapia del Dolor #9",
+          "link": "https://chat.whatsapp.com/DsfBicRKIIO253XqeoqaOu",
+          "id": "120363420573352188@g.us",
+          "Total": 0,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 54,
+          "nombre": "Semana de la Terapia del Dolor #8",
+          "link": "https://chat.whatsapp.com/GHpPt22U9eZCEP95k0RbSF",
+          "id": "120363417363703961@g.us",
+          "Total": 807,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 53,
+          "nombre": "Semana de la Terapia del Dolor #7",
+          "link": "https://chat.whatsapp.com/CUmOXLPVqQR0geyY3JcuZl",
+          "id": "120363417607138819@g.us",
+          "Total": 1000,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 52,
+          "nombre": "Semana de la Terapia del Dolor #6",
+          "link": "https://chat.whatsapp.com/KNZB6gU5QGu4WPdJr39QtQ",
+          "id": "120363398352777340@g.us",
+          "Total": 1000,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 51,
+          "nombre": "Semana de la Terapia del Dolor #5",
+          "link": "https://chat.whatsapp.com/DluvyLx7uXqIx9a5mV9Lkj",
+          "id": "120363401220615826@g.us",
+          "Total": 1000,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 50,
+          "nombre": "Semana de la Terapia del Dolor #4",
+          "link": "https://chat.whatsapp.com/FYHBPrzyJFkA1U7BkkoTDh",
+          "id": "120363400780042664@g.us",
+          "Total": 1000,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 49,
+          "nombre": "Semana de la Terapia del Dolor #3",
+          "link": "https://chat.whatsapp.com/Jr8xgCZIhYK1nvCzS9NtWP",
+          "id": "120363418220504501@g.us",
+          "Total": 1000,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 48,
+          "nombre": "Semana de la Terapia del Dolor #2",
+          "link": "https://chat.whatsapp.com/J5YR02loc9y4EqxADJDqTj",
+          "id": "120363418923835308@g.us",
+          "Total": 1000,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 47,
+          "nombre": "Semana de la Terapia del Dolor #1",
+          "link": "https://chat.whatsapp.com/FeUvY7haY0gDxCxyPljff3",
+          "id": "120363400844553414@g.us",
+          "Total": 1000,
+          "bienvenida": "no"
+        }
+      }
+    ],
+    "grupos vacios": [
+      {
+        "json": {
+          "#": 56,
+          "nombre": "Semana de la Terapia del Dolor #10",
+          "link": "https://chat.whatsapp.com/GWfvqYrW4oC0TiRbsrBLPV",
+          "id": "120363419107893975@g.us",
+          "Total": 0,
+          "bienvenida": "no"
+        }
+      },
+      {
+        "json": {
+          "#": 55,
+          "nombre": "Semana de la Terapia del Dolor #9",
+          "link": "https://chat.whatsapp.com/DsfBicRKIIO253XqeoqaOu",
+          "id": "120363420573352188@g.us",
+          "Total": 0,
+          "bienvenida": "no"
+        }
+      }
+    ],
+    "conteo grupos vacios": [
+      {
+        "json": {
+          "count_id": 2
+        }
+      }
+    ],
+    "# del ultimo grupo": [
+      {
+        "json": {
+          "conteo_grupo": 10
+        }
+      }
+    ],
+    "hay menos de 3 grupos?": [
+      {
+        "json": {
+          "conteo_grupo": 10
+        }
+      }
+    ],
+    "obtener datos de creacion": [
+      {
+        "json": {
+          "id": "1e900880-d85d-8005-b67c-fa9e5b15f3bc",
+          "name": "GERSSON",
+          "url": "https://www.notion.so/GERSSON-1e900880d85d8005b67cfa9e5b15f3bc",
+          "property_admins": "573058176936,573017817643,573158989416,573233870781,573160780201,573218504711,573136298562",
+          "property_sesion_creadora": "EMP-WHA1",
+          "property_imagen_grupos": "https://n8n-minio.wc2hpx.easypanel.host/n8n/05-04-00-06-imagenGrupo",
+          "property_nombre_grupos": "Semana de la Terapia del Dolor",
+          "property_tabla_bd": "GERSSON_LINKS",
+          "property_descripci_n": "Bienvenidos a la *Semana de la Terapia del Dolor*\n🗓️ Fecha del evento: 26, 27 y 28 de mayo\n⏰ Hora: 7:00 PM (COL)\nEn este evento EN VIVO te mostraré cómo:\n✅ Eliminar el dolor SIN experiencia en medicina.\n✅ SIN necesidad de aparatos costosos.\n✅ SIN efectos secundarios.\n✅ En personas de todas las edades.\n💡 Practicaremos juntos para aprender a ELIMINAR EL DOLOR en menos de 12 minutos desde casa.\n🚨 IMPORTANTE:\n1️⃣ ¡No te salgas del grupo! Perderás tu acceso y no recibirás información clave.\n2️⃣ Nuestro equipo NUNCA te pedirá códigos, datos ni te contactará por privado. Solo confía en los administradores. ❌\n¡Nos vemos pronto! 👋\nGersson López",
+          "property_lanzamiento": "GERSSON"
+        }
+      }
+    ],
+    "establecer variables": [
+      {
+        "json": {
+          "admins": "573058176936,573017817643,573158989416,573233870781,573160780201,573218504711,573136298562",
+          "sesion creadora": "EMP-WHA1",
+          "url_imagen": "https://n8n-minio.wc2hpx.easypanel.host/n8n/05-04-00-06-imagenGrupo",
+          "nombre": "Semana de la Terapia del Dolor",
+          "descripcion": "Bienvenidos a la *Semana de la Terapia del Dolor*\n🗓️ Fecha del evento: 26, 27 y 28 de mayo\n⏰ Hora: 7:00 PM (COL)\nEn este evento EN VIVO te mostraré cómo:\n✅ Eliminar el dolor SIN experiencia en medicina.\n✅ SIN necesidad de aparatos costosos.\n✅ SIN efectos secundarios.\n✅ En personas de todas las edades.\n💡 Practicaremos juntos para aprender a ELIMINAR EL DOLOR en menos de 12 minutos desde casa.\n🚨 IMPORTANTE:\n1️⃣ ¡No te salgas del grupo! Perderás tu acceso y no recibirás información clave.\n2️⃣ Nuestro equipo NUNCA te pedirá códigos, datos ni te contactará por privado. Solo confía en los administradores. ❌\n¡Nos vemos pronto! 👋\nGersson López",
+          "sesion admins": null,
+          "cantidad": 5,
+          "TABLA_BD": "GERSSON_LINKS"
+        }
+      }
+    ]
+  },
   "repo_name": "backupn8n",
   "repo_owner": "Santiagociroc11",
   "repo_path": "backup/",
@@ -896,6 +1507,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-05-04T04:51:10.000Z",
-  "versionId": "f1ddbb24-69e3-45c3-9f8d-3824ad6e408d"
+  "updatedAt": "2025-05-05T17:52:30.000Z",
+  "versionId": "775f0573-253b-48de-b8fc-5e020a931e95"
 }
