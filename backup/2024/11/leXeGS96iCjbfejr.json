@@ -312,6 +312,102 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "BD UÑAS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VENEZUELA?2": {
+      "main": [
+        [
+          {
+            "node": "ELIMINAR +1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NOMBRE6",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "encontrar4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NOMBRE6": {
+      "main": [
+        [
+          {
+            "node": "busqueda6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "busqueda6": {
+      "main": [
+        [
+          {
+            "node": "no existe?6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "no existe?6": {
+      "main": [
+        [
+          {
+            "node": "escritura6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "encontrar4": {
+      "main": [
+        [
+          {
+            "node": "tag manychat4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BD UÑAS": {
+      "main": [
+        [
+          {
+            "node": "ES UÑAS?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ES UÑAS?": {
+      "main": [
+        [
+          {
+            "node": "VENEZUELA?2",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     }
@@ -1466,6 +1562,357 @@
         2680,
         1360
       ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6e074b0d-4663-476d-ae90-8be442f648cd",
+              "leftValue": "={{ $('Edit Fields').item.json.numero }}",
+              "rightValue": "58",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "9019724e-d875-4c5c-b14c-14815709f5df",
+      "name": "VENEZUELA?2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3360,
+        1920
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://evolution.automscc.com/group/findGroupInfos/{{ $('Edit Fields').item.json.instancia }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "groupJid",
+              "value": "={{ $json.id }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3580,
+        2140
+      ],
+      "id": "3dd836a1-6c8d-4c05-bf3c-f0cf628847be",
+      "name": "NOMBRE6"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "UÑAS_L2_WHA",
+          "mode": "list",
+          "cachedResultName": "UÑAS_L2_WHA"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "whatsapp",
+              "condition": "LIKE",
+              "value": "=%{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}%"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        3800,
+        2140
+      ],
+      "id": "0ccd25fd-8b53-4c9e-b295-8a45e51d5f90",
+      "name": "busqueda6",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "UÑAS_L2_WHA",
+          "mode": "list",
+          "cachedResultName": "UÑAS_L2_WHA"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "dia",
+              "value": "={{ $now.format('yyyy-MM-dd') }}"
+            },
+            {
+              "column": "hora",
+              "value": "={{ $now.format('HH:mm:ss') }}"
+            },
+            {
+              "column": "whatsapp",
+              "value": "=+{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}"
+            },
+            {
+              "column": "grupo",
+              "value": "={{ $('Edit Fields').item.json.grupo }}"
+            },
+            {
+              "column": "nombre_grupo",
+              "value": "={{ $('NOMBRE6').item.json.subject }}"
+            },
+            {
+              "column": "fuente",
+              "value": "FB ADS"
+            }
+          ]
+        },
+        "options": {
+          "detailedOutput": true
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        4240,
+        2120
+      ],
+      "id": "4a1e71dc-1503-4803-8efd-b842ec5a6224",
+      "name": "escritura6",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7f3e8099-ae55-4534-a5be-217d413c0ff2",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        4020,
+        2140
+      ],
+      "id": "ef146b16-a2a6-4269-8a10-efa64fe1a266",
+      "name": "no existe?6"
+    },
+    {
+      "parameters": {
+        "collection": "=UÑAS-L2",
+        "options": {},
+        "query": "={\n  \"whatsapp\": {\n    \"$regex\": \".*{{ $('Edit Fields').item.json.numero.replace(/\\D/g, \"\").slice(-6) }}.*\",\n    \"$options\": \"i\"\n  }\n}"
+      },
+      "id": "941dde56-79d0-408c-8247-d5553d191a83",
+      "name": "encontrar4",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        3580,
+        1940
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mongoDb": {
+          "id": "JAKPCevXk5GvKOt9",
+          "name": "MONGO CARLOS ARZA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.manychat.com/fb/subscriber/addTagByName",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 1189237:5ad48c01d73704bf48fc266399a867f6"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"tag_name\": \"INGRESOGRUPO-L1\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3800,
+        1940
+      ],
+      "id": "8e873511-dd36-4b32-bb18-29209a7e4dd3",
+      "name": "tag manychat4",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "maxTries": 5,
+      "disabled": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('Webhook').item.json.body.instance }}?groupJid={{ $('Edit Fields').item.json.grupo }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{ \"action\": \"remove\", \n  \n  \"participants\": [ \"{{ $('Edit Fields').item.json.numero }}\" ] } ",
+        "options": {}
+      },
+      "id": "958eb40d-ed3b-4321-bac1-070f7c86d7e1",
+      "name": "ELIMINAR +1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3580,
+        1740
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "ARZA_UÑAS_LINKS",
+          "mode": "list",
+          "cachedResultName": "ARZA_UÑAS_LINKS"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $('If').item.json.grupo }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d7df9357-b141-4c1f-8c8b-3b95b0a32d53",
+      "name": "BD UÑAS",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        2920,
+        1940
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "REDIRECCIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8d2037fa-e2a7-4668-901e-4ca0a27a93ab",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "34454dea-b832-4cd6-9791-0900a3c01a32",
+      "name": "ES UÑAS?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3140,
+        1940
+      ]
     }
   ],
   "pinData": {
@@ -1540,6 +1987,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-05-04T04:48:11.000Z",
-  "versionId": "23f8fe92-ebba-4428-bd42-eae2f4274e55"
+  "updatedAt": "2025-05-06T04:52:27.000Z",
+  "versionId": "77a6331f-10f0-4a51-9470-e98c69a9d2ab"
 }
