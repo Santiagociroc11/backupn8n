@@ -1,0 +1,71 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-15T23:13:22.879Z",
+  "id": "M0XEUNDfYS0zHiJW",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        -20
+      ],
+      "id": "e7d1a1fd-a4fd-45b8-8c17-0b3f7a911d4d",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -80,
+        -20
+      ],
+      "id": "403d8d51-aa7d-42c9-8e5c-174608d76213",
+      "name": "MySQL",
+      "credentials": {
+        "mySql": {
+          "id": "4J4D0oAUKKPzfhYR",
+          "name": "ACCOUNTING MYSQL"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-15T23:13:22.879Z",
+  "versionId": "11270972-0add-4894-9e37-e80a4595f2cf"
+}
