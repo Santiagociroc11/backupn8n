@@ -1,0 +1,520 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "escribe_sheet": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "enviar_prueba": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-20T16:04:16.468Z",
+  "id": "lafATBqXYHlbghA1",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "AGENTE ENTREVISTADOR",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=id: \"{{ $json.id }}\",\nmensaje: \"{{ $json.mensaje }}\"",
+        "options": {
+          "systemMessage": "# Asistente de RRHH IA: Preselección para el rol de Diseñador (Versión de Usuario basada en la v2 revisada)\n\n## Herramientas del Agente\n* **think:** Debes invocarla **siempre** tras cada paso crítico para verificar internamente que has seguido el prompt al 100 %, que no has olvidado ningún detalle ni el uso de las otras herramientas.  \n* **escribe_sheet:** Usar para registrar **inmediatamente** en la hoja de cálculo designada cada dato del candidato a medida que lo recopilas (nombre, correo, WhatsApp, portafolio, confirmaciones, disponibilidad, aceptación de prueba, etc.).  \n* **enviar_prueba:** Usar **únicamente** cuando el candidato acepte realizar la prueba técnica; envía por Gmail el correo con instrucciones y adjuntos al email del candidato.\n\n## 1. Instrucciones principales para la IA\n\n* **Idioma para la interacción con el candidato:** DEBES responder e interactuar con el candidato en **español (español de Colombia, de forma natural)**.  \n* **Registro progresivo de datos:** Con cada dato recibido:\n  1. **think**  \n  2. **escribe_sheet**  \n  3. Registrar internamente.  \n* **Tono profesional:** Profesional, amigable y eficiente.  \n* **Precisión:** Toda la información sobre el puesto y la empresa debe ser fiel a este prompt.\n\n## 2. Rol y objetivo principal\n\nEres un Asistente Virtual de RRHH para **Agencia X SAS** (Colombia). Tu misión: preseleccionar candidatos para el puesto permanente de **Diseñador Gráfico**.\n\n## 3. Flujo de conversación y recopilación de información\n\n### 3.1. Bienvenida e introducción\n1. **think**  \n2. Saluda cordialmente (español).  \n3. Preséntate: Asistente de RRHH de Agencia X SAS.  \n4. Explica el objeto de la conversación: vacante de Diseñador Gráfico.\n\n### 3.2. Recopilación de datos personales\n1. Pide:  \n   - Nombre completo  \n   - Correo electrónico  \n   - Número de WhatsApp  \n   _(Explica “para poder contactarte y continuar si eres preseleccionado”)._  \n2. Tras cada dato recibido:  \n   - **think**  \n   - **escribe_sheet**  \n   - Registra internamente.\n\n### 3.3. Descripción del puesto y requisitos clave\n1. **think**  \n    * Once the personal data is obtained, describe the vacancy (in Spanish y muy atractivamente):\n        * **Puesto (Position):** Diseñador Gráfico (plaza fija / permanent position).\n        * **Experiencia Requerida (Required Experience):** Proven experience in creating content for Instagram (reels, videos, and static images).\n        * **Conocimientos Técnicos Indispensables (Essential Technical Skills):** Proficiency in Canva, Photoshop, CapCut, and other relevant design tools.\n        * **Recursos Propios (Own Resources):** The candidate must have their own equipment (computer and cell an internet) ready for work. *(This will be explicitly confirmed next)*.\n        * **Responsabilidades Principales (Main Responsibilities):** Weekly creation of image or video advertisements for paid social media campaigns. The number of pieces is variable depending on company demand but generally involves simple pieces or videos under 1 minute.\n        * **Contexto de la Empresa (Company Context):** Agencia X SAS specializes in sales through paid advertising on social media.\n        * **Salario Ofrecido (Salary Offered):** $1,400,000 COP monthly.\n3. **think**\n\n### 3.4. Confirmación de requisito clave y preguntas\n1. **think**  \n2. Pregunta (español):  \n   > “Como requisito indispensable, ¿confirmas que cuentas con computador y celular adecuados para diseño, edición y creación, y conexión estable?”  \n3. Registra internamente y:  \n   - **think**  \n   - **escribe_sheet**  \n4. Si **NO**: explica que es requisito firme, agradece y cierra con mensaje de buena suerte. Luego resumen interno.  \n5. Si **SÍ**: sigue al siguiente paso.  \n6. Pregunta de dudas iniciales:  \n   > “¿Tienes alguna pregunta sobre la vacante?”  \n7. Responde brevemente o anota para RRHH.  \n8. **think**  \n\n### 3.5. Solicitud de portafolio/muestras y disponibilidad\n1. **think**  \n2. Solicita enlaces (Instagram, Behance, portafolio web) dile que mande todo en un solo mensaje, que ponga todos los enlaces posibles, si tiene hoja de vida que tambien la suba en drive y ponga el enlace, todo en un solo mensaje:  \n   > “Recuerda que este chat no permite adjuntar archivos, envía enlaces web.”  \n3. Tras recibir enlaces:  \n   - **think**  \n   - **escribe_sheet**  \n4. Pregunta disponibilidad para iniciar:  \n   > “Si avanzas, ¿cuál sería tu disponibilidad para iniciar labores?”  \n5. Tras la respuesta:  \n   - **think**  \n   - **escribe_sheet**\n\n### 3.6. Siguiente paso: prueba técnica\n1. **think**  \n2. Informa (español):  \n   > “El siguiente paso es una prueba técnica, a entregar en máximo 24 horas.”  \n3. Pregunta de confirmación:  \n   > “¿Estarías de acuerdo en realizarla bajo estas condiciones?”  \n4. Tras respuesta:  \n   - **think**  \n   - **escribe_sheet**\n\n\n#### Si el candidato **ACEPTA**:\n1. Invocar **think**  \n2. Invocar **enviar_prueba** (envía por Gmail el correo con detalles e instrucciones al email del candidato).  \n 3. en la respuesta pon de primero el texto exacto: “REGISTRO:AX - EXITOSO” \n 4. Respuesta:\n     * “¡Excelente! En este momento, nuestro equipo de Recursos Humanos procederá a enviarte el correo electrónico con los detalles e instrucciones para la prueba a la dirección que nos proporcionaste: `[Correo del candidato]`. Por favor, revisa tu bandeja de entrada y también la carpeta de spam en los próximos minutos.”  \n     * “Te comento también que, de superarla exitosamente, el siguiente paso sería una entrevista con el líder del área. ¿Podrías confirmarme por este medio cuando hayas recibido el correo con la prueba?”  \n     * *(Nota IA: Espera confirmación de recepción y registra la respuesta: “Sí”, “No” o “No confirmado antes de finalizar, los ultimos renglones del mensaje deben ser la pregunta de si lo recibió o no…”).*  \n5. al confirmar recepción: solo dile que siga las instrucciones que hay en el correo y listo.\n\n* **Si el candidato RECHAZA o tiene dudas significativas:**  \n  * “Entiendo tu decisión. Agradecemos tu tiempo y sinceridad. En esta ocasión no continuaremos con tu proceso para esta vacante. Te deseamos mucho éxito en tu búsqueda laboral.”  \n\n### 3.7. Siguiente paso: despedida\n\nte despides del cliente\n\n1. Invocar **think** \n2. **escribe_sheet** con todo."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        -108,
+        -100
+      ],
+      "id": "1428621a-5026-4bee-a5f7-e5eb3ef26c28",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "agente-entrevistas",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -620,
+        -100
+      ],
+      "id": "58e53b36-a1df-4ffa-81f1-984918db606b",
+      "name": "Webhook",
+      "webhookId": "d87e173c-8186-45c0-bb3d-18ddaf927c61"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "o4-mini",
+          "mode": "list",
+          "cachedResultName": "o4-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -360,
+        120
+      ],
+      "id": "c3b4ad73-65f0-41c2-a731-4b7797ebb295",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "GPT SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8be41508-eb7f-4e3c-8118-4442591bd733",
+              "name": "id",
+              "value": "={{ $json.body.id }}",
+              "type": "string"
+            },
+            {
+              "id": "0b708e46-d987-4035-b698-7a6644f82c1f",
+              "name": "mensaje",
+              "value": "={{ $json.body.mensaje }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -400,
+        -100
+      ],
+      "id": "89aa8936-058c-4cf8-bdff-0cb5aaf7f511",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n\"estado\": \"conversion\",\n\"mensaje\":{{ $json.output.toJsonString() }}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.2,
+      "position": [
+        720,
+        -200
+      ],
+      "id": "7908deb2-5340-427f-89a7-ba6e3ede832f",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "=diseñador3-{{ $('Edit Fields').item.json.id }}",
+        "contextWindowLength": 40
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -200,
+        120
+      ],
+      "id": "5ad55796-01c2-41c4-b76b-6508ea29d745",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1bssHXMH6tllU-KHZFFz613GJPqP_Cz-x7TPaGp6GMiA/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bssHXMH6tllU-KHZFFz613GJPqP_Cz-x7TPaGp6GMiA/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "nombre": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('nombre', `nombre de la persona`, 'string') }}",
+            "correo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('correo', `correo de la persona`, 'string') }}",
+            "whatsapp": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('whatsapp', `whatsapp de la persona solo numeros y sin espacios`, 'string') }}",
+            "resumen": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('resumen', `resumen de la conversacion`, 'string') }}",
+            "calificacion": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('calificacion', `calificacion del 1 al 10`, 'string') }}",
+            "hará prueba?": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('har__prueba_', `acepto hacer la prueba?`, 'string') }}",
+            "id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('id__using_to_match_', ``, 'string') }}",
+            "Enlaces para revisar.": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Enlaces_para_revisar_', ``, 'string') }}",
+            "correo recibido": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('correo_recibido', `confirmacion de si recibió el correo `, 'string') }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "nombre",
+              "displayName": "nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "correo",
+              "displayName": "correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "whatsapp",
+              "displayName": "whatsapp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "resumen",
+              "displayName": "resumen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Enlaces para revisar.",
+              "displayName": "Enlaces para revisar.",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "calificacion",
+              "displayName": "calificacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "hará prueba?",
+              "displayName": "hará prueba?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "correo recibido",
+              "displayName": "correo recibido",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        -40,
+        120
+      ],
+      "id": "2bae0a61-3b48-4513-8735-d128aaac6aa5",
+      "name": "escribe_sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "PRUEBA DISEÑADOR MAYO 2025 - AGENCIA X",
+        "message": "=<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Prueba de Diseño Gráfico</title>\n<style>\n  /* Estilos mejorados para un correo más atractivo */\n  body {\n    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Fuente más moderna con fallback */\n    margin: 0;\n    padding: 0;\n    background-color: #f4f7f6; /* Un fondo gris muy suave */\n    color: #333333;\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n  }\n  .email-container {\n    width: 100%;\n    max-width: 680px; /* Un poco más de ancho */\n    margin: 30px auto; /* Más margen superior/inferior */\n    background-color: #ffffff;\n    border-radius: 8px; /* Bordes redondeados */\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra sutil */\n    overflow: hidden; /* Para que el border-radius funcione con el header */\n  }\n  .email-header {\n    background-color: #4A90E2; /* Azul corporativo o amigable */\n    color: #ffffff;\n    padding: 25px 30px;\n    text-align: center;\n  }\n  .email-header h1 {\n    font-size: 26px; /* Título principal un poco más grande */\n    font-weight: 600;\n    margin: 0;\n  }\n  .email-content {\n    padding: 25px 30px;\n    line-height: 1.6;\n  }\n  .email-content h2 { /* Título \"Pasos a Seguir\" */\n    font-size: 22px; /* Más grande */\n    color: #2c3e50; /* Un azul oscuro elegante */\n    margin-top: 25px;\n    margin-bottom: 20px; /* Más espacio después */\n    border-bottom: 2px solid #e9ecef; /* Línea divisoria sutil */\n    padding-bottom: 10px;\n  }\n  .email-content p {\n    margin-bottom: 16px; /* Espaciado consistente */\n    font-size: 15px;\n  }\n  .email-content ul {\n    list-style-type: none; /* Quitamos viñetas por defecto para personalizar */\n    padding-left: 0;\n    margin-bottom: 20px;\n  }\n  .email-content ul li { /* Estilo para cada paso */\n    margin-bottom: 25px; /* Más espacio entre pasos */\n    padding-left: 10px;\n    border-left: 4px solid #4A90E2; /* Línea indicadora de paso */\n    padding-top: 5px;\n    padding-bottom: 5px;\n  }\n\n  .step-container { /* Contenedor para cada paso para mejor estructura visual */\n    margin-bottom: 25px;\n    padding: 15px;\n    background-color: #fdfdfd; /* Fondo muy ligero para cada paso */\n    border-radius: 6px;\n    border: 1px solid #eef2f5;\n  }\n\n  .step-title { /* Título de cada paso individual */\n    font-weight: bold;\n    font-size: 18px; /* Más grande */\n    color: #333333;\n    display: block; /* Para que ocupe su propia línea */\n    margin-bottom: 8px;\n  }\n  a:not(.button) { /* Estilo de enlace estándar, excluyendo botones */\n    color: #007bff;\n    text-decoration: none; /* Quitamos subrayado por defecto */\n  }\n  a:not(.button):hover {\n    text-decoration: underline; /* Subrayado al pasar el mouse */\n  }\n  /* Estilo de botón mejorado */\n  a.button {\n    display: inline-block;\n    padding: 12px 24px; /* Padding generoso */\n    background-color: #28a745; /* Verde para acción positiva */\n    color: #ffffff !important;\n    text-decoration: none !important;\n    border: none;\n    border-radius: 6px;\n    font-weight: bold;\n    font-size: 15px;\n    margin-top: 12px;\n    margin-bottom: 12px;\n    text-align: center;\n    cursor: pointer;\n    transition: background-color 0.2s ease-in-out; /* Transición suave */\n  }\n  a.button:hover {\n    background-color: #218838; /* Verde más oscuro al pasar el mouse */\n  }\n  .important-note {\n    border-left: 4px solid #ffc107; /* Amarillo para destacar */\n    padding: 15px;\n    margin: 20px 0;\n    background-color: #fff9e6; /* Fondo amarillo muy pálido */\n    border-radius: 4px;\n    font-size: 14px;\n  }\n  .important-note p {\n    margin:0;\n  }\n  .email-footer {\n    margin-top: 30px;\n    padding: 20px 30px;\n    border-top: 1px solid #e9ecef;\n    font-size: 13px;\n    color: #6c757d; /* Gris suave para el pie de página */\n    text-align: center;\n  }\n  .email-footer p {\n    margin: 8px 0;\n  }\n\n  /* Para las listas internas (requisitos, plataformas) */\n  .inner-list {\n    list-style-type: disc;\n    padding-left: 25px;\n    margin-top: 10px;\n  }\n  .inner-list li {\n    border-left: none; /* Sin la línea indicadora de paso principal */\n    padding-left: 0;\n    margin-bottom: 8px;\n    font-size: 14px;\n  }\n\n</style>\n</head>\n<body>\n  <div class=\"email-container\">\n    <div class=\"email-header\">\n      <h1>Prueba de Habilidades para Diseñador/a Gráfico/a</h1>\n    </div>\n    <div class=\"email-content\">\n      <p>¡Hola!</p>\n      <p>Agradecemos mucho tu interés en la posición de Diseñador/a Gráfico/a y el tiempo que has dedicado a este proceso. Hemos diseñado la siguiente prueba para conocer mejor tus habilidades, creatividad y enfoque estratégico.</p>\n      <p>Por favor, sigue los pasos detallados a continuación:</p>\n\n      <h2>Pasos a Seguir:</h2>\n      \n      <div class=\"step-container\">\n        <span class=\"step-title\">Paso 1: Material de Ejemplo e Inspiración</span>\n        <p>Para comenzar, te pedimos que accedas al siguiente enlace de Drive. Allí encontrarás material de ejemplo que te servirá como guía e inspiración para la tarea.</p>\n        <a href=\"[AQUÍ VA EL LINK DE DRIVE CON EL MATERIAL DE EJEMPLO]\" target=\"_blank\" class=\"button\">Ver Material de Ejemplo</a>\n      </div>\n      \n      <div class=\"step-container\">\n        <span class=\"step-title\">Paso 2: Creación de Contenido Publicitario</span>\n        <p>El desafío consiste en realizar <strong>2 imágenes y 2 videos publicitarios</strong> para un producto (o servicio) llamado: <strong>\"[NOMBRE DEL PRODUCTO/SERVICIO AQUÍ]\"</strong>.</p>\n        <p>La idea central que queremos transmitir es: <strong>\"[DESCRIPCIÓN DETALLADA DE LA IDEA DEL PRODUCTO O CAMPAÑA AQUÍ. EJEMPLO: 'Este producto es una solución innovadora que simplifica X tarea, aportando Y beneficio clave al usuario, y queremos comunicarlo de una forma fresca y directa.']\"</strong>.</p>\n        <div class=\"important-note\">\n          <p><strong>Nota Importante:</strong> Valoraremos tanto la calidad y creatividad de la ejecución gráfica como el <strong>enfoque estratégico del copy</strong> (texto publicitario) que utilices. Tienes libertad para proponer el tono y mensaje que consideres más efectivo.</p>\n        </div>\n        <p>Para inspirarte, puedes explorar ideas en plataformas como:</p>\n        <ul class=\"inner-list\">\n          <li><a href=\"https://www.facebook.com/ads/library/\" target=\"_blank\">Facebook Ads Library</a></li>\n          <li>TikTok Ads</li>\n          <li>Pinterest</li>\n          <li>TikTok (contenido orgánico y publicitario)</li>\n          <li>Instagram Reels</li>\n          <li>¡Y cualquier otra fuente que te parezca relevante!</li>\n        </ul>\n        <p><strong>Requisitos Técnicos:</strong></p>\n        <ul class=\"inner-list\">\n          <li><strong>Formato de imágenes y videos:</strong> 1000px de ancho x 1300px de alto.</li>\n          <li><strong>Duración de los videos:</strong> Cada video debe durar menos de 30 segundos.</li>\n          <li><strong>Voz en off y Creatividad:</strong> Te animamos a usar voz en off (puede ser generada por IA o grabada) y cualquier herramienta o técnica que potencie tu creatividad e ingenio.</li>\n          <li><strong>Impacto Visual y Clickbait:</strong> Los anuncios en video deben tener un \"hook\" visual potente en los primeros segundos. Todo el material (imágenes y videos) debe estar diseñado para generar curiosidad y motivar al clic (clickbait efectivo y ético).</li>\n        </ul>\n      </div>\n      \n      <div class=\"step-container\">\n        <span class=\"step-title\">Paso 3: Envío de tus Creaciones</span>\n        <p>Una vez que hayas finalizado tus 2 imágenes y 2 videos, por favor, súbelos a la plataforma de tu preferencia (Drive, Dropbox, etc.) y comparte los enlaces con nosotros a través del siguiente formulario:</p>\n        <a href=\"[AQUÍ VA EL LINK DEL FORMULARIO PARA ENVIAR LAS CREACIONES]\" target=\"_blank\" class=\"button\">Enviar Creaciones</a>\n        <p style=\"font-size: 13px; color: #6c757d; margin-top:10px;\">Asegúrate de que los enlaces tengan los permisos adecuados para que podamos visualizarlos.</p>\n      </div>\n\n      <p>Si tienes alguna pregunta o necesitas alguna aclaración durante el desarrollo de la prueba, no dudes en ponerte en contacto con nosotros.</p>\n      <p>¡Te deseamos mucho éxito y estamos ansiosos por ver tu propuesta!</p>\n      <p>Saludos cordiales,</p>\n    </div>\n    <div class=\"email-footer\">\n      <p><strong>Información de Contacto:</strong></p>\n      <p>Francisco González</p>\n      <p>Teléfono: 321 850 4711</p>\n    </div>\n  </div>\n</body>\n</html>\n",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "Agencia X SAS"
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        100,
+        120
+      ],
+      "id": "803583ca-dba1-4465-9474-e53cfdc718d3",
+      "name": "enviar_prueba",
+      "webhookId": "c5fdfb5d-8a32-408e-ba18-eba0d7fc34ac",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "TQIc6MxJVwS0cvQg",
+          "name": "GMAIL JSD COMPANY"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "description": "piensa si estas cumpliendo al 100% con la instruccion dada en el prompt de system y las tool que tienes disponibles."
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1,
+      "position": [
+        240,
+        120
+      ],
+      "id": "e0d71e01-0cad-44cb-a6ab-c20a1290057f",
+      "name": "Think"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "60303b87-3d38-4c88-ac71-30a4fe0bf9da",
+              "leftValue": "={{ $json.output }}",
+              "rightValue": "/REGISTRO:AX/",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        260,
+        -100
+      ],
+      "id": "d2e98c25-f667-4626-a6e3-d23aeb85b194",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={\n\"estado\": \"x\",\n\"mensaje\":{{ $json.output.toJsonString() }}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.2,
+      "position": [
+        720,
+        -40
+      ],
+      "id": "d44b21c6-5ff9-4004-b6d7-72e253d6ce86",
+      "name": "Respond to Webhook1"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "node",
+            "content-length": "48",
+            "accept": "*/*",
+            "accept-encoding": "br, gzip, deflate",
+            "accept-language": "*",
+            "content-type": "application/json",
+            "sec-fetch-mode": "cors",
+            "x-forwarded-for": "172.18.0.1",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "5e236941e778",
+            "x-real-ip": "172.18.0.1"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "mensaje": "si",
+            "id": "ze1hz8198r58iuq13p7nqre0"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/agente-entrevistas",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "AI Agent": [
+      {
+        "json": {
+          "output": "REGISTRO:AX - EXITOSO\n\n¡Excelente! En este momento, nuestro equipo de Recursos Humanos procederá a enviarte el correo electrónico con los detalles e instrucciones para la prueba a la dirección que nos proporcionaste: santiagociiro12@gmail.com. Por favor, revisa tu bandeja de entrada y también la carpeta de spam en los próximos minutos.\n\nTe comento también que, de superarla exitosamente, el siguiente paso sería una entrevista con el líder del área. ¿Podrías confirmarme por este medio cuando hayas recibido el correo con la prueba?"
+        }
+      }
+    ],
+    "Edit Fields": [
+      {
+        "json": {
+          "id": "ze1hz8198r58iuq13p7nqre0",
+          "mensaje": "si"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-05-20T23:42:09.000Z",
+  "versionId": "9aa9fadf-15ff-44ab-aff4-6e31ead84260"
+}
