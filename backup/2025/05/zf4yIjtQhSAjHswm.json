@@ -1,0 +1,165 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-21T22:10:27.680Z",
+  "id": "zf4yIjtQhSAjHswm",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 4",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        -80
+      ],
+      "id": "2f9a387b-529f-4f64-9a98-8c261a6fd297",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_ASESORES",
+          "mode": "list",
+          "cachedResultName": "GERSSON_ASESORES"
+        },
+        "returnAll": true,
+        "sort": {
+          "values": [
+            {
+              "column": "PRIORIDAD",
+              "direction": "DESC"
+            },
+            {
+              "column": "=CARRITOS"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        -360,
+        -80
+      ],
+      "id": "0b0f4372-d9e9-4ae3-8162-eec5f22a0c82",
+      "name": "Limit",
+      "credentials": {
+        "postgres": {
+          "id": "Y9DYFWSCuPRQbP2H",
+          "name": "POSTGRESS GERSSON"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "3aab7a27-9024-42be-84ba-ced7eca944ed",
+              "leftValue": "={{ $now.toUTC().toSeconds().floor() }}",
+              "rightValue": "={{ $json.FECHA_INICIO_REGLA?.toNumber() }}",
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            },
+            {
+              "id": "a38ad885-f272-42a9-a062-7ef19e9f1784",
+              "leftValue": "={{ $now.toUTC().toSeconds().floor() }}",
+              "rightValue": "={{ $json.FECHA_FIN_REGLA?.toNumber() }}",
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -140,
+        -80
+      ],
+      "id": "523fb56d-bb8f-4712-b502-15c7a940efb5",
+      "name": "If"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        140,
+        -40
+      ],
+      "id": "412de673-4466-4c22-b304-cbf1e1c38721",
+      "name": "Limit1"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-22T01:49:23.000Z",
+  "versionId": "e2a81f84-dcf2-47b2-9d4b-5d515153636d"
+}
