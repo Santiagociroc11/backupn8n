@@ -114,7 +114,7 @@
       "main": [
         [
           {
-            "node": "Limit",
+            "node": "Asesores",
             "type": "main",
             "index": 0
           }
@@ -303,12 +303,7 @@
       "main": [
         [
           {
-            "node": "AI Agent",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Merge1",
+            "node": "CLIENTE NUEVO - CERRADOR",
             "type": "main",
             "index": 0
           }
@@ -320,51 +315,6 @@
         [
           {
             "node": "CLIENTE EXISTENTE - CERRADOR",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "AI Agent": {
-      "main": [
-        [
-          {
-            "node": "Evolution API",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Evolution API": {
-      "main": [
-        [],
-        [
-          {
-            "node": "Merge1",
-            "type": "main",
-            "index": 1
-          }
-        ]
-      ]
-    },
-    "Merge1": {
-      "main": [
-        [
-          {
-            "node": "CLIENTE NUEVO - CERRADOR",
             "type": "main",
             "index": 0
           }
@@ -506,17 +456,6 @@
         ]
       ]
     },
-    "Limit": {
-      "main": [
-        [
-          {
-            "node": "conteo + 1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "conteo + 1": {
       "main": [
         [
@@ -621,6 +560,40 @@
         [
           {
             "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "quitar bloqueados": {
+      "main": [
+        [],
+        [
+          {
+            "node": "escoger",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "escoger": {
+      "main": [
+        [
+          {
+            "node": "conteo + 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asesores": {
+      "main": [
+        [
+          {
+            "node": "quitar bloqueados",
             "type": "main",
             "index": 0
           }
@@ -1146,8 +1119,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        1780,
-        60
+        1920,
+        0
       ],
       "id": "2a01a731-ac59-403f-96b1-b00d5f2e7885",
       "name": "ASIGNADA?"
@@ -1180,8 +1153,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2120,
-        -400
+        2180,
+        -520
       ],
       "id": "921be498-52fa-4be8-a443-3c557bce68c0",
       "name": "existe en manychat?"
@@ -1215,8 +1188,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2740,
-        -480
+        2800,
+        -600
       ],
       "id": "851b7de7-6470-4367-afe7-b99561ed92f5",
       "name": "ENVIAR FLUJO BV",
@@ -1242,8 +1215,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2540,
-        -340
+        2600,
+        -460
       ],
       "id": "33731b04-de1a-4bdc-a925-aa0268a06776",
       "name": "id"
@@ -1265,8 +1238,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2360,
-        -480
+        2420,
+        -600
       ],
       "id": "14d1fcc2-8c80-406c-9683-9342b8fafc08",
       "name": "id1"
@@ -1303,7 +1276,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3980,
+        3560,
         380
       ]
     },
@@ -1315,8 +1288,8 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        1840,
-        -620
+        1920,
+        -740
       ],
       "typeVersion": 1,
       "id": "ed193b43-b767-425e-abfa-2980136a4c80",
@@ -1359,8 +1332,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1900,
-        -540
+        1960,
+        -660
       ],
       "onError": "continueRegularOutput"
     },
@@ -1371,8 +1344,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2820,
-        -80
+        2960,
+        -140
       ],
       "id": "6632db46-0264-4502-932e-272c15ba3458",
       "name": "mensaje"
@@ -1384,8 +1357,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2340,
-        140
+        2480,
+        80
       ],
       "id": "92a72319-6b56-4838-9c1a-39c2ac92d0fa",
       "name": "mensaje1"
@@ -1419,8 +1392,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2320,
-        -320
+        2380,
+        -440
       ],
       "id": "65f15e76-32bb-4dbf-9c2c-a18696bbe1bc",
       "name": "CREAR",
@@ -1463,8 +1436,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1900,
-        -380
+        1960,
+        -500
       ],
       "id": "76c20459-d98a-4080-88e3-3f90dd78db56",
       "name": "BUSQUEDA",
@@ -1487,8 +1460,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2500,
-        140
+        2640,
+        80
       ]
     },
     {
@@ -1505,8 +1478,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2980,
-        -80
+        3120,
+        -140
       ]
     },
     {
@@ -1594,8 +1567,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2960,
-        360
+        3340,
+        380
       ],
       "id": "b14d1ef7-317d-439a-ae54-285f23c860ad",
       "name": "Code"
@@ -1612,85 +1585,6 @@
       ],
       "id": "86341da3-0bf7-4d0c-95af-ab87680c718a",
       "name": "Code1"
-    },
-    {
-      "parameters": {
-        "resource": "messages-api",
-        "instanceName": "={{ $('BUSCA ASESOR3').item.json.NOMBRE }}",
-        "remoteJid": "={{ $('CLIENTE +1').item.json.WHATSAPP }}",
-        "messageText": "={{ $json.output }}",
-        "options_message": {}
-      },
-      "type": "n8n-nodes-evolution-api.evolutionApi",
-      "typeVersion": 1,
-      "position": [
-        3580,
-        440
-      ],
-      "id": "7cb6b5a0-977d-4bc4-900f-95eac51330cf",
-      "name": "Evolution API",
-      "retryOnFail": false,
-      "credentials": {
-        "evolutionApi": {
-          "id": "Png3VbsnUeyqI5UL",
-          "name": "VPS-EASYPANEL"
-        }
-      },
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
-        "agent": "conversationalAgent",
-        "promptType": "define",
-        "text": "=Actua como un asesor de ventas llamado: \"{{ $('CLIENTE +1').first().json.NOMBRE_ASESOR }}\"\" el cual impulsa “La Terapia del Dolor” de Gerson López (Terapias Magnéticas Academy). Tu misión es crear mensajes irresistibles para WhatsApp que abran conversaciones y motiven al cliente a responder.\n\nDatos clave para personalizar el mensaje:\n\nNombre del cliente: {{ $('ASIGNACION').first().json.nombre }}\nTipo de evento Hotmart del cliente: {{ $('ASIGNACION').first().json.flujo }}\nMotivo de rechazo del cliente: {{ $('ASIGNACION').first().json.motivo ? $('ASIGNACION').first().json.motivo : \"no disponible\" }}\nTipos de eventos Hotmart:\n\nCarrito 🛒: El cliente abandonó el proceso de pago con los datos ya ingresados.\nRechazado ❌: Intentó pagar, pero su tarjeta fue rechazada (motivo disponible).\nTicket 💵: Generó un ticket de pago en efectivo y requiere seguimiento.\n🎯 Objetivo\nDiseñar mensajes cortos y poderosos que despierten curiosidad, urgencia y cercanía, logrando que el cliente responda rápido. Queremos entender qué pasó en su proceso de compra y guiarlo para cerrar la venta.\n\n⚡ Estilo del mensaje:\n✅ Corto, directo y con gancho (WhatsApp no es un blog).\n✅ Conversacional y fresco, con un tono que combina amistad y profesionalismo.\n✅ Urgencia real, sin sonar desesperado.\n✅ Personalizado y relevante según su caso (Carrito, Rechazado o Ticket).\n✅ Sutilmente persuasivo, enfocándose en el valor de la terapia.\n\n📜 Instrucciones:\nSaluda por su nombre y menciona su situación específica en Hotmart.\nSi su pago fue rechazado, incluye (sutilmente) el motivo.\nPara los que abandonaron el carrito, pregunta qué los detuvo.\nSi hicieron un ticket de pago, recuérdales que el tiempo es clave.\nCierra con una pregunta o llamada a la acción que los motive a responder.\n\nhazle saltos de linea para que sea mas facil de leer y que no suene generico, que sea humano y con dialecto de colombia sin ser coloquial ni vulgar ni atrevido, totalmente formal y amigable y por nada del mundo digas nada alarmante, como algo de fraude o cosas asi.\n\npor nada del mundo pongas variables a rellenar estilo [tu nombre], manda mensajes como el asesor que estas encarnando.",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 1.7,
-      "position": [
-        3260,
-        440
-      ],
-      "id": "5f9714e9-5e77-4379-a2f2-42214efc0e4d",
-      "name": "AI Agent"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "gpt-4o-mini",
-          "mode": "list",
-          "cachedResultName": "gpt-4o-mini"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        3280,
-        600
-      ],
-      "id": "667834cd-ca3a-4a52-bbb6-42a3b44f26c0",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "nZ98FVO8dD6bJnEc",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "mode": "chooseBranch"
-      },
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 3,
-      "position": [
-        3820,
-        380
-      ],
-      "id": "77e55a00-fcd6-4557-9a3b-99cdb80285c5",
-      "name": "Merge1"
     },
     {
       "parameters": {
@@ -1893,8 +1787,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2020,
-        -80
+        2160,
+        -140
       ],
       "id": "7fc636d1-37da-4464-8914-e07631bb8d1a",
       "name": "REVISAR",
@@ -2048,8 +1942,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2180,
-        -80
+        2320,
+        -140
       ],
       "id": "80633c94-4145-4013-8ca3-8b210bc0c951",
       "name": "CONT + 1",
@@ -2223,8 +2117,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2340,
-        -80
+        2480,
+        -140
       ],
       "id": "6b229688-f1ba-4fe9-a1f5-d775749c27d0",
       "name": "UPDATE CLIENTE",
@@ -2304,8 +2198,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2500,
-        -80
+        2640,
+        -140
       ],
       "id": "63a7d746-8878-4d7f-ab0e-84958f8e3402",
       "name": "EVENTO COMPRA +1",
@@ -2346,8 +2240,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2660,
-        -80
+        2800,
+        -140
       ],
       "id": "077268da-686d-45cf-a866-c09eca068c29",
       "name": "BUSCA ASESOR1",
@@ -2517,8 +2411,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2020,
-        140
+        2160,
+        80
       ],
       "id": "6b0a8fb4-7313-4364-8e79-1f84767406ad",
       "name": "REGISTRO1",
@@ -2603,8 +2497,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2180,
-        140
+        2320,
+        80
       ],
       "id": "c40c4174-5da9-4f97-99f2-c1e66d130f78",
       "name": "REGISTRO COMPRA +",
@@ -2618,55 +2512,13 @@
     },
     {
       "parameters": {
-        "operation": "select",
-        "schema": {
-          "__rl": true,
-          "mode": "list",
-          "value": "public"
-        },
-        "table": {
-          "__rl": true,
-          "value": "GERSSON_ASESORES",
-          "mode": "list",
-          "cachedResultName": "GERSSON_ASESORES"
-        },
-        "limit": 1,
-        "sort": {
-          "values": [
-            {
-              "column": "={{$('ASIGNACION').item.json.flujo}}"
-            },
-            {
-              "column": "ID"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.postgres",
-      "typeVersion": 2.5,
-      "position": [
-        1980,
-        360
-      ],
-      "id": "df04905a-5c57-4860-b4f1-2db4bf0de8a4",
-      "name": "Limit",
-      "credentials": {
-        "postgres": {
-          "id": "Y9DYFWSCuPRQbP2H",
-          "name": "POSTGRESS GERSSON"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "jsCode": "// Obtener el nombre del campo a actualizar desde el nodo \"ASIGNACION\"\nconst flujoKey = $('ASIGNACION').first().json.flujo; // Esto puede traer \"LINK\", \"TAREA\", etc.\n\nconst input = $input.first().json;\nconst actual = input[flujoKey] || 0; // Acceder dinámicamente a la propiedad del flujo\nconst idValue = $('Limit').first().json.ID; // Obtener el ID para el WHERE\n\n// Construir la consulta SQL como un string directo\nconst query = `\n  UPDATE \"public\".\"GERSSON_ASESORES\"\n  SET \"${flujoKey}\" = ${actual + 1}\n  WHERE \"ID\" = ${idValue};\n`;\n\n// Devolver el JSON con la consulta lista para ejecutarse\nreturn [\n  {\n    json: {\n      query: query\n    }\n  }\n];\n"
+        "jsCode": "// Obtener el nombre del campo a actualizar desde el nodo \"ASIGNACION\"\nconst flujoKey = $('ASIGNACION').first().json.flujo; // Esto puede traer \"LINK\", \"TAREA\", etc.\n\nconst input = $input.first().json;\nconst actual = input[flujoKey] || 0; // Acceder dinámicamente a la propiedad del flujo\nconst idValue = $('Asesores').first().json.ID; // Obtener el ID para el WHERE\n\n// Construir la consulta SQL como un string directo\nconst query = `\n  UPDATE \"public\".\"GERSSON_ASESORES\"\n  SET \"${flujoKey}\" = ${actual + 1}\n  WHERE \"ID\" = ${idValue};\n`;\n\n// Devolver el JSON con la consulta lista para ejecutarse\nreturn [\n  {\n    json: {\n      query: query\n    }\n  }\n];\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2140,
-        360
+        2540,
+        380
       ],
       "id": "d2f2512e-0b23-4777-9dc6-833f1124b3c0",
       "name": "conteo + 1"
@@ -2680,8 +2532,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2300,
-        360
+        2680,
+        380
       ],
       "id": "975db236-6614-45f2-b337-d62bac99c3f7",
       "name": "CONT + ",
@@ -2708,13 +2560,13 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "ID_ASESOR": "={{ $('Limit').item.json.ID }}",
+            "ID_ASESOR": "={{ $('Asesores').item.json.ID }}",
             "ESTADO": "={{$('ASIGNACION').item.json.flujo}}",
             "WHATSAPP": "={{$('ASIGNACION').item.json.numero}}",
             "FECHA_CREACION": "={{ $now.toSeconds().floor() }}",
             "NOMBRE": "={{$('ASIGNACION').item.json.nombre}}",
-            "NOMBRE_ASESOR": "={{ $('Limit').item.json.NOMBRE }}",
-            "WHA_ASESOR": "={{ $('Limit').item.json.WHATSAPP }}"
+            "NOMBRE_ASESOR": "={{ $('Asesores').item.json.NOMBRE }}",
+            "WHA_ASESOR": "={{ $('Asesores').item.json.WHATSAPP }}"
           },
           "matchingColumns": [],
           "schema": [
@@ -2850,8 +2702,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2460,
-        360
+        2840,
+        380
       ],
       "id": "62b61c09-9598-4b43-9b18-d06750cc2432",
       "name": "CLIENTE +1",
@@ -2930,8 +2782,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2620,
-        360
+        3000,
+        380
       ],
       "id": "66d2a19d-d0bf-4556-ba80-d0c4e263e3f7",
       "name": "EVENTO +1",
@@ -2961,7 +2813,7 @@
           "values": [
             {
               "column": "ID",
-              "value": "={{ $('Limit').item.json.ID }}"
+              "value": "={{ $('Asesores').item.json.ID }}"
             }
           ]
         },
@@ -2970,8 +2822,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2780,
-        360
+        3160,
+        380
       ],
       "id": "e3ef06a7-dc7c-406f-a7cc-c0c7ffd96fbd",
       "name": "BUSCA ASESOR3",
@@ -3627,6 +3479,102 @@
           "name": "POSTGRESS GERSSON"
         }
       }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "3aab7a27-9024-42be-84ba-ced7eca944ed",
+              "leftValue": "={{ $now.toUTC().toSeconds().floor() }}",
+              "rightValue": "={{ $json.FECHA_INICIO_REGLA?.toNumber() }}",
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            },
+            {
+              "id": "a38ad885-f272-42a9-a062-7ef19e9f1784",
+              "leftValue": "={{ $now.toUTC().toSeconds().floor() }}",
+              "rightValue": "={{ $json.FECHA_FIN_REGLA?.toNumber() }}",
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2200,
+        380
+      ],
+      "id": "53cd1625-0984-437e-9197-581db6c43157",
+      "name": "quitar bloqueados"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        2400,
+        380
+      ],
+      "id": "50ebbea9-ba2a-4564-9159-725fb43c44c5",
+      "name": "escoger"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_ASESORES",
+          "mode": "list",
+          "cachedResultName": "GERSSON_ASESORES"
+        },
+        "returnAll": true,
+        "sort": {
+          "values": [
+            {
+              "column": "PRIORIDAD",
+              "direction": "DESC"
+            },
+            {
+              "column": "={{$('ASIGNACION').item.json.flujo}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        2040,
+        380
+      ],
+      "id": "16f0171c-af2a-4d33-8d84-0fb656355f93",
+      "name": "Asesores",
+      "credentials": {
+        "postgres": {
+          "id": "Y9DYFWSCuPRQbP2H",
+          "name": "POSTGRESS GERSSON"
+        }
+      }
     }
   ],
   "pinData": {
@@ -3715,6 +3663,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-04-03T17:28:06.000Z",
-  "versionId": "f601a15b-7aca-4332-94a1-6749882bc8f8"
+  "updatedAt": "2025-05-22T02:43:25.000Z",
+  "versionId": "890c3f7b-2c7a-4f06-8e9d-bae004e05b4d"
 }
