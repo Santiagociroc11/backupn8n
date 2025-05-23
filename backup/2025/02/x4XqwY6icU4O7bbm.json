@@ -5,7 +5,7 @@
       "main": [
         [
           {
-            "node": "Limit",
+            "node": "LOGICA DE SELECCION",
             "type": "main",
             "index": 0
           }
@@ -184,6 +184,17 @@
           }
         ]
       ]
+    },
+    "LOGICA DE SELECCION": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-02-21T19:52:05.746Z",
@@ -255,8 +266,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -620,
-        -80
+        -800,
+        -40
       ],
       "id": "6db700bc-afb7-43ff-8083-28f15718d1ff",
       "name": "ESTADO"
@@ -360,8 +371,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -940,
-        -80
+        -1120,
+        -40
       ],
       "id": "1ec083c8-f58d-46d6-8da6-c005ab6f45b4",
       "name": "ASIGNA1"
@@ -376,8 +387,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -1120,
-        -80
+        -1300,
+        -40
       ],
       "id": "30578ba2-bcb1-4774-812a-fc28af8a9e79",
       "name": "Webhook",
@@ -470,7 +481,7 @@
       "credentials": {
         "telegramApi": {
           "id": "QruLAfRq4u80XCVX",
-          "name": "Telegram account"
+          "name": "BOT AGENCIA X"
         }
       },
       "onError": "continueRegularOutput"
@@ -529,7 +540,7 @@
             {
               "column": "WHATSAPP",
               "condition": "LIKE",
-              "value": "=%{{$('ASIGNA1').item.json.whatsapp.toString().slice(-5)}}"
+              "value": "=%{{$('ASIGNA1').item.json.whatsapp.toString().slice(-6)}}"
             }
           ]
         },
@@ -538,8 +549,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        -780,
-        -80
+        -960,
+        -40
       ],
       "id": "87edb7b6-84c8-4fe8-a9d7-d9d78f4a32eb",
       "name": "BUSCA",
@@ -566,13 +577,11 @@
           "cachedResultName": "GERSSON_ASESORES"
         },
         "limit": 1,
-        "sort": {
+        "where": {
           "values": [
             {
-              "column": "LINK"
-            },
-            {
-              "column": "ID"
+              "column": "ID",
+              "value": "={{ $json.ID }}"
             }
           ]
         },
@@ -1018,7 +1027,7 @@
             {
               "column": "WHATSAPP",
               "condition": "LIKE",
-              "value": "=%{{$('ASIGNA1').item.json.whatsapp.toString().slice(-5)}}%"
+              "value": "=%{{$('ASIGNA1').item.json.whatsapp.toString().slice(-6)}}"
             }
           ]
         },
@@ -1188,6 +1197,27 @@
       ],
       "id": "0130811b-1d67-4684-8107-5a920d2314ae",
       "name": "ENVIAR CON ASESOR"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT public.get_next_asesor_ponderado() AS \"ID\";",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        -560,
+        -180
+      ],
+      "id": "a2ae8faf-8df6-4ad4-ab67-95edd7534bea",
+      "name": "LOGICA DE SELECCION",
+      "credentials": {
+        "postgres": {
+          "id": "Y9DYFWSCuPRQbP2H",
+          "name": "POSTGRESS GERSSON"
+        }
+      }
     }
   ],
   "pinData": {
@@ -1223,7 +1253,7 @@
           "body": {
             "name": "Esperanza Guaman Macao",
             "courseStatus": "si",
-            "whatsapp": "+593995840202"
+            "whatsapp": "+593995840999"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/formulario-soporte",
           "executionMode": "production"
@@ -1266,6 +1296,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-04-03T17:28:14.000Z",
-  "versionId": "73ee06cf-9b4f-476c-bcf6-c55e5a1e3a0c"
+  "updatedAt": "2025-05-22T18:02:31.000Z",
+  "versionId": "4a4849e2-ddd3-495b-9937-d9c82b2f0132"
 }
