@@ -114,7 +114,7 @@
       "main": [
         [
           {
-            "node": "Asesores",
+            "node": "LOGICA DE SELECCION",
             "type": "main",
             "index": 0
           }
@@ -566,19 +566,7 @@
         ]
       ]
     },
-    "quitar bloqueados": {
-      "main": [
-        [],
-        [
-          {
-            "node": "escoger",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "escoger": {
+    "TRAER ASESOR": {
       "main": [
         [
           {
@@ -589,11 +577,11 @@
         ]
       ]
     },
-    "Asesores": {
+    "LOGICA DE SELECCION": {
       "main": [
         [
           {
-            "node": "quitar bloqueados",
+            "node": "TRAER ASESOR",
             "type": "main",
             "index": 0
           }
@@ -1276,7 +1264,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3560,
+        3140,
         380
       ]
     },
@@ -1567,7 +1555,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3340,
+        3000,
         380
       ],
       "id": "b14d1ef7-317d-439a-ae54-285f23c860ad",
@@ -2512,12 +2500,12 @@
     },
     {
       "parameters": {
-        "jsCode": "// Obtener el nombre del campo a actualizar desde el nodo \"ASIGNACION\"\nconst flujoKey = $('ASIGNACION').first().json.flujo; // Esto puede traer \"LINK\", \"TAREA\", etc.\n\nconst input = $input.first().json;\nconst actual = input[flujoKey] || 0; // Acceder dinámicamente a la propiedad del flujo\nconst idValue = $('Asesores').first().json.ID; // Obtener el ID para el WHERE\n\n// Construir la consulta SQL como un string directo\nconst query = `\n  UPDATE \"public\".\"GERSSON_ASESORES\"\n  SET \"${flujoKey}\" = ${actual + 1}\n  WHERE \"ID\" = ${idValue};\n`;\n\n// Devolver el JSON con la consulta lista para ejecutarse\nreturn [\n  {\n    json: {\n      query: query\n    }\n  }\n];\n"
+        "jsCode": "// Obtener el nombre del campo a actualizar desde el nodo \"ASIGNACION\"\nconst flujoKey = $('ASIGNACION').first().json.flujo; // Esto puede traer \"LINK\", \"TAREA\", etc.\n\nconst input = $input.first().json;\nconst actual = input[flujoKey]; // Acceder dinámicamente a la propiedad del flujo\nconst idValue = input[\"ID\"]; \n\n// Construir la consulta SQL como un string directo\nconst query = `\n  UPDATE \"public\".\"GERSSON_ASESORES\"\n  SET \"${flujoKey}\" = ${actual + 1}\n  WHERE \"ID\" = ${idValue};\n`;\n\n// Devolver el JSON con la consulta lista para ejecutarse\nreturn [\n  {\n    json: {\n      query: query\n    }\n  }\n];\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2540,
+        2300,
         380
       ],
       "id": "d2f2512e-0b23-4777-9dc6-833f1124b3c0",
@@ -2532,7 +2520,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2680,
+        2440,
         380
       ],
       "id": "975db236-6614-45f2-b337-d62bac99c3f7",
@@ -2560,13 +2548,13 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "ID_ASESOR": "={{ $('Asesores').item.json.ID }}",
+            "ID_ASESOR": "={{ $('TRAER ASESOR').item.json.ID }}",
             "ESTADO": "={{$('ASIGNACION').item.json.flujo}}",
             "WHATSAPP": "={{$('ASIGNACION').item.json.numero}}",
             "FECHA_CREACION": "={{ $now.toSeconds().floor() }}",
             "NOMBRE": "={{$('ASIGNACION').item.json.nombre}}",
-            "NOMBRE_ASESOR": "={{ $('Asesores').item.json.NOMBRE }}",
-            "WHA_ASESOR": "={{ $('Asesores').item.json.WHATSAPP }}"
+            "NOMBRE_ASESOR": "={{ $('TRAER ASESOR').item.json.NOMBRE }}",
+            "WHA_ASESOR": "={{ $('TRAER ASESOR').item.json.WHATSAPP }}"
           },
           "matchingColumns": [],
           "schema": [
@@ -2702,7 +2690,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2840,
+        2580,
         380
       ],
       "id": "62b61c09-9598-4b43-9b18-d06750cc2432",
@@ -2782,7 +2770,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        3000,
+        2720,
         380
       ],
       "id": "66d2a19d-d0bf-4556-ba80-d0c4e263e3f7",
@@ -2813,7 +2801,7 @@
           "values": [
             {
               "column": "ID",
-              "value": "={{ $('Asesores').item.json.ID }}"
+              "value": "={{ $('TRAER ASESOR').item.json.ID }}"
             }
           ]
         },
@@ -2822,7 +2810,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        3160,
+        2860,
         380
       ],
       "id": "e3ef06a7-dc7c-406f-a7cc-c0c7ffd96fbd",
@@ -3482,59 +3470,6 @@
     },
     {
       "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "3aab7a27-9024-42be-84ba-ced7eca944ed",
-              "leftValue": "={{ $now.toUTC().toSeconds().floor() }}",
-              "rightValue": "={{ $json.FECHA_INICIO_REGLA?.toNumber() }}",
-              "operator": {
-                "type": "number",
-                "operation": "gt"
-              }
-            },
-            {
-              "id": "a38ad885-f272-42a9-a062-7ef19e9f1784",
-              "leftValue": "={{ $now.toUTC().toSeconds().floor() }}",
-              "rightValue": "={{ $json.FECHA_FIN_REGLA?.toNumber() }}",
-              "operator": {
-                "type": "number",
-                "operation": "lt"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        2200,
-        380
-      ],
-      "id": "53cd1625-0984-437e-9197-581db6c43157",
-      "name": "quitar bloqueados"
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.limit",
-      "typeVersion": 1,
-      "position": [
-        2400,
-        380
-      ],
-      "id": "50ebbea9-ba2a-4564-9159-725fb43c44c5",
-      "name": "escoger"
-    },
-    {
-      "parameters": {
         "operation": "select",
         "schema": {
           "__rl": true,
@@ -3547,28 +3482,46 @@
           "mode": "list",
           "cachedResultName": "GERSSON_ASESORES"
         },
-        "returnAll": true,
-        "sort": {
+        "limit": 1,
+        "where": {
           "values": [
             {
-              "column": "PRIORIDAD",
-              "direction": "DESC"
-            },
-            {
-              "column": "={{$('ASIGNACION').item.json.flujo}}"
+              "column": "ID",
+              "value": "={{ $json.ID }}"
             }
           ]
         },
         "options": {}
       },
       "type": "n8n-nodes-base.postgres",
-      "typeVersion": 2.5,
+      "typeVersion": 2.6,
       "position": [
-        2040,
+        2160,
         380
       ],
-      "id": "16f0171c-af2a-4d33-8d84-0fb656355f93",
-      "name": "Asesores",
+      "id": "27a3c5bb-4507-4b37-9ca1-22da2b176194",
+      "name": "TRAER ASESOR",
+      "credentials": {
+        "postgres": {
+          "id": "Y9DYFWSCuPRQbP2H",
+          "name": "POSTGRESS GERSSON"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT public.get_next_asesor_ponderado() AS \"ID\";",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        2000,
+        380
+      ],
+      "id": "eb69ebc9-1984-40c5-9bdc-3980ec5647af",
+      "name": "LOGICA DE SELECCION",
       "credentials": {
         "postgres": {
           "id": "Y9DYFWSCuPRQbP2H",
@@ -3663,6 +3616,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-05-22T02:43:25.000Z",
-  "versionId": "890c3f7b-2c7a-4f06-8e9d-bae004e05b4d"
+  "updatedAt": "2025-05-22T06:57:38.000Z",
+  "versionId": "801cfa2b-3d88-434c-a8d9-969a177471d1"
 }
