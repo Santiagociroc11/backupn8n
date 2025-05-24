@@ -1,0 +1,70 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Facebook Graph API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-23T22:08:55.053Z",
+  "id": "uo09U9snltDxPElG",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 5",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -540,
+        -40
+      ],
+      "id": "e56ba95f-843f-4378-b699-b4a742223aaa",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v22.0",
+        "node": "1384804862565325",
+        "edge": "message_templates",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        -40
+      ],
+      "id": "555cdc34-95ff-449f-9b43-610660f22965",
+      "name": "Facebook Graph API",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "WcFVSeKS58oZ3el6",
+          "name": "WHA API - CAROLINA GUZMAN"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-23T22:08:55.053Z",
+  "versionId": "2796e3c3-3f1a-4bb1-b4f4-bfbd2dffbf7c"
+}
