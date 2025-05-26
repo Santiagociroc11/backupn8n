@@ -1,0 +1,137 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-26T05:34:44.722Z",
+  "id": "u8NYHduNC6jepAIO",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "REVISAR PAGOS WIN",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "pagos_typebot_win",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -660,
+        -80
+      ],
+      "id": "020caa59-75b6-464b-a95a-0c529d879ba4",
+      "name": "Webhook",
+      "webhookId": "a800d952-b185-4b6a-b535-bc75f9ba4213"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "text": "=LEE COMPLETAMENTE ESTA INSTRUCCIÓN:\nPor favor, analiza la imagen proporcionada y verifica si contiene alguno de los números de cuenta válidos:\nBancolombia: 51619426138, 3136298562, 3162351670\nDaviplata: 3136298562 o 3245904626, 3162351670\nSi la imagen dice Daviplata y sale el monto correcto, es válida asi no diga el numero exacto de la cuenta.\nTransfiya: 3162351670\nNequi: 3136298562 o 3165600942\nTambién comprueba que el monto pagado sea mayor a 15.000, si el monto es inferior, tampoco es válido y debes decir que no es el monto correcto.\nResponde de la siguiente manera:\nSi alguno de los números de cuenta está presente, responde con \"PAGO VALIDADO\".\nSi la imagen dice \"transferencia pendiente por aceptar o aprobar\", también es válida.\nSi la imagen menciona \"no tiene Nequi\", indica \"COMPROBANTE RECHAZADO\" y aclara que la transferencia debe hacerse a Transfiya desde Nequi como se indicó antes.\nSi aparece la palabra \"enviar\", \"sigue\", \"continuar\" o \"siguiente\", responde con \"COMPROBANTE RECHAZADO: por favor, dele en enviar y vuelva a enviar\".\nSi hay mensajes como \"no se pudo enviar\", \"error en la transferencia\" o \"transacción fallida\", responde con \"COMPROBANTE RECHAZADO: por favor, verifique su información y vuelva a intentar\".\nSi la imagen muestra una confirmación de pago, pero no incluye el monto ni las cuentas indicadas, responde \"COMPROBANTE RECHAZADO: por favor, envíe una captura que muestre claramente el número de cuenta y el monto indicado\".\nSi hay un número de cuenta similar, pero incorrecto, responde con \"PAGO INVÁLIDO: el número de cuenta proporcionado no es válido. Por favor, envíe una captura que contenga el número correcto\".\nSi la imagen es borrosa o ilegible, indica \"COMPROBANTE RECHAZADO: la imagen no es clara. Por favor, envíe una captura más legible\".\nSi el formato no corresponde a una captura de pago válida, por ejemplo, una captura del chat donde se envió la indicación de la cuenta y el valor a enviar, responde con \"COMPROBANTE RECHAZADO: por favor, envíe una captura desde la aplicación del banco que muestre el pago\".\nAsegúrate de que todas las respuestas sean claras y concisas, reflejando adecuadamente el contenido de la imagen analizada. En cualquier caso que no haya mencionado y no se pueda comprobar la información, responde \"COMPROBANTE RECHAZADO\" y la razón aparente, SIN EXCEPCIÓN.",
+        "imageUrls": "={{ $json.body }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -400,
+        -80
+      ],
+      "id": "bd304336-19f3-41ab-b6fb-6918e4d013dc",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "GPT SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.content }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.2,
+      "position": [
+        -140,
+        -80
+      ],
+      "id": "4b07271a-d962-46f1-87da-c7cb5e34ee14",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "node",
+            "content-length": "68",
+            "accept": "*/*",
+            "accept-encoding": "br, gzip, deflate",
+            "accept-language": "*",
+            "content-type": "text/plain;charset=UTF-8",
+            "sec-fetch-mode": "cors",
+            "x-forwarded-for": "172.18.0.1",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "5e236941e778",
+            "x-real-ip": "172.18.0.1"
+          },
+          "params": {},
+          "query": {},
+          "body": "http://automscc.com/wp-content/uploads/2025/05/cold-smooth-tasty.jpg",
+          "webhookUrl": "https://n8n.automscc.com/webhook/pagos_typebot_win",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-05-26T06:31:52.000Z",
+  "versionId": "58dcaf33-1c53-475a-bbdd-e64d001c2e53"
+}
