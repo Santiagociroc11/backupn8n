@@ -19,6 +19,22 @@
             "node": "Respond to Webhook",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -66,7 +82,7 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
-        -400,
+        -440,
         -80
       ],
       "id": "bd304336-19f3-41ab-b6fb-6918e4d013dc",
@@ -87,11 +103,68 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.2,
       "position": [
-        -140,
-        -80
+        -220,
+        -180
       ],
       "id": "4b07271a-d962-46f1-87da-c7cb5e34ee14",
       "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "chatId": "552780004",
+        "text": "=Recibes $18.000 ({{ (18000/4200).toFixed(2) }} $US)\nfuente EMBUDO VSL",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        20,
+        0
+      ],
+      "id": "1aa151dd-dff8-4610-9fe6-15de6ba30681",
+      "name": "Telegram",
+      "webhookId": "25dfd7e8-af1d-44af-a562-58792ef8fa48",
+      "credentials": {
+        "telegramApi": {
+          "id": "71o9DQe5tCOu17F5",
+          "name": "BOT AVISOS WHA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "05a3bef6-a9f2-4f2c-a8a7-0ec817fc8f11",
+              "leftValue": "={{ $json.content }}",
+              "rightValue": "VALIDADO",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -220,
+        20
+      ],
+      "id": "2f0d63d3-e3f3-4fb3-98b8-067acde3bc6a",
+      "name": "If"
     }
   ],
   "pinData": {
@@ -101,7 +174,7 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "node",
-            "content-length": "68",
+            "content-length": "153",
             "accept": "*/*",
             "accept-encoding": "br, gzip, deflate",
             "accept-language": "*",
@@ -116,7 +189,7 @@
           },
           "params": {},
           "query": {},
-          "body": "http://automscc.com/wp-content/uploads/2025/05/cold-smooth-tasty.jpg",
+          "body": "https://typebot-minio.wc2hpx.easypanel.host/typebot/public/tmp/typebots/cmb4fhzmn000a111uc26tvzjf/blocks/qtp77u1su6oi1ygfcqq4zvxx/2024-10-25_06-40-12.jpg",
           "webhookUrl": "https://n8n.automscc.com/webhook/pagos_typebot_win",
           "executionMode": "production"
         }
@@ -132,6 +205,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-05-26T06:31:52.000Z",
-  "versionId": "58dcaf33-1c53-475a-bbdd-e64d001c2e53"
+  "updatedAt": "2025-05-26T06:52:37.000Z",
+  "versionId": "9b48f968-2d91-4e3a-98d7-7aeeed9767f0"
 }
