@@ -1,0 +1,217 @@
+{
+  "active": true,
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-28T00:25:05.652Z",
+  "id": "mbY7367uWdJN0sMJ",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[BOT-TG-GERSSON] COMANDOS",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -560,
+        -80
+      ],
+      "id": "38e61d6e-6af1-4b72-84e2-43230ff1830d",
+      "name": "Telegram Trigger",
+      "webhookId": "f4e88cab-c797-4059-9828-4d000e6109e4",
+      "credentials": {
+        "telegramApi": {
+          "id": "QruLAfRq4u80XCVX",
+          "name": "BOT AGENCIA X"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.entities[0].type }}",
+                    "rightValue": "=bot_command",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "0567c629-aab7-4777-867e-2e37b20bccd8"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "COMANDO"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -340,
+        -80
+      ],
+      "id": "16d901e2-ea70-4d8f-9ebb-58a4e87a3349",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "0be84c4c-dca1-4e93-9789-edb1ef8d5891",
+              "leftValue": "={{ $json.message.text }}",
+              "rightValue": "/autoid",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -120,
+        -80
+      ],
+      "id": "1895f1e1-fda9-40a1-8ad3-1a8d29623412",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.from.id }}",
+        "text": "=Tu ID es 👇🏻\n\n<pre>{{ $json.message.from.id }}</pre> \nDale copiar y ve a la plataforma a pegarlo.",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        120,
+        -180
+      ],
+      "id": "f923d675-3dd3-45d1-a6b8-6b952db8a9a2",
+      "name": "Telegram",
+      "webhookId": "e161186b-42bd-474e-981a-75e5e8a8c969",
+      "credentials": {
+        "telegramApi": {
+          "id": "QruLAfRq4u80XCVX",
+          "name": "BOT AGENCIA X"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Telegram Trigger": [
+      {
+        "json": {
+          "update_id": 806323982,
+          "message": {
+            "message_id": 3771,
+            "from": {
+              "id": 552780004,
+              "is_bot": false,
+              "first_name": "Santiago",
+              "last_name": "C",
+              "username": "SantiagoCiro",
+              "language_code": "es"
+            },
+            "chat": {
+              "id": 552780004,
+              "first_name": "Santiago",
+              "last_name": "C",
+              "username": "SantiagoCiro",
+              "type": "private"
+            },
+            "date": 1748391988,
+            "text": "/autoid",
+            "entities": [
+              {
+                "offset": 0,
+                "length": 7,
+                "type": "bot_command"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-05-28T00:37:02.000Z",
+  "versionId": "960e5354-b072-43a1-a79e-0e31459725d1"
+}
