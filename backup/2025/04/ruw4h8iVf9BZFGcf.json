@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "When clicking ‘Test workflow’": {
       "main": [
@@ -66,6 +66,52 @@
         [
           {
             "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
             "type": "main",
             "index": 0
           }
@@ -267,7 +313,8 @@
           "id": "zruD3ONGC9HU2i7s",
           "name": "CUENTA SANTIAGO"
         }
-      }
+      },
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -363,7 +410,7 @@
       "typeVersion": 4.5,
       "position": [
         220,
-        -240
+        -340
       ],
       "id": "3ab9a2e9-2be1-4ad4-a73c-16aa383bafaf",
       "name": "Google Sheets1",
@@ -375,7 +422,8 @@
           "id": "zruD3ONGC9HU2i7s",
           "name": "CUENTA SANTIAGO"
         }
-      }
+      },
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -389,6 +437,30 @@
       ],
       "id": "4bfaa274-855e-48ce-b2d8-d3b04135020a",
       "name": "Code"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        440,
+        -300
+      ],
+      "id": "254b72ba-80cd-4ef1-a8fd-a86e8369b188",
+      "name": "Wait",
+      "webhookId": "be1a94e9-1ca2-4731-80a8-596240eed29a"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        880,
+        -20
+      ],
+      "id": "789ce221-bd31-4dfd-8cb0-6f31a76111b5",
+      "name": "Wait1",
+      "webhookId": "be1a94e9-1ca2-4731-80a8-596240eed29a"
     }
   ],
   "pinData": {},
@@ -405,6 +477,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-05-27T01:50:34.000Z",
-  "versionId": "ba2c00f3-d8b6-4e9f-ad11-bcc69d577eba"
+  "updatedAt": "2025-05-29T17:04:32.000Z",
+  "versionId": "1f35e56d-4b1f-4da0-87dc-73c16e626f8f"
 }
