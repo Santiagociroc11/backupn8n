@@ -54,7 +54,7 @@
       "main": [
         [
           {
-            "node": "Google Sheets",
+            "node": "Wait",
             "type": "main",
             "index": 0
           }
@@ -66,6 +66,46 @@
         [
           {
             "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [],
+        []
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
             "type": "main",
             "index": 0
           }
@@ -254,7 +294,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        660,
+        880,
         -60
       ],
       "id": "3db8c6ec-459d-442a-8b8f-1cc33b8a4307",
@@ -363,7 +403,7 @@
       "typeVersion": 4.5,
       "position": [
         220,
-        -240
+        -360
       ],
       "id": "a6dab161-91f2-431e-9129-75c6e71b649e",
       "name": "Google Sheets1",
@@ -375,7 +415,8 @@
           "id": "zruD3ONGC9HU2i7s",
           "name": "CUENTA SANTIAGO"
         }
-      }
+      },
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -389,6 +430,32 @@
       ],
       "id": "35d58ce1-fce2-491c-bbb5-ed05fcf673a8",
       "name": "Code"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        440,
+        -320
+      ],
+      "id": "f57f7dcf-9016-40f8-ad7a-c3f0bae38515",
+      "name": "Wait1",
+      "webhookId": "d1727f35-0a1e-42e2-959d-aad18b498ea1"
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        660,
+        -60
+      ],
+      "id": "ed02d460-8d6a-4619-9c41-40af8ca479b2",
+      "name": "Wait",
+      "webhookId": "07f23cb4-f3ec-4d4e-9735-3b381876b6da"
     }
   ],
   "pinData": {},
@@ -405,6 +472,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-05-27T02:26:07.000Z",
-  "versionId": "b774d583-c280-4f19-808f-88da3e34374f"
+  "updatedAt": "2025-05-29T17:23:03.000Z",
+  "versionId": "8b9b7ada-af0d-4c66-967d-7bf7af481332"
 }
