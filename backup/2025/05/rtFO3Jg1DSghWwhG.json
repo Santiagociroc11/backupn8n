@@ -1,0 +1,175 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-30T19:27:38.038Z",
+  "id": "rtFO3Jg1DSghWwhG",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 9",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        -40
+      ],
+      "id": "6a6a8474-d299-443a-993f-cb41f47387b0",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "GIORGIO_L1",
+          "mode": "list",
+          "cachedResultName": "GIORGIO_L1"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "QLEAD",
+              "value": "si"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -520,
+        -40
+      ],
+      "id": "76944e92-6897-4a3b-b987-4f234916e3f6",
+      "name": "MySQL",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "3c9e0a40-e7f1-45bd-bfd5-eee942eb58e3",
+              "leftValue": "={{ $json.PUNTAJE.toNumber() }}",
+              "rightValue": 900,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -300,
+        -40
+      ],
+      "id": "312a0be5-b21e-4e95-9c3d-c68b8c78fdde",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "table": {
+          "__rl": true,
+          "value": "[GIORGIO] EXPORTACION_MANYCHAT",
+          "mode": "list",
+          "cachedResultName": "[GIORGIO] EXPORTACION_MANYCHAT"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "WHATSAPP",
+        "valueToMatchOn": "={{ $json.WHATSAPP }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "ETIQUETA",
+              "value": "PUNTAJE > 900 (TIENEN NEGOCIO, DINERO Y LA EDAD PERFECTA)"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -80,
+        -40
+      ],
+      "id": "b86369b0-d5ec-48fa-a52f-f9ff9a234fe1",
+      "name": "MySQL1",
+      "credentials": {
+        "mySql": {
+          "id": "steiUYgtMeBLjkId",
+          "name": "N8N"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-30T19:32:45.000Z",
+  "versionId": "11db75fd-f6c2-45b0-9999-fd3ec77c10cb"
+}
