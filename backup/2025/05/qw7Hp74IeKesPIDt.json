@@ -709,7 +709,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const crypto = require('crypto-js'); // Asegúrate de que la librería está disponible\n\nconst item = $input.first().json;\n\nconst price = 18000/4200;\n\nfunction hashSHA256(value) {\n  return crypto.SHA256(value).toString(crypto.enc.Hex);\n}\n\nconst encryptedData = {\n  ph: [hashSHA256(item.telefono)],  // Número de teléfono\n  country: [hashSHA256(\"colombia\")],  // País\n  // Datos no cifrados deben estar directamente accesibles\n  client_ip_address: item.ip,\n  client_user_agent: item.userAgent,\n  fbc: item.fbc,\n  fbp: item.fbp,\n};\n\nconst facebookEvent = {\n  data: [\n    {\n      event_name: \"Purchase\",\n      event_time: Math.floor(Date.now() / 1000), // Tiempo actual en segundos\n      action_source: \"website\",\n      original_event_data: {\n        event_name: \"Purchase\",\n        event_time: Math.floor(Date.now() / 1000)\n      },\n      user_data: encryptedData,\n      custom_data: {\n        currency: \"USD\",\n        value: price\n      }\n    }\n  ]\n};\n\nreturn facebookEvent;"
+        "jsCode": "const crypto = require('crypto-js'); // Asegúrate de que la librería está disponible\n\nconst item = $input.first().json;\n\nconst price = 18000/4200;\n\nfunction hashSHA256(value) {\n  return crypto.SHA256(value).toString(crypto.enc.Hex);\n}\n\nconst encryptedData = {\n  ph: [hashSHA256(item.telefono)],  // Número de teléfono\n  country: [hashSHA256(\"colombia\")],  // País\n  // Datos no cifrados deben estar directamente accesibles\n  client_ip_address: item.ip,\n  client_user_agent: item.userAgent,\n};\n\n\nif (item.fbc) {\n  encryptedData.fbc = item.fbc;\n}\n\nif (item.fbp && item.fbp !== \"-\") {\n  encryptedData.fbp = item.fbp;\n}\n\n\nconst facebookEvent = {\n  data: [\n    {\n      event_name: \"Purchase\",\n      event_time: Math.floor(Date.now() / 1000), // Tiempo actual en segundos\n      action_source: \"website\",\n      original_event_data: {\n        event_name: \"Purchase\",\n        event_time: Math.floor(Date.now() / 1000)\n      },\n      user_data: encryptedData,\n      custom_data: {\n        currency: \"USD\",\n        value: price\n      }\n    }\n  ]\n};\n\nreturn facebookEvent;"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -749,13 +749,13 @@
     },
     {
       "parameters": {
-        "jsCode": "const item = $input.first().json;\n\n\nconst encryptedData = {\n  client_ip_address: item.ip,\n  client_user_agent: item.userAgent,\n  fbc: item.fbc,\n  fbp: item.fbp,\n};\n\nconst facebookEvent = {\n  data: [\n    {\n      event_name: \"InitiateCheckout\",\n      event_time: Math.floor(Date.now() / 1000), // Tiempo actual en segundos\n      action_source: \"website\",\n      original_event_data: {\n        event_name: \"InitiateCheckout\",\n        event_time: Math.floor(Date.now() / 1000)\n      },\n      user_data: encryptedData,\n    }\n  ]\n};\n\nreturn facebookEvent;"
+        "jsCode": "const item = $input.first().json;\n\nconst encryptedData = {\n  client_ip_address: item.ip,\n  client_user_agent: item.userAgent,\n};\n\nif (item.fbc) {\n  encryptedData.fbc = item.fbc;\n}\n\nif (item.fbp && item.fbp !== \"-\") {\n  encryptedData.fbp = item.fbp;\n}\n\nconst facebookEvent = {\n  data: [\n    {\n      event_name: \"InitiateCheckout\",\n      event_time: Math.floor(Date.now() / 1000), // Tiempo actual en segundos\n      action_source: \"website\",\n      original_event_data: {\n        event_name: \"InitiateCheckout\",\n        event_time: Math.floor(Date.now() / 1000)\n      },\n      user_data: encryptedData,\n    }\n  ]\n};\n\nreturn facebookEvent;\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
         20,
-        -35
+        -40
       ],
       "id": "9e6e5a13-9e0b-441d-a324-206edc0b8251",
       "name": "Code1"
@@ -1110,13 +1110,13 @@
     },
     {
       "parameters": {
-        "jsCode": "const item = $input.first().json;\n\n\nconst encryptedData = {\n  client_ip_address: item.ip,\n  client_user_agent: item.userAgent,\n  fbc: item.fbc,\n  fbp: item.fbp,\n};\n\nconst facebookEvent = {\n  data: [\n    {\n      event_name: \"Lead\",\n      event_time: Math.floor(Date.now() / 1000), // Tiempo actual en segundos\n      action_source: \"website\",\n      original_event_data: {\n        event_name: \"Lead\",\n        event_time: Math.floor(Date.now() / 1000)\n      },\n      user_data: encryptedData,\n    }\n  ]\n};\n\nreturn facebookEvent;"
+        "jsCode": "const item = $input.first().json;\n\nconst encryptedData = {\n  client_ip_address: item.ip,\n  client_user_agent: item.userAgent,\n};\n\nif (item.fbc) {\n  encryptedData.fbc = item.fbc;\n}\n\nif (item.fbp && item.fbp !== \"-\") {\n  encryptedData.fbp = item.fbp;\n}\n\nconst facebookEvent = {\n  data: [\n    {\n      event_name: \"Lead\",\n      event_time: Math.floor(Date.now() / 1000), // Tiempo actual en segundos\n      action_source: \"website\",\n      original_event_data: {\n        event_name: \"Lead\",\n        event_time: Math.floor(Date.now() / 1000)\n      },\n      user_data: encryptedData,\n    }\n  ]\n};\n\nreturn facebookEvent;"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
         460,
-        425
+        420
       ],
       "id": "1ee94343-c33b-45f7-bec8-45a73d74d27a",
       "name": "Code2"
@@ -1365,41 +1365,6 @@
         }
       }
     ],
-    "VENTAS HOTMART": [
-      {
-        "json": {
-          "headers": {
-            "host": "n8n.automscc.com",
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
-            "content-length": "272",
-            "accept": "application/json",
-            "accept-encoding": "deflate, gzip",
-            "content-type": "application/json",
-            "x-forwarded-for": "64.227.21.251",
-            "x-forwarded-host": "n8n.automscc.com",
-            "x-forwarded-port": "443",
-            "x-forwarded-proto": "https",
-            "x-forwarded-server": "5e236941e778",
-            "x-real-ip": "181.235.106.202"
-          },
-          "params": {},
-          "query": {},
-          "body": {
-            "whatsapp": "573001234567",
-            "cupo_id": "TD-C4D37BBB",
-            "timestamp": 1704067200,
-            "source_url": "pagina-win",
-            "source_id": "-",
-            "origen_pagina": true,
-            "fecha_pago": "2024-01-01T12:00:00.000Z",
-            "producto": "WIN+",
-            "valor_pago": 17900
-          },
-          "webhookUrl": "https://n8n.automscc.com/webhook/compra-cupo-pagina-win",
-          "executionMode": "production"
-        }
-      }
-    ],
     "CHAT INICIADO": [
       {
         "json": {
@@ -1427,6 +1392,41 @@
           "executionMode": "production"
         }
       }
+    ],
+    "VENTAS HOTMART": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "axios/0.20.0",
+            "content-length": "215",
+            "accept": "application/json",
+            "content-type": "application/json",
+            "x-forwarded-for": "82.180.130.193",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "5e236941e778",
+            "x-real-ip": "82.180.130.193",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "whatsapp": "573203696384",
+            "cupo_id": "#TD-F6051364",
+            "timestamp": 1748578131,
+            "source_url": "pagina-win",
+            "source_id": "-",
+            "origen_pagina": true,
+            "fecha_pago": "2025-05-30T04:08:51.376Z",
+            "producto": "WIN+",
+            "valor_pago": 17900
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/compra-cupo-pagina-win",
+          "executionMode": "production"
+        }
+      }
     ]
   },
   "repo_name": "backupn8n",
@@ -1438,6 +1438,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 4,
-  "updatedAt": "2025-05-27T21:02:42.000Z",
-  "versionId": "ffd3c5c1-df9a-48d4-bba0-4ecdcf75a8bd"
+  "updatedAt": "2025-05-30T07:49:44.000Z",
+  "versionId": "14accaeb-76fe-4498-b0ca-455755ca8e03"
 }
