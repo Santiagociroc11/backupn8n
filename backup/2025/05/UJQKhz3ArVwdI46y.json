@@ -1,0 +1,297 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "BUSCA1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BUSCA1": {
+      "main": [
+        [
+          {
+            "node": "EXISTE?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EXISTE?": {
+      "main": [
+        [],
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-30T18:15:27.513Z",
+  "id": "UJQKhz3ArVwdI46y",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 8",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "exportado_manychat",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -600,
+        -80
+      ],
+      "id": "0c778a47-3eb0-4325-b14c-b3434c457c41",
+      "name": "Webhook",
+      "webhookId": "19e2d545-1e53-4a55-a5e7-5281ea278cd6"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "643dca16-ba16-4216-a7b6-3a273e8bc2b3",
+              "name": "whatsapp",
+              "value": "={{ $json.body.whatsapp_phone }}",
+              "type": "string"
+            },
+            {
+              "id": "108ac5b7-ed84-415d-89b8-37aa9ecb990e",
+              "name": "etiqueta",
+              "value": "COMPRA-SOPORTE",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -360,
+        -80
+      ],
+      "id": "ec241a73-be51-4429-a9d5-55f3d4992213",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "table": {
+          "__rl": true,
+          "value": "EXPORTACION_MANYCHAT",
+          "mode": "list",
+          "cachedResultName": "EXPORTACION_MANYCHAT"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "WHATSAPP",
+        "valueToMatchOn": "={{ $('Edit Fields').item.json.whatsapp }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "ETIQUETA",
+              "value": "={{ $('Edit Fields').item.json.etiqueta }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        360,
+        -60
+      ],
+      "id": "563ae8ff-d01b-48b0-b8be-54930b20aa27",
+      "name": "MySQL",
+      "credentials": {
+        "mySql": {
+          "id": "steiUYgtMeBLjkId",
+          "name": "N8N"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_CLIENTES",
+          "mode": "list",
+          "cachedResultName": "GERSSON_CLIENTES"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "WHATSAPP",
+              "condition": "LIKE",
+              "value": "=%{{$json.whatsapp.toString().slice(-7)}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        -120,
+        -80
+      ],
+      "id": "0824ebd9-1052-4557-9ed8-30ff69901541",
+      "name": "BUSCA1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "Y9DYFWSCuPRQbP2H",
+          "name": "POSTGRESS GERSSON"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b0ba3677-8ec4-4669-b41b-5fff6516d2bf",
+              "leftValue": "={{ $json.isNotEmpty() }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        80,
+        -80
+      ],
+      "id": "27431150-2390-489d-9caa-8b7d4d7b0a03",
+      "name": "EXISTE?"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "ManyChat",
+            "content-length": "928",
+            "content-type": "application/json; charset=utf-8",
+            "x-forwarded-for": "3.121.227.156",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "5e236941e778",
+            "x-real-ip": "3.121.227.156",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "key": "user:151869189",
+            "id": "151869189",
+            "page_id": "288702267651723",
+            "user_refs": [],
+            "status": "active",
+            "first_name": "+51995172986",
+            "last_name": "",
+            "name": "+51995172986",
+            "gender": null,
+            "profile_pic": null,
+            "locale": null,
+            "language": null,
+            "timezone": "UTC±00",
+            "live_chat_url": "https://app.manychat.com/fb288702267651723/chat/151869189",
+            "last_input_text": "QUIERO MAS INFO",
+            "optin_phone": false,
+            "phone": null,
+            "optin_email": false,
+            "email": null,
+            "subscribed": "2025-05-01T05:20:19-05:00",
+            "last_interaction": null,
+            "ig_last_interaction": null,
+            "last_seen": null,
+            "ig_last_seen": null,
+            "is_followup_enabled": true,
+            "ig_username": null,
+            "ig_id": null,
+            "whatsapp_phone": "+51995172986",
+            "optin_whatsapp": true,
+            "phone_country_code": null,
+            "last_growth_tool": null,
+            "custom_fields": {
+              "CLICS-POSITIVOS": null,
+              "CONTEO-GENERAL": null,
+              "FUENTE": null,
+              "ImagenDINAMICA": null,
+              "NombrecompletoUSER": null,
+              "PROBABILIDAD-ENC": 684,
+              "PUNTAJE-ACCIONES": null,
+              "RESPUESTA IA": null,
+              "URLfoto": null
+            }
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/exportado_manychat",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-05-30T18:27:41.000Z",
+  "versionId": "80bb1953-3d49-46e0-bf61-bbc87f594e88"
+}
