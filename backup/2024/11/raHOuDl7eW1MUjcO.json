@@ -221,7 +221,7 @@
       "main": [
         [
           {
-            "node": "Evolution API",
+            "node": "Loop Over Items",
             "type": "main",
             "index": 0
           }
@@ -260,17 +260,6 @@
           }
         ]
       ]
-    },
-    "Evolution API": {
-      "main": [
-        [
-          {
-            "node": "Loop Over Items",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
     }
   },
   "createdAt": "2024-11-03T21:42:30.573Z",
@@ -297,8 +286,8 @@
       ],
       "credentials": {
         "mySql": {
-          "id": "4J4D0oAUKKPzfhYR",
-          "name": "REDIRECCIONES"
+          "id": "179b2UX7XsHkNW05",
+          "name": "REDIRECCIONES - LANZAMIENTOS"
         }
       }
     },
@@ -602,8 +591,8 @@
       ],
       "credentials": {
         "mySql": {
-          "id": "4J4D0oAUKKPzfhYR",
-          "name": "REDIRECCIONES"
+          "id": "179b2UX7XsHkNW05",
+          "name": "REDIRECCIONES - LANZAMIENTOS"
         }
       }
     },
@@ -795,28 +784,6 @@
         1440,
         20
       ]
-    },
-    {
-      "parameters": {
-        "resource": "groups-api",
-        "operation": "leave-group",
-        "instanceName": "={{ $('Form2').all()[0].json['Que instancia usarás?'] }}",
-        "groupJid": "={{ $('CreateGroup').item.json.id }}"
-      },
-      "type": "n8n-nodes-evolution-api.evolutionApi",
-      "typeVersion": 1,
-      "position": [
-        6060,
-        95
-      ],
-      "id": "1bd52104-51cd-404d-bfb1-0adfcd5f4543",
-      "name": "Evolution API",
-      "credentials": {
-        "evolutionApi": {
-          "id": "Png3VbsnUeyqI5UL",
-          "name": "VPS-EASYPANEL"
-        }
-      }
     }
   ],
   "pinData": {
@@ -883,6 +850,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-03T17:30:53.000Z",
-  "versionId": "27594432-d54a-43fd-8f4a-550e1c3c516f"
+  "updatedAt": "2025-05-31T05:21:37.000Z",
+  "versionId": "34949a61-92bb-43de-ac26-4562d5a88445"
 }
