@@ -1533,9 +1533,19 @@
                 "type": "string",
                 "operation": "equals"
               }
+            },
+            {
+              "id": "a4ec977d-fb3c-4d56-b3d2-1ef3b23c6404",
+              "leftValue": "={{ $json.ESTADO }}",
+              "rightValue": "VENTA CONSOLIDADA",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
             }
           ],
-          "combinator": "and"
+          "combinator": "or"
         },
         "options": {}
       },
@@ -3537,43 +3547,113 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "Jodd HTTP",
-            "content-length": "403",
+            "content-length": "1561",
             "content-type": "application/json",
-            "x-forwarded-for": "54.165.118.48",
+            "x-forwarded-for": "98.82.18.233",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "810e17e1473f",
+            "x-forwarded-server": "5e236941e778",
             "x-hotmart-hottok": "6SJkhfjuD6Bm4cha7tF8loEMs92JzG11852721",
-            "x-real-ip": "54.165.118.48",
+            "x-real-ip": "98.82.18.233",
             "accept-encoding": "gzip"
           },
           "params": {},
           "query": {},
           "body": {
             "data": {
-              "offer": {
-                "code": "h4vy1tzz"
-              },
               "product": {
+                "support_email": "terapiasmagneticasonline@gmail.com",
+                "has_co_production": true,
                 "name": "Terapia del Dolor",
-                "id": 1707154
+                "is_physical_product": false,
+                "id": 1707154,
+                "ucode": "9c58b9dc-2eab-448f-a89e-81f9924d8e26"
               },
-              "checkout_country": {
-                "iso": "PE",
-                "name": "Perú - Piruw"
+              "commissions": [
+                {
+                  "currency_value": "USD",
+                  "source": "MARKETPLACE",
+                  "value": 23.18
+                },
+                {
+                  "currency_conversion": {
+                    "converted_value": 121.09,
+                    "converted_to_currency": "USD",
+                    "conversion_rate": 1
+                  },
+                  "currency_value": "USD",
+                  "source": "PRODUCER",
+                  "value": 121.09
+                }
+              ],
+              "purchase": {
+                "original_offer_price": {
+                  "currency_value": "USD",
+                  "value": 281.69
+                },
+                "subscription_anticipation_purchase": false,
+                "checkout_country": {
+                  "iso": "CO",
+                  "name": "Colombia"
+                },
+                "origin": {
+                  "sck": "MANYCHAT-EVENTOS-HOTMART"
+                },
+                "order_bump": {
+                  "is_order_bump": false
+                },
+                "offer": {
+                  "code": "ag2s5qbf"
+                },
+                "is_funnel": true,
+                "order_date": 1748702685000,
+                "price": {
+                  "currency_value": "COP",
+                  "value": 1170402
+                },
+                "buyer_ip": "191.95.54.245",
+                "payment": {
+                  "installments_number": 1,
+                  "type": "NEQUI"
+                },
+                "full_price": {
+                  "currency_value": "COP",
+                  "value": 1170402
+                },
+                "business_model": "A",
+                "invoice_by": "SELLER",
+                "transaction": "HP2063284395",
+                "status": "CANCELED"
               },
-              "buyer_ip": "179.6.0.8",
-              "affiliate": true,
+              "affiliates": [
+                {
+                  "affiliate_code": "",
+                  "name": ""
+                }
+              ],
+              "producer": {
+                "legal_nature": "Pessoa Jurídica",
+                "document": "320729076",
+                "name": "MAGNETIC THERAPY ACADEMY LLC"
+              },
               "buyer": {
-                "phone": "51999131819",
-                "name": "Roger MARTINEZ",
-                "email": "regor3051@yahoo.com"
+                "address": {
+                  "country": "Colombia",
+                  "country_iso": "CO"
+                },
+                "document": "",
+                "name": "Carlos E Cristancho ",
+                "last_name": "Cristancho",
+                "checkout_phone": "573115248600",
+                "first_name": "Carlos",
+                "email": "caliche_0015@hotmail.com",
+                "document_type": ""
               }
             },
-            "id": "25526944-24a5-4479-b152-fcdddb38d38e",
-            "creation_date": 1740863441485,
-            "event": "PURCHASE_OUT_OF_SHOPPING_CART",
+            "id": "89378d21-db29-4641-97ef-e62be9d4e9ef",
+            "creation_date": 1748731931792,
+            "event": "PURCHASE_CANCELED",
             "version": "2.0.0"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/gersson-lanza-hotmart",
@@ -3616,6 +3696,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-05-29T00:37:00.000Z",
-  "versionId": "a5bab854-0b2c-4a36-b38f-fa14877a760e"
+  "updatedAt": "2025-06-01T00:00:13.000Z",
+  "versionId": "b9dae702-42f9-4aa2-a539-113d63c14f36"
 }
