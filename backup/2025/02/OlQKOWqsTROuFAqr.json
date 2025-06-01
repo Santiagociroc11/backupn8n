@@ -65,7 +65,7 @@
         "chatId": "-1002117516396",
         "binaryData": true,
         "additionalFields": {
-          "caption": "=Nombre: {{ $('Postgres').item.json.NOMBRE }}\nPais: {{ $('Webhook').item.json.body.pais }}\nMedio: {{ $('Webhook').item.json.body.medioPago }}\nTelefono: {{ $('Webhook').item.json.body.telefono }}\nCorreo inscripción:  {{ $('Webhook').item.json.body.correoInscripcion }}\nCorreo Pago (stripe):  {{ $('Webhook').item.json.body.correoPago?$('Webhook').item.json.body.correoPago: \"no aplica\" }}\nASESOR QUE REPORTA: {{ $('Webhook').item.json.body.nombreAsesor }}\n\n-> CONFIRMAR INGRESO E INSCRIBIR <- 🔥",
+          "caption": "=Nombre: {{ $('Postgres').item.json.NOMBRE }}\nPais: {{ $('Webhook').item.json.body.pais }}\nMedio: {{ $('Webhook').item.json.body.medioPago }}\nTelefono: {{ $('Webhook').item.json.body.telefono }}\nCorreo inscripción:  {{ $('Webhook').item.json.body.correoInscripcion }}\nCorreo Pago (stripe):  {{ $('Webhook').item.json.body.correoPago?$('Webhook').item.json.body.correoPago: \"no aplica\" }}\nCEDULA: {{ $('Webhook').item.json.body.cedulaComprador?$('Webhook').item.json.body.cedulaComprador: \"no aplica\" }}\nActividad economica: {{ $('Webhook').item.json.body.actividadEconomica?$('Webhook').item.json.body.actividadEconomica: \"no aplica\" }}\nASESOR QUE REPORTA: {{ $('Webhook').item.json.body.nombreAsesor }}\n\n-> CONFIRMAR INGRESO E INSCRIBIR <- 🔥",
           "message_thread_id": 3
         }
       },
@@ -81,7 +81,7 @@
       "credentials": {
         "telegramApi": {
           "id": "QruLAfRq4u80XCVX",
-          "name": "Telegram account"
+          "name": "BOT AGENCIA X"
         }
       }
     },
@@ -181,7 +181,9 @@
             "pais": "Ecuador ",
             "correoInscripcion": "miguelangelguaman7@gmail.com",
             "telefono": "593939081485",
-            "correoPago": "miguelangelguaman7@gmail.com"
+            "correoPago": "miguelangelguaman7@gmail.com",
+            "cedulaComprador": "12345678",
+            "actividadEconomica": "Empleado"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/reporte-venta-tg",
           "executionMode": "production"
@@ -211,6 +213,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-04-03T17:28:26.000Z",
-  "versionId": "699e5705-f500-43c4-963f-3fe27dba1984"
+  "updatedAt": "2025-05-31T19:15:58.000Z",
+  "versionId": "becccbdd-e7a1-41a0-b4c6-8dfa5643a6d0"
 }
