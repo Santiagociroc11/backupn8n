@@ -144,11 +144,6 @@
             "node": "NOMBRE4",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "encontrar2",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -180,17 +175,6 @@
         [
           {
             "node": "escritura4",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "encontrar2": {
-      "main": [
-        [
-          {
-            "node": "tag manychat2",
             "type": "main",
             "index": 0
           }
@@ -240,11 +224,6 @@
             "node": "NOMBRE5",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "encontrar3",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -276,17 +255,6 @@
         [
           {
             "node": "escritura5",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "encontrar3": {
-      "main": [
-        [
-          {
-            "node": "tag manychat3",
             "type": "main",
             "index": 0
           }
@@ -336,11 +304,6 @@
             "node": "NOMBRE6",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "encontrar4",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -378,17 +341,6 @@
         ]
       ]
     },
-    "encontrar4": {
-      "main": [
-        [
-          {
-            "node": "tag manychat4",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "BD UÑAS": {
       "main": [
         [
@@ -405,6 +357,53 @@
         [
           {
             "node": "VENEZUELA?2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "BD CEJAS L2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VENEZUELA?3": {
+      "main": [
+        [
+          {
+            "node": "ELIMINAR +2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "escritura7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BD CEJAS L2": {
+      "main": [
+        [
+          {
+            "node": "ES CEJAS?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ES CEJAS?": {
+      "main": [
+        [
+          {
+            "node": "VENEZUELA?3",
             "type": "main",
             "index": 0
           }
@@ -457,8 +456,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1140,
-        460
+        1020,
+        1060
       ]
     },
     {
@@ -490,8 +489,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1360,
-        460
+        1240,
+        1060
       ]
     },
     {
@@ -506,7 +505,7 @@
       "typeVersion": 2,
       "position": [
         800,
-        480
+        1060
       ],
       "webhookId": "453d99b1-161b-46e8-8ac0-40581b8efbe2"
     },
@@ -535,8 +534,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        1580,
-        460
+        1460,
+        1060
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -572,7 +571,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2240,
+        2120,
         360
       ],
       "id": "90bfcb71-0192-47a5-ad03-4c60f2df0b83",
@@ -602,7 +601,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        2460,
+        2340,
         360
       ],
       "id": "aaef5c4c-e6d2-4c6e-b81b-bc298198a2b4",
@@ -659,7 +658,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        2900,
+        2780,
         360
       ],
       "id": "32a3c67d-3849-40bc-b9d2-a732f3a87c10",
@@ -699,7 +698,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2680,
+        2560,
         360
       ],
       "id": "abde33a3-3532-4158-8ef1-0894541dd9ca",
@@ -728,9 +727,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2240,
+        2120,
         -40
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -745,7 +745,7 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        2240,
+        2120,
         160
       ],
       "alwaysOutputData": true,
@@ -785,7 +785,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2460,
+        2340,
         160
       ],
       "id": "f8d1b083-0e2c-4ddc-b657-deefee2de178",
@@ -825,8 +825,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1800,
-        460
+        1680,
+        1060
       ]
     },
     {
@@ -858,7 +858,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2020,
+        1900,
         160
       ]
     },
@@ -891,8 +891,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2460,
-        760
+        2340,
+        660
       ]
     },
     {
@@ -921,8 +921,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2680,
-        960
+        2560,
+        760
       ],
       "id": "94ba0ff9-2c71-4f44-a04f-81232b1ae404",
       "name": "NOMBRE4"
@@ -951,8 +951,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        2900,
-        960
+        2780,
+        760
       ],
       "id": "6354dcaf-ffb4-4b78-8136-7bea8317899a",
       "name": "busqueda4",
@@ -1008,8 +1008,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        3340,
-        960
+        3220,
+        760
       ],
       "id": "4a81ddc5-e890-49ac-806f-84ec82c92aca",
       "name": "escritura4",
@@ -1048,73 +1048,11 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        3120,
-        960
+        3000,
+        760
       ],
       "id": "99d49a56-1472-40e8-b392-adf3a9aac601",
       "name": "no existe?4"
-    },
-    {
-      "parameters": {
-        "collection": "=VCAPITAL-L1",
-        "options": {},
-        "query": "={\n  \"whatsapp\": {\n    \"$regex\": \".*{{ $('Edit Fields').item.json.numero.replace(/\\D/g, \"\").slice(-6) }}.*\",\n    \"$options\": \"i\"\n  }\n}"
-      },
-      "id": "362baa12-8941-45ac-94db-b9b858994947",
-      "name": "encontrar2",
-      "type": "n8n-nodes-base.mongoDb",
-      "typeVersion": 1.1,
-      "position": [
-        2680,
-        760
-      ],
-      "alwaysOutputData": true,
-      "credentials": {
-        "mongoDb": {
-          "id": "hz4IXA3OoMp5QuC5",
-          "name": "VCAPITAL"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.manychat.com/fb/subscriber/addTagByName",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer 1189237:5ad48c01d73704bf48fc266399a867f6"
-            },
-            {
-              "name": "Content-Type",
-              "value": "application/json"
-            },
-            {
-              "name": "Accept",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"tag_name\": \"INGRESOGRUPO-L1\"\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2900,
-        760
-      ],
-      "id": "bbdcce25-bf52-4cde-8180-c789e5b6ff5b",
-      "name": "tag manychat2",
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "maxTries": 5,
-      "disabled": true,
-      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -1141,8 +1079,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        2020,
-        760
+        1900,
+        1260
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -1182,8 +1120,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2240,
-        760
+        2120,
+        1260
       ]
     },
     {
@@ -1209,9 +1147,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2680,
+        2560,
         560
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -1242,8 +1181,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2900,
-        1360
+        2780,
+        1060
       ]
     },
     {
@@ -1272,8 +1211,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3120,
-        1560
+        3000,
+        1160
       ],
       "id": "97f885a1-e722-4fc8-af4f-26a51baa8b47",
       "name": "NOMBRE5"
@@ -1302,8 +1241,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        3340,
-        1560
+        3220,
+        1160
       ],
       "id": "200b05ab-9862-40af-a307-3985a61ce6c3",
       "name": "busqueda5",
@@ -1359,8 +1298,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        3780,
-        1560
+        3660,
+        1160
       ],
       "id": "e0925b61-a8da-4f55-a19b-0f869e8b7d95",
       "name": "escritura5",
@@ -1399,73 +1338,11 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        3560,
-        1560
+        3440,
+        1160
       ],
       "id": "4d2b9e58-d963-41a4-82e2-9c4a3114a959",
       "name": "no existe?5"
-    },
-    {
-      "parameters": {
-        "collection": "=GIORGIO-L1",
-        "options": {},
-        "query": "={\n  \"whatsapp\": {\n    \"$regex\": \".*{{ $('Edit Fields').item.json.numero.replace(/\\D/g, \"\").slice(-6) }}.*\",\n    \"$options\": \"i\"\n  }\n}"
-      },
-      "id": "fd17552b-8d72-44b8-ba46-8d1b4ed8107e",
-      "name": "encontrar3",
-      "type": "n8n-nodes-base.mongoDb",
-      "typeVersion": 1.1,
-      "position": [
-        3120,
-        1360
-      ],
-      "alwaysOutputData": true,
-      "credentials": {
-        "mongoDb": {
-          "id": "093AXEduqEk5QtV8",
-          "name": "GIORGIO"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.manychat.com/fb/subscriber/addTagByName",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer 1189237:5ad48c01d73704bf48fc266399a867f6"
-            },
-            {
-              "name": "Content-Type",
-              "value": "application/json"
-            },
-            {
-              "name": "Accept",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"tag_name\": \"INGRESOGRUPO-L1\"\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        3340,
-        1360
-      ],
-      "id": "526cecdb-df37-4af7-805d-98c99d407f29",
-      "name": "tag manychat3",
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "maxTries": 5,
-      "disabled": true,
-      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -1490,9 +1367,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3120,
-        1160
-      ]
+        3000,
+        960
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -1519,8 +1397,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        2460,
-        1360
+        2340,
+        1460
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -1560,8 +1438,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2680,
-        1360
+        2560,
+        1460
       ]
     },
     {
@@ -1593,8 +1471,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        3360,
-        1920
+        3220,
+        1460
       ]
     },
     {
@@ -1623,8 +1501,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3580,
-        2140
+        3440,
+        1560
       ],
       "id": "3dd836a1-6c8d-4c05-bf3c-f0cf628847be",
       "name": "NOMBRE6"
@@ -1653,8 +1531,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        3800,
-        2140
+        3660,
+        1560
       ],
       "id": "0ccd25fd-8b53-4c9e-b295-8a45e51d5f90",
       "name": "busqueda6",
@@ -1710,8 +1588,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        4240,
-        2120
+        4100,
+        1560
       ],
       "id": "4a1e71dc-1503-4803-8efd-b842ec5a6224",
       "name": "escritura6",
@@ -1750,73 +1628,11 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        4020,
-        2140
+        3880,
+        1560
       ],
       "id": "ef146b16-a2a6-4269-8a10-efa64fe1a266",
       "name": "no existe?6"
-    },
-    {
-      "parameters": {
-        "collection": "=UÑAS-L2",
-        "options": {},
-        "query": "={\n  \"whatsapp\": {\n    \"$regex\": \".*{{ $('Edit Fields').item.json.numero.replace(/\\D/g, \"\").slice(-6) }}.*\",\n    \"$options\": \"i\"\n  }\n}"
-      },
-      "id": "941dde56-79d0-408c-8247-d5553d191a83",
-      "name": "encontrar4",
-      "type": "n8n-nodes-base.mongoDb",
-      "typeVersion": 1.1,
-      "position": [
-        3580,
-        1940
-      ],
-      "alwaysOutputData": true,
-      "credentials": {
-        "mongoDb": {
-          "id": "JAKPCevXk5GvKOt9",
-          "name": "MONGO CARLOS ARZA"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.manychat.com/fb/subscriber/addTagByName",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer 1189237:5ad48c01d73704bf48fc266399a867f6"
-            },
-            {
-              "name": "Content-Type",
-              "value": "application/json"
-            },
-            {
-              "name": "Accept",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"tag_name\": \"INGRESOGRUPO-L1\"\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        3800,
-        1940
-      ],
-      "id": "8e873511-dd36-4b32-bb18-29209a7e4dd3",
-      "name": "tag manychat4",
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "maxTries": 5,
-      "disabled": true,
-      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -1841,9 +1657,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3580,
-        1740
-      ]
+        3440,
+        1360
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -1870,8 +1687,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        2920,
-        1940
+        2780,
+        1660
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -1911,8 +1728,194 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        3140,
+        3000,
+        1660
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6e074b0d-4663-476d-ae90-8be442f648cd",
+              "leftValue": "={{ $('Edit Fields').item.json.numero }}",
+              "rightValue": "58",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a1bebdd0-2821-4725-936c-ac513a74ca45",
+      "name": "VENEZUELA?3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3660,
+        1860
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "table": {
+          "__rl": true,
+          "value": "CEJAS_L2_WHA",
+          "mode": "list",
+          "cachedResultName": "CEJAS_L2_WHA"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "whatsapp",
+        "valueToMatchOn": "={{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "dia",
+              "value": "={{ $now.format('yyyy-MM-dd') }}"
+            },
+            {
+              "column": "hora",
+              "value": "={{ $now.format('HH:mm:ss') }}"
+            },
+            {
+              "column": "grupo",
+              "value": "={{ $('Edit Fields').item.json.grupo }}"
+            },
+            {
+              "column": "nombre_grupo",
+              "value": "={{ $('BD CEJAS L2').item.json.nombre }}"
+            },
+            {
+              "column": "fuente",
+              "value": "FB ADS"
+            }
+          ]
+        },
+        "options": {
+          "detailedOutput": true
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        3880,
         1940
+      ],
+      "id": "0fa357a9-b428-459a-a39f-382f9239f2ee",
+      "name": "escritura7",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('Webhook').item.json.body.instance }}?groupJid={{ $('Edit Fields').item.json.grupo }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{ \"action\": \"remove\", \n  \n  \"participants\": [ \"{{ $('Edit Fields').item.json.numero }}\" ] } ",
+        "options": {}
+      },
+      "id": "169b52c3-c403-477a-a060-cfa59d5cfb1c",
+      "name": "ELIMINAR +2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3880,
+        1760
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "ARZA_CEJAS_LINKS",
+          "mode": "list",
+          "cachedResultName": "ARZA_CEJAS_LINKS"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $('If').item.json.grupo }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ddd8e48e-bbaf-458e-92d1-666dd83ca66d",
+      "name": "BD CEJAS L2",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        3220,
+        1860
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "179b2UX7XsHkNW05",
+          "name": "REDIRECCIONES - LANZAMIENTOS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8d2037fa-e2a7-4668-901e-4ca0a27a93ab",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "6a1ded71-e2fd-4c87-8d29-7b9ad153d707",
+      "name": "ES CEJAS?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3440,
+        1860
       ]
     }
   ],
@@ -1922,8 +1925,8 @@
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
-            "user-agent": "axios/1.7.9",
-            "content-length": "407",
+            "user-agent": "axios/1.7.7",
+            "content-length": "414",
             "accept-encoding": "gzip, compress, deflate, br",
             "content-type": "application/json",
             "x-forwarded-for": "172.18.0.1",
@@ -1937,20 +1940,20 @@
           "query": {},
           "body": {
             "event": "group-participants.update",
-            "instance": "JUAN CARLOS",
+            "instance": "SANTIAGO-PERSONAL",
             "data": {
-              "id": "120363400844553414@g.us",
+              "id": "120363419222723092@g.us",
               "author": "",
               "participants": [
-                "51966763813@s.whatsapp.net"
+                "573233336311@s.whatsapp.net"
               ],
               "action": "add"
             },
             "destination": "https://n8n.automscc.com/webhook/webhooks-wha",
-            "date_time": "2025-05-01T12:54:12.300Z",
-            "sender": "573017817643@s.whatsapp.net",
+            "date_time": "2025-06-02T16:15:44.736Z",
+            "sender": "573136298562@s.whatsapp.net",
             "server_url": "http://evolution.automscc.com",
-            "apikey": "EBB08797B573-4069-9146-C8A15A6B3348"
+            "apikey": "F8B55F183A81-40CE-B1F1-623317461105"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/webhooks-wha",
           "executionMode": "production"
@@ -1988,6 +1991,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-05-16T18:42:29.000Z",
-  "versionId": "c265dd33-381c-4738-8748-7f26172627f4"
+  "updatedAt": "2025-06-02T19:20:52.000Z",
+  "versionId": "216a2b8e-cafe-4416-a21a-7076d10a18ad"
 }
