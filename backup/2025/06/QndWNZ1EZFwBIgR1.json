@@ -1,0 +1,482 @@
+{
+  "active": true,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-06T16:46:30.782Z",
+  "id": "QndWNZ1EZFwBIgR1",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[WIN+][CP2-ACTIVA] ADVERONIX",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -660,
+        20
+      ],
+      "id": "8b6e3672-8cf7-4fec-ae96-12ed0174a6c3",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1hzlOJVWJUHndUDvmXaF5pHPWU_PTvJDyIMsfOUqrMzc/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1hzlOJVWJUHndUDvmXaF5pHPWU_PTvJDyIMsfOUqrMzc/edit?gid=1321789496#gid=1321789496",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Day": "={{ $json.date_start }}",
+            "Ad ID": "={{ $json.ad_id }}",
+            "Ad Name": "={{ $json.ad_name }}",
+            "Amount Spent": "={{ $json.spend?.toNumber() }}",
+            "Unique Link Clicks": "={{ $json.actions.find(item => item.action_type == \"link_click\").value }}",
+            "CPM (Cost per 1,000 Impressions)": "={{ $json.cpm?.toNumber() }}",
+            "CTR (Link Click-Through Rate)": "={{ $json.ctr?.toNumber() }}",
+            "Purchases": "={{ $json.actions.find(item => item.action_type == \"purchase\").value }}",
+            "Ad Set Name": "={{ $json.adset_name }}",
+            "Campaign Name": "={{ $json.campaign_name }}"
+          },
+          "matchingColumns": [
+            "AD ID"
+          ],
+          "schema": [
+            {
+              "id": "Day",
+              "displayName": "Day",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Ad ID",
+              "displayName": "Ad ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Ad Name",
+              "displayName": "Ad Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Amount Spent",
+              "displayName": "Amount Spent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Unique Link Clicks",
+              "displayName": "Unique Link Clicks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CPM (Cost per 1,000 Impressions)",
+              "displayName": "CPM (Cost per 1,000 Impressions)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CTR (Link Click-Through Rate)",
+              "displayName": "CTR (Link Click-Through Rate)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Account Name",
+              "displayName": "Account Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Purchases",
+              "displayName": "Purchases",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Ad Set Name",
+              "displayName": "Ad Set Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Campaign Name",
+              "displayName": "Campaign Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ACTIVO",
+              "displayName": "ACTIVO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        660,
+        -60
+      ],
+      "id": "b5343ee8-594b-4c39-bf65-52d8655fcaaf",
+      "name": "Google Sheets",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        220,
+        -60
+      ],
+      "id": "0e97a8f6-3ee6-4b17-b4e4-003a49710772",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 20
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -660,
+        -180
+      ],
+      "id": "762d4a66-f0b4-4455-b70d-910dece991c4",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v22.0/act_1559504764875342/insights?access_token=EAFUVaNqPp4cBOZCBsSgMxOXysPVusj1ASQ8LZApRCbrEusfeUvQ7d0NILgSCnI0CZCm58LuiyRDAKAwWteSe6mEFYzlYp977vtaQnS3wBdC76eii23syBmWNgSZA4ftZBj5sNqBHWTqK6NsKbIY8veVlSEO7T0F5HvbuNAJAJdvdydpy3yZB7qZBEhYoMlGirVCJY0ZD&fields=ad_id,ad_name,adset_name,actions,campaign_name,spend,cpm,ctr,clicks,cpc,impressions&level=ad&time_range={\"since\":\"{{$json.since}}\",\"until\":\"{{$json.until}}\"}&time_increment=1&limit=2000",
+        "options": {
+          "batching": {
+            "batch": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -160,
+        -60
+      ],
+      "id": "e0d46aca-9a68-46e3-863c-262ec5125992",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "date_start"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        440,
+        -60
+      ],
+      "id": "a2a74eb6-1013-4a0c-aeb5-55cd8dfa7379",
+      "name": "Sort"
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1hzlOJVWJUHndUDvmXaF5pHPWU_PTvJDyIMsfOUqrMzc/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1321789496,
+          "mode": "list",
+          "cachedResultName": "CP-PRINCIPAL",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1hzlOJVWJUHndUDvmXaF5pHPWU_PTvJDyIMsfOUqrMzc/edit#gid=1321789496"
+        },
+        "clear": "specificRange",
+        "range": "A2:K5000"
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        220,
+        -340
+      ],
+      "id": "6d03772f-0edc-420c-a24c-70a01c475d7a",
+      "name": "Google Sheets1",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const startDate = new Date(\"2025-01-01\");\n\n// Hoy\nconst now = new Date();\n\n// Primer día del mes actual (máximo para el since)\nconst maxSince = new Date(now.getFullYear(), now.getMonth(), 1);\n\n// Fecha final permitida para \"until\"\nconst finalUntil = new Date(\"2025-12-31\");\n\nconst dayInMs = 1000 * 60 * 60 * 24;\nconst range = 15;\nconst output = [];\n\nfor (let date = new Date(startDate); date <= now; date = new Date(date.getTime() + range * dayInMs)) {\n\tconst from = new Date(date);\n\tlet to = new Date(date.getTime() + (range - 1) * dayInMs);\n\n\t// Ajuste para no pasar de hoy\n\tif (to > now) {\n\t\tto = new Date(now);\n\t}\n\n\t// Ajuste para no pasar del finalUntil (opcional si quieres mantenerlo)\n\tif (to > finalUntil) {\n\t\tto = new Date(finalUntil);\n\t}\n\n\toutput.push({\n\t\tjson: {\n\t\t\tsince: from.toISOString().split(\"T\")[0],\n\t\t\tuntil: to.toISOString().split(\"T\")[0],\n\t\t}\n\t});\n}\n\nreturn output;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -380,
+        -60
+      ],
+      "id": "223a5fb9-6f66-4a9d-badb-8eeab4739f99",
+      "name": "Code"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        440,
+        -300
+      ],
+      "id": "e61cdd1a-48c5-48db-88cc-77a03f3b7c04",
+      "name": "Wait",
+      "webhookId": "484672f8-f28a-4c44-9f9e-dccf92c351fe"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        880,
+        -20
+      ],
+      "id": "da3afc0f-cc7c-45a3-9898-042c4fb03ce9",
+      "name": "Wait1",
+      "webhookId": "cc643d6a-32ad-499f-b374-ae9d5e2cd86f"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-06-06T16:59:41.000Z",
+  "versionId": "541c6462-1cf7-48bf-9b3c-a9b12f055031"
+}
