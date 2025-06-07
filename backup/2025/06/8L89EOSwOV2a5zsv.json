@@ -50,16 +50,16 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -300,
-        -140
+        -320,
+        -60
       ],
       "id": "3ddde34b-32d2-416a-a1fa-6108f842a2fb",
       "name": "CORREO BIENVENIDA",
       "webhookId": "7c320870-8f31-41ef-ae5d-695f1cb85b5e",
       "credentials": {
         "gmailOAuth2": {
-          "id": "DOPWTzPin0EZKjQY",
-          "name": "GMAIL SANTIAGO"
+          "id": "TQIc6MxJVwS0cvQg",
+          "name": "GMAIL JSD COMPANY"
         }
       }
     }
@@ -71,15 +71,15 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "Jodd HTTP",
-            "content-length": "2206",
+            "content-length": "1714",
             "content-type": "application/json",
-            "x-forwarded-for": "13.218.63.213",
+            "x-forwarded-for": "3.84.82.213",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
             "x-forwarded-server": "5e236941e778",
             "x-hotmart-hottok": "rrQs3XPgg981iOyVxcVtzyVVA0kYsp1be22114-3144-4b81-9341-e1e30d733e88",
-            "x-real-ip": "13.218.63.213",
+            "x-real-ip": "3.84.82.213",
             "accept-encoding": "gzip"
           },
           "params": {},
@@ -87,129 +87,102 @@
           "body": {
             "data": {
               "product": {
-                "support_email": "support@hotmart.com.br",
+                "support_email": "",
                 "has_co_production": false,
-                "name": "Produto test postback2",
-                "warranty_date": "2017-12-27T00:00:00Z",
+                "name": "SueroTerapia - Curso Completo",
+                "warranty_date": "2025-06-13T00:00:00Z",
                 "is_physical_product": false,
-                "id": 0,
-                "ucode": "fb056612-bcc6-4217-9e6d-2a5d1110ac2f",
-                "content": {
-                  "has_physical_products": true,
-                  "products": [
-                    {
-                      "name": "How to Make Clear Ice",
-                      "is_physical_product": false,
-                      "id": 4774438,
-                      "ucode": "559fef42-3406-4d82-b775-d09bd33936b1"
-                    },
-                    {
-                      "name": "Organizador de Poeira",
-                      "is_physical_product": true,
-                      "id": 4999597,
-                      "ucode": "099e7644-b7d1-43d6-82a9-ec6be0118a4b"
-                    }
-                  ]
-                }
+                "id": 5636749,
+                "ucode": "73cd9815-52b8-45c8-89ea-1e3959b6bc05"
               },
               "commissions": [
                 {
-                  "currency_value": "BRL",
+                  "currency_value": "USD",
                   "source": "MARKETPLACE",
-                  "value": 149.5
+                  "value": 1.58
                 },
                 {
-                  "currency_value": "BRL",
+                  "currency_conversion": {
+                    "converted_value": 54935.82,
+                    "converted_to_currency": "COP",
+                    "conversion_rate": 4102.75
+                  },
+                  "currency_value": "USD",
                   "source": "PRODUCER",
-                  "value": 1350.5
+                  "value": 13.39
                 }
               ],
               "purchase": {
                 "original_offer_price": {
-                  "currency_value": "BRL",
-                  "value": 1500
+                  "currency_value": "USD",
+                  "value": 14.97
                 },
+                "subscription_anticipation_purchase": false,
                 "checkout_country": {
-                  "iso": "BR",
-                  "name": "Brasil"
+                  "iso": "US",
+                  "name": "United States"
                 },
-                "sckPaymentLink": "sckPaymentLinkTest",
+                "origin": {
+                  "xcod": "f106d392-2692-45fe-bd8e-3513eccfcb76"
+                },
                 "order_bump": {
-                  "parent_purchase_transaction": "HP02316330308193",
-                  "is_order_bump": true
+                  "is_order_bump": false
                 },
-                "approved_date": 1511783346000,
+                "approved_date": 1749227059000,
                 "offer": {
-                  "code": "test",
-                  "coupon_code": "SHHUHA"
+                  "code": "og7gp9y2"
                 },
                 "is_funnel": false,
-                "event_tickets": {
-                  "amount": 1749182907166
-                },
-                "order_date": 1511783344000,
+                "order_date": 1749227057000,
                 "price": {
-                  "currency_value": "BRL",
-                  "value": 1500
+                  "currency_value": "USD",
+                  "value": 14.97
                 },
-                "buyer_ip": "00.00.00.00",
+                "buyer_ip": "172.56.99.130",
                 "payment": {
-                  "installments_number": 12,
+                  "installments_number": 1,
                   "type": "CREDIT_CARD"
                 },
                 "full_price": {
-                  "currency_value": "BRL",
-                  "value": 1500
+                  "currency_value": "USD",
+                  "value": 14.97
                 },
-                "business_model": "I",
-                "transaction": "HP16015479281022",
+                "business_model": "A",
+                "invoice_by": "SELLER",
+                "transaction": "HP2571893437",
                 "status": "APPROVED"
               },
               "affiliates": [
                 {
-                  "affiliate_code": "Q58388177J",
-                  "name": "Affiliate name"
+                  "affiliate_code": "",
+                  "name": ""
                 }
               ],
               "producer": {
-                "legal_nature": "Pessoa Física",
-                "document": "12345678965",
-                "name": "Producer Test Name"
-              },
-              "subscription": {
-                "subscriber": {
-                  "code": "I9OT62C3"
-                },
-                "plan": {
-                  "name": "plano de teste",
-                  "id": 123
-                },
-                "status": "ACTIVE"
+                "legal_nature": "Pessoa Jurídica",
+                "document": "9016205721",
+                "name": "JSD COMPANY S.A.S."
               },
               "buyer": {
-                "checkout_phone_code": "999999999",
                 "address": {
-                  "zipcode": "38400123",
-                  "country": "Brasil",
-                  "number": "10",
-                  "address": "Avenida Francisco Galassi",
-                  "city": "Uberlândia",
-                  "state": "Minas Gerais",
-                  "neighborhood": "Tubalina",
-                  "complement": "Perto do shopping",
-                  "country_iso": "BR"
+                  "zipcode": "338806100",
+                  "country": "United States",
+                  "address": "318 Ridgeview E",
+                  "city": "Winter Haven",
+                  "state": "Florida",
+                  "country_iso": "US"
                 },
-                "document": "69526128664",
-                "name": "Teste Comprador",
-                "last_name": "Comprador",
-                "checkout_phone": "99999999900",
-                "first_name": "Teste",
-                "email": "testeComprador271101postman15@example.com",
-                "document_type": "CPF"
+                "document": "",
+                "name": "Ileana guivas",
+                "last_name": "guivas",
+                "checkout_phone": "16892045381",
+                "first_name": "Ileana",
+                "email": "ileanayfreddielopez@gmail.com",
+                "document_type": ""
               }
             },
-            "id": "8057ec02-3fe9-4d4d-adf8-0397b7b8bd2f",
-            "creation_date": 1749182907191,
+            "id": "eea37bd4-4db2-4a2c-b865-7042adfc2f6a",
+            "creation_date": 1749227064431,
             "event": "PURCHASE_APPROVED",
             "version": "2.0.0"
           },
@@ -228,6 +201,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-06-06T04:50:15.000Z",
-  "versionId": "a4f1accc-c9ae-430b-b05a-79d8a96410e1"
+  "updatedAt": "2025-06-06T17:00:41.000Z",
+  "versionId": "135611e6-ee52-4914-ae2f-97a6f4c199b0"
 }
