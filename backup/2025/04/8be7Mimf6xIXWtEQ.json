@@ -11,12 +11,76 @@
           }
         ]
       ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "MongoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "MongoDB1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "MongoDB2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-04-14T15:52:13.228Z",
   "id": "8be7Mimf6xIXWtEQ",
   "isArchived": false,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "[WIN+] VENTAS MANUALES CHATWOOT",
   "nodes": [
     {
@@ -28,8 +92,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -560,
-        -80
+        -460,
+        -240
       ],
       "id": "fd738e1c-d16e-4d1d-8924-8b1f9e49d6c5",
       "name": "Webhook",
@@ -53,15 +117,320 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -340,
-        -80
+        -120,
+        -240
       ],
       "id": "b20cd80f-6989-473d-b4fa-4b1aeec5e782",
       "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "webhook-pausarbot",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -460,
+        40
+      ],
+      "id": "06dfca8a-7e81-45c5-8428-6dd09cd7481a",
+      "name": "Webhook1",
+      "webhookId": "236fb834-e778-4865-8fc4-641dc84ccdf2"
+    },
+    {
+      "parameters": {
+        "collection": "bot-win+2-recuperas",
+        "options": {},
+        "query": "={\"whatsapp\":\"{{ $json.body.messages[0].conversation.contact_inbox.source_id }}\"}"
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.2,
+      "position": [
+        -200,
+        40
+      ],
+      "id": "4baebbf3-6d55-4399-be2f-651a32ad1545",
+      "name": "MongoDB",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mongoDb": {
+          "id": "NAmnhvdIS8ryFTBw",
+          "name": "WIN+2-RECUPERA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "312cb498-7474-4e30-b121-b166a2190fd9",
+              "leftValue": "={{ $json.isEmpty() }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        20,
+        40
+      ],
+      "id": "7483b5f8-8f53-4d6b-99ce-6fb86c01e004",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "collection": "bot-win+2-recuperas",
+        "fields": "whatsapp,estado",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.2,
+      "position": [
+        540,
+        -60
+      ],
+      "id": "841cf272-6d8e-4d37-a0b0-e51137a95939",
+      "name": "MongoDB1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mongoDb": {
+          "id": "NAmnhvdIS8ryFTBw",
+          "name": "WIN+2-RECUPERA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "68f10934-09d9-4c69-9b00-30464df69666",
+              "name": "whatsapp",
+              "value": "={{ $('Webhook1').item.json.body.messages[0].conversation.contact_inbox.source_id }}",
+              "type": "string"
+            },
+            {
+              "id": "7e120838-2e9d-4a84-80b4-3be3958c97fa",
+              "name": "estado",
+              "value": "verificando",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        -60
+      ],
+      "id": "3141723b-8a0a-429c-9c72-66d48c47b4f4",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "findOneAndUpdate",
+        "collection": "bot-win+2-recuperas",
+        "updateKey": "whatsapp",
+        "fields": "estado",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.2,
+      "position": [
+        540,
+        160
+      ],
+      "id": "646dcc7f-bb87-4699-b52e-13f794c72ebf",
+      "name": "MongoDB2",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mongoDb": {
+          "id": "NAmnhvdIS8ryFTBw",
+          "name": "WIN+2-RECUPERA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "68f10934-09d9-4c69-9b00-30464df69666",
+              "name": "whatsapp",
+              "value": "={{ $('Webhook1').item.json.body.messages[0].conversation.contact_inbox.source_id }}",
+              "type": "string"
+            },
+            {
+              "id": "7e120838-2e9d-4a84-80b4-3be3958c97fa",
+              "name": "estado",
+              "value": "verificando",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        160
+      ],
+      "id": "8ce325b9-ad18-4141-b8ce-a169275b7fea",
+      "name": "Edit Fields1"
     }
   ],
   "pinData": {
     "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "rest-client/2.1.0 (linux x86_64) ruby/3.3.3p89",
+            "content-length": "2911",
+            "accept": "application/json",
+            "accept-encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+            "baggage": "sentry-environment=production,sentry-public_key=8a2d502a4008219bf1a2cf5a658be8cf,sentry-trace_id=a31ed995078743388d0c662f19ce4de9",
+            "content-type": "application/json",
+            "sentry-trace": "a31ed995078743388d0c662f19ce4de9-5197338b68354dc8",
+            "x-forwarded-for": "34.201.21.236",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "697dd9cbf981",
+            "x-real-ip": "34.201.21.236"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "additional_attributes": {},
+            "can_reply": true,
+            "channel": "Channel::Whatsapp",
+            "contact_inbox": {
+              "id": 289304292,
+              "contact_id": 290893524,
+              "inbox_id": 39429,
+              "source_id": "573114284052",
+              "created_at": "2025-04-13T12:31:51.048Z",
+              "updated_at": "2025-04-13T12:31:51.048Z",
+              "hmac_verified": false,
+              "pubsub_token": "CbcrZJ2Psj1jnLT8KEN81KyH"
+            },
+            "id": 304520,
+            "inbox_id": 39429,
+            "messages": [
+              {
+                "id": 141084533,
+                "content": "🥳Felicidades¡¡ TU COMPRA FUE APROBADA✅.\n\nPara instalar la app, dale clic a este enlace Y SIGUE LAS INSTRUCCIONES QUE ESTAN EN EL LINK, LEE MUY BIEN TODO\n\n👇🏻 ACÁ ESTÁ EL ACCESO A TU COMPRA 👇🏻\n\nhttps://automscc.com/mtv?id=573123755115\n\n👆🏻 Dale clic 👆🏻\n\nTODO LO QUE NECESITAS PARA INSTALARLA ESTÁ EN ESE LINK, LEE BIEN 🚨\n\nSi no te abre el link, intenta con otro explorador de tu celular o pide ayuda para instalarlo a algún familiar 🫵🏻",
+                "account_id": 92628,
+                "inbox_id": 39429,
+                "conversation_id": 304520,
+                "message_type": 1,
+                "created_at": 1744645954,
+                "updated_at": "2025-04-14T15:52:42.314Z",
+                "private": false,
+                "status": "delivered",
+                "source_id": "wamid.HBgMNTczMTE0Mjg0MDUyFQIAERgSMzQ0QTRCNTU2NjdFRThDRDRGAA==",
+                "content_type": "text",
+                "content_attributes": {},
+                "sender_type": "User",
+                "sender_id": 90119,
+                "external_source_ids": {},
+                "additional_attributes": {},
+                "processed_message_content": "🥳Felicidades¡¡ TU COMPRA FUE APROBADA✅.\n\nPara instalar la app, dale clic a este enlace Y SIGUE LAS INSTRUCCIONES QUE ESTAN EN EL LINK, LEE MUY BIEN TODO\n\n👇🏻 ACÁ ESTÁ EL ACCESO A TU COMPRA 👇🏻\n\nhttps://automscc.com/mtv?id=573123755115\n\n👆🏻 Dale clic 👆🏻\n\nTODO LO QUE NECESITAS PARA INSTALARLA ESTÁ EN ESE LINK, LEE BIEN 🚨\n\nSi no te abre el link, intenta con otro explorador de tu celular o pide ayuda para instalarlo a algún familiar 🫵🏻",
+                "sentiment": {},
+                "conversation": {
+                  "assignee_id": 90119,
+                  "unread_count": 0,
+                  "last_activity_at": 1744646275,
+                  "contact_inbox": {
+                    "source_id": "573114284052"
+                  }
+                },
+                "sender": {
+                  "id": 90119,
+                  "name": "santiago",
+                  "available_name": "santiago",
+                  "avatar_url": "",
+                  "type": "user",
+                  "availability_status": null,
+                  "thumbnail": ""
+                }
+              }
+            ],
+            "labels": [
+              "bienvenida",
+              "pagado",
+              "medio-pago",
+              "atendido"
+            ],
+            "meta": {
+              "sender": {
+                "additional_attributes": {},
+                "custom_attributes": {},
+                "email": null,
+                "id": 290893524,
+                "identifier": null,
+                "name": "EDINSON SALAS RIOS",
+                "phone_number": "+573114284052",
+                "thumbnail": "",
+                "blocked": false,
+                "type": "contact"
+              },
+              "assignee": {
+                "id": 90119,
+                "name": "santiago",
+                "available_name": "santiago",
+                "avatar_url": "",
+                "type": "user",
+                "availability_status": null,
+                "thumbnail": ""
+              },
+              "team": null,
+              "hmac_verified": false
+            },
+            "status": "open",
+            "custom_attributes": {},
+            "snoozed_until": null,
+            "unread_count": 0,
+            "first_reply_created_at": "2025-04-14T15:52:34.139Z",
+            "priority": "urgent",
+            "waiting_since": 0,
+            "agent_last_seen_at": 1744646275,
+            "contact_last_seen_at": 0,
+            "last_activity_at": 1744646275,
+            "timestamp": 1744646275,
+            "created_at": 1744547511,
+            "updated_at": 1744646275.392353,
+            "event": "automation_event.conversation_updated"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/webhooks-chatwoot",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "Webhook1": [
       {
         "json": {
           "headers": {
@@ -198,7 +567,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 1,
-  "updatedAt": "2025-05-04T04:51:33.000Z",
-  "versionId": "77775bf0-3520-4ae6-b49f-8a98798d9ab9"
+  "triggerCount": 2,
+  "updatedAt": "2025-06-08T19:47:32.000Z",
+  "versionId": "9a60bc26-5bbd-466a-89f4-cce580506951"
 }
