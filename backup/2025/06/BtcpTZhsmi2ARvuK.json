@@ -1,0 +1,184 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-10T00:17:51.043Z",
+  "id": "BtcpTZhsmi2ARvuK",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[FRANCISCO] BACKEND AVISOS COMPRAS",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        140
+      ],
+      "id": "0026f536-a4f7-4ca8-9c71-b4b6cdc37877",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "avisos-fran",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -20,
+        -60
+      ],
+      "id": "8d5afebd-171e-4095-a666-fd8218e74fe3",
+      "name": "Webhook",
+      "webhookId": "3bd4246b-8fb2-4af2-a49c-07a33ee004f2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b682ec54-193c-4409-a9d4-45227b3b7d32",
+              "name": "body.whatsapp",
+              "value": "={{ $json.body.whatsapp }}",
+              "type": "string"
+            },
+            {
+              "id": "5118b808-91f8-4d62-b3d0-98161fb3cd9c",
+              "name": "body.source_url",
+              "value": "={{ $json.body.source_url }}",
+              "type": "string"
+            },
+            {
+              "id": "b994656a-837b-43d2-8df1-5936f2a44411",
+              "name": "body.image_url",
+              "value": "={{ $json.body.image_url }}",
+              "type": "string"
+            },
+            {
+              "id": "e0120f39-3dde-4cf6-a1a0-068046771f4e",
+              "name": "body.producto",
+              "value": "={{ $json.body.producto }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        40
+      ],
+      "id": "05944f8c-4c37-4a8f-b3ae-152f1e8d2069",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "chatId": "1168710108",
+        "text": "=💵 *COMPRA REALIZADA*\n\nWHATSAPP: {{ $json.body.whatsapp }}\nPRODUCTO: {{ $json.body.producto }}\nFUENTE: {{ $json.body.source_url }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        500,
+        40
+      ],
+      "id": "89475617-6fae-4348-92cd-62423db74efa",
+      "name": "Telegram",
+      "webhookId": "ffc15400-25c7-4c76-a54f-a0b8fb538cc6",
+      "credentials": {
+        "telegramApi": {
+          "id": "71o9DQe5tCOu17F5",
+          "name": "BOT AVISOS WHA"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "axios/0.20.0",
+            "content-length": "101",
+            "accept": "application/json, text/plain, */*",
+            "content-type": "application/json",
+            "x-forwarded-for": "193.203.183.30",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "5e236941e778",
+            "x-real-ip": "193.203.183.30",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "whatsapp": "573136298562",
+            "estado": "pagado",
+            "pagado_at": 1749515206,
+            "source_url": "https://fb.me/6vH58fuSw",
+            "image_url": "https://scontent.xx.fbcdn.net/v/t45.1600-4/474130013_120216961529900742_1833867222827651336_n.png?stp=c3.3.300.300a_dst-png_p306x306&_nc_cat=100&ccb=1-7&_nc_sid=e37a05&_nc_ohc=woCiupJf5f0Q7kNvwEf17y8&_nc_oc=Adlck_0GQgxcqivnYPmH5pP9Zk5e1ydF-OZEidZy7MSnEUkr6jvV1anU8WnyGchZX_mLp2DEAdFLwHduAF1cR427&_nc_ad=z-m&_nc_cid=0&_nc_zt=1&_nc_ht=scontent.xx&_nc_gid=Murrwx37bLg4_8xHqPiWog&oh=00_AfLuKX6XnYuLVby0fGdEuUiVnr3K0EdCmB6BOaZ6B67o1g&oe=68398A3D",
+            "producto": "SUEROTERAPIA"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/avisos-fran",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-06-10T00:39:54.000Z",
+  "versionId": "caef1134-5b34-4d5e-a933-1c1f1b2daa44"
+}
