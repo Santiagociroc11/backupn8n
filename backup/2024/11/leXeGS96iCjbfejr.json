@@ -141,40 +141,7 @@
         ],
         [
           {
-            "node": "NOMBRE4",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "NOMBRE4": {
-      "main": [
-        [
-          {
-            "node": "busqueda4",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "busqueda4": {
-      "main": [
-        [
-          {
-            "node": "no existe?4",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "no existe?4": {
-      "main": [
-        [
-          {
-            "node": "escritura4",
+            "node": "escritura8",
             "type": "main",
             "index": 0
           }
@@ -204,86 +171,6 @@
         [
           {
             "node": "BD GIORGIO",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "VENEZUELA?": {
-      "main": [
-        [
-          {
-            "node": "ELIMINAR +",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "NOMBRE5",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "NOMBRE5": {
-      "main": [
-        [
-          {
-            "node": "busqueda5",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "busqueda5": {
-      "main": [
-        [
-          {
-            "node": "no existe?5",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "no existe?5": {
-      "main": [
-        [
-          {
-            "node": "escritura5",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "BD GIORGIO": {
-      "main": [
-        [
-          {
-            "node": "ES GIORGIO?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "ES GIORGIO?": {
-      "main": [
-        [
-          {
-            "node": "VENEZUELA?",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "BD UÑAS",
             "type": "main",
             "index": 0
           }
@@ -409,6 +296,53 @@
           }
         ]
       ]
+    },
+    "VENEZUELA?": {
+      "main": [
+        [
+          {
+            "node": "ELIMINAR +",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "escritura9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ES GIORGIO?": {
+      "main": [
+        [
+          {
+            "node": "VENEZUELA?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "BD UÑAS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BD GIORGIO": {
+      "main": [
+        [
+          {
+            "node": "ES GIORGIO?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-11-04T07:42:41.519Z",
@@ -457,7 +391,7 @@
       "typeVersion": 3.4,
       "position": [
         1020,
-        1060
+        560
       ]
     },
     {
@@ -490,7 +424,7 @@
       "typeVersion": 2.2,
       "position": [
         1240,
-        1060
+        560
       ]
     },
     {
@@ -505,7 +439,7 @@
       "typeVersion": 2,
       "position": [
         800,
-        1060
+        560
       ],
       "webhookId": "453d99b1-161b-46e8-8ac0-40581b8efbe2"
     },
@@ -535,7 +469,7 @@
       "typeVersion": 2.4,
       "position": [
         1460,
-        1060
+        560
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -826,7 +760,7 @@
       "typeVersion": 2.2,
       "position": [
         1680,
-        1060
+        560
       ]
     },
     {
@@ -897,165 +831,6 @@
     },
     {
       "parameters": {
-        "url": "=https://evolution.automscc.com/group/findGroupInfos/{{ $('Edit Fields').item.json.instancia }}",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "groupJid",
-              "value": "={{ $json.id }}"
-            }
-          ]
-        },
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "apikey",
-              "value": "429683C4C977415CAAFCCE10F7D57E11"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2560,
-        760
-      ],
-      "id": "94ba0ff9-2c71-4f44-a04f-81232b1ae404",
-      "name": "NOMBRE4"
-    },
-    {
-      "parameters": {
-        "operation": "select",
-        "table": {
-          "__rl": true,
-          "value": "VCAPITAL_L1_WHA",
-          "mode": "list",
-          "cachedResultName": "VCAPITAL_L1_WHA"
-        },
-        "returnAll": true,
-        "where": {
-          "values": [
-            {
-              "column": "whatsapp",
-              "condition": "LIKE",
-              "value": "=%{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}%"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        2780,
-        760
-      ],
-      "id": "6354dcaf-ffb4-4b78-8136-7bea8317899a",
-      "name": "busqueda4",
-      "alwaysOutputData": true,
-      "credentials": {
-        "mySql": {
-          "id": "n8fCALXWnGdmJkBN",
-          "name": "CAPTACIONES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "table": {
-          "__rl": true,
-          "value": "VCAPITAL_L1_WHA",
-          "mode": "list",
-          "cachedResultName": "VCAPITAL_L1_WHA"
-        },
-        "dataMode": "defineBelow",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "dia",
-              "value": "={{ $now.format('yyyy-MM-dd') }}"
-            },
-            {
-              "column": "hora",
-              "value": "={{ $now.format('HH:mm:ss') }}"
-            },
-            {
-              "column": "whatsapp",
-              "value": "=+{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}"
-            },
-            {
-              "column": "grupo",
-              "value": "={{ $('Edit Fields').item.json.grupo }}"
-            },
-            {
-              "column": "nombre_grupo",
-              "value": "={{ $('NOMBRE4').item.json.subject }}"
-            },
-            {
-              "column": "fuente",
-              "value": "FB ADS"
-            }
-          ]
-        },
-        "options": {
-          "detailedOutput": true
-        }
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        3220,
-        760
-      ],
-      "id": "4a81ddc5-e890-49ac-806f-84ec82c92aca",
-      "name": "escritura4",
-      "credentials": {
-        "mySql": {
-          "id": "n8fCALXWnGdmJkBN",
-          "name": "CAPTACIONES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "7f3e8099-ae55-4534-a5be-217d413c0ff2",
-              "leftValue": "={{ $json }}",
-              "rightValue": "",
-              "operator": {
-                "type": "object",
-                "operation": "empty",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        3000,
-        760
-      ],
-      "id": "99d49a56-1472-40e8-b392-adf3a9aac601",
-      "name": "no existe?4"
-    },
-    {
-      "parameters": {
         "operation": "select",
         "table": {
           "__rl": true,
@@ -1080,7 +855,7 @@
       "typeVersion": 2.4,
       "position": [
         1900,
-        1260
+        760
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -1121,325 +896,7 @@
       "typeVersion": 2.2,
       "position": [
         2120,
-        1260
-      ]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('Webhook').item.json.body.instance }}?groupJid={{ $('Edit Fields').item.json.grupo }}",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "apikey",
-              "value": "429683C4C977415CAAFCCE10F7D57E11"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "=\n{ \"action\": \"remove\", \n  \n  \"participants\": [ \"{{ $('Edit Fields').item.json.numero }}\" ] } ",
-        "options": {}
-      },
-      "id": "12190c97-9bc8-46b7-9bc3-0a19907a4111",
-      "name": "ELIMINAR +3",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2560,
-        560
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "6e074b0d-4663-476d-ae90-8be442f648cd",
-              "leftValue": "={{ $('Edit Fields').item.json.numero }}",
-              "rightValue": "58",
-              "operator": {
-                "type": "string",
-                "operation": "startsWith"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "306d37ff-e486-404d-809e-a55f7e2bdee7",
-      "name": "VENEZUELA?",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        2780,
-        1060
-      ]
-    },
-    {
-      "parameters": {
-        "url": "=https://evolution.automscc.com/group/findGroupInfos/{{ $('Edit Fields').item.json.instancia }}",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "groupJid",
-              "value": "={{ $json.id }}"
-            }
-          ]
-        },
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "apikey",
-              "value": "429683C4C977415CAAFCCE10F7D57E11"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        3000,
-        1160
-      ],
-      "id": "97f885a1-e722-4fc8-af4f-26a51baa8b47",
-      "name": "NOMBRE5"
-    },
-    {
-      "parameters": {
-        "operation": "select",
-        "table": {
-          "__rl": true,
-          "value": "GIORGIO_L1_WHA",
-          "mode": "list",
-          "cachedResultName": "GIORGIO_L1_WHA"
-        },
-        "returnAll": true,
-        "where": {
-          "values": [
-            {
-              "column": "whatsapp",
-              "condition": "LIKE",
-              "value": "=%{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}%"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        3220,
-        1160
-      ],
-      "id": "200b05ab-9862-40af-a307-3985a61ce6c3",
-      "name": "busqueda5",
-      "alwaysOutputData": true,
-      "credentials": {
-        "mySql": {
-          "id": "n8fCALXWnGdmJkBN",
-          "name": "CAPTACIONES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "table": {
-          "__rl": true,
-          "value": "GIORGIO_L1_WHA",
-          "mode": "list",
-          "cachedResultName": "GIORGIO_L1_WHA"
-        },
-        "dataMode": "defineBelow",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "dia",
-              "value": "={{ $now.format('yyyy-MM-dd') }}"
-            },
-            {
-              "column": "hora",
-              "value": "={{ $now.format('HH:mm:ss') }}"
-            },
-            {
-              "column": "whatsapp",
-              "value": "=+{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}"
-            },
-            {
-              "column": "grupo",
-              "value": "={{ $('Edit Fields').item.json.grupo }}"
-            },
-            {
-              "column": "nombre_grupo",
-              "value": "={{ $('NOMBRE5').item.json.subject }}"
-            },
-            {
-              "column": "fuente",
-              "value": "FB ADS"
-            }
-          ]
-        },
-        "options": {
-          "detailedOutput": true
-        }
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        3660,
-        1160
-      ],
-      "id": "e0925b61-a8da-4f55-a19b-0f869e8b7d95",
-      "name": "escritura5",
-      "credentials": {
-        "mySql": {
-          "id": "n8fCALXWnGdmJkBN",
-          "name": "CAPTACIONES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "7f3e8099-ae55-4534-a5be-217d413c0ff2",
-              "leftValue": "={{ $json }}",
-              "rightValue": "",
-              "operator": {
-                "type": "object",
-                "operation": "empty",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        3440,
-        1160
-      ],
-      "id": "4d2b9e58-d963-41a4-82e2-9c4a3114a959",
-      "name": "no existe?5"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('Webhook').item.json.body.instance }}?groupJid={{ $('Edit Fields').item.json.grupo }}",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "apikey",
-              "value": "429683C4C977415CAAFCCE10F7D57E11"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "=\n{ \"action\": \"remove\", \n  \n  \"participants\": [ \"{{ $('Edit Fields').item.json.numero }}\" ] } ",
-        "options": {}
-      },
-      "id": "3808c088-f42d-4faf-b071-27abba06378f",
-      "name": "ELIMINAR +",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        3000,
-        960
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "operation": "select",
-        "table": {
-          "__rl": true,
-          "value": "GIORGIO_LINKS",
-          "mode": "list",
-          "cachedResultName": "GIORGIO_LINKS"
-        },
-        "limit": 1,
-        "where": {
-          "values": [
-            {
-              "column": "id",
-              "value": "={{ $('If').item.json.grupo }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "69487f0f-7729-4b90-ad32-f64fe53d2904",
-      "name": "BD GIORGIO",
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        2340,
-        1460
-      ],
-      "alwaysOutputData": true,
-      "credentials": {
-        "mySql": {
-          "id": "179b2UX7XsHkNW05",
-          "name": "REDIRECCIONES - LANZAMIENTOS"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "8d2037fa-e2a7-4668-901e-4ca0a27a93ab",
-              "leftValue": "={{ $json.id }}",
-              "rightValue": "",
-              "operator": {
-                "type": "string",
-                "operation": "exists",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "317b525a-e2fc-462d-bca9-80a7bcec74bc",
-      "name": "ES GIORGIO?",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        2560,
-        1460
+        760
       ]
     },
     {
@@ -1472,7 +929,7 @@
       "typeVersion": 2.2,
       "position": [
         3220,
-        1460
+        960
       ]
     },
     {
@@ -1502,7 +959,7 @@
       "typeVersion": 4.2,
       "position": [
         3440,
-        1560
+        1060
       ],
       "id": "3dd836a1-6c8d-4c05-bf3c-f0cf628847be",
       "name": "NOMBRE6"
@@ -1532,7 +989,7 @@
       "typeVersion": 2.4,
       "position": [
         3660,
-        1560
+        1060
       ],
       "id": "0ccd25fd-8b53-4c9e-b295-8a45e51d5f90",
       "name": "busqueda6",
@@ -1589,7 +1046,7 @@
       "typeVersion": 2.4,
       "position": [
         4100,
-        1560
+        1060
       ],
       "id": "4a1e71dc-1503-4803-8efd-b842ec5a6224",
       "name": "escritura6",
@@ -1629,7 +1086,7 @@
       "typeVersion": 2.2,
       "position": [
         3880,
-        1560
+        1060
       ],
       "id": "ef146b16-a2a6-4269-8a10-efa64fe1a266",
       "name": "no existe?6"
@@ -1658,7 +1115,7 @@
       "typeVersion": 4.2,
       "position": [
         3440,
-        1360
+        860
       ],
       "disabled": true
     },
@@ -1688,7 +1145,7 @@
       "typeVersion": 2.4,
       "position": [
         2780,
-        1660
+        1160
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -1729,7 +1186,7 @@
       "typeVersion": 2.2,
       "position": [
         3000,
-        1660
+        1160
       ]
     },
     {
@@ -1762,7 +1219,7 @@
       "typeVersion": 2.2,
       "position": [
         3660,
-        1860
+        1360
       ]
     },
     {
@@ -1809,7 +1266,7 @@
       "typeVersion": 2.4,
       "position": [
         3880,
-        1940
+        1460
       ],
       "id": "0fa357a9-b428-459a-a39f-382f9239f2ee",
       "name": "escritura7",
@@ -1844,7 +1301,7 @@
       "typeVersion": 4.2,
       "position": [
         3880,
-        1760
+        1260
       ],
       "disabled": true
     },
@@ -1874,7 +1331,7 @@
       "typeVersion": 2.4,
       "position": [
         3220,
-        1860
+        1360
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -1915,8 +1372,277 @@
       "typeVersion": 2.2,
       "position": [
         3440,
-        1860
+        1360
       ]
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "table": {
+          "__rl": true,
+          "value": "CEJAS_L2_WHA",
+          "mode": "list",
+          "cachedResultName": "CEJAS_L2_WHA"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "whatsapp",
+        "valueToMatchOn": "={{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "dia",
+              "value": "={{ $now.format('yyyy-MM-dd') }}"
+            },
+            {
+              "column": "hora",
+              "value": "={{ $now.format('HH:mm:ss') }}"
+            },
+            {
+              "column": "grupo",
+              "value": "={{ $('Edit Fields').item.json.grupo }}"
+            },
+            {
+              "column": "nombre_grupo",
+              "value": "={{ $('BD VCAPITAL').item.json.nombre }}"
+            },
+            {
+              "column": "fuente",
+              "value": "FB ADS"
+            }
+          ]
+        },
+        "options": {
+          "detailedOutput": true
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        2560,
+        760
+      ],
+      "id": "e400daef-0828-42c2-878b-af25ad27cc9f",
+      "name": "escritura8",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6e074b0d-4663-476d-ae90-8be442f648cd",
+              "leftValue": "={{ $('Edit Fields').item.json.numero }}",
+              "rightValue": "58",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "306d37ff-e486-404d-809e-a55f7e2bdee7",
+      "name": "VENEZUELA?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2780,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('Webhook').item.json.body.instance }}?groupJid={{ $('Edit Fields').item.json.grupo }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{ \"action\": \"remove\", \n  \n  \"participants\": [ \"{{ $('Edit Fields').item.json.numero }}\" ] } ",
+        "options": {}
+      },
+      "id": "3808c088-f42d-4faf-b071-27abba06378f",
+      "name": "ELIMINAR +",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3000,
+        760
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8d2037fa-e2a7-4668-901e-4ca0a27a93ab",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "317b525a-e2fc-462d-bca9-80a7bcec74bc",
+      "name": "ES GIORGIO?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2560,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "GIORGIO_LINKS",
+          "mode": "list",
+          "cachedResultName": "GIORGIO_LINKS"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $('If').item.json.grupo }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "69487f0f-7729-4b90-ad32-f64fe53d2904",
+      "name": "BD GIORGIO",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        2340,
+        960
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "179b2UX7XsHkNW05",
+          "name": "REDIRECCIONES - LANZAMIENTOS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('Webhook').item.json.body.instance }}?groupJid={{ $('Edit Fields').item.json.grupo }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{ \"action\": \"remove\", \n  \n  \"participants\": [ \"{{ $('Edit Fields').item.json.numero }}\" ] } ",
+        "options": {}
+      },
+      "id": "12190c97-9bc8-46b7-9bc3-0a19907a4111",
+      "name": "ELIMINAR +3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2560,
+        560
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "table": {
+          "__rl": true,
+          "value": "CEJAS_L2_WHA",
+          "mode": "list",
+          "cachedResultName": "CEJAS_L2_WHA"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "whatsapp",
+        "valueToMatchOn": "={{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "dia",
+              "value": "={{ $now.format('yyyy-MM-dd') }}"
+            },
+            {
+              "column": "hora",
+              "value": "={{ $now.format('HH:mm:ss') }}"
+            },
+            {
+              "column": "grupo",
+              "value": "={{ $('Edit Fields').item.json.grupo }}"
+            },
+            {
+              "column": "nombre_grupo",
+              "value": "={{ $('BD GIORGIO').item.json.nombre }}"
+            },
+            {
+              "column": "fuente",
+              "value": "FB ADS"
+            }
+          ]
+        },
+        "options": {
+          "detailedOutput": true
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        3000,
+        960
+      ],
+      "id": "09e655d3-f887-4fd9-812c-25f169ece15a",
+      "name": "escritura9",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
     }
   ],
   "pinData": {
@@ -1991,6 +1717,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-06-02T19:20:52.000Z",
-  "versionId": "216a2b8e-cafe-4416-a21a-7076d10a18ad"
+  "updatedAt": "2025-06-10T15:39:39.000Z",
+  "versionId": "db5a3227-7651-4202-ae91-b326a1fdd634"
 }
