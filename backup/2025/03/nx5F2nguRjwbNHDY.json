@@ -164,16 +164,17 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "ARZA_CEJAS",
+          "value": "UÑAS_L2",
           "mode": "list",
-          "cachedResultName": "ARZA_CEJAS"
+          "cachedResultName": "UÑAS_L2"
         },
         "returnAll": true,
         "where": {
           "values": [
             {
-              "column": "correo",
-              "value": "={{ $json[\"Email del Comprador(a)\"] }}"
+              "column": "WHATSAPP",
+              "condition": "LIKE",
+              "value": "=%{{ $json['Teléfono'].toString().slice(-7) }}"
             }
           ]
         },
@@ -279,16 +280,16 @@
       "parameters": {
         "table": {
           "__rl": true,
-          "value": "ARZA_CEJAS_VENTAS",
+          "value": "UÑAS_L2_VENTAS",
           "mode": "list",
-          "cachedResultName": "ARZA_CEJAS_VENTAS"
+          "cachedResultName": "UÑAS_L2_VENTAS"
         },
         "dataMode": "defineBelow",
         "valuesToSend": {
           "values": [
             {
               "column": "cliente_id",
-              "value": "={{ $json.id }}"
+              "value": "={{ $json['#'] }}"
             },
             {
               "column": "producto_nombre",
@@ -325,16 +326,16 @@
       "parameters": {
         "table": {
           "__rl": true,
-          "value": "ARZA_CEJAS_VENTAS",
+          "value": "UÑAS_L2_VENTAS",
           "mode": "list",
-          "cachedResultName": "ARZA_CEJAS_VENTAS"
+          "cachedResultName": "UÑAS_L2_VENTAS"
         },
         "dataMode": "defineBelow",
         "valuesToSend": {
           "values": [
             {
               "column": "cliente_id",
-              "value": "={{ $json.id }}"
+              "value": "={{ $json['#'] }}"
             },
             {
               "column": "producto_nombre",
@@ -378,6 +379,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-03T17:31:44.000Z",
-  "versionId": "538da833-73db-470a-b844-2e65ff654e01"
+  "updatedAt": "2025-06-12T17:21:34.000Z",
+  "versionId": "ca8ca1b0-69b8-4bdb-bb5d-553b3736d73b"
 }
