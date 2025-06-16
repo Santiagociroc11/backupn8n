@@ -1,0 +1,301 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-16T00:01:41.487Z",
+  "id": "bwLJi5cBnlt8jSer",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[CEJAS-L2] NOTIFICACION CUPO VIP",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cejas-cupovip",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -300,
+        -100
+      ],
+      "id": "32486238-6003-4b9e-b386-0d586edf4645",
+      "name": "Webhook",
+      "webhookId": "31732cf1-7d86-4d5f-a483-f1c26b84ddbd"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "CEJAS_L2_CUPOSVIP",
+          "mode": "list",
+          "cachedResultName": "CEJAS_L2_CUPOSVIP"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "CORREO",
+              "value": "={{ $json.corre }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        220,
+        -100
+      ],
+      "id": "03019304-63f5-4f35-aa5a-6c35c1525ebe",
+      "name": "MySQL",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ea850aa1-a7a0-4e45-abdd-555a7c846881",
+              "name": "nombre",
+              "value": "={{ $json.body.nombre }}",
+              "type": "string"
+            },
+            {
+              "id": "5e79ae48-778f-41ae-93d0-81fe37ee3625",
+              "name": "corre",
+              "value": "={{ $json.body.correo }}",
+              "type": "string"
+            },
+            {
+              "id": "6be99213-733b-48aa-b13c-708de67f42d1",
+              "name": "whatsapp",
+              "value": "={{ $json.body.whatsapp }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -40,
+        -100
+      ],
+      "id": "75cee3d3-56b1-4392-9e6a-469382f16bc2",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e48fa59d-0444-4b64-8ace-eecd93337aca",
+              "leftValue": "={{$json.isEmpty()}}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        440,
+        -100
+      ],
+      "id": "5b63b418-4faf-4d8e-92ba-ea8ed8317824",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "CEJAS_L2_CUPOSVIP",
+          "mode": "list",
+          "cachedResultName": "CEJAS_L2_CUPOSVIP"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "NOMBRE",
+              "value": "={{ $('Edit Fields').item.json.nombre }}"
+            },
+            {
+              "column": "WHATSAPP",
+              "value": "={{ $('Edit Fields').item.json.whatsapp }}"
+            },
+            {
+              "column": "CORREO",
+              "value": "={{ $('Edit Fields').item.json.corre }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        660,
+        -200
+      ],
+      "id": "5d03b43a-cb19-461e-a24e-cfd92c995425",
+      "name": "MySQL1",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "-1002216643127",
+        "text": "=*CUPO VIP GENERADO* 🔥\n\nNOMBRE: {{ $('Edit Fields').item.json.nombre }}\nCORREO: {{ $('Edit Fields').item.json.corre }}\nWHATSAPP: {{ $('Edit Fields').item.json.whatsapp }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "message_thread_id": 296
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        880,
+        -200
+      ],
+      "id": "85d7abd2-e3b2-40a0-82e0-f541c5a0db6a",
+      "name": "Telegram",
+      "webhookId": "4c9cadbb-2517-402d-905f-6904f06e5674",
+      "credentials": {
+        "telegramApi": {
+          "id": "QruLAfRq4u80XCVX",
+          "name": "BOT AGENCIA X"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "node",
+            "content-length": "49",
+            "accept": "*/*",
+            "accept-encoding": "br, gzip, deflate",
+            "accept-language": "*",
+            "content-type": "application/json",
+            "sec-fetch-mode": "cors",
+            "x-forwarded-for": "172.18.0.1",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "5e236941e778",
+            "x-real-ip": "172.18.0.1"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "nombre": "SANTIAGO CIRO",
+            "correo": "SANTIAGOCIIRO12@GMAIL.COM",
+            "whatsapp": "+573136298562"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/cupovip-unas",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-06-16T00:05:57.000Z",
+  "versionId": "ee81cd27-9d3d-4abe-9bc0-2a0d8476fc35"
+}
