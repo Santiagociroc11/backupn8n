@@ -52,16 +52,6 @@
             "node": "Edit Fields7",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "HTTP Request5",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "HTTP Request6",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -240,35 +230,6 @@
         ]
       ]
     },
-    "Merge5": {
-      "main": [
-        [
-          {
-            "node": "INSERTA ID MANYCHAT",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "existe en manychat?": {
-      "main": [
-        [
-          {
-            "node": "DATOS EXISTENTES",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "CREAR",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "MySQL1": {
       "main": [
         [
@@ -388,22 +349,12 @@
       "main": [
         [
           {
-            "node": "Merge5",
-            "type": "main",
-            "index": 1
-          },
-          {
             "node": "DATOS PARA SQL",
             "type": "main",
             "index": 0
           },
           {
             "node": "CONSULTA FLODESK",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "CONSULTA MANYCHAT",
             "type": "main",
             "index": 0
           }
@@ -426,72 +377,6 @@
         [
           {
             "node": "INSERTA FLODESK",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "CONSULTA MANYCHAT": {
-      "main": [
-        [
-          {
-            "node": "existe en manychat?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "CREAR": {
-      "main": [
-        [
-          {
-            "node": "DATOS CREADOS",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "DATOS CREADOS": {
-      "main": [
-        [
-          {
-            "node": "Merge5",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "INSERTA ID MANYCHAT": {
-      "main": [
-        [
-          {
-            "node": "EXISTE?1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "EXISTE?1": {
-      "main": [
-        [
-          {
-            "node": "ENVIAR FLUJO BV",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "DATOS EXISTENTES": {
-      "main": [
-        [
-          {
-            "node": "Merge5",
             "type": "main",
             "index": 0
           }
@@ -553,7 +438,7 @@
       "typeVersion": 2,
       "position": [
         -660,
-        475
+        0
       ],
       "id": "0b1371d6-31bb-46f6-9748-39bb1b6e2d40",
       "name": "ENCUESTA",
@@ -589,7 +474,7 @@
       "typeVersion": 3.4,
       "position": [
         -440,
-        200
+        -275
       ],
       "id": "3c5ae4cc-c6e1-4cd0-9dec-2ae763d3aded",
       "name": "Edit Fields1"
@@ -608,7 +493,7 @@
       "typeVersion": 1.1,
       "position": [
         0,
-        175
+        -350
       ],
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -634,7 +519,7 @@
       "typeVersion": 1.1,
       "position": [
         660,
-        500
+        -225
       ],
       "credentials": {
         "mongoDb": {
@@ -674,7 +559,7 @@
       "typeVersion": 2.2,
       "position": [
         220,
-        175
+        -350
       ]
     },
     {
@@ -689,7 +574,7 @@
       "typeVersion": 3,
       "position": [
         440,
-        400
+        -75
       ]
     },
     {
@@ -702,7 +587,7 @@
       "typeVersion": 3,
       "position": [
         220,
-        500
+        25
       ],
       "id": "b4209f43-a217-4bbb-9820-415097f39741",
       "name": "Merge3"
@@ -717,7 +602,7 @@
       "typeVersion": 3.4,
       "position": [
         -220,
-        725
+        200
       ],
       "id": "0d64220d-e3a6-4771-8065-f97498b03ff9",
       "name": "Edit Fields3"
@@ -732,7 +617,7 @@
       "typeVersion": 3,
       "position": [
         0,
-        575
+        100
       ],
       "id": "3e1e983a-ed9c-4708-9078-5b6cf89e6478",
       "name": "Merge4"
@@ -755,7 +640,7 @@
       "typeVersion": 3.4,
       "position": [
         -220,
-        525
+        0
       ],
       "id": "b71d9cfc-44f1-4641-aec8-71478ba02cf9",
       "name": "Edit Fields4"
@@ -788,7 +673,7 @@
       "typeVersion": 2.2,
       "position": [
         880,
-        500
+        -225
       ],
       "id": "f5ea8471-2f80-46fc-91ce-08371763df26",
       "name": "If2"
@@ -805,7 +690,7 @@
       "typeVersion": 1.1,
       "position": [
         1100,
-        500
+        -225
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -823,7 +708,7 @@
       "typeVersion": 2,
       "position": [
         1320,
-        500
+        -225
       ],
       "id": "7fc0943a-0260-44de-a2b6-b8b670fbe28d",
       "name": "Code"
@@ -850,7 +735,7 @@
       "typeVersion": 4.2,
       "position": [
         1540,
-        500
+        -225
       ],
       "id": "b89ee643-af9f-4e52-bdb9-31730d25e19c",
       "name": "HTTP Request2"
@@ -921,90 +806,10 @@
       "typeVersion": 3.4,
       "position": [
         660,
-        750
+        25
       ],
       "id": "5c8e6802-c7f6-455b-aedc-eb8b4b4dda60",
       "name": "Edit Fields7"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.manychat.com/fb/subscriber/setCustomFieldByName",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer 1189237:5ad48c01d73704bf48fc266399a867f6"
-            },
-            {
-              "name": "Content-Type",
-              "value": "application/json"
-            },
-            {
-              "name": "Accept",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"field_name\": \"PROBABILIDAD-ENC\",\n  \"field_value\": {{ $json.puntaje.round() }}\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        660,
-        300
-      ],
-      "id": "35e87484-4de2-4b6b-bb04-499ddaef19fe",
-      "name": "HTTP Request5",
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "maxTries": 5,
-      "disabled": true,
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.manychat.com/fb/subscriber/addTagByName",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer 1189237:5ad48c01d73704bf48fc266399a867f6"
-            },
-            {
-              "name": "Content-Type",
-              "value": "application/json"
-            },
-            {
-              "name": "Accept",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"tag_name\": \"ENCUESTA-L1\"\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        660,
-        100
-      ],
-      "id": "993b41c6-2d28-430b-bb1c-807facf9ca2f",
-      "name": "HTTP Request6",
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "maxTries": 5,
-      "disabled": true,
-      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -1014,7 +819,7 @@
       "typeVersion": 2,
       "position": [
         -220,
-        175
+        -350
       ],
       "id": "c609475b-f5fd-43a4-a5e1-370f03d0e6a5",
       "name": "Code1"
@@ -1029,7 +834,7 @@
       "typeVersion": 2,
       "position": [
         -660,
-        -610
+        -785
       ],
       "id": "7e1a8667-ee00-48cb-b52e-146ccb9d280b",
       "name": "REGISTRO",
@@ -1045,7 +850,7 @@
       "typeVersion": 3,
       "position": [
         220,
-        -610
+        -785
       ]
     },
     {
@@ -1060,99 +865,8 @@
       "typeVersion": 3,
       "position": [
         0,
-        -710
+        -885
       ]
-    },
-    {
-      "parameters": {
-        "mode": "combine",
-        "combineBy": "combineAll",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 3,
-      "position": [
-        1540,
-        -585
-      ],
-      "id": "e1212cb6-1b86-4427-a0f9-03b39ac714ac",
-      "name": "Merge5",
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "bdbedabd-650a-4c77-aafe-61f48231f405",
-              "leftValue": "={{ $json.data[0].id }}",
-              "rightValue": "",
-              "operator": {
-                "type": "string",
-                "operation": "exists",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        880,
-        -685
-      ],
-      "id": "65cc8d60-717f-4dd3-a20e-74a3c5a1e1de",
-      "name": "existe en manychat?",
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.manychat.com/fb/sending/sendFlow",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer 1189237:5ad48c01d73704bf48fc266399a867f6"
-            },
-            {
-              "name": "Content-Type",
-              "value": "application/json"
-            },
-            {
-              "name": "Accept",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"flow_ns\": \"content20250321190458_817899\"\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2200,
-        -585
-      ],
-      "id": "1aff8de7-7a8a-4c81-b6d1-47c8a3ba59a2",
-      "name": "ENVIAR FLUJO BV",
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "maxTries": 5,
-      "disabled": true,
-      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -1214,7 +928,7 @@
       "typeVersion": 2.4,
       "position": [
         1540,
-        750
+        25
       ],
       "id": "a60e6bc7-fe92-4a36-a209-315b1c65c9a7",
       "name": "MySQL",
@@ -1250,7 +964,7 @@
       "typeVersion": 2.4,
       "position": [
         880,
-        825
+        100
       ],
       "id": "84404c04-5b5b-400e-8b3f-b19c3009ae84",
       "name": "MySQL1",
@@ -1291,7 +1005,7 @@
       "typeVersion": 2.2,
       "position": [
         1100,
-        825
+        100
       ],
       "id": "5355e261-796f-47f0-9f16-902c7373abb1",
       "name": "If4"
@@ -1304,7 +1018,7 @@
       "typeVersion": 3,
       "position": [
         1320,
-        750
+        25
       ],
       "id": "31d2334f-303d-465a-b223-05c9864eecc5",
       "name": "Merge6"
@@ -1317,7 +1031,7 @@
       "typeVersion": 3,
       "position": [
         1320,
-        -235
+        -685
       ],
       "id": "6a45523d-ccfa-44a8-8fb8-fd9b72cb9aba",
       "name": "Merge7"
@@ -1330,7 +1044,7 @@
       "typeVersion": 2,
       "position": [
         -440,
-        525
+        0
       ],
       "id": "91aa9f63-4047-4983-9c4a-a5fb4139b15d",
       "name": "Code2"
@@ -1353,7 +1067,7 @@
       "typeVersion": 3.4,
       "position": [
         -440,
-        -785
+        -960
       ],
       "id": "dc39ee90-3956-41ad-b865-5968e19edef3",
       "name": "IP"
@@ -1367,7 +1081,7 @@
       "typeVersion": 4.2,
       "position": [
         -220,
-        -785
+        -960
       ],
       "id": "60ff59f5-617b-4a47-a584-639bcdf628cf",
       "name": "IP REAL",
@@ -1385,7 +1099,7 @@
       "typeVersion": 3.4,
       "position": [
         -440,
-        -510
+        -685
       ],
       "id": "70dee92e-9a95-4ec8-a376-b22b77c17aba",
       "name": "DATOS"
@@ -1396,7 +1110,7 @@
         "options": {
           "limit": 1
         },
-        "query": "={\"whatsapp\": \"{{ $json.whatsapp }}\", \"email\": \"{{$json.email}}\"}"
+        "query": "={\"email\": \"{{$json.email}}\"}"
       },
       "id": "14b6cbe2-913f-4d27-9fd6-d1858a3eb491",
       "name": "CONSULTA",
@@ -1404,7 +1118,7 @@
       "typeVersion": 1.1,
       "position": [
         -220,
-        -435
+        -610
       ],
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -1447,14 +1161,14 @@
       "typeVersion": 2.2,
       "position": [
         0,
-        -435
+        -610
       ]
     },
     {
       "parameters": {
         "operation": "insert",
         "collection": "VCAPITAL-L1",
-        "fields": "=query,country,city,zip,regionName,timezone,email,whatsapp,utmCampaign,utmSource,utmMedium,utmContent,utmTerm,userAgent,platform,language,tiemporegistro,fbc,fbp,isFbcGenerated",
+        "fields": "=query,country,city,zip,regionName,timezone,email,utmCampaign,utmSource,utmMedium,utmContent,utmTerm,userAgent,platform,language,tiemporegistro,fbc,fbp,isFbcGenerated",
         "options": {}
       },
       "id": "3bf547e2-356b-43f9-8298-e2f887c2a139",
@@ -1463,7 +1177,7 @@
       "typeVersion": 1.1,
       "position": [
         440,
-        -610
+        -785
       ],
       "credentials": {
         "mongoDb": {
@@ -1494,7 +1208,7 @@
       "typeVersion": 4.2,
       "position": [
         660,
-        -960
+        -935
       ],
       "id": "dab5506b-285d-49b8-9c50-9b106c17f581",
       "name": "CONSULTA FLODESK",
@@ -1529,7 +1243,7 @@
       "typeVersion": 4.2,
       "position": [
         1100,
-        -960
+        -935
       ],
       "id": "f6d13d0e-a3b2-46a2-8df1-4d649c796574",
       "name": "INSERTA FLODESK",
@@ -1566,208 +1280,10 @@
       "typeVersion": 2.2,
       "position": [
         880,
-        -960
+        -935
       ],
       "id": "0bfb86f0-7ddd-4688-b26f-1cc17499600e",
       "name": "EXISTE FLODESK?"
-    },
-    {
-      "parameters": {
-        "url": "https://api.manychat.com/fb/subscriber/findByName",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "name",
-              "value": "={{ $json.whatsapp }}"
-            }
-          ]
-        },
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer 1189237:5ad48c01d73704bf48fc266399a867f6"
-            },
-            {
-              "name": "Content-Type",
-              "value": "application/json"
-            },
-            {
-              "name": "Accept",
-              "value": "application/json"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        660,
-        -685
-      ],
-      "id": "16e2f95e-f1d5-4291-bc77-2c36af61a3b6",
-      "name": "CONSULTA MANYCHAT",
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "maxTries": 5,
-      "disabled": true,
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.manychat.com/fb/subscriber/createSubscriber",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer 1189237:5ad48c01d73704bf48fc266399a867f6"
-            },
-            {
-              "name": "Content-Type",
-              "value": "application/json"
-            },
-            {
-              "name": "Accept",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"first_name\": \"{{ $('INSERTAR').item.json.whatsapp }}\",\n  \"whatsapp_phone\": \"{{ $('INSERTAR').item.json.whatsapp }}\"\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        1100,
-        -585
-      ],
-      "id": "fed9478c-9975-470f-9e97-6014bbc51003",
-      "name": "CREAR",
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "maxTries": 5,
-      "disabled": true,
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "17104ede-50c0-4ff6-b16b-5ec89d177da7",
-              "name": "id_manychat",
-              "value": "={{ $json.data.id }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        1320,
-        -585
-      ],
-      "id": "94ef6bed-00aa-4b24-afe6-9e688f94be3f",
-      "name": "DATOS CREADOS",
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "operation": "findOneAndUpdate",
-        "collection": "VCAPITAL-L1",
-        "updateKey": "_id",
-        "fields": "=id_manychat",
-        "options": {}
-      },
-      "id": "604de1cd-e674-430f-8553-c5a6dfef2b9b",
-      "name": "INSERTA ID MANYCHAT",
-      "type": "n8n-nodes-base.mongoDb",
-      "typeVersion": 1.1,
-      "position": [
-        1760,
-        -585
-      ],
-      "credentials": {
-        "mongoDb": {
-          "id": "hz4IXA3OoMp5QuC5",
-          "name": "VCAPITAL"
-        }
-      },
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "b3101ba6-b04a-40da-86e8-04bb9fabd5d7",
-              "leftValue": "={{ $('Merge5').item.json.existe }}",
-              "rightValue": "si",
-              "operator": {
-                "type": "string",
-                "operation": "notExists",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        1980,
-        -585
-      ],
-      "id": "ef78842a-3786-42b0-9489-1479790cfd23",
-      "name": "EXISTE?1",
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "17104ede-50c0-4ff6-b16b-5ec89d177da7",
-              "name": "id_manychat",
-              "value": "={{ $json.data[0].id }}",
-              "type": "string"
-            },
-            {
-              "id": "8040badb-7f75-4766-b6ef-8e74c88bc480",
-              "name": "existe",
-              "value": "si",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        1320,
-        -785
-      ],
-      "id": "6d2248f6-e0ce-4177-a959-61a46410b795",
-      "name": "DATOS EXISTENTES",
-      "disabled": true
     },
     {
       "parameters": {
@@ -1841,7 +1357,7 @@
       "typeVersion": 3.4,
       "position": [
         660,
-        -235
+        -685
       ],
       "id": "0b3a35b4-cc81-45e4-9941-e287816a03fa",
       "name": "DATOS PARA SQL"
@@ -1875,7 +1391,7 @@
       "typeVersion": 2.2,
       "position": [
         1100,
-        -160
+        -610
       ],
       "id": "106efc34-80f1-4a86-b50c-eb03c2f1b9cc",
       "name": "EXISTE SQL"
@@ -1902,10 +1418,6 @@
             {
               "column": "CORREO",
               "value": "={{ $json.CORREO }}"
-            },
-            {
-              "column": "WHATSAPP",
-              "value": "={{ $json.WHATSAPP }}"
             },
             {
               "column": "PLATAFORMA",
@@ -1941,7 +1453,7 @@
       "typeVersion": 2.4,
       "position": [
         1540,
-        -235
+        -685
       ],
       "id": "08c4ff6b-9232-4a1a-a39b-075ef9f7c0fb",
       "name": "INSERTAR SQL",
@@ -1977,7 +1489,7 @@
       "typeVersion": 2.4,
       "position": [
         880,
-        -160
+        -610
       ],
       "id": "20f12dc7-4d85-48ce-b45e-f048cde0f33e",
       "name": "CONSULTA SQL",
@@ -2105,6 +1617,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-06-13T22:39:34.000Z",
-  "versionId": "9168602b-6762-4e17-acfb-cb08621b6f15"
+  "updatedAt": "2025-06-18T19:17:33.000Z",
+  "versionId": "363822af-71d2-4fb1-9624-44f2938ef05a"
 }
