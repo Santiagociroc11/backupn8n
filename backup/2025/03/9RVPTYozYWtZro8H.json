@@ -5,70 +5,7 @@
       "main": [
         [
           {
-            "node": "Postgres",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Sheets": {
-      "main": [
-        [
-          {
-            "node": "Loop Over Items",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "MySQL": {
-      "main": [
-        [
-          {
-            "node": "If",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If": {
-      "main": [
-        [
-          {
-            "node": "MySQL1",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Loop Over Items",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Loop Over Items": {
-      "main": [
-        [],
-        [
-          {
-            "node": "MySQL",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "MySQL1": {
-      "main": [
-        [
-          {
-            "node": "Loop Over Items",
+            "node": "Google Sheets",
             "type": "main",
             "index": 0
           }
@@ -213,6 +150,98 @@
           }
         ]
       ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "MySQL5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL5": {
+      "main": [
+        [
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-03-19T19:39:49.884Z",
@@ -228,176 +257,11 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -600,
-        360
+        -560,
+        -40
       ],
       "id": "80992552-0555-481d-836f-1ebbc2da0c49",
       "name": "When clicking ‘Test workflow’"
-    },
-    {
-      "parameters": {
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1_A3pTDgETuZicFekn7v5vwkRl4287KEhGuyEiXEFCu8/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1_A3pTDgETuZicFekn7v5vwkRl4287KEhGuyEiXEFCu8/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        -220,
-        -20
-      ],
-      "id": "e678d739-9017-4726-9bec-8e0593496c41",
-      "name": "Google Sheets",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "CUENTA SANTIAGO"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "select",
-        "table": {
-          "__rl": true,
-          "value": "GERSSON_L6",
-          "mode": "list",
-          "cachedResultName": "GERSSON_L6"
-        },
-        "limit": 1,
-        "where": {
-          "values": [
-            {
-              "column": "WHATSAPP",
-              "condition": "LIKE",
-              "value": "=%{{ $json[\"Teléfono\"].toString().slice(-7) }}"
-            },
-            {
-              "column": "CORREO",
-              "condition": "LIKE",
-              "value": "={{ $json[\"Email del Comprador(a)\"] }}"
-            }
-          ]
-        },
-        "combineConditions": "OR",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        240,
-        -100
-      ],
-      "id": "73abc371-1175-4c01-ac21-d9304b9d8055",
-      "name": "MySQL",
-      "alwaysOutputData": true,
-      "credentials": {
-        "mySql": {
-          "id": "n8fCALXWnGdmJkBN",
-          "name": "CAPTACIONES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "4b919dab-0f77-47ee-832e-e104a79dbace",
-              "leftValue": "={{$json.isEmpty()}}",
-              "rightValue": "",
-              "operator": {
-                "type": "boolean",
-                "operation": "false",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        460,
-        -100
-      ],
-      "id": "14952023-27e7-4322-8ae4-e413aa564d8a",
-      "name": "If"
-    },
-    {
-      "parameters": {
-        "table": {
-          "__rl": true,
-          "value": "GERSSON_L6_VENTAS",
-          "mode": "list",
-          "cachedResultName": "GERSSON_L6_VENTAS"
-        },
-        "dataMode": "defineBelow",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "cliente_id",
-              "value": "={{ $json[\"#\"] }}"
-            },
-            {
-              "column": "producto_nombre",
-              "value": "={{ $('Loop Over Items').item.json.Producto }}"
-            },
-            {
-              "column": "fecha",
-              "value": "={{ \n(()=>{ const s=$(\"Loop Over Items\").item.json[\"Confirmación del pago\"].split(\" \"); const [d,m,y]=s[0].split(\"/\").map(Number); const [H,Mi,S]=s[1].split(\":\").map(Number); return Date.UTC(y, m-1, d, H+5, Mi, S); })()\n}}\n"
-            },
-            {
-              "column": "monto",
-              "value": "={{ $('Google Sheets').item.json[\"Facturación bruta\"] }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        680,
-        0
-      ],
-      "id": "11de86cb-5003-4d79-902d-b7490113d644",
-      "name": "MySQL1",
-      "credentials": {
-        "mySql": {
-          "id": "n8fCALXWnGdmJkBN",
-          "name": "CAPTACIONES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 3,
-      "position": [
-        20,
-        -10
-      ],
-      "id": "756c3aa9-fb09-4b4f-a4f5-9e6c873766ff",
-      "name": "Loop Over Items"
     },
     {
       "parameters": {
@@ -762,6 +626,251 @@
       ],
       "id": "c2489996-bcf8-47b8-8cb9-ec2683e3141b",
       "name": "If4"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1_A3pTDgETuZicFekn7v5vwkRl4287KEhGuyEiXEFCu8/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1445155085,
+          "mode": "list",
+          "cachedResultName": "L7",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_A3pTDgETuZicFekn7v5vwkRl4287KEhGuyEiXEFCu8/edit#gid=1445155085"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -340,
+        -40
+      ],
+      "id": "ac2e3fb2-f06a-4f30-bd16-4a64a1b91af0",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_L6_ORG",
+          "mode": "list",
+          "cachedResultName": "GERSSON_L6_ORG"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "WHATSAPP",
+              "condition": "LIKE",
+              "value": "=%{{ $json[\"Teléfono\"].toString().slice(-7) }}"
+            },
+            {
+              "column": "CORREO",
+              "condition": "LIKE",
+              "value": "={{ $json[\"Email del Comprador(a)\"] }}"
+            }
+          ]
+        },
+        "combineConditions": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        120,
+        -120
+      ],
+      "id": "3b281615-8cf6-48b4-97f7-bfba642f5ab7",
+      "name": "MySQL",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4b919dab-0f77-47ee-832e-e104a79dbace",
+              "leftValue": "={{$json.isEmpty()}}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        340,
+        -120
+      ],
+      "id": "770f4959-53e5-4beb-8b5f-7b76480f9d17",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_L7_VENTAS",
+          "mode": "list",
+          "cachedResultName": "GERSSON_L7_VENTAS"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "cliente_id",
+              "value": "={{ $('If').item.json['#'] }}"
+            },
+            {
+              "column": "producto_nombre",
+              "value": "={{ $('Loop Over Items').item.json.Producto }}"
+            },
+            {
+              "column": "fecha",
+              "value": "={{ \n(()=>{ const s=$(\"Loop Over Items\").item.json[\"Confirmación del pago\"].split(\" \"); const [d,m,y]=s[0].split(\"/\").map(Number); const [H,Mi,S]=s[1].split(\":\").map(Number); return Date.UTC(y, m-1, d, H+5, Mi, S); })()\n}}\n"
+            },
+            {
+              "column": "monto",
+              "value": "={{ $('Google Sheets').item.json['Facturación bruta '] }}"
+            },
+            {
+              "column": "transaccion",
+              "value": "={{ $('Google Sheets').item.json['Código de la transacción'] }}"
+            },
+            {
+              "column": "fuente",
+              "value": "L6-PAGO"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1220,
+        -40
+      ],
+      "id": "be0e8e2f-6d7f-4f3f-9dbf-0cd6e954a7fe",
+      "name": "MySQL1",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -100,
+        -20
+      ],
+      "id": "affdda85-fe06-48dc-b6bd-e3c6e1356a72",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_L7_VENTAS",
+          "mode": "list",
+          "cachedResultName": "GERSSON_L7_VENTAS"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "transaccion",
+              "value": "={{ $('Google Sheets').item.json['Código de la transacción'] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        680,
+        -40
+      ],
+      "id": "392400fa-04cc-4594-84c0-31671fb900f9",
+      "name": "MySQL5",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4b919dab-0f77-47ee-832e-e104a79dbace",
+              "leftValue": "={{$json.isEmpty()}}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        880,
+        -40
+      ],
+      "id": "51274504-16a9-4a6a-9fee-386e23166476",
+      "name": "If5"
     }
   ],
   "pinData": {
@@ -780,6 +889,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-03T17:32:18.000Z",
-  "versionId": "31f00ad1-b0f4-4336-8b5d-180685e2f9f7"
+  "updatedAt": "2025-06-19T00:58:37.000Z",
+  "versionId": "e2f55ba5-d211-431e-8a1e-ae7fdcf37abd"
 }
