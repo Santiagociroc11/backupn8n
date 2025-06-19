@@ -150,7 +150,7 @@
       "main": [
         [
           {
-            "node": "Google Sheets1",
+            "node": "Wait3",
             "type": "main",
             "index": 0
           }
@@ -226,6 +226,17 @@
           }
         ]
       ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-01-21T18:56:07.734Z",
@@ -234,7 +245,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "🟢 [ADRIANA] WEBHOOK RECUPERADOR",
+  "name": "🟢 [ADRIANA] WEBHOOK EXCEL VENTAS",
   "nodes": [
     {
       "parameters": {
@@ -246,7 +257,7 @@
       "typeVersion": 2,
       "position": [
         -1660,
-        1150
+        1070
       ],
       "id": "2f2ba063-c8e4-4906-87c2-c1342facb58c",
       "name": "Webhook",
@@ -262,7 +273,7 @@
       "typeVersion": 3.4,
       "position": [
         -1000,
-        1360
+        1270
       ],
       "id": "f3fa9e4e-903b-435c-afa9-064efaee4428",
       "name": "Edit Fields"
@@ -357,7 +368,7 @@
       "typeVersion": 3.4,
       "position": [
         -780,
-        1360
+        1270
       ],
       "id": "fe75c888-97de-4dac-bb82-d5c0bb502656",
       "name": "Edit Fields1"
@@ -538,7 +549,7 @@
       "typeVersion": 4.5,
       "position": [
         -340,
-        1360
+        1270
       ],
       "id": "5646eea9-817e-47d2-a9f2-ce52bc7b53db",
       "name": "Google Sheets8",
@@ -582,7 +593,7 @@
       "typeVersion": 2.2,
       "position": [
         -560,
-        1360
+        1270
       ],
       "id": "5a36e01c-0527-405b-95b5-7864e0943a3d",
       "name": "If4"
@@ -615,7 +626,7 @@
       "typeVersion": 2.2,
       "position": [
         -1440,
-        1150
+        1070
       ],
       "id": "2896b574-e7f1-4fc9-9b67-34a9ff462696",
       "name": "If5"
@@ -628,7 +639,7 @@
       "typeVersion": 1.1,
       "position": [
         -120,
-        1380
+        1270
       ],
       "id": "52324317-0e01-44b4-8843-cb53f1f20ec0",
       "name": "Wait4",
@@ -642,7 +653,7 @@
       "typeVersion": 2,
       "position": [
         -1220,
-        900
+        820
       ],
       "id": "5461c6b8-dd22-4c9c-abb7-e5fc1315c245",
       "name": "Code2"
@@ -662,7 +673,7 @@
       "typeVersion": 4.2,
       "position": [
         -1000,
-        900
+        820
       ]
     },
     {
@@ -694,7 +705,7 @@
       "typeVersion": 2.2,
       "position": [
         -1220,
-        1250
+        1170
       ],
       "id": "34bb4fec-8576-49e0-bcf1-c67bcf64d9d1",
       "name": "If"
@@ -709,7 +720,7 @@
       "typeVersion": 3.4,
       "position": [
         -1000,
-        1100
+        1020
       ],
       "id": "d58777f0-d9a4-4e9d-a180-13a66ddf3a37",
       "name": "Edit Fields2"
@@ -798,7 +809,7 @@
       "typeVersion": 3.4,
       "position": [
         -780,
-        1100
+        1020
       ],
       "id": "c006f90f-14d7-4194-9584-9d8060c28ab0",
       "name": "Edit Fields3"
@@ -832,7 +843,7 @@
       "typeVersion": 2.2,
       "position": [
         -560,
-        1100
+        1020
       ],
       "id": "78fd1c6d-02c3-41f6-80be-ff8db5bac7c5",
       "name": "If6"
@@ -1038,8 +1049,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        100,
-        780
+        320,
+        720
       ],
       "id": "5b47800a-b30d-4ee8-9eea-863affa7669f",
       "name": "Google Sheets",
@@ -1231,7 +1242,7 @@
       "typeVersion": 4.5,
       "position": [
         -340,
-        1080
+        1020
       ],
       "id": "b4037b1a-5752-4005-b379-762f6647359b",
       "name": "Google Sheets9",
@@ -1271,8 +1282,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        -120,
-        980
+        100,
+        870
       ],
       "id": "05bc756a-66c6-4ac3-a21f-6ec87be3974d",
       "name": "Google Sheets1",
@@ -1294,7 +1305,7 @@
       "typeVersion": 1.1,
       "position": [
         -120,
-        1150
+        1070
       ],
       "id": "7b2a9ab3-8fe8-4538-891a-7fa74b493b3f",
       "name": "Wait",
@@ -1305,8 +1316,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        100,
-        1000
+        320,
+        920
       ],
       "id": "6b811eff-c3bd-4342-86ec-257289969c67",
       "name": "Wait1",
@@ -1317,12 +1328,27 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        320,
-        800
+        540,
+        720
       ],
       "id": "a8ad9c6a-9a83-4ca7-be0a-ced3b71e4e50",
       "name": "Wait2",
       "webhookId": "2b926ae3-6d29-4183-9654-ac0113c4190e"
+    },
+    {
+      "parameters": {
+        "amount": 2,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -120,
+        870
+      ],
+      "id": "da8b0889-9221-4892-90b8-438379738718",
+      "name": "Wait3",
+      "webhookId": "b0e7088f-8eff-45b7-97cb-84dbf13054bf"
     }
   ],
   "pinData": {
@@ -1332,15 +1358,15 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "Jodd HTTP",
-            "content-length": "1738",
+            "content-length": "1665",
             "content-type": "application/json",
-            "x-forwarded-for": "34.226.121.127",
+            "x-forwarded-for": "44.192.32.241",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
             "x-forwarded-server": "5e236941e778",
             "x-hotmart-hottok": "ab1MBqgzWoBGjHPbjIZRreIJv1kidlf17097fe-a50d-4ba0-83a7-d6dba52a1d6d",
-            "x-real-ip": "34.226.121.127",
+            "x-real-ip": "44.192.32.241",
             "accept-encoding": "gzip"
           },
           "params": {},
@@ -1349,68 +1375,65 @@
             "data": {
               "product": {
                 "has_co_production": true,
-                "name": "Tortas De Queso",
-                "warranty_date": "2025-05-31T00:00:00Z",
+                "name": "Galletas Saludables",
+                "warranty_date": "2025-06-25T00:00:00Z",
                 "is_physical_product": false,
-                "id": 5268923,
-                "ucode": "6958052a-c6a8-4e61-a022-c95a9cf3eed6"
+                "id": 5072184,
+                "ucode": "877cf7fe-e193-419a-b4e8-66c450f8915c"
               },
               "commissions": [
                 {
                   "currency_value": "USD",
                   "source": "MARKETPLACE",
-                  "value": 1.59
+                  "value": 2.28
                 },
                 {
                   "currency_conversion": {
-                    "converted_value": 37105.47,
+                    "converted_value": 43747,
                     "converted_to_currency": "COP",
-                    "conversion_rate": 4150.5
+                    "conversion_rate": 4100
                   },
                   "currency_value": "USD",
                   "source": "PRODUCER",
-                  "value": 8.94
+                  "value": 10.67
                 }
               ],
               "purchase": {
                 "original_offer_price": {
                   "currency_value": "USD",
-                  "value": 15.83
+                  "value": 18
                 },
                 "subscription_anticipation_purchase": false,
                 "checkout_country": {
-                  "iso": "CL",
-                  "name": "Chile"
-                },
-                "origin": {
-                  "xcod": "f2092d9f-244f-4258-860d-fa72e1c53703"
+                  "iso": "US",
+                  "name": "United States"
                 },
                 "order_bump": {
-                  "parent_purchase_transaction": "HP1749442910",
+                  "parent_purchase_transaction": "HP0523612289",
                   "is_order_bump": true
                 },
-                "approved_date": 1748105498000,
+                "approved_date": 1750258377000,
                 "offer": {
-                  "code": "wgwrskgv"
+                  "code": "lizh6p6i"
                 },
                 "is_funnel": false,
-                "order_date": 1748105492000,
+                "order_date": 1750258375000,
                 "price": {
-                  "currency_value": "CLP",
-                  "value": 14898.31
+                  "currency_value": "USD",
+                  "value": 18
                 },
-                "buyer_ip": "190.215.172.229",
+                "buyer_ip": "162.203.95.78",
                 "payment": {
-                  "installments_number": 3,
+                  "installments_number": 1,
                   "type": "CREDIT_CARD"
                 },
                 "full_price": {
-                  "currency_value": "CLP",
-                  "value": 17729
+                  "currency_value": "USD",
+                  "value": 18
                 },
                 "business_model": "A",
                 "invoice_by": "SELLER",
-                "transaction": "HP1731359712",
+                "transaction": "HP0510915575",
                 "status": "APPROVED"
               },
               "affiliates": [
@@ -1426,23 +1449,25 @@
               },
               "buyer": {
                 "address": {
-                  "zipcode": "7610476",
-                  "country": "Chile",
-                  "address": "San Carlos De Apoquindo 695 Casa 741 Las Condes",
-                  "complement": "Las Condes",
-                  "country_iso": "CL"
+                  "zipcode": "33012",
+                  "country": "United States",
+                  "address": "3455 w 10 ave ",
+                  "city": "Hialeah ",
+                  "state": "Florida",
+                  "complement": "208 ",
+                  "country_iso": "US"
                 },
                 "document": "",
-                "name": "Marisol astorquiza Becker",
-                "last_name": "Becker",
-                "checkout_phone": "56962192162",
-                "first_name": "Marisol",
-                "email": "mastorquiza@gmail.com",
+                "name": "Ana Delia Martin",
+                "last_name": "Martin",
+                "checkout_phone": "17862560465",
+                "first_name": "Ana",
+                "email": "luxecleanin@gmail.com",
                 "document_type": ""
               }
             },
-            "id": "24265cef-aaa0-4091-a178-3be3f516bc59",
-            "creation_date": 1748105502841,
+            "id": "8ac0ba46-c3c0-46e0-b122-2a95cf4594e4",
+            "creation_date": 1750258382957,
             "event": "PURCHASE_APPROVED",
             "version": "2.0.0"
           },
@@ -1492,6 +1517,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-05-24T19:49:18.000Z",
-  "versionId": "862a54ef-1262-4553-8416-9b55c8eeaf73"
+  "updatedAt": "2025-06-18T23:17:39.000Z",
+  "versionId": "94217c7b-f648-4c7b-9d02-94febc6d5e12"
 }
