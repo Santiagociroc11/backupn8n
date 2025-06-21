@@ -203,7 +203,7 @@
         "messages": {
           "messageValues": [
             {
-              "message": "=revisa si es una frase coherente o inteligible\n\nResponde en JSON:\n\ncoherente: true/false"
+              "message": "=revisa si es una frase coherente e inteligible, es decir que se pueda entender, no una cancion o una audio que no sea una voz\n\nResponde en JSON:\n\ncorrecto: true/false"
             }
           ]
         }
@@ -221,9 +221,9 @@
       "parameters": {
         "model": {
           "__rl": true,
-          "value": "gpt-4.1-nano",
+          "value": "gpt-4.1-mini",
           "mode": "list",
-          "cachedResultName": "gpt-4.1-nano"
+          "cachedResultName": "gpt-4.1-mini"
         },
         "options": {
           "responseFormat": "json_object"
@@ -256,7 +256,7 @@
           "conditions": [
             {
               "id": "be6609ef-08ef-4b52-b4a8-ec273d1a8f61",
-              "leftValue": "={{ $json.coherente }}",
+              "leftValue": "={{ $json.correcto }}",
               "rightValue": "",
               "operator": {
                 "type": "boolean",
@@ -335,6 +335,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-06-03T16:24:08.000Z",
-  "versionId": "ec25d0c4-3e7c-42e5-b53f-522369b0b4a9"
+  "updatedAt": "2025-06-21T04:33:29.000Z",
+  "versionId": "5c5e8721-727a-4034-ba8c-d7f981727b35"
 }
