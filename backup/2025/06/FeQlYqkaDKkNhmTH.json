@@ -1,0 +1,950 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-20T21:31:03.194Z",
+  "id": "FeQlYqkaDKkNhmTH",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "ENVIO DE CERTIFICADOS",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -540,
+        35
+      ],
+      "id": "f64a5ef1-56fb-4852-88f6-be7efe748be1",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1WYTNmLkbhnh8k-dQscOIe5pY_661BRouoI2jHazbUYU",
+          "mode": "list",
+          "cachedResultName": "VENTAS SUEROTERAPIA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WYTNmLkbhnh8k-dQscOIe5pY_661BRouoI2jHazbUYU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WYTNmLkbhnh8k-dQscOIe5pY_661BRouoI2jHazbUYU/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -320,
+        35
+      ],
+      "id": "5b189527-a7a9-4ed1-ae7f-ec52aec20b28",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d044df8c-d786-4a0b-830f-d75456de9676",
+              "leftValue": "={{ new Date(...(() => { const [d,m,y,h,min,s] = $json['Fecha de venta'].split(/[/ :]/).map(Number); return [y, m - 1, d, h, min, s]; })()).toISOString() }}\n",
+              "rightValue": "2025-06-13T00:00:00",
+              "operator": {
+                "type": "dateTime",
+                "operation": "beforeOrEquals"
+              }
+            },
+            {
+              "id": "9ff26224-b2e0-4993-8918-dac21b240479",
+              "leftValue": "={{ $json.enviado }}",
+              "rightValue": "SI",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -100,
+        35
+      ],
+      "id": "773479ab-1894-4938-86bc-41f98450b925",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        120,
+        35
+      ],
+      "id": "1ddae529-533b-4a26-b67f-693542e55442",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Loop Over Items').item.json.Email }}",
+        "subject": "Tu Certificado del curso SUEROTERAPIA",
+        "message": "=<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Entrega de Certificado</title>\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n    <link href=\"https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap\" rel=\"stylesheet\">\n    <style>\n        /* Estilos generales del cuerpo del correo */\n        body {\n            margin: 0;\n            padding: 0;\n            font-family: 'Lato', Arial, sans-serif;\n            background-color: #f0f2f5;\n            -webkit-font-smoothing: antialiased;\n            -moz-osx-font-smoothing: grayscale;\n        }\n        /* Contenedor principal con diseño de tarjeta */\n        .container {\n            width: 100%;\n            max-width: 600px;\n            margin: 20px auto;\n            background-color: #ffffff;\n            border-collapse: collapse;\n            border-radius: 12px;\n            overflow: hidden; /* Asegura que los bordes redondeados se apliquen */\n            box-shadow: 0 4px 15px rgba(0,0,0,0.05);\n        }\n        /* Cabecera con título principal */\n        .header {\n            background-color: #2c3e50;\n            padding: 30px 20px;\n            text-align: center;\n            color: #ffffff;\n        }\n        .header h1 {\n            margin: 0;\n            font-size: 28px;\n            font-weight: 700;\n        }\n        /* Contenido principal del mensaje */\n        .content {\n            padding: 40px 30px;\n            line-height: 1.7;\n            color: #333333;\n            text-align: center;\n        }\n        .content p {\n            margin: 0 0 15px 0;\n            font-size: 16px;\n            color: #555;\n        }\n        /* Párrafo destacado para el mensaje clave */\n        .highlight {\n            background-color: #ecf0f1;\n            padding: 20px;\n            border-radius: 8px;\n            margin-top: 20px;\n            margin-bottom: 25px;\n            font-size: 16px;\n            font-weight: bold;\n            color: #2c3e50;\n        }\n        /* Firma */\n        .signature {\n            font-style: italic;\n            color: #888;\n        }\n        /* Divisor visual */\n        .divider {\n            border-bottom: 1px solid #dddddd;\n            width: 80%;\n            margin: 0 auto;\n        }\n        /* Pie de página */\n        .footer {\n            padding: 20px;\n            text-align: center;\n            font-size: 12px;\n            color: #999999;\n        }\n    </style>\n</head>\n<body>\n    <table class=\"container\" role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n        <!-- Cabecera del Correo -->\n        <tr>\n            <td class=\"header\">\n                <h1>Entrega de Certificado</h1>\n            </td>\n        </tr>\n\n        <!-- Contenido Principal del Correo -->\n        <tr>\n            <td class=\"content\">\n                <p>Ha transcurrido el plazo de 7 días estipulado. Conforme a lo acordado, procedemos a hacerle entrega de su certificado.</p>\n                \n                <div class=\"divider\"></div>\n\n                <div class=\"highlight\">\n                    El certificado oficial se encuentra adjunto a este correo electrónico.\n                </div>\n                \n                <p>Este documento valida la finalización del proceso. Le recomendamos guardarlo en un lugar seguro.</p>\n                                \n                <p class=\"signature\">Atentamente,<br>El equipo.</p>\n            </td>\n        </tr>\n\n        <!-- Pie de Página del Correo -->\n        <tr>\n            <td class=\"footer\">\n                <p>&copy; 2024. Todos los derechos reservados.</p>\n            </td>\n        </tr>\n    </table>\n</body>\n</html>\n",
+        "options": {
+          "appendAttribution": false,
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {}
+            ]
+          },
+          "senderName": "Soporte Sueroterapia"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        780,
+        -40
+      ],
+      "id": "908cb91c-02e6-4efe-9049-6500a181d708",
+      "name": "Gmail",
+      "webhookId": "f1f4e1d4-ae28-4d6b-9e1f-9fda759935f6",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "TQIc6MxJVwS0cvQg",
+          "name": "GMAIL JSD COMPANY"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://certificados.automscc.com/api/certificates/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"template_id\": \"template-1750436089256\",\n  \"data\": {\n    \"nombre_completo\": \"{{ $json.Nombre }}\",\n    \"nombre_producto\": \"{{ $json['Nombre del Producto'].toUpperCase() }}\"\n  },\n  \"recipient_name\": \"{{ $json.Nombre }}\"\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        340,
+        -40
+      ],
+      "id": "605ca728-6f3f-408b-b991-fd8a24767a00",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.certificate.download_url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        560,
+        -40
+      ],
+      "id": "9faffae2-a192-4209-befb-cc20add03d5b",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1000,
+        -40
+      ],
+      "id": "0ed583aa-0f3a-47ed-951d-750b7d485163",
+      "name": "Wait",
+      "webhookId": "524008f0-e92b-4403-964d-dd9a561549f7"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1WYTNmLkbhnh8k-dQscOIe5pY_661BRouoI2jHazbUYU",
+          "mode": "list",
+          "cachedResultName": "VENTAS SUEROTERAPIA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WYTNmLkbhnh8k-dQscOIe5pY_661BRouoI2jHazbUYU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WYTNmLkbhnh8k-dQscOIe5pY_661BRouoI2jHazbUYU/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "enviado": "SI",
+            "Transacción": "={{ $('Loop Over Items').item.json['Transacción'] }}"
+          },
+          "matchingColumns": [
+            "Transacción"
+          ],
+          "schema": [
+            {
+              "id": "Nombre del Producto",
+              "displayName": "Nombre del Producto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Nombre del Productor",
+              "displayName": "Nombre del Productor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Documento del Productor",
+              "displayName": "Documento del Productor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Nombre del Afiliado",
+              "displayName": "Nombre del Afiliado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Transacción",
+              "displayName": "Transacción",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Método de Pago",
+              "displayName": "Método de Pago",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Origen",
+              "displayName": "Origen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Moneda",
+              "displayName": "Moneda",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Precio del Producto",
+              "displayName": "Precio del Producto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Moneda",
+              "displayName": "Moneda",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Precio de la Oferta",
+              "displayName": "Precio de la Oferta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tasa de cambio",
+              "displayName": "Tasa de cambio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Moneda",
+              "displayName": "Moneda",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Precio Original",
+              "displayName": "Precio Original",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Número de la Cuota",
+              "displayName": "Número de la Cuota",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Pago recurrente",
+              "displayName": "Pago recurrente",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Fecha de venta",
+              "displayName": "Fecha de venta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Fecha de Confirmación",
+              "displayName": "Fecha de Confirmación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Estatus",
+              "displayName": "Estatus",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Documento",
+              "displayName": "Documento",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Código de área",
+              "displayName": "Código de área",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Teléfono",
+              "displayName": "Teléfono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Código Postal",
+              "displayName": "Código Postal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Ciudad",
+              "displayName": "Ciudad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Comunidad Autónoma/Departamento/Estado/Provincia/Región",
+              "displayName": "Comunidad Autónoma/Departamento/Estado/Provincia/Región",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Barrio",
+              "displayName": "Barrio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "País",
+              "displayName": "País",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Dirección",
+              "displayName": "Dirección",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Número",
+              "displayName": "Número",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Apto./piso/casa",
+              "displayName": "Apto./piso/casa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Clave",
+              "displayName": "Clave",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Código del Producto",
+              "displayName": "Código del Producto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Código de la Afiliación",
+              "displayName": "Código de la Afiliación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Código de la Oferta",
+              "displayName": "Código de la Oferta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Origen de Checkout",
+              "displayName": "Origen de Checkout",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Forma de pago",
+              "displayName": "Forma de pago",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Período Gratis",
+              "displayName": "Período Gratis",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tiene coproducción",
+              "displayName": "Tiene coproducción",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tipo de venta",
+              "displayName": "Tipo de venta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Precio Total",
+              "displayName": "Precio Total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Forma de pago oferta",
+              "displayName": "Forma de pago oferta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tasa de Cambio Real",
+              "displayName": "Tasa de Cambio Real",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Precio Total Convertido",
+              "displayName": "Precio Total Convertido",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Cantidad de ítems",
+              "displayName": "Cantidad de ítems",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Oferta de upgrade",
+              "displayName": "Oferta de upgrade",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Cupón",
+              "displayName": "Cupón",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Moneda",
+              "displayName": "Moneda",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Valor que has recibido convertido",
+              "displayName": "Valor que has recibido convertido",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tasa de Cambio del valor recibido",
+              "displayName": "Tasa de Cambio del valor recibido",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Fecha de vencimiento",
+              "displayName": "Fecha de vencimiento",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Instagram",
+              "displayName": "Instagram",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Origen de la venta",
+              "displayName": "Origen de la venta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Moneda en la que recibirás los valores",
+              "displayName": "Moneda en la que recibirás los valores",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Facturación bruta",
+              "displayName": "Facturación bruta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Código del Suscriptor(a)",
+              "displayName": "Código del Suscriptor(a)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Factura",
+              "displayName": "Factura",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Valor bruto del transporte",
+              "displayName": "Valor bruto del transporte",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "enviado",
+              "displayName": "enviado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1220,
+        35
+      ],
+      "id": "a7e6aacc-b1b7-4823-8294-30d0b9d0785b",
+      "name": "Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-20T22:25:38.000Z",
+  "versionId": "eee6730e-f5e1-4410-9edd-09c543a3f72a"
+}
