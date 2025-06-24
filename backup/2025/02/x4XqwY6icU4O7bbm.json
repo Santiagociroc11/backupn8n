@@ -266,7 +266,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -800,
+        -900,
         -40
       ],
       "id": "6db700bc-afb7-43ff-8083-28f15718d1ff",
@@ -371,7 +371,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1120,
+        -1280,
         -40
       ],
       "id": "1ec083c8-f58d-46d6-8da6-c005ab6f45b4",
@@ -387,7 +387,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -1300,
+        -1460,
         -40
       ],
       "id": "30578ba2-bcb1-4774-812a-fc28af8a9e79",
@@ -505,9 +505,19 @@
                 "operation": "equals",
                 "name": "filter.operator.equals"
               }
+            },
+            {
+              "id": "2c2042ce-b443-4631-b1fc-ceac57b534ec",
+              "leftValue": "={{ $json.ESTADO }}",
+              "rightValue": "VENTA CONSOLIDAD",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
             }
           ],
-          "combinator": "and"
+          "combinator": "or"
         },
         "options": {}
       },
@@ -549,7 +559,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        -960,
+        -1120,
         -40
       ],
       "id": "87edb7b6-84c8-4fe8-a9d7-d9d78f4a32eb",
@@ -1296,6 +1306,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-05-22T18:02:31.000Z",
-  "versionId": "4a4849e2-ddd3-495b-9937-d9c82b2f0132"
+  "updatedAt": "2025-06-24T03:15:30.000Z",
+  "versionId": "6313896f-79a3-4c28-879e-41390a8fdfca"
 }
