@@ -188,40 +188,7 @@
         ],
         [
           {
-            "node": "NOMBRE6",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "NOMBRE6": {
-      "main": [
-        [
-          {
-            "node": "busqueda6",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "busqueda6": {
-      "main": [
-        [
-          {
-            "node": "no existe?6",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "no existe?6": {
-      "main": [
-        [
-          {
-            "node": "escritura6",
+            "node": "escritura10",
             "type": "main",
             "index": 0
           }
@@ -929,167 +896,8 @@
       "typeVersion": 2.2,
       "position": [
         3220,
-        960
+        1060
       ]
-    },
-    {
-      "parameters": {
-        "url": "=https://evolution.automscc.com/group/findGroupInfos/{{ $('Edit Fields').item.json.instancia }}",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "groupJid",
-              "value": "={{ $json.id }}"
-            }
-          ]
-        },
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "apikey",
-              "value": "429683C4C977415CAAFCCE10F7D57E11"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        3440,
-        1060
-      ],
-      "id": "3dd836a1-6c8d-4c05-bf3c-f0cf628847be",
-      "name": "NOMBRE6"
-    },
-    {
-      "parameters": {
-        "operation": "select",
-        "table": {
-          "__rl": true,
-          "value": "UÑAS_L2_WHA",
-          "mode": "list",
-          "cachedResultName": "UÑAS_L2_WHA"
-        },
-        "returnAll": true,
-        "where": {
-          "values": [
-            {
-              "column": "whatsapp",
-              "condition": "LIKE",
-              "value": "=%{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}%"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        3660,
-        1060
-      ],
-      "id": "0ccd25fd-8b53-4c9e-b295-8a45e51d5f90",
-      "name": "busqueda6",
-      "alwaysOutputData": true,
-      "credentials": {
-        "mySql": {
-          "id": "n8fCALXWnGdmJkBN",
-          "name": "CAPTACIONES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "table": {
-          "__rl": true,
-          "value": "UÑAS_L2_WHA",
-          "mode": "list",
-          "cachedResultName": "UÑAS_L2_WHA"
-        },
-        "dataMode": "defineBelow",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "dia",
-              "value": "={{ $now.format('yyyy-MM-dd') }}"
-            },
-            {
-              "column": "hora",
-              "value": "={{ $now.format('HH:mm:ss') }}"
-            },
-            {
-              "column": "whatsapp",
-              "value": "=+{{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}"
-            },
-            {
-              "column": "grupo",
-              "value": "={{ $('Edit Fields').item.json.grupo }}"
-            },
-            {
-              "column": "nombre_grupo",
-              "value": "={{ $('NOMBRE6').item.json.subject }}"
-            },
-            {
-              "column": "fuente",
-              "value": "FB ADS"
-            }
-          ]
-        },
-        "options": {
-          "detailedOutput": true
-        }
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        4100,
-        1060
-      ],
-      "id": "4a1e71dc-1503-4803-8efd-b842ec5a6224",
-      "name": "escritura6",
-      "credentials": {
-        "mySql": {
-          "id": "n8fCALXWnGdmJkBN",
-          "name": "CAPTACIONES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "7f3e8099-ae55-4534-a5be-217d413c0ff2",
-              "leftValue": "={{ $json }}",
-              "rightValue": "",
-              "operator": {
-                "type": "object",
-                "operation": "empty",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        3880,
-        1060
-      ],
-      "id": "ef146b16-a2a6-4269-8a10-efa64fe1a266",
-      "name": "no existe?6"
     },
     {
       "parameters": {
@@ -1115,7 +923,7 @@
       "typeVersion": 4.2,
       "position": [
         3440,
-        860
+        960
       ],
       "disabled": true
     },
@@ -1643,6 +1451,61 @@
           "name": "CAPTACIONES"
         }
       }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "table": {
+          "__rl": true,
+          "value": "UÑAS_L3_WHA",
+          "mode": "list",
+          "cachedResultName": "UÑAS_L3_WHA"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "whatsapp",
+        "valueToMatchOn": "={{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "dia",
+              "value": "={{ $now.format('yyyy-MM-dd') }}"
+            },
+            {
+              "column": "hora",
+              "value": "={{ $now.format('HH:mm:ss') }}"
+            },
+            {
+              "column": "grupo",
+              "value": "={{ $('Edit Fields').item.json.grupo }}"
+            },
+            {
+              "column": "nombre_grupo",
+              "value": "={{ $('BD UÑAS').item.json.nombre }}"
+            },
+            {
+              "column": "fuente",
+              "value": "FB ADS"
+            }
+          ]
+        },
+        "options": {
+          "detailedOutput": true
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        3440,
+        1160
+      ],
+      "id": "e336df7d-0735-4e44-93b3-e970bbebde86",
+      "name": "escritura10",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
     }
   ],
   "pinData": {
@@ -1717,6 +1580,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-06-13T23:04:08.000Z",
-  "versionId": "3cb58f4b-bcb4-45bd-ab57-07412da0610f"
+  "updatedAt": "2025-06-26T05:06:56.000Z",
+  "versionId": "4d411722-e620-49b7-9b1c-c4b722b96ebd"
 }
