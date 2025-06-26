@@ -552,8 +552,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -760,
-        540
+        -660,
+        520
       ],
       "id": "d6066679-8985-4403-8cfb-b6b1f094f531",
       "name": "ENCUESTA",
@@ -596,7 +596,7 @@
     },
     {
       "parameters": {
-        "collection": "=UÑAS-L2",
+        "collection": "=UÑAS-L3",
         "options": {
           "limit": 1
         },
@@ -623,7 +623,7 @@
     {
       "parameters": {
         "operation": "findOneAndUpdate",
-        "collection": "UÑAS-L2",
+        "collection": "UÑAS-L3",
         "updateKey": "_id",
         "fields": "tiempoencuesta,Edad,Ocupación,Proposito,Ingresos,puntaje",
         "options": {}
@@ -795,7 +795,7 @@
     },
     {
       "parameters": {
-        "collection": "=UÑAS-L2",
+        "collection": "=UÑAS-L3",
         "options": {},
         "query": "={\"_id\": \"{{ $('Merge1').item.json._id }}\"}"
       },
@@ -1159,9 +1159,9 @@
         "operation": "update",
         "table": {
           "__rl": true,
-          "value": "UÑAS_L2",
+          "value": "UÑAS_L3",
           "mode": "list",
-          "cachedResultName": "UÑAS_L2"
+          "cachedResultName": "UÑAS_L3"
         },
         "dataMode": "defineBelow",
         "columnToMatchOn": "ID",
@@ -1230,9 +1230,9 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "UÑAS_L2",
+          "value": "UÑAS_L3",
           "mode": "list",
-          "cachedResultName": "UÑAS_L2"
+          "cachedResultName": "UÑAS_L3"
         },
         "returnAll": true,
         "where": {
@@ -1392,7 +1392,7 @@
     },
     {
       "parameters": {
-        "collection": "=UÑAS-L2",
+        "collection": "=UÑAS-L3",
         "options": {
           "limit": 1
         },
@@ -1453,7 +1453,7 @@
     {
       "parameters": {
         "operation": "insert",
-        "collection": "UÑAS-L2",
+        "collection": "UÑAS-L3",
         "fields": "=query,country,city,zip,regionName,timezone,email,whatsapp,utmCampaign,utmSource,utmMedium,utmContent,utmTerm,userAgent,platform,language,tiemporegistro,fbc,fbp,isFbcGenerated",
         "options": {}
       },
@@ -1522,7 +1522,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"email\": \"{{ $('INSERTAR').item.json.email }}\",\n    \"segment_ids\": [\n       \"6819893e62904c6ccbcac33e\"\n    ]\n}",
+        "jsonBody": "={\n    \"email\": \"{{ $('INSERTAR').item.json.email }}\",\n    \"segment_ids\": [\n       \"685b5a28f7dd61b3dbdc705f\"\n    ]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -1878,9 +1878,9 @@
       "parameters": {
         "table": {
           "__rl": true,
-          "value": "UÑAS_L2",
+          "value": "UÑAS_L3",
           "mode": "list",
-          "cachedResultName": "UÑAS_L2"
+          "cachedResultName": "UÑAS_L3"
         },
         "dataMode": "defineBelow",
         "valuesToSend": {
@@ -1951,9 +1951,9 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "UÑAS_L2",
+          "value": "UÑAS_L3",
           "mode": "list",
-          "cachedResultName": "UÑAS_L2"
+          "cachedResultName": "UÑAS_L3"
         },
         "returnAll": true,
         "where": {
@@ -2095,6 +2095,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-05-18T05:43:50.000Z",
-  "versionId": "be006f19-adab-4181-b103-0c87722567f3"
+  "updatedAt": "2025-06-26T05:02:10.000Z",
+  "versionId": "3c9adf4e-819b-484b-8f2b-fcecf0efd76e"
 }
