@@ -1,11 +1,38 @@
 {
   "active": false,
   "connections": {
-    "When clicking ‘Execute workflow’": {
+    "Schedule Trigger": {
       "main": [
         [
           {
-            "node": "HTTP Request",
+            "node": "YouTube",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "YouTube1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "YouTube": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "YouTube1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
             "type": "main",
             "index": 0
           }
@@ -16,34 +43,362 @@
   "createdAt": "2025-06-30T06:08:53.308Z",
   "id": "mWrc58XOL9Y0u6Ah",
   "isArchived": false,
-  "meta": null,
-  "name": "My workflow 16",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[CRON] ASISTENCIA VIDEO YOUTUBE",
   "nodes": [
     {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
+      "parameters": {
+        "resource": "video",
+        "operation": "get",
+        "videoId": "4a96Ss2rLWE",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.youTube",
       "typeVersion": 1,
       "position": [
-        0,
-        0
+        -160,
+        -20
       ],
-      "id": "968d3e06-48c9-4931-bd40-f92b87b3be61",
-      "name": "When clicking ‘Execute workflow’"
+      "id": "dbe723b1-8d5f-400d-a77e-afecffc370d6",
+      "name": "YouTube",
+      "credentials": {
+        "youTubeOAuth2Api": {
+          "id": "5W5n9xSquUs25Tc5",
+          "name": "YouTube account"
+        }
+      }
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "https://wpp-connect.automscc.com/api/prueba/THISISMYSECURETOKEN/generate-token",
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 30-59/5 18 * * *"
+            },
+            {
+              "field": "cronExpression",
+              "expression": "0 */5 19-21 * * *"
+            },
+            {
+              "field": "cronExpression",
+              "expression": "0 0 22 * * *"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -500,
+        40
+      ],
+      "id": "5b012214-b1ad-4249-bd1c-4974baeb2c1d",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1EJ4hXX7b2xAXO90ny5MPq4afHFDxL___dGFHi-qmKKw",
+          "mode": "list",
+          "cachedResultName": "ASISTENCIA PRUEBA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EJ4hXX7b2xAXO90ny5MPq4afHFDxL___dGFHi-qmKKw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EJ4hXX7b2xAXO90ny5MPq4afHFDxL___dGFHi-qmKKw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "CPL1": "={{ $json.liveStreamingDetails.concurrentViewers }}",
+            "HORA": "={{$now.format('HH:mm')}}"
+          },
+          "matchingColumns": [
+            "HORA"
+          ],
+          "schema": [
+            {
+              "id": "HORA",
+              "displayName": "HORA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CPL1",
+              "displayName": "CPL1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CPL2",
+              "displayName": "CPL2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "CPL3",
+              "displayName": "CPL3",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "CPL4",
+              "displayName": "CPL4",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "CPL2 - CPL1",
+              "displayName": "CPL2 - CPL1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "CPL3 - CPL2",
+              "displayName": "CPL3 - CPL2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "CPL3 - CPL4",
+              "displayName": "CPL3 - CPL4",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
         "options": {}
       },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
       "position": [
-        220,
-        0
+        60,
+        -20
       ],
-      "id": "c2403f2a-8103-461e-a2fb-8e9b83cc186f",
-      "name": "HTTP Request"
+      "id": "bd667d7c-bca3-44b7-b299-3c8523c912a1",
+      "name": "Google Sheets",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "video",
+        "operation": "get",
+        "videoId": "ozbociGw_EA",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.youTube",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        180
+      ],
+      "id": "e4cd016d-09ed-4c49-ad54-e6cd547874da",
+      "name": "YouTube1",
+      "credentials": {
+        "youTubeOAuth2Api": {
+          "id": "5W5n9xSquUs25Tc5",
+          "name": "YouTube account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1g6PmRTsfCWUHrs7n1oHX8fuUR0N_rd8DQi4QnGQZZps",
+          "mode": "list",
+          "cachedResultName": "ASISTENCIA CERO DOLOR",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1g6PmRTsfCWUHrs7n1oHX8fuUR0N_rd8DQi4QnGQZZps/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EJ4hXX7b2xAXO90ny5MPq4afHFDxL___dGFHi-qmKKw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "CPL1": "={{ $json.liveStreamingDetails.concurrentViewers }}",
+            "HORA": "={{$now.format('HH:mm')}}"
+          },
+          "matchingColumns": [
+            "HORA"
+          ],
+          "schema": [
+            {
+              "id": "HORA",
+              "displayName": "HORA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CPL1",
+              "displayName": "CPL1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CPL2",
+              "displayName": "CPL2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "CPL3",
+              "displayName": "CPL3",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "CPL4",
+              "displayName": "CPL4",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "CPL2 - CPL1",
+              "displayName": "CPL2 - CPL1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "CPL3 - CPL2",
+              "displayName": "CPL3 - CPL2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "CPL3 - CPL4",
+              "displayName": "CPL3 - CPL4",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        60,
+        180
+      ],
+      "id": "774dffb9-41f8-4a36-a367-891e11c96ef2",
+      "name": "Google Sheets1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -53,9 +408,13 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "staticData": null,
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-06-30T06:08:53.308Z",
-  "versionId": "9f070105-6908-42cf-acd5-241a33af8f49"
+  "triggerCount": 1,
+  "updatedAt": "2025-07-01T03:37:43.000Z",
+  "versionId": "2b751a7e-ef5f-4055-9046-9188baf82835"
 }
