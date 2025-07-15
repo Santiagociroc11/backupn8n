@@ -64,24 +64,7 @@
     "Google Sheets8": {
       "main": [
         [],
-        [
-          {
-            "node": "Wait4",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Wait4": {
-      "main": [
-        [
-          {
-            "node": "Google Sheets8",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Code2": {
@@ -155,13 +138,7 @@
             "index": 0
           }
         ],
-        [
-          {
-            "node": "Wait",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Google Sheets1": {
@@ -173,58 +150,13 @@
             "index": 0
           }
         ],
-        [
-          {
-            "node": "Wait1",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Google Sheets": {
       "main": [
         [],
-        [
-          {
-            "node": "Wait2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Wait": {
-      "main": [
-        [
-          {
-            "node": "Google Sheets9",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Wait1": {
-      "main": [
-        [
-          {
-            "node": "Google Sheets1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Wait2": {
-      "main": [
-        [
-          {
-            "node": "Google Sheets",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Wait3": {
@@ -633,20 +565,6 @@
     },
     {
       "parameters": {
-        "amount": 10
-      },
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
-      "position": [
-        -120,
-        1270
-      ],
-      "id": "52324317-0e01-44b4-8843-cb53f1f20ec0",
-      "name": "Wait4",
-      "webhookId": "3122010c-e227-43fb-a8ee-b54eb61f8c9d"
-    },
-    {
-      "parameters": {
         "jsCode": "jsonventa = $input.first().json.body.data;\n\n// Extraer datos relevantes\nconst transaction = jsonventa.purchase?.transaction || \"N/A\";\nconst buyerName = jsonventa.buyer?.name || \"N/A\";\nconst pais = jsonventa.buyer?.address?.country || \"N/A\";\nconst buyerEmail = jsonventa.buyer?.email || \"N/A\";\nconst productName = jsonventa.product?.name || \"N/A\";\nconst purchaseDate = new Date(jsonventa.purchase?.order_date).toLocaleString('es-CO', {\n  timeZone: 'America/Bogota'\n});\n\n// Construir el mensaje\nconst text = `\\n🔔 *Notificación de Venta* \\n\\n` +\n  `🛍 *Producto:* ${productName}\\n` +\n  `💰 *Pais:* ${pais}\\n` +\n  `👤 *Comprador:* ${buyerName}\\n` +\n  `📧 *Correo:* ${buyerEmail}\\n` +\n  `📦 *Transacción:* ${transaction}\\n` +\n  `📅 *Fecha de compra:* ${purchaseDate}\\n`;\n\n// Retornar el JSON con el mensaje\nreturn {\n  json: {\n    text,\n  },\n};\n"
       },
       "type": "n8n-nodes-base.code",
@@ -1049,8 +967,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        320,
-        720
+        380,
+        780
       ],
       "id": "5b47800a-b30d-4ee8-9eea-863affa7669f",
       "name": "Google Sheets",
@@ -1242,7 +1160,7 @@
       "typeVersion": 4.5,
       "position": [
         -340,
-        1020
+        980
       ],
       "id": "b4037b1a-5752-4005-b379-762f6647359b",
       "name": "Google Sheets9",
@@ -1282,8 +1200,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        100,
-        870
+        120,
+        860
       ],
       "id": "05bc756a-66c6-4ac3-a21f-6ec87be3974d",
       "name": "Google Sheets1",
@@ -1298,42 +1216,6 @@
         }
       },
       "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
-      "position": [
-        -120,
-        1070
-      ],
-      "id": "7b2a9ab3-8fe8-4538-891a-7fa74b493b3f",
-      "name": "Wait",
-      "webhookId": "2b926ae3-6d29-4183-9654-ac0113c4190e"
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
-      "position": [
-        320,
-        920
-      ],
-      "id": "6b811eff-c3bd-4342-86ec-257289969c67",
-      "name": "Wait1",
-      "webhookId": "2b926ae3-6d29-4183-9654-ac0113c4190e"
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
-      "position": [
-        540,
-        720
-      ],
-      "id": "a8ad9c6a-9a83-4ca7-be0a-ced3b71e4e50",
-      "name": "Wait2",
-      "webhookId": "2b926ae3-6d29-4183-9654-ac0113c4190e"
     },
     {
       "parameters": {
@@ -1517,6 +1399,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-06-18T23:17:39.000Z",
-  "versionId": "94217c7b-f648-4c7b-9d02-94febc6d5e12"
+  "updatedAt": "2025-07-15T04:05:56.000Z",
+  "versionId": "6fffc5a5-6e51-4ca3-990e-0a3975f1bde1"
 }
