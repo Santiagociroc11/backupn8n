@@ -1,0 +1,209 @@
+{
+  "active": false,
+  "connections": {
+    "Analyze image": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Analyze image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-15T04:03:03.641Z",
+  "id": "17497DslYlYhn341",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 18",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "text": "cuanta plata mandaron?",
+        "imageUrls": "https://i.imgur.com/BqEQzTq.png",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -160,
+        -60
+      ],
+      "id": "ed07cac5-0c0b-40a8-a104-aadd937e2b0c",
+      "name": "Analyze image",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "GPT SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.content }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "valor",
+              "description": "que valor se recibió?"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        60,
+        -60
+      ],
+      "id": "8ac8ee42-5afa-4435-803a-fab74b0630ea",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        40,
+        160
+      ],
+      "id": "e2134f3a-70ee-45bd-8797-24d6413047e6",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "GPT SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "17q0j6BwgcAnzfq69wUApLKo9gtR8AVNitm_YJnX3OpE",
+          "mode": "list",
+          "cachedResultName": "ejemplo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/17q0j6BwgcAnzfq69wUApLKo9gtR8AVNitm_YJnX3OpE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/17q0j6BwgcAnzfq69wUApLKo9gtR8AVNitm_YJnX3OpE/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "fecha",
+              "lookupValue": "={{ $now.format('yyyy-MM-dd HH:mm') }}"
+            },
+            {
+              "lookupColumn": "valor",
+              "lookupValue": "={{ $json.output.valor }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        420,
+        -60
+      ],
+      "id": "8deec260-0ec6-4bec-8f72-c2cf4f76501e",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -420,
+        -80
+      ],
+      "id": "c2e14c13-a3ae-4b7e-825f-185ddade93b4",
+      "name": "When clicking ‘Execute workflow’"
+    }
+  ],
+  "pinData": {
+    "Analyze image": [
+      {
+        "json": {
+          "content": "Mandaron $324,000."
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-15T04:06:17.000Z",
+  "versionId": "3462c748-e8f3-43f9-8619-59df7a80913e"
+}
