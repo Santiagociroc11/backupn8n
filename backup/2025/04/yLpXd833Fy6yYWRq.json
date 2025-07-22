@@ -137,7 +137,7 @@
   "id": "yLpXd833Fy6yYWRq",
   "isArchived": false,
   "meta": null,
-  "name": "🟢 [GERSSON-L7] LISTA DE ESPERA",
+  "name": "🟢 [GERSSON-L8] LISTA DE ESPERA",
   "nodes": [
     {
       "parameters": {
@@ -275,7 +275,7 @@
     {
       "parameters": {
         "operation": "insert",
-        "collection": "espera-l7",
+        "collection": "espera-l8",
         "fields": "=query,country,city,zip,regionName,timezone,email,whatsapp,utmCampaign,utmSource,utmMedium,utmContent,utmTerm,userAgent,platform,language,tiemporegistro,fbc,fbp,isFbcGenerated",
         "options": {}
       },
@@ -296,7 +296,7 @@
     },
     {
       "parameters": {
-        "collection": "=espera-l7",
+        "collection": "=espera-l8",
         "options": {
           "limit": 1
         },
@@ -308,7 +308,7 @@
       "typeVersion": 1.1,
       "position": [
         -120,
-        -430
+        -420
       ],
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -405,7 +405,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"email\": \"{{ $('INSERTAR EN MONGO').item.json.email }}\",\n    \"segment_ids\": [\n       \"67f30b49d8b134f84c6228ee\"\n    ]\n}",
+        "jsonBody": "={\n    \"email\": \"{{ $('INSERTAR EN MONGO').item.json.email }}\",\n    \"segment_ids\": [\n       \"687f15404b37dfb1192dd20c\"\n    ]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -651,6 +651,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-04-07T00:36:37.000Z",
-  "versionId": "e52cb811-8506-461f-8c5d-df340433a7a9"
+  "updatedAt": "2025-07-22T04:44:34.000Z",
+  "versionId": "c155faae-b2d1-4769-841b-4c8abb45e0d2"
 }
