@@ -116,7 +116,7 @@
     },
     {
       "parameters": {
-        "command": "=montage $(ls -t /root/bot-zdg/pagos_win/*.jpg | head -n 6) \\\n-tile 3x2 -gravity center -geometry 540x1200+0+0 -background none -border 0 \\\n/root/bot-zdg/pagos_win/collage/collage-{{ $now.toMillis() }}.jpg && \\\nconvert /root/bot-zdg/pagos_win/collage/collage-{{ $now.toMillis() }}.jpg \\\n-resize 1080x1500\\> \\\n/root/bot-zdg/pagos_win/collage/collage-{{ $now.toMillis() }}.jpg && \\\necho \"https://webhook-peru.automscc.com/pagos_win/collage/collage-{{ $now.toMillis() }}.jpg\"\n",
+        "command": "=# 1) Timestamp de n8n\ntimestamp={{ $now.toMillis() }}\n\n# 2) Directorio destino\ncollagedir=/root/bot-zdg/pagos_win/collage\nmkdir -p \"$collagedir\"\n\n# 3) Lista los 6 JPG más recientes y guarda rutas en $files\nfiles=$(find /root/bot-zdg/pagos_win \\\n    -maxdepth 1 -type f -name '*.jpg' \\\n    -printf '%T@ %p\\n' | sort -nr \\\n    | head -n6 | cut -d' ' -f2-)\n\n# 4) Montaje + redimensionado\nmontage $files \\\n  -tile 3x2 -gravity center -geometry 540x1200+0+0 \\\n  -background none -border 0 \\\n  \"$collagedir/collage-$timestamp.jpg\" && \\\nconvert \"$collagedir/collage-$timestamp.jpg\" \\\n  -resize 1080x1500\\> \\\n  \"$collagedir/collage-$timestamp.jpg\" && \\\n# 5) Devolvemos la URL final\necho \"https://webhook-peru.automscc.com/pagos_win/collage/collage-$timestamp.jpg\"\n",
         "cwd": "/root/bot-zdg/pagos_win"
       },
       "type": "n8n-nodes-base.ssh",
@@ -175,6 +175,6 @@
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-04-16T19:11:57.000Z",
-  "versionId": "6bb484b5-3043-4670-99dc-ca20ef7b3146"
+  "updatedAt": "2025-07-22T00:40:55.000Z",
+  "versionId": "0351524f-7f1f-4ed4-9e1d-6e9ca8dc7d57"
 }
