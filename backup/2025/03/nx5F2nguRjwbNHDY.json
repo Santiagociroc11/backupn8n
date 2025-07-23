@@ -23,17 +23,6 @@
         ]
       ]
     },
-    "MySQL": {
-      "main": [
-        [
-          {
-            "node": "If",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "If": {
       "main": [
         [
@@ -57,7 +46,7 @@
         [],
         [
           {
-            "node": "MySQL",
+            "node": "Select rows from a table",
             "type": "main",
             "index": 0
           }
@@ -68,21 +57,32 @@
       "main": [
         [
           {
-            "node": "MySQL2",
+            "node": "Insert rows in a table1",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "MySQL1",
+            "node": "Insert rows in a table",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "MySQL1": {
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert rows in a table": {
       "main": [
         [
           {
@@ -93,7 +93,7 @@
         ]
       ]
     },
-    "MySQL2": {
+    "Insert rows in a table1": {
       "main": [
         [
           {
@@ -156,43 +156,6 @@
         "googleSheetsOAuth2Api": {
           "id": "zruD3ONGC9HU2i7s",
           "name": "CUENTA SANTIAGO"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "select",
-        "table": {
-          "__rl": true,
-          "value": "UÑAS_L2",
-          "mode": "list",
-          "cachedResultName": "UÑAS_L2"
-        },
-        "returnAll": true,
-        "where": {
-          "values": [
-            {
-              "column": "WHATSAPP",
-              "condition": "LIKE",
-              "value": "=%{{ $json['Teléfono'].toString().slice(-7) }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        -120,
-        -140
-      ],
-      "id": "1e4c067f-4a41-49b0-9765-b45ffbabc247",
-      "name": "MySQL",
-      "alwaysOutputData": true,
-      "credentials": {
-        "mySql": {
-          "id": "n8fCALXWnGdmJkBN",
-          "name": "CAPTACIONES"
         }
       }
     },
@@ -278,11 +241,48 @@
     },
     {
       "parameters": {
+        "operation": "select",
         "table": {
           "__rl": true,
-          "value": "UÑAS_L2_VENTAS",
+          "value": "UÑAS_L3",
           "mode": "list",
-          "cachedResultName": "UÑAS_L2_VENTAS"
+          "cachedResultName": "UÑAS_L3"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "WHATSAPP",
+              "condition": "LIKE",
+              "value": "=%{{ $json['Teléfono'].toString().slice(-7) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -120,
+        -140
+      ],
+      "id": "1e4c067f-4a41-49b0-9765-b45ffbabc247",
+      "name": "Select rows from a table",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "UÑAS_L3_VENTAS",
+          "mode": "list",
+          "cachedResultName": "UÑAS_L3_VENTAS"
         },
         "dataMode": "defineBelow",
         "valuesToSend": {
@@ -314,7 +314,7 @@
         20
       ],
       "id": "44966cbd-efa9-4e1b-b996-8724737e844b",
-      "name": "MySQL1",
+      "name": "Insert rows in a table",
       "credentials": {
         "mySql": {
           "id": "n8fCALXWnGdmJkBN",
@@ -326,9 +326,9 @@
       "parameters": {
         "table": {
           "__rl": true,
-          "value": "UÑAS_L2_VENTAS",
+          "value": "UÑAS_L3_VENTAS",
           "mode": "list",
-          "cachedResultName": "UÑAS_L2_VENTAS"
+          "cachedResultName": "UÑAS_L3_VENTAS"
         },
         "dataMode": "defineBelow",
         "valuesToSend": {
@@ -360,7 +360,7 @@
         0
       ],
       "id": "b996fb68-0bed-4c5e-8d85-782b6491748e",
-      "name": "MySQL2",
+      "name": "Insert rows in a table1",
       "credentials": {
         "mySql": {
           "id": "n8fCALXWnGdmJkBN",
@@ -379,6 +379,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-06-12T17:21:34.000Z",
-  "versionId": "ca8ca1b0-69b8-4bdb-bb5d-553b3736d73b"
+  "updatedAt": "2025-07-22T19:33:36.000Z",
+  "versionId": "0074b542-6adf-4e5d-81f8-2d0bfa0ae6c0"
 }
