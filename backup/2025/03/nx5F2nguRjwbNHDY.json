@@ -116,7 +116,7 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -920,
+        -928,
         -160
       ],
       "id": "bc1c2920-792a-4767-9a80-d999dbc0f0ae",
@@ -187,8 +187,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        100,
-        -140
+        112,
+        -144
       ],
       "id": "626dd202-73a6-49cc-907c-892e24ddef96",
       "name": "If"
@@ -200,7 +200,7 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        -380,
+        -384,
         -160
       ],
       "id": "cab68627-78ce-4df6-a241-a880cdf7d3dd",
@@ -233,7 +233,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        340,
+        352,
         -160
       ],
       "id": "3f8f2e24-01b2-43d0-9c62-2b3d6b4d8f1e",
@@ -244,13 +244,17 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "UÑAS_L3",
+          "value": "UÑAS_L2",
           "mode": "list",
-          "cachedResultName": "UÑAS_L3"
+          "cachedResultName": "UÑAS_L2"
         },
         "returnAll": true,
         "where": {
           "values": [
+            {
+              "column": "CORREO",
+              "value": "={{ $json['Email del Comprador(a)'] }}"
+            },
             {
               "column": "WHATSAPP",
               "condition": "LIKE",
@@ -258,13 +262,14 @@
             }
           ]
         },
+        "combineConditions": "OR",
         "options": {}
       },
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        -120,
-        -140
+        -128,
+        -144
       ],
       "id": "1e4c067f-4a41-49b0-9765-b45ffbabc247",
       "name": "Select rows from a table",
@@ -280,9 +285,9 @@
       "parameters": {
         "table": {
           "__rl": true,
-          "value": "UÑAS_L3_VENTAS",
+          "value": "UÑAS_L2_VENTAS",
           "mode": "list",
-          "cachedResultName": "UÑAS_L3_VENTAS"
+          "cachedResultName": "UÑAS_L2_VENTAS"
         },
         "dataMode": "defineBelow",
         "valuesToSend": {
@@ -302,6 +307,10 @@
             {
               "column": "fuente",
               "value": "=AFILIADO"
+            },
+            {
+              "column": "monto",
+              "value": "={{ ($('Loop Over Items').item.json['Comisión del Afiliado(a)']  + $('Loop Over Items').item.json['Faturación neta del Productor(a)'] )}}"
             }
           ]
         },
@@ -310,8 +319,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        680,
-        20
+        688,
+        32
       ],
       "id": "44966cbd-efa9-4e1b-b996-8724737e844b",
       "name": "Insert rows in a table",
@@ -326,9 +335,9 @@
       "parameters": {
         "table": {
           "__rl": true,
-          "value": "UÑAS_L3_VENTAS",
+          "value": "UÑAS_L2_VENTAS",
           "mode": "list",
-          "cachedResultName": "UÑAS_L3_VENTAS"
+          "cachedResultName": "UÑAS_L2_VENTAS"
         },
         "dataMode": "defineBelow",
         "valuesToSend": {
@@ -348,6 +357,10 @@
             {
               "column": "fuente",
               "value": "=OK"
+            },
+            {
+              "column": "monto",
+              "value": "={{ ($('Loop Over Items').item.json['Comisión del Afiliado(a)']  + $('Loop Over Items').item.json['Faturación neta del Productor(a)'] )}}"
             }
           ]
         },
@@ -356,7 +369,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        900,
+        912,
         0
       ],
       "id": "b996fb68-0bed-4c5e-8d85-782b6491748e",
@@ -379,6 +392,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-07-22T19:33:36.000Z",
-  "versionId": "0074b542-6adf-4e5d-81f8-2d0bfa0ae6c0"
+  "updatedAt": "2025-07-23T21:47:10.000Z",
+  "versionId": "dc5980a0-2db4-484d-84f8-f8ea9bc9ccf8"
 }
