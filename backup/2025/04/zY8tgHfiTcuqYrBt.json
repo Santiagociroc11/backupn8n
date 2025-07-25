@@ -27,6 +27,17 @@
       "main": [
         [
           {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
             "node": "Respond to Webhook",
             "type": "main",
             "index": 0
@@ -53,7 +64,7 @@
       "typeVersion": 2,
       "position": [
         -320,
-        -60
+        -64
       ],
       "id": "6fc1a990-9fa7-4a3b-8144-09720fbec418",
       "name": "Webhook",
@@ -61,15 +72,13 @@
     },
     {
       "parameters": {
-        "respondWith": "text",
-        "responseBody": "={{ $json.stdout }}",
         "options": {}
       },
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
-        100,
-        -60
+        304,
+        -64
       ],
       "id": "d59893b1-7567-4df9-8bff-f43e3e40463b",
       "name": "Respond to Webhook"
@@ -89,7 +98,7 @@
       "typeVersion": 1.2,
       "position": [
         -320,
-        180
+        192
       ],
       "id": "c24d3095-3cc0-4249-ae9a-b8ba1ef1fe6b",
       "name": "Schedule Trigger"
@@ -102,8 +111,8 @@
       "type": "n8n-nodes-base.ssh",
       "typeVersion": 1,
       "position": [
-        -140,
-        180
+        -144,
+        192
       ],
       "id": "57c52039-6a8d-474d-96ad-4bc60c5d7d34",
       "name": "BORRAR",
@@ -122,8 +131,8 @@
       "type": "n8n-nodes-base.ssh",
       "typeVersion": 1,
       "position": [
-        -100,
-        -60
+        -96,
+        -64
       ],
       "id": "2218fd49-06fa-4d75-9f88-b41a403a4977",
       "name": "CREAR",
@@ -133,6 +142,29 @@
           "name": "SSH Password account"
         }
       }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7fc6b8c8-a32d-472b-8ba6-2cb4bd7f4e38",
+              "name": "url_collage",
+              "value": "={{ $json.stdout }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        112,
+        -64
+      ],
+      "id": "290e8b00-f846-4abc-854a-5cd8c6d00287",
+      "name": "Edit Fields"
     }
   ],
   "pinData": {
@@ -175,6 +207,6 @@
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-07-22T00:40:55.000Z",
-  "versionId": "0351524f-7f1f-4ed4-9e1d-6e9ca8dc7d57"
+  "updatedAt": "2025-07-24T19:25:55.000Z",
+  "versionId": "7c873790-af33-435d-97e1-17b37201d048"
 }
