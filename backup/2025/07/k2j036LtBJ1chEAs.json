@@ -1,0 +1,408 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ESCRIBE TRANSACCION": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message and wait for response in Telegram": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-29T00:19:42.027Z",
+  "id": "k2j036LtBJ1chEAs",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 21",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -672,
+        0
+      ],
+      "id": "3a98981e-d554-45e9-b1f5-4614f2de6cbc",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1Ve_OR8ujhaqLH7LNPKqtRtnGtmeGTi33KO3Uu9wYnIU",
+          "mode": "list",
+          "cachedResultName": "Hoja de cálculo sin título",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Ve_OR8ujhaqLH7LNPKqtRtnGtmeGTi33KO3Uu9wYnIU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Ve_OR8ujhaqLH7LNPKqtRtnGtmeGTi33KO3Uu9wYnIU/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -368,
+        0
+      ],
+      "id": "98532e20-fdd9-4b1b-a26d-da166131178a",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -160,
+        0
+      ],
+      "id": "7795921b-292a-4a15-a43f-13da6d8b4fef",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json }}",
+        "options": {
+          "systemMessage": "eres un contador colombiano con mas de 50 años de experiencia, naciste con el puc en la mano y llevas contabilidad de empresas a nivel mundial, recibes la informacion de una transaccion real de una fila de un sheet... tomala y llena la hoja de transacciones a la que tienes acceso como tool.\n\ntoma como base el sheet \"EJEMPLO CUENTAS\"\n\nlos centros de costos coinciden con el \"PROYECTO\" tal cual.\n\nSi tienes dudas respecto a a que cuenta pertenece un gasto o un ingreso o a que centro de costos, o algo en general, preguntamelo por la tool de telegram\n\nanaliza primero la estructura de la tabla de la hoja transacciones a la que tienes acceso para saber como llenarla\n\nhazlo bien \n\nejemplo de plantilla completa:\n\n\"[\n  {\n    \"response\": [\n      {\n        \"row_number\": 2,\n        \"Identificador\": \"ACC-JV-2025-00005-1\",\n        \"Tipo de entrada\": \"Journal Entry\",\n        \"Secuencia\": \"ACC-JV-.YYYY.-\",\n        \"Compañía\": \"Agencia X SAS\",\n        \"Fecha de Contabilización\": \"2025-07-15\",\n        \"Identificador (Asientos contables)\": \"vgmgpgshjq\",\n        \"Cuenta (Asientos contables)\": \"1651 - GANANCIAS PERCIBIDAS - AXS\",\n        \"Debe (Asientos contables)\": 2245,\n        \"Haber (Asientos contables)\": \"\"\n      },\n      {\n        \"row_number\": 3,\n        \"Identificador\": \"\",\n        \"Tipo de entrada\": \"\",\n        \"Secuencia\": \"\",\n        \"Compañía\": \"\",\n        \"Fecha de Contabilización\": \"\",\n        \"Identificador (Asientos contables)\": \"vgmc4rra9k\",\n        \"Cuenta (Asientos contables)\": \"3400 - UTILIDADES RETENIDAS - AXS\",\n        \"Debe (Asientos contables)\": \"\",\n        \"Haber (Asientos contables)\": 2245\n      },\n      {\n        \"row_number\": 4,\n        \"Identificador\": \"ACC-JV-2025-00005\",\n        \"Tipo de entrada\": \"Journal Entry\",\n        \"Secuencia\": \"ACC-JV-.YYYY.-\",\n        \"Compañía\": \"Agencia X SAS\",\n        \"Fecha de Contabilización\": \"2025-07-15\",\n        \"Identificador (Asientos contables)\": \"njhk8pn0t3\",\n        \"Cuenta (Asientos contables)\": \"3400 - UTILIDADES RETENIDAS - AXS\",\n        \"Debe (Asientos contables)\": 2245,\n        \"Haber (Asientos contables)\": \"\"\n      },\n      {\n        \"row_number\": 5,\n        \"Identificador\": \"\",\n        \"Tipo de entrada\": \"\",\n        \"Secuencia\": \"\",\n        \"Compañía\": \"\",\n        \"Fecha de Contabilización\": \"\",\n        \"Identificador (Asientos contables)\": \"njhi3vbhue\",\n        \"Cuenta (Asientos contables)\": \"3400 - UTILIDADES RETENIDAS - AXS\",\n        \"Debe (Asientos contables)\": \"\",\n        \"Haber (Asientos contables)\": 2245\n      },\n      {\n        \"row_number\": 6,\n        \"Identificador\": \"ACC-JV-2025-00004\",\n        \"Tipo de entrada\": \"Journal Entry\",\n        \"Secuencia\": \"ACC-JV-.YYYY.-\",\n        \"Compañía\": \"Agencia X SAS\",\n        \"Fecha de Contabilización\": \"2025-01-04\",\n        \"Identificador (Asientos contables)\": \"sl7esn1l0s\",\n        \"Cuenta (Asientos contables)\": \"PAYONEER JSD - AXS\",\n        \"Debe (Asientos contables)\": \"\",\n        \"Haber (Asientos contables)\": 246\n      },\n      {\n        \"row_number\": 7,\n        \"Identificador\": \"\",\n        \"Tipo de entrada\": \"\",\n        \"Secuencia\": \"\",\n        \"Compañía\": \"\",\n        \"Fecha de Contabilización\": \"\",\n        \"Identificador (Asientos contables)\": \"sl7l52pagf\",\n        \"Cuenta (Asientos contables)\": \"FB ADS - AXS\",\n        \"Debe (Asientos contables)\": 246,\n        \"Haber (Asientos contables)\": \"\"\n      },\n      {\n        \"row_number\": 8,\n        \"Identificador\": \"ACC-JV-2025-00002-2\",\n        \"Tipo de entrada\": \"Journal Entry\",\n        \"Secuencia\": \"ACC-JV-.YYYY.-\",\n        \"Compañía\": \"Agencia X SAS\",\n        \"Fecha de Contabilización\": \"2025-01-02\",\n        \"Identificador (Asientos contables)\": \"onc92ml9pt\",\n        \"Cuenta (Asientos contables)\": \"FB ADS - AXS\",\n        \"Debe (Asientos contables)\": 261,\n        \"Haber (Asientos contables)\": \"\"\n      },\n      {\n        \"row_number\": 9,\n        \"Identificador\": \"\",\n        \"Tipo de entrada\": \"\",\n        \"Secuencia\": \"\",\n        \"Compañía\": \"\",\n        \"Fecha de Contabilización\": \"\",\n        \"Identificador (Asientos contables)\": \"onckoaq4ev\",\n        \"Cuenta (Asientos contables)\": \"PAYONEER JSD - AXS\",\n        \"Debe (Asientos contables)\": \"\",\n        \"Haber (Asientos contables)\": 261\n      },\n      {\n        \"row_number\": 10,\n        \"Identificador\": \"ACC-JV-2025-00001-2\",\n        \"Tipo de entrada\": \"Journal Entry\",\n        \"Secuencia\": \"ACC-JV-.YYYY.-\",\n        \"Compañía\": \"Agencia X SAS\",\n        \"Fecha de Contabilización\": \"2025-01-01\",\n        \"Identificador (Asientos contables)\": \"od1g29i6eu\",\n        \"Cuenta (Asientos contables)\": \"HOTMART JSD - AXS\",\n        \"Debe (Asientos contables)\": 6273,\n        \"Haber (Asientos contables)\": \"\"\n      },\n      {\n        \"row_number\": 11,\n        \"Identificador\": \"\",\n        \"Tipo de entrada\": \"\",\n        \"Secuencia\": \"\",\n        \"Compañía\": \"\",\n        \"Fecha de Contabilización\": \"\",\n        \"Identificador (Asientos contables)\": \"od1pboddmt\",\n        \"Cuenta (Asientos contables)\": \"BINANCE - AXS\",\n        \"Debe (Asientos contables)\": 4991,\n        \"Haber (Asientos contables)\": \"\"\n      },\n      {\n        \"row_number\": 12,\n        \"Identificador\": \"\",\n        \"Tipo de entrada\": \"\",\n        \"Secuencia\": \"\",\n        \"Compañía\": \"\",\n        \"Fecha de Contabilización\": \"\",\n        \"Identificador (Asientos contables)\": \"od10rei12r\",\n        \"Cuenta (Asientos contables)\": \"PAYONEER JSD - AXS\",\n        \"Debe (Asientos contables)\": 39873,\n        \"Haber (Asientos contables)\": \"\"\n      },\n      {\n        \"row_number\": 13,\n        \"Identificador\": \"\",\n        \"Tipo de entrada\": \"\",\n        \"Secuencia\": \"\",\n        \"Compañía\": \"\",\n        \"Fecha de Contabilización\": \"\",\n        \"Identificador (Asientos contables)\": \"od1h6aolc6\",\n        \"Cuenta (Asientos contables)\": \"3300 - Apertura de Capital - AXS\",\n        \"Debe (Asientos contables)\": \"\",\n        \"Haber (Asientos contables)\": 51137\n      },\n      {\n        \"row_number\": 14,\n        \"Identificador\": \"ACC-JV-2025-00003-1\",\n        \"Tipo de entrada\": \"Journal Entry\",\n        \"Secuencia\": \"ACC-JV-.YYYY.-\",\n        \"Compañía\": \"Agencia X SAS\",\n        \"Fecha de Contabilización\": \"2025-01-02\",\n        \"Identificador (Asientos contables)\": \"o05cl61h32\",\n        \"Cuenta (Asientos contables)\": \"PAYONEER JSD - AXS\",\n        \"Debe (Asientos contables)\": 7,\n        \"Haber (Asientos contables)\": \"\"\n      },\n      {\n        \"row_number\": 15,\n        \"Identificador\": \"\",\n        \"Tipo de entrada\": \"\",\n        \"Secuencia\": \"\",\n        \"Compañía\": \"\",\n        \"Fecha de Contabilización\": \"\",\n        \"Identificador (Asientos contables)\": \"o05uk6et12\",\n        \"Cuenta (Asientos contables)\": \"Incentivos Payoneer - AXS\",\n        \"Debe (Asientos contables)\": \"\",\n        \"Haber (Asientos contables)\": 7\n      },\n      {\n        \"row_number\": 16,\n        \"Identificador\": \"ACC-JV-2025-00001-1\",\n        \"Tipo de entrada\": \"Journal Entry\",\n        \"Secuencia\": \"ACC-JV-.YYYY.-\",\n        \"Compañía\": \"Agencia X SAS\",\n        \"Fecha de Contabilización\": \"2025-01-01\",\n        \"Identificador (Asientos contables)\": \"no776qia53\",\n        \"Cuenta (Asientos contables)\": \"HOTMART JSD - AXS\",\n        \"Debe (Asientos contables)\": 6273,\n        \"Haber (Asientos contables)\": \"\"\n      },\n      {\n        \"row_number\": 17,\n        \"Identificador\": \"\",\n        \"Tipo de entrada\": \"\",\n        \"Secuencia\": \"\",\n        \"Compañía\": \"\",\n        \"Fecha de Contabilización\": \"\",\n        \"Identificador (Asientos contables)\": \"no7ektu25i\",\n        \"Cuenta (Asientos contables)\": \"BINANCE - AXS\",\n        \"Debe (Asientos contables)\": 4991,\n        \"Haber (Asientos contables)\": \"\"\n      },\n      {\n        \"row_number\": 18,\n        \"Identificador\": \"\",\n        \"Tipo de entrada\": \"\",\n        \"Secuencia\": \"\",\n        \"Compañía\": \"\",\n        \"Fecha de Contabilización\": \"\",\n        \"Identificador (Asientos contables)\": \"no7u60chpb\",\n        \"Cuenta (Asientos contables)\": \"PAYONEER JSD - AXS\",\n        \"Debe (Asientos contables)\": 39873,\n        \"Haber (Asientos contables)\": \"\"\n      },\n      {\n        \"row_number\": 19,\n        \"Identificador\": \"\",\n        \"Tipo de entrada\": \"\",\n        \"Secuencia\": \"\",\n        \"Compañía\": \"\",\n        \"Fecha de Contabilización\": \"\",\n        \"Identificador (Asientos contables)\": \"no79bs6l30\",\n        \"Cuenta (Asientos contables)\": \"3300 - Apertura de Capital - AXS\",\n        \"Debe (Asientos contables)\": \"\",\n        \"Haber (Asientos contables)\": 51137\n      },\n      {\n        \"row_number\": 20,\n        \"Identificador\": \"ACC-JV-2025-00003\",\n        \"Tipo de entrada\": \"Journal Entry\",\n        \"Secuencia\": \"ACC-JV-.YYYY.-\",\n        \"Compañía\": \"Agencia X SAS\",\n        \"Fecha de Contabilización\": \"2025-01-02\",\n        \"Identificador (Asientos contables)\": \"k1pq2j023l\",\n        \"Cuenta (Asientos contables)\": \"PAYONEER JSD - AXS\",\n        \"Debe (Asientos contables)\": 7,\n        \"Haber (Asientos contables)\": \"\"\n      },\n      {\n        \"row_number\": 21,\n        \"Identificador\": \"\",\n        \"Tipo de entrada\": \"\",\n        \"Secuencia\": \"\",\n        \"Compañía\": \"\",\n        \"Fecha de Contabilización\": \"\",\n        \"Identificador (Asientos contables)\": \"k1p8d80nll\",\n        \"Cuenta (Asientos contables)\": \"Incentivos Payoneer - AXS\",\n        \"Debe (Asientos contables)\": \"\",\n        \"Haber (Asientos contables)\": 7\n      },\n      {\n        \"row_number\": 22,\n        \"Identificador\": \"ACC-JV-2025-00002-1\",\n        \"Tipo de entrada\": \"Journal Entry\",\n        \"Secuencia\": \"ACC-JV-.YYYY.-\",\n        \"Compañía\": \"Agencia X SAS\",\n        \"Fecha de Contabilización\": \"2025-01-02\",\n        \"Identificador (Asientos contables)\": \"ahb11olph0\",\n        \"Cuenta (Asientos contables)\": \"FB ADS - AXS\",\n        \"Debe (Asientos contables)\": 261,\n        \"Haber (Asientos contables)\": \"\"\n      },\n      {\n        \"row_number\": 23,\n        \"Identificador\": \"\",\n        \"Tipo de entrada\": \"\",\n        \"Secuencia\": \"\",\n        \"Compañía\": \"\",\n        \"Fecha de Contabilización\": \"\",\n        \"Identificador (Asientos contables)\": \"ahb573s2s2\",\n        \"Cuenta (Asientos contables)\": \"PAYONEER JSD - AXS\",\n        \"Debe (Asientos contables)\": \"\",\n        \"Haber (Asientos contables)\": 261\n      },\n      {\n        \"row_number\": 24,\n        \"Identificador\": \"ACC-JV-2025-00002\",\n        \"Tipo de entrada\": \"Journal Entry\",\n        \"Secuencia\": \"ACC-JV-.YYYY.-\",\n        \"Compañía\": \"Agencia X SAS\",\n        \"Fecha de Contabilización\": \"2025-01-02\",\n        \"Identificador (Asientos contables)\": \"9epp38kpd2\",\n        \"Cuenta (Asientos contables)\": \"FB ADS - AXS\",\n        \"Debe (Asientos contables)\": 261,\n        \"Haber (Asientos contables)\": \"\"\n      },\n      {\n        \"row_number\": 25,\n        \"Identificador\": \"\",\n        \"Tipo de entrada\": \"\",\n        \"Secuencia\": \"\",\n        \"Compañía\": \"\",\n        \"Fecha de Contabilización\": \"\",\n        \"Identificador (Asientos contables)\": \"9epd5r6goa\",\n        \"Cuenta (Asientos contables)\": \"PAYONEER JSD - AXS\",\n        \"Debe (Asientos contables)\": \"\",\n        \"Haber (Asientos contables)\": 261\n      },\n      {\n        \"row_number\": 26,\n        \"Identificador\": \"ACC-JV-2025-00001\",\n        \"Tipo de entrada\": \"Journal Entry\",\n        \"Secuencia\": \"ACC-JV-.YYYY.-\",\n        \"Compañía\": \"Agencia X SAS\",\n        \"Fecha de Contabilización\": \"2025-01-01\",\n        \"Identificador (Asientos contables)\": \"n0t6c8odoj\",\n        \"Cuenta (Asientos contables)\": \"HOTMART JSD - AXS\",\n        \"Debe (Asientos contables)\": 6273,\n        \"Haber (Asientos contables)\": \"\"\n      },\n      {\n        \"row_number\": 27,\n        \"Identificador\": \"\",\n        \"Tipo de entrada\": \"\",\n        \"Secuencia\": \"\",\n        \"Compañía\": \"\",\n        \"Fecha de Contabilización\": \"\",\n        \"Identificador (Asientos contables)\": \"n0t56vl7h0\",\n        \"Cuenta (Asientos contables)\": \"BINANCE - AXS\",\n        \"Debe (Asientos contables)\": 4991,\n        \"Haber (Asientos contables)\": \"\"\n      },\n      {\n        \"row_number\": 28,\n        \"Identificador\": \"\",\n        \"Tipo de entrada\": \"\",\n        \"Secuencia\": \"\",\n        \"Compañía\": \"\",\n        \"Fecha de Contabilización\": \"\",\n        \"Identificador (Asientos contables)\": \"n0tevp0jn8\",\n        \"Cuenta (Asientos contables)\": \"PAYONEER JSD - AXS\",\n        \"Debe (Asientos contables)\": 39873,\n        \"Haber (Asientos contables)\": \"\"\n      },\n      {\n        \"row_number\": 29,\n        \"Identificador\": \"\",\n        \"Tipo de entrada\": \"\",\n        \"Secuencia\": \"\",\n        \"Compañía\": \"\",\n        \"Fecha de Contabilización\": \"\",\n        \"Identificador (Asientos contables)\": \"n0tveknsc7\",\n        \"Cuenta (Asientos contables)\": \"3300 - Apertura de Capital - AXS\",\n        \"Debe (Asientos contables)\": \"\",\n        \"Haber (Asientos contables)\": 51137\n      }\n    ]\n  }\n]\""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        48,
+        96
+      ],
+      "id": "cc1625c5-879c-41d6-826d-d11c4f1587e6",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        784,
+        320
+      ],
+      "id": "e5375620-18cf-4403-9e55-2e322ffa2130",
+      "name": "Wait",
+      "webhookId": "1519b061-492a-4d4c-b525-053b86b7aee5"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -96,
+        304
+      ],
+      "id": "ec0c4352-b3fa-406f-82f6-34fca1596f32",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "GPT SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1Ve_OR8ujhaqLH7LNPKqtRtnGtmeGTi33KO3Uu9wYnIU",
+          "mode": "list",
+          "cachedResultName": "Hoja de cálculo sin título",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Ve_OR8ujhaqLH7LNPKqtRtnGtmeGTi33KO3Uu9wYnIU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2140431827,
+          "mode": "list",
+          "cachedResultName": "transacciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Ve_OR8ujhaqLH7LNPKqtRtnGtmeGTi33KO3Uu9wYnIU/edit#gid=2140431827"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Identificador": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Identificador', ``, 'string') }}",
+            "Tipo de entrada": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Tipo_de_entrada', ``, 'string') }}",
+            "Secuencia": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Secuencia', ``, 'string') }}",
+            "Compañía": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Compa__a', ``, 'string') }}",
+            "Fecha de Contabilización": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Fecha_de_Contabilizaci_n', ``, 'string') }}",
+            "Nombre": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Nombre', ``, 'string') }}",
+            "Identificador (Asientos contables)": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Identificador__Asientos_contables_', ``, 'string') }}",
+            "Cuenta (Asientos contables)": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Cuenta__Asientos_contables_', ``, 'string') }}",
+            "Debe (Asientos contables)": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Debe__Asientos_contables_', ``, 'string') }}",
+            "Haber (Asientos contables)": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Haber__Asientos_contables_', ``, 'string') }}",
+            "Centro de costos (Asientos contables)": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Centro_de_costos__Asientos_contables_', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Identificador",
+              "displayName": "Identificador",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tipo de entrada",
+              "displayName": "Tipo de entrada",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Secuencia",
+              "displayName": "Secuencia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Compañía",
+              "displayName": "Compañía",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha de Contabilización",
+              "displayName": "Fecha de Contabilización",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Identificador (Asientos contables)",
+              "displayName": "Identificador (Asientos contables)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cuenta (Asientos contables)",
+              "displayName": "Cuenta (Asientos contables)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Debe (Asientos contables)",
+              "displayName": "Debe (Asientos contables)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Haber (Asientos contables)",
+              "displayName": "Haber (Asientos contables)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Centro de costos (Asientos contables)",
+              "displayName": "Centro de costos (Asientos contables)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Minimise_API_Calls', ``, 'boolean') }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        368,
+        272
+      ],
+      "id": "6350929c-65c1-4b3d-905e-830409e50221",
+      "name": "ESCRIBE TRANSACCION",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "chatId": "552780004",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "responseType": "freeText",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.telegramTool",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        304
+      ],
+      "id": "9d3548ca-1611-464a-9310-1c99bcbc19c7",
+      "name": "Send message and wait for response in Telegram",
+      "webhookId": "b771d1c7-4f2b-44f9-8bbc-b72cd6a72165",
+      "credentials": {
+        "telegramApi": {
+          "id": "QruLAfRq4u80XCVX",
+          "name": "BOT AGENCIA X"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-29T00:42:25.000Z",
+  "versionId": "ff18456d-2ae6-4344-aadd-797847d375c5"
+}
