@@ -350,6 +350,11 @@
             "node": "HTTP Request6",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -562,6 +567,17 @@
           }
         ]
       ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-07-29T04:58:18.066Z",
@@ -631,7 +647,7 @@
       "parameters": {
         "operation": "insert",
         "collection": "TD-L8",
-        "fields": "=query,country,city,zip,regionName,timezone,email,whatsapp,utmCampaign,utmSource,utmMedium,utmContent,utmTerm,userAgent,platform,language,tiemporegistro,fbc,fbp,isFbcGenerated",
+        "fields": "=query,country,city,zip,regionName,timezone,email,whatsapp,utmCampaign,utmSource,utmMedium,utmContent,utmTerm,adid,userAgent,platform,language,tiemporegistro,fbc,fbp,isFbcGenerated",
         "options": {}
       },
       "id": "aa350797-f81e-4367-915e-fdd5add483b2",
@@ -891,6 +907,12 @@
               "name": "HORA",
               "value": "={{ $now.format('HH:mm:ss:s') }}",
               "type": "string"
+            },
+            {
+              "id": "ba1e8726-72dc-4603-996c-949c755897eb",
+              "name": "AD_ID",
+              "value": "={{ $json.adid }}",
+              "type": "string"
             }
           ]
         },
@@ -1019,7 +1041,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"flow_ns\": \"content20250124045214_190466\"\n}",
+        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"flow_ns\": \"content20250801030701_545145\"\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -1318,7 +1340,7 @@
         "operation": "findOneAndUpdate",
         "collection": "TD-L8",
         "updateKey": "_id",
-        "fields": "tiempoencuesta,Edad,Nivel_de_estudios,Ocupación,Eliminar_dolor_para,Ingresos,puntaje",
+        "fields": "tiempoencuesta,Edad, Edad_especifica,Nivel_de_estudios,Ocupación,Eliminar_dolor_para,Ingresos,puntaje",
         "options": {}
       },
       "id": "93b0ca4e-730c-4661-92f4-4a560d618d1d",
@@ -1326,8 +1348,8 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        1712,
-        384
+        1760,
+        448
       ],
       "credentials": {
         "mongoDb": {
@@ -1408,8 +1430,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1872,
-        384
+        1920,
+        448
       ],
       "id": "c0db8889-7781-4290-a541-b98d43000129",
       "name": "If2"
@@ -1425,8 +1447,8 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        2064,
-        320
+        2112,
+        384
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -1443,8 +1465,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2224,
-        320
+        2272,
+        384
       ],
       "id": "fedab4d2-93b2-496c-a337-6f7690d3d4ed",
       "name": "Code"
@@ -1458,7 +1480,7 @@
           "parameters": [
             {
               "name": "access_token",
-              "value": "EAAZAGfGPCLT4BO4jpxZA0Vq8k09oeh72XCHB8RLRkCtt6OHGacyH5dleDJGD1XXJvSNZC7wh9t9Wx2NUNuQ3FDsfSezZCQ1N98c5oEsPdpEJy46gZAs1JPBxObYTeUsz6cF83ZBI4LJCyPHPFSzhYofIfqEzFnSId2ZACQl25EJDZB2pwO4fLZCf8vb1ELnDS0kJ0igZDZD"
+              "value": "EAAOAcBl41QIBPAbmJYzAk6gatq43TrZAbqWrgOWbOtzbHatJskrsRQ8R4seDAO3aRB0mZCLxAiFnR3FjnJVBZAZCJmfg0GD2E7GviM8Oa5hguHt1ZAxCf8ZCKg3ro2CfoO1brwouRQZAPQFdPglCHidXqhAttYZCcg1SNugkaOo1NVanZCnZBhhAynzS6Knl4x80fBEgZDZD"
             }
           ]
         },
@@ -1470,8 +1492,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2400,
-        320
+        2448,
+        384
       ],
       "id": "669a302f-2481-4a1b-8084-9c783a2be7e3",
       "name": "HTTP Request2"
@@ -1533,6 +1555,12 @@
               "name": "HORA ENCUESTA",
               "value": "={{ $now.format('HH:mm:ss:s') }}",
               "type": "string"
+            },
+            {
+              "id": "8b8c5b70-460d-437f-a8cb-8ec1e381d382",
+              "name": "EDAD_ESPECIFICA",
+              "value": "={{ $json.Edad_especifica }}",
+              "type": "string"
             }
           ]
         },
@@ -1541,8 +1569,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1600,
-        560
+        1632,
+        640
       ],
       "id": "d3c17607-5d34-4170-b739-25b1b61837bd",
       "name": "Edit Fields7"
@@ -1576,8 +1604,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1712,
-        224
+        1760,
+        112
       ],
       "id": "bc0d7ef7-0094-41d1-939e-8a0f45f95be2",
       "name": "HTTP Request5",
@@ -1615,8 +1643,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1712,
-        64
+        1760,
+        -48
       ],
       "id": "363fe3fe-3605-41fc-8086-435e3a3621a6",
       "name": "HTTP Request6",
@@ -1666,8 +1694,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1968,
-        672
+        2016,
+        736
       ],
       "id": "ec232527-6d63-4514-b0f9-553c7d8a6262",
       "name": "If4"
@@ -1679,8 +1707,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        2144,
-        592
+        2192,
+        656
       ],
       "id": "a28426b9-5061-45bb-96fd-6a0512f451a9",
       "name": "Merge6"
@@ -1707,7 +1735,7 @@
             {
               "id": "ee2f3d54-34a2-40bd-a09a-dcb81b934770",
               "name": "puntaje",
-              "value": "={{ $json.score.round() }}",
+              "value": "={{ $json.score[0].round() }}",
               "type": "number"
             }
           ]
@@ -1822,7 +1850,7 @@
     {
       "parameters": {
         "mode": "raw",
-        "jsonOutput": "={{ (() => {\n \n  const ans = JSON.parse($json.body.answersJson || '{}');\n\n\n  return {\n    ...ans\n   \n  };\n})() }}\n",
+        "jsonOutput": "={{ (() => {\n \n  // 1. Convierte el texto de las respuestas (answersJson) en un objeto.\n  const ans = JSON.parse($json.body.answersJson || '{}');\n\n  // 2. Elimina la propiedad 'Edad_especifica' del objeto.\n  delete ans.Edad_especifica;\n\n  // 3. Devuelve el objeto ya modificado (sin 'Edad_especifica').\n  return {\n    ...ans\n   \n  };\n})() }}",
         "options": {}
       },
       "type": "n8n-nodes-base.set",
@@ -1921,6 +1949,10 @@
             {
               "column": "ID",
               "value": "={{ $json.ID }}"
+            },
+            {
+              "column": "AD_ID",
+              "value": "={{ $json.AD_ID }}"
             }
           ]
         },
@@ -1967,8 +1999,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        1808,
-        672
+        1856,
+        736
       ],
       "id": "298f417a-442f-4814-8b57-6c45f79994ce",
       "name": "Select rows from a table1",
@@ -2029,6 +2061,10 @@
             {
               "column": "QLEAD",
               "value": "={{ $json.PUNTAJE > 500 ? \"si\": null }}"
+            },
+            {
+              "column": "EDAD_ESPECIFICA",
+              "value": "={{ $json.EDAD_ESPECIFICA }}"
             }
           ]
         },
@@ -2039,8 +2075,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        2352,
-        592
+        2400,
+        656
       ],
       "id": "ac616b9f-3e17-4186-b732-84cd65e63e8e",
       "name": "Update rows in a table",
@@ -2050,6 +2086,58 @@
           "name": "CAPTACIONES"
         }
       }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.manychat.com/fb/subscriber/setCustomFieldByName",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"field_name\": \"PROPOSITO\",\n  \"field_value\": \"{{ $json.PROPOSITO }}\" \n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1760,
+        272
+      ],
+      "id": "4163bfbb-93ea-4e8e-afbd-7dff0585adda",
+      "name": "HTTP Request8",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "maxTries": 5,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtiene TODOS los items que llegan al nodo.\nconst items = $input.all();\n\n// Itera sobre cada item para procesarlo.\nfor (const item of items) {\n  \n  // Extrae el valor de la respuesta del item actual.\n  const respuestaProposito = item.json.Eliminar_dolor_para;\n  \n  // Variable para almacenar el resultado con un valor por defecto.\n  let valorProposito = 'NO_ESPECIFICADO'; \n\n  // Asigna el valor a la variable PROPOSITO según la respuesta.\n  switch (respuestaProposito) {\n    case 'Para crear o ampliar tu negocio relacionado con la salud':\n      valorProposito = 'NEGOCIO';\n      break;\n    case 'Para ti mismo':\n      valorProposito = 'PERSONAL';\n      break;\n    case 'Para tu familia o amigos':\n      valorProposito = 'FAMILIAR';\n      break;\n  }\n  \n  // Agrega el nuevo campo 'PROPOSITO' al objeto json del item.\n  item.json.PROPOSITO = valorProposito;\n}\n\n// Retorna los items ya modificados.\nreturn items;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1600,
+        272
+      ],
+      "id": "301bd9c9-d4ed-40c5-8b60-1ffab70e42f7",
+      "name": "Code2"
     }
   ],
   "pinData": {
@@ -2109,36 +2197,39 @@
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
-            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1",
-            "content-length": "501",
+            "user-agent": "Mozilla/5.0 (Linux; Android 15; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.7204.168 Mobile Safari/537.36",
+            "content-length": "515",
             "accept": "*/*",
-            "accept-encoding": "gzip, deflate, br",
-            "accept-language": "es-419,es;q=0.9",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "es-US,es;q=0.9,pt-BR;q=0.8,pt;q=0.7,en-US;q=0.6,en;q=0.5",
             "content-type": "application/json",
-            "origin": "https://www.magnetictherapies.net",
-            "priority": "u=3, i",
-            "referer": "https://www.magnetictherapies.net/",
+            "origin": "https://terapiasmagneticas.com",
+            "priority": "u=1, i",
+            "referer": "https://terapiasmagneticas.com/",
+            "sec-ch-ua": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Android WebView\";v=\"138\"",
+            "sec-ch-ua-mobile": "?1",
+            "sec-ch-ua-platform": "\"Android\"",
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "161.10.123.130",
+            "x-forwarded-for": "179.33.224.143",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
             "x-forwarded-server": "5e236941e778",
-            "x-real-ip": "161.10.123.130"
+            "x-real-ip": "179.33.224.143",
+            "x-requested-with": "org.telegram.messenger"
           },
           "params": {},
           "query": {},
           "body": {
-            "answersJson": "{\"Edad\":\"-35\",\"Nivel_de_estudios\":\"Profesional\",\"Ocupación\":\"Soy trabajador en un negocio no relacionado con la salud\",\"Eliminar_dolor_para\":\"Para crear o ampliar tu negocio relacionado con la salud\",\"Ingresos\":\"+1500\"}",
-            "answersJsonOptions": "{\"Edad\":\"a\",\"Nivel_de_estudios\":\"e\",\"Ocupación\":\"b\",\"Eliminar_dolor_para\":\"a\",\"Ingresos\":\"f\"}",
-            "referrer": "",
-            "email": "santiagociiro12@gmail.com",
-            "whatsapp": "+573136298562",
-            "tiempoencuesta": 1747106441
+            "answersJson": "{\n  \"Edad\": \"61-80\",\n  \"Edad_especifica\": 62,\n  \"Nivel_de_estudios\": \"Postgrado\",\n  \"Ocupación\": \"Tengo un negocio en áreas relacionadas con la salud (terapeuta, reiki, acupuntura, entrenamiento físico, masajista)\",\n  \"Ingresos\": \"1001-1500\",\n  \"Eliminar_dolor_para\": \"Para crear o ampliar tu negocio relacionado con la salud\"\n}",
+            "referrer": "https://terapiasmagneticas.com/reg-l8/",
+            "email": "jubal2107@gmail.com",
+            "whatsapp": "+573017817643",
+            "tiempoencuesta": 1754025141
           },
-          "webhookUrl": "https://n8n.automscc.com/webhook/encuesta-p2",
+          "webhookUrl": "https://n8n.automscc.com/webhook/l8-enc",
           "executionMode": "production"
         }
       }
@@ -2168,6 +2259,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-07-29T05:57:08.000Z",
-  "versionId": "16f291b4-3cb4-4da7-878c-4e46b0aa80f0"
+  "updatedAt": "2025-08-01T06:16:24.000Z",
+  "versionId": "1732985f-2693-4c26-aba5-8be0d903c8f9"
 }
