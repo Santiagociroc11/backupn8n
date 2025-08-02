@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "REGISTRO": {
       "main": [
@@ -317,25 +317,9 @@
         ]
       ]
     },
-    "MongoDB3": {
-      "main": [
-        [
-          {
-            "node": "If2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Merge1": {
       "main": [
         [
-          {
-            "node": "MongoDB3",
-            "type": "main",
-            "index": 0
-          },
           {
             "node": "Edit Fields7",
             "type": "main",
@@ -377,39 +361,6 @@
             "node": "Merge4",
             "type": "main",
             "index": 1
-          }
-        ]
-      ]
-    },
-    "If2": {
-      "main": [
-        [
-          {
-            "node": "MongoDB4",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "MongoDB4": {
-      "main": [
-        [
-          {
-            "node": "Code",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Code": {
-      "main": [
-        [
-          {
-            "node": "HTTP Request2",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -584,12 +535,12 @@
   "id": "uXzwqPWIn7cNx3ZK",
   "isArchived": false,
   "meta": null,
-  "name": "🟢 [GERSSON-L8] CAPTURA TD - REGISTRO Y ENCUESTAS",
+  "name": "🟢 [GERSSON-L8-ORG] CAPTURA TD - REGISTRO Y ENCUESTAS",
   "nodes": [
     {
       "parameters": {
         "httpMethod": "POST",
-        "path": "933a2307-cfd2-494e-984b-066713366647",
+        "path": "reg-l8-org",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
@@ -619,7 +570,7 @@
     },
     {
       "parameters": {
-        "collection": "=TD-L8",
+        "collection": "=TD-L8-ORG",
         "options": {
           "limit": 1
         },
@@ -646,7 +597,7 @@
     {
       "parameters": {
         "operation": "insert",
-        "collection": "TD-L8",
+        "collection": "TD-L8-ORG",
         "fields": "=query,country,city,zip,regionName,timezone,email,whatsapp,utmCampaign,utmSource,utmMedium,utmContent,utmTerm,adid,userAgent,platform,language,tiemporegistro,fbc,fbp,isFbcGenerated",
         "options": {}
       },
@@ -998,7 +949,7 @@
     {
       "parameters": {
         "operation": "findOneAndUpdate",
-        "collection": "TD-L8",
+        "collection": "TD-L8-ORG",
         "updateKey": "_id",
         "fields": "=id_manychat",
         "options": {}
@@ -1194,7 +1145,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"email\": \"{{ $('MongoDB2').item.json.email }}\",\n    \"segment_ids\": [\n       \"68885aff64563db5f159be35\"\n    ]\n}",
+        "jsonBody": "={\n    \"email\": \"{{ $('MongoDB2').item.json.email }}\",\n    \"segment_ids\": [\n       \"688c61d75a3c0ab7e9f9213a\"\n    ]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -1287,7 +1238,7 @@
     {
       "parameters": {
         "httpMethod": "POST",
-        "path": "bd887535-9346-4c33-915c-3f9d29c1645e",
+        "path": "tks-l8-org",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
@@ -1337,29 +1288,6 @@
     },
     {
       "parameters": {
-        "operation": "findOneAndUpdate",
-        "collection": "TD-L8",
-        "updateKey": "_id",
-        "fields": "tiempoencuesta,Edad, Edad_especifica,Nivel_de_estudios,Ocupación,Eliminar_dolor_para,Ingresos,puntaje",
-        "options": {}
-      },
-      "id": "93e1749e-88e2-4aeb-8bbd-635710b5926d",
-      "name": "MongoDB3",
-      "type": "n8n-nodes-base.mongoDb",
-      "typeVersion": 1.1,
-      "position": [
-        1760,
-        448
-      ],
-      "credentials": {
-        "mongoDb": {
-          "id": "vbsT0SoMA5A3acgH",
-          "name": "BASE DE DATOS GERSSON"
-        }
-      }
-    },
-    {
-      "parameters": {
         "mode": "combine",
         "combineBy": "combineAll",
         "options": {}
@@ -1402,101 +1330,6 @@
       ],
       "id": "fd9989a9-f01a-41a2-8aa3-449e16cd04fb",
       "name": "Edit Fields3"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "a520e1b6-bb26-44a6-857f-770dac49655a",
-              "leftValue": "={{ $json.puntaje }}",
-              "rightValue": 500,
-              "operator": {
-                "type": "number",
-                "operation": "gt"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        1920,
-        448
-      ],
-      "id": "f39d8f4a-0925-4061-88fb-d8f302231799",
-      "name": "If2"
-    },
-    {
-      "parameters": {
-        "collection": "=TD-L8",
-        "options": {},
-        "query": "={\"_id\": \"{{ $('Merge1').item.json._id }}\"}"
-      },
-      "id": "a1dd8756-c313-406b-95f6-d1b55914e1a7",
-      "name": "MongoDB4",
-      "type": "n8n-nodes-base.mongoDb",
-      "typeVersion": 1.1,
-      "position": [
-        2112,
-        384
-      ],
-      "alwaysOutputData": true,
-      "credentials": {
-        "mongoDb": {
-          "id": "vbsT0SoMA5A3acgH",
-          "name": "BASE DE DATOS GERSSON"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "jsCode": "const crypto = require('crypto-js'); // Asegúrate de que la librería está disponible\n\nconst item = $input.first().json;\n\nfunction hashSHA256(value) {\n  return crypto.SHA256(value).toString(crypto.enc.Hex);\n}\n\nconst encryptedData = {\n  em: [hashSHA256(item.email)],  // Correo electrónico\n  ph: [hashSHA256(Number(item.whatsapp))],  // Número de teléfono\n  country: [hashSHA256(item.country)],  // País\n  zp: [hashSHA256(item.zip)], //zip\n  ct: [hashSHA256(item.city)], //ciudad\n  st: [hashSHA256(item.regionName)], //estado\n  // Datos no cifrados deben estar directamente accesibles\n  client_ip_address: item.query,\n  client_user_agent: item.userAgent,\n  fbc: item.fbc,\n  fbp: item.fbp,\n};\n\nconst facebookEvent = {\n  data: [\n    {\n      event_name: \"CompleteRegistration\",\n      event_time: Math.floor(Date.now() / 1000), // Tiempo actual en segundos\n      action_source: \"website\",\n      original_event_data: {\n        event_name: \"CompleteRegistration\",\n        event_time: Math.floor(Date.now() / 1000)\n      },\n      user_data: encryptedData,\n    }\n  ]\n};\n\nreturn facebookEvent;"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        2272,
-        384
-      ],
-      "id": "2f0cd969-4a7e-41c1-969d-eb5925a519e5",
-      "name": "Code"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": " https://graph.facebook.com/v21.0/1156253219623951/events",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "access_token",
-              "value": "EAAOAcBl41QIBPAbmJYzAk6gatq43TrZAbqWrgOWbOtzbHatJskrsRQ8R4seDAO3aRB0mZCLxAiFnR3FjnJVBZAZCJmfg0GD2E7GviM8Oa5hguHt1ZAxCf8ZCKg3ro2CfoO1brwouRQZAPQFdPglCHidXqhAttYZCcg1SNugkaOo1NVanZCnZBhhAynzS6Knl4x80fBEgZDZD"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={{ $json.toJsonString() }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2448,
-        384
-      ],
-      "id": "43d89b4e-e9e8-49ab-9a4c-f099ef22074f",
-      "name": "HTTP Request2"
     },
     {
       "parameters": {
@@ -1605,7 +1438,7 @@
       "typeVersion": 4.2,
       "position": [
         1760,
-        112
+        224
       ],
       "id": "c96c29d4-0909-4176-8252-6377cc970570",
       "name": "HTTP Request5",
@@ -1644,7 +1477,7 @@
       "typeVersion": 4.2,
       "position": [
         1760,
-        -48
+        64
       ],
       "id": "c96d9bd0-c2fb-43e0-bcdb-acf3761c579e",
       "name": "HTTP Request6",
@@ -1808,7 +1641,7 @@
     },
     {
       "parameters": {
-        "collection": "=TD-L8",
+        "collection": "=TD-L8-ORG",
         "options": {
           "limit": 1
         },
@@ -1867,9 +1700,9 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "GERSSON_L8",
+          "value": "GERSSON_L8_ORG",
           "mode": "list",
-          "cachedResultName": "GERSSON_L8"
+          "cachedResultName": "GERSSON_L8_ORG"
         },
         "returnAll": true,
         "where": {
@@ -1886,7 +1719,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        912,
+        896,
         -208
       ],
       "id": "0265f281-624f-4d46-ba3b-b7d53f87bd5d",
@@ -1903,9 +1736,9 @@
       "parameters": {
         "table": {
           "__rl": true,
-          "value": "GERSSON_L8",
+          "value": "GERSSON_L8_ORG",
           "mode": "list",
-          "cachedResultName": "GERSSON_L8"
+          "cachedResultName": "GERSSON_L8_ORG"
         },
         "dataMode": "defineBelow",
         "valuesToSend": {
@@ -1980,9 +1813,9 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "GERSSON_L8",
+          "value": "GERSSON_L8_ORG",
           "mode": "list",
-          "cachedResultName": "GERSSON_L8"
+          "cachedResultName": "GERSSON_L8_ORG"
         },
         "returnAll": true,
         "where": {
@@ -2017,9 +1850,9 @@
         "operation": "update",
         "table": {
           "__rl": true,
-          "value": "GERSSON_L8",
+          "value": "GERSSON_L8_ORG",
           "mode": "list",
-          "cachedResultName": "GERSSON_L8"
+          "cachedResultName": "GERSSON_L8_ORG"
         },
         "dataMode": "defineBelow",
         "columnToMatchOn": "ID",
@@ -2117,7 +1950,7 @@
       "typeVersion": 4.2,
       "position": [
         1760,
-        272
+        384
       ],
       "id": "22a0f308-a336-41f1-bf7b-adc65e201af7",
       "name": "HTTP Request8",
@@ -2134,7 +1967,7 @@
       "typeVersion": 2,
       "position": [
         1600,
-        272
+        384
       ],
       "id": "0eef67c5-5ce5-4c33-b0a9-83430732b80b",
       "name": "Code2"
@@ -2259,6 +2092,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-08-01T06:32:41.000Z",
-  "versionId": "c038f5e2-8671-4db2-b588-4cb56cc3eac5"
+  "updatedAt": "2025-08-01T06:42:41.000Z",
+  "versionId": "a9db4dc5-1e73-4f97-8b52-a6675c6845a0"
 }
