@@ -2128,7 +2128,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Obtiene TODOS los items que llegan al nodo.\nconst items = $input.all();\n\n// Itera sobre cada item para procesarlo.\nfor (const item of items) {\n  \n  // Extrae el valor de la respuesta del item actual.\n  const respuestaProposito = item.json.Eliminar_dolor_para;\n  \n  // Variable para almacenar el resultado con un valor por defecto.\n  let valorProposito = 'NO_ESPECIFICADO'; \n\n  // Asigna el valor a la variable PROPOSITO según la respuesta.\n  switch (respuestaProposito) {\n    case 'Para crear o ampliar tu negocio relacionado con la salud':\n      valorProposito = 'NEGOCIO';\n      break;\n    case 'Para ti mismo':\n      valorProposito = 'PERSONAL';\n      break;\n    case 'Para tu familia o amigos':\n      valorProposito = 'FAMILIAR';\n      break;\n  }\n  \n  // Agrega el nuevo campo 'PROPOSITO' al objeto json del item.\n  item.json.PROPOSITO = valorProposito;\n}\n\n// Retorna los items ya modificados.\nreturn items;"
+        "jsCode": "// Obtiene TODOS los items que llegan al nodo.\nconst items = $input.all();\n\n// Itera sobre cada item para procesarlo.\nfor (const item of items) {\n  \n  // Extrae el valor de la respuesta del item actual.\n  const respuestaProposito = item.json.Eliminar_dolor_para;\n  \n  // Variable para almacenar el resultado con un valor por defecto.\n  let valorProposito = 'NO_ESPECIFICADO'; \n\n  // Asigna el valor a la variable PROPOSITO según la respuesta.\n  switch (respuestaProposito) {\n    case 'Para crear o ampliar tu negocio relacionado con la salud':\n      valorProposito = 'NEGOCIO';\n      break;\n    case 'Para ti mismo':\n      valorProposito = 'PERSONAL';\n      break;\n    case 'Para tu familia o amigos':\n      valorProposito = 'FAMILIA';\n      break;\n  }\n  \n  // Agrega el nuevo campo 'PROPOSITO' al objeto json del item.\n  item.json.PROPOSITO = valorProposito;\n}\n\n// Retorna los items ya modificados.\nreturn items;"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -2259,6 +2259,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-08-01T06:16:24.000Z",
-  "versionId": "1732985f-2693-4c26-aba5-8be0d903c8f9"
+  "updatedAt": "2025-08-02T17:41:52.000Z",
+  "versionId": "88864ea3-d968-44d3-81ba-14ea817796a6"
 }
