@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "When clicking ‘Test workflow’": {
       "main": [
@@ -155,18 +155,7 @@
       "main": [
         [
           {
-            "node": "Evolution API",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Evolution API": {
-      "main": [
-        [
-          {
-            "node": "No Operation, do nothing",
+            "node": "Encontrar participantes do grupo",
             "type": "main",
             "index": 0
           }
@@ -272,6 +261,90 @@
           }
         ]
       ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Atualizar membros do grupo1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Atualizar membros do grupo2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Atualizar membros do grupo1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Atualizar membros do grupo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Encontrar participantes do grupo": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Atualizar membros do grupo": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Atualizar membros do grupo2": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-05-04T03:28:13.731Z",
@@ -280,15 +353,15 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "[GERSSON-L7] AUTO CREACIÓN DE GRUPOS",
+  "name": "[GERSSON] AUTO CREACIÓN DE GRUPOS",
   "nodes": [
     {
       "parameters": {},
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -580,
-        -185
+        -576,
+        -176
       ],
       "id": "a7e14bf2-073e-4232-a4f7-9166041256af",
       "name": "When clicking ‘Test workflow’"
@@ -307,8 +380,8 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -580,
-        -385
+        -576,
+        -368
       ],
       "id": "719e6fd7-8bd5-4376-a344-147f0ff6d807",
       "name": "Schedule Trigger"
@@ -323,8 +396,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        1840,
-        -260
+        1888,
+        -256
       ]
     },
     {
@@ -336,8 +409,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1400,
-        -260
+        1440,
+        -256
       ]
     },
     {
@@ -349,8 +422,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1180,
-        -260
+        1216,
+        -256
       ]
     },
     {
@@ -362,8 +435,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1620,
-        -260
+        1664,
+        -256
       ]
     },
     {
@@ -389,8 +462,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2280,
-        -260
+        2112,
+        -256
       ]
     },
     {
@@ -400,8 +473,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        2500,
-        -260
+        2336,
+        -256
       ],
       "webhookId": "5a1e03a6-5052-4f92-b342-aee6ce6ce8ea"
     },
@@ -424,8 +497,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2720,
-        -260
+        2560,
+        -256
       ]
     },
     {
@@ -467,8 +540,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        2940,
-        -260
+        2784,
+        -256
       ],
       "credentials": {
         "mySql": {
@@ -500,8 +573,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3160,
-        -260
+        3008,
+        -256
       ]
     },
     {
@@ -527,8 +600,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3380,
-        -260
+        3232,
+        -256
       ]
     },
     {
@@ -554,8 +627,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3600,
-        -260
+        3456,
+        -256
       ]
     },
     {
@@ -581,31 +654,9 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3820,
-        -260
+        3680,
+        -256
       ]
-    },
-    {
-      "parameters": {
-        "resource": "groups-api",
-        "operation": "leave-group",
-        "instanceName": "={{ $('establecer variables').first().json['sesion creadora'] }}",
-        "groupJid": "={{ $('CreateGroup').item.json.id }}"
-      },
-      "type": "n8n-nodes-evolution-api.evolutionApi",
-      "typeVersion": 1,
-      "position": [
-        4040,
-        -260
-      ],
-      "id": "0b86d0d8-308f-4d38-b328-0a9575ccd5ae",
-      "name": "Evolution API",
-      "credentials": {
-        "evolutionApi": {
-          "id": "Png3VbsnUeyqI5UL",
-          "name": "VPS-EASYPANEL"
-        }
-      }
     },
     {
       "parameters": {
@@ -630,8 +681,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        -360,
-        -260
+        -352,
+        -256
       ],
       "id": "1a31f213-7b4d-457f-8608-27fc38be2cfe",
       "name": "busqueda BD",
@@ -669,8 +720,8 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
-        -140,
-        -260
+        -128,
+        -256
       ],
       "id": "89525dc6-b39d-4816-9d38-0f02a37c799b",
       "name": "grupos vacios",
@@ -690,8 +741,8 @@
       "type": "n8n-nodes-base.summarize",
       "typeVersion": 1.1,
       "position": [
-        80,
-        -260
+        96,
+        -256
       ],
       "id": "3ca37b8c-e62e-4940-8e26-4d3a48a2868e",
       "name": "conteo grupos vacios"
@@ -713,8 +764,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        300,
-        -260
+        320,
+        -256
       ],
       "id": "7274b97b-a5c6-4f29-9733-88cbdb5e76c4",
       "name": "# del ultimo grupo"
@@ -746,8 +797,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        520,
-        -260
+        544,
+        -256
       ],
       "id": "e1f8384a-6cce-464e-8cef-65e04b818704",
       "name": "hay menos de 3 grupos?"
@@ -779,8 +830,8 @@
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
       "position": [
-        740,
-        -260
+        768,
+        -256
       ],
       "id": "ff354215-3b4c-4320-aeed-79ac685689d2",
       "name": "obtener datos de creacion",
@@ -842,6 +893,12 @@
               "name": "TABLA_BD",
               "value": "={{ $json.property_tabla_bd }}",
               "type": "string"
+            },
+            {
+              "id": "33a9bb59-0a60-4602-ae85-7495b7cc1c34",
+              "name": "sesion admins",
+              "value": "={{ $json.property_sesion_admins }}",
+              "type": "string"
             }
           ]
         },
@@ -850,8 +907,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        960,
-        -260
+        992,
+        -256
       ],
       "id": "d6e0753e-b255-4509-88c5-3f579b57bf9b",
       "name": "establecer variables"
@@ -861,8 +918,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        4260,
-        -185
+        5248,
+        -176
       ],
       "id": "d7b08723-6e46-4e4e-96b1-bcb1ed36be40",
       "name": "No Operation, do nothing"
@@ -879,8 +936,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        2260,
-        -440
+        2336,
+        -448
       ],
       "id": "edd937a2-1fb3-47da-9136-75f4094b9082",
       "name": "Telegram",
@@ -907,11 +964,221 @@
       "type": "n8n-nodes-base.summarize",
       "typeVersion": 1.1,
       "position": [
-        2080,
-        -440
+        2112,
+        -448
       ],
       "id": "9f5765ad-ec4f-4cd2-a2da-9fe1b5f04105",
       "name": "Summarize"
+    },
+    {
+      "parameters": {
+        "jsCode": "// --- Lista de Administradores Requeridos ---\n// Modifica esta cadena con los números que necesitas verificar, separados por comas.\nconst requiredAdminNumbersStr = \"$('establecer variables').first().json.admins\";\n\n// --- Lógica de la Función (no necesitas modificar de aquí en adelante) ---\n\n// 1. Obtener la lista de participantes del primer item de entrada.\nconst inputData = items[0].json;\n\n// VALIDACIÓN: Accede a 'inputData.data' directamente.\nif (!inputData || !inputData.data || !inputData.data.participants) {\n  throw new Error(\"La estructura de datos de entrada no es la esperada. Asegúrate de que contenga '{ data: { participants: [...] } }'.\");\n}\n\n// ACCESO: Accede a 'inputData.data.participants' directamente.\nconst participants = inputData.data.participants;\nconst requiredAdminNumbers = requiredAdminNumbersStr.split(',');\n\n// 2. Crear un mapa para una búsqueda más eficiente.\nconst participantsMap = new Map();\nfor (const p of participants) {\n  const numberOnly = p.id.split('@')[0];\n  participantsMap.set(numberOnly, p);\n}\n\n// 3. Inicializar los arrays para guardar los resultados.\nlet numeros_faltantes_array = [];\nlet admins_faltantes_array = [];\n\n// 4. Iterar sobre la lista de admins requeridos y comparar.\nfor (const adminNumber of requiredAdminNumbers) {\n  if (participantsMap.has(adminNumber)) {\n    // El número está en el grupo, ahora verificamos si es admin.\n    const participant = participantsMap.get(adminNumber);\n    if (!participant.admin) {\n      admins_faltantes_array.push(adminNumber);\n    }\n  } else {\n    // El número no se encontró en la lista de participantes del grupo.\n    numeros_faltantes_array.push(adminNumber);\n  }\n}\n\n// 5. Determinar el estado final.\nconst completo = numeros_faltantes_array.length === 0 && admins_faltantes_array.length === 0;\n\n// 6. Construir el objeto de salida.\n// **AQUÍ ESTÁ EL CAMBIO**: Usamos .join(',') para convertir el array a un string.\nconst result = {\n  completo: completo,\n  numeros_faltantes: numeros_faltantes_array.join(','),\n  admins_faltantes: admins_faltantes_array.join(','),\n};\n\n// 7. Retornar el resultado para que n8n lo use en los siguientes nodos.\nreturn [{\n  json: result\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4128,
+        -256
+      ],
+      "id": "c37e929f-040d-43a9-87f6-21d0c927a538",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "resource": "groups-api",
+        "operation": "update-participants",
+        "instanceName": "={{ $('establecer variables').first().json['sesion admins'] }}",
+        "groupJid": "={{ $('CreateGroup').item.json.id }}",
+        "action": "promote",
+        "participants": "={{ $('Switch').item.json.numeros_faltantes }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        5024,
+        -352
+      ],
+      "id": "382eaea1-4876-4b2a-9ee2-c17fd9e8cafe",
+      "name": "Atualizar membros do grupo",
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "VPS-EASYPANEL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.numeros_faltantes }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEmpty",
+                      "singleValue": true
+                    },
+                    "id": "f1712e69-35cb-4ba2-9123-64adc6687970"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PARTICIPANTES FALTANTES"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "7ed79f77-fb49-42e4-a71d-a84d4aa1600f",
+                    "leftValue": "={{ $json.admins_faltantes }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEmpty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ADMINS_FALTANTES"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "fcbfe47d-e82a-4ab0-960f-c0c49468386a",
+                    "leftValue": "={{ $json.completo }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "COMPLETO"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        4352,
+        -272
+      ],
+      "id": "9ae886c6-031d-4607-b5a6-6b6b358b06c5",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "resource": "groups-api",
+        "operation": "update-participants",
+        "instanceName": "={{ $('establecer variables').first().json['sesion admins'] }}",
+        "groupJid": "={{ $('CreateGroup').item.json.id }}",
+        "participants": "={{ $json.numeros_faltantes }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        4576,
+        -352
+      ],
+      "id": "2a3e44fb-f67d-4821-ad36-dce50a85e66f",
+      "name": "Atualizar membros do grupo1",
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "VPS-EASYPANEL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "groups-api",
+        "operation": "update-participants",
+        "instanceName": "={{ $('establecer variables').first().json['sesion admins'] }}",
+        "groupJid": "={{ $('CreateGroup').item.json.id }}",
+        "action": "promote",
+        "participants": "={{ $json.admins_faltantes }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        4800,
+        -192
+      ],
+      "id": "22b0c901-6bda-47be-803a-3d863c8ccf42",
+      "name": "Atualizar membros do grupo2",
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "VPS-EASYPANEL"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4800,
+        -352
+      ],
+      "id": "bbd7b851-b7cd-46f7-889c-0e17072823bc",
+      "name": "Wait",
+      "webhookId": "cf541d9f-e5d9-4817-9202-a8e8bff6860c"
+    },
+    {
+      "parameters": {
+        "resource": "groups-api",
+        "operation": "find-participants",
+        "instanceName": "={{ $('establecer variables').first().json['sesion creadora'] }}",
+        "groupJid": "={{ $('CreateGroup').item.json.id }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        3904,
+        -256
+      ],
+      "id": "c121fb50-2f63-48cc-aee9-d28f5a0050c2",
+      "name": "Encontrar participantes do grupo",
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "VPS-EASYPANEL"
+        }
+      }
     }
   ],
   "pinData": {
@@ -931,17 +1198,6 @@
           "Timezone": "America/Bogota (UTC-05:00)"
         }
       }
-    ],
-    "No Operation, do nothing": [
-      {
-        "json": {
-          "success": true,
-          "data": {
-            "groupJid": "120363416723302643@g.us",
-            "leave": true
-          }
-        }
-      }
     ]
   },
   "repo_name": "backupn8n",
@@ -953,12 +1209,12 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": [
-        6
+        0
       ]
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-06-03T16:24:25.000Z",
-  "versionId": "d3b2c631-1bdd-44e0-8105-fb014f3181b5"
+  "updatedAt": "2025-08-04T17:22:30.000Z",
+  "versionId": "66d94add-da1a-4462-968a-43f02516ef07"
 }
