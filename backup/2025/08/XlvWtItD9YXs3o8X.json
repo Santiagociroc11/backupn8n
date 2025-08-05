@@ -1,0 +1,361 @@
+{
+  "active": false,
+  "connections": {
+    "Encontrar participantes do grupo1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Atualizar membros do grupo1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Atualizar membros do grupo2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Atualizar membros do grupo1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Atualizar membros do grupo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Encontrar participantes do grupo1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-04T16:32:41.270Z",
+  "id": "XlvWtItD9YXs3o8X",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 22",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "groups-api",
+        "operation": "find-participants",
+        "instanceName": "={{ $json.sesion }}",
+        "groupJid": "={{ $json.grupo }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        192,
+        -128
+      ],
+      "id": "16b84799-a89c-4617-9d20-a9a8a1914d9f",
+      "name": "Encontrar participantes do grupo1",
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "VPS-EASYPANEL"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        -128
+      ],
+      "id": "dfecd416-638e-4647-9e93-f61652fc09d6",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "// --- Lista de Administradores Requeridos ---\n// Modifica esta cadena con los números que necesitas verificar, separados por comas.\nconst requiredAdminNumbersStr = \"573017817643,573136298562,573058176936,573218504711,573160780201,573160436184,573245904626\";\n\n// --- Lógica de la Función (no necesitas modificar de aquí en adelante) ---\n\n// 1. Obtener la lista de participantes del primer item de entrada.\nconst inputData = items[0].json;\n\n// VALIDACIÓN: Accede a 'inputData.data' directamente.\nif (!inputData || !inputData.data || !inputData.data.participants) {\n  throw new Error(\"La estructura de datos de entrada no es la esperada. Asegúrate de que contenga '{ data: { participants: [...] } }'.\");\n}\n\n// ACCESO: Accede a 'inputData.data.participants' directamente.\nconst participants = inputData.data.participants;\nconst requiredAdminNumbers = requiredAdminNumbersStr.split(',');\n\n// 2. Crear un mapa para una búsqueda más eficiente.\nconst participantsMap = new Map();\nfor (const p of participants) {\n  const numberOnly = p.id.split('@')[0];\n  participantsMap.set(numberOnly, p);\n}\n\n// 3. Inicializar los arrays para guardar los resultados.\nlet numeros_faltantes_array = [];\nlet admins_faltantes_array = [];\n\n// 4. Iterar sobre la lista de admins requeridos y comparar.\nfor (const adminNumber of requiredAdminNumbers) {\n  if (participantsMap.has(adminNumber)) {\n    // El número está en el grupo, ahora verificamos si es admin.\n    const participant = participantsMap.get(adminNumber);\n    if (!participant.admin) {\n      admins_faltantes_array.push(adminNumber);\n    }\n  } else {\n    // El número no se encontró en la lista de participantes del grupo.\n    numeros_faltantes_array.push(adminNumber);\n  }\n}\n\n// 5. Determinar el estado final.\nconst completo = numeros_faltantes_array.length === 0 && admins_faltantes_array.length === 0;\n\n// 6. Construir el objeto de salida.\n// **AQUÍ ESTÁ EL CAMBIO**: Usamos .join(',') para convertir el array a un string.\nconst result = {\n  completo: completo,\n  numeros_faltantes: numeros_faltantes_array.join(','),\n  admins_faltantes: admins_faltantes_array.join(','),\n};\n\n// 7. Retornar el resultado para que n8n lo use en los siguientes nodos.\nreturn [{\n  json: result\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        -128
+      ],
+      "id": "dc603f00-1d70-4f84-ba06-35b970e41d04",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "resource": "groups-api",
+        "operation": "update-participants",
+        "instanceName": "={{ $('Edit Fields').item.json.sesion }}",
+        "groupJid": "={{ $('Edit Fields').item.json.grupo }}",
+        "action": "promote",
+        "participants": "={{ $('Switch').item.json.numeros_faltantes }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        -208
+      ],
+      "id": "7d8467c1-ab03-4bb7-b9bd-9882ec3563a7",
+      "name": "Atualizar membros do grupo",
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "VPS-EASYPANEL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.numeros_faltantes }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEmpty",
+                      "singleValue": true
+                    },
+                    "id": "f1712e69-35cb-4ba2-9123-64adc6687970"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PARTICIPANTES FALTANTES"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "7ed79f77-fb49-42e4-a71d-a84d4aa1600f",
+                    "leftValue": "={{ $json.admins_faltantes }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEmpty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ADMINS_FALTANTES"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "fcbfe47d-e82a-4ab0-960f-c0c49468386a",
+                    "leftValue": "={{ $json.completo }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "COMPLETO"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        608,
+        -128
+      ],
+      "id": "a7b6db16-ce15-4e49-87c2-e170670c7a49",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "resource": "groups-api",
+        "operation": "update-participants",
+        "instanceName": "={{ $('Edit Fields').item.json.sesion }}",
+        "groupJid": "={{ $('Edit Fields').item.json.grupo }}",
+        "participants": "={{ $json.numeros_faltantes }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        896,
+        -208
+      ],
+      "id": "d763a478-6839-4b45-8b52-fe77a1154370",
+      "name": "Atualizar membros do grupo1",
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "VPS-EASYPANEL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "groups-api",
+        "operation": "update-participants",
+        "instanceName": "={{ $('Edit Fields').item.json.sesion }}",
+        "groupJid": "={{ $('Edit Fields').item.json.grupo }}",
+        "action": "promote",
+        "participants": "={{ $json.admins_faltantes }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        1104,
+        -48
+      ],
+      "id": "f3f892e3-ef0b-4954-908f-09be8388f7cf",
+      "name": "Atualizar membros do grupo2",
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "VPS-EASYPANEL"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1104,
+        -208
+      ],
+      "id": "3f076510-c550-4697-803b-9af6ec93059c",
+      "name": "Wait",
+      "webhookId": "cf541d9f-e5d9-4817-9202-a8e8bff6860c"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c321364b-0a6a-428d-bd44-0aa54956e771",
+              "name": "grupo",
+              "value": "120363419862293734@g.us",
+              "type": "string"
+            },
+            {
+              "id": "181b8317-ae16-4f99-9d34-5f1c079fdfcf",
+              "name": "sesion",
+              "value": "SANTIAGO-PERSONAL",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -48,
+        -128
+      ],
+      "id": "b8ee3a9c-7f7c-4e18-be86-ecdecf35ae61",
+      "name": "Edit Fields"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-04T17:22:37.000Z",
+  "versionId": "ead37c94-1e0b-48ba-824b-bb1c4bc06637"
+}
