@@ -972,7 +972,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// --- Lista de Administradores Requeridos ---\n// Modifica esta cadena con los números que necesitas verificar, separados por comas.\nconst requiredAdminNumbersStr = \"$('establecer variables').first().json.admins\";\n\n// --- Lógica de la Función (no necesitas modificar de aquí en adelante) ---\n\n// 1. Obtener la lista de participantes del primer item de entrada.\nconst inputData = items[0].json;\n\n// VALIDACIÓN: Accede a 'inputData.data' directamente.\nif (!inputData || !inputData.data || !inputData.data.participants) {\n  throw new Error(\"La estructura de datos de entrada no es la esperada. Asegúrate de que contenga '{ data: { participants: [...] } }'.\");\n}\n\n// ACCESO: Accede a 'inputData.data.participants' directamente.\nconst participants = inputData.data.participants;\nconst requiredAdminNumbers = requiredAdminNumbersStr.split(',');\n\n// 2. Crear un mapa para una búsqueda más eficiente.\nconst participantsMap = new Map();\nfor (const p of participants) {\n  const numberOnly = p.id.split('@')[0];\n  participantsMap.set(numberOnly, p);\n}\n\n// 3. Inicializar los arrays para guardar los resultados.\nlet numeros_faltantes_array = [];\nlet admins_faltantes_array = [];\n\n// 4. Iterar sobre la lista de admins requeridos y comparar.\nfor (const adminNumber of requiredAdminNumbers) {\n  if (participantsMap.has(adminNumber)) {\n    // El número está en el grupo, ahora verificamos si es admin.\n    const participant = participantsMap.get(adminNumber);\n    if (!participant.admin) {\n      admins_faltantes_array.push(adminNumber);\n    }\n  } else {\n    // El número no se encontró en la lista de participantes del grupo.\n    numeros_faltantes_array.push(adminNumber);\n  }\n}\n\n// 5. Determinar el estado final.\nconst completo = numeros_faltantes_array.length === 0 && admins_faltantes_array.length === 0;\n\n// 6. Construir el objeto de salida.\n// **AQUÍ ESTÁ EL CAMBIO**: Usamos .join(',') para convertir el array a un string.\nconst result = {\n  completo: completo,\n  numeros_faltantes: numeros_faltantes_array.join(','),\n  admins_faltantes: admins_faltantes_array.join(','),\n};\n\n// 7. Retornar el resultado para que n8n lo use en los siguientes nodos.\nreturn [{\n  json: result\n}];"
+        "jsCode": "// --- Lista de Administradores Requeridos ---\n// Modifica esta cadena con los números que necesitas verificar, separados por comas.\nconst requiredAdminNumbersStr = $('establecer variables').first().json.admins;\n\n// --- Lógica de la Función (no necesitas modificar de aquí en adelante) ---\n\n// 1. Obtener la lista de participantes del primer item de entrada.\nconst inputData = items[0].json;\n\n// VALIDACIÓN: Accede a 'inputData.data' directamente.\nif (!inputData || !inputData.data || !inputData.data.participants) {\n  throw new Error(\"La estructura de datos de entrada no es la esperada. Asegúrate de que contenga '{ data: { participants: [...] } }'.\");\n}\n\n// ACCESO: Accede a 'inputData.data.participants' directamente.\nconst participants = inputData.data.participants;\nconst requiredAdminNumbers = requiredAdminNumbersStr.split(',');\n\n// 2. Crear un mapa para una búsqueda más eficiente.\nconst participantsMap = new Map();\nfor (const p of participants) {\n  const numberOnly = p.id.split('@')[0];\n  participantsMap.set(numberOnly, p);\n}\n\n// 3. Inicializar los arrays para guardar los resultados.\nlet numeros_faltantes_array = [];\nlet admins_faltantes_array = [];\n\n// 4. Iterar sobre la lista de admins requeridos y comparar.\nfor (const adminNumber of requiredAdminNumbers) {\n  if (participantsMap.has(adminNumber)) {\n    // El número está en el grupo, ahora verificamos si es admin.\n    const participant = participantsMap.get(adminNumber);\n    if (!participant.admin) {\n      admins_faltantes_array.push(adminNumber);\n    }\n  } else {\n    // El número no se encontró en la lista de participantes del grupo.\n    numeros_faltantes_array.push(adminNumber);\n  }\n}\n\n// 5. Determinar el estado final.\nconst completo = numeros_faltantes_array.length === 0 && admins_faltantes_array.length === 0;\n\n// 6. Construir el objeto de salida.\n// **AQUÍ ESTÁ EL CAMBIO**: Usamos .join(',') para convertir el array a un string.\nconst result = {\n  completo: completo,\n  numeros_faltantes: numeros_faltantes_array.join(','),\n  admins_faltantes: admins_faltantes_array.join(','),\n};\n\n// 7. Retornar el resultado para que n8n lo use en los siguientes nodos.\nreturn [{\n  json: result\n}];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1185,16 +1185,16 @@
     "Schedule Trigger": [
       {
         "json": {
-          "timestamp": "2025-05-05T12:00:55.074-05:00",
-          "Readable date": "May 5th 2025, 12:00:55 pm",
-          "Readable time": "12:00:55 pm",
-          "Day of week": "Monday",
+          "timestamp": "2025-08-05T18:00:24.005-05:00",
+          "Readable date": "August 5th 2025, 6:00:24 pm",
+          "Readable time": "6:00:24 pm",
+          "Day of week": "Tuesday",
           "Year": "2025",
-          "Month": "May",
+          "Month": "August",
           "Day of month": "05",
-          "Hour": "12",
+          "Hour": "18",
           "Minute": "00",
-          "Second": "55",
+          "Second": "24",
           "Timezone": "America/Bogota (UTC-05:00)"
         }
       }
@@ -1215,6 +1215,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-08-04T17:22:30.000Z",
-  "versionId": "66d94add-da1a-4462-968a-43f02516ef07"
+  "updatedAt": "2025-08-05T23:08:25.000Z",
+  "versionId": "0bc619ff-bc59-4b48-8b77-212e1b4558a5"
 }
