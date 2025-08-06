@@ -583,13 +583,13 @@
             {
               "id": "074ee409-7b83-4fd2-922d-aad632ef26f5",
               "name": "dia",
-              "value": "={{ $('CTWA_CLID?').item.json.pagado_at.toDateTime('s').format('yyyy-MM-dd') }}",
+              "value": "={{ $('CTWA_CLID?').item.json.pagado_at?.toDateTime('s').format('yyyy-MM-dd') }}",
               "type": "string"
             },
             {
               "id": "76a3a6d3-4304-44ae-a439-6050db72e562",
               "name": "hora",
-              "value": "={{ $('CTWA_CLID?').item.json.pagado_at.toDateTime('s').format('HH:mm:ss') }}",
+              "value": "={{ $('CTWA_CLID?').item.json.pagado_at?.toDateTime('s').format('HH:mm:ss') }}",
               "type": "string"
             },
             {
@@ -1705,7 +1705,7 @@
           "params": {},
           "query": {},
           "body": {
-            "whatsapp": "573219241525"
+            "whatsapp": "573172299395"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/compra-wha-api",
           "executionMode": "production"
@@ -1724,6 +1724,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-07-31T04:45:52.000Z",
-  "versionId": "3009fb4e-2ccf-4832-bb56-307ef90dd590"
+  "updatedAt": "2025-08-06T02:12:27.000Z",
+  "versionId": "74ca5bea-fb79-40fb-9073-726ae6299782"
 }
