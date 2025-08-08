@@ -42,8 +42,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -920,
-        -140
+        -928,
+        -144
       ],
       "id": "f8655103-6d5f-4a24-9991-437cb387526b",
       "name": "Webhook",
@@ -52,7 +52,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
+        "url": "https://api.telegram.org/bot8117750846:AAHReV8EiTWTI3mloh-o8fgXLbmfVwpv0Iw/sendMessage",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={\n  \"chat_id\": \"-1002282272068\",\n  \"message_thread_id\": 44,\n  \"text\": \"🚨 *GRUPOS*: \\n\\n {{ $json.body.mensaje }}\",\n  \"parse_mode\": \"Markdown\"\n}\n",
@@ -64,7 +64,7 @@
       "typeVersion": 4.2,
       "position": [
         -400,
-        -180
+        -176
       ]
     },
     {
@@ -126,8 +126,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -700,
-        -140
+        -704,
+        -144
       ],
       "id": "3d2df4c6-d1d6-4c46-bc03-3ed0bcbc9d04",
       "name": "Switch"
@@ -177,6 +177,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-04-03T17:25:58.000Z",
-  "versionId": "d5178082-d2ff-427b-bed1-228c4bb9fed2"
+  "updatedAt": "2025-08-07T23:39:59.000Z",
+  "versionId": "32986f0e-c93e-4de3-9013-259af2fb16e3"
 }
