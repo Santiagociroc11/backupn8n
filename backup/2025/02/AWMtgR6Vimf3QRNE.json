@@ -48,8 +48,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -920,
-        -140
+        -928,
+        -144
       ],
       "id": "c344e2a9-6836-4c98-a5d5-51059da6671f",
       "name": "Webhook",
@@ -58,7 +58,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
+        "url": "https://api.telegram.org/bot8117750846:AAHReV8EiTWTI3mloh-o8fgXLbmfVwpv0Iw/sendMessage",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={\n  \"chat_id\": \"-1002176532359\",\n  \"message_thread_id\": 697,\n  \"text\": \"🚨 *GRUPOS*: \\n\\n {{ $json.body.mensaje }}\",\n  \"parse_mode\": \"Markdown\"\n}\n",
@@ -69,7 +69,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -420,
+        -416,
         -240
       ]
     },
@@ -132,8 +132,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -700,
-        -140
+        -704,
+        -144
       ],
       "id": "9fd63f16-5b61-4439-9bad-eaa9f8b3d1d2",
       "name": "Switch"
@@ -141,7 +141,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
+        "url": "https://api.telegram.org/bot8117750846:AAHReV8EiTWTI3mloh-o8fgXLbmfVwpv0Iw/sendMessage",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={\n  \"chat_id\": \"-1002176532359\",\n  \"message_thread_id\": 697,\n  \"text\": \"⚠️ *EMERGENCIA*: \\n\\n {{ $json.body.mensaje }}\",\n  \"parse_mode\": \"Markdown\"\n}",
@@ -152,8 +152,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -420,
-        -40
+        -416,
+        -48
       ]
     }
   ],
@@ -220,6 +220,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-04-03T17:32:29.000Z",
-  "versionId": "2d8e6a1a-b641-4d87-a2d8-ca75cb16e354"
+  "updatedAt": "2025-08-07T23:40:25.000Z",
+  "versionId": "25d3ea0f-d3e3-494d-a8ea-ae1b2c809061"
 }
