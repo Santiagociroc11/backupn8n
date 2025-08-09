@@ -52,7 +52,13 @@
     },
     "If": {
       "main": [
-        [],
+        [
+          {
+            "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ],
         [
           {
             "node": "Information Extractor",
@@ -90,8 +96,8 @@
       "type": "n8n-nodes-base.gmailTrigger",
       "typeVersion": 1.2,
       "position": [
-        -860,
-        -340
+        -864,
+        -336
       ],
       "id": "473dfcf8-0cb3-44f0-8155-24b28d2eb69b",
       "name": "Gmail Trigger",
@@ -119,8 +125,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -660,
-        -340
+        -656,
+        -336
       ],
       "id": "ffc2b0b7-55a0-4bd9-be24-74320b63dd9a",
       "name": "Edit Fields1"
@@ -164,8 +170,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        220,
-        -220
+        224,
+        -224
       ],
       "id": "7a6b257e-7184-4e16-9edb-5063633cd014",
       "name": "Supabase",
@@ -204,8 +210,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        220,
-        -420
+        224,
+        -416
       ],
       "id": "ed45b8da-f16b-4291-a114-8d943ab3d24d",
       "name": "Telegram",
@@ -260,7 +266,7 @@
       "type": "@n8n/n8n-nodes-langchain.informationExtractor",
       "typeVersion": 1,
       "position": [
-        -220,
+        -224,
         -320
       ],
       "id": "93988b04-2a97-4d15-88cf-deedc6126ddd",
@@ -279,8 +285,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        -180,
-        -140
+        -240,
+        -160
       ],
       "id": "6f457512-68af-4389-a7d1-2072d513294d",
       "name": "OpenAI Chat Model",
@@ -327,26 +333,53 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -460,
-        -340
+        -464,
+        -336
       ],
       "id": "9ffedd0c-58b2-460c-bfb1-8d8279ee5915",
       "name": "If"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "2wKiwBmcWpDiT4bB",
+          "mode": "list",
+          "cachedResultName": "CORREOS TRANSFERENCIAS MAGIS"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        -192,
+        -544
+      ],
+      "id": "b2bc0637-1efb-438e-9e49-f524cc7eb85d",
+      "name": "Execute Workflow"
     }
   ],
   "pinData": {
     "Gmail Trigger": [
       {
         "json": {
-          "id": "195d491601ad248a",
-          "threadId": "195ce29088061e41",
-          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Transferiste $200000 desde tu cuenta *6138 a la cuenta *51783803015 el 26/03/2025 a las 17:27. ¿Dudas? Llamanos al 018000931987. Estamos cerca.",
+          "id": "1988cb67b53ff3ae",
+          "threadId": "1988ab8203e5007f",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: SANTIAGO, recibiste una transferencia de JAVIER ALONSO URREGO ALZATE por $19000.00 en tu producto *8818 conectado a la llave @ciro500 el 08/08/",
           "payload": {
             "mimeType": "text/html"
           },
-          "sizeEstimate": 52072,
-          "historyId": "6739581",
-          "internalDate": "1743028051000",
+          "sizeEstimate": 50017,
+          "historyId": "7641839",
+          "internalDate": "1754707424000",
           "labels": [
             {
               "id": "INBOX",
@@ -389,11 +422,9 @@
   "staticData": {
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1754626601,
+        "lastTimeChecked": 1754707424,
         "possibleDuplicates": [
-          "19887e5345ab4bcc",
-          "19887e22cc775fbc",
-          "19887e1f25288a30"
+          "1988cb67b53ff3ae"
         ]
       }
     },
@@ -408,6 +439,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-05-10T17:39:31.000Z",
-  "versionId": "a0d4ee14-a5f8-42dd-8b6c-8654b4195913"
+  "updatedAt": "2025-08-09T04:52:46.000Z",
+  "versionId": "1f6162b1-a612-4219-8aa6-9853d5b22be9"
 }
