@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "When clicking ‘Test workflow’": {
       "main": [
@@ -119,15 +119,15 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "[WIN+][CP1-NIKO] ADVERONIX",
+  "name": "[WIN+][CP2-NIKO] ADVERONIX",
   "nodes": [
     {
       "parameters": {},
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -660,
-        20
+        -656,
+        32
       ],
       "id": "9d1f3dc4-8abf-4bee-b96c-916f79ba52d9",
       "name": "When clicking ‘Test workflow’"
@@ -295,7 +295,7 @@
       "typeVersion": 4.5,
       "position": [
         880,
-        -60
+        -64
       ],
       "id": "3db8c6ec-459d-442a-8b8f-1cc33b8a4307",
       "name": "Google Sheets",
@@ -317,8 +317,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        220,
-        -60
+        224,
+        -64
       ],
       "id": "f3da7870-5c62-422b-b125-d6e923a4a266",
       "name": "Split Out"
@@ -337,15 +337,15 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -660,
-        -180
+        -656,
+        -176
       ],
       "id": "26ffac5b-f576-414d-b321-861a70d74b5c",
       "name": "Schedule Trigger"
     },
     {
       "parameters": {
-        "url": "=https://graph.facebook.com/v22.0/act_2222934168085830/insights?access_token=EAAVNZCeJ8IgIBOZCRvZAeVALIlzQ2XMnzQZCFlWKcJIrHJiP3IkPN16m5hgWSgLK8UYhVKm2ZCJ1vvnWugQ0jTmgU7lILoAi2DSuXCQZCNj2fLqi0iSvBGq1pSOJjjbtMK5FKLc8XqEI349tAm65yz5HO1mzZCizZBDkwsi4o5uRucaMGirZBC7AMkYIdKvIY5bAnegZDZD&fields=ad_id,ad_name,adset_name,actions,campaign_name,spend,cpm,ctr,clicks,cpc,impressions&level=ad&time_range={\"since\":\"{{$json.since}}\",\"until\":\"{{$json.until}}\"}&time_increment=1&limit=2000",
+        "url": "=https://graph.facebook.com/v22.0/act_2222934168085830/insights?access_token=EAAI0NYgS2EkBO7bcwmujq1BIC95Vy5zir6hzccIL7WSunMppEIJg9AZCyKLgT3ZC2sNTNwgEUvZB8DGYfedKBfsMZCDjzyALKyjwZBEXtgipRagRp7nCV6aWAZC8wGa14p5SPH53TrNaXss4ZCrlaaTZBFI2UkZC30VIznyx4keHBQ5Kq8vHCGZCOTqACkwB6e6f1YgPxA29YZD&fields=ad_id,ad_name,adset_name,actions,campaign_name,spend,cpm,ctr,clicks,cpc,impressions&level=ad&time_range={\"since\":\"{{$json.since}}\",\"until\":\"{{$json.until}}\"}&time_increment=1&limit=2000",
         "options": {
           "batching": {
             "batch": {}
@@ -356,7 +356,7 @@
       "typeVersion": 4.2,
       "position": [
         -160,
-        -60
+        -64
       ],
       "id": "04cce3a1-bbf0-42da-80ac-c0692b1970ec",
       "name": "HTTP Request"
@@ -375,8 +375,8 @@
       "type": "n8n-nodes-base.sort",
       "typeVersion": 1,
       "position": [
-        440,
-        -60
+        448,
+        -64
       ],
       "id": "ae8e63f2-2ca5-41e1-880e-2b4a376e31a3",
       "name": "Sort"
@@ -402,8 +402,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        220,
-        -360
+        224,
+        -368
       ],
       "id": "a6dab161-91f2-431e-9129-75c6e71b649e",
       "name": "Google Sheets1",
@@ -425,8 +425,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -380,
-        -60
+        -384,
+        -64
       ],
       "id": "35d58ce1-fce2-491c-bbb5-ed05fcf673a8",
       "name": "Code"
@@ -436,7 +436,7 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        440,
+        448,
         -320
       ],
       "id": "f57f7dcf-9016-40f8-ad7a-c3f0bae38515",
@@ -450,8 +450,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        660,
-        -60
+        672,
+        -64
       ],
       "id": "ed02d460-8d6a-4619-9c41-40af8ca479b2",
       "name": "Wait",
@@ -472,6 +472,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-07-10T21:36:09.000Z",
-  "versionId": "541c6462-1cf7-48bf-9b3c-a9b12f055031"
+  "updatedAt": "2025-08-11T00:12:12.000Z",
+  "versionId": "0c56b694-be39-4a35-b58f-4dbce60a9f10"
 }
