@@ -1,0 +1,293 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get many messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many messages": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-10T22:57:05.162Z",
+  "id": "DG2YHbCqMv6w2UdI",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "ESCRIBIR VENTAS DE BANCOLOMBIA",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -544,
+        -80
+      ],
+      "id": "4e69b688-e4a1-44c0-b85b-01bca203d4b6",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "returnAll": true,
+        "filters": {
+          "receivedAfter": "2025-08-08T00:00:00",
+          "receivedBefore": "2025-08-09T00:00:00",
+          "sender": "alertasynotificaciones@notificacionesbancolombia.com"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -336,
+        -80
+      ],
+      "id": "6c7abc3c-cc10-4fef-82f9-b70ee3ab8e21",
+      "name": "Get many messages",
+      "webhookId": "40b80bcd-60e9-43d8-87f3-23a85e9665c3",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "DOPWTzPin0EZKjQY",
+          "name": "GMAIL SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c54e987e-b8c0-498f-8c55-82c3398431d2",
+              "leftValue": "={{ $json.snippet }}",
+              "rightValue": "recibiste",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "9971f466-1181-405b-8002-c8cc8bad283c",
+              "leftValue": "={{ $json.snippet }}",
+              "rightValue": "@ciro500",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -128,
+        -80
+      ],
+      "id": "4ba31c8c-1ef2-4627-980a-e7f4e2bb541b",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        80,
+        -80
+      ],
+      "id": "7d6e9d35-f8dd-4cfd-8f7d-e6be64f9242d",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Entrada: asumimos que el texto viene en $input.first().json.snippet (n8n)\nconst inputText = ($input.first().json.snippet || \"\").trim();\n\n// Nombre del remitente (después de \"transferencia de ... por $\")\nconst senderMatch = inputText.match(/transferencia de\\s+(.+?)\\s+por\\s*\\$/i);\nconst name = senderMatch ? senderMatch[1].trim() : null;\n\n// Monto después de \"por $\", devolviendo SOLO dígitos\nconst valueMatch = inputText.match(/por\\s*\\$\\s*([\\d.,]+)/i);\nlet value = null;\n\nif (valueMatch) {\n  const raw = valueMatch[1].trim();\n  const lastDot = raw.lastIndexOf(\".\");\n  const lastComma = raw.lastIndexOf(\",\");\n  let integerPart = raw;\n\n  // Detecta separador decimal (si el último . o , tiene 2 dígitos a la derecha, córtalo)\n  const lastSep = Math.max(lastDot, lastComma);\n  if (lastSep !== -1) {\n    const fracLen = raw.length - lastSep - 1;\n    if (fracLen === 2) integerPart = raw.slice(0, lastSep);\n  }\n\n  // Deja solo dígitos (quita miles, espacios, etc.)\n  value = integerPart.replace(/[^\\d]/g, \"\");\n}\n\nreturn { name, value };\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        368,
+        32
+      ],
+      "id": "78745b93-31a8-4a55-8d37-8734fd2e0b22",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "=https://docs.google.com/spreadsheets/d/1sDv2vkexbHWcnR4SxVUAZW747rXFeyqKhWbldwLvrRQ/edit?gid=2042987742#gid=2042987742",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1sDv2vkexbHWcnR4SxVUAZW747rXFeyqKhWbldwLvrRQ/edit?gid=2042987742#gid=2042987742",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "FECHA": "=08-08-2025 18:13:01",
+            "NOMBRE": "={{ $json.name }}",
+            "VALOR": "={{ $json.value }}"
+          },
+          "matchingColumns": [
+            "FECHA"
+          ],
+          "schema": [
+            {
+              "id": "FECHA",
+              "displayName": "FECHA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "NOMBRE",
+              "displayName": "NOMBRE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "VALOR",
+              "displayName": "VALOR",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "DIA",
+              "displayName": "DIA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "HORA",
+              "displayName": "HORA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        368,
+        -176
+      ],
+      "id": "88ddec92-05b8-43cb-aaee-fea416b7c072",
+      "name": "Append or update row in sheet",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-11T00:03:52.000Z",
+  "versionId": "cae2a572-1039-475b-9587-a63e0edd5921"
+}
