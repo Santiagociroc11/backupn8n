@@ -179,7 +179,7 @@
       "main": [
         [
           {
-            "node": "MySQL1",
+            "node": "Select rows from a table",
             "type": "main",
             "index": 0
           },
@@ -269,17 +269,6 @@
         ]
       ]
     },
-    "MySQL1": {
-      "main": [
-        [
-          {
-            "node": "If4",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "If4": {
       "main": [
         [
@@ -295,7 +284,7 @@
       "main": [
         [
           {
-            "node": "MySQL",
+            "node": "Update rows in a table",
             "type": "main",
             "index": 0
           }
@@ -535,13 +524,24 @@
           }
         ]
       ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-05-06T03:24:50.509Z",
   "id": "fE172B2mFYY1WJxf",
   "isArchived": false,
   "meta": null,
-  "name": "🟢 [ARZA-UÑAS-L2] CAPTURA TD - REGISTRO Y ENCUESTAS",
+  "name": "🟢 [ARZA-UÑAS-L4] CAPTURA TD - REGISTRO Y ENCUESTAS",
   "nodes": [
     {
       "parameters": {
@@ -552,8 +552,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -660,
-        520
+        -656,
+        528
       ],
       "id": "d6066679-8985-4403-8cfb-b6b1f094f531",
       "name": "ENCUESTA",
@@ -588,15 +588,15 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -340,
-        280
+        -336,
+        288
       ],
       "id": "d20b0625-2ed5-4a60-83e7-e3eabc32196c",
       "name": "Edit Fields1"
     },
     {
       "parameters": {
-        "collection": "=UÑAS-L3",
+        "collection": "=UÑAS-L4",
         "options": {
           "limit": 1
         },
@@ -607,8 +607,8 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        100,
-        280
+        112,
+        288
       ],
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -623,7 +623,7 @@
     {
       "parameters": {
         "operation": "findOneAndUpdate",
-        "collection": "UÑAS-L3",
+        "collection": "UÑAS-L4",
         "updateKey": "_id",
         "fields": "tiempoencuesta,Edad,Ocupación,Proposito,Ingresos,puntaje",
         "options": {}
@@ -633,15 +633,16 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        760,
-        500
+        768,
+        512
       ],
       "credentials": {
         "mongoDb": {
           "id": "JAKPCevXk5GvKOt9",
           "name": "MONGO CARLOS ARZA"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -674,7 +675,7 @@
       "typeVersion": 2.2,
       "position": [
         320,
-        280
+        288
       ]
     },
     {
@@ -688,7 +689,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        540,
+        544,
         400
       ]
     },
@@ -702,7 +703,7 @@
       "typeVersion": 3,
       "position": [
         320,
-        500
+        512
       ],
       "id": "2d2aec65-7c6a-4e67-97eb-61292b3af907",
       "name": "Merge3"
@@ -716,7 +717,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -120,
+        -128,
         720
       ],
       "id": "1e27d3e7-90d6-466f-9c1e-5d5850c6c5a9",
@@ -731,7 +732,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        100,
+        112,
         560
       ],
       "id": "02fa0060-1ab6-4314-996c-e0ae0610696a",
@@ -754,8 +755,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -120,
-        520
+        -128,
+        528
       ],
       "id": "3199e612-50f7-45ae-a600-8ee06318ac76",
       "name": "Edit Fields4"
@@ -787,15 +788,16 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        980,
-        500
+        992,
+        512
       ],
       "id": "4acad23e-f81b-4ab7-96ea-7146b9d6bc47",
-      "name": "If2"
+      "name": "If2",
+      "disabled": true
     },
     {
       "parameters": {
-        "collection": "=UÑAS-L3",
+        "collection": "=UÑAS-L4",
         "options": {},
         "query": "={\"_id\": \"{{ $('Merge1').item.json._id }}\"}"
       },
@@ -805,7 +807,7 @@
       "typeVersion": 1.1,
       "position": [
         1200,
-        500
+        512
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -813,7 +815,8 @@
           "id": "JAKPCevXk5GvKOt9",
           "name": "MONGO CARLOS ARZA"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -822,11 +825,12 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1420,
-        500
+        1424,
+        512
       ],
       "id": "af9ac51e-705d-4159-8792-cae8f7b61733",
-      "name": "Code"
+      "name": "Code",
+      "disabled": true
     },
     {
       "parameters": {
@@ -849,11 +853,12 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1640,
-        500
+        1648,
+        512
       ],
       "id": "17e19b8f-6a23-4d93-aa4d-6b114a92d768",
-      "name": "HTTP Request2"
+      "name": "HTTP Request2",
+      "disabled": true
     },
     {
       "parameters": {
@@ -920,8 +925,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        760,
-        700
+        768,
+        704
       ],
       "id": "0ed55806-3474-4eed-a122-e31274893ed3",
       "name": "Edit Fields7"
@@ -955,8 +960,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        760,
-        300
+        768,
+        304
       ],
       "id": "e6cb1a10-c723-44d6-bdf2-8f86c4c02f42",
       "name": "HTTP Request5",
@@ -995,8 +1000,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        760,
-        100
+        768,
+        112
       ],
       "id": "eda0ccdf-bb08-4939-bee9-26a739c2f3aa",
       "name": "HTTP Request6",
@@ -1013,8 +1018,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -120,
-        280
+        -128,
+        288
       ],
       "id": "c27752e4-5d7e-44a1-9aab-6eceef5c8736",
       "name": "Code1"
@@ -1045,7 +1050,7 @@
       "typeVersion": 3,
       "position": [
         320,
-        -490
+        -496
       ]
     },
     {
@@ -1059,8 +1064,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        100,
-        -590
+        112,
+        -592
       ]
     },
     {
@@ -1072,8 +1077,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        1640,
-        -440
+        1648,
+        -448
       ],
       "id": "c1ff8c00-fbc2-479d-a928-78cf82815e43",
       "name": "Merge5",
@@ -1107,8 +1112,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1000,
-        -620
+        1008,
+        -624
       ],
       "id": "e0e9b827-7eb6-4795-a271-02cd95138b0d",
       "name": "existe en manychat?",
@@ -1144,7 +1149,7 @@
       "typeVersion": 4.2,
       "position": [
         2320,
-        -460
+        -464
       ],
       "id": "d7e1e7e4-145e-4255-9446-80913ccc1a73",
       "name": "ENVIAR FLUJO BV",
@@ -1153,114 +1158,6 @@
       "maxTries": 5,
       "disabled": true,
       "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "table": {
-          "__rl": true,
-          "value": "UÑAS_L3",
-          "mode": "list",
-          "cachedResultName": "UÑAS_L3"
-        },
-        "dataMode": "defineBelow",
-        "columnToMatchOn": "ID",
-        "valueToMatchOn": "={{ $json.ID }}",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "FECHA_ENCUESTA",
-              "value": "={{ $json[\"FECHA ENCUESTA\"] }}"
-            },
-            {
-              "column": "HORA_ENCUESTA",
-              "value": "={{ $json[\"HORA ENCUESTA\"] }}"
-            },
-            {
-              "column": "EDAD",
-              "value": "={{ $json.EDAD }}"
-            },
-            {
-              "column": "INGRESOS",
-              "value": "={{ $json.INGRESOS }}"
-            },
-            {
-              "column": "ESTUDIOS",
-              "value": "={{ $json.ESTUDIOS }}"
-            },
-            {
-              "column": "PROPOSITO",
-              "value": "={{ $json.PROPOSITO }}"
-            },
-            {
-              "column": "PUNTAJE",
-              "value": "={{ $json.PUNTAJE }}"
-            },
-            {
-              "column": "QLEAD",
-              "value": "={{ $json.PUNTAJE > 700 ? \"si\": null }}"
-            },
-            {
-              "column": "DINERO",
-              "value": "={{ $json.DINERO }}"
-            }
-          ]
-        },
-        "options": {
-          "detailedOutput": true
-        }
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        1640,
-        700
-      ],
-      "id": "47fde9af-f1b4-41c1-8993-40afdc2d4479",
-      "name": "MySQL",
-      "credentials": {
-        "mySql": {
-          "id": "n8fCALXWnGdmJkBN",
-          "name": "CAPTACIONES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "select",
-        "table": {
-          "__rl": true,
-          "value": "UÑAS_L3",
-          "mode": "list",
-          "cachedResultName": "UÑAS_L3"
-        },
-        "returnAll": true,
-        "where": {
-          "values": [
-            {
-              "column": "ID",
-              "condition": "LIKE",
-              "value": "={{ $json.ID }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        980,
-        780
-      ],
-      "id": "f275c09b-3279-4776-b728-cbdef776b193",
-      "name": "MySQL1",
-      "alwaysOutputData": true,
-      "credentials": {
-        "mySql": {
-          "id": "n8fCALXWnGdmJkBN",
-          "name": "CAPTACIONES"
-        }
-      }
     },
     {
       "parameters": {
@@ -1291,7 +1188,7 @@
       "typeVersion": 2.2,
       "position": [
         1200,
-        780
+        784
       ],
       "id": "1afb6d07-3f32-492b-8055-2b135581467a",
       "name": "If4"
@@ -1303,8 +1200,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        1420,
-        700
+        1424,
+        704
       ],
       "id": "f7e45775-a5af-4990-9a90-6aafa2a885c3",
       "name": "Merge6"
@@ -1316,7 +1213,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        1420,
+        1424,
         -240
       ],
       "id": "d89023f9-cbfc-4899-9df2-41fb4f05eaa6",
@@ -1329,8 +1226,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -340,
-        520
+        -336,
+        528
       ],
       "id": "bce38b2d-63aa-449d-bb8b-f603a0431321",
       "name": "Code2"
@@ -1352,8 +1249,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -340,
-        -665
+        -336,
+        -672
       ],
       "id": "9f83c2c7-acb7-4e05-bfbf-c30285c2c15e",
       "name": "IP"
@@ -1366,8 +1263,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -120,
-        -665
+        -128,
+        -672
       ],
       "id": "a23db914-f363-41db-9a05-b39a6d944c1e",
       "name": "IP REAL",
@@ -1384,15 +1281,15 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -340,
-        -390
+        -336,
+        -384
       ],
       "id": "9e256794-bfae-4426-a74c-bec224df03aa",
       "name": "DATOS"
     },
     {
       "parameters": {
-        "collection": "=UÑAS-L3",
+        "collection": "=UÑAS-L4",
         "options": {
           "limit": 1
         },
@@ -1403,7 +1300,7 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        -120,
+        -128,
         -320
       ],
       "alwaysOutputData": true,
@@ -1446,14 +1343,14 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        100,
-        -315
+        112,
+        -320
       ]
     },
     {
       "parameters": {
         "operation": "insert",
-        "collection": "UÑAS-L3",
+        "collection": "UÑAS-L4",
         "fields": "=query,country,city,zip,regionName,timezone,email,whatsapp,utmCampaign,utmSource,utmMedium,utmContent,utmTerm,userAgent,platform,language,tiemporegistro,fbc,fbp,isFbcGenerated",
         "options": {}
       },
@@ -1462,8 +1359,8 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        540,
-        -490
+        544,
+        -496
       ],
       "credentials": {
         "mongoDb": {
@@ -1493,8 +1390,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        760,
-        -840
+        768,
+        -848
       ],
       "id": "93fdeaad-f2f0-4e69-bd59-8cbbc7785622",
       "name": "CONSULTA FLODESK",
@@ -1522,14 +1419,14 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"email\": \"{{ $('INSERTAR').item.json.email }}\",\n    \"segment_ids\": [\n       \"685b5a28f7dd61b3dbdc705f\"\n    ]\n}",
+        "jsonBody": "={\n    \"email\": \"{{ $('INSERTAR').item.json.email }}\",\n    \"segment_ids\": [\n       \"689c1b5bbe2153252a7724b9\"\n    ]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1200,
-        -900
+        1264,
+        -896
       ],
       "id": "3eae5acd-6176-4da3-9abe-db5b635b6425",
       "name": "INSERTA FLODESK",
@@ -1565,8 +1462,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        980,
-        -840
+        992,
+        -848
       ],
       "id": "5b03df99-2189-4d0a-825e-33a038c58262",
       "name": "EXISTE FLODESK?"
@@ -1605,8 +1502,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        760,
-        -600
+        768,
+        -608
       ],
       "id": "2cfd8910-2922-4e07-baf4-e02b88855428",
       "name": "CONSULTA MANYCHAT",
@@ -1646,7 +1543,7 @@
       "typeVersion": 4.2,
       "position": [
         1200,
-        -540
+        -544
       ],
       "id": "a99fa7ff-301f-4639-96ac-db28bc8c2c9d",
       "name": "CREAR",
@@ -1673,7 +1570,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1420,
+        1424,
         -560
       ],
       "id": "d4fa64f9-ce0c-42e4-ba92-2300590881b4",
@@ -1693,8 +1590,8 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        1860,
-        -440
+        1872,
+        -448
       ],
       "disabled": true
     },
@@ -1726,8 +1623,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2060,
-        -440
+        2064,
+        -448
       ],
       "id": "af0ff226-7bb9-4430-9247-aac7326a91f8",
       "name": "EXISTE?1",
@@ -1756,8 +1653,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1300,
-        -700
+        1312,
+        -704
       ],
       "id": "3b3861d1-3ff8-4d98-86dd-6253be46a972",
       "name": "DATOS EXISTENTES",
@@ -1834,8 +1731,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        760,
-        -260
+        768,
+        -256
       ],
       "id": "1092c873-06e4-48fe-9ab6-e9211ae59196",
       "name": "DATOS PARA SQL"
@@ -1878,9 +1775,9 @@
       "parameters": {
         "table": {
           "__rl": true,
-          "value": "UÑAS_L3",
+          "value": "UÑAS_L4",
           "mode": "list",
-          "cachedResultName": "UÑAS_L3"
+          "cachedResultName": "UÑAS_L4"
         },
         "dataMode": "defineBelow",
         "valuesToSend": {
@@ -1934,7 +1831,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        1640,
+        1648,
         -240
       ],
       "id": "692a6016-b6d5-4642-81f5-f02275c391f4",
@@ -1951,9 +1848,9 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "UÑAS_L3",
+          "value": "UÑAS_L4",
           "mode": "list",
-          "cachedResultName": "UÑAS_L3"
+          "cachedResultName": "UÑAS_L4"
         },
         "returnAll": true,
         "where": {
@@ -1970,12 +1867,120 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        980,
+        992,
         -160
       ],
       "id": "cd1bc821-42df-45ca-a9af-63a729ea4f73",
       "name": "CONSULTA SQL",
       "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "UÑAS_L4",
+          "mode": "list",
+          "cachedResultName": "UÑAS_L4"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "ID",
+              "condition": "LIKE",
+              "value": "={{ $json.ID }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        992,
+        784
+      ],
+      "id": "f275c09b-3279-4776-b728-cbdef776b193",
+      "name": "Select rows from a table",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "table": {
+          "__rl": true,
+          "value": "UÑAS_L4",
+          "mode": "list",
+          "cachedResultName": "UÑAS_L4"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "ID",
+        "valueToMatchOn": "={{ $json.ID }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "FECHA_ENCUESTA",
+              "value": "={{ $json[\"FECHA ENCUESTA\"] }}"
+            },
+            {
+              "column": "HORA_ENCUESTA",
+              "value": "={{ $json[\"HORA ENCUESTA\"] }}"
+            },
+            {
+              "column": "EDAD",
+              "value": "={{ $json.EDAD }}"
+            },
+            {
+              "column": "INGRESOS",
+              "value": "={{ $json.INGRESOS }}"
+            },
+            {
+              "column": "ESTUDIOS",
+              "value": "={{ $json.ESTUDIOS }}"
+            },
+            {
+              "column": "PROPOSITO",
+              "value": "={{ $json.PROPOSITO }}"
+            },
+            {
+              "column": "PUNTAJE",
+              "value": "={{ $json.PUNTAJE }}"
+            },
+            {
+              "column": "QLEAD",
+              "value": "={{ $json.PUNTAJE > 700 ? \"si\": null }}"
+            },
+            {
+              "column": "DINERO",
+              "value": "={{ $json.DINERO }}"
+            }
+          ]
+        },
+        "options": {
+          "detailedOutput": true
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1648,
+        704
+      ],
+      "id": "47fde9af-f1b4-41c1-8993-40afdc2d4479",
+      "name": "Update rows in a table",
       "credentials": {
         "mySql": {
           "id": "n8fCALXWnGdmJkBN",
@@ -2095,6 +2100,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-06-26T05:02:10.000Z",
-  "versionId": "3c9adf4e-819b-484b-8f2b-fcecf0efd76e"
+  "updatedAt": "2025-08-13T04:58:57.000Z",
+  "versionId": "cf5e89c4-e216-4b00-afd0-3c6c80d3b835"
 }
