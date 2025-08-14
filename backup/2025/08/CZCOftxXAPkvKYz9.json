@@ -1,0 +1,71 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Conversations List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-14T05:03:26.998Z",
+  "id": "CZCOftxXAPkvKYz9",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 25",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        -64
+      ],
+      "id": "470cbd49-24c2-40d1-8530-0555a541b67a",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "Conversations",
+        "operation": "Conversation List",
+        "account_id": 92628,
+        "assignee_type": "assigned",
+        "requestOptions": {}
+      },
+      "type": "@devlikeapro/n8n-nodes-chatwoot.chatWoot",
+      "typeVersion": 1,
+      "position": [
+        -432,
+        -64
+      ],
+      "id": "4e6031a9-e1be-4301-ada0-a03d357fddd7",
+      "name": "Conversations List",
+      "credentials": {
+        "chatwootApi": {
+          "id": "B7m9UJdt3lkZoAmi",
+          "name": "CHATWOOT PAGO"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-14T06:19:35.000Z",
+  "versionId": "6c537cfa-7170-4a1f-badb-e7e4c99cc3c5"
+}
