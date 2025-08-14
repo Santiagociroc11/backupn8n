@@ -12,62 +12,38 @@
         ]
       ]
     },
-    "Webhook1": {
+    "Webhook2": {
       "main": [
         [
           {
-            "node": "MongoDB",
+            "node": "Code",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "MongoDB": {
+    "Code": {
       "main": [
         [
           {
-            "node": "If",
+            "node": "If3",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "If": {
+    "If3": {
       "main": [
         [
           {
-            "node": "Edit Fields",
+            "node": "MongoDB Operations",
             "type": "main",
             "index": 0
-          }
-        ],
-        [
+          },
           {
-            "node": "Edit Fields1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Edit Fields": {
-      "main": [
-        [
-          {
-            "node": "MongoDB1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Edit Fields1": {
-      "main": [
-        [
-          {
-            "node": "MongoDB2",
+            "node": "MongoDB Operations1",
             "type": "main",
             "index": 0
           }
@@ -92,7 +68,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -460,
+        -544,
         -240
       ],
       "id": "fd738e1c-d16e-4d1d-8924-8b1f9e49d6c5",
@@ -117,7 +93,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -120,
+        -320,
         -240
       ],
       "id": "b20cd80f-6989-473d-b4fa-4b1aeec5e782",
@@ -126,40 +102,31 @@
     {
       "parameters": {
         "httpMethod": "POST",
-        "path": "webhook-pausarbot",
+        "path": "conversacion_actualizada_chatwoot",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
+      "typeVersion": 2.1,
       "position": [
-        -460,
-        40
+        -544,
+        80
       ],
-      "id": "06dfca8a-7e81-45c5-8428-6dd09cd7481a",
-      "name": "Webhook1",
-      "webhookId": "236fb834-e778-4865-8fc4-641dc84ccdf2"
+      "id": "7858efba-a80d-4c3f-8615-ec63fcbdcfde",
+      "name": "Webhook2",
+      "webhookId": "094b867b-0058-4581-81d5-5ff99a74af35"
     },
     {
       "parameters": {
-        "collection": "bot-win+2-recuperas",
-        "options": {},
-        "query": "={\"whatsapp\":\"{{ $json.body.messages[0].conversation.contact_inbox.source_id }}\"}"
+        "jsCode": "const body = items[0].json.body;\nconst labelChange = body.changed_attributes.find(a => a.label_list);\n\nif (labelChange) {\n  const { previous_value, current_value } = labelChange.label_list;\n  const added = current_value.filter(x => !previous_value.includes(x));\n  const removed = previous_value.filter(x => !current_value.includes(x));\n  \n  return [{ json: { \n    conversationId: body.messages[0].sender.phone_number,\n    addedLabels: added,\n    removedLabels: removed\n  }}];\n}\n\n// Si no hay cambio de etiquetas, no devuelve nada\nreturn [];\n"
       },
-      "type": "n8n-nodes-base.mongoDb",
-      "typeVersion": 1.2,
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
       "position": [
-        -200,
-        40
+        -320,
+        80
       ],
-      "id": "4baebbf3-6d55-4399-be2f-651a32ad1545",
-      "name": "MongoDB",
-      "alwaysOutputData": true,
-      "credentials": {
-        "mongoDb": {
-          "id": "NAmnhvdIS8ryFTBw",
-          "name": "WIN+2-RECUPERA"
-        }
-      }
+      "id": "a4ec27fc-89fd-4a3c-bff5-e316d4200d98",
+      "name": "Code"
     },
     {
       "parameters": {
@@ -167,138 +134,88 @@
           "options": {
             "caseSensitive": true,
             "leftValue": "",
-            "typeValidation": "strict",
+            "typeValidation": "loose",
             "version": 2
           },
           "conditions": [
             {
-              "id": "312cb498-7474-4e30-b121-b166a2190fd9",
-              "leftValue": "={{ $json.isEmpty() }}",
-              "rightValue": "",
+              "leftValue": "={{ $json.addedLabels }}",
+              "rightValue": "pausar-bot",
               "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
+                "type": "array",
+                "operation": "contains",
+                "rightType": "string"
+              },
+              "id": "8f23f489-5725-4d93-872e-dbbbd43f46fe"
+            },
+            {
+              "leftValue": "={{ $json.addedLabels }}",
+              "rightValue": "pausar-bot",
+              "operator": {
+                "type": "string",
+                "operation": "contains",
+                "rightType": "string"
+              },
+              "id": "2587b8cb-e57d-40c8-b680-e4d93924f3a1"
             }
           ],
-          "combinator": "and"
+          "combinator": "or"
         },
+        "looseTypeValidation": true,
         "options": {}
       },
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        20,
-        40
+        -96,
+        80
       ],
-      "id": "7483b5f8-8f53-4d6b-99ce-6fb86c01e004",
-      "name": "If"
+      "id": "abf757fe-5427-4511-9d5a-e5952650e5c2",
+      "name": "If3"
     },
     {
       "parameters": {
-        "operation": "insert",
-        "collection": "bot-win+2-recuperas",
-        "fields": "whatsapp,estado",
-        "options": {}
+        "operation": "update",
+        "collection": "bot-win+4",
+        "query": "={\"whatsapp\":\"{{ $json.conversationId.replace(/\\+/g, '') }}\"}\n",
+        "update": "={\"$set\":{\"estado\":\"pausado\"}}\n"
       },
-      "type": "n8n-nodes-base.mongoDb",
-      "typeVersion": 1.2,
+      "type": "n8n-nodes-mongodb.mongoDbOperations",
+      "typeVersion": 1,
       "position": [
-        540,
-        -60
+        288,
+        -128
       ],
-      "id": "841cf272-6d8e-4d37-a0b0-e51137a95939",
-      "name": "MongoDB1",
-      "alwaysOutputData": true,
+      "id": "808c3094-2214-4e07-85df-43fa6b81c091",
+      "name": "MongoDB Operations",
       "credentials": {
         "mongoDb": {
-          "id": "NAmnhvdIS8ryFTBw",
-          "name": "WIN+2-RECUPERA"
+          "id": "euGOf8QGZoVDU3rO",
+          "name": "BD WIN+4"
         }
       }
     },
     {
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "68f10934-09d9-4c69-9b00-30464df69666",
-              "name": "whatsapp",
-              "value": "={{ $('Webhook1').item.json.body.messages[0].conversation.contact_inbox.source_id }}",
-              "type": "string"
-            },
-            {
-              "id": "7e120838-2e9d-4a84-80b4-3be3958c97fa",
-              "name": "estado",
-              "value": "verificando",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
+        "operation": "update",
+        "collection": "bot-win+2",
+        "query": "={\"whatsapp\":\"{{ $json.conversationId.replace(/\\+/g, '') }}\"}\n",
+        "update": "={\"$set\":{\"estado\":\"pausado\"}}\n"
       },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
+      "type": "n8n-nodes-mongodb.mongoDbOperations",
+      "typeVersion": 1,
       "position": [
-        320,
-        -60
+        288,
+        64
       ],
-      "id": "3141723b-8a0a-429c-9c72-66d48c47b4f4",
-      "name": "Edit Fields"
-    },
-    {
-      "parameters": {
-        "operation": "findOneAndUpdate",
-        "collection": "bot-win+2-recuperas",
-        "updateKey": "whatsapp",
-        "fields": "estado",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mongoDb",
-      "typeVersion": 1.2,
-      "position": [
-        540,
-        160
-      ],
-      "id": "646dcc7f-bb87-4699-b52e-13f794c72ebf",
-      "name": "MongoDB2",
-      "alwaysOutputData": true,
+      "id": "320ea847-e8b8-4cfa-b620-1e0f2468172d",
+      "name": "MongoDB Operations1",
       "credentials": {
         "mongoDb": {
-          "id": "NAmnhvdIS8ryFTBw",
-          "name": "WIN+2-RECUPERA"
+          "id": "jDujtIdwD5ws13s0",
+          "name": "BD WIN+2"
         }
       }
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "68f10934-09d9-4c69-9b00-30464df69666",
-              "name": "whatsapp",
-              "value": "={{ $('Webhook1').item.json.body.messages[0].conversation.contact_inbox.source_id }}",
-              "type": "string"
-            },
-            {
-              "id": "7e120838-2e9d-4a84-80b4-3be3958c97fa",
-              "name": "estado",
-              "value": "verificando",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        320,
-        160
-      ],
-      "id": "8ce325b9-ad18-4141-b8ce-a169275b7fea",
-      "name": "Edit Fields1"
     }
   ],
   "pinData": {
@@ -430,24 +347,24 @@
         }
       }
     ],
-    "Webhook1": [
+    "Webhook2": [
       {
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
-            "user-agent": "rest-client/2.1.0 (linux x86_64) ruby/3.3.3p89",
-            "content-length": "2911",
+            "user-agent": "rest-client/2.1.0 (linux x86_64) ruby/3.4.4p34",
+            "content-length": "2465",
             "accept": "application/json",
             "accept-encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
-            "baggage": "sentry-environment=production,sentry-public_key=8a2d502a4008219bf1a2cf5a658be8cf,sentry-trace_id=a31ed995078743388d0c662f19ce4de9",
+            "baggage": "sentry-environment=production,sentry-public_key=8a2d502a4008219bf1a2cf5a658be8cf,sentry-trace_id=1650bf29ac394699a032f347112d650f",
             "content-type": "application/json",
-            "sentry-trace": "a31ed995078743388d0c662f19ce4de9-5197338b68354dc8",
-            "x-forwarded-for": "34.201.21.236",
+            "sentry-trace": "1650bf29ac394699a032f347112d650f-a30865396e9f45dd",
+            "x-forwarded-for": "3.213.197.223",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "697dd9cbf981",
-            "x-real-ip": "34.201.21.236"
+            "x-forwarded-server": "5e236941e778",
+            "x-real-ip": "3.213.197.223"
           },
           "params": {},
           "query": {},
@@ -456,72 +373,76 @@
             "can_reply": true,
             "channel": "Channel::Whatsapp",
             "contact_inbox": {
-              "id": 289304292,
-              "contact_id": 290893524,
+              "id": 257498926,
+              "contact_id": 112816377,
               "inbox_id": 39429,
-              "source_id": "573114284052",
-              "created_at": "2025-04-13T12:31:51.048Z",
-              "updated_at": "2025-04-13T12:31:51.048Z",
+              "source_id": "573014229222",
+              "created_at": "2025-03-12T23:43:34.926Z",
+              "updated_at": "2025-03-12T23:43:34.926Z",
               "hmac_verified": false,
-              "pubsub_token": "CbcrZJ2Psj1jnLT8KEN81KyH"
+              "pubsub_token": "mNVMTJQGWb4yqQJBLUyPj5WZ"
             },
-            "id": 304520,
+            "id": 288057,
             "inbox_id": 39429,
             "messages": [
               {
-                "id": 141084533,
-                "content": "🥳Felicidades¡¡ TU COMPRA FUE APROBADA✅.\n\nPara instalar la app, dale clic a este enlace Y SIGUE LAS INSTRUCCIONES QUE ESTAN EN EL LINK, LEE MUY BIEN TODO\n\n👇🏻 ACÁ ESTÁ EL ACCESO A TU COMPRA 👇🏻\n\nhttps://automscc.com/mtv?id=573123755115\n\n👆🏻 Dale clic 👆🏻\n\nTODO LO QUE NECESITAS PARA INSTALARLA ESTÁ EN ESE LINK, LEE BIEN 🚨\n\nSi no te abre el link, intenta con otro explorador de tu celular o pide ayuda para instalarlo a algún familiar 🫵🏻",
+                "id": 237585650,
+                "content": "🔴 BOT: [object Object]",
                 "account_id": 92628,
                 "inbox_id": 39429,
-                "conversation_id": 304520,
-                "message_type": 1,
-                "created_at": 1744645954,
-                "updated_at": "2025-04-14T15:52:42.314Z",
+                "conversation_id": 288057,
+                "message_type": 0,
+                "created_at": 1755125348,
+                "updated_at": "2025-08-13T22:49:08.228Z",
                 "private": false,
-                "status": "delivered",
-                "source_id": "wamid.HBgMNTczMTE0Mjg0MDUyFQIAERgSMzQ0QTRCNTU2NjdFRThDRDRGAA==",
+                "status": "sent",
+                "source_id": "wamid.PqIL1Q8UjDVFgP2BL910wk8tPpSjaBHZFAmkwEpU1bjE",
                 "content_type": "text",
                 "content_attributes": {},
-                "sender_type": "User",
-                "sender_id": 90119,
+                "sender_type": "Contact",
+                "sender_id": 112816377,
                 "external_source_ids": {},
                 "additional_attributes": {},
-                "processed_message_content": "🥳Felicidades¡¡ TU COMPRA FUE APROBADA✅.\n\nPara instalar la app, dale clic a este enlace Y SIGUE LAS INSTRUCCIONES QUE ESTAN EN EL LINK, LEE MUY BIEN TODO\n\n👇🏻 ACÁ ESTÁ EL ACCESO A TU COMPRA 👇🏻\n\nhttps://automscc.com/mtv?id=573123755115\n\n👆🏻 Dale clic 👆🏻\n\nTODO LO QUE NECESITAS PARA INSTALARLA ESTÁ EN ESE LINK, LEE BIEN 🚨\n\nSi no te abre el link, intenta con otro explorador de tu celular o pide ayuda para instalarlo a algún familiar 🫵🏻",
+                "processed_message_content": "🔴 BOT: [object Object]",
                 "sentiment": {},
                 "conversation": {
                   "assignee_id": 90119,
                   "unread_count": 0,
-                  "last_activity_at": 1744646275,
+                  "last_activity_at": 1755125541,
                   "contact_inbox": {
-                    "source_id": "573114284052"
+                    "source_id": "573014229222"
                   }
                 },
                 "sender": {
-                  "id": 90119,
-                  "name": "santiago",
-                  "available_name": "santiago",
-                  "avatar_url": "",
-                  "type": "user",
-                  "availability_status": null,
-                  "thumbnail": ""
+                  "additional_attributes": {},
+                  "custom_attributes": {},
+                  "email": null,
+                  "id": 112816377,
+                  "identifier": null,
+                  "name": "Cesar",
+                  "phone_number": "+573014229222",
+                  "thumbnail": "",
+                  "blocked": false,
+                  "type": "contact"
                 }
               }
             ],
             "labels": [
+              "atendido",
               "bienvenida",
-              "pagado",
               "medio-pago",
-              "atendido"
+              "pagado",
+              "pausar-bot"
             ],
             "meta": {
               "sender": {
                 "additional_attributes": {},
                 "custom_attributes": {},
                 "email": null,
-                "id": 290893524,
+                "id": 112816377,
                 "identifier": null,
-                "name": "EDINSON SALAS RIOS",
-                "phone_number": "+573114284052",
+                "name": "Cesar",
+                "phone_number": "+573014229222",
                 "thumbnail": "",
                 "blocked": false,
                 "type": "contact"
@@ -542,18 +463,49 @@
             "custom_attributes": {},
             "snoozed_until": null,
             "unread_count": 0,
-            "first_reply_created_at": "2025-04-14T15:52:34.139Z",
-            "priority": "urgent",
-            "waiting_since": 0,
-            "agent_last_seen_at": 1744646275,
+            "first_reply_created_at": "2025-03-14T01:16:16.083Z",
+            "priority": null,
+            "waiting_since": 1755125344,
+            "agent_last_seen_at": 1755125541,
             "contact_last_seen_at": 0,
-            "last_activity_at": 1744646275,
-            "timestamp": 1744646275,
-            "created_at": 1744547511,
-            "updated_at": 1744646275.392353,
-            "event": "automation_event.conversation_updated"
+            "last_activity_at": 1755125541,
+            "timestamp": 1755125541,
+            "created_at": 1741823014,
+            "updated_at": 1755125889.635009,
+            "event": "conversation_updated",
+            "changed_attributes": [
+              {
+                "updated_at": {
+                  "previous_value": "2025-08-13T22:52:21.098Z",
+                  "current_value": "2025-08-13T22:58:09.635Z"
+                }
+              },
+              {
+                "cached_label_list": {
+                  "previous_value": "atendido, bienvenida, medio-pago, pagado",
+                  "current_value": "atendido, bienvenida, medio-pago, pagado, pausar-bot"
+                }
+              },
+              {
+                "label_list": {
+                  "previous_value": [
+                    "atendido",
+                    "bienvenida",
+                    "medio-pago",
+                    "pagado"
+                  ],
+                  "current_value": [
+                    "atendido",
+                    "bienvenida",
+                    "medio-pago",
+                    "pagado",
+                    "pausar-bot"
+                  ]
+                }
+              }
+            ]
           },
-          "webhookUrl": "https://n8n.automscc.com/webhook/webhooks-chatwoot",
+          "webhookUrl": "https://n8n.automscc.com/webhook/conversacion_actualizada_chatwoot",
           "executionMode": "production"
         }
       }
@@ -568,6 +520,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-06-08T19:47:32.000Z",
-  "versionId": "9a60bc26-5bbd-466a-89f4-cce580506951"
+  "updatedAt": "2025-08-13T23:14:41.000Z",
+  "versionId": "00e1ce76-6570-4bf1-b093-3f90086c66f9"
 }
