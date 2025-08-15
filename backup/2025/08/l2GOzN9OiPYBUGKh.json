@@ -1,0 +1,69 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-14T17:05:21.826Z",
+  "id": "l2GOzN9OiPYBUGKh",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 26",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -496,
+        -64
+      ],
+      "id": "d06470d3-37b9-4c7f-b0a1-ae66da3c36ba",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://n8n-chatwoot.wc2hpx.easypanel.host/api/v1/accounts/4",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "A55c8HWKWZ9kJS9Tv5GVcXWu"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -288,
+        -64
+      ],
+      "id": "d6414596-9388-45de-9b27-326ef42af41a",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-14T17:05:21.826Z",
+  "versionId": "770b9246-8073-4e03-8bca-af66e2613130"
+}
