@@ -1,0 +1,412 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request3": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Execute Workflow1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Execute Workflow1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-15T19:22:54.203Z",
+  "id": "NeNijBlnDglUIauh",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "RECUPERACIÓN GERSSON 15/08",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -3744,
+        400
+      ],
+      "id": "43eac40c-171c-4050-97c8-a7223e95507f",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7fd82a41-62e3-46b8-954a-db5d9cc64146",
+              "leftValue": "={{ $json.data.resultData.runData.ENCUESTA }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -3088,
+        400
+      ],
+      "id": "d911f137-d748-436d-b81c-b891cfcff899",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "245f6e95-e8f3-4c3e-b033-45c8765a9e84",
+              "name": "url_origen",
+              "value": "={{ $json.data.resultData.runData.ENCUESTA[0].data.main[0][0].json.body.referrer }}",
+              "type": "string"
+            },
+            {
+              "id": "0aa162f0-ed15-4b96-94e0-d320976e4819",
+              "name": "encuesta_json",
+              "value": "={{ $json.data.resultData.runData.ENCUESTA[0].data.main[0][0].json.body.answersJson }}",
+              "type": "string"
+            },
+            {
+              "id": "57765156-e939-4a5c-ab1a-aab022addecb",
+              "name": "correo",
+              "value": "={{ $json.data.resultData.runData.ENCUESTA[0].data.main[0][0].json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "119649fd-95fc-4b2f-85dc-84385a2367c3",
+              "name": "whatsapp",
+              "value": "={{ $json.data.resultData.runData.ENCUESTA[0].data.main[0][0].json.body.whatsapp }}",
+              "type": "string"
+            },
+            {
+              "id": "6779b051-17cc-4473-bfb0-48a4556ccdad",
+              "name": "ip",
+              "value": "={{ $json.data.resultData.runData.ENCUESTA[0].data.main[0][0].json.headers[\"x-real-ip\"] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2848,
+        400
+      ],
+      "id": "73cafc0e-946f-4be5-982b-c376d3038c8e",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "// === INPUT ===\nconst url_origen = $input.first().json.url_origen || \"\";\nconst email = $input.first().json.correo || \"-\";\nconst whatsapp = $input.first().json.whatsapp || \"-\";\nconst ip = $input.first().json.ip || \"-\";\n\nconst json_encuesta = $input.first().json.encuesta_json || \"-\";\n\n// === HELPERS ===\nconst getCurrentTimestamp = () => Math.floor(Date.now() / 1000);\n\n// Decodifica estilo URL (maneja '+')\nconst decode = (s) => {\n  try {\n    return decodeURIComponent(String(s).replace(/\\+/g, \" \"));\n  } catch {\n    return String(s);\n  }\n};\n\n// Parser simple de querystring (sin URL/URLSearchParams)\nconst parseQuery = (q) => {\n  const out = {};\n  if (!q) return out;\n  for (const part of q.split(\"&\")) {\n    if (!part) continue;\n    const eq = part.indexOf(\"=\");\n    const k = decode(eq >= 0 ? part.slice(0, eq) : part);\n    const v = decode(eq >= 0 ? part.slice(eq + 1) : \"\");\n    if (out[k] === undefined) out[k] = v;\n    else if (Array.isArray(out[k])) out[k].push(v);\n    else out[k] = [out[k], v];\n  }\n  return out;\n};\n\n// Extrae la parte de query de una URL o de una query pura\nconst getParamsFromUrl = (fullUrl) => {\n  const qIndex = fullUrl.indexOf(\"?\");\n  const query = qIndex >= 0 ? fullUrl.slice(qIndex + 1) : fullUrl;\n  return parseQuery(query);\n};\n\n// Info \"navegador\" (entorno Node)\nconst getBrowserInfo = () => ({\n  userAgent: \"n8n/NodeJS\",\n  platform: process.platform,\n  language: \"es-ES\",\n});\n\n// === CORE ===\nconst params = getParamsFromUrl(url_origen);\nconst pick = (k, def = \"-\") => (params[k] && params[k] !== \"\" ? params[k] : def);\n\n// UTM + otros\nconst utmData = {\n  utmCampaign: pick(\"utm_campaign\"),\n  utmSource:   pick(\"utm_source\"),\n  utmMedium:   pick(\"utm_medium\"),\n  utmContent:  pick(\"utm_content\"),\n  utmTerm:     pick(\"utm_term\"),\n  adid:        pick(\"ad_id\"),\n  fbclid:      pick(\"fbclid\"),\n  utmId:       pick(\"utm_id\"),\n};\n\nconst browserInfo = getBrowserInfo();\n\n// fbc usando fbclid y timestamp\nconst ts = getCurrentTimestamp();\nconst fbc = `fb.1.${ts}.${utmData.fbclid}`;\nconst isFbcGenerated = utmData.fbclid !== \"-\";\n\n// JSON final (SIN fbp, CON tiemporegistro)\nconst result = {\n  tiemporegistro: ts,\n  email,\n  whatsapp,\n  ...utmData,\n  ...browserInfo,\n  fbc,\n  isFbcGenerated,\n  ip,\n  json_encuesta,\n};\n\nreturn [{ json: result }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2640,
+        400
+      ],
+      "id": "69f3d71a-7a66-49d0-90a3-5f3f1eba88f0",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "url": "https://n8n.automscc.com/api/v1/executions",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "includeData",
+              "value": "true"
+            },
+            {
+              "name": "status",
+              "value": "success"
+            },
+            {
+              "name": "workflowId",
+              "value": "SwZd93lyqlN9ZdeB"
+            },
+            {
+              "name": "limit",
+              "value": "50"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-N8N-API-KEY",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0N2FjMmM0My0zODNlLTQ4ZTEtOWIzMi1lN2FhNzFjZGQ4MjEiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwiaWF0IjoxNzU1Mjg3MDY0fQ.BkW83rpjYkhayEBNOyORM1wLo0iAqy7xTncGA8Bftwc"
+            }
+          ]
+        },
+        "options": {
+          "pagination": {
+            "pagination": {
+              "parameters": {
+                "parameters": [
+                  {
+                    "name": "cursor",
+                    "value": "={{$response.body.nextCursor}}"
+                  }
+                ]
+              },
+              "limitPagesFetched": true,
+              "maxRequests": 14
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -3520,
+        400
+      ],
+      "id": "7ef1085a-9675-4235-bfd1-acd9e5c7bf95",
+      "name": "HTTP Request3"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -3312,
+        400
+      ],
+      "id": "0c725b82-e4e1-4c18-ade3-696eaa28be5a",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -2448,
+        400
+      ],
+      "id": "4a340eb6-777e-4a4d-91fd-bee94e846636",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "RXtbQPhqq00Fkbbd",
+          "mode": "list",
+          "cachedResultName": "[15/08] RECUPERAR REGISTRO"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        -2240,
+        480
+      ],
+      "id": "823629ea-b3cb-4117-9b3d-23239876bd29",
+      "name": "Execute Workflow",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "w9AkvLc0kpZlxJrL",
+          "mode": "list",
+          "cachedResultName": "[15/08] RECUPERAR ENCUESTA"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        -1632,
+        464
+      ],
+      "id": "8c16cb21-d443-458e-bc9e-59a15fb12755",
+      "name": "Execute Workflow1",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -1904,
+        448
+      ],
+      "id": "06e0a15b-aa6a-46c0-b191-efa135fd886e",
+      "name": "Merge"
+    }
+  ],
+  "pinData": {
+    "When clicking ‘Execute workflow’": [
+      {
+        "json": {}
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-15T20:26:16.000Z",
+  "versionId": "a6bad941-d88e-4fad-9fad-ae6ff3c87298"
+}
