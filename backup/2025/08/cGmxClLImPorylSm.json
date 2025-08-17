@@ -1,0 +1,2033 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get many messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many messages": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-08-16T19:22:04.869Z",
+  "id": "cGmxClLImPorylSm",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 29",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        0
+      ],
+      "id": "384e5b40-0e44-4406-80ff-1c69990a8113",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "returnAll": true,
+        "filters": {
+          "q": "AMAZON",
+          "sender": "alertasynotificaciones@notificacionesbancolombia.com"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -432,
+        0
+      ],
+      "id": "ff4e3320-8038-4586-a52a-136dbc2d90c3",
+      "name": "Get many messages",
+      "webhookId": "0a91ccbf-8713-4b9e-a4c7-5975b2e1e2af",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "DOPWTzPin0EZKjQY",
+          "name": "GMAIL SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{$json.toJsonString()}}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "COP",
+              "description": "VALOR EN PESOS COLOMBIANOS SOLO EN NUMEROS SIN DECIMALES NI COMAS",
+              "required": true
+            },
+            {
+              "name": "FECHA",
+              "description": "DIA DE LA TRANSACCIÓN EN \"2018-12-31\"",
+              "required": true
+            },
+            {
+              "name": "DESCRIPCIÓN",
+              "description": "DECRIPCIÓN DE LA TRANSACCIÓN TAL CUAL COMO VIENE",
+              "required": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        -224,
+        0
+      ],
+      "id": "33b0cbb8-9247-4d94-9b5e-642410ae9496",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "options": {
+          "responseFormat": "json_object"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -304,
+        208
+      ],
+      "id": "0d1714e5-0a35-480e-895a-a7050e6a53d8",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "GPT SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://trm-colombia.vercel.app/?date={{ $json.output.FECHA }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        448,
+        96
+      ],
+      "id": "7e817861-2cb4-4915-b747-3506c22b39cc",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "42f6388a-ac3d-43f4-ac97-639be4f315bb",
+              "name": "USD",
+              "value": "={{ $json.data.value }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        640,
+        96
+      ],
+      "id": "2129ed38-1906-4d80-83bc-5b3555e55201",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        128,
+        0
+      ],
+      "id": "36485f03-e1e6-43e7-bb64-d0d0dbc47c00",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        832,
+        272
+      ],
+      "id": "4cf05ee7-13ab-4ed0-9283-fe5292fcb956",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1z7ZR-9isjT0MKSqTZU0PXCZ1vgbr3mTRJm3733vO2Zo",
+          "mode": "list",
+          "cachedResultName": "COMPRAS AMAZON",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1z7ZR-9isjT0MKSqTZU0PXCZ1vgbr3mTRJm3733vO2Zo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1z7ZR-9isjT0MKSqTZU0PXCZ1vgbr3mTRJm3733vO2Zo/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "FECHA": "={{ $json.output.FECHA }}",
+            "COP": "={{ $json.output.COP }}",
+            "DESCRIPCION": "={{ $json.output['DESCRIPCIÓN'] }}",
+            "USD": "={{ $json.USD }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "FECHA",
+              "displayName": "FECHA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "DESCRIPCION",
+              "displayName": "DESCRIPCION",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "COP",
+              "displayName": "COP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "USD",
+              "displayName": "USD",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        448,
+        -128
+      ],
+      "id": "fff2c2e2-2746-432b-b82e-9aa21482947f",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "When clicking ‘Execute workflow’": [
+      {
+        "json": {}
+      }
+    ],
+    "Get many messages": [
+      {
+        "json": {
+          "id": "198ab9042c60ff7e",
+          "threadId": "198aacc682a25098",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $281.404,59 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 14/08/2025 a las 21:30. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 44886,
+          "historyId": "7719093",
+          "internalDate": "1755225013000",
+          "labels": [
+            {
+              "id": "INBOX",
+              "name": "INBOX"
+            },
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "19897ba278497633",
+          "threadId": "19891454e42400e1",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $283.414,01 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 11/08/2025 a las 01:03. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 44793,
+          "historyId": "7659884",
+          "internalDate": "1754892214000",
+          "labels": [
+            {
+              "id": "INBOX",
+              "name": "INBOX"
+            },
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "19896f97b79d2136",
+          "threadId": "19891454e42400e1",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $283.414,01 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 10/08/2025 a las 21:33. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 44838,
+          "historyId": "7659884",
+          "internalDate": "1754879587000",
+          "labels": [
+            {
+              "id": "INBOX",
+              "name": "INBOX"
+            },
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "19841d02c57700c2",
+          "threadId": "1983cbd9b2049534",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $46.567,36 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 25/07/2025 a las 08:40. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 52525,
+          "historyId": "7526279",
+          "internalDate": "1753450818000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "19835f0dd627bc10",
+          "threadId": "19831f6c4607be83",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $24.900,00 en AMAZON PRIME con tu T.Deb *1155, el 23/07/2025 a las 01:20. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 52494,
+          "historyId": "7526261",
+          "internalDate": "1753251632000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "1981f481c4a6b7a9",
+          "threadId": "198198ddc001eb1f",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $36.107,80 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 18/07/2025 a las 15:44. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 52710,
+          "historyId": "7526243",
+          "internalDate": "1752871474000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "198198f9cf817907",
+          "threadId": "198198ddc001eb1f",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $104.350,89 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 17/07/2025 a las 13:04. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 52534,
+          "historyId": "7526243",
+          "internalDate": "1752775497000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "19816e76308647bd",
+          "threadId": "1980f38f252607e3",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $54.162,89 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 17/07/2025 a las 00:41. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 52556,
+          "historyId": "7526225",
+          "internalDate": "1752730918000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "1980f38f252607e3",
+          "threadId": "1980f38f252607e3",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $320.271,96 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 15/07/2025 a las 12:54. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 52510,
+          "historyId": "7526225",
+          "internalDate": "1752602046000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "1980569376526ba2",
+          "threadId": "1980569376526ba2",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $134.773,33 en Amazon.com con tu T.Deb *1155, el 13/07/2025 a las 15:10. Si tienes dudas, encuentranos aqui: 6045109095 o 018000931987",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 52435,
+          "historyId": "7526213",
+          "internalDate": "1752437437000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "19801edae7b31848",
+          "threadId": "197fb0a7f89a6a87",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $112.337,87 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 12/07/2025 a las 22:56. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 52435,
+          "historyId": "7526207",
+          "internalDate": "1752379010000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "197fc5778bfef864",
+          "threadId": "197fb0a7f89a6a87",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $47.038,22 en Amazon.com con tu T.Deb *1155, el 11/07/2025 a las 20:54. Si tienes dudas, encuentranos aqui: 6045109095 o 018000931987.",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 52557,
+          "historyId": "7526207",
+          "internalDate": "1752285280000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "197fbb1606380c55",
+          "threadId": "197fb0a7f89a6a87",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $40.094,87 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 11/07/2025 a las 17:53. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 52485,
+          "historyId": "7526207",
+          "internalDate": "1752274393000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "197fb0a7f89a6a87",
+          "threadId": "197fb0a7f89a6a87",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $56.108,73 en Amazon.com con tu T.Deb *1155, el 11/07/2025 a las 14:50. Si tienes dudas, encuentranos aqui: 6045109095 o 018000931987.",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 52539,
+          "historyId": "7526207",
+          "internalDate": "1752263458000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "197f778fcb3f1f6a",
+          "threadId": "197f4ae39ea48361",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $87.929,81 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 10/07/2025 a las 22:13. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 52455,
+          "historyId": "7526201",
+          "internalDate": "1752203590000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "197f51f7ebab15a3",
+          "threadId": "197f4ae39ea48361",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $81.001,52 en Amazon.com con tu T.Deb *1155, el 10/07/2025 a las 11:16. Si tienes dudas, encuentranos aqui: 6045109095 o 018000931987.",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 52101,
+          "historyId": "7526201",
+          "internalDate": "1752164170000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "197f4ae39ea48361",
+          "threadId": "197f4ae39ea48361",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $62.960,64 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 10/07/2025 a las 09:12. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 52072,
+          "historyId": "7526201",
+          "internalDate": "1752156747000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "197f20beaf30c94a",
+          "threadId": "197f0c72b2f04f0a",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $88.542,20 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 09/07/2025 a las 20:55. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 52204,
+          "historyId": "7526195",
+          "internalDate": "1752112556000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "197e9001e465c9a3",
+          "threadId": "197e1df06336f873",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $53.614,25 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 08/07/2025 a las 02:46. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 51979,
+          "historyId": "7526189",
+          "internalDate": "1751960788000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "197e356c182b2cbc",
+          "threadId": "197e1df06336f873",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $59.575,81 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 07/07/2025 a las 00:23. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 52047,
+          "historyId": "7526189",
+          "internalDate": "1751865801000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "197e2c53c00f0915",
+          "threadId": "197e1df06336f873",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $397.397,26 en Amazon.com con tu T.Deb *1155, el 06/07/2025 a las 21:44. Si tienes dudas, encuentranos aqui: 6045109095 o 018000931987",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 51944,
+          "historyId": "7526189",
+          "internalDate": "1751856266000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "197e1ebeca2db37f",
+          "threadId": "197e1df06336f873",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $79.447,66 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 06/07/2025 a las 17:47. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 52022,
+          "historyId": "7526189",
+          "internalDate": "1751842023000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "197e1df06336f873",
+          "threadId": "197e1df06336f873",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $238.422,46 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 06/07/2025 a las 17:32. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 52032,
+          "historyId": "7526189",
+          "internalDate": "1751841179000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "197de1e4525d0780",
+          "threadId": "197dce356acee3ed",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $178.767,16 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 06/07/2025 a las 00:03. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 52020,
+          "historyId": "7526183",
+          "internalDate": "1751778214000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "197dce356acee3ed",
+          "threadId": "197dce356acee3ed",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $317.909,86 en Amazon.com con tu T.Deb *1155, el 05/07/2025 a las 18:19. Si tienes dudas, encuentranos aqui: 6045109095 o 018000931987",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 51968,
+          "historyId": "7526183",
+          "internalDate": "1751757574000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "19780417bbbc809d",
+          "threadId": "1977b4b0d24865f6",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $322.963,33 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 17/06/2025 a las 18:37. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 51470,
+          "historyId": "7526099",
+          "internalDate": "1750203463000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "196fa4e774bb9bb9",
+          "threadId": "196f4c0c9fc08874",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $479.280,58 en Amazon.com con tu T.Deb *1155, el 22/05/2025 a las 18:22. Si tienes dudas, encuentranos aqui: 6045109095 o 018000931987",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 51455,
+          "historyId": "7525949",
+          "internalDate": "1747956167000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "196a4557e3f8e4c6",
+          "threadId": "196a1f947f559f40",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $1.729.322,32 en WWW.AMAZON.ES con tu T.Deb *1155, el 06/05/2025 a las 01:43. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 51492,
+          "historyId": "7525847",
+          "internalDate": "1746513788000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "196a1f947f559f40",
+          "threadId": "196a1f947f559f40",
+          "snippet": "¡Te interesa! Tenemos novedades Bancolombia: Recibiras $1.809.874 en 10 dias habiles en tu tarjeta debito *1155 por parte de WWW.AMAZON.* R. 14:43 05/05/2025. Si tienes dudas, llama: 018000931987.",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 47240,
+          "historyId": "7525847",
+          "internalDate": "1746474189000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "195c62fed7b7bc7f",
+          "threadId": "195c62fed7b7bc7f",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $1.706.763,33 en WWW.AMAZON.ES con tu T.Deb *1155, el 23/03/2025 a las 22:26. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 51354,
+          "historyId": "7528097",
+          "internalDate": "1742786783000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "santiagociiro12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "195586068b471fda",
+          "threadId": "195586068b471fda",
+          "snippet": "¡Listo! Todo salió bien con tus movimientos Bancolombia: Compraste $61.760,45 en AMAZON PRIME PMTS con tu T.Deb *1155, el 02/03/2025 a las 14:41. Si tienes dudas, encuentranos aqui: 6045109095 o",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 58974,
+          "historyId": "7527923",
+          "internalDate": "1740944464000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "SANTIAGOCIIRO12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "194aeb1892efe40a",
+          "threadId": "194a9202a5501d76",
+          "snippet": "Servicio de Alertas y Notificaciones Bancolombia. Notificación Transaccional Bancolombia: Compraste $88.258,18 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 28/01/2025 a las 15:54. Si tienes dudas,",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 53298,
+          "historyId": "7528917",
+          "internalDate": "1738097656000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "SANTIAGOCIIRO12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "193785f4e623ea11",
+          "threadId": "193785f4e623ea11",
+          "snippet": "Servicio de Alertas y Notificaciones Bancolombia. Notificación Transaccional Bancolombia: Compraste $134.167,57 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 29/11/2024 a las 09:42. Si tienes dudas,",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 53367,
+          "historyId": "7528527",
+          "internalDate": "1732891331000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "SANTIAGOCIIRO12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "19293ed03d7528e2",
+          "threadId": "1927cfacf54c164c",
+          "snippet": "Servicio de Alertas y Notificaciones Bancolombia. Notificación Transaccional Bancolombia: Compraste $215.246,03 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 16/10/2024 a las 01:03. ¿Dudas? Llamanos",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 53370,
+          "historyId": "7528329",
+          "internalDate": "1729058634000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "SANTIAGOCIIRO12@gmail.com"
+        }
+      },
+      {
+        "json": {
+          "id": "1928f48150fa7c64",
+          "threadId": "1927cfacf54c164c",
+          "snippet": "Servicio de Alertas y Notificaciones Bancolombia. Notificación Transaccional Bancolombia: Compraste $533.964,44 en AMAZON MKTPLACE PMTS con tu T.Deb *1155, el 15/10/2024 a las 03:25. ¿Dudas? Llamanos",
+          "payload": {
+            "mimeType": "text/html"
+          },
+          "sizeEstimate": 53124,
+          "historyId": "7528329",
+          "internalDate": "1728980717000",
+          "labels": [
+            {
+              "id": "IMPORTANT",
+              "name": "IMPORTANT"
+            },
+            {
+              "id": "CATEGORY_UPDATES",
+              "name": "CATEGORY_UPDATES"
+            },
+            {
+              "id": "STARRED",
+              "name": "STARRED"
+            },
+            {
+              "id": "UNREAD",
+              "name": "UNREAD"
+            },
+            {
+              "id": "Label_5009391565458069770",
+              "name": "TRANSACCIONES BANCOLOMBIA"
+            }
+          ],
+          "From": "Alertas y Notificaciones <alertasynotificaciones@notificacionesbancolombia.com>",
+          "Subject": "Alertas y Notificaciones",
+          "To": "SANTIAGOCIIRO12@gmail.com"
+        }
+      }
+    ],
+    "Information Extractor": [
+      {
+        "json": {
+          "output": {
+            "COP": "281404",
+            "FECHA": "2025-08-14",
+            "DESCRIPCIÓN": "Compraste $281.404,59 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "283414",
+            "FECHA": "2025-08-11",
+            "DESCRIPCIÓN": "Compraste en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "283414",
+            "FECHA": "2025-08-10",
+            "DESCRIPCIÓN": "Compraste $283.414,01 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "46567",
+            "FECHA": "2025-07-25",
+            "DESCRIPCIÓN": "Compraste $46.567,36 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "24900",
+            "FECHA": "2025-07-23",
+            "DESCRIPCIÓN": "Compraste $24.900,00 en AMAZON PRIME con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "36107",
+            "FECHA": "2025-07-18",
+            "DESCRIPCIÓN": "Compraste $36.107,80 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "104350",
+            "FECHA": "2025-07-17",
+            "DESCRIPCIÓN": "Compraste $104.350,89 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "54162",
+            "FECHA": "2025-07-17",
+            "DESCRIPCIÓN": "Compraste en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "320271",
+            "FECHA": "2025-07-15",
+            "DESCRIPCIÓN": "Compraste $320.271,96 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "134773",
+            "FECHA": "2025-07-13",
+            "DESCRIPCIÓN": "Compraste $134.773,33 en Amazon.com con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "112337",
+            "FECHA": "2025-07-12",
+            "DESCRIPCIÓN": "Compraste $112.337,87 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "47038",
+            "FECHA": "2025-07-11",
+            "DESCRIPCIÓN": "Compraste $47.038,22 en Amazon.com con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "40094",
+            "FECHA": "2025-07-11",
+            "DESCRIPCIÓN": "Compraste $40.094,87 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "56108",
+            "FECHA": "2025-07-11",
+            "DESCRIPCIÓN": "Compraste $56.108,73 en Amazon.com con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "87929",
+            "FECHA": "2025-07-10",
+            "DESCRIPCIÓN": "Compraste $87.929,81 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "81001",
+            "FECHA": "2025-07-10",
+            "DESCRIPCIÓN": "Compraste $81.001,52 en Amazon.com con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "62960",
+            "FECHA": "2025-07-10",
+            "DESCRIPCIÓN": "Compraste $62.960,64 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "88542",
+            "FECHA": "2025-07-09",
+            "DESCRIPCIÓN": "Compraste $88.542,20 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "53614",
+            "FECHA": "2025-07-08",
+            "DESCRIPCIÓN": "Compraste $53.614,25 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "59575",
+            "FECHA": "2025-07-07",
+            "DESCRIPCIÓN": "Compraste $59.575,81 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "397397",
+            "FECHA": "2025-07-06",
+            "DESCRIPCIÓN": "Compraste $397.397,26 en Amazon.com con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "79447",
+            "FECHA": "2025-07-06",
+            "DESCRIPCIÓN": "Compraste $79.447,66 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "238422",
+            "FECHA": "2025-07-06",
+            "DESCRIPCIÓN": "Compraste $238.422,46 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "178767",
+            "FECHA": "2025-07-06",
+            "DESCRIPCIÓN": "Compraste $178.767,16 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "317909",
+            "FECHA": "2025-07-05",
+            "DESCRIPCIÓN": "Compraste $317.909,86 en Amazon.com con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "322963",
+            "FECHA": "2025-06-17",
+            "DESCRIPCIÓN": "Compraste $322.963,33 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "479280",
+            "FECHA": "2025-05-22",
+            "DESCRIPCIÓN": "Compraste $479.280,58 en Amazon.com con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "1729322",
+            "FECHA": "2025-05-06",
+            "DESCRIPCIÓN": "Compraste en WWW.AMAZON.ES con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "1809874",
+            "FECHA": "2025-05-05",
+            "DESCRIPCIÓN": "Recibiras $1.809.874 en 10 dias habiles en tu tarjeta debito *1155 por parte de WWW.AMAZON."
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "1706763",
+            "FECHA": "2025-03-23",
+            "DESCRIPCIÓN": "Compraste $1.706.763,33 en WWW.AMAZON.ES con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "61760",
+            "FECHA": "2025-03-02",
+            "DESCRIPCIÓN": "Compraste $61.760,45 en AMAZON PRIME PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "88258",
+            "FECHA": "2025-01-28",
+            "DESCRIPCIÓN": "Compraste $88.258,18 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "134167",
+            "FECHA": "2024-11-29",
+            "DESCRIPCIÓN": "Compraste $134.167,57 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "215246",
+            "FECHA": "2024-10-16",
+            "DESCRIPCIÓN": "Compraste $215.246,03 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "COP": "533964",
+            "FECHA": "2024-10-15",
+            "DESCRIPCIÓN": "Compraste $533.964,44 en AMAZON MKTPLACE PMTS con tu T.Deb *1155"
+          }
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-16T19:40:29.000Z",
+  "versionId": "1f63c9d4-f53e-4986-8c49-b1ea68a429c7"
+}
