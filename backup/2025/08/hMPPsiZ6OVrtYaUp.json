@@ -1,0 +1,79 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get many executions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-20T03:31:20.681Z",
+  "id": "hMPPsiZ6OVrtYaUp",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 34",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        -64
+      ],
+      "id": "c64e8365-3979-45c6-b53a-afb378ee757f",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "execution",
+        "returnAll": true,
+        "filters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "uXzwqPWIn7cNx3ZK",
+            "mode": "list",
+            "cachedResultName": "🟢 [GERSSON-L8-ORG] CAPTURA TD - REGISTRO Y ENCUESTAS (#uXzwqPWIn7cNx3ZK)"
+          },
+          "status": "error"
+        },
+        "options": {},
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        -352,
+        -64
+      ],
+      "id": "ea453bf8-c061-4c7d-b137-8bf412a0c525",
+      "name": "Get many executions",
+      "credentials": {
+        "n8nApi": {
+          "id": "uiktFCUOAkK45RDJ",
+          "name": "n8n account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-20T03:31:20.000Z",
+  "versionId": "897ae6df-86b4-436e-aaaa-6313a2fd06cd"
+}
