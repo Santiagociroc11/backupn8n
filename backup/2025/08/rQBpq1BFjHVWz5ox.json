@@ -1,0 +1,2134 @@
+{
+  "active": false,
+  "connections": {
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [],
+        [
+          {
+            "node": "mensajes",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mensajes": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe a recording1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Transcribe a recording1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields4": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Switch3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "actualizar estado [MEDIO DE PAGO]",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch3": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields6",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields5": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto2": {
+      "main": [
+        [
+          {
+            "node": "Send message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto4": {
+      "main": [
+        [
+          {
+            "node": "Send message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields6": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message1": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto6": {
+      "main": [
+        [
+          {
+            "node": "Send message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields7": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message2": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait4": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto8": {
+      "main": [
+        [
+          {
+            "node": "Insert rows in a table1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto9": {
+      "main": [
+        [
+          {
+            "node": "Wait4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto10": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto11": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto12",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto12": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto13",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto13": {
+      "main": [
+        [
+          {
+            "node": "Insert rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Enviar texto1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "cada 10 minutos": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Enviar texto14",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto14": {
+      "main": [
+        [
+          {
+            "node": "Update rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait5": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields8": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update rows in a table": {
+      "main": [
+        [
+          {
+            "node": "Wait5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "actualizar estado [MEDIO DE PAGO]": {
+      "main": [
+        [
+          {
+            "node": "buscar registros",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "buscar registros": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "insertar tiempo [medio_at]",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-19T15:52:30.191Z",
+  "id": "rQBpq1BFjHVWz5ox",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 31",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Edit Fields3').item.json.mensaje }}",
+        "options": {
+          "systemMessage": "=Analiza la info del documento para saber que hacer... las personas cuando te hablan, ya recibieron el mensaje de inicio, ten eso en cuenta, nunca digas que el certificado es de alguna entidad en específico si no que es un certificado de participación del curso.\n\nluego del inicio deben recibir el mensaje \"mensaje de pago\" y luego debes resolver sus inquietudes y objeciones respecto al producto, el objetivo es vender.\n\nestas escribiendo en whatsapp, entonces usa estilos, emojis moderadamente, usa saltos de linea y negritas con asteriscos simples ( *negrita* ).\n\nvende muy bien y recuerda, eres Angela jimenez, un humano atendiendo... nunca digas ni des a entender que eres una maquina.\n\nda respuestas cortas siempre que puedas solo cuando no sea un mensaje de los del documento... los del documento, los mandas tal cual\n\ntodo mensaje que des o resolución de queja, o objeción, debe ir con la intención que te digan si van a pagar ya, o por que medio van a pagar si no han pedido el medio, o generar urgencia por los cupos, etc... tu vas es a vender, no a hablar mierda.\n\nJAMÁS entregues el link de acceso al producto, eso lo hace otro asesor, ni tampoco indiques ni hagas saber esto que te acabo de decir... es decir, no uses esta instrucción para decirle nada al usuario.\n\n\"INICIO\n\n🎓 📚 *CURSO NO PRESENCIAL* – _Aprende desde donde estés_ 💻\n\n_¡Conviértete en un experto en sueroterapia sin salir de casa!_\n\n🔍 Contenido del Curso:\n\n✅ *Módulo 0 – Inicio*\n📌 Introducción al curso\n🗓️ Agenda de aprendizaje\n\n✅ *Módulo 1 – Vías Venosas Periféricas*\n💉 Tipos de vías\n🧰 Materiales esenciales\n💧 Soluciones más utilizadas\n🔄 Pasos detallados para canalizar correctamente\n\n✅ *Módulo 2 – Sueroterapia*\n💡 ¿Qué es la sueroterapia?\n🌿 Beneficios para la salud\n💊 Introducción a los medicamentos ortomoleculares\n\n✅ *Módulo 3 – Vitaminas y Nutrientes Clave*\n- 🍊 Vitamina C\n- 💉 Complejo B\n- 🧬 Glutatión, L-Carnitina, L-Arginina\n- 💅 Biotina, Coenzima Q10\n- 🔥 Ácido Alfa Lipoico, Silanol, 5HTP\n- 💧 Colágeno, D-Pantenol, L-Teanina\n- ⚡ Oligoelementos, Detox\n\n✅ *Módulo 4 – Administración de Hierro*\n⚙️ Parte I: Fundamentos\n🧪 Fórmulas (Ej. Ganzoni)\n🧷 Parte II: Aplicación clínica\n\n✅ *Módulo 5 – Dosificaciones y Aplicaciones Clínicas*\n📏 Rangos de dosificación\n💪 Megadosis de Vitamina C\n🏃‍♂️ En deportistas, pérdida de peso, anti-edad, inmunidad y artritis\n\n✅ *Módulo 6 – Medicamentos Homeopáticos*\n🌱 ¿Qué son?\n💊 Ejemplos y aplicaciones\n\n✅ *Módulo 7 – Seguridad y Buenas Prácticas*\n🛡️ Protocolos esenciales\n⛔ Contraindicaciones\n👋 Cierre y recomendaciones finales\n\n📲 ¡Aprende desde casa, a tu ritmo y con contenido completo y actualizado!\n💼 Ideal para profesionales de la salud, terapeutas o quienes deseen ampliar sus conocimientos.\n\n☁ *Beneficios Adicionales*\n\n✅ Acceso de por vida a los archivos en la nube\n✅ No te preocupes por perder el material, ¡estará siempre disponible!\n✅ Pago único, sin cargos ocultos ni mensualidades\n✅ Lo pagas una vez y es todo tuyo. ¡Sin sorpresas después!\n\n📩 ¡Inscríbete hoy y transforma tu futuro por solo *15.000 PESOS COLOMBIANOS*\n\n🚨OFERTA ÚNICA Y POR TIEMPO LIMITADO🚨\n\n👉🏻El precio regular de nuestro curso es de $79.900 pesos colombianos.\n-. Pero hoy solo\npagarás la suma de 15.0000 PESOS COLOMBIANOS\n\nQUE RECIBIRÁS: 👇🏻\n+ DE 35 LECCIONES EN VIDEO\nEl envío es inmediato ya sea a tu correo Gmail o enviaremos un enlace por Whatsapp.\n📲📥Hoy últimos (5) cupos 🕣disponibles con nuestra oferta especial de $15.000 mil pesos colombianos solo hasta hoy. 😱\n\n👉🏻 Aprovecha está oferta especial, estos son nuestros medios de pago: \n\n✨🫶🏻NEQUI\n\n✨🫶🏻DAVIPLATA\n\n¿Quedo atenta al medio de pago que prefieras?\n\nMEDIOS DE PAGO\n\n🚨OFERTA ÚNICA Y POR TIEMPO LIMITADO🚨\n\n👉🏻El precio regular de nuestro curso es de $79.900 pesos colombianos.\n-. Pero hoy solo\npagarás la suma de 15.0000 PESOS COLOMBIANOS\n\nQUE RECIBIRÁS: 👇🏻\n+ DE 35 LECCIONES EN VIDEO\nEl envío es inmediato ya sea a tu correo Gmail o enviaremos un enlace por Whatsapp.\n📲📥Hoy últimos (5) cupos 🕣disponibles con nuestra oferta especial de $15.000 mil pesos colombianos solo hasta hoy. 😱\n\n👉🏻 Aprovecha está oferta especial, estos son nuestros medios de pago: \n\n✨🫶🏻NEQUI\n\n✨🫶🏻DAVIPLATA\n\n¿Quedo atenta al medio de pago que prefieras?\n¿Qué medio de pago te queda mejor?\n\nIré PREPARANDO el ENLACE para ti.\n\n\n\nNEQUI\n\n*💜PARA NEQUI, sigue estos pasos*  \n\nEN TU APP DE NEQUI dale a la opción de ENVIAR y seleccionas ENVIAR CON LLAVE y pones estos datos 👇🏻\n\n3002455277\n\n*Es lo mismo que enviar a nequi*\n\n> Debe aparecer Pao** Mol***\n\n*😊Estas a 1 PASO: 👇*\n\n📷 Envia el *LA CAPTURA DE LOS MOVIMIENTOS* para verificar.\n\n_Iré preparando el link 🫵🏼_\n\n\nBANCOLOMBIA\n\n*💜PARA BANCOLOMBIA, sigue estos pasos*  \n\nEN TU APP DE BANCOLOMBIA dale a la opción de TRANSFERIR y seleccionas *TRANSFERIR CON LLAVE* sigues los pasos y en llave pones estos datos 👇🏻\n\n3002455277\n\n*😊Estas a 1 PASO: 👇*\n\n> debe aparecer Pao** Mol**\n\n📷 Envia el *LA CAPTURA DEL PAGO* para verificar.\n\n_Iré preparando el link 🫵🏼_\n\n\nDAVIPLATA\n\n*💜PARA DAVIPLATA, sigue estos pasos*  \n\nEN TU APP DE DAVIPLATA dale a la opción de *PASAR PLATA* y seleccionas *USANDO LLAVES* y pones estos datos 👇🏻\n\n3002455277\n\n*😊Estas a 1 PASO: 👇*\n\n> debe aparecer Pao** Mol**\n\n📷 Envia el *LA CAPTURA DE LOS MOVIMIENTOS* para verificar.\n\n_Iré preparando el link 🫵🏼_\n\n\nACCESO AL PROGRAMA\n\n🥳 *Felicidades¡¡ Tu compra fue aprobada* ✅.\n  \n  🧡En primer lugar, gracias por el interés y confianza.\n  \n  Ya mismo te comparto los accesos activos al PRODUCTO 🔓🔑\n  \n  (Accede al PRODUCTO completo) Haz clic aquí 👇\n  \n  LINK: https://link.automscc.com/fg-sueroperapia\n  \n  😊 *Disfruta del contenido*\n\"\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        784,
+        1024
+      ],
+      "id": "92998d49-cfef-49cd-a348-3e18e63d9dc3",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "options": {
+          "temperature": 0.3
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        704,
+        1248
+      ],
+      "id": "6d03d9ca-c083-409a-9737-85bb2bcb2c1d",
+      "name": "OpenAI Chat Model"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "=prueba2-{{$('Edit Fields3').item.json.id }}",
+        "contextWindowLength": 20
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        864,
+        1248
+      ],
+      "id": "d3ad9705-ae0a-4e9c-a59f-4298a3672b41",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "9532409e-89d5-4547-9afe-abd016b06fda",
+                    "leftValue": "={{ $json?.estado }}",
+                    "rightValue": "PAGADO",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PAGADO"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.isEmpty() }}",
+                    "rightValue": "=",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "id": "cf3b0b3a-07dd-4334-98e7-d2652cd94364"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NUEVO"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "88231b01-a97e-420d-b9f3-bb2599dac61b",
+                    "leftValue": "={{ $json.isEmpty() }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "false",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "VIEJO"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        352,
+        512
+      ],
+      "id": "be8e3fb2-1eac-4a53-a6c5-54ae945c0464",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f1bdba4d-4e70-4e1f-8b24-490349215a4c",
+              "name": "mensaje1",
+              "value": "=🎓 📚 *CURSO NO PRESENCIAL* – _Aprende desde donde estés_ 💻\n\n_¡Conviértete en un experto en sueroterapia sin salir de casa!_\n\n🔍 Contenido del Curso:\n\n✅ *Módulo 0 – Inicio*\n📌 Introducción al curso\n🗓️ Agenda de aprendizaje\n\n✅ *Módulo 1 – Vías Venosas Periféricas*\n💉 Tipos de vías\n🧰 Materiales esenciales\n💧 Soluciones más utilizadas\n🔄 Pasos detallados para canalizar correctamente\n\n✅ *Módulo 2 – Sueroterapia*\n💡 ¿Qué es la sueroterapia?\n🌿 Beneficios para la salud\n💊 Introducción a los medicamentos ortomoleculares",
+              "type": "string"
+            },
+            {
+              "id": "87c44f63-2e2c-4afe-82e3-bd5e9a41089a",
+              "name": "mensaje2",
+              "value": "=✅ *Módulo 3 – Vitaminas y Nutrientes Clave*\n- 🍊 Vitamina C\n- 💉 Complejo B\n- 🧬 Glutatión, L-Carnitina, L-Arginina\n- 💅 Biotina, Coenzima Q10\n- 🔥 Ácido Alfa Lipoico, Silanol, 5HTP\n- 💧 Colágeno, D-Pantenol, L-Teanina\n- ⚡ Oligoelementos, Detox\n\n✅ *Módulo 4 – Administración de Hierro*\n⚙️ Parte I: Fundamentos\n🧪 Fórmulas (Ej. Ganzoni)\n🧷 Parte II: Aplicación clínica\n\n✅ *Módulo 5 – Dosificaciones y Aplicaciones Clínicas*\n📏 Rangos de dosificación\n💪 Megadosis de Vitamina C\n🏃‍♂️ En deportistas, pérdida de peso, anti-edad, inmunidad y artritis\n\n✅ *Módulo 6 – Medicamentos Homeopáticos*\n🌱 ¿Qué son?\n💊 Ejemplos y aplicaciones",
+              "type": "string"
+            },
+            {
+              "id": "f2411441-59af-4dd4-a095-6ab9b72dbf3c",
+              "name": "mensaje3",
+              "value": "=✅ *Módulo 7 – Seguridad y Buenas Prácticas*\n🛡️ Protocolos esenciales\n⛔ Contraindicaciones\n👋 Cierre y recomendaciones finales\n\n📲 ¡Aprende desde casa, a tu ritmo y con contenido completo y actualizado!\n💼 Ideal para profesionales de la salud, terapeutas o quienes deseen ampliar sus conocimientos.",
+              "type": "string"
+            },
+            {
+              "id": "250488f0-115c-4c38-9047-efbc969de5fe",
+              "name": "mensaje4",
+              "value": "=☁ *Beneficios Adicionales*\n\n✅ Acceso de por vida a los archivos en la nube\n✅ No te preocupes por perder el material, ¡estará siempre disponible!\n✅ Pago único, sin cargos ocultos ni mensualidades\n✅ Lo pagas una vez y es todo tuyo. ¡Sin sorpresas después!\n\n📩 ¡Inscríbete hoy y transforma tu futuro por solo *15.000 PESOS COLOMBIANOS*",
+              "type": "string"
+            },
+            {
+              "id": "1ce164e4-7da5-4101-8b46-8c3152f8dc8f",
+              "name": "mensaje5",
+              "value": "=🚨OFERTA ÚNICA Y POR TIEMPO LIMITADO🚨\n\n👉🏻El precio regular de nuestro curso es de $79.900 pesos colombianos.\n-. Pero hoy solo\npagarás la suma de 15.0000 PESOS COLOMBIANOS\n\nQUE RECIBIRÁS: 👇🏻\n+ DE 35 LECCIONES EN VIDEO\nEl envío es inmediato ya sea a tu correo Gmail o enviaremos un enlace por Whatsapp.\n📲📥Hoy últimos (5) cupos 🕣disponibles con nuestra oferta especial de $15.000 mil pesos colombianos solo hasta hoy. 😱\n\n👉🏻 Aprovecha está oferta especial, estos son nuestros medios de pago: \n\n✨🫶🏻NEQUI\n\n✨🫶🏻DAVIPLATA\n\n¿Quedo atenta al medio de pago que prefieras?",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        720,
+        208
+      ],
+      "id": "8389f419-4404-47e3-8275-507cde527d92",
+      "name": "mensajes"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "mensajes",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1344,
+        1024
+      ],
+      "id": "d51440fc-3ff6-4c97-8800-195b921696b3",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "adf92516-6f36-46ae-97d6-838a176466a1",
+              "name": "mensajes",
+              "value": "={{ $json.output.split(\"\\n\\n\") }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1120,
+        1024
+      ],
+      "id": "1b7306db-c1cc-44dc-a6e8-5abad17cb3c7",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.data.message?.imageMessage }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "object",
+                      "operation": "exists",
+                      "singleValue": true
+                    },
+                    "id": "ea32b550-2a52-490d-b786-0f43bf98d8c0"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "IMAGEN"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f105f52c-5590-4ae2-a8d6-3384d8c207b1",
+                    "leftValue": "={{ $json.body.data.message?.audioMessage }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "object",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "VOZ"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -880,
+        432
+      ],
+      "id": "498396f1-d45f-4234-b1e9-0d24fae999db",
+      "name": "Switch2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8b14c8be-5914-40ee-807d-61705fc6f64f",
+              "name": "mensaje_pagado",
+              "value": "=🥳 *Felicidades¡¡ Tu compra fue aprobada* ✅.\n  \n  🧡En primer lugar, gracias por el interés y confianza.\n  \n  Ya mismo te comparto los accesos activos al PRODUCTO 🔓🔑\n  \n  (Accede al PRODUCTO completo) Haz clic aquí 👇\n  \n  LINK: https://link.automscc.com/fg-sueroperapia\n  \n  😊 *Disfruta del contenido*",
+              "type": "string"
+            },
+            {
+              "id": "47a9ee07-c4fd-404c-a95b-8548722a53f7",
+              "name": "mensaje_revision",
+              "value": "=Dame un momento mientras reviso el pago...",
+              "type": "string"
+            },
+            {
+              "id": "af8d1632-54b0-43c6-a0c3-37261e27d797",
+              "name": "id",
+              "value": "={{ $('Webhook').item.json.body.data.key.remoteJid.replaceAll(/\\D/g, '') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "70a9de7c-14dc-4c92-8242-043eebbd1b21",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -64,
+        304
+      ],
+      "id": "cdb241df-3caf-4560-8a01-3819531af505",
+      "name": "Transcribe a recording1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "eeea366a-0f98-42e8-8437-8b831562c786",
+              "name": "mensaje",
+              "value": "={{ $json.mensaje }}",
+              "type": "string"
+            },
+            {
+              "id": "c66bb989-65cb-4bc8-8ddb-144b7039a860",
+              "name": "id",
+              "value": "={{ $('Webhook').item.json.body.data.key.remoteJid.replaceAll(/\\D/g, '') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -304,
+        528
+      ],
+      "id": "53fbdb9a-1c6a-429e-99ec-b421541b77aa",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "webhook-api1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1152,
+        448
+      ],
+      "id": "ba6513cd-9762-4211-80aa-61cc720cc0ac",
+      "name": "Webhook",
+      "webhookId": "f87db36e-b67b-4db8-9ff6-db6b272ce5d0"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "bots",
+          "mode": "list",
+          "cachedResultName": "bots"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "numero",
+              "value": "={{ $json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -32,
+        528
+      ],
+      "id": "97d217f7-7fde-4129-9f68-f62f5c6ea4bf",
+      "name": "Select rows from a table",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "API1",
+        "remoteJid": "={{ $('Edit Fields3').item.json.id }}",
+        "messageText": "={{ $json.mensaje1 }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        864,
+        208
+      ],
+      "id": "d794602a-3358-4172-a2ed-3eb7b7c9a119",
+      "name": "Enviar texto"
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "bots",
+          "mode": "list",
+          "cachedResultName": "bots"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "numero",
+              "value": "={{ $('Edit Fields3').item.json.id }}"
+            },
+            {
+              "column": "estado",
+              "value": "bienvenida"
+            },
+            {
+              "column": "ingreso_at",
+              "value": "={{ $now.toMillis() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        1616,
+        208
+      ],
+      "id": "defed4f3-dc80-42ee-bdc9-fdfc34b6deaa",
+      "name": "Insert rows in a table",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "API1",
+        "remoteJid": "={{ $('Edit Fields3').item.json.id }}",
+        "messageText": "={{ $json.mensajes }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        1856,
+        1056
+      ],
+      "id": "61ff89e4-d82f-4a08-803a-d633692b86bd",
+      "name": "Enviar texto1"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "body.data.message.base64",
+        "options": {
+          "fileName": "audio.ogg"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -304,
+        304
+      ],
+      "id": "c2a7a21e-a50b-4e17-b540-5bac788d29d4",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cd062b6b-aa6c-4846-94e0-73e6cd17662d",
+              "name": "mensaje",
+              "value": "={{ $json.body.data?.message?.conversation }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -624,
+        528
+      ],
+      "id": "4ac13b45-0103-4f11-aee2-a3b644d8658b",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "16f7c6ab-032b-4b02-803b-feef93c91f85",
+              "name": "mensaje",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        128,
+        304
+      ],
+      "id": "6c73ec64-e2c1-4410-8eea-d8cb24d6e178",
+      "name": "Edit Fields4"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Edit Fields3').item.json.mensaje.toLowerCase() }}",
+                    "rightValue": "/neq|dav|bancol/",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    },
+                    "id": "b8d3cdc6-8b61-4d97-87ad-7dcc6da95f0e"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "METODO DE PAGO"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        544,
+        672
+      ],
+      "id": "a559b4b3-ee25-4a43-b889-3f27a1821675",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "API1",
+        "remoteJid": "={{ $('Edit Fields3').item.json.id }}",
+        "messageText": "={{ $json.mensaje }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        1728,
+        480
+      ],
+      "id": "97c055d0-2330-4e56-88ad-a239477f660c",
+      "name": "Enviar texto2"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Edit Fields3').item.json.mensaje.toLowerCase() }}",
+                    "rightValue": "/neq/",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    },
+                    "id": "cb15f20c-71da-41d0-aeea-ad57e7d6f65e"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NEQUI"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4dcbefee-dbf6-4dab-8a16-240bb836965f",
+                    "leftValue": "={{ $('Edit Fields3').item.json.mensaje.toLowerCase() }}",
+                    "rightValue": "/davi/",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "DAVI"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "dff8457a-82fd-4099-9673-77718ca1e093",
+                    "leftValue": "={{ $('Edit Fields3').item.json.mensaje.toLowerCase() }}",
+                    "rightValue": "/bancol/",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "BANCOLOMBIA"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1168,
+        624
+      ],
+      "id": "3d9bce5e-835d-4556-bde3-2c447597fd0a",
+      "name": "Switch3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6fbba52c-8767-4c3a-aaf6-d457ceae33c6",
+              "name": "mensaje",
+              "value": "=*💜PARA NEQUI, sigue estos pasos*  \n\nEN TU APP DE NEQUI dale a la opción de ENVIAR y seleccionas ENVIAR CON LLAVE y pones estos datos 👇🏻\n\n3002455277\n\n*Es lo mismo que enviar a nequi*\n\n> Debe aparecer Pao** Mol***\n\n*😊Estas a 1 PASO: 👇*\n\n📷 Envia el *LA CAPTURA DE LOS MOVIMIENTOS* para verificar.\n\n_Iré preparando el link 🫵🏼_",
+              "type": "string"
+            },
+            {
+              "id": "67bba54f-f771-4807-a84d-1ac0658f1628",
+              "name": "mensaje2",
+              "value": "=Quedo super atenta al comprobante 💖 ",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1520,
+        480
+      ],
+      "id": "5f4ed04a-a5f5-4b08-822a-7384edaf1be3",
+      "name": "Edit Fields5"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "API1",
+        "remoteJid": "={{ $('Edit Fields3').item.json.id }}",
+        "messageText": "={{ $('Edit Fields5').item.json.mensaje2 }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        2336,
+        480
+      ],
+      "id": "2ac61a82-f03b-4609-b088-ba352a78be85",
+      "name": "Enviar texto3"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "687303297807136",
+        "recipientPhoneNumber": "={{ $('Edit Fields3').item.json.id }}",
+        "messageType": "image",
+        "mediaLink": "http://automscc.com/wp-content/uploads/2025/08/nequi.jpg",
+        "additionalFields": {
+          "mediaCaption": "*Mira el instructivo 👆*"
+        }
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1936,
+        480
+      ],
+      "id": "00ab7373-dd96-4f60-b8ee-36d724836cf8",
+      "name": "Send message",
+      "webhookId": "4aa0149f-9683-4087-a99c-3e53c9b8c521"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2144,
+        480
+      ],
+      "id": "611b80b7-7761-4b44-8bb5-2ad97c19238e",
+      "name": "Wait1",
+      "webhookId": "e983c5c6-3f1e-4fa6-b754-db75cdf57d86"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "API1",
+        "remoteJid": "={{ $('Edit Fields3').item.json.id }}",
+        "messageText": "={{ $json.mensaje }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        1728,
+        640
+      ],
+      "id": "e9c43f13-ffba-4c3c-9a77-19f9c3a0b068",
+      "name": "Enviar texto4"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6fbba52c-8767-4c3a-aaf6-d457ceae33c6",
+              "name": "mensaje",
+              "value": "=*💜PARA DAVIPLATA, sigue estos pasos*  \n\nEN TU APP DE DAVIPLATA dale a la opción de *PASAR PLATA* y seleccionas *USANDO LLAVES* y pones estos datos 👇🏻\n\n3002455277\n\n*😊Estas a 1 PASO: 👇*\n\n> debe aparecer Pao** Mol**\n\n📷 Envia el *LA CAPTURA DE LOS MOVIMIENTOS* para verificar.\n\n_Iré preparando el link 🫵🏼_",
+              "type": "string"
+            },
+            {
+              "id": "67bba54f-f771-4807-a84d-1ac0658f1628",
+              "name": "mensaje2",
+              "value": "=Quedo super atenta al comprobante 💖 ",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1520,
+        640
+      ],
+      "id": "d3e5cf97-238a-4d6e-b738-5a8293b91806",
+      "name": "Edit Fields6"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "API1",
+        "remoteJid": "={{ $('Edit Fields3').item.json.id }}",
+        "messageText": "={{ $('Edit Fields6').item.json.mensaje2 }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        2336,
+        640
+      ],
+      "id": "188d8321-4254-45a2-a3df-e4537b68c701",
+      "name": "Enviar texto5"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "687303297807136",
+        "recipientPhoneNumber": "={{ $('Edit Fields3').item.json.id }}",
+        "messageType": "image",
+        "mediaLink": "http://automscc.com/wp-content/uploads/2025/08/davi.jpg",
+        "additionalFields": {
+          "mediaCaption": "*Mira el instructivo 👆*"
+        }
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1936,
+        640
+      ],
+      "id": "641bb79a-b356-4354-a9d5-7fd94bf3abef",
+      "name": "Send message1",
+      "webhookId": "4aa0149f-9683-4087-a99c-3e53c9b8c521"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2144,
+        640
+      ],
+      "id": "253964ff-fab0-474a-9c22-6bafc75ac12c",
+      "name": "Wait2",
+      "webhookId": "e983c5c6-3f1e-4fa6-b754-db75cdf57d86"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "API1",
+        "remoteJid": "={{ $('Edit Fields3').item.json.id }}",
+        "messageText": "={{ $json.mensaje }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        1728,
+        800
+      ],
+      "id": "d172a4ac-6e2b-408b-8cf7-054d749cb203",
+      "name": "Enviar texto6"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6fbba52c-8767-4c3a-aaf6-d457ceae33c6",
+              "name": "mensaje",
+              "value": "=*💜PARA BANCOLOMBIA, sigue estos pasos*  \n\nEN TU APP DE BANCOLOMBIA dale a la opción de TRANSFERIR y seleccionas *TRANSFERIR CON LLAVE* sigues los pasos y en llave pones estos datos 👇🏻\n\n3002455277\n\n*😊Estas a 1 PASO: 👇*\n\n> debe aparecer Pao** Mol**\n\n📷 Envia el *LA CAPTURA DEL PAGO* para verificar.\n\n_Iré preparando el link 🫵🏼_",
+              "type": "string"
+            },
+            {
+              "id": "67bba54f-f771-4807-a84d-1ac0658f1628",
+              "name": "mensaje2",
+              "value": "=Quedo super atenta al comprobante 💖 ",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1520,
+        800
+      ],
+      "id": "ae519656-0809-40a5-a72e-cc9679b5367f",
+      "name": "Edit Fields7"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "API1",
+        "remoteJid": "={{ $('Edit Fields3').item.json.id }}",
+        "messageText": "={{ $('Edit Fields7').item.json.mensaje2 }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        2336,
+        800
+      ],
+      "id": "522e5fae-09dc-49d4-b207-ff6fda37f345",
+      "name": "Enviar texto7"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "687303297807136",
+        "recipientPhoneNumber": "={{ $('Edit Fields3').item.json.id }}",
+        "messageType": "image",
+        "mediaLink": "http://automscc.com/wp-content/uploads/2025/08/bancolombia.jpg",
+        "additionalFields": {
+          "mediaCaption": "*Mira el instructivo 👆*"
+        }
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1936,
+        800
+      ],
+      "id": "ec4e0f5c-e37f-41b7-8269-b513d9768465",
+      "name": "Send message2",
+      "webhookId": "4aa0149f-9683-4087-a99c-3e53c9b8c521"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2144,
+        800
+      ],
+      "id": "879b23ae-d139-4607-8f47-7dfc37451a5c",
+      "name": "Wait3",
+      "webhookId": "e983c5c6-3f1e-4fa6-b754-db75cdf57d86"
+    },
+    {
+      "parameters": {
+        "amount": 12
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        368,
+        0
+      ],
+      "id": "81a602a6-a6cd-44ed-a4d9-4da040db30fd",
+      "name": "Wait4",
+      "webhookId": "111db359-9c23-4be9-9e7b-0c81429d1040"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "API1",
+        "remoteJid": "={{ $('Edit Fields2').item.json.id }}",
+        "messageText": "={{ $('Edit Fields2').item.json.mensaje_pagado }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        528,
+        0
+      ],
+      "id": "74091cc5-e93b-4027-8f8f-f43b3725ef53",
+      "name": "Enviar texto8"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "API1",
+        "remoteJid": "={{ $json.id }}",
+        "messageText": "={{ $json.mensaje_revision }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        176,
+        0
+      ],
+      "id": "e3ab2987-3a15-45eb-884b-cba4920be995",
+      "name": "Enviar texto9"
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "bots",
+          "mode": "list",
+          "cachedResultName": "bots"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "numero",
+              "value": "={{ $('Edit Fields2').item.json.id }}"
+            },
+            {
+              "column": "estado",
+              "value": "pagado"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        704,
+        0
+      ],
+      "id": "592c44db-d368-440b-af4f-5d6d8999776a",
+      "name": "Insert rows in a table1",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "API1",
+        "remoteJid": "={{ $('Edit Fields3').item.json.id }}",
+        "messageText": "={{ $('mensajes').item.json.mensaje2 }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        1024,
+        208
+      ],
+      "id": "290e82ff-019d-4597-ad67-903c232eaf3d",
+      "name": "Enviar texto10"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "API1",
+        "remoteJid": "={{ $('Edit Fields3').item.json.id }}",
+        "messageText": "={{ $('mensajes').item.json.mensaje3 }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        1168,
+        208
+      ],
+      "id": "74de6735-2538-4e16-acd1-711a031b4ab9",
+      "name": "Enviar texto11"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "API1",
+        "remoteJid": "={{ $('Edit Fields3').item.json.id }}",
+        "messageText": "={{ $('mensajes').item.json.mensaje4 }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        1312,
+        208
+      ],
+      "id": "dc16df3a-5cb8-4a67-8352-b18e3db17e0d",
+      "name": "Enviar texto12"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "API1",
+        "remoteJid": "={{ $('Edit Fields3').item.json.id }}",
+        "messageText": "={{ $('mensajes').item.json.mensaje5 }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        1456,
+        208
+      ],
+      "id": "00fcd072-1486-4c77-9191-4df0b6e3e3d1",
+      "name": "Enviar texto13"
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random() * 3) + 1 }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2064,
+        1056
+      ],
+      "id": "b362e7b7-a61f-40e6-a396-2a634fd833a4",
+      "name": "Wait",
+      "webhookId": "64481d4b-59fb-4ced-a526-c0ffb9dcd587"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1568,
+        1024
+      ],
+      "id": "e70db554-d677-4937-b71a-7f898bc14ebf",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 10
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1136,
+        864
+      ],
+      "id": "e3a6aa40-5c0b-46a9-a586-cdf47308d05c",
+      "name": "cada 10 minutos"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "bots",
+          "mode": "list",
+          "cachedResultName": "bots"
+        },
+        "limit": 5,
+        "where": {
+          "values": [
+            {
+              "column": "estado",
+              "condition": "!=",
+              "value": "pagado"
+            },
+            {
+              "column": "estado",
+              "condition": "!=",
+              "value": "bienvenida"
+            },
+            {
+              "column": "remarketingMEDIO_1",
+              "condition": "IS NULL"
+            },
+            {
+              "column": "medio_at",
+              "condition": "<=",
+              "value": "={{ $now.toMillis()-3600000 }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -704,
+        864
+      ],
+      "id": "4f1ebfa4-9fb0-4e16-8b74-b92f4f2364d9",
+      "name": "Select rows from a table1",
+      "alwaysOutputData": false,
+      "credentials": {
+        "mySql": {
+          "id": "179b2UX7XsHkNW05",
+          "name": "REDIRECCIONES - LANZAMIENTOS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "table": {
+          "__rl": true,
+          "value": "bots",
+          "mode": "list",
+          "cachedResultName": "bots"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "numero",
+        "valueToMatchOn": "={{ $('Edit Fields3').item.json.id }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "estado",
+              "value": "medio"
+            }
+          ]
+        },
+        "options": {
+          "detailedOutput": true
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        720,
+        448
+      ],
+      "id": "fec7c7b0-08c1-409c-a0aa-1d19756b7e36",
+      "name": "actualizar estado [MEDIO DE PAGO]"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "API1",
+        "remoteJid": "={{ $json.numero }}",
+        "messageText": "={{$('Edit Fields8').item.json.RMKT1}}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -224,
+        928
+      ],
+      "id": "1805b889-aa2b-47c1-a0ae-5cc7fcefc76e",
+      "name": "Enviar texto14"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -480,
+        864
+      ],
+      "id": "5bca9225-e60b-4129-b555-6bbc0ca63381",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        176,
+        928
+      ],
+      "id": "33da3e19-a351-4edb-a1ac-9bf95d69f340",
+      "name": "Wait5",
+      "webhookId": "d8a7bb4b-2dd5-4091-bb6a-67b67aa600a9"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "66f4408e-4f6b-4944-a944-e841e649208c",
+              "name": "RMKT1",
+              "value": "=🚨 *MEGA PROMO FLASH* 🚨\n\nCURSO DE SUEROTERAPIA POR SOLO:\n*$12.000 Pesos Colombianos*\n\nSolo tengo 3 cupos.\n\n_¿Deseas adquirirlo?_\n\nIncluye certificado.\nIncluye formulas",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -928,
+        864
+      ],
+      "id": "a45cb07a-a544-4e6a-8ff9-31a249dc5598",
+      "name": "Edit Fields8"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "table": {
+          "__rl": true,
+          "value": "bots",
+          "mode": "list",
+          "cachedResultName": "bots"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "numero",
+        "valueToMatchOn": "={{ $('Loop Over Items1').item.json.numero }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "remarketingMEDIO_1",
+              "value": "={{ $now.toMillis() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -16,
+        928
+      ],
+      "id": "5a88db52-0737-4f94-936f-06c77f738f3c",
+      "name": "Update rows in a table"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c502e743-8724-49fe-8076-6c2f2c9b20f1",
+              "leftValue": "={{ $json.medio_at }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1104,
+        448
+      ],
+      "id": "990a7a24-3373-4c81-9b38-e88ace35532a",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "bots",
+          "mode": "list",
+          "cachedResultName": "bots"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "numero",
+              "value": "={{ $('Edit Fields3').item.json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        912,
+        448
+      ],
+      "id": "c70bd9bd-1465-4af5-8226-560a12371b06",
+      "name": "buscar registros"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "table": {
+          "__rl": true,
+          "value": "bots",
+          "mode": "list",
+          "cachedResultName": "bots"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "numero",
+        "valueToMatchOn": "={{ $('Edit Fields3').item.json.id }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "medio_at",
+              "value": "={{ $now.toMillis() }}"
+            }
+          ]
+        },
+        "options": {
+          "detailedOutput": true
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        1328,
+        400
+      ],
+      "id": "eb89d596-9710-4395-b830-27253e953d2f",
+      "name": "insertar tiempo [medio_at]"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "contenedor1-n8n.4hba3d.easypanel.host",
+            "user-agent": "axios/1.10.0",
+            "content-length": "786",
+            "accept": "application/json, text/plain, */*",
+            "accept-encoding": "gzip, compress, deflate, br",
+            "content-type": "application/json",
+            "x-forwarded-for": "172.18.0.1",
+            "x-forwarded-host": "contenedor1-n8n.4hba3d.easypanel.host",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3c4102db4ada",
+            "x-real-ip": "172.18.0.1"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "event": "messages.upsert",
+            "instance": "API1",
+            "data": {
+              "key": {
+                "id": "wamid.HBgMNTczMjE4NTA0NzExFQIAEhgUM0ZFNjAxNjIzQzA5QUIyMDFGQ0IA",
+                "remoteJid": "573218504711@s.whatsapp.net",
+                "fromMe": false
+              },
+              "pushName": "FRANCISCO G",
+              "message": {
+                "conversation": "nequi"
+              },
+              "messageType": "conversation",
+              "messageTimestamp": 1754927572,
+              "source": "unknown",
+              "instanceId": "c4d6d44e-67ae-41ec-bdd1-c7a3c1357071"
+            },
+            "destination": "https://contenedor1-n8n.4hba3d.easypanel.host/webhook/webhook-api1",
+            "date_time": "2025-08-11T12:52:54.291Z",
+            "server_url": "https://contenedor1-evolution-api.4hba3d.easypanel.host",
+            "apikey": "EAAPlXEKCeGQBPCZCopaajgkn70TupYL5ZCuZBArrDeOS1nNd7AP2eYYLZBHj7wy1qvZC7Ow7HfBippShENFlyVJk81ZC3z4Y8R8rSJbr4hpBNeHEvOLOpnkHPJxkEPs4ITVk3OQAEXDqfjan3pXBpImovXukKWZA9lPimLQ07spMkfdS4bXohVd8wbML1ge41haSgZDZD"
+          },
+          "webhookUrl": "https://contenedor1-n8n.4hba3d.easypanel.host/webhook/webhook-api1",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-19T16:04:30.000Z",
+  "versionId": "9447b920-0978-46df-9285-5276fb2ee092"
+}
