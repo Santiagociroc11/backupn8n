@@ -28,18 +28,7 @@
         [],
         [
           {
-            "node": "CORREO BIENVENIDA",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "CORREO BIENVENIDA": {
-      "main": [
-        [
-          {
-            "node": "Wait",
+            "node": "Send email",
             "type": "main",
             "index": 0
           }
@@ -51,6 +40,17 @@
         [
           {
             "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send email": {
+      "main": [
+        [
+          {
+            "node": "Wait",
             "type": "main",
             "index": 0
           }
@@ -125,43 +125,43 @@
     },
     {
       "parameters": {
-        "sendTo": "={{ $json.Email }}",
-        "subject": "={{ $json.Nombre.toUpperCase() }} - SUEROTERAPIA (CERTIFICADO)",
-        "message": "=<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Anuncio de Nueva Plataforma</title>\n    <style>\n        /* Estilos básicos para asegurar la legibilidad */\n        body {\n            font-family: Arial, sans-serif;\n            background-color: #f4f4f4;\n            margin: 0;\n            padding: 20px;\n            color: #333333;\n            line-height: 1.6;\n        }\n        .container {\n            max-width: 600px;\n            margin: 0 auto;\n            background-color: #ffffff;\n            border: 1px solid #dddddd;\n            padding: 30px;\n        }\n        h1 {\n            font-size: 24px;\n            color: #111111;\n            border-bottom: 2px solid #eeeeee;\n            padding-bottom: 10px;\n            margin-bottom: 20px;\n        }\n        h2 {\n            font-size: 20px;\n            color: #222222;\n        }\n        p {\n            margin-bottom: 15px;\n        }\n        strong {\n            color: #000000;\n        }\n        /* Sección de credenciales */\n        .credentials {\n            background-color: #f9f9f9;\n            border: 1px solid #eeeeee;\n            padding: 20px;\n            margin: 20px 0;\n        }\n        .credentials p {\n            margin: 0 0 10px 0;\n        }\n        /* Botón de llamada a la acción */\n        .cta-button {\n            display: inline-block;\n            background-color: #007bff;\n            color: #ffffff;\n            padding: 12px 25px;\n            text-decoration: none;\n            font-weight: bold;\n            margin: 20px 0;\n        }\n        /* Sección de soporte y pie de página */\n        .support-section {\n            background-color: #f0f0f0;\n            padding: 15px;\n            margin-top: 20px;\n        }\n        .footer {\n            margin-top: 30px;\n            text-align: center;\n            font-size: 12px;\n            color: #777777;\n        }\n        .footer a {\n            color: #007bff;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1>¡Hemos Renovado Tu Espacio de Aprendizaje!</h1>\n        \n        <h2>Hola {{full_name}}, tenemos noticias importantes para ti.</h2>\n        \n        <p>En nuestro compromiso por darte la mejor experiencia posible, <strong>hemos migrado todos nuestros cursos a una plataforma nueva, más moderna y fácil de usar.</strong></p>\n        \n        <p>Esto significa que ahora tendrás un acceso más rápido, una navegación más intuitiva y nuevas funcionalidades que llegarán muy pronto.</p>\n        \n        <p><strong>✅ ¡TU NUEVO ACCESO ESTÁ LISTO!</strong> Hemos creado tu cuenta en la nueva plataforma para que no tengas que preocuparte por nada.</p>\n\n        <div class=\"credentials\">\n            <h2>🔑 Tus Nuevas Credenciales</h2>\n            <p>Usa esta información para entrar a la nueva plataforma:</p>\n            <p><strong>Email de acceso:</strong> {{ $json.Email }}</p>\n            <p><strong>Contraseña:</strong> {{ $json.Email }}</p>\n            <p>si, la contraseña es tu correo</p>\n            <p><strong>Tu curso:</strong> {{ $json['Nombre del Producto'] }}</p>\n        </div>\n\n        <h2>Tu Plan de Acción para Acceder</h2>\n        <ol>\n            <li><strong>Accede a la Nueva Plataforma:</strong> Haz clic en el botón \"ENTRAR A LA NUEVA PLATAFORMA\".</li>\n            <li><strong>Inicia Sesión:</strong> Usa tu email y la contraseña temporal. Por seguridad, el sistema te pedirá crear una nueva contraseña en tu primer acceso.</li>\n            <li><strong>Explora y Continúa:</strong> Una vez dentro, verás tu curso esperándote, listo para que continúes tu aprendizaje.</li>\n        </ol>\n        \n        <a href=\"https://cursos.automscc.com/login\" class=\"cta-button\">ENTRAR A LA NUEVA PLATAFORMA</a>\n        \n        <h2>🏆 Tu Certificado te Espera</h2>\n        <p>En esta nueva plataforma podrás <strong>generar y descargar tu certificado oficial</strong> al completar el curso, sin complicaciones y al instante. Podrás validar tus habilidades, descargarlo en PDF y compartirlo en LinkedIn.</p>\n\n        <div class=\"support-section\">\n            <h4>¿Necesitas Ayuda?</h4>\n            <p>Si tienes cualquier problema para acceder, responde a este correo y nuestro equipo te ayudará personalmente en menos de 24 horas.</p>\n        </div>\n        \n        <p>Estamos muy emocionados por esta nueva etapa. Gracias por seguir confiando en nosotros.</p>\n        <p><strong>Nos vemos dentro,</strong></p>\n        <p><small>PD: Este correo contiene tus nuevos datos de acceso. Guárdalo en un lugar seguro.</small></p>\n    </div>\n    <div class=\"footer\">\n        <p>Recibiste este correo porque eres un valioso miembro de {{ $json['Nombre del Producto'] }}.</p>\n        <p>&copy; 2025 Todos los derechos reservados.</p>\n        <p><a href=\"https://cursos.automscc.com/login\">Acceder a mis cursos</a> | <a href=\"https://cursos.automscc.com/login\">Soporte técnico</a></p>\n    </div>\n</body>\n</html>\n",
-        "options": {
-          "appendAttribution": false,
-          "senderName": "Soporte SueroTerapia"
-        }
-      },
-      "type": "n8n-nodes-base.gmail",
-      "typeVersion": 2.1,
-      "position": [
-        32,
-        -48
-      ],
-      "id": "c91e711e-7ff2-4627-b7a3-24611c9b61e3",
-      "name": "CORREO BIENVENIDA",
-      "webhookId": "7c320870-8f31-41ef-ae5d-695f1cb85b5e",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "TQIc6MxJVwS0cvQg",
-          "name": "GMAIL JSD COMPANY"
-        }
-      }
-    },
-    {
-      "parameters": {
         "amount": 4
       },
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        224,
-        -48
+        320,
+        -32
       ],
       "id": "d6c6133e-f88a-403b-b446-1a5f4e22cab5",
       "name": "Wait",
       "webhookId": "c81be1f8-95fe-4913-9253-ffc05db4f817"
+    },
+    {
+      "parameters": {
+        "fromEmail": "soporte@automscc.com",
+        "toEmail": "={{ $json.Email }}",
+        "subject": "={{ $json.Nombre.toUpperCase() }} - SUEROTERAPIA (CERTIFICADO)",
+        "html": "=<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Anuncio de Nueva Plataforma</title>\n    <style>\n        /* Estilos básicos para asegurar la legibilidad */\n        body {\n            font-family: Arial, sans-serif;\n            background-color: #f4f4f4;\n            margin: 0;\n            padding: 20px;\n            color: #333333;\n            line-height: 1.6;\n        }\n        .container {\n            max-width: 600px;\n            margin: 0 auto;\n            background-color: #ffffff;\n            border: 1px solid #dddddd;\n            padding: 30px;\n        }\n        h1 {\n            font-size: 24px;\n            color: #111111;\n            border-bottom: 2px solid #eeeeee;\n            padding-bottom: 10px;\n            margin-bottom: 20px;\n        }\n        h2 {\n            font-size: 20px;\n            color: #222222;\n        }\n        p {\n            margin-bottom: 15px;\n        }\n        strong {\n            color: #000000;\n        }\n        /* Sección de credenciales */\n        .credentials {\n            background-color: #f9f9f9;\n            border: 1px solid #eeeeee;\n            padding: 20px;\n            margin: 20px 0;\n        }\n        .credentials p {\n            margin: 0 0 10px 0;\n        }\n        /* Botón de llamada a la acción */\n        .cta-button {\n            display: inline-block;\n            background-color: #007bff;\n            color: #ffffff;\n            padding: 12px 25px;\n            text-decoration: none;\n            font-weight: bold;\n            margin: 20px 0;\n        }\n        /* Sección de soporte y pie de página */\n        .support-section {\n            background-color: #f0f0f0;\n            padding: 15px;\n            margin-top: 20px;\n        }\n        .footer {\n            margin-top: 30px;\n            text-align: center;\n            font-size: 12px;\n            color: #777777;\n        }\n        .footer a {\n            color: #007bff;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1>¡Hemos Renovado Tu Espacio de Aprendizaje!</h1>\n        \n        <h2>Hola {{full_name}}, tenemos noticias importantes para ti.</h2>\n        \n        <p>En nuestro compromiso por darte la mejor experiencia posible, <strong>hemos migrado todos nuestros cursos a una plataforma nueva, más moderna y fácil de usar.</strong></p>\n        \n        <p>Esto significa que ahora tendrás un acceso más rápido, una navegación más intuitiva y nuevas funcionalidades que llegarán muy pronto.</p>\n        \n        <p><strong>✅ ¡TU NUEVO ACCESO ESTÁ LISTO!</strong> Hemos creado tu cuenta en la nueva plataforma para que no tengas que preocuparte por nada.</p>\n\n        <div class=\"credentials\">\n            <h2>🔑 Tus Nuevas Credenciales</h2>\n            <p>Usa esta información para entrar a la nueva plataforma:</p>\n            <p><strong>Email de acceso:</strong> {{ $json.Email }}</p>\n            <p><strong>Contraseña:</strong> {{ $json.Email }}</p>\n            <p>si, la contraseña es tu correo</p>\n            <p><strong>Tu curso:</strong> {{ $json['Nombre del Producto'] }}</p>\n        </div>\n\n        <h2>Tu Plan de Acción para Acceder</h2>\n        <ol>\n            <li><strong>Accede a la Nueva Plataforma:</strong> Haz clic en el botón \"ENTRAR A LA NUEVA PLATAFORMA\".</li>\n            <li><strong>Inicia Sesión:</strong> Usa tu email y la contraseña temporal. Por seguridad, el sistema te pedirá crear una nueva contraseña en tu primer acceso.</li>\n            <li><strong>Explora y Continúa:</strong> Una vez dentro, verás tu curso esperándote, listo para que continúes tu aprendizaje.</li>\n        </ol>\n        \n        <a href=\"https://cursos.automscc.com/login\" class=\"cta-button\">ENTRAR A LA NUEVA PLATAFORMA</a>\n        \n        <h2>🏆 Tu Certificado te Espera</h2>\n        <p>En esta nueva plataforma podrás <strong>generar y descargar tu certificado oficial</strong> al completar el curso, sin complicaciones y al instante. Podrás validar tus habilidades, descargarlo en PDF y compartirlo en LinkedIn.</p>\n\n        <div class=\"support-section\">\n            <h4>¿Necesitas Ayuda?</h4>\n            <p>Si tienes cualquier problema para acceder, responde a este correo y nuestro equipo te ayudará personalmente en menos de 24 horas.</p>\n        </div>\n        \n        <p>Estamos muy emocionados por esta nueva etapa. Gracias por seguir confiando en nosotros.</p>\n        <p><strong>Nos vemos dentro,</strong></p>\n        <p><small>PD: Este correo contiene tus nuevos datos de acceso. Guárdalo en un lugar seguro.</small></p>\n    </div>\n    <div class=\"footer\">\n        <p>Recibiste este correo porque eres un valioso miembro de {{ $json['Nombre del Producto'] }}.</p>\n        <p>&copy; 2025 Todos los derechos reservados.</p>\n        <p><a href=\"https://cursos.automscc.com/login\">Acceder a mis cursos</a> | <a href=\"https://cursos.automscc.com/login\">Soporte técnico</a></p>\n    </div>\n</body>\n</html>\n",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        64,
+        -32
+      ],
+      "id": "47c639a9-d94b-4dc7-8a64-7ca7edf06bfa",
+      "name": "Send email",
+      "webhookId": "3c4da687-2870-410d-bd4b-186e6a25ffb4",
+      "credentials": {
+        "smtp": {
+          "id": "4ZwQ4RzBCX6knsxL",
+          "name": "HOSTINGUER SOPORTE@AUTOMSCC.COM"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -174,6 +174,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-08-20T01:43:34.000Z",
-  "versionId": "c77f294d-0389-4a91-b5ba-332b1b607574"
+  "updatedAt": "2025-08-20T19:29:40.000Z",
+  "versionId": "0954ee05-5833-461c-835e-3071c581ae98"
 }
