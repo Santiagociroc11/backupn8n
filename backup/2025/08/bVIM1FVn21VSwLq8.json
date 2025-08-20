@@ -1,0 +1,145 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search files and folders": {
+      "main": [
+        []
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        []
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-19T17:26:07.683Z",
+  "id": "bVIM1FVn21VSwLq8",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 32",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -16,
+        -192
+      ],
+      "id": "4d910cdf-768f-46b5-8bf9-357dffd89c3d",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "searchMethod": "query",
+        "returnAll": true,
+        "filter": {
+          "folderId": {
+            "__rl": true,
+            "value": "1_naH53TR63g4oDYrumN3wryjvX9D3yqc",
+            "mode": "list",
+            "cachedResultName": "SUEROTERAPIA",
+            "cachedResultUrl": "https://drive.google.com/drive/folders/1_naH53TR63g4oDYrumN3wryjvX9D3yqc"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "a16bafea-050b-4c01-a6bf-9f0f983b814b",
+      "name": "Search files and folders",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "3ZyaLVr7oKCDvQUn",
+          "name": "DRIVE SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://www.googleapis.com/drive/v3/files?q=%27{{ $json.id }}%27%20in%20parents&fields=files(id%2C%20name%2C%20mimeType%2C%20webViewLink)",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        416,
+        -192
+      ],
+      "id": "f57a06a9-eb0f-4408-b925-16e6917c60f8",
+      "name": "HTTP Request",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "3ZyaLVr7oKCDvQUn",
+          "name": "DRIVE SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bf02a51a-7db5-47da-949a-aa49fbe94e35",
+              "name": "id",
+              "value": "1oXDzKQnvF9ptsjUP3m5W0xlE_7Vovf_N",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        192,
+        -192
+      ],
+      "id": "fb835b5c-da33-41d8-851a-7e776d828c16",
+      "name": "Edit Fields"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-19T18:33:44.000Z",
+  "versionId": "9df0bba6-a85f-43fd-8e88-e631b20e18e8"
+}
