@@ -407,7 +407,12 @@
       "main": [
         [
           {
-            "node": "HTTP Request2",
+            "node": "PIXEL1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "PIXEL2",
             "type": "main",
             "index": 0
           }
@@ -1473,33 +1478,6 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": " https://graph.facebook.com/v21.0/1156253219623951/events",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "access_token",
-              "value": "EAAOAcBl41QIBPAbmJYzAk6gatq43TrZAbqWrgOWbOtzbHatJskrsRQ8R4seDAO3aRB0mZCLxAiFnR3FjnJVBZAZCJmfg0GD2E7GviM8Oa5hguHt1ZAxCf8ZCKg3ro2CfoO1brwouRQZAPQFdPglCHidXqhAttYZCcg1SNugkaOo1NVanZCnZBhhAynzS6Knl4x80fBEgZDZD"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={{ $json.toJsonString() }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2448,
-        384
-      ],
-      "id": "669a302f-2481-4a1b-8084-9c783a2be7e3",
-      "name": "HTTP Request2"
-    },
-    {
-      "parameters": {
         "assignments": {
           "assignments": [
             {
@@ -2138,6 +2116,60 @@
       ],
       "id": "301bd9c9-d4ed-40c5-8b60-1ffab70e42f7",
       "name": "Code2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": " https://graph.facebook.com/v21.0/1156253219623951/events",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "EAAOAcBl41QIBPAbmJYzAk6gatq43TrZAbqWrgOWbOtzbHatJskrsRQ8R4seDAO3aRB0mZCLxAiFnR3FjnJVBZAZCJmfg0GD2E7GviM8Oa5hguHt1ZAxCf8ZCKg3ro2CfoO1brwouRQZAPQFdPglCHidXqhAttYZCcg1SNugkaOo1NVanZCnZBhhAynzS6Knl4x80fBEgZDZD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.toJsonString() }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2528,
+        240
+      ],
+      "id": "669a302f-2481-4a1b-8084-9c783a2be7e3",
+      "name": "PIXEL1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": " https://graph.facebook.com/v21.0/1345856240462322/events",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "EAAOAcBl41QIBPIEtYxd2l3l2K3ktzd8hus5ZBpfHWUZAnGZBNGPcG7fjcMm9u4tUoMrlMzL93iqc60nHl1KFaEmwlISIurcMDHVkYP0CgYTrmLywockZAUBQWf3bFEpMQXZAdZBFrXMyRnMshOMQw7LlxckuRagLDJEZBLeVJEKAXNNRceNKtWEGZCuY2yCkZCx0QSwZDZD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.toJsonString() }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2528,
+        416
+      ],
+      "id": "d0426b00-bc8f-4c35-a2d7-4d5afc4918b2",
+      "name": "PIXEL2"
     }
   ],
   "pinData": {
@@ -2259,6 +2291,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-08-15T19:12:39.000Z",
-  "versionId": "b4e27d6f-df32-4906-a3c1-4ca91f4eee8f"
+  "updatedAt": "2025-08-21T03:02:09.000Z",
+  "versionId": "42d4915a-2ba6-43c9-9b17-aab4dce528b5"
 }
