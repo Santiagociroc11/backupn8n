@@ -1,0 +1,74 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "CLIENTE NUEVO - CERRADOR1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-24T04:50:39.827Z",
+  "id": "3VeBJ55D8nN21moA",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 37",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "21de9738-60ef-4298-9e05-862fe4b6251c",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.telegram.org/bot8117750846:AAGzyrxYSoPU87gaakngN7GCUFMAENeUFNc/sendMessage",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "chat_id",
+              "value": "5720775833"
+            },
+            {
+              "name": "text",
+              "value": "This is a test from curl"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3b72b508-00c5-4d12-9e68-257ac2238df4",
+      "name": "CLIENTE NUEVO - CERRADOR1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        288,
+        0
+      ]
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-24T04:52:23.000Z",
+  "versionId": "9abf8333-90c9-4d43-ba63-805738999996"
+}
