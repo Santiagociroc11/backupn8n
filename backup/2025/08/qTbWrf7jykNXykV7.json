@@ -1,0 +1,61 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-24T02:03:42.196Z",
+  "id": "qTbWrf7jykNXykV7",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 36",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -432,
+        -48
+      ],
+      "id": "222f9cd0-1be6-4096-a3a3-1ff56ce3cfbf",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://sistema-cierres-ger.automscc.com/api/hotmart/test",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -224,
+        -48
+      ],
+      "id": "684b982e-5beb-4df3-8313-8267119c9efc",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-24T02:03:42.000Z",
+  "versionId": "bb1be7cf-555e-4be0-b88e-52cc531dd17a"
+}
