@@ -795,7 +795,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"first_name\": \"{{ $('MongoDB2').item.json.whatsapp }}\",\n  \"whatsapp_phone\": \"{{ $('MongoDB2').item.json.whatsapp }}\"\n}",
+        "jsonBody": "={\n  \"first_name\": \"{{ $('MongoDB2').item.json.whatsapp }}\",\n  \"whatsapp_phone\": \"{{ $('MongoDB2').item.json.whatsapp }}\"\n  \"phone\": \"{{ $('MongoDB2').item.json.whatsapp }}\"\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -2173,57 +2173,6 @@
     }
   ],
   "pinData": {
-    "REGISTRO": [
-      {
-        "json": {
-          "headers": {
-            "host": "n8n.automscc.com",
-            "user-agent": "Mozilla/5.0 (Linux; Android 13; P80 Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/133.0.6943.81 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/500.0.0.57.50;IABMV/1;]",
-            "content-length": "899",
-            "accept": "*/*",
-            "accept-encoding": "gzip, deflate, br, zstd",
-            "accept-language": "es-MX,es;q=0.9,en-US;q=0.8,en;q=0.7",
-            "content-type": "application/json",
-            "origin": "https://terapiasmagneticas.com",
-            "priority": "u=1, i",
-            "referer": "https://terapiasmagneticas.com/",
-            "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Android WebView\";v=\"133\", \"Chromium\";v=\"133\"",
-            "sec-ch-ua-mobile": "?1",
-            "sec-ch-ua-platform": "\"Android\"",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "189.253.61.180",
-            "x-forwarded-host": "n8n.automscc.com",
-            "x-forwarded-port": "443",
-            "x-forwarded-proto": "https",
-            "x-forwarded-server": "3051a3bb6625",
-            "x-real-ip": "189.253.61.180",
-            "x-requested-with": "com.facebook.katana"
-          },
-          "params": {},
-          "query": {},
-          "body": {
-            "tiemporegistro": 1739945192,
-            "email": "ori.h03@gmail.com",
-            "whatsapp": "+524772630131",
-            "utmCampaign": "🔵[0125] [JC] [CAPTACION] [SIGNUP] [F] [CBO] -AT1D - N1 LAL 1-5% APILADOS",
-            "utmSource": "Facebook_Mobile_Feed",
-            "utmMedium": "Público similar (Worldwide, 1-5%) - Lista Compradores Terapia del Dolor 0225 UPDATE - Copia",
-            "utmContent": "ANUN20-L6-V1-GANCHOS-CAPTACION-VERTICAL-VI UN MEDICO COREANO.mp4.mp4_Group_1",
-            "utmTerm": "fb",
-            "userAgent": "Mozilla/5.0 (Linux; Android 13; P80 Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/133.0.6943.81 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/500.0.0.57.50;IABMV/1;]",
-            "platform": "Linux aarch64",
-            "language": "es-MX",
-            "fbc": "fb.1.1739945124661.IwZXh0bgNhZW0BMABhZGlkAasYlsmW4yUBHdf2BprzKzANY-ueDGZmzQ3DcJDU-9oMokf7pCXyVrJ7gK_SUXS_TgzUOQ_aem_yZXCIkryu_a2ZiPAgbcmnw",
-            "fbp": "fb.1.1739945124686.249958723238201462",
-            "isFbcGenerated": false
-          },
-          "webhookUrl": "https://n8n.automscc.com/webhook/captura-td-2025-1",
-          "executionMode": "production"
-        }
-      }
-    ],
     "ENCUESTA": [
       {
         "json": {
@@ -2265,6 +2214,53 @@
           "executionMode": "production"
         }
       }
+    ],
+    "REGISTRO": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22G86 [FBAN/FBIOS;FBAV/527.0.0.42.97;FBBV/780115200;FBDV/iPhone12,1;FBMD/iPhone;FBSN/iOS;FBSV/18.6;FBSS/2;FBID/phone;FBLC/es_LA;FBOP/5;FBRV/0;IABMV/1]",
+            "content-length": "950",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "es-MX,es-419;q=0.9,es;q=0.8",
+            "content-type": "application/json",
+            "origin": "https://terapiasmagneticas.com",
+            "referer": "https://terapiasmagneticas.com/",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "177.239.37.214",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3393e017d3a9",
+            "x-real-ip": "177.239.37.214"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "tiemporegistro": 1756051800,
+            "email": "licaddyaceretto@gmail.com",
+            "whatsapp": "+526646798168",
+            "utmCampaign": "🔵[0825] [JC] [CAPTACION] [REGISTRO.COMPLETADO] [PF] [ABO] [LAL 1% COMPRADORES]",
+            "utmSource": "Facebook_Mobile_Reels",
+            "utmMedium": "🔵PF | LAL 1% Lista Correo TODOS los Compradores Gerson 26.07 Update",
+            "utmContent": "ANUN11-L8-CAPTACION-VERTICAL-VI A UN MEDICO COREANO.mp4",
+            "utmTerm": "fb",
+            "adid": "120227643370580590",
+            "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22G86 [FBAN/FBIOS;FBAV/527.0.0.42.97;FBBV/780115200;FBDV/iPhone12,1;FBMD/iPhone;FBSN/iOS;FBSV/18.6;FBSS/2;FBID/phone;FBLC/es_LA;FBOP/5;FBRV/0;IABMV/1]",
+            "platform": "iPhone",
+            "language": "es-MX",
+            "fbc": "fb.1.1756051746796.IwZXh0bgNhZW0BMABhZGlkAasjB2eqgG4BHixpRYBY9NYjLgm-WKK5Atc4M14Qct51Sy1ZtTQBsVPU-MXOYd2nPf9r6zBS_aem_NYo53XeE_llO5s1GMrWGXg",
+            "fbp": "fb.1.1756051746804.865552397228794843",
+            "isFbcGenerated": false
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/reg-l8-1",
+          "executionMode": "production"
+        }
+      }
     ]
   },
   "repo_name": "backupn8n",
@@ -2291,6 +2287,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-08-21T03:02:09.000Z",
-  "versionId": "42d4915a-2ba6-43c9-9b17-aab4dce528b5"
+  "updatedAt": "2025-08-24T21:32:46.000Z",
+  "versionId": "5279d57f-038f-40ba-bc69-5d4bc00fe437"
 }
