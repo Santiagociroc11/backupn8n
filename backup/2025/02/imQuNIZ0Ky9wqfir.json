@@ -77,17 +77,6 @@
         ]
       ]
     },
-    "HOTMART": {
-      "main": [
-        [
-          {
-            "node": "Switch",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "ASIGNACION": {
       "main": [
         [
@@ -587,6 +576,17 @@
           }
         ]
       ]
+    },
+    "HOTMART1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-02-22T03:16:54.088Z",
@@ -634,8 +634,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -60,
-        -120
+        -64,
+        -128
       ]
     },
     {
@@ -675,8 +675,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -60,
-        -280
+        -64,
+        -288
       ]
     },
     {
@@ -722,8 +722,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -60,
-        40
+        -64,
+        48
       ]
     },
     {
@@ -836,8 +836,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -340,
-        -20
+        -336,
+        -16
       ]
     },
     {
@@ -877,25 +877,9 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -60,
-        220
+        -64,
+        224
       ]
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "gersson-lanza-hotmart",
-        "options": {}
-      },
-      "id": "b8817ee2-9663-4afc-9d69-6acaedecfe28",
-      "name": "HOTMART",
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
-      "position": [
-        -560,
-        0
-      ],
-      "webhookId": "6192ad52-6901-4c16-87aa-64bf7dcfddf0"
     },
     {
       "parameters": {
@@ -907,7 +891,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        420,
+        432,
         0
       ]
     },
@@ -941,8 +925,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        100,
-        -280
+        112,
+        -288
       ]
     },
     {
@@ -1040,7 +1024,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1540,
+        1552,
         240
       ],
       "id": "d6ba56df-16a1-44dc-82ad-282c77a47af1",
@@ -1141,8 +1125,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2180,
-        -520
+        2192,
+        -528
       ],
       "id": "921be498-52fa-4be8-a443-3c557bce68c0",
       "name": "existe en manychat?"
@@ -1177,7 +1161,7 @@
       "typeVersion": 4.2,
       "position": [
         2800,
-        -600
+        -608
       ],
       "id": "851b7de7-6470-4367-afe7-b99561ed92f5",
       "name": "ENVIAR FLUJO BV",
@@ -1203,8 +1187,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2600,
-        -460
+        2608,
+        -464
       ],
       "id": "33731b04-de1a-4bdc-a925-aa0268a06776",
       "name": "id"
@@ -1226,8 +1210,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2420,
-        -600
+        2432,
+        -608
       ],
       "id": "14d1fcc2-8c80-406c-9683-9342b8fafc08",
       "name": "id1"
@@ -1246,7 +1230,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3240,
+        3248,
         720
       ]
     },
@@ -1264,8 +1248,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3140,
-        380
+        3152,
+        384
       ]
     },
     {
@@ -1276,8 +1260,8 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        1880,
-        -740
+        1888,
+        -736
       ],
       "typeVersion": 1,
       "id": "ed193b43-b767-425e-abfa-2980136a4c80",
@@ -1320,8 +1304,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1960,
-        -660
+        1968,
+        -656
       ],
       "onError": "continueRegularOutput"
     },
@@ -1333,7 +1317,7 @@
       "typeVersion": 2,
       "position": [
         2960,
-        -140
+        -144
       ],
       "id": "6632db46-0264-4502-932e-272c15ba3458",
       "name": "mensaje"
@@ -1380,8 +1364,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2380,
-        -440
+        2384,
+        -448
       ],
       "id": "65f15e76-32bb-4dbf-9c2c-a18696bbe1bc",
       "name": "CREAR",
@@ -1424,8 +1408,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1960,
-        -500
+        1968,
+        -496
       ],
       "id": "76c20459-d98a-4080-88e3-3f90dd78db56",
       "name": "BUSQUEDA",
@@ -1467,7 +1451,7 @@
       "typeVersion": 4.2,
       "position": [
         3120,
-        -140
+        -144
       ]
     },
     {
@@ -1498,7 +1482,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        780,
+        784,
         0
       ],
       "id": "10714732-3ea7-469f-ad21-3f5342d9e688",
@@ -1509,8 +1493,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        1140,
-        20
+        1152,
+        32
       ],
       "id": "64f91caf-b2cb-4e78-a206-9ee6fb26db1a",
       "name": "No Operation, do nothing"
@@ -1565,8 +1549,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3000,
-        380
+        3008,
+        384
       ],
       "id": "b14d1ef7-317d-439a-ae54-285f23c860ad",
       "name": "Code"
@@ -1578,7 +1562,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3100,
+        3104,
         720
       ],
       "id": "86341da3-0bf7-4d0c-95af-ab87680c718a",
@@ -1593,8 +1577,8 @@
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        2300,
-        700
+        2304,
+        704
       ],
       "id": "1948ba80-e2c2-4e3f-84d8-34c37d226ca7",
       "name": "Evolution API1",
@@ -1667,7 +1651,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        2520,
+        2528,
         640
       ],
       "id": "f6885e80-12ff-42a3-9276-02915803e786",
@@ -1702,7 +1686,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        600,
+        608,
         0
       ],
       "id": "47debf56-105d-4608-899e-cffed4b73cea",
@@ -1786,7 +1770,7 @@
       "typeVersion": 2.5,
       "position": [
         2160,
-        -140
+        -144
       ],
       "id": "7fc636d1-37da-4464-8914-e07631bb8d1a",
       "name": "REVISAR",
@@ -1941,7 +1925,7 @@
       "typeVersion": 2.5,
       "position": [
         2320,
-        -140
+        -144
       ],
       "id": "80633c94-4145-4013-8ca3-8b210bc0c951",
       "name": "CONT + 1",
@@ -2116,7 +2100,7 @@
       "typeVersion": 2.5,
       "position": [
         2480,
-        -140
+        -144
       ],
       "id": "6b229688-f1ba-4fe9-a1f5-d775749c27d0",
       "name": "UPDATE CLIENTE",
@@ -2197,7 +2181,7 @@
       "typeVersion": 2.5,
       "position": [
         2640,
-        -140
+        -144
       ],
       "id": "63a7d746-8878-4d7f-ab0e-84958f8e3402",
       "name": "EVENTO COMPRA +1",
@@ -2238,7 +2222,7 @@
       "typeVersion": 2.5,
       "position": [
         2800,
-        -140
+        -144
       ],
       "id": "077268da-686d-45cf-a866-c09eca068c29",
       "name": "BUSCA ASESOR1",
@@ -2514,8 +2498,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2300,
-        380
+        2304,
+        384
       ],
       "id": "d2f2512e-0b23-4777-9dc6-833f1124b3c0",
       "name": "conteo + 1"
@@ -2529,8 +2513,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2440,
-        380
+        2448,
+        384
       ],
       "id": "975db236-6614-45f2-b337-d62bac99c3f7",
       "name": "CONT + ",
@@ -2699,8 +2683,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2580,
-        380
+        2592,
+        384
       ],
       "id": "62b61c09-9598-4b43-9b18-d06750cc2432",
       "name": "CLIENTE +1",
@@ -2780,7 +2764,7 @@
       "typeVersion": 2.5,
       "position": [
         2720,
-        380
+        384
       ],
       "id": "66d2a19d-d0bf-4556-ba80-d0c4e263e3f7",
       "name": "EVENTO +1",
@@ -2819,8 +2803,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2860,
-        380
+        2864,
+        384
       ],
       "id": "e3ef06a7-dc7c-406f-a7cc-c0c7ffd96fbd",
       "name": "BUSCA ASESOR3",
@@ -2899,8 +2883,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        1980,
-        700
+        1984,
+        704
       ],
       "id": "417d8790-9970-4ef6-a10a-2fa8c013b764",
       "name": "EVENTO +",
@@ -3074,8 +3058,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2140,
-        700
+        2144,
+        704
       ],
       "id": "f9d80a4f-3e66-411d-8e38-5ad235f08c90",
       "name": "UPD. ESTADO",
@@ -3250,8 +3234,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2740,
-        620
+        2752,
+        624
       ],
       "id": "a40fb77b-9b1a-4819-bcbc-352b581da667",
       "name": "nombre + wha",
@@ -3425,8 +3409,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2740,
-        780
+        2752,
+        784
       ],
       "id": "672fe2ea-65c6-4e8a-9ba5-b5b9cc388319",
       "name": "actualiza nombre",
@@ -3465,7 +3449,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        2940,
+        2944,
         720
       ],
       "id": "7aefa8f7-2c24-4ac0-b167-f9f31af30334",
@@ -3506,7 +3490,7 @@
       "typeVersion": 2.6,
       "position": [
         2160,
-        380
+        384
       ],
       "id": "27a3c5bb-4507-4b37-9ca1-22da2b176194",
       "name": "TRAER ASESOR",
@@ -3527,7 +3511,7 @@
       "typeVersion": 2.5,
       "position": [
         2000,
-        380
+        384
       ],
       "id": "eb69ebc9-1984-40c5-9bdc-3980ec5647af",
       "name": "LOGICA DE SELECCION",
@@ -3537,10 +3521,44 @@
           "name": "POSTGRESS GERSSON"
         }
       }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://sistema-cierres-ger.automscc.com/api/hotmart/webhook",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -320,
+        480
+      ],
+      "id": "565b2ea8-4e6c-4c6a-98e0-d687f38445ec",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "gersson-lanza-hotmart",
+        "options": {}
+      },
+      "id": "ecb3c086-0e07-4a83-be26-cf824428d402",
+      "name": "HOTMART1",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -576,
+        480
+      ],
+      "webhookId": "6192ad52-6901-4c16-87aa-64bf7dcfddf0"
     }
   ],
   "pinData": {
-    "HOTMART": [
+    "HOTMART1": [
       {
         "json": {
           "headers": {
@@ -3644,18 +3662,18 @@
                   "country_iso": "MX"
                 },
                 "document": "",
-                "name": "Jaime Gutiérrez Pérez ",
-                "last_name": "Pérez",
-                "checkout_phone": "529191086468",
-                "first_name": "Jaime",
-                "email": "jaimegtz_2001@hotmail.com",
+                "name": "santiago ciro ",
+                "last_name": "ciro",
+                "checkout_phone": "573136298562",
+                "first_name": "santiago",
+                "email": "santiagociiro12@gmail.com",
                 "document_type": ""
               }
             },
             "hottok": "6SJkhfjuD6Bm4cha7tF8loEMs92JzG11852721",
             "id": "5cac8f44-9aa3-4b6f-af6d-f6512c835d99",
             "creation_date": 1748748139885,
-            "event": "PURCHASE_APPROVED",
+            "event": "PURCHASE_CANCELED",
             "version": "2.0.0"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/gersson-lanza-hotmart",
@@ -3698,6 +3716,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-06-01T23:39:08.000Z",
-  "versionId": "9956d5ad-f660-47d3-a5ad-f225338ca419"
+  "updatedAt": "2025-08-25T03:11:24.000Z",
+  "versionId": "674d0ea9-2d7c-4c27-8bb0-2a2c15d041e7"
 }
