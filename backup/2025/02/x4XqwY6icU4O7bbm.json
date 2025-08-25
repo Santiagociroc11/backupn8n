@@ -61,18 +61,7 @@
       "main": [
         [
           {
-            "node": "ASIGNA1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "On form submission": {
-      "main": [
-        [
-          {
-            "node": "Form",
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
           }
@@ -195,6 +184,17 @@
           }
         ]
       ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "ENVIAR CON ASESOR1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-02-21T19:52:05.746Z",
@@ -266,8 +266,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -900,
-        -40
+        -896,
+        -48
       ],
       "id": "6db700bc-afb7-43ff-8083-28f15718d1ff",
       "name": "ESTADO"
@@ -313,8 +313,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        440,
-        -20
+        448,
+        -16
       ],
       "id": "05b86cc8-3b5b-4e6d-9a20-b4f39b73ee82",
       "name": "url"
@@ -336,8 +336,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        600,
-        -20
+        608,
+        -16
       ],
       "id": "493c45bc-6834-4a53-89e0-490d77953706",
       "name": "mensaje"
@@ -372,7 +372,7 @@
       "typeVersion": 3.4,
       "position": [
         -1280,
-        -40
+        -48
       ],
       "id": "1ec083c8-f58d-46d6-8da6-c005ab6f45b4",
       "name": "ASIGNA1"
@@ -387,55 +387,12 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -1460,
-        -40
+        -1168,
+        400
       ],
       "id": "30578ba2-bcb1-4774-812a-fc28af8a9e79",
       "name": "Webhook",
       "webhookId": "b517267d-174d-4a12-9a1d-2595fa0d9899"
-    },
-    {
-      "parameters": {
-        "formTitle": "SOPORTE GERSSON LOPEZ",
-        "formFields": {
-          "values": [
-            {
-              "fieldType": "html",
-              "html": "<br></br>"
-            }
-          ]
-        },
-        "responseMode": "lastNode",
-        "options": {
-          "buttonLabel": "IR CON SOPORTE",
-          "path": "soporte-td"
-        }
-      },
-      "type": "n8n-nodes-base.formTrigger",
-      "typeVersion": 2.2,
-      "position": [
-        -1120,
-        -340
-      ],
-      "id": "a7d5c1f4-f76e-44a0-8788-d886d853cbef",
-      "name": "On form submission",
-      "webhookId": "a0747e10-8149-4ec0-a3e8-be02aefd882e"
-    },
-    {
-      "parameters": {
-        "operation": "completion",
-        "respondWith": "redirect",
-        "redirectUrl": "https://automscc.com/asesores-tdolor/"
-      },
-      "type": "n8n-nodes-base.form",
-      "typeVersion": 1,
-      "position": [
-        -940,
-        -340
-      ],
-      "id": "77681ab4-aa10-4804-9ce6-5179cb2ae275",
-      "name": "Form",
-      "webhookId": "294efd8a-5f03-4e1e-a0e4-e27b3d45817c"
     },
     {
       "parameters": {
@@ -472,7 +429,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        980,
+        992,
         -160
       ],
       "id": "ce2eff48-98f3-48aa-8c29-a3c201c1de36",
@@ -524,8 +481,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -220,
-        100
+        -224,
+        112
       ],
       "id": "83f45a57-d347-4f26-90b3-3b3b608552ba",
       "name": "If"
@@ -560,7 +517,7 @@
       "typeVersion": 2.5,
       "position": [
         -1120,
-        -40
+        -48
       ],
       "id": "87edb7b6-84c8-4fe8-a9d7-d9d78f4a32eb",
       "name": "BUSCA",
@@ -601,7 +558,7 @@
       "typeVersion": 2.5,
       "position": [
         -400,
-        -180
+        -176
       ],
       "id": "0feb7b20-c790-4d7b-9b5f-a73d00d4e061",
       "name": "Limit",
@@ -756,7 +713,7 @@
       "typeVersion": 2.5,
       "position": [
         -240,
-        -180
+        -176
       ],
       "id": "5e65b2d3-6dc6-46bd-a041-bdacf17bba0c",
       "name": "CONT +1",
@@ -926,7 +883,7 @@
       "typeVersion": 2.5,
       "position": [
         -80,
-        -180
+        -176
       ],
       "id": "e023bb93-ad49-4bb0-b552-7a6e2793dd44",
       "name": "CLIENTE +1",
@@ -1006,7 +963,7 @@
       "typeVersion": 2.5,
       "position": [
         80,
-        -180
+        -176
       ],
       "id": "89df91a9-9d75-4d94-be3f-bddc4fa6a503",
       "name": "REGISTRO +1",
@@ -1047,7 +1004,7 @@
       "typeVersion": 2.5,
       "position": [
         240,
-        -180
+        -176
       ],
       "id": "26773a63-a413-4c6f-b9bc-100757f3be35",
       "name": "BUSCA ASESOR",
@@ -1086,7 +1043,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        820,
+        832,
         -160
       ],
       "id": "98d531af-a3fe-4d66-b622-b75a67b9bfe1",
@@ -1166,8 +1123,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        100,
-        120
+        112,
+        128
       ],
       "id": "7bffcb17-e165-49ae-bb80-f2c1d0dffad2",
       "name": "REGISTRO +",
@@ -1187,8 +1144,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
-        100,
-        -20
+        112,
+        -16
       ],
       "id": "ae683def-97ff-4d36-80d2-09c8d1f33197",
       "name": "ENVIAR A ACADEMIA"
@@ -1202,8 +1159,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
-        820,
-        40
+        832,
+        48
       ],
       "id": "0130811b-1d67-4684-8107-5a920d2314ae",
       "name": "ENVIAR CON ASESOR"
@@ -1218,7 +1175,7 @@
       "typeVersion": 2.5,
       "position": [
         -560,
-        -180
+        -176
       ],
       "id": "a2ae8faf-8df6-4ad4-ab67-95edd7534bea",
       "name": "LOGICA DE SELECCION",
@@ -1228,6 +1185,39 @@
           "name": "POSTGRESS GERSSON"
         }
       }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://sistema-cierres-ger.automscc.com/api/soporte/formulario-soporte",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -960,
+        400
+      ],
+      "id": "29f5f636-448d-4f3f-a504-0bcd1e2a5d27",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"url\": \"{{ $json.url }}\"\n\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        -736,
+        400
+      ],
+      "id": "719ffca0-28be-4543-954f-83821cd5f953",
+      "name": "ENVIAR CON ASESOR1"
     }
   ],
   "pinData": {
@@ -1236,34 +1226,36 @@
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
-            "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Mobile Safari/537.36",
-            "content-length": "80",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
+            "content-length": "124",
             "accept": "*/*",
             "accept-encoding": "gzip, deflate, br, zstd",
-            "accept-language": "es-US,es-419;q=0.9,es;q=0.8",
+            "accept-language": "es-419,es;q=0.9,pt;q=0.8,en;q=0.7",
             "content-type": "application/json",
             "origin": "https://automscc.com",
             "priority": "u=1, i",
             "referer": "https://automscc.com/",
-            "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Google Chrome\";v=\"133\", \"Chromium\";v=\"133\"",
-            "sec-ch-ua-mobile": "?1",
-            "sec-ch-ua-platform": "\"Android\"",
+            "sec-ch-ua": "\"Not;A=Brand\";v=\"99\", \"Google Chrome\";v=\"139\", \"Chromium\";v=\"139\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "same-site",
-            "x-forwarded-for": "157.100.141.73",
+            "x-forwarded-for": "161.10.108.40",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "5e598da44e1a",
-            "x-real-ip": "157.100.141.73"
+            "x-forwarded-server": "3393e017d3a9",
+            "x-real-ip": "161.10.108.40"
           },
           "params": {},
           "query": {},
           "body": {
-            "name": "Esperanza Guaman Macao",
-            "courseStatus": "si",
-            "whatsapp": "+593995840999"
+            "name": "santiago ciro",
+            "courseStatus": "no",
+            "whatsapp": "+573136298562",
+            "mainDoubt": "precio",
+            "crmLabel": "[Objeción Precio]"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/formulario-soporte",
           "executionMode": "production"
@@ -1305,7 +1297,7 @@
       "name": "BACKEND-CIERRES"
     }
   ],
-  "triggerCount": 2,
-  "updatedAt": "2025-06-24T03:15:30.000Z",
-  "versionId": "6313896f-79a3-4c28-879e-41390a8fdfca"
+  "triggerCount": 1,
+  "updatedAt": "2025-08-25T03:11:37.000Z",
+  "versionId": "626493c4-762f-477f-9896-c8f940416571"
 }
