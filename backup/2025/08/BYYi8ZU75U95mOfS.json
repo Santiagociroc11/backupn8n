@@ -1,0 +1,96 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-28T02:37:45.194Z",
+  "id": "BYYi8ZU75U95mOfS",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 41",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -496,
+        -64
+      ],
+      "id": "14e83ea8-ecc8-4c89-8c16-cdb00ba4c56c",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://api-sec-vlc.hotmart.com/security/oauth/token",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "grant_type",
+              "value": "client_credentials"
+            },
+            {
+              "name": "client_id",
+              "value": "50ecdbd5-4e79-4861-992f-64bd60c93c6e"
+            },
+            {
+              "name": "client_secret",
+              "value": "f162814b-5591-47e4-b69f-b89db8ff6229"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Basic NTBlY2RiZDUtNGU3OS00ODYxLTk5MmYtNjRiZDYwYzkzYzZlOmYxNjI4MTRiLTU1OTEtNDdlNC1iNjlmLWI4OWRiOGZmNjIyOQ=="
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -240,
+        -64
+      ],
+      "id": "faa4e00c-6f4f-44d6-87b9-44843efb0c17",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-28T02:37:45.194Z",
+  "versionId": "b864a81d-1df5-4713-8689-83fa46a7d4e5"
+}
