@@ -1,0 +1,235 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Select rows from a table1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Enviar texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-28T00:08:28.313Z",
+  "id": "lly1QAtPcDZLP2bQ",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 39",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -672,
+        -64
+      ],
+      "id": "d614f4ee-0726-4bc8-a434-6194e8338137",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_LINKS",
+          "mode": "list",
+          "cachedResultName": "GERSSON_LINKS"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -336,
+        -192
+      ],
+      "id": "13cd0171-fb7f-4ccd-858f-5aa54e2b3806",
+      "name": "Select rows from a table",
+      "credentials": {
+        "mySql": {
+          "id": "179b2UX7XsHkNW05",
+          "name": "REDIRECCIONES - LANZAMIENTOS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_LINKS_ORG",
+          "mode": "list",
+          "cachedResultName": "GERSSON_LINKS_ORG"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -336,
+        -16
+      ],
+      "id": "77c5ab03-abf4-4e17-b0bf-8144f4dcd6e0",
+      "name": "Select rows from a table1",
+      "credentials": {
+        "mySql": {
+          "id": "179b2UX7XsHkNW05",
+          "name": "REDIRECCIONES - LANZAMIENTOS"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -32,
+        -112
+      ],
+      "id": "619bfcce-7e57-4f41-abad-84ce865cda02",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        176,
+        -112
+      ],
+      "id": "fc54a39a-5c4c-4e1a-9458-4e95f0811e6a",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "DANIEL",
+        "remoteJid": "={{ $json.id }}",
+        "messageText": "=*INSCRIPCIONES ABIERTAS A PROFESIONAL EN TERAPIA DEL DOLOR* 🚪\n\n✅ 7 módulos en la plataforma 24/7. 📚\n✅ El mapa detallado de la mano. 🖐\n✅ Más de 40 clases pregrabadas. 📹\n✅ El grupo de soporte y comunidad para todas tus dudas. 💬\n⁠✅ Certificado de Participación y Aprobación.\n✅ ⁠Acceso 24/7 *DE POR VIDA*\n✅ 5 Sesiones de Aceleración EN VIVO. 🚀\n\n*Para ingresar a la Terapia del Dolor Profesional, toca aquí*\n\n👉 https://hotm.art/TERAPIAS-DOLOR-WHA\n\n*BONOS*\n\n🎁 SOLO POR HOY: Masterclass como vivir de tu consultorio + Curso Básico de imanes.\n🎁 SOLO POR 24 HORAS: Pack equilibrio (chakras, glandular, energético)\n🎁 Módulo de emprendimiento.  💼\n🎁 Masterclass Alineación Emocional. 🧘‍♂\n🎁 50 Plantillas de publicidad para tus servicios.  🎨\n🎁 50 Mensajes para conseguir clientes desde tu teléfono. \n🎁 Masterclass 3 fuentes de la salud. \n\n¡Ingresa AHORA *CON GARANTÍA DE SATISFACCIÓN DE 7 DÍAS*",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        432,
+        -32
+      ],
+      "id": "6c0c3192-bda8-4121-b206-fb31a7d1d322",
+      "name": "Enviar texto",
+      "credentials": {
+        "evolutionApi": {
+          "id": "Png3VbsnUeyqI5UL",
+          "name": "VPS-EASYPANEL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 0.5
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        688,
+        -32
+      ],
+      "id": "f9f05265-d744-4632-bce0-81fef4306c63",
+      "name": "Wait",
+      "webhookId": "1644238b-3c8d-4bac-b696-7e69cd9210a6"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-28T00:49:03.000Z",
+  "versionId": "bfad82a6-831b-4189-85d3-967b36cb9cf3"
+}
