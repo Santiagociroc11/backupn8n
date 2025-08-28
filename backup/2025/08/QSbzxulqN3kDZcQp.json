@@ -234,7 +234,8 @@
         "text": "=*CUPO VIP GENERADO* 🔥\n\nNOMBRE: {{ $('Edit Fields').item.json.nombre }}\nCORREO: {{ $('Edit Fields').item.json.corre }}\nWHATSAPP: {{ $('Edit Fields').item.json.whatsapp }}",
         "additionalFields": {
           "appendAttribution": false,
-          "message_thread_id": 6983
+          "parse_mode": "HTML",
+          "message_thread_id": 8373
         }
       },
       "type": "n8n-nodes-base.telegram",
@@ -246,6 +247,9 @@
       "id": "2f4e47c4-4bea-42ca-b402-92029f344765",
       "name": "Send a text message",
       "webhookId": "b35451a7-6c04-4001-b31f-172ca5937348",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
       "credentials": {
         "telegramApi": {
           "id": "E6OyWuRww3Q1Xk4k",
@@ -260,28 +264,36 @@
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
-            "user-agent": "node",
-            "content-length": "49",
+            "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36 EdgA/139.0.0.0",
+            "content-length": "96",
             "accept": "*/*",
-            "accept-encoding": "br, gzip, deflate",
-            "accept-language": "*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "es-US,es;q=0.9,en-US;q=0.8,en;q=0.7",
             "content-type": "application/json",
+            "origin": "https://terapiasmagneticas.com",
+            "priority": "u=1, i",
+            "referer": "https://terapiasmagneticas.com/",
+            "sec-ch-ua": "\"Not;A=Brand\";v=\"99\", \"Microsoft Edge\";v=\"139\", \"Chromium\";v=\"139\"",
+            "sec-ch-ua-mobile": "?1",
+            "sec-ch-ua-platform": "\"Android\"",
+            "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
-            "x-forwarded-for": "172.18.0.1",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "186.13.194.184",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "5e236941e778",
-            "x-real-ip": "172.18.0.1"
+            "x-forwarded-server": "3393e017d3a9",
+            "x-real-ip": "186.13.194.184"
           },
           "params": {},
           "query": {},
           "body": {
-            "nombre": "SANTIAGO CIRO",
-            "correo": "SANTIAGOCIIRO12@GMAIL.COM",
-            "whatsapp": "+573136298562"
+            "nombre": "Zulma Zaracho",
+            "correo": "zulmaz_estigarribia@hotmail.com",
+            "whatsapp": "+595994536500"
           },
-          "webhookUrl": "https://n8n.automscc.com/webhook/cupovip-unas",
+          "webhookUrl": "https://n8n.automscc.com/webhook/cupovip-gersson",
           "executionMode": "production"
         }
       }
@@ -296,6 +308,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-08-25T00:29:59.000Z",
-  "versionId": "b6e5eccc-6563-46bc-bb02-865027d27057"
+  "updatedAt": "2025-08-27T19:19:53.000Z",
+  "versionId": "1a8081fc-98a2-46d5-bc87-d727b619cfa5"
 }
