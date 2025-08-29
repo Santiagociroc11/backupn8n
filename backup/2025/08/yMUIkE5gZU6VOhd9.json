@@ -1,0 +1,117 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-28T19:40:19.022Z",
+  "id": "yMUIkE5gZU6VOhd9",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 43",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        -48
+      ],
+      "id": "f603d5a0-4a77-4acf-90f1-45a7e9c4f8df",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://evolution-api-wpp-connect.wc2hpx.easypanel.host/api/DINA/THISISMYSECURETOKEN/generate-token",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -352,
+        -48
+      ],
+      "id": "43cc1d09-13d6-4ea7-ac02-0a540334bc8d",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://evolution-api-wpp-connect.wc2hpx.easypanel.host/api/DINA/start-session",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "*/*"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "webhook",
+              "value": "https://n8n.automscc.com/webhook/prueba-whapi"
+            },
+            {
+              "name": "waitQrCode",
+              "value": "true"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -144,
+        -48
+      ],
+      "id": "06c81c83-7f88-41ab-85e1-29f4345656a0",
+      "name": "HTTP Request1"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-28T19:42:46.000Z",
+  "versionId": "34285ec2-3c2b-4f57-a660-a6735e33f561"
+}
