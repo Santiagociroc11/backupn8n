@@ -1,0 +1,119 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get row(s) in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-02T03:34:48.321Z",
+  "id": "VO6MIDAMbEVj1MMU",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 45",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -528,
+        -64
+      ],
+      "id": "8be88d25-9f94-48b0-98de-6d8dcb07a499",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1Gcp5QDNgOpn2qatKkBqLgj2L2vHzUwMcsbHu-5pPj8g",
+          "mode": "list",
+          "cachedResultName": "agosto",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Gcp5QDNgOpn2qatKkBqLgj2L2vHzUwMcsbHu-5pPj8g/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "payo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Gcp5QDNgOpn2qatKkBqLgj2L2vHzUwMcsbHu-5pPj8g/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -208,
+        -176
+      ],
+      "id": "991d5317-de67-4f0c-b8e0-9c65d552b965",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1Gcp5QDNgOpn2qatKkBqLgj2L2vHzUwMcsbHu-5pPj8g",
+          "mode": "list",
+          "cachedResultName": "agosto",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Gcp5QDNgOpn2qatKkBqLgj2L2vHzUwMcsbHu-5pPj8g/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 425349092,
+          "mode": "list",
+          "cachedResultName": "empresa",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Gcp5QDNgOpn2qatKkBqLgj2L2vHzUwMcsbHu-5pPj8g/edit#gid=425349092"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -208,
+        0
+      ],
+      "id": "26a33c9e-261a-49c1-89fb-67b111f595dc",
+      "name": "Get row(s) in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-02T03:34:48.321Z",
+  "versionId": "44ff3107-0183-49e0-81ab-812909adf2eb"
+}
