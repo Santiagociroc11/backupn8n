@@ -1,0 +1,1189 @@
+{
+  "active": true,
+  "connections": {
+    "REGISTRO": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Find documents",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Insert documents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request4": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge5": {
+      "main": [
+        [
+          {
+            "node": "guardar id MANYCHAT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields5": {
+      "main": [
+        [
+          {
+            "node": "Merge5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields6": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "existe?": {
+      "main": [
+        [
+          {
+            "node": "ENVIAR FLUJO BV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "existe en manychat?": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields8",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "guardar id MANYCHAT": {
+      "main": [
+        [
+          {
+            "node": "existe?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request7": {
+      "main": [
+        [
+          {
+            "node": "existe en manychat?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields8": {
+      "main": [
+        [
+          {
+            "node": "Merge5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [
+          {
+            "node": "Merge7",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge7": {
+      "main": [
+        [
+          {
+            "node": "Insert rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EXISTE FLODESK?1": {
+      "main": [
+        [
+          {
+            "node": "INSERTA FLODESK1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BUSQUEDA EN FLODESK": {
+      "main": [
+        [
+          {
+            "node": "EXISTE FLODESK?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find documents": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert documents": {
+      "main": [
+        [
+          {
+            "node": "Merge5",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Edit Fields6",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request7",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "BUSQUEDA EN FLODESK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-02T19:54:47.255Z",
+  "id": "t9e3Q9UfzLfoCYkw",
+  "isArchived": false,
+  "meta": null,
+  "name": "ADRIANA NY[ORG]",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "adri-ny-org",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1952,
+        432
+      ],
+      "id": "d654a59e-1796-4ef8-afb0-65b0e82018ef",
+      "name": "REGISTRO",
+      "webhookId": "c0815bcb-6acf-40cc-a9d8-d5d4ed186b5b"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1648,
+        576
+      ],
+      "id": "324fd618-bbf2-466b-8be6-214e1438de2f",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "eb31eaf1-7f83-4773-a663-4213a227c9e8",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "00de76cf-d1aa-4da5-8fd6-f8854567b653",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1264,
+        576
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "5042fc1a-7c8e-4435-bea9-556d592ae2a4",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        -1024,
+        448
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8a258913-16e5-4c77-bc40-13e5d18f740f",
+              "name": "ip",
+              "value": "={{ $json.headers['x-real-ip'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1632,
+        320
+      ],
+      "id": "0ef5a8af-f64f-473a-9f0e-12769f5ab3b9",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "id": "d87e6e83-f506-41ad-b811-cd6815dad24f",
+      "name": "Merge2",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        -1216,
+        336
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=http://ip-api.com/json/{{ $json.ip }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1424,
+        320
+      ],
+      "id": "bed99d19-b481-4733-8e35-3a522226eb27",
+      "name": "HTTP Request",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.manychat.com/fb/subscriber/createSubscriber",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"first_name\": \"{{ $('Insert documents').item.json.whatsapp }}\",\n  \"whatsapp_phone\": \"{{ $('Insert documents').item.json.whatsapp }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -144,
+        320
+      ],
+      "id": "39b52f44-80df-44d7-9ff4-0a2b43f306a2",
+      "name": "HTTP Request4",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "maxTries": 5,
+      "disabled": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        304,
+        432
+      ],
+      "id": "ed8c6cd7-7b9f-47cb-b06b-940a4611bf28",
+      "name": "Merge5",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "17104ede-50c0-4ff6-b16b-5ec89d177da7",
+              "name": "id_manychat",
+              "value": "={{ $json.data.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        64,
+        288
+      ],
+      "id": "07af2caf-4fb7-41ca-9070-a93dd1bccbc7",
+      "name": "Edit Fields5",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "86552321-4bbc-4aa5-afc7-5ce6278c72d2",
+              "name": "CORREO",
+              "value": "={{ $json.email }}",
+              "type": "string"
+            },
+            {
+              "id": "ef1606bf-68e5-4717-a225-708529dcad05",
+              "name": "WHATSAPP",
+              "value": "={{ $json.whatsapp }}",
+              "type": "string"
+            },
+            {
+              "id": "0f13f81b-905a-4e1e-815c-3bcb4932bb77",
+              "name": "CAMPAÑA",
+              "value": "={{ $json.utmCampaign }}",
+              "type": "string"
+            },
+            {
+              "id": "b008676e-7f3b-46eb-9c3f-13f4757b8977",
+              "name": "PLATAFORMA",
+              "value": "={{ $json.utmSource }}",
+              "type": "string"
+            },
+            {
+              "id": "0fa1b73e-3467-49e9-af06-7a4d94901a7b",
+              "name": "SEGMENTACION",
+              "value": "={{ $json.utmMedium }}",
+              "type": "string"
+            },
+            {
+              "id": "50bd88a7-ded2-46df-a377-6c529be00917",
+              "name": "ANUNCIO",
+              "value": "={{ $json.utmContent }}",
+              "type": "string"
+            },
+            {
+              "id": "4747c5a6-da7e-4da9-9a86-fe23003d5adf",
+              "name": "PAIS",
+              "value": "={{ $json.country }}",
+              "type": "string"
+            },
+            {
+              "id": "3df6352b-6489-4d01-9e8e-ad90cc547eda",
+              "name": "ID",
+              "value": "={{ $json.id.toString() }}",
+              "type": "string"
+            },
+            {
+              "id": "c3adebcf-1f39-46ce-9548-b1243262ba2d",
+              "name": "FECHA REGISTRO",
+              "value": "={{ $now.format('yyyy-MM-dd') }}",
+              "type": "string"
+            },
+            {
+              "id": "d42a68f2-323f-4337-b37f-ec1b9a9e65c4",
+              "name": "HORA",
+              "value": "={{ $now.format('HH:mm:ss:s') }}",
+              "type": "string"
+            },
+            {
+              "id": "ba1e8726-72dc-4603-996c-949c755897eb",
+              "name": "AD_ID",
+              "value": "={{ $json.adid }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -624,
+        528
+      ],
+      "id": "335220d0-38ac-4e08-acc9-bddf532f6824",
+      "name": "Edit Fields6"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b3101ba6-b04a-40da-86e8-04bb9fabd5d7",
+              "leftValue": "={{ $('Merge5').item.json.existe }}",
+              "rightValue": "si",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        592,
+        432
+      ],
+      "id": "654b7b9a-9e1a-4b25-8645-36b42bcb5a3d",
+      "name": "existe?",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "bdbedabd-650a-4c77-aafe-61f48231f405",
+              "leftValue": "={{ $json.data[0].id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -368,
+        192
+      ],
+      "id": "18b06f20-11a1-4ee2-a0cf-1d2a85320b26",
+      "name": "existe en manychat?",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "findOneAndUpdate",
+        "collection": "TD-L8",
+        "updateKey": "_id",
+        "fields": "=id_manychat",
+        "options": {}
+      },
+      "id": "650bbd28-cdef-4ad5-8a53-4b0315a642b9",
+      "name": "guardar id MANYCHAT",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        464,
+        432
+      ],
+      "credentials": {
+        "mongoDb": {
+          "id": "vbsT0SoMA5A3acgH",
+          "name": "BASE DE DATOS GERSSON"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.manychat.com/fb/sending/sendFlow",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"flow_ns\": \"content20250801030701_545145\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        800,
+        416
+      ],
+      "id": "cf1c320b-c0fd-4021-b1ba-92d8dc4d75d0",
+      "name": "ENVIAR FLUJO BV",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "maxTries": 5,
+      "disabled": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "url": "https://api.manychat.com/fb/subscriber/findByName",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "name",
+              "value": "={{ $json.whatsapp }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -608,
+        208
+      ],
+      "id": "84d6600c-fa16-4ec8-b0fe-0c052a740b01",
+      "name": "HTTP Request7",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "maxTries": 5,
+      "disabled": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "17104ede-50c0-4ff6-b16b-5ec89d177da7",
+              "name": "id_manychat",
+              "value": "={{ $json.data[0].id }}",
+              "type": "string"
+            },
+            {
+              "id": "8040badb-7f75-4766-b6ef-8e74c88bc480",
+              "name": "existe",
+              "value": "si",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -144,
+        160
+      ],
+      "id": "2908d1a8-52b1-4ce5-b121-0866e0fcb702",
+      "name": "Edit Fields8",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7f3e8099-ae55-4534-a5be-217d413c0ff2",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -288,
+        608
+      ],
+      "id": "507d28e3-f768-48bb-9afb-64a21854863a",
+      "name": "If5"
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        -96,
+        560
+      ],
+      "id": "c2087ad7-c2b2-40e5-983e-f323ac4d93a1",
+      "name": "Merge7"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.flodesk.com/v1/subscribers",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "n8n"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"email\": \"{{ $('Insert documents').item.json.email }}\",\n    \"segment_ids\": [\n       \"68885aff64563db5f159be35\"\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -144,
+        -48
+      ],
+      "id": "821904ea-db87-430b-af90-fd48b419d5d7",
+      "name": "INSERTA FLODESK1",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "JzZ2saBcDbEsbcOC",
+          "name": "API FLODESK N8N GERSSON"
+        }
+      },
+      "disabled": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ff9f56d5-3bdc-45e2-b7f3-5fec484a6f1c",
+              "leftValue": "={{ $json.error.status }}",
+              "rightValue": 404,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -384,
+        0
+      ],
+      "id": "ceeb3c80-c037-48bc-bb19-4245e31f9d1c",
+      "name": "EXISTE FLODESK?1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "url": "=https://api.flodesk.com/v1/subscribers/{{ $json.email }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "n8n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -576,
+        0
+      ],
+      "id": "dc040f3b-0952-45bc-a9ee-1fae52d2e818",
+      "name": "BUSQUEDA EN FLODESK",
+      "retryOnFail": false,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "JzZ2saBcDbEsbcOC",
+          "name": "API FLODESK N8N GERSSON"
+        }
+      },
+      "disabled": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "ADRI_NY_L1_ORG",
+          "mode": "list",
+          "cachedResultName": "ADRI_NY_L1_ORG"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "ID",
+              "condition": "LIKE",
+              "value": "={{ $json.ID }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -416,
+        608
+      ],
+      "id": "e7ffbd4b-0196-4cb2-940a-9a9466de5377",
+      "name": "Select rows from a table",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "ADRI_NY_L1_ORG",
+          "mode": "list",
+          "cachedResultName": "ADRI_NY_L1_ORG"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "FECHA_REGISTRO",
+              "value": "={{ $json[\"FECHA REGISTRO\"] }}"
+            },
+            {
+              "column": "HORA_REGISTRO",
+              "value": "={{ $json.HORA }}"
+            },
+            {
+              "column": "CORREO",
+              "value": "={{ $json.CORREO }}"
+            },
+            {
+              "column": "WHATSAPP",
+              "value": "={{ $json.WHATSAPP }}"
+            },
+            {
+              "column": "PLATAFORMA",
+              "value": "={{ $json.PLATAFORMA }}"
+            },
+            {
+              "column": "SEGMENTACION",
+              "value": "={{ $json.SEGMENTACION }}"
+            },
+            {
+              "column": "ANUNCIO",
+              "value": "={{ $json.ANUNCIO }}"
+            },
+            {
+              "column": "CAMPAÑA",
+              "value": "={{ $json[\"CAMPAÑA\"] }}"
+            },
+            {
+              "column": "PAIS",
+              "value": "={{ $json.PAIS }}"
+            },
+            {
+              "column": "ID",
+              "value": "={{ $json.ID }}"
+            },
+            {
+              "column": "AD_ID",
+              "value": "={{ $json.AD_ID }}"
+            }
+          ]
+        },
+        "options": {
+          "detailedOutput": true
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        64,
+        560
+      ],
+      "id": "c7c1b936-7b85-442c-95a6-2aa28274997b",
+      "name": "Insert rows in a table",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "collection": "=NY-L1-ORG",
+        "options": {
+          "limit": 1
+        },
+        "query": "={\"whatsapp\": \"{{ $json.whatsapp }}\", \"email\": \"{{$json.email}}\"}"
+      },
+      "id": "40ed169a-6899-4b9a-acf1-c25110e325e5",
+      "name": "Find documents",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        -1456,
+        576
+      ],
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "mongoDb": {
+          "id": "yO7F3ZCelUe7C1RD",
+          "name": "BASE DE DATOS ADRIANA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "collection": "NY-L1-ORG",
+        "fields": "=query,country,city,zip,regionName,timezone,email,whatsapp,utmCampaign,utmSource,utmMedium,utmContent,utmTerm,adid,userAgent,platform,language,tiemporegistro,fbc,fbp,isFbcGenerated",
+        "options": {}
+      },
+      "id": "ecc21776-b481-43fe-932e-1d529e7fc136",
+      "name": "Insert documents",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        -864,
+        448
+      ],
+      "credentials": {
+        "mongoDb": {
+          "id": "yO7F3ZCelUe7C1RD",
+          "name": "BASE DE DATOS ADRIANA"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "REGISTRO": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (Linux; Android 13; P80 Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/133.0.6943.81 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/500.0.0.57.50;IABMV/1;]",
+            "content-length": "899",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "es-MX,es;q=0.9,en-US;q=0.8,en;q=0.7",
+            "content-type": "application/json",
+            "origin": "https://terapiasmagneticas.com",
+            "priority": "u=1, i",
+            "referer": "https://terapiasmagneticas.com/",
+            "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Android WebView\";v=\"133\", \"Chromium\";v=\"133\"",
+            "sec-ch-ua-mobile": "?1",
+            "sec-ch-ua-platform": "\"Android\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "189.253.61.180",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3051a3bb6625",
+            "x-real-ip": "189.253.61.180",
+            "x-requested-with": "com.facebook.katana"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "tiemporegistro": 1739945192,
+            "email": "ori.h03@gmail.com",
+            "whatsapp": "+524772630131",
+            "utmCampaign": "🔵[0125] [JC] [CAPTACION] [SIGNUP] [F] [CBO] -AT1D - N1 LAL 1-5% APILADOS",
+            "utmSource": "Facebook_Mobile_Feed",
+            "utmMedium": "Público similar (Worldwide, 1-5%) - Lista Compradores Terapia del Dolor 0225 UPDATE - Copia",
+            "utmContent": "ANUN20-L6-V1-GANCHOS-CAPTACION-VERTICAL-VI UN MEDICO COREANO.mp4.mp4_Group_1",
+            "utmTerm": "fb",
+            "userAgent": "Mozilla/5.0 (Linux; Android 13; P80 Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/133.0.6943.81 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/500.0.0.57.50;IABMV/1;]",
+            "platform": "Linux aarch64",
+            "language": "es-MX",
+            "fbc": "fb.1.1739945124661.IwZXh0bgNhZW0BMABhZGlkAasYlsmW4yUBHdf2BprzKzANY-ueDGZmzQ3DcJDU-9oMokf7pCXyVrJ7gK_SUXS_TgzUOQ_aem_yZXCIkryu_a2ZiPAgbcmnw",
+            "fbp": "fb.1.1739945124686.249958723238201462",
+            "isFbcGenerated": false
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/captura-td-2025-1",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-09-02T19:59:18.000Z",
+  "versionId": "d97e9e8e-0551-484e-aa77-41e870e4bfa2"
+}
