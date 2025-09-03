@@ -1,0 +1,170 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Insert rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-02T15:43:22.052Z",
+  "id": "TaEU9rEtqMQ19awc",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "ESCRITURA DE ENTRADAS A GRUPO MANUALES",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -816,
+        -80
+      ],
+      "id": "5c5edbbb-dc0a-4cd8-8444-a0335ffeb10c",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "16zISbfLoIk30SjC5afUVurCJRL-odXGwoFBPJHGY41s",
+          "mode": "list",
+          "cachedResultName": "NUMEROS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16zISbfLoIk30SjC5afUVurCJRL-odXGwoFBPJHGY41s/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1163296534,
+          "mode": "list",
+          "cachedResultName": "Hoja 4",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16zISbfLoIk30SjC5afUVurCJRL-odXGwoFBPJHGY41s/edit#gid=1163296534"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -608,
+        -80
+      ],
+      "id": "d8b0aff6-1166-47ac-9f5c-eb06d3dd7def",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Function Node (Run Once for All Items)\n\nfunction to24h(h, m, s, ampmRaw) {\n  let hh = parseInt(h, 10);\n  const mm = parseInt(m, 10);\n  const ss = parseInt(s, 10);\n  const a = (ampmRaw || '').toLowerCase();\n  const isPM = a.includes('p');\n  const isAM = a.includes('a');\n  if (isPM && hh < 12) hh += 12;\n  if (isAM && hh === 12) hh = 0;\n  return `${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;\n}\n\nfunction clean(str) {\n  return (str || '')\n    .replace(/[\\u202A-\\u202E\\u2066-\\u2069\\u200E\\u200F]/g, '')\n    .replace(/[\\u00A0\\u202F]/g, ' ')\n    .replace(/\\s+/g, ' ')\n    .trim();\n}\n\nreturn items.map(({ json }) => {\n  const rawOriginal = (json.NUMERO ?? '').toString();\n  const raw = clean(rawOriginal);\n\n  // Fecha/hora\n  const dtRe = /^\\[(\\d{1,2})\\/(\\d{1,2})\\/(\\d{2}),\\s*(\\d{1,2}):(\\d{2}):(\\d{2})\\s*([ap](?:\\s*\\.?\\s*m\\.?)?)\\]/iu;\n  const dt = raw.match(dtRe);\n  if (!dt) {\n    return { json: { error: 'No se pudo parsear fecha/hora', raw: rawOriginal } };\n  }\n  const dd = dt[1].padStart(2,'0');\n  const mm = dt[2].padStart(2,'0');\n  const yy = dt[3];\n  const dia = `20${yy}-${mm}-${dd}`;\n  const hora = to24h(dt[4], dt[5], dt[6], dt[7]);\n\n  // Teléfono: último bloque con forma de teléfono\n  const phoneBlocks = raw.match(/[+]?\\d[\\d()\\s\\-\\u2010-\\u2015\\u2212]+/g);\n  if (!phoneBlocks || phoneBlocks.length === 0) {\n    return { json: { error: 'No se encontró ningún número', raw: rawOriginal } };\n  }\n  const lastPhone = phoneBlocks[phoneBlocks.length - 1];\n  const whatsapp = lastPhone.replace(/\\D/g, '');\n\n  // Campos adicionales\n  const grupo = json.grupo ?? '120363421901279116@g.us';\n  const nombre_grupo = json.col_2 ?? json.nombre_grupo ?? 'Desconocido';\n  const fuente = json.fuente ?? 'FB ADS';\n  const id = json.row_number ?? (Date.now() % 1e9);\n\n  return {\n    json: {\n      dia,\n      hora,\n      whatsapp,\n      grupo,\n      nombre_grupo,\n      fuente\n    }\n  };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -400,
+        -80
+      ],
+      "id": "9381a1b9-f4b0-43fa-b505-e26a05bdd6bb",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "ADRI_NY_L1_WHA",
+          "mode": "list",
+          "cachedResultName": "ADRI_NY_L1_WHA"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "dia",
+              "value": "={{ $json.dia }}"
+            },
+            {
+              "column": "hora",
+              "value": "={{ $json.hora }}"
+            },
+            {
+              "column": "whatsapp",
+              "value": "={{ $json.whatsapp }}"
+            },
+            {
+              "column": "grupo",
+              "value": "={{ $json.grupo }}"
+            },
+            {
+              "column": "nombre_grupo",
+              "value": "={{ $json.nombre_grupo }}"
+            },
+            {
+              "column": "fuente",
+              "value": "={{ $json.fuente }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -192,
+        -80
+      ],
+      "id": "dc82c6e9-b526-4737-8b26-b8df2eb3e20b",
+      "name": "Insert rows in a table",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-02T17:07:32.000Z",
+  "versionId": "22de084a-3d14-4e69-a785-c2142e06b39a"
+}
