@@ -205,6 +205,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "BD CEJAS L",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -265,6 +272,46 @@
           },
           {
             "node": "escritura",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VENEZUELA?5": {
+      "main": [
+        [
+          {
+            "node": "ELIMINAR +4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "escritura11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BD CEJAS L": {
+      "main": [
+        [
+          {
+            "node": "ES ADRIANA?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ES ADRIANA?": {
+      "main": [
+        [
+          {
+            "node": "VENEZUELA?5",
             "type": "main",
             "index": 0
           }
@@ -1312,6 +1359,192 @@
           "name": "CAPTACIONES"
         }
       }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6e074b0d-4663-476d-ae90-8be442f648cd",
+              "leftValue": "={{ $('Edit Fields').item.json.numero }}",
+              "rightValue": "58",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "d44f198e-7a22-4fad-9be3-8892241926ee",
+      "name": "VENEZUELA?5",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        4128,
+        1408
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "table": {
+          "__rl": true,
+          "value": "ADRI_NY_L1_WHA",
+          "mode": "list",
+          "cachedResultName": "ADRI_NY_L1_WHA"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "whatsapp",
+        "valueToMatchOn": "={{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "dia",
+              "value": "={{ $now.format('yyyy-MM-dd') }}"
+            },
+            {
+              "column": "hora",
+              "value": "={{ $now.format('HH:mm:ss') }}"
+            },
+            {
+              "column": "grupo",
+              "value": "={{ $('Edit Fields').item.json.grupo }}"
+            },
+            {
+              "column": "nombre_grupo",
+              "value": "={{ $('BD CEJAS L').item.json.nombre }}"
+            },
+            {
+              "column": "fuente",
+              "value": "FB ADS"
+            }
+          ]
+        },
+        "options": {
+          "detailedOutput": true
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        4352,
+        1504
+      ],
+      "id": "0f129ca4-7ceb-4585-8acf-6333d8d69913",
+      "name": "escritura11",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('Webhook').item.json.body.instance }}?groupJid={{ $('Edit Fields').item.json.grupo }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "429683C4C977415CAAFCCE10F7D57E11"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{ \"action\": \"remove\", \n  \n  \"participants\": [ \"{{ $('Edit Fields').item.json.numero }}\" ] } ",
+        "options": {}
+      },
+      "id": "bdea7f46-38c3-4f77-838a-0fabbcaf35c3",
+      "name": "ELIMINAR +4",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4352,
+        1312
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "ADRIANA_LINKS",
+          "mode": "list",
+          "cachedResultName": "ADRIANA_LINKS"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $('If').item.json.grupo }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "400bd777-3754-4660-b47b-a6d49e4f30e4",
+      "name": "BD CEJAS L",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        3680,
+        1408
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "179b2UX7XsHkNW05",
+          "name": "REDIRECCIONES - LANZAMIENTOS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8d2037fa-e2a7-4668-901e-4ca0a27a93ab",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "9501c84b-2965-4c43-82f0-a7d434515c88",
+      "name": "ES ADRIANA?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3904,
+        1408
+      ]
     }
   ],
   "pinData": {
@@ -1386,6 +1619,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-08-19T14:53:32.000Z",
-  "versionId": "20710a5a-7cd7-421a-8180-ba6aff8a3494"
+  "updatedAt": "2025-09-02T15:25:50.000Z",
+  "versionId": "df99d1fc-2a9b-4179-a7f0-6856e4c6a16b"
 }
