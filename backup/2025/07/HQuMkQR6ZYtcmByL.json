@@ -269,7 +269,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "My workflow 20",
+  "name": "EJEMPLO BOT TELEGRAM",
   "nodes": [
     {
       "parameters": {
@@ -970,7 +970,8 @@
     {
       "parameters": {
         "resource": "file",
-        "fileId": "={{ $json.message.voice.file_id }}"
+        "fileId": "={{ $json.message.voice.file_id }}",
+        "additionalFields": {}
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
@@ -1083,6 +1084,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-08-01T01:13:50.000Z",
-  "versionId": "c56ad2b1-a9fd-4595-8c24-d8b224c13d59"
+  "updatedAt": "2025-09-02T17:10:00.000Z",
+  "versionId": "a39aa8e6-5e52-4876-b436-9d379aadbba3"
 }
