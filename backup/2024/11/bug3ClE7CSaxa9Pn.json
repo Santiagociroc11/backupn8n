@@ -54,7 +54,7 @@
       "main": [
         [
           {
-            "node": "Loop Over Items1",
+            "node": "Filter",
             "type": "main",
             "index": 0
           }
@@ -105,6 +105,17 @@
           }
         ]
       ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-11-19T12:59:41.001Z",
@@ -122,7 +133,7 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        160,
+        96,
         352
       ]
     },
@@ -142,7 +153,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        1168,
+        1376,
         272
       ],
       "credentials": {
@@ -183,8 +194,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        960,
-        272
+        1168,
+        288
       ]
     },
     {
@@ -196,7 +207,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        528,
+        480,
         272
       ]
     },
@@ -211,7 +222,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        368,
+        304,
         272
       ],
       "credentials": {
@@ -228,7 +239,7 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        720,
+        928,
         272
       ],
       "id": "d4b17eae-1f15-456d-97ad-23d0c60a5255",
@@ -248,7 +259,7 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        160,
+        96,
         144
       ],
       "id": "9e2955d0-3fbb-439e-b695-ca98fda6b9ae",
@@ -276,8 +287,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.2,
       "position": [
-        1520,
-        368
+        1728,
+        384
       ],
       "id": "5a38cb9b-eb65-46eb-8847-aa64831ed6f1",
       "name": "Execute Workflow"
@@ -291,11 +302,44 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        1328,
-        368
+        1536,
+        384
       ],
       "id": "641e86bc-b853-4c8b-a2d1-cb6630095936",
       "name": "Merge"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "00faf514-cca3-4e53-bedd-9624d1dbcf9a",
+              "leftValue": "={{ $json.links_table.toLowerCase() }}",
+              "rightValue": "adriana",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        672,
+        272
+      ],
+      "id": "c2989bb3-ca34-4ec9-a964-5fd97d63ae90",
+      "name": "Filter"
     }
   ],
   "pinData": {},
@@ -327,6 +371,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-08-09T14:10:57.000Z",
-  "versionId": "7b7b5eb8-01d1-40dd-b6c9-e54394faa3ff"
+  "updatedAt": "2025-09-02T14:35:39.000Z",
+  "versionId": "443e6191-1a2a-4a6a-9a9d-2ac1a2fc7c8f"
 }
