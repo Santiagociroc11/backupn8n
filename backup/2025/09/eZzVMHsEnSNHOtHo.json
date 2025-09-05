@@ -1,0 +1,151 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-04T19:34:37.068Z",
+  "id": "eZzVMHsEnSNHOtHo",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 47",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -752,
+        -32
+      ],
+      "id": "6312892c-45c9-4496-ac8a-613e195c0f0b",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://app.stelorder.com/app/products",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "name": "APIKEY",
+              "value": "we2jFYCW71mCPQEu6rIADJ74DeAd4ncEeY5vA8wJ"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -496,
+        -96
+      ],
+      "id": "1997d468-0038-4284-9893-60830c7af688",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c8b49b64-2b0d-4db3-b812-14635b78d4c6",
+              "name": "name",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "063ec274-b329-49c8-b091-0405d0910337",
+              "name": "description",
+              "value": "={{ $json.description }}",
+              "type": "string"
+            },
+            {
+              "id": "d1d44998-7a06-4210-882f-11b3446eebc8",
+              "name": "real-stock",
+              "value": "={{ $json['real-stock'] }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -256,
+        -96
+      ],
+      "id": "b29fe061-7ddf-423a-a3d8-663f8635c271",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "url": "https://app.stelorder.com/app/purchaseDeliveryNotes",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "name": "APIKEY",
+              "value": "we2jFYCW71mCPQEu6rIADJ74DeAd4ncEeY5vA8wJ"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -496,
+        96
+      ],
+      "id": "eee819eb-a8fc-4852-a929-8c7db68599df",
+      "name": "HTTP Request1"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-04T20:17:15.000Z",
+  "versionId": "bf0b8bcb-9296-4154-8268-e807081fde37"
+}
