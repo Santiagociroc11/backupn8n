@@ -383,7 +383,7 @@
             {
               "id": "8a258913-16e5-4c77-bc40-13e5d18f740f",
               "name": "ip",
-              "value": "={{ $json.headers['x-real-ip'] }}",
+              "value": "={{ $json.headers['cf-connecting-ip'] }}",
               "type": "string"
             }
           ]
@@ -1128,48 +1128,48 @@
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
-            "user-agent": "Mozilla/5.0 (Linux; Android 13; P80 Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/133.0.6943.81 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/500.0.0.57.50;IABMV/1;]",
-            "content-length": "899",
+            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 musical_ly_41.4.0 BytedanceWebview/d8a21c6",
+            "content-length": "414",
             "accept": "*/*",
-            "accept-encoding": "gzip, deflate, br, zstd",
-            "accept-language": "es-MX,es;q=0.9,en-US;q=0.8,en;q=0.7",
+            "accept-encoding": "gzip, br",
+            "accept-language": "es-419,es;q=0.9",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "181.61.209.88",
+            "cf-ipcountry": "CO",
+            "cf-ray": "97a84a08bf66e1c2-MIA",
+            "cf-visitor": "{\"scheme\":\"https\"}",
             "content-type": "application/json",
-            "origin": "https://terapiasmagneticas.com",
-            "priority": "u=1, i",
-            "referer": "https://terapiasmagneticas.com/",
-            "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Android WebView\";v=\"133\", \"Chromium\";v=\"133\"",
-            "sec-ch-ua-mobile": "?1",
-            "sec-ch-ua-platform": "\"Android\"",
+            "origin": "https://www.adrianarueda.online",
+            "priority": "u=3, i",
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "189.253.61.180",
+            "x-forwarded-for": "181.61.209.88, 172.71.156.137",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "3051a3bb6625",
-            "x-real-ip": "189.253.61.180",
-            "x-requested-with": "com.facebook.katana"
+            "x-forwarded-server": "3393e017d3a9",
+            "x-real-ip": "172.71.156.137"
           },
           "params": {},
           "query": {},
           "body": {
-            "tiemporegistro": 1739945192,
-            "email": "ori.h03@gmail.com",
-            "whatsapp": "+524772630131",
-            "utmCampaign": "🔵[0125] [JC] [CAPTACION] [SIGNUP] [F] [CBO] -AT1D - N1 LAL 1-5% APILADOS",
-            "utmSource": "Facebook_Mobile_Feed",
-            "utmMedium": "Público similar (Worldwide, 1-5%) - Lista Compradores Terapia del Dolor 0225 UPDATE - Copia",
-            "utmContent": "ANUN20-L6-V1-GANCHOS-CAPTACION-VERTICAL-VI UN MEDICO COREANO.mp4.mp4_Group_1",
-            "utmTerm": "fb",
-            "userAgent": "Mozilla/5.0 (Linux; Android 13; P80 Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/133.0.6943.81 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/500.0.0.57.50;IABMV/1;]",
-            "platform": "Linux aarch64",
-            "language": "es-MX",
-            "fbc": "fb.1.1739945124661.IwZXh0bgNhZW0BMABhZGlkAasYlsmW4yUBHdf2BprzKzANY-ueDGZmzQ3DcJDU-9oMokf7pCXyVrJ7gK_SUXS_TgzUOQ_aem_yZXCIkryu_a2ZiPAgbcmnw",
-            "fbp": "fb.1.1739945124686.249958723238201462",
-            "isFbcGenerated": false
+            "tiemporegistro": 1757102178,
+            "email": "bernalclaudiam@hotmail.com",
+            "whatsapp": "+573152196294",
+            "utmCampaign": "-",
+            "utmSource": "-",
+            "utmMedium": "-",
+            "utmContent": "-",
+            "utmTerm": "-",
+            "adid": "-",
+            "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 musical_ly_41.4.0 BytedanceWebview/d8a21c6",
+            "platform": "iPhone",
+            "language": "es-419",
+            "fbc": "-",
+            "fbp": "-"
           },
-          "webhookUrl": "https://n8n.automscc.com/webhook/captura-td-2025-1",
+          "webhookUrl": "https://n8n.automscc.com/webhook/adri-ny-org",
           "executionMode": "production"
         }
       }
@@ -1184,6 +1184,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-09-02T19:59:18.000Z",
-  "versionId": "d97e9e8e-0551-484e-aa77-41e870e4bfa2"
+  "updatedAt": "2025-09-05T20:07:37.000Z",
+  "versionId": "9e31efbb-56a3-4f43-ab78-ea85ba75d8fa"
 }
