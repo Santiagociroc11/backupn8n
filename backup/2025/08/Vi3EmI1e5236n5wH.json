@@ -383,7 +383,7 @@
             {
               "id": "8a258913-16e5-4c77-bc40-13e5d18f740f",
               "name": "ip",
-              "value": "={{ $json.headers['x-real-ip'] }}",
+              "value": "={{ $json.headers['cf-connecting-ip'] }}",
               "type": "string"
             }
           ]
@@ -1128,48 +1128,49 @@
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
-            "user-agent": "Mozilla/5.0 (Linux; Android 13; P80 Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/133.0.6943.81 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/500.0.0.57.50;IABMV/1;]",
-            "content-length": "899",
+            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22G100 [FBAN/FBIOS;FBAV/528.0.0.25.76;FBBV/783401691;FBDV/iPhone15,3;FBMD/iPhone;FBSN/iOS;FBSV/18.6.2;FBSS/3;FBID/phone;FBLC/es_LA;FBOP/5;FBRV/787854499;IABMV/1]",
+            "content-length": "960",
             "accept": "*/*",
-            "accept-encoding": "gzip, deflate, br, zstd",
-            "accept-language": "es-MX,es;q=0.9,en-US;q=0.8,en;q=0.7",
+            "accept-encoding": "gzip, br",
+            "accept-language": "es-US,es;q=0.9",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "38.247.92.3",
+            "cf-ipcountry": "DO",
+            "cf-ray": "97a85e882b0c4e82-STI",
+            "cf-visitor": "{\"scheme\":\"https\"}",
             "content-type": "application/json",
-            "origin": "https://terapiasmagneticas.com",
-            "priority": "u=1, i",
-            "referer": "https://terapiasmagneticas.com/",
-            "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Android WebView\";v=\"133\", \"Chromium\";v=\"133\"",
-            "sec-ch-ua-mobile": "?1",
-            "sec-ch-ua-platform": "\"Android\"",
+            "origin": "https://www.adrianarueda.online",
+            "priority": "u=3, i",
+            "referer": "https://www.adrianarueda.online/",
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "189.253.61.180",
+            "x-forwarded-for": "38.247.92.3, 172.69.77.151",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "3051a3bb6625",
-            "x-real-ip": "189.253.61.180",
-            "x-requested-with": "com.facebook.katana"
+            "x-forwarded-server": "3393e017d3a9",
+            "x-real-ip": "172.69.77.151"
           },
           "params": {},
           "query": {},
           "body": {
-            "tiemporegistro": 1739945192,
-            "email": "ori.h03@gmail.com",
-            "whatsapp": "+524772630131",
-            "utmCampaign": "🔵[0125] [JC] [CAPTACION] [SIGNUP] [F] [CBO] -AT1D - N1 LAL 1-5% APILADOS",
+            "tiemporegistro": 1757103017,
+            "email": "solanllyjrod@gmail.com",
+            "whatsapp": "+15169242341",
+            "utmCampaign": "🔵 0925 | JC | 0925 | Captación | CompleteRegistration | PF | NY-SALUDABLES | OPT PAISES | LAL 1% IG",
             "utmSource": "Facebook_Mobile_Feed",
-            "utmMedium": "Público similar (Worldwide, 1-5%) - Lista Compradores Terapia del Dolor 0225 UPDATE - Copia",
-            "utmContent": "ANUN20-L6-V1-GANCHOS-CAPTACION-VERTICAL-VI UN MEDICO COREANO.mp4.mp4_Group_1",
+            "utmMedium": "Público similar (Worldwide, 1%) - IG | Adriana | 30D",
+            "utmContent": "ANUN1-L1-ADRIANA-CAPTACIÓN-CON FONDO-YA SABES QUE NO TE PUEDES PERDER_.mp4",
             "utmTerm": "fb",
-            "userAgent": "Mozilla/5.0 (Linux; Android 13; P80 Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/133.0.6943.81 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/500.0.0.57.50;IABMV/1;]",
-            "platform": "Linux aarch64",
-            "language": "es-MX",
-            "fbc": "fb.1.1739945124661.IwZXh0bgNhZW0BMABhZGlkAasYlsmW4yUBHdf2BprzKzANY-ueDGZmzQ3DcJDU-9oMokf7pCXyVrJ7gK_SUXS_TgzUOQ_aem_yZXCIkryu_a2ZiPAgbcmnw",
-            "fbp": "fb.1.1739945124686.249958723238201462",
-            "isFbcGenerated": false
+            "adid": "120232182589210647",
+            "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/22G100 [FBAN/FBIOS;FBAV/528.0.0.25.76;FBBV/783401691;FBDV/iPhone15,3;FBMD/iPhone;FBSN/iOS;FBSV/18.6.2;FBSS/3;FBID/phone;FBLC/es_LA;FBOP/5;FBRV/787854499;IABMV/1]",
+            "platform": "iPhone",
+            "language": "es-US",
+            "fbc": "fb.1.1757102964730.IwZXh0bgNhZW0BMABhZGlkAasmiHyhQUcBHiu6wEkEjraNj0dc3HmkYrJglvC02JV-TcfxhBU6PE8JFX4YL8mI-kcFJEjZ_aem_cdNY9GY76GjeYKl6S6edMA",
+            "fbp": "fb.1.1757102964184.565697774587553343"
           },
-          "webhookUrl": "https://n8n.automscc.com/webhook/captura-td-2025-1",
+          "webhookUrl": "https://n8n.automscc.com/webhook/adri-ny",
           "executionMode": "production"
         }
       }
@@ -1184,6 +1185,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-08-19T14:37:25.000Z",
-  "versionId": "93bb8a8e-57eb-4d35-b5ab-ddda88400a87"
+  "updatedAt": "2025-09-05T20:15:25.000Z",
+  "versionId": "e208a691-6811-4240-a50b-09b9a1cdf8a1"
 }
