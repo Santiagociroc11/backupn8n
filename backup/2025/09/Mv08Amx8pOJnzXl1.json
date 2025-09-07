@@ -1,0 +1,60 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-07T00:33:14.518Z",
+  "id": "Mv08Amx8pOJnzXl1",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 48",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "98278f01-2ba7-4e92-9173-2e99057b6fe6",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://graph.facebook.com/v23.0/debug_token?input_token=EAAJIvJdxJ80BPOyZA0uZCCQ0TtY0lNpF3MLQMUvK0Ym5KWqWFxkASYH7MR00xPCMZB0B6IJ3cM0pEoWPvfGN4OtqA96uV4HNVesrmh3oDC7rrzBil2FOosmO9P54qPErc0JttdHDppDrSNYnNFEstkkyvtbxBn4ckU9F86ZA3FcUy3slfktcCXfZAaFv9L7MERmoZD&access_token=642924785248205\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "959032e8-c7b2-47ec-afac-c3b8e1266c03",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-07T00:33:14.518Z",
+  "versionId": "5c85ff0e-1cef-41e1-89cf-cda5cbc6fb9a"
+}
