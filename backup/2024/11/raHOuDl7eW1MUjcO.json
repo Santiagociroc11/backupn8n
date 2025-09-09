@@ -769,7 +769,7 @@
             {
               "id": "9ecd0f46-9b4c-406d-94af-61dae04fe420",
               "name": "=URL_IMAGEN",
-              "value": "=https://n8n-minio.wc2hpx.easypanel.host/n8n/{{ $now.toLocal().format('MM-dd-HH-mm') }}-imagenGrupo",
+              "value": "=https://minio-storage.automscc.com/n8n/{{ $now.toLocal().format('MM-dd-HH-mm') }}-imagenGrupo",
               "type": "string"
             }
           ]
@@ -786,7 +786,28 @@
       ]
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "form1": [
+      {
+        "json": {
+          "Nombre de los grupos": "Crumbl Cookies Saludables 🍪",
+          "Descripción": "🍪 ¡Bienvenida al grupo Masterclass Crumbl Saludable!\r\n\r\nPrepárate para aprender a crear una versión saludable de la galleta viral tipo Crumbl —sin gluten, sin azúcar y lista para convertirse en tu próximo ingreso desde casa, ¡No pasa nada si no tienes experiencia en repostería! 👩‍🍳💰\r\n🔥El lunes *15 DE SEPTIEMBRE* — En  1 clase en vivo, de libre acceso, clara y detallada Vas a descubrir cómo esta receta puede abrirte las puertas a un negocio rentable, sin herramientas especiales ni grandes inversiones.\r\n✅ Conéctate puntual a cada clase:\r\n🇨🇴 Colombia 7:00 PM\r\n 🇲🇽 México (CDMX) 6:00 PM\r\n 🇦🇷 Argentina 9:00 PM\r\n 🇺🇸 EE.UU. (New York) 7:00 PM\r\n 🇺🇸 EE.UU. (Los Ángeles) 4:00 PM\r\n🚨 *ATENCIÓN*\r\n\r\n 1️⃣ ¡No te salgas del grupo! Aquí recibirás el acceso a la clase y una información valiosa  \r\n2️⃣ Nadie de nuestro equipo te pedirá códigos, datos ni mensajes privados. Solo confía en los administradores. ❌\r\n¡Nos vemos en la Masterclass!\r\n",
+          "Introduce los admin separados por comas": "573058176936,573245904626,573017817643,573218504711,573163141159,573175120184",
+          "Cantidad de grupos": 5,
+          "En que numero empieza?": 11,
+          "subir imagen de grupos": [
+            {
+              "filename": "PORTA SEPTIEMBRE_Mesa de trabajo 1.png",
+              "mimetype": "image/png",
+              "size": 228586
+            }
+          ],
+          "submittedAt": "2025-09-08T10:53:59.083-05:00",
+          "formMode": "production"
+        }
+      }
+    ]
+  },
   "repo_name": "backupn8n",
   "repo_owner": "Santiagociroc11",
   "repo_path": "backup/",
@@ -829,6 +850,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-09-05T17:47:44.000Z",
-  "versionId": "f9d12eba-dae0-4a89-9cd0-83593ad8d5ae"
+  "updatedAt": "2025-09-08T15:56:37.000Z",
+  "versionId": "8f18cabe-dafe-4c69-b1d4-4f11d89b286f"
 }
