@@ -5,12 +5,44 @@
       "main": [
         [
           {
-            "node": "CORREO BIENVENIDA",
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "SUERO PRINCIPAL",
             "type": "main",
             "index": 0
           },
           {
-            "node": "HTTP Request",
+            "node": "CORREO BIENVENIDA",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "OB FARMA",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "OB PRENATAL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "OB AUXILIOS",
             "type": "main",
             "index": 0
           }
@@ -24,7 +56,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "[SUEROTERAPIA] COMPRA APROBADA",
+  "name": "[SUEROTERAPIA] COMPRA Y OB",
   "nodes": [
     {
       "parameters": {
@@ -35,8 +67,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -992,
-        -80
+        -1888,
+        -64
       ],
       "id": "f276e627-4c70-4170-9c0b-6b219f098782",
       "name": "WH - HOTMART",
@@ -55,8 +87,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -768,
-        16
+        -1312,
+        -464
       ],
       "id": "3ddde34b-32d2-416a-a1fa-6108f842a2fb",
       "name": "CORREO BIENVENIDA",
@@ -67,6 +99,151 @@
           "name": "GMAIL JSD COMPANY"
         }
       }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.data.product.name.toLowerCase() }}",
+                    "rightValue": "sueroterapia",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "7d3c7dba-f083-4297-a4b1-61dca3bf2eef"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "SUERO"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "9e1dc5aa-32e9-4b06-9de3-ef6bf0a535e9",
+                    "leftValue": "={{ $json.body.data.product.name.toLowerCase() }}",
+                    "rightValue": "farma",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "FARMACOLOGIA"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6b7a746c-d432-4d9b-9172-9b24e20d55a6",
+                    "leftValue": "={{ $json.body.data.product.name.toLowerCase() }}",
+                    "rightValue": "prenatal",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PRENATAL"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "9b0c0cbe-410d-4102-be57-f49eaae62132",
+                    "leftValue": "={{ $json.body.data.product.name.toLowerCase() }}",
+                    "rightValue": "auxilios",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PRIMEROS AUXILIOS"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -1680,
+        -112
+      ],
+      "id": "8b16153f-44b1-4f32-b473-0a21ca4facaf",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://cursos.automscc.com/api/hotmart/process-purchase",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer hotmart"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"email\": \"{{ $json.body.data.buyer.email }}\",\n  \"full_name\": \"{{ $json.body.data.buyer.name }}\",\n  \"phone\": \"{{ $json.body.data.buyer.checkout_phone }}\",\n  \"course_id\": \"919c1ab4-65fc-4dbe-88fd-c71e5d1903e3\",\n  \"transaction_id\": \"{{ $json.body.data.purchase.transaction }}\"\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1312,
+        -80
+      ],
+      "id": "733b4e26-1371-4db7-8185-68be720d79cb",
+      "name": "OB FARMA"
     },
     {
       "parameters": {
@@ -89,11 +266,65 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -768,
-        -176
+        -1312,
+        -272
       ],
       "id": "74416802-2888-45e2-958e-97f1c6a8312e",
-      "name": "HTTP Request"
+      "name": "SUERO PRINCIPAL"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://cursos.automscc.com/api/hotmart/process-purchase",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer hotmart"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"email\": \"{{ $json.body.data.buyer.email }}\",\n  \"full_name\": \"{{ $json.body.data.buyer.name }}\",\n  \"phone\": \"{{ $json.body.data.buyer.checkout_phone }}\",\n  \"course_id\": \"919c1ab4-65fc-4dbe-88fd-c71e5d1903e3\",\n  \"transaction_id\": \"{{ $json.body.data.purchase.transaction }}\"\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1312,
+        112
+      ],
+      "id": "33cc9456-2943-47b2-ba0b-ad581c8cdf2f",
+      "name": "OB PRENATAL"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://cursos.automscc.com/api/hotmart/process-purchase",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer hotmart"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"email\": \"{{ $json.body.data.buyer.email }}\",\n  \"full_name\": \"{{ $json.body.data.buyer.name }}\",\n  \"phone\": \"{{ $json.body.data.buyer.checkout_phone }}\",\n  \"course_id\": \"919c1ab4-65fc-4dbe-88fd-c71e5d1903e3\",\n  \"transaction_id\": \"{{ $json.body.data.purchase.transaction }}\"\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1312,
+        304
+      ],
+      "id": "bb802890-0799-4986-98f2-eaab3fcef601",
+      "name": "OB AUXILIOS"
     }
   ],
   "pinData": {
@@ -103,16 +334,21 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "Jodd HTTP",
-            "content-length": "1714",
+            "content-length": "1724",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "18.232.83.176",
+            "cf-ipcountry": "US",
+            "cf-ray": "97c9bc701e2a058e-IAD",
+            "cf-visitor": "{\"scheme\":\"https\"}",
             "content-type": "application/json",
-            "x-forwarded-for": "3.84.82.213",
+            "x-forwarded-for": "18.232.83.176, 172.71.191.56",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "5e236941e778",
+            "x-forwarded-server": "3393e017d3a9",
             "x-hotmart-hottok": "rrQs3XPgg981iOyVxcVtzyVVA0kYsp1be22114-3144-4b81-9341-e1e30d733e88",
-            "x-real-ip": "3.84.82.213",
-            "accept-encoding": "gzip"
+            "x-real-ip": "172.71.191.56"
           },
           "params": {},
           "query": {},
@@ -122,7 +358,7 @@
                 "support_email": "",
                 "has_co_production": false,
                 "name": "SueroTerapia - Curso Completo",
-                "warranty_date": "2025-06-13T00:00:00Z",
+                "warranty_date": "2025-09-16T00:00:00Z",
                 "is_physical_product": false,
                 "id": 5636749,
                 "ucode": "73cd9815-52b8-45c8-89ea-1e3959b6bc05"
@@ -135,9 +371,9 @@
                 },
                 {
                   "currency_conversion": {
-                    "converted_value": 54935.82,
+                    "converted_value": 52522.94,
                     "converted_to_currency": "COP",
-                    "conversion_rate": 4102.75
+                    "conversion_rate": 3922.55
                   },
                   "currency_value": "USD",
                   "source": "PRODUCER",
@@ -147,41 +383,43 @@
               "purchase": {
                 "original_offer_price": {
                   "currency_value": "USD",
-                  "value": 14.97
+                  "value": 16.39
                 },
                 "subscription_anticipation_purchase": false,
                 "checkout_country": {
-                  "iso": "US",
-                  "name": "United States"
+                  "iso": "AR",
+                  "name": "Argentina"
                 },
                 "origin": {
-                  "xcod": "f106d392-2692-45fe-bd8e-3513eccfcb76"
+                  "xcod": "4f594e81-70e0-40f5-842b-2373b29cde30"
                 },
                 "order_bump": {
-                  "is_order_bump": false
+                  "is_order_bump": true
                 },
-                "approved_date": 1749227059000,
+                "approved_date": 1757452882000,
                 "offer": {
-                  "code": "og7gp9y2"
+                  "code": "og7gp9y2",
+                  "name": "PRINCIPAL",
+                  "description": "🔥 Últimos Cupos"
                 },
                 "is_funnel": false,
-                "order_date": 1749227057000,
+                "order_date": 1757452880000,
                 "price": {
-                  "currency_value": "USD",
-                  "value": 14.97
+                  "currency_value": "ARS",
+                  "value": 23502
                 },
-                "buyer_ip": "172.56.99.130",
+                "buyer_ip": "181.166.172.186",
                 "payment": {
                   "installments_number": 1,
                   "type": "CREDIT_CARD"
                 },
                 "full_price": {
-                  "currency_value": "USD",
-                  "value": 14.97
+                  "currency_value": "ARS",
+                  "value": 23502
                 },
                 "business_model": "A",
                 "invoice_by": "SELLER",
-                "transaction": "HP2571893437",
+                "transaction": "HP3958889749",
                 "status": "APPROVED"
               },
               "affiliates": [
@@ -197,24 +435,23 @@
               },
               "buyer": {
                 "address": {
-                  "zipcode": "338806100",
-                  "country": "United States",
-                  "address": "318 Ridgeview E",
-                  "city": "Winter Haven",
-                  "state": "Florida",
-                  "country_iso": "US"
+                  "zipcode": "",
+                  "country": "Argentina",
+                  "address": "",
+                  "city": "",
+                  "complement": "",
+                  "country_iso": "AR"
                 },
-                "document": "",
-                "name": "Santiago Ciro",
-                "last_name": "ciro",
-                "checkout_phone": "573136298562",
-                "first_name": "Santiago",
-                "email": "santiagociiro12@gmail.com",
-                "document_type": ""
+                "document": "29600314",
+                "name": "Gagliardi verónica",
+                "last_name": "verónica",
+                "checkout_phone": "541158927995",
+                "first_name": "Gagliardi",
+                "email": "giselegagliardi@hotmail.com"
               }
             },
-            "id": "eea37bd4-4db2-4a2c-b865-7042adfc2f6a",
-            "creation_date": 1749227064431,
+            "id": "ddb07d6f-6f8c-4dc3-b1b4-eccd4785eee7",
+            "creation_date": 1757452894078,
             "event": "PURCHASE_APPROVED",
             "version": "2.0.0"
           },
@@ -233,6 +470,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-08-20T01:08:05.000Z",
-  "versionId": "38122781-8c8c-42c7-a702-797fdf07ca3d"
+  "updatedAt": "2025-09-09T22:07:06.000Z",
+  "versionId": "3c50dc38-a489-452b-a0a1-d0f85f0e55a5"
 }
