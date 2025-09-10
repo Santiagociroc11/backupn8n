@@ -1,17 +1,6 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
-    "When clicking ‘Execute workflow’": {
-      "main": [
-        [
-          {
-            "node": "Get row(s) in sheet",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Search Contacts": {
       "main": [
         [
@@ -118,6 +107,28 @@
           }
         ]
       ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-09-01T20:31:27.430Z",
@@ -128,17 +139,6 @@
   },
   "name": "MASIVO CHATWOOT DESDE EXCEL",
   "nodes": [
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        -1104,
-        -128
-      ],
-      "id": "6804c107-25f7-4b5d-9bdb-0abb18f6568d",
-      "name": "When clicking ‘Execute workflow’"
-    },
     {
       "parameters": {
         "resource": "Contacts",
@@ -151,8 +151,8 @@
       "type": "@devlikeapro/n8n-nodes-chatwoot.chatWoot",
       "typeVersion": 1,
       "position": [
-        -256,
-        -96
+        -496,
+        -200
       ],
       "id": "77db92a8-573e-4200-be40-c0d0a15fea5a",
       "name": "Search Contacts",
@@ -173,8 +173,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -64,
-        -96
+        -272,
+        -200
       ],
       "id": "a72d931e-b2ee-464a-bb5b-19df576813e1",
       "name": "HTTP Request",
@@ -206,7 +206,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -864,
+        -944,
         -128
       ],
       "id": "f9263920-b333-496f-af4c-13fdb2e4261f",
@@ -225,7 +225,7 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        -512,
+        -720,
         -128
       ],
       "id": "15065697-0fd2-47cd-bd3f-12ad0a5a2cf6",
@@ -237,8 +237,8 @@
       "name": "Replace Me",
       "typeVersion": 1,
       "position": [
-        1184,
-        -16
+        848,
+        -128
       ],
       "id": "753c08ab-55c9-439e-a16d-950f01d1a104"
     },
@@ -249,8 +249,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        144,
-        -96
+        -48,
+        -200
       ],
       "id": "27d33129-9b3d-41e4-87ae-282248090173",
       "name": "Code"
@@ -268,7 +268,7 @@
             {
               "id": "57372949-c486-4239-9876-840a33eab22a",
               "name": "mensaje",
-              "value": "=*ALERTA* 🔥🔥\n\nDESDE ESTA MAÑANA *HEMOS TENIDO PROBLEMAS CON LA LLAVE* PARA RECIBIR EL PAGO DE LA PROMOCIÓN...\n\nPor lo cual te dejo acá abajo EL NEQUI DIRECTO:\n\n*NEQUI: 3165600942*\n\nLOS CUPOS ESTAN AGOTANDOSE 😥",
+              "value": "=*ALERTA, DISCULPA LA HORA* 🔥🔥\n\nDESDE ESTA TARDE *TUVIMOS PROBLEMAS CON EL NEQUI DEBIDO A TOPES DE LA APP* PARA RECIBIR EL PAGO DE LA PROMOCIÓN...\n\nPor lo cual te dejo acá abajo EL NEQUI DE RESPALDO:\n\n*NEQUI: 3009937799*\n\n*LOS CUPOS ESTAN AGOTANDOSE*, puedes hacer el pago temprano para asegurar el tuyo 😥",
               "type": "string"
             }
           ]
@@ -278,8 +278,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        336,
-        -96
+        176,
+        -200
       ],
       "id": "ec8fe43a-d116-43c8-8315-accce987e3e4",
       "name": "Edit Fields"
@@ -298,8 +298,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        544,
-        -96
+        400,
+        -200
       ],
       "id": "269f60d0-da04-4c9a-a5fa-f9999398f44d",
       "name": "HTTP Request1",
@@ -318,12 +318,43 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        752,
-        -96
+        624,
+        -200
       ],
       "id": "0a14fa64-563f-46f9-a020-748a9cc306b6",
       "name": "Wait",
       "webhookId": "58778f77-6337-4cd1-a862-23795fa0f012"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 8 * * *"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1168,
+        -224
+      ],
+      "id": "f8d638e5-9180-4531-8bbe-1a41ce62c990",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1168,
+        -32
+      ],
+      "id": "4c045050-c7dc-47b5-a7e0-96bd15c5eea7",
+      "name": "When clicking ‘Execute workflow’"
     }
   ],
   "pinData": {},
@@ -333,9 +364,13 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "staticData": null,
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-09-02T18:17:17.000Z",
-  "versionId": "9905ec5c-eb3f-41fb-a2c1-b667c1add898"
+  "triggerCount": 1,
+  "updatedAt": "2025-09-09T06:33:59.000Z",
+  "versionId": "5cbc6e9d-fdbc-4886-9e29-ead40a12ab43"
 }
