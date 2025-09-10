@@ -190,8 +190,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -300,
-        -260
+        -304,
+        -256
       ],
       "id": "e7aa8211-88c6-48c3-a950-8cd70fed6d3c",
       "name": "Webhook",
@@ -279,7 +279,7 @@
       "typeVersion": 4.5,
       "position": [
         800,
-        -180
+        -176
       ],
       "id": "e36d86dc-6ce7-4d3b-9272-a512c0f8a478",
       "name": "Google Sheets",
@@ -307,7 +307,7 @@
             {
               "id": "1ee89caa-c2b1-4951-8f13-11bc950f8120",
               "leftValue": "={{ $json.body.text.toLowerCase() }}",
-              "rightValue": "/transfiya/",
+              "rightValue": "/recibiste/",
               "operator": {
                 "type": "string",
                 "operation": "regex"
@@ -322,20 +322,20 @@
       "typeVersion": 2.2,
       "position": [
         -80,
-        -260
+        -256
       ],
       "id": "61bc9a87-6556-4518-998e-1ae737c762b0",
       "name": "If"
     },
     {
       "parameters": {
-        "jsCode": "// Entrada: Asumimos que el texto viene en msg.body\nconst inputText = $('Webhook').first().json.body.text;\n\n// Expresión regular para extraer el nombre\nconst nameMatch = inputText.match(/^(\\w+)\\s/);\nconst name = nameMatch ? nameMatch[1] : null;\n\n// Expresión regular para extraer el valor\nconst valueMatch = inputText.match(/\\$\\s([\\d.]+)/);\nlet value = valueMatch ? valueMatch[1] : null;\n\n// Eliminar los puntos del valor (separadores de miles)\nif (value) {\n    value = value.replace(/\\./g, '');  // Elimina todos los puntos\n}\n\n// Resultado\nreturn {\n    name: name,\n    value: value\n};\n"
+        "jsCode": "// Entrada: Asumimos que el texto viene en msg.body\nconst inputText = $('Webhook').first().json.body.text;\n\n// Expresión regular para extraer el nombre (primer token hasta espacio)\nconst nameMatch = inputText.match(/^([\\w¡!¿?]+)\\s/);\nconst name =\"sin nombre\";\n\n// Expresión regular para extraer el valor con coma o punto\nconst valueMatch = inputText.match(/\\$([\\d.,]+)/);\nlet value = valueMatch ? valueMatch[1] : null;\n\n// Normalizar el valor\nif (value) {\n    // Quitar separadores de miles (puntos)\n    value = value.replace(/\\./g, '');\n    // Reemplazar la coma decimal por nada (ignorar centavos)\n    value = value.split(',')[0];\n    // Convertir a número entero\n    value = parseInt(value, 10);\n}\n\n// Resultado\nreturn {\n    name: name,\n    value: value\n};\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        580,
-        -180
+        592,
+        -176
       ],
       "id": "8a18560e-a1a4-430a-81e6-eec294550e56",
       "name": "Code"
@@ -347,7 +347,7 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        1020,
+        1024,
         -160
       ],
       "id": "0b404c4e-e24c-4062-acc6-2fb8ccc91d0b",
@@ -381,8 +381,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        140,
-        -280
+        144,
+        -288
       ],
       "id": "0c83b973-9be7-44bc-b898-10a16646e976",
       "name": "If1"
@@ -418,8 +418,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        360,
-        -380
+        368,
+        -384
       ],
       "id": "ce2965fa-7e67-42ac-8366-777d9f1f074f",
       "name": "HTTP Request1"
@@ -456,7 +456,7 @@
       "typeVersion": 4.2,
       "position": [
         800,
-        -380
+        -384
       ],
       "id": "eb68ccc0-9375-437e-9791-90cb8a7186d6",
       "name": "HTTP Request"
@@ -468,8 +468,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        580,
-        -380
+        592,
+        -384
       ],
       "id": "2dd57976-16b9-4297-bc2f-02544416acdd",
       "name": "Wait1",
@@ -506,8 +506,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1240,
-        -380
+        1248,
+        -384
       ],
       "id": "c911d8ff-fd82-4a67-aff1-bd730e5a4763",
       "name": "HTTP Request2"
@@ -519,8 +519,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        1020,
-        -380
+        1024,
+        -384
       ],
       "id": "c97a5df4-2c0e-4e13-b89e-42b558db88e6",
       "name": "Wait2",
@@ -558,7 +558,7 @@
       "typeVersion": 4.2,
       "position": [
         1680,
-        -380
+        -384
       ],
       "id": "5b60436a-f146-4532-893d-4717a1ef5fdc",
       "name": "HTTP Request3"
@@ -570,8 +570,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        1460,
-        -380
+        1472,
+        -384
       ],
       "id": "843c0f65-ea9d-43e3-afea-22c395afcf8d",
       "name": "Wait3",
@@ -608,8 +608,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2120,
-        -380
+        2128,
+        -384
       ],
       "id": "6b597e20-e748-48db-bf5e-6575d6068c9d",
       "name": "HTTP Request4"
@@ -621,8 +621,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        1900,
-        -380
+        1904,
+        -384
       ],
       "id": "c7a134fd-0d61-4d3b-8040-8ee6f03e1718",
       "name": "Wait4",
@@ -641,7 +641,7 @@
             {
               "id": "ef9ec435-f9c9-4e21-890a-667c38048a91",
               "leftValue": "={{ $json.body.text.toLowerCase() }}",
-              "rightValue": "/saldo/",
+              "rightValue": "/detalle/",
               "operator": {
                 "type": "string",
                 "operation": "regex"
@@ -655,8 +655,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        360,
-        -180
+        368,
+        -176
       ],
       "id": "01462a50-4da0-4a4a-a8e4-8ecbae25e423",
       "name": "If2"
@@ -669,23 +669,28 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "SMS Forwarder App",
-            "transfer-encoding": "chunked",
-            "accept-encoding": "gzip",
+            "content-length": "255",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "161.10.97.105",
+            "cf-ipcountry": "CO",
+            "cf-ray": "97c944bbcbc235b7-MIA",
+            "cf-visitor": "{\"scheme\":\"https\"}",
             "content-type": "application/json; charset=utf-8",
-            "x-forwarded-for": "179.33.153.162",
+            "x-forwarded-for": "161.10.97.105, 172.68.12.116",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "0f86eb816a4d",
-            "x-real-ip": "179.33.153.162"
+            "x-forwarded-server": "3393e017d3a9",
+            "x-real-ip": "172.68.12.116"
           },
           "params": {},
           "query": {},
           "body": {
-            "from": "890159",
-            "text": "DISNEY te envio $ 37.900 por Transfiya. Aceptalos en tu Entidad Financiera o se cancelara.",
-            "sentStamp": 1737695325000,
-            "receivedStamp": 1737695326104,
+            "from": "891084",
+            "text": "dale! te informa: Recibiste una transaccion por valor de $1.000,00 el 09/09/2025 a las 14:59. Consulta el detalle iniciando sesion en la App.",
+            "sentStamp": 1757447990000,
+            "receivedStamp": 1757447990421,
             "sim": "sim1"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/sms-transfiya",
@@ -705,6 +710,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-06-03T21:28:11.000Z",
-  "versionId": "4333fcee-c09a-4190-8ee2-2aa89bec99dd"
+  "updatedAt": "2025-09-09T20:14:19.000Z",
+  "versionId": "62af73b7-97a9-4e0f-b16e-f3033abb06ac"
 }
