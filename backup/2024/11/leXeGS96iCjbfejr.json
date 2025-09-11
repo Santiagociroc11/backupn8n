@@ -208,7 +208,7 @@
         ],
         [
           {
-            "node": "BD CEJAS L",
+            "node": "BD ADRIANA",
             "type": "main",
             "index": 0
           }
@@ -296,22 +296,22 @@
         ]
       ]
     },
-    "BD CEJAS L": {
+    "ES ADRIANA?": {
       "main": [
         [
           {
-            "node": "ES ADRIANA?",
+            "node": "VENEZUELA?5",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "ES ADRIANA?": {
+    "BD ADRIANA": {
       "main": [
         [
           {
-            "node": "VENEZUELA?5",
+            "node": "ES ADRIANA?",
             "type": "main",
             "index": 0
           }
@@ -1421,7 +1421,7 @@
             },
             {
               "column": "nombre_grupo",
-              "value": "={{ $('BD CEJAS L').item.json.nombre }}"
+              "value": "={{ $('BD ADRIANA').item.json.nombre }}"
             },
             {
               "column": "fuente",
@@ -1478,42 +1478,6 @@
     },
     {
       "parameters": {
-        "operation": "select",
-        "table": {
-          "__rl": true,
-          "value": "ADRIANA_LINKS",
-          "mode": "list",
-          "cachedResultName": "ADRIANA_LINKS"
-        },
-        "limit": 1,
-        "where": {
-          "values": [
-            {
-              "column": "id",
-              "value": "={{ $('If').item.json.grupo }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "400bd777-3754-4660-b47b-a6d49e4f30e4",
-      "name": "BD CEJAS L",
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        3680,
-        1408
-      ],
-      "alwaysOutputData": true,
-      "credentials": {
-        "mySql": {
-          "id": "179b2UX7XsHkNW05",
-          "name": "REDIRECCIONES - LANZAMIENTOS"
-        }
-      }
-    },
-    {
-      "parameters": {
         "conditions": {
           "options": {
             "caseSensitive": true,
@@ -1545,6 +1509,42 @@
         3904,
         1408
       ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "ADRIANA_LINKS",
+          "mode": "list",
+          "cachedResultName": "ADRIANA_LINKS"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $('If').item.json.grupo }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "400bd777-3754-4660-b47b-a6d49e4f30e4",
+      "name": "BD ADRIANA",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        3680,
+        1408
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "179b2UX7XsHkNW05",
+          "name": "REDIRECCIONES - LANZAMIENTOS"
+        }
+      }
     }
   ],
   "pinData": {
@@ -1619,6 +1619,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-09-02T15:25:50.000Z",
-  "versionId": "df99d1fc-2a9b-4179-a7f0-6856e4c6a16b"
+  "updatedAt": "2025-09-10T14:22:18.000Z",
+  "versionId": "7200fa49-ae80-4f9c-be5b-8951de72c046"
 }
