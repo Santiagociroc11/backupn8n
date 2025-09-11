@@ -143,8 +143,7 @@
                     "rightValue": "farma",
                     "operator": {
                       "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
+                      "operation": "contains"
                     }
                   }
                 ],
@@ -168,8 +167,7 @@
                     "rightValue": "prenatal",
                     "operator": {
                       "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
+                      "operation": "contains"
                     }
                   }
                 ],
@@ -193,8 +191,7 @@
                     "rightValue": "auxilios",
                     "operator": {
                       "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
+                      "operation": "contains"
                     }
                   }
                 ],
@@ -287,7 +284,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"email\": \"{{ $json.body.data.buyer.email }}\",\n  \"full_name\": \"{{ $json.body.data.buyer.name }}\",\n  \"phone\": \"{{ $json.body.data.buyer.checkout_phone }}\",\n  \"course_id\": \"919c1ab4-65fc-4dbe-88fd-c71e5d1903e3\",\n  \"transaction_id\": \"{{ $json.body.data.purchase.transaction }}\"\n} ",
+        "jsonBody": "={\n  \"email\": \"{{ $json.body.data.buyer.email }}\",\n  \"full_name\": \"{{ $json.body.data.buyer.name }}\",\n  \"phone\": \"{{ $json.body.data.buyer.checkout_phone }}\",\n  \"course_id\": \"2f3fe96f-d3eb-4b13-937b-d9220ac026a4\",\n  \"transaction_id\": \"{{ $json.body.data.purchase.transaction }}\"\n} ",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -314,7 +311,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"email\": \"{{ $json.body.data.buyer.email }}\",\n  \"full_name\": \"{{ $json.body.data.buyer.name }}\",\n  \"phone\": \"{{ $json.body.data.buyer.checkout_phone }}\",\n  \"course_id\": \"919c1ab4-65fc-4dbe-88fd-c71e5d1903e3\",\n  \"transaction_id\": \"{{ $json.body.data.purchase.transaction }}\"\n} ",
+        "jsonBody": "={\n  \"email\": \"{{ $json.body.data.buyer.email }}\",\n  \"full_name\": \"{{ $json.body.data.buyer.name }}\",\n  \"phone\": \"{{ $json.body.data.buyer.checkout_phone }}\",\n  \"course_id\": \"3e796e5b-8803-4e13-bdc8-39719f73ea8e\",\n  \"transaction_id\": \"{{ $json.body.data.purchase.transaction }}\"\n} ",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -334,92 +331,91 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "Jodd HTTP",
-            "content-length": "1724",
+            "content-length": "1671",
             "accept-encoding": "gzip, br",
             "cdn-loop": "cloudflare; loops=1",
-            "cf-connecting-ip": "18.232.83.176",
+            "cf-connecting-ip": "100.28.129.163",
             "cf-ipcountry": "US",
-            "cf-ray": "97c9bc701e2a058e-IAD",
+            "cf-ray": "97cff7fd0d264f4e-EWR",
             "cf-visitor": "{\"scheme\":\"https\"}",
             "content-type": "application/json",
-            "x-forwarded-for": "18.232.83.176, 172.71.191.56",
+            "x-forwarded-for": "100.28.129.163, 104.23.191.2",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
             "x-forwarded-server": "3393e017d3a9",
             "x-hotmart-hottok": "rrQs3XPgg981iOyVxcVtzyVVA0kYsp1be22114-3144-4b81-9341-e1e30d733e88",
-            "x-real-ip": "172.71.191.56"
+            "x-real-ip": "104.23.191.2"
           },
           "params": {},
           "query": {},
           "body": {
             "data": {
               "product": {
-                "support_email": "",
                 "has_co_production": false,
-                "name": "SueroTerapia - Curso Completo",
-                "warranty_date": "2025-09-16T00:00:00Z",
+                "name": "Dominio Prenatal",
+                "warranty_date": "2025-09-17T00:00:00Z",
                 "is_physical_product": false,
-                "id": 5636749,
-                "ucode": "73cd9815-52b8-45c8-89ea-1e3959b6bc05"
+                "id": 6222468,
+                "ucode": "6adf4677-d5b6-478f-b74c-03ae2c505b7b"
               },
               "commissions": [
                 {
                   "currency_value": "USD",
                   "source": "MARKETPLACE",
-                  "value": 1.58
+                  "value": 0.99
                 },
                 {
                   "currency_conversion": {
-                    "converted_value": 52522.94,
+                    "converted_value": 31380.4,
                     "converted_to_currency": "COP",
                     "conversion_rate": 3922.55
                   },
                   "currency_value": "USD",
                   "source": "PRODUCER",
-                  "value": 13.39
+                  "value": 8
                 }
               ],
               "purchase": {
                 "original_offer_price": {
                   "currency_value": "USD",
-                  "value": 16.39
+                  "value": 8.99
                 },
                 "subscription_anticipation_purchase": false,
                 "checkout_country": {
-                  "iso": "AR",
-                  "name": "Argentina"
+                  "iso": "BZ",
+                  "name": "Belize"
                 },
                 "origin": {
-                  "xcod": "4f594e81-70e0-40f5-842b-2373b29cde30"
+                  "xcod": "4bc27f2e-cd5c-4522-9759-e3b23ede3296"
                 },
                 "order_bump": {
+                  "parent_purchase_transaction": "HP0332721666",
                   "is_order_bump": true
                 },
-                "approved_date": 1757452882000,
+                "approved_date": 1757518235000,
                 "offer": {
-                  "code": "og7gp9y2",
-                  "name": "PRINCIPAL",
-                  "description": "🔥 Últimos Cupos"
+                  "code": "g3jd4ccn",
+                  "name": "OB"
                 },
                 "is_funnel": false,
-                "order_date": 1757452880000,
+                "order_date": 1757518212000,
                 "price": {
-                  "currency_value": "ARS",
-                  "value": 23502
+                  "currency_value": "USD",
+                  "value": 8.99
                 },
-                "buyer_ip": "181.166.172.186",
+                "buyer_ip": "80.67.32.194",
                 "payment": {
                   "installments_number": 1,
-                  "type": "CREDIT_CARD"
+                  "type": "PAYPAL"
                 },
                 "full_price": {
-                  "currency_value": "ARS",
-                  "value": 23502
+                  "currency_value": "USD",
+                  "value": 8.99
                 },
                 "business_model": "A",
                 "invoice_by": "SELLER",
-                "transaction": "HP3958889749",
+                "transaction": "HP0332336917",
                 "status": "APPROVED"
               },
               "affiliates": [
@@ -436,22 +432,23 @@
               "buyer": {
                 "address": {
                   "zipcode": "",
-                  "country": "Argentina",
+                  "country": "Belize",
                   "address": "",
                   "city": "",
                   "complement": "",
-                  "country_iso": "AR"
+                  "country_iso": "BZ"
                 },
-                "document": "29600314",
-                "name": "Gagliardi verónica",
-                "last_name": "verónica",
-                "checkout_phone": "541158927995",
-                "first_name": "Gagliardi",
-                "email": "giselegagliardi@hotmail.com"
+                "document": "",
+                "name": "Joelyn Poornananda",
+                "last_name": "Poornananda",
+                "checkout_phone": "5016154529",
+                "first_name": "Joelyn",
+                "email": "joelyn411@gmail.com",
+                "document_type": ""
               }
             },
-            "id": "ddb07d6f-6f8c-4dc3-b1b4-eccd4785eee7",
-            "creation_date": 1757452894078,
+            "id": "55062fec-bd67-4e28-a6d1-33c727fc617a",
+            "creation_date": 1757518247528,
             "event": "PURCHASE_APPROVED",
             "version": "2.0.0"
           },
@@ -470,6 +467,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-09-09T22:07:06.000Z",
-  "versionId": "3c50dc38-a489-452b-a0a1-d0f85f0e55a5"
+  "updatedAt": "2025-09-10T16:54:42.000Z",
+  "versionId": "a5b5bc1b-9f31-488d-a70c-47a4aa016bed"
 }
