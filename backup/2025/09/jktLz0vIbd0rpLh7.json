@@ -1,0 +1,1105 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Insert rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor": {
+      "main": [
+        [
+          {
+            "node": "Update rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update rows in a table": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Update rows in a table1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update rows in a table1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-11T16:10:58.951Z",
+  "id": "jktLz0vIbd0rpLh7",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "TRACKING WHA DAINES",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tracking-emp-wha-daines",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1024,
+        -176
+      ],
+      "id": "9cc211f6-5e3b-4444-9e71-a6cf30083eee",
+      "name": "Webhook",
+      "webhookId": "0b5859fa-ba13-4c6a-9324-150d75602d25"
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "bd_wha",
+          "mode": "list",
+          "cachedResultName": "bd_wha"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "visitor_uuid": "={{ $json.body.visitor_uuid }}",
+            "cupo_number": "={{ $json.body.visitor_uuid }}",
+            "utm_source": "={{ $json.body.utm_source }}",
+            "utm_campaign": "={{ $json.body.utm_campaign }}",
+            "utm_medium": "={{ $json.body.utm_medium }}",
+            "utm_content": "={{ $json.body.utm_content }}",
+            "utm_term": "={{ $json.body.utm_term }}",
+            "page_url": "={{ $json.body.page_url }}",
+            "user_agent": "={{ $json.body.user_agent }}",
+            "referrer": "={{ $json.body.referrer }}",
+            "estado": "click"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "visitor_uuid",
+              "displayName": "visitor_uuid",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cupo_number",
+              "displayName": "cupo_number",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "utm_source",
+              "displayName": "utm_source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "utm_campaign",
+              "displayName": "utm_campaign",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "utm_medium",
+              "displayName": "utm_medium",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "utm_content",
+              "displayName": "utm_content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "utm_term",
+              "displayName": "utm_term",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "page_url",
+              "displayName": "page_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "user_agent",
+              "displayName": "user_agent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "referrer",
+              "displayName": "referrer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "whatsapp_number",
+              "displayName": "whatsapp_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "updated_at",
+              "displayName": "updated_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "estado",
+              "displayName": "estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -816,
+        -176
+      ],
+      "id": "82696c81-7280-4341-8d67-2dae2a7cd73c",
+      "name": "Insert rows in a table",
+      "credentials": {
+        "postgres": {
+          "id": "zN9ad5TTzt9GY5dt",
+          "name": "N8N-HISTORIAL AGENTES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "wha_paulaparra",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1024,
+        208
+      ],
+      "id": "6feeba7f-cf24-4315-8181-0a4512fd70f3",
+      "name": "Webhook1",
+      "webhookId": "33cc769a-6694-446b-9579-38acf735601c"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "=messages.upsert",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "d4c53dcd-f9e9-4172-920c-4d47b33ce40c"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ENTRANTES"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "a4d97aea-0de0-4973-9158-4a1043185c7d",
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "send.message",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "SALIENTES"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -816,
+        208
+      ],
+      "id": "9908beca-bd2b-4f2e-b942-4f2983b070c9",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "68b38b0f-7d7a-4a8e-881b-67832ff2a5ea",
+              "leftValue": "={{ $json.body.data.message.conversation.toLowerCase() }}",
+              "rightValue": "tengo el cupo",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -560,
+        32
+      ],
+      "id": "cf83568d-c059-44d9-82d2-6a305d1d6a30",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.body.data.message.conversation }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "cupo",
+              "description": "el identificador del cupo"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        -352,
+        -32
+      ],
+      "id": "82020bde-4c76-4d44-8590-156337280b44",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -352,
+        128
+      ],
+      "id": "161b6eab-5c26-4d6f-9a62-8cc653c23184",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "GPT SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "bd_wha",
+          "mode": "list",
+          "cachedResultName": "bd_wha"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "visitor_uuid": "={{ $json.output.cupo }}",
+            "whatsapp_number": "={{ $('Webhook1').item.json.body.data.key.remoteJid.replace(/[^0-9]/g, \"\") }}",
+            "estado": "whatsapp"
+          },
+          "matchingColumns": [
+            "visitor_uuid"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "visitor_uuid",
+              "displayName": "visitor_uuid",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "cupo_number",
+              "displayName": "cupo_number",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "utm_source",
+              "displayName": "utm_source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "utm_campaign",
+              "displayName": "utm_campaign",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "utm_medium",
+              "displayName": "utm_medium",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "utm_content",
+              "displayName": "utm_content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "utm_term",
+              "displayName": "utm_term",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "page_url",
+              "displayName": "page_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "user_agent",
+              "displayName": "user_agent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "referrer",
+              "displayName": "referrer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "whatsapp_number",
+              "displayName": "whatsapp_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "updated_at",
+              "displayName": "updated_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "estado",
+              "displayName": "estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "outputColumns": [
+            "*"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        0,
+        -32
+      ],
+      "id": "2810a480-39ca-40de-8494-13f22012317e",
+      "name": "Update rows in a table",
+      "credentials": {
+        "postgres": {
+          "id": "zN9ad5TTzt9GY5dt",
+          "name": "N8N-HISTORIAL AGENTES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "-1003099071341",
+        "text": "=<b>INGRESO DETECTADO A WHATSAPP</b>\n\nPRODUCTO: {{ $json.page_url.match(/\\/([^\\/?]+)\\.html/)[1].toUpperCase() }}\n\nCUPO: {{ $json.cupo_number }}\nWHATSAPP: {{ $json.whatsapp_number }}\nCAMPAÑA: {{ $json.utm_campaign }}\nCONJUNTO: {{ $json.utm_medium }}\nAD: {{ $json.utm_content }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML",
+          "message_thread_id": 5
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        224,
+        -32
+      ],
+      "id": "a3bed700-9d61-47d0-b536-857c85f7440a",
+      "name": "Send a text message",
+      "webhookId": "99ae9134-cd0e-46d0-97d6-d0858d040d51",
+      "credentials": {
+        "telegramApi": {
+          "id": "E6OyWuRww3Q1Xk4k",
+          "name": "HOTAPI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "68b38b0f-7d7a-4a8e-881b-67832ff2a5ea",
+              "leftValue": "={{ $json.body.data.message.conversation }}",
+              "rightValue": "1RbnD3syx4xjdkAC8O4kYzK-4cujaG_si",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -560,
+        336
+      ],
+      "id": "503d4081-ac97-4616-a0ff-389eaa495214",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "bd_wha",
+          "mode": "list",
+          "cachedResultName": "bd_wha"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "whatsapp_number": "={{ $('Webhook1').item.json.body.data.key.remoteJid.replace(/[^0-9]/g, \"\") }}",
+            "estado": "compra"
+          },
+          "matchingColumns": [
+            "whatsapp_number"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "visitor_uuid",
+              "displayName": "visitor_uuid",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "cupo_number",
+              "displayName": "cupo_number",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "utm_source",
+              "displayName": "utm_source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "utm_campaign",
+              "displayName": "utm_campaign",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "utm_medium",
+              "displayName": "utm_medium",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "utm_content",
+              "displayName": "utm_content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "utm_term",
+              "displayName": "utm_term",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "page_url",
+              "displayName": "page_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "user_agent",
+              "displayName": "user_agent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "referrer",
+              "displayName": "referrer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "whatsapp_number",
+              "displayName": "whatsapp_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "updated_at",
+              "displayName": "updated_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "estado",
+              "displayName": "estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "outputColumns": [
+            "*"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -320,
+        320
+      ],
+      "id": "33c3cab4-8e35-41ec-a293-6351a997eb8e",
+      "name": "Update rows in a table1",
+      "credentials": {
+        "postgres": {
+          "id": "zN9ad5TTzt9GY5dt",
+          "name": "N8N-HISTORIAL AGENTES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "-1003099071341",
+        "text": "=<b>COMPRA DETECTADA</b> 🔥\n\nPRODUCTO: {{ $json.page_url.match(/\\/([^\\/?]+)\\.html/)[1].toUpperCase() }}\n\nCUPO: {{ $json.cupo_number }}\nWHATSAPP: {{ $json.whatsapp_number }}\nCAMPAÑA: {{ $json.utm_campaign }}\nCONJUNTO: {{ $json.utm_medium }}\nAD: {{ $json.utm_content }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML",
+          "message_thread_id": 2
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -112,
+        320
+      ],
+      "id": "85448e1d-ca2e-4ad7-99b9-0a15ae280f1a",
+      "name": "Send a text message1",
+      "webhookId": "99ae9134-cd0e-46d0-97d6-d0858d040d51",
+      "credentials": {
+        "telegramApi": {
+          "id": "E6OyWuRww3Q1Xk4k",
+          "name": "HOTAPI"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
+            "content-length": "560",
+            "accept": "application/json",
+            "accept-encoding": "gzip, br",
+            "accept-language": "es-419,es;q=0.9,pt;q=0.8,en;q=0.7",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "179.33.156.30",
+            "cf-ipcountry": "CO",
+            "cf-ray": "97d88c80cc92bc09-MIA",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "content-type": "application/json",
+            "origin": "https://enlaceclic.info",
+            "priority": "u=1, i",
+            "referer": "https://enlaceclic.info/",
+            "sec-ch-ua": "\"Not;A=Brand\";v=\"99\", \"Google Chrome\";v=\"139\", \"Chromium\";v=\"139\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "179.33.156.30, 172.68.7.57",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3393e017d3a9",
+            "x-real-ip": "172.68.7.57"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "visitor_uuid": "S7PLPI",
+            "cupo_number": "S7PLPI",
+            "utm_source": "",
+            "utm_campaign": "",
+            "utm_medium": "",
+            "utm_content": "",
+            "utm_term": "",
+            "page_url": "https://enlaceclic.info/revit.html",
+            "page_title": "Oferta Especial para Arquitectos e Ingenieros - Domina Revit con BIM",
+            "page_hostname": "enlaceclic.info",
+            "screen_resolution": "1920x1080",
+            "user_language": "es-419",
+            "timezone": "America/Bogota",
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
+            "referrer": "",
+            "timestamp": "2025-09-11T16:30:16.612Z"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/tracking-emp-wha-daines",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "Webhook1": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "axios/1.10.0",
+            "content-length": "1730",
+            "accept": "application/json, text/plain, */*",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "92.112.184.72",
+            "cf-ipcountry": "US",
+            "cf-ray": "97d8fb0f8a0f8c99-EWR",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "content-type": "application/json",
+            "x-forwarded-for": "92.112.184.72, 172.70.230.201",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3393e017d3a9",
+            "x-real-ip": "172.70.230.201"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "event": "messages.upsert",
+            "instance": "DAINES_EMP",
+            "data": {
+              "key": {
+                "remoteJid": "573105616912@s.whatsapp.net",
+                "fromMe": true,
+                "id": "3EB0763EF4B26A37BF0F42"
+              },
+              "pushName": "Paula Parra",
+              "status": "SERVER_ACK",
+              "message": {
+                "conversation": "Curso de Revit desde cero \nhttps://drive.google.com/drive/folders/1RbnD3syx4xjdkAC8O4kYzK-4cujaG_si\n\nCurso de Revit estructuras \nhttps://drive.google.com/drive/folders/1sNMClcDRVDk9TarW_y-ky9XtLcni91V6\n\nCurso de Revit MEP eléctricas\nhttps://drive.google.com/drive/folders/1xMMug_Ia-TzJodAi0ib1VcZJ3Vl1y-Lq\n\nCurso de Revit MEP sanitarias \nhttps://drive.google.com/drive/folders/1S00czsLpbh6vYtmX0F9D7RGGypeZMEnn\n\n\nMEGAPACK de cursos de Revit BIM \nhttps://drive.google.com/drive/folders/1wwCCiAx4__bnbfNIZ_Yi9lxMVGEQyAPG\n\n\n🎁BONOS totalmente GRATIS🎁\n\n🎁BONO N°1 PLANTILLAS REVIT https://drive.google.com/drive/folders/1MaK7YvcfcnqKM8aW2wtPrsvPW9UmpfTc\n\n🎁BONO N°2 PROJECT https://drive.google.com/drive/folders/135kUmSsMIKRkeEe8rBFPMnGgDffZcmRs?usp=drive_link\n\n🎁BONO N°2 LICENCIA REVIT https://drive.google.com/drive/folders/1-JH2N0oswyEJLGKry5fFxRNm-KO9JCBH?usp=drive_link\n\n🎁BONO N°2 LICENCIA NAVISWORKS https://drive.google.com/drive/folders/1-Js9k6SmvMto9kQhTbEYcCbuRG41HfNU?usp=drive_link\n\n🎁"
+              },
+              "contextInfo": null,
+              "messageType": "conversation",
+              "messageTimestamp": 1757612745,
+              "instanceId": "8e69d7f2-7dd9-4a36-be2a-1128a220914f",
+              "source": "web",
+              "chatwootMessageId": 870687,
+              "chatwootInboxId": 60,
+              "chatwootConversationId": 80
+            },
+            "destination": "https://n8n.automscc.com/webhook/wha_paulaparra",
+            "date_time": "2025-09-11T14:45:46.153Z",
+            "sender": "573234126315@s.whatsapp.net",
+            "server_url": "https://evolution.automscc.com",
+            "apikey": "EAA5C07B8E3F-4F9C-A879-83F32BF98097"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/wha_paulaparra",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2025-09-11T17:51:47.000Z",
+  "versionId": "3fb09922-188b-4f49-b48c-7af0cb4a0ba3"
+}
