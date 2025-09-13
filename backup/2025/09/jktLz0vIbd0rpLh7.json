@@ -27,25 +27,7 @@
       "main": [
         [
           {
-            "node": "If",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "If1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If": {
-      "main": [
-        [
-          {
-            "node": "Information Extractor",
+            "node": "Select rows from a table",
             "type": "main",
             "index": 0
           }
@@ -113,6 +95,47 @@
           }
         ]
       ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "VIENE CON CUPO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "VIENE CON CUPO": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-09-11T16:10:58.951Z",
@@ -132,8 +155,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -1024,
-        -176
+        -1184,
+        -160
       ],
       "id": "9cc211f6-5e3b-4444-9e71-a6cf30083eee",
       "name": "Webhook",
@@ -319,8 +342,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -816,
-        -176
+        -976,
+        -160
       ],
       "id": "82696c81-7280-4341-8d67-2dae2a7cd73c",
       "name": "Insert rows in a table",
@@ -340,8 +363,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -1024,
-        208
+        -1184,
+        176
       ],
       "id": "6feeba7f-cf24-4315-8181-0a4512fd70f3",
       "name": "Webhook1",
@@ -407,44 +430,11 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -816,
-        208
+        -976,
+        176
       ],
       "id": "9908beca-bd2b-4f2e-b942-4f2983b070c9",
       "name": "Switch"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "68b38b0f-7d7a-4a8e-881b-67832ff2a5ea",
-              "leftValue": "={{ $json.body.data.message.conversation.toLowerCase() }}",
-              "rightValue": "tengo el cupo",
-              "operator": {
-                "type": "string",
-                "operation": "contains"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        -560,
-        32
-      ],
-      "id": "cf83568d-c059-44d9-82d2-6a305d1d6a30",
-      "name": "If"
     },
     {
       "parameters": {
@@ -462,8 +452,8 @@
       "type": "@n8n/n8n-nodes-langchain.informationExtractor",
       "typeVersion": 1.2,
       "position": [
-        -352,
-        -32
+        208,
+        -304
       ],
       "id": "82020bde-4c76-4d44-8590-156337280b44",
       "name": "Information Extractor"
@@ -480,8 +470,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        -352,
-        128
+        208,
+        -128
       ],
       "id": "161b6eab-5c26-4d6f-9a62-8cc653c23184",
       "name": "OpenAI Chat Model",
@@ -678,8 +668,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        0,
-        -32
+        560,
+        -304
       ],
       "id": "2810a480-39ca-40de-8494-13f22012317e",
       "name": "Update rows in a table",
@@ -703,8 +693,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        224,
-        -32
+        800,
+        -304
       ],
       "id": "a3bed700-9d61-47d0-b536-857c85f7440a",
       "name": "Send a text message",
@@ -743,8 +733,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -560,
-        336
+        -144,
+        448
       ],
       "id": "503d4081-ac97-4616-a0ff-389eaa495214",
       "name": "If1"
@@ -935,8 +925,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -320,
-        320
+        96,
+        432
       ],
       "id": "33c3cab4-8e35-41ec-a293-6351a997eb8e",
       "name": "Update rows in a table1",
@@ -960,8 +950,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        -112,
-        320
+        304,
+        432
       ],
       "id": "85448e1d-ca2e-4ad7-99b9-0a15ae280f1a",
       "name": "Send a text message1",
@@ -972,6 +962,151 @@
           "name": "HOTAPI"
         }
       }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "bd_wha",
+          "mode": "list",
+          "cachedResultName": "bd_wha"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "whatsapp_number",
+              "value": "={{ $('Webhook1').item.json.body.data.key.remoteJid.replace(/[^0-9]/g, \"\") }}"
+            }
+          ]
+        },
+        "options": {
+          "outputColumns": [
+            "*"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -640,
+        -80
+      ],
+      "id": "ae4357df-eb0e-4a27-a96e-5dc54403f193",
+      "name": "Select rows from a table",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "zN9ad5TTzt9GY5dt",
+          "name": "N8N-HISTORIAL AGENTES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.isEmpty() }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "id": "43680a32-e5cd-48b9-b60a-4d44a7b484db"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NUEVO"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "61e9d7b6-b64d-4e55-a619-15ee1271523c",
+                    "leftValue": "={{ $json.isEmpty() }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "false",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "VIEJO"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -432,
+        -80
+      ],
+      "id": "51f798bc-77f9-4846-92ea-53e3bb2ee59e",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "68b38b0f-7d7a-4a8e-881b-67832ff2a5ea",
+              "leftValue": "={{ $json.body.data.message.conversation.toLowerCase() }}",
+              "rightValue": "tengo el cupo",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -112,
+        -160
+      ],
+      "id": "cf83568d-c059-44d9-82d2-6a305d1d6a30",
+      "name": "VIENE CON CUPO"
     }
   ],
   "pinData": {
@@ -1038,21 +1173,21 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "axios/1.10.0",
-            "content-length": "1730",
+            "content-length": "1152",
             "accept": "application/json, text/plain, */*",
             "accept-encoding": "gzip, br",
             "cdn-loop": "cloudflare; loops=1",
             "cf-connecting-ip": "92.112.184.72",
             "cf-ipcountry": "US",
-            "cf-ray": "97d8fb0f8a0f8c99-EWR",
+            "cf-ray": "97e05818ab96780c-EWR",
             "cf-visitor": "{\"scheme\":\"https\"}",
             "content-type": "application/json",
-            "x-forwarded-for": "92.112.184.72, 172.70.230.201",
+            "x-forwarded-for": "92.112.184.72, 172.70.230.200",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
             "x-forwarded-server": "3393e017d3a9",
-            "x-real-ip": "172.70.230.201"
+            "x-real-ip": "172.70.230.200"
           },
           "params": {},
           "query": {},
@@ -1061,26 +1196,40 @@
             "instance": "DAINES_EMP",
             "data": {
               "key": {
-                "remoteJid": "573105616912@s.whatsapp.net",
-                "fromMe": true,
-                "id": "3EB0763EF4B26A37BF0F42"
+                "remoteJid": "573178578280@s.whatsapp.net",
+                "fromMe": false,
+                "id": "AC63FDAB0057E41DFBF6F6F78203DA90",
+                "senderLid": "214473671446726@lid"
               },
-              "pushName": "Paula Parra",
-              "status": "SERVER_ACK",
+              "pushName": "Edison",
+              "status": "READ",
               "message": {
-                "conversation": "Curso de Revit desde cero \nhttps://drive.google.com/drive/folders/1RbnD3syx4xjdkAC8O4kYzK-4cujaG_si\n\nCurso de Revit estructuras \nhttps://drive.google.com/drive/folders/1sNMClcDRVDk9TarW_y-ky9XtLcni91V6\n\nCurso de Revit MEP eléctricas\nhttps://drive.google.com/drive/folders/1xMMug_Ia-TzJodAi0ib1VcZJ3Vl1y-Lq\n\nCurso de Revit MEP sanitarias \nhttps://drive.google.com/drive/folders/1S00czsLpbh6vYtmX0F9D7RGGypeZMEnn\n\n\nMEGAPACK de cursos de Revit BIM \nhttps://drive.google.com/drive/folders/1wwCCiAx4__bnbfNIZ_Yi9lxMVGEQyAPG\n\n\n🎁BONOS totalmente GRATIS🎁\n\n🎁BONO N°1 PLANTILLAS REVIT https://drive.google.com/drive/folders/1MaK7YvcfcnqKM8aW2wtPrsvPW9UmpfTc\n\n🎁BONO N°2 PROJECT https://drive.google.com/drive/folders/135kUmSsMIKRkeEe8rBFPMnGgDffZcmRs?usp=drive_link\n\n🎁BONO N°2 LICENCIA REVIT https://drive.google.com/drive/folders/1-JH2N0oswyEJLGKry5fFxRNm-KO9JCBH?usp=drive_link\n\n🎁BONO N°2 LICENCIA NAVISWORKS https://drive.google.com/drive/folders/1-Js9k6SmvMto9kQhTbEYcCbuRG41HfNU?usp=drive_link\n\n🎁"
+                "messageContextInfo": {
+                  "deviceListMetadata": {
+                    "senderKeyHash": "OtMUqK1aqwUWvA==",
+                    "senderTimestamp": "1757004424",
+                    "recipientKeyHash": "tNdEl7Z0/xciiw==",
+                    "recipientTimestamp": "1757566058"
+                  },
+                  "deviceListMetadataVersion": 2,
+                  "messageSecret": "BXve23dzNbymJht6cKDMtC037KhHsES3N+hXCO+Xa88="
+                },
+                "conversation": "Hola! Tengo el cupo RBN9FN para el curso de Revit BIM por $17,900"
               },
-              "contextInfo": null,
+              "contextInfo": {
+                "entryPointConversionSource": "click_to_chat_link",
+                "entryPointConversionDelaySeconds": 1
+              },
               "messageType": "conversation",
-              "messageTimestamp": 1757612745,
+              "messageTimestamp": 1757689950,
               "instanceId": "8e69d7f2-7dd9-4a36-be2a-1128a220914f",
-              "source": "web",
-              "chatwootMessageId": 870687,
+              "source": "android",
+              "chatwootMessageId": 875545,
               "chatwootInboxId": 60,
-              "chatwootConversationId": 80
+              "chatwootConversationId": 116
             },
             "destination": "https://n8n.automscc.com/webhook/wha_paulaparra",
-            "date_time": "2025-09-11T14:45:46.153Z",
+            "date_time": "2025-09-12T12:12:37.194Z",
             "sender": "573234126315@s.whatsapp.net",
             "server_url": "https://evolution.automscc.com",
             "apikey": "EAA5C07B8E3F-4F9C-A879-83F32BF98097"
@@ -1100,6 +1249,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-09-11T17:51:47.000Z",
-  "versionId": "3fb09922-188b-4f49-b48c-7af0cb4a0ba3"
+  "updatedAt": "2025-09-12T15:24:13.000Z",
+  "versionId": "a4287b7b-d988-4f49-8b2b-634d6847d759"
 }
