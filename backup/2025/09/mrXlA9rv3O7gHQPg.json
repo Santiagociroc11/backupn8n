@@ -1,0 +1,361 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-12T18:18:10.720Z",
+  "id": "mrXlA9rv3O7gHQPg",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 50",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "79b24138-2681-4d77-a20e-aa7806a133d0",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -544,
+        -80
+      ],
+      "id": "90cec18c-b7eb-4836-af09-7227be308868",
+      "name": "Webhook",
+      "webhookId": "79b24138-2681-4d77-a20e-aa7806a133d0"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "696cb1a0-3d87-40de-aabd-c96b271de7b3",
+              "leftValue": "={{ $json.body.dataType }}",
+              "rightValue": "message",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "3c512bad-e087-4ec6-9f90-f41b6e1614e1",
+              "leftValue": "={{ $json.body.data.message._data.id.fromMe }}",
+              "rightValue": "false",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -272,
+        -80
+      ],
+      "id": "8f522b39-4b89-4afe-a6c4-d9e728c1c888",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://evolution-api-webjsapi.wc2hpx.easypanel.host/client/sendMessage/jerwin",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "*/*"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "chatId",
+              "value": "={{ $json.body.data.message._data.id.remote }}"
+            },
+            {
+              "name": "contentType",
+              "value": "MessageMediaFromURL"
+            },
+            {
+              "name": "content",
+              "value": "http://automscc.com/wp-content/uploads/2025/08/Anuncio-Original.mp4"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -32,
+        -80
+      ],
+      "id": "2ef6773c-f8a2-4c51-b2ae-7717e6c8d12d",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "axios/1.11.0",
+            "content-length": "2957",
+            "accept": "application/json, text/plain, */*",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "92.112.184.72",
+            "cf-ipcountry": "US",
+            "cf-ray": "97e16f060b2f7a81-EWR",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "content-type": "application/json",
+            "x-forwarded-for": "92.112.184.72, 104.23.187.16",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3393e017d3a9",
+            "x-real-ip": "104.23.187.16"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "dataType": "message",
+            "data": {
+              "message": {
+                "_data": {
+                  "id": {
+                    "fromMe": false,
+                    "remote": "51964323943@c.us",
+                    "id": "AC96D715E6F36C252E411DBE88E16924",
+                    "_serialized": "false_51964323943@c.us_AC96D715E6F36C252E411DBE88E16924"
+                  },
+                  "viewed": false,
+                  "body": "Hhhj",
+                  "type": "chat",
+                  "t": 1757701381,
+                  "notifyName": "Jerwin Abril",
+                  "from": "51964323943@c.us",
+                  "to": "573166620443@c.us",
+                  "ack": 1,
+                  "invis": false,
+                  "isNewMsg": true,
+                  "star": false,
+                  "kicNotified": false,
+                  "recvFresh": true,
+                  "isFromTemplate": false,
+                  "pollInvalidated": false,
+                  "isSentCagPollCreation": false,
+                  "latestEditMsgKey": null,
+                  "latestEditSenderTimestampMs": null,
+                  "mentionedJidList": [],
+                  "groupMentions": [],
+                  "isEventCanceled": false,
+                  "eventInvalidated": false,
+                  "isVcardOverMmsDocument": false,
+                  "isForwarded": false,
+                  "isQuestion": false,
+                  "questionReplyQuotedMessage": null,
+                  "questionResponsesCount": 0,
+                  "readQuestionResponsesCount": 0,
+                  "hasReaction": false,
+                  "viewMode": "VISIBLE",
+                  "messageSecret": {
+                    "0": 171,
+                    "1": 208,
+                    "2": 129,
+                    "3": 157,
+                    "4": 8,
+                    "5": 75,
+                    "6": 118,
+                    "7": 6,
+                    "8": 74,
+                    "9": 187,
+                    "10": 56,
+                    "11": 67,
+                    "12": 157,
+                    "13": 117,
+                    "14": 78,
+                    "15": 54,
+                    "16": 125,
+                    "17": 42,
+                    "18": 28,
+                    "19": 201,
+                    "20": 233,
+                    "21": 125,
+                    "22": 201,
+                    "23": 211,
+                    "24": 58,
+                    "25": 142,
+                    "26": 197,
+                    "27": 109,
+                    "28": 56,
+                    "29": 54,
+                    "30": 58,
+                    "31": 249
+                  },
+                  "productHeaderImageRejected": false,
+                  "lastPlaybackProgress": 0,
+                  "isDynamicReplyButtonsMsg": false,
+                  "isCarouselCard": false,
+                  "parentMsgId": null,
+                  "callSilenceReason": null,
+                  "isVideoCall": false,
+                  "callDuration": null,
+                  "callCreator": null,
+                  "callParticipants": null,
+                  "isCallLink": null,
+                  "callLinkToken": null,
+                  "isMdHistoryMsg": false,
+                  "stickerSentTs": 0,
+                  "isAvatar": false,
+                  "lastUpdateFromServerTs": 0,
+                  "invokedBotWid": null,
+                  "bizBotType": null,
+                  "botResponseTargetId": null,
+                  "botPluginType": null,
+                  "botPluginReferenceIndex": null,
+                  "botPluginSearchProvider": null,
+                  "botPluginSearchUrl": null,
+                  "botPluginSearchQuery": null,
+                  "botPluginMaybeParent": false,
+                  "botReelPluginThumbnailCdnUrl": null,
+                  "botMessageDisclaimerText": null,
+                  "botMsgBodyType": null,
+                  "reportingTokenInfo": {
+                    "reportingToken": {
+                      "0": 194,
+                      "1": 52,
+                      "2": 114,
+                      "3": 153,
+                      "4": 223,
+                      "5": 40,
+                      "6": 102,
+                      "7": 28,
+                      "8": 196,
+                      "9": 73,
+                      "10": 224,
+                      "11": 197,
+                      "12": 175,
+                      "13": 7,
+                      "14": 177,
+                      "15": 137
+                    },
+                    "version": 2,
+                    "reportingTag": {
+                      "0": 1,
+                      "1": 10,
+                      "2": 94,
+                      "3": 43,
+                      "4": 114,
+                      "5": 62,
+                      "6": 5,
+                      "7": 147,
+                      "8": 105,
+                      "9": 90,
+                      "10": 103,
+                      "11": 76,
+                      "12": 30,
+                      "13": 3,
+                      "14": 245,
+                      "15": 148,
+                      "16": 194,
+                      "17": 122,
+                      "18": 174,
+                      "19": 39
+                    }
+                  },
+                  "requiresDirectConnection": null,
+                  "bizContentPlaceholderType": null,
+                  "hostedBizEncStateMismatch": false,
+                  "senderOrRecipientAccountTypeHosted": false,
+                  "placeholderCreatedWhenAccountIsHosted": false,
+                  "galaxyFlowDisabled": false,
+                  "links": []
+                },
+                "id": {
+                  "fromMe": false,
+                  "remote": "51964323943@c.us",
+                  "id": "AC96D715E6F36C252E411DBE88E16924",
+                  "_serialized": "false_51964323943@c.us_AC96D715E6F36C252E411DBE88E16924"
+                },
+                "ack": 1,
+                "hasMedia": false,
+                "body": "Hhhj",
+                "type": "chat",
+                "timestamp": 1757701381,
+                "from": "51964323943@c.us",
+                "to": "573166620443@c.us",
+                "deviceType": "android",
+                "isForwarded": false,
+                "forwardingScore": 0,
+                "isStatus": false,
+                "isStarred": false,
+                "fromMe": false,
+                "hasQuotedMsg": false,
+                "hasReaction": false,
+                "vCards": [],
+                "mentionedIds": [],
+                "groupMentions": [],
+                "isGif": false,
+                "links": []
+              }
+            },
+            "sessionId": "jerwin"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/79b24138-2681-4d77-a20e-aa7806a133d0",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-09-12T18:59:29.000Z",
+  "versionId": "a4de669b-2564-4e23-9ceb-a47dfe31cd47"
+}
