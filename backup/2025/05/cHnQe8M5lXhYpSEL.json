@@ -16,18 +16,7 @@
       "main": [
         [
           {
-            "node": "MySQL",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "MySQL": {
-      "main": [
-        [
-          {
-            "node": "If",
+            "node": "Select rows from a table",
             "type": "main",
             "index": 0
           }
@@ -38,14 +27,25 @@
       "main": [
         [
           {
-            "node": "MySQL1",
+            "node": "Insert rows in a table",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "MySQL1": {
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert rows in a table": {
       "main": [
         [
           {
@@ -63,7 +63,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "[UÑAS-L2] NOTIFICACION CUPO VIP",
+  "name": "[UÑAS-L4] NOTIFICACION CUPO VIP",
   "nodes": [
     {
       "parameters": {
@@ -74,48 +74,12 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -300,
-        -100
+        -304,
+        -96
       ],
       "id": "9f5b7b49-5121-4550-89fa-37673edf5de4",
       "name": "Webhook",
       "webhookId": "53b5c265-22ff-4a34-80fd-3bcd7f74e83e"
-    },
-    {
-      "parameters": {
-        "operation": "select",
-        "table": {
-          "__rl": true,
-          "value": "UÑAS_L2_CUPOSVIP",
-          "mode": "list",
-          "cachedResultName": "UÑAS_L2_CUPOSVIP"
-        },
-        "returnAll": true,
-        "where": {
-          "values": [
-            {
-              "column": "CORREO",
-              "value": "={{ $json.corre }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        220,
-        -100
-      ],
-      "id": "7a918164-b797-434f-8db0-50139a13730c",
-      "name": "MySQL",
-      "alwaysOutputData": true,
-      "credentials": {
-        "mySql": {
-          "id": "n8fCALXWnGdmJkBN",
-          "name": "CAPTACIONES"
-        }
-      }
     },
     {
       "parameters": {
@@ -146,8 +110,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -40,
-        -100
+        -48,
+        -96
       ],
       "id": "e192e7f0-8baf-464b-a0f0-3578fe349926",
       "name": "Edit Fields"
@@ -180,19 +144,80 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        440,
-        -100
+        448,
+        -96
       ],
       "id": "c9b00c0c-dc13-4b78-b2d7-8b929b3646cf",
       "name": "If"
     },
     {
       "parameters": {
+        "chatId": "-1002461687342",
+        "text": "=*CUPO VIP GENERADO* 🔥\n\nNOMBRE: {{ $('Edit Fields').item.json.nombre }}\nCORREO: {{ $('Edit Fields').item.json.corre }}\nWHATSAPP: {{ $('Edit Fields').item.json.whatsapp }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "message_thread_id": 454
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        880,
+        -208
+      ],
+      "id": "f41bf734-c200-43eb-9700-570db22c1e86",
+      "name": "Telegram",
+      "webhookId": "ab2ed644-dfba-4001-bdfd-9009c974fac6",
+      "credentials": {
+        "telegramApi": {
+          "id": "QruLAfRq4u80XCVX",
+          "name": "BOT AGENCIA X"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
         "table": {
           "__rl": true,
-          "value": "UÑAS_L2_CUPOSVIP",
+          "value": "UÑAS_L4_CUPOSVIP",
           "mode": "list",
-          "cachedResultName": "UÑAS_L2_CUPOSVIP"
+          "cachedResultName": "UÑAS_L4_CUPOSVIP"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "CORREO",
+              "value": "={{ $json.corre }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        224,
+        -96
+      ],
+      "id": "7a918164-b797-434f-8db0-50139a13730c",
+      "name": "Select rows from a table",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "UÑAS_L4_CUPOSVIP",
+          "mode": "list",
+          "cachedResultName": "UÑAS_L4_CUPOSVIP"
         },
         "dataMode": "defineBelow",
         "valuesToSend": {
@@ -216,40 +241,15 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        660,
-        -200
+        672,
+        -208
       ],
       "id": "4cd944a6-f2e7-44a2-bb78-381f6cf9e5be",
-      "name": "MySQL1",
+      "name": "Insert rows in a table",
       "credentials": {
         "mySql": {
           "id": "n8fCALXWnGdmJkBN",
           "name": "CAPTACIONES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "chatId": "-1002461687342",
-        "text": "=*CUPO VIP GENERADO* 🔥\n\nNOMBRE: {{ $('Edit Fields').item.json.nombre }}\nCORREO: {{ $('Edit Fields').item.json.corre }}\nWHATSAPP: {{ $('Edit Fields').item.json.whatsapp }}",
-        "additionalFields": {
-          "appendAttribution": false,
-          "message_thread_id": 454
-        }
-      },
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.2,
-      "position": [
-        880,
-        -200
-      ],
-      "id": "f41bf734-c200-43eb-9700-570db22c1e86",
-      "name": "Telegram",
-      "webhookId": "ab2ed644-dfba-4001-bdfd-9009c974fac6",
-      "credentials": {
-        "telegramApi": {
-          "id": "QruLAfRq4u80XCVX",
-          "name": "BOT AGENCIA X"
         }
       }
     }
@@ -296,6 +296,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-06-06T17:01:13.000Z",
-  "versionId": "95f5b382-bb0d-4f3b-a580-0898dc8a5d02"
+  "updatedAt": "2025-09-14T00:10:27.000Z",
+  "versionId": "2e0f9cac-ff34-4138-a195-7c2200ad8200"
 }
