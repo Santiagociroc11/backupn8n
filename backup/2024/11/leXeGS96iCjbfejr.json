@@ -455,7 +455,7 @@
     },
     {
       "parameters": {
-        "collection": "=TD-L8",
+        "collection": "=TD-L9",
         "options": {
           "limit": 1
         },
@@ -500,7 +500,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"tag_name\": \"INGRESOGRUPO-L8\"\n}",
+        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"tag_name\": \"INGRESOGRUPO-L9\"\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -1310,9 +1310,9 @@
         "operation": "upsert",
         "table": {
           "__rl": true,
-          "value": "GERSSON_L8_WHA",
+          "value": "GERSSON_L9_WHA",
           "mode": "list",
-          "cachedResultName": "GERSSON_L8_WHA"
+          "cachedResultName": "GERSSON_L9_WHA"
         },
         "dataMode": "defineBelow",
         "columnToMatchOn": "whatsapp",
@@ -1619,6 +1619,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-09-10T14:22:18.000Z",
-  "versionId": "7200fa49-ae80-4f9c-be5b-8951de72c046"
+  "updatedAt": "2025-09-28T01:50:51.000Z",
+  "versionId": "4bfee390-65c6-4667-830d-bc63ae82680d"
 }
