@@ -118,6 +118,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "MOVER A SEGMENT",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -137,7 +144,7 @@
   "id": "yLpXd833Fy6yYWRq",
   "isArchived": false,
   "meta": null,
-  "name": "🟢 [GERSSON-L8] LISTA DE ESPERA",
+  "name": "🟢 [GERSSON-L9] LISTA DE ESPERA",
   "nodes": [
     {
       "parameters": {
@@ -149,7 +156,7 @@
       "typeVersion": 2,
       "position": [
         -560,
-        -605
+        -608
       ],
       "id": "3de2dd52-06cd-4430-8b0c-02ab3a01583d",
       "name": "REGISTRO",
@@ -164,8 +171,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -340,
-        -505
+        -336,
+        -512
       ],
       "id": "99204156-ca60-47d8-9fb0-7c5aef49dabc",
       "name": "Edit Fields"
@@ -200,8 +207,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        100,
-        -430
+        112,
+        -432
       ]
     },
     {
@@ -214,7 +221,7 @@
       "typeVersion": 3,
       "position": [
         320,
-        -605
+        -608
       ]
     },
     {
@@ -234,8 +241,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -340,
-        -780
+        -336,
+        -784
       ],
       "id": "125f9d7e-cfc7-4a57-96e5-6b3cdd300691",
       "name": "Edit Fields2"
@@ -251,8 +258,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        100,
-        -705
+        112,
+        -704
       ]
     },
     {
@@ -263,8 +270,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -120,
-        -780
+        -128,
+        -784
       ],
       "id": "3c815ca4-f9fa-494c-925f-d21f86241aef",
       "name": "HTTP Request",
@@ -275,7 +282,7 @@
     {
       "parameters": {
         "operation": "insert",
-        "collection": "espera-l8",
+        "collection": "espera-l9",
         "fields": "=query,country,city,zip,regionName,timezone,email,whatsapp,utmCampaign,utmSource,utmMedium,utmContent,utmTerm,userAgent,platform,language,tiemporegistro,fbc,fbp,isFbcGenerated",
         "options": {}
       },
@@ -284,8 +291,8 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        540,
-        -605
+        544,
+        -608
       ],
       "credentials": {
         "mongoDb": {
@@ -296,7 +303,7 @@
     },
     {
       "parameters": {
-        "collection": "=espera-l8",
+        "collection": "=espera-l9",
         "options": {
           "limit": 1
         },
@@ -307,8 +314,8 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        -120,
-        -420
+        -128,
+        -416
       ],
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -347,8 +354,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        980,
-        -605
+        992,
+        -608
       ],
       "id": "01998ad4-66ec-499b-9e3c-f5328876ceb1",
       "name": "If3"
@@ -372,8 +379,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        760,
-        -605
+        768,
+        -608
       ],
       "id": "871ace1f-35f2-4a2a-bf10-c00335023d88",
       "name": "BUSQUEDA EN FLODESK",
@@ -405,17 +412,56 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"email\": \"{{ $('INSERTAR EN MONGO').item.json.email }}\",\n    \"segment_ids\": [\n       \"687f15404b37dfb1192dd20c\"\n    ]\n}",
+        "jsonBody": "={\n    \"email\": \"{{ $('INSERTAR EN MONGO').item.json.email }}\",\n    \"segment_ids\": [\n       \"68d866d39cf8a243bf0f5e53\"\n    ]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1200,
-        -605
+        1248,
+        -720
       ],
       "id": "4fad4077-b303-424b-9778-35038c294fc8",
       "name": "ESCRITURA",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "JzZ2saBcDbEsbcOC",
+          "name": "API FLODESK N8N GERSSON"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.flodesk.com/v1/subscribers/{{ $json.id }}/segments",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "n8n"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"segment_ids\": [\n       \"68d866d39cf8a243bf0f5e53\"\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1248,
+        -544
+      ],
+      "id": "13efbf9b-f57c-43c4-80f5-0e25b009b1a7",
+      "name": "MOVER A SEGMENT",
       "retryOnFail": true,
       "maxTries": 5,
       "waitBetweenTries": 5000,
@@ -651,6 +697,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-07-22T04:44:34.000Z",
-  "versionId": "c155faae-b2d1-4769-841b-4c8abb45e0d2"
+  "updatedAt": "2025-09-27T22:38:26.000Z",
+  "versionId": "b2a810b9-2cba-403e-89c8-9a984683178e"
 }
