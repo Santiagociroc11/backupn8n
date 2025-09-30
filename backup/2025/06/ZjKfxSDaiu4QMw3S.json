@@ -340,7 +340,7 @@
       "typeVersion": 3.2,
       "position": [
         -1040,
-        20
+        32
       ],
       "id": "fe78c509-1d39-4f74-b288-2e46aa4d77df",
       "name": "ESTADO"
@@ -386,8 +386,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1160,
-        95
+        1168,
+        96
       ],
       "id": "004e6360-dae0-4626-bb66-94d37e1d7d39",
       "name": "url"
@@ -409,8 +409,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1380,
-        95
+        1392,
+        96
       ],
       "id": "9980b674-ce15-47a9-8ed8-42a11687aa60",
       "name": "mensaje"
@@ -444,8 +444,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1480,
-        20
+        -1488,
+        32
       ],
       "id": "97d94fc0-fbb9-48a5-8fe2-ec398a6d587f",
       "name": "ASIGNA1"
@@ -460,8 +460,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -1700,
-        20
+        -1696,
+        32
       ],
       "id": "6f870199-4d4f-4f95-bad0-dcf0931b22dc",
       "name": "Webhook",
@@ -502,7 +502,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1820,
+        1824,
         -80
       ],
       "id": "a1883501-4008-48c6-86c2-4764c597a103",
@@ -554,8 +554,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -820,
-        95
+        -816,
+        96
       ],
       "id": "7eafe09e-6d4d-47e8-98aa-0470ace8e07c",
       "name": "If"
@@ -589,8 +589,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        -1260,
-        20
+        -1264,
+        32
       ],
       "id": "4d372429-f21f-4b35-a284-32e95772083c",
       "name": "BUSCA",
@@ -630,8 +630,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        60,
-        -180
+        64,
+        -176
       ],
       "id": "7744134f-8089-4041-aec3-27b47353f0d9",
       "name": "Limit",
@@ -785,8 +785,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        280,
-        -180
+        288,
+        -176
       ],
       "id": "9e3d32e3-d50c-4d9e-a8e7-d2442f511295",
       "name": "CONT +1",
@@ -955,8 +955,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        500,
-        -180
+        512,
+        -176
       ],
       "id": "11407816-3f6f-4e2d-aae2-b7ca4d5e708f",
       "name": "CLIENTE +1",
@@ -984,7 +984,7 @@
           "mappingMode": "defineBelow",
           "value": {
             "ID_CLIENTE": "={{ $json.ID }}",
-            "TIPO_EVENTO": "LINK",
+            "TIPO_EVENTO": "LINK-CERODOLOR",
             "FECHA_EVENTO": "={{ $now.toSeconds().floor() }}"
           },
           "matchingColumns": [],
@@ -1036,7 +1036,7 @@
       "typeVersion": 2.5,
       "position": [
         720,
-        -180
+        -176
       ],
       "id": "10388b17-2b75-40ab-b47f-dd956e6ac39d",
       "name": "REGISTRO +1",
@@ -1156,7 +1156,7 @@
       "typeVersion": 2.5,
       "position": [
         720,
-        95
+        96
       ],
       "id": "45c2d5f5-20dc-4cc9-97e6-e704d05603cb",
       "name": "REGISTRO +",
@@ -1176,8 +1176,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
-        -600,
-        -30
+        -608,
+        48
       ],
       "id": "abdacc1c-528d-45ea-b20a-e5b7ca928e12",
       "name": "ENVIAR A ACADEMIA"
@@ -1192,7 +1192,7 @@
       "typeVersion": 1.1,
       "position": [
         1600,
-        120
+        128
       ],
       "id": "e6182544-cd01-4e3b-af88-1337ad91cbe2",
       "name": "ENVIAR CON ASESOR"
@@ -1207,7 +1207,7 @@
       "typeVersion": 2.5,
       "position": [
         -160,
-        -180
+        -176
       ],
       "id": "cb67a098-0d2c-4f11-b10d-af79f700a8a8",
       "name": "LOGICA DE SELECCION",
@@ -1246,8 +1246,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        60,
-        95
+        64,
+        96
       ],
       "id": "d076ef47-d3c8-4e67-8485-97e2bc1fbd74",
       "name": "Limit1",
@@ -1401,8 +1401,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        280,
-        95
+        288,
+        96
       ],
       "id": "529814bf-97b7-468f-989e-75f1b7b3e4dc",
       "name": "CONT +",
@@ -1423,7 +1423,7 @@
       "typeVersion": 2.5,
       "position": [
         -160,
-        95
+        96
       ],
       "id": "c850d0c1-eddd-4327-9452-ba5440544931",
       "name": "LOGICA DE SELECCION1",
@@ -1463,8 +1463,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        940,
-        95
+        944,
+        96
       ],
       "id": "c5549bd7-2d45-4d0f-9e33-b1332fd78434",
       "name": "BUSCA ASESOR2",
@@ -1637,8 +1637,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        500,
-        95
+        512,
+        96
       ],
       "id": "5c2ff6d7-b368-4efb-b9b7-ddd30fe3b596",
       "name": "ACTUALIZAR CLIENTE",
@@ -1677,8 +1677,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -380,
-        195
+        -384,
+        208
       ],
       "id": "103be75b-5e69-4c2c-8efd-d21c687c3a30",
       "name": "If1"
@@ -1715,8 +1715,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        -600,
-        195
+        -608,
+        208
       ],
       "id": "0b1fd43b-a3cb-49c4-a4ef-7dd32764e3d3",
       "name": "BLOQUEADOS",
@@ -1797,7 +1797,7 @@
       "typeVersion": 2.5,
       "position": [
         720,
-        295
+        304
       ],
       "id": "8803b8e5-0c97-4e13-a773-e9a8bc773314",
       "name": "REGISTRO +2",
@@ -1885,6 +1885,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-07-01T05:15:31.000Z",
-  "versionId": "cc9fc4f7-094f-4f0a-88e2-1f6b858bc85b"
+  "updatedAt": "2025-09-29T17:46:35.000Z",
+  "versionId": "021a8ad3-a206-4c7c-b4be-6f3d76165035"
 }
