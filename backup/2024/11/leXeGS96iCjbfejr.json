@@ -67,54 +67,7 @@
         ],
         [
           {
-            "node": "BD VCAPITAL",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "VENEZUELA?4": {
-      "main": [
-        [
-          {
-            "node": "ELIMINAR +3",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "escritura8",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "BD VCAPITAL": {
-      "main": [
-        [
-          {
-            "node": "ES VCAPITAL?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "ES VCAPITAL?": {
-      "main": [
-        [
-          {
-            "node": "VENEZUELA?4",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "BD GIORGIO",
+            "node": "BD UÑAS",
             "type": "main",
             "index": 0
           }
@@ -161,101 +114,7 @@
         ],
         [
           {
-            "node": "BD CEJAS L2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "VENEZUELA?3": {
-      "main": [
-        [
-          {
-            "node": "ELIMINAR +2",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "escritura7",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "BD CEJAS L2": {
-      "main": [
-        [
-          {
-            "node": "ES CEJAS?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "ES CEJAS?": {
-      "main": [
-        [
-          {
-            "node": "VENEZUELA?3",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
             "node": "BD ADRIANA",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "VENEZUELA?": {
-      "main": [
-        [
-          {
-            "node": "ELIMINAR +",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "escritura9",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "ES GIORGIO?": {
-      "main": [
-        [
-          {
-            "node": "VENEZUELA?",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "BD UÑAS",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "BD GIORGIO": {
-      "main": [
-        [
-          {
-            "node": "ES GIORGIO?",
             "type": "main",
             "index": 0
           }
@@ -365,7 +224,7 @@
       "typeVersion": 3.4,
       "position": [
         1024,
-        352
+        368
       ]
     },
     {
@@ -398,7 +257,7 @@
       "typeVersion": 2.2,
       "position": [
         1248,
-        352
+        368
       ]
     },
     {
@@ -413,7 +272,7 @@
       "typeVersion": 2,
       "position": [
         800,
-        352
+        368
       ],
       "webhookId": "453d99b1-161b-46e8-8ac0-40581b8efbe2"
     },
@@ -574,116 +433,13 @@
         },
         "options": {}
       },
-      "id": "1f0f0c62-7df5-4709-8609-813212d57668",
-      "name": "VENEZUELA?4",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        2368,
-        448
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "select",
-        "table": {
-          "__rl": true,
-          "value": "VCAPITAL_LINKS",
-          "mode": "list",
-          "cachedResultName": "VCAPITAL_LINKS"
-        },
-        "limit": 1,
-        "where": {
-          "values": [
-            {
-              "column": "id",
-              "value": "={{ $('If').item.json.grupo }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "1640df99-ff85-42d9-adb9-9f8a232e7172",
-      "name": "BD VCAPITAL",
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        1920,
-        544
-      ],
-      "alwaysOutputData": true,
-      "credentials": {
-        "mySql": {
-          "id": "179b2UX7XsHkNW05",
-          "name": "REDIRECCIONES - LANZAMIENTOS"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "8d2037fa-e2a7-4668-901e-4ca0a27a93ab",
-              "leftValue": "={{ $json.id }}",
-              "rightValue": "",
-              "operator": {
-                "type": "string",
-                "operation": "exists",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "f2b12378-48e9-4b74-9b3a-0dfbe347a210",
-      "name": "ES VCAPITAL?",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        2144,
-        544
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "6e074b0d-4663-476d-ae90-8be442f648cd",
-              "leftValue": "={{ $('Edit Fields').item.json.numero }}",
-              "rightValue": "58",
-              "operator": {
-                "type": "string",
-                "operation": "startsWith"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
       "id": "9019724e-d875-4c5c-b14c-14815709f5df",
       "name": "VENEZUELA?2",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        3264,
-        832
+        2368,
+        496
       ]
     },
     {
@@ -709,8 +465,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3488,
-        736
+        2592,
+        400
       ],
       "disabled": true
     },
@@ -739,8 +495,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        2816,
-        928
+        1920,
+        592
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -780,464 +536,9 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        3040,
-        928
+        2144,
+        592
       ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "6e074b0d-4663-476d-ae90-8be442f648cd",
-              "leftValue": "={{ $('Edit Fields').item.json.numero }}",
-              "rightValue": "58",
-              "operator": {
-                "type": "string",
-                "operation": "startsWith"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "a1bebdd0-2821-4725-936c-ac513a74ca45",
-      "name": "VENEZUELA?3",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        3712,
-        1120
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "upsert",
-        "table": {
-          "__rl": true,
-          "value": "CEJAS_L2_WHA",
-          "mode": "list",
-          "cachedResultName": "CEJAS_L2_WHA"
-        },
-        "dataMode": "defineBelow",
-        "columnToMatchOn": "whatsapp",
-        "valueToMatchOn": "={{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "dia",
-              "value": "={{ $now.format('yyyy-MM-dd') }}"
-            },
-            {
-              "column": "hora",
-              "value": "={{ $now.format('HH:mm:ss') }}"
-            },
-            {
-              "column": "grupo",
-              "value": "={{ $('Edit Fields').item.json.grupo }}"
-            },
-            {
-              "column": "nombre_grupo",
-              "value": "={{ $('BD CEJAS L2').item.json.nombre }}"
-            },
-            {
-              "column": "fuente",
-              "value": "FB ADS"
-            }
-          ]
-        },
-        "options": {
-          "detailedOutput": true
-        }
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        3936,
-        1216
-      ],
-      "id": "0fa357a9-b428-459a-a39f-382f9239f2ee",
-      "name": "escritura7",
-      "credentials": {
-        "mySql": {
-          "id": "n8fCALXWnGdmJkBN",
-          "name": "CAPTACIONES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('Webhook').item.json.body.instance }}?groupJid={{ $('Edit Fields').item.json.grupo }}",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "apikey",
-              "value": "429683C4C977415CAAFCCE10F7D57E11"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "=\n{ \"action\": \"remove\", \n  \n  \"participants\": [ \"{{ $('Edit Fields').item.json.numero }}\" ] } ",
-        "options": {}
-      },
-      "id": "169b52c3-c403-477a-a060-cfa59d5cfb1c",
-      "name": "ELIMINAR +2",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        3936,
-        1024
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "operation": "select",
-        "table": {
-          "__rl": true,
-          "value": "ARZA_CEJAS_LINKS",
-          "mode": "list",
-          "cachedResultName": "ARZA_CEJAS_LINKS"
-        },
-        "limit": 1,
-        "where": {
-          "values": [
-            {
-              "column": "id",
-              "value": "={{ $('If').item.json.grupo }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "ddd8e48e-bbaf-458e-92d1-666dd83ca66d",
-      "name": "BD CEJAS L2",
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        3264,
-        1120
-      ],
-      "alwaysOutputData": true,
-      "credentials": {
-        "mySql": {
-          "id": "179b2UX7XsHkNW05",
-          "name": "REDIRECCIONES - LANZAMIENTOS"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "8d2037fa-e2a7-4668-901e-4ca0a27a93ab",
-              "leftValue": "={{ $json.id }}",
-              "rightValue": "",
-              "operator": {
-                "type": "string",
-                "operation": "exists",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "6a1ded71-e2fd-4c87-8d29-7b9ad153d707",
-      "name": "ES CEJAS?",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        3488,
-        1120
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "upsert",
-        "table": {
-          "__rl": true,
-          "value": "VCAPITAL_L1_WHA",
-          "mode": "list",
-          "cachedResultName": "VCAPITAL_L1_WHA"
-        },
-        "dataMode": "defineBelow",
-        "columnToMatchOn": "whatsapp",
-        "valueToMatchOn": "={{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "dia",
-              "value": "={{ $now.format('yyyy-MM-dd') }}"
-            },
-            {
-              "column": "hora",
-              "value": "={{ $now.format('HH:mm:ss') }}"
-            },
-            {
-              "column": "grupo",
-              "value": "={{ $('Edit Fields').item.json.grupo }}"
-            },
-            {
-              "column": "nombre_grupo",
-              "value": "={{ $('BD VCAPITAL').item.json.nombre }}"
-            },
-            {
-              "column": "fuente",
-              "value": "FB ADS"
-            }
-          ]
-        },
-        "options": {
-          "detailedOutput": true
-        }
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        2592,
-        544
-      ],
-      "id": "e400daef-0828-42c2-878b-af25ad27cc9f",
-      "name": "escritura8",
-      "credentials": {
-        "mySql": {
-          "id": "n8fCALXWnGdmJkBN",
-          "name": "CAPTACIONES"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "6e074b0d-4663-476d-ae90-8be442f648cd",
-              "leftValue": "={{ $('Edit Fields').item.json.numero }}",
-              "rightValue": "58",
-              "operator": {
-                "type": "string",
-                "operation": "startsWith"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "306d37ff-e486-404d-809e-a55f7e2bdee7",
-      "name": "VENEZUELA?",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        2816,
-        640
-      ]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('Webhook').item.json.body.instance }}?groupJid={{ $('Edit Fields').item.json.grupo }}",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "apikey",
-              "value": "429683C4C977415CAAFCCE10F7D57E11"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "=\n{ \"action\": \"remove\", \n  \n  \"participants\": [ \"{{ $('Edit Fields').item.json.numero }}\" ] } ",
-        "options": {}
-      },
-      "id": "3808c088-f42d-4faf-b071-27abba06378f",
-      "name": "ELIMINAR +",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        3040,
-        544
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "8d2037fa-e2a7-4668-901e-4ca0a27a93ab",
-              "leftValue": "={{ $json.id }}",
-              "rightValue": "",
-              "operator": {
-                "type": "string",
-                "operation": "exists",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "317b525a-e2fc-462d-bca9-80a7bcec74bc",
-      "name": "ES GIORGIO?",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        2592,
-        736
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "select",
-        "table": {
-          "__rl": true,
-          "value": "GIORGIO_LINKS",
-          "mode": "list",
-          "cachedResultName": "GIORGIO_LINKS"
-        },
-        "limit": 1,
-        "where": {
-          "values": [
-            {
-              "column": "id",
-              "value": "={{ $('If').item.json.grupo }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "69487f0f-7729-4b90-ad32-f64fe53d2904",
-      "name": "BD GIORGIO",
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        2368,
-        736
-      ],
-      "alwaysOutputData": true,
-      "credentials": {
-        "mySql": {
-          "id": "179b2UX7XsHkNW05",
-          "name": "REDIRECCIONES - LANZAMIENTOS"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('Webhook').item.json.body.instance }}?groupJid={{ $('Edit Fields').item.json.grupo }}",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "apikey",
-              "value": "429683C4C977415CAAFCCE10F7D57E11"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "=\n{ \"action\": \"remove\", \n  \n  \"participants\": [ \"{{ $('Edit Fields').item.json.numero }}\" ] } ",
-        "options": {}
-      },
-      "id": "12190c97-9bc8-46b7-9bc3-0a19907a4111",
-      "name": "ELIMINAR +3",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2592,
-        352
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "operation": "upsert",
-        "table": {
-          "__rl": true,
-          "value": "GIORGIO_L1_WHA",
-          "mode": "list",
-          "cachedResultName": "GIORGIO_L1_WHA"
-        },
-        "dataMode": "defineBelow",
-        "columnToMatchOn": "whatsapp",
-        "valueToMatchOn": "={{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "dia",
-              "value": "={{ $now.format('yyyy-MM-dd') }}"
-            },
-            {
-              "column": "hora",
-              "value": "={{ $now.format('HH:mm:ss') }}"
-            },
-            {
-              "column": "grupo",
-              "value": "={{ $('Edit Fields').item.json.grupo }}"
-            },
-            {
-              "column": "nombre_grupo",
-              "value": "={{ $('BD GIORGIO').item.json.nombre }}"
-            },
-            {
-              "column": "fuente",
-              "value": "FB ADS"
-            }
-          ]
-        },
-        "options": {
-          "detailedOutput": true
-        }
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        3040,
-        736
-      ],
-      "id": "09e655d3-f887-4fd9-812c-25f169ece15a",
-      "name": "escritura9",
-      "credentials": {
-        "mySql": {
-          "id": "n8fCALXWnGdmJkBN",
-          "name": "CAPTACIONES"
-        }
-      }
     },
     {
       "parameters": {
@@ -1282,8 +583,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        3488,
-        928
+        2592,
+        592
       ],
       "id": "e336df7d-0735-4e44-93b3-e970bbebde86",
       "name": "escritura10",
@@ -1389,8 +690,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        4128,
-        1408
+        2848,
+        752
       ]
     },
     {
@@ -1436,8 +737,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        4352,
-        1504
+        3072,
+        848
       ],
       "id": "0f129ca4-7ceb-4585-8acf-6333d8d69913",
       "name": "escritura11",
@@ -1471,8 +772,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        4352,
-        1312
+        3072,
+        656
       ],
       "disabled": true
     },
@@ -1506,8 +807,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        3904,
-        1408
+        2624,
+        784
       ]
     },
     {
@@ -1535,8 +836,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        3680,
-        1408
+        2400,
+        784
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -1619,6 +920,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-09-28T01:50:51.000Z",
-  "versionId": "4bfee390-65c6-4667-830d-bc63ae82680d"
+  "updatedAt": "2025-10-01T05:01:41.000Z",
+  "versionId": "f27c9914-6cf1-4c2e-887b-b4a97e412a4e"
 }
