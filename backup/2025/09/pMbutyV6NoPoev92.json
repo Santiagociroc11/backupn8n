@@ -291,11 +291,6 @@
       "main": [
         [
           {
-            "node": "Find and update documents",
-            "type": "main",
-            "index": 0
-          },
-          {
             "node": "Edit Fields7",
             "type": "main",
             "index": 0
@@ -336,33 +331,6 @@
             "node": "Merge4",
             "type": "main",
             "index": 1
-          }
-        ]
-      ]
-    },
-    "If2": {
-      "main": [
-        [
-          {
-            "node": "Find documents2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Code": {
-      "main": [
-        [
-          {
-            "node": "PIXEL1",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "PIXEL2",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -554,6 +522,11 @@
             "node": "BUSQUEDA EN FLODESK",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Code3",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -569,22 +542,21 @@
         ]
       ]
     },
-    "Find and update documents": {
+    "Code3": {
       "main": [
         [
           {
-            "node": "If2",
+            "node": "PIXEL",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Find documents2": {
-      "main": [
-        [
+          },
           {
-            "node": "Code",
+            "node": "PIXEL3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "PIXEL4",
             "type": "main",
             "index": 0
           }
@@ -607,8 +579,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -624,
-        -384
+        -736,
+        -272
       ],
       "id": "2c17389b-0012-41dd-b3b1-82bbd54d867e",
       "name": "REGISTRO",
@@ -623,8 +595,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -320,
-        -240
+        -512,
+        -176
       ],
       "id": "2f769d17-64ca-4dbb-8ffc-3cf7b7d96bb8",
       "name": "Edit Fields"
@@ -659,8 +631,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        64,
-        -240
+        -64,
+        -176
       ]
     },
     {
@@ -672,8 +644,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        304,
-        -368
+        160,
+        -272
       ]
     },
     {
@@ -683,7 +655,7 @@
             {
               "id": "8a258913-16e5-4c77-bc40-13e5d18f740f",
               "name": "ip",
-              "value": "={{ $json.headers['x-real-ip'] }}",
+              "value": "={{ $json.headers[\"cf-connecting-ip\"] }}",
               "type": "string"
             }
           ]
@@ -693,8 +665,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -304,
-        -496
+        -496,
+        -384
       ],
       "id": "11132aaa-13a3-4a79-bdec-0d9a522955bb",
       "name": "Edit Fields2"
@@ -710,8 +682,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        112,
-        -480
+        -64,
+        -368
       ]
     },
     {
@@ -722,8 +694,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -96,
-        -496
+        -272,
+        -384
       ],
       "id": "e5fb65a5-9c18-4896-a62b-bc877c1de81e",
       "name": "HTTP Request",
@@ -760,8 +732,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1184,
-        -496
+        1056,
+        -480
       ],
       "id": "df44dc06-5062-4e2d-9855-688ae053e9e7",
       "name": "HTTP Request4",
@@ -779,7 +751,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        1632,
+        1456,
         -384
       ],
       "id": "cdee1c6b-afb9-48b0-860b-4c28784f5506",
@@ -802,8 +774,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1392,
-        -528
+        1264,
+        -496
       ],
       "id": "b6be8aaa-c443-46d3-a35b-5c07265f5ec6",
       "name": "Edit Fields5"
@@ -885,8 +857,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        704,
-        -288
+        640,
+        -240
       ],
       "id": "f7f7f6a7-7e99-4528-a38e-fcf5706e39cb",
       "name": "Edit Fields6"
@@ -919,7 +891,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1920,
+        1808,
         -384
       ],
       "id": "fc68121d-0334-4d63-9362-e6e4733b19e2",
@@ -953,8 +925,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        960,
-        -624
+        848,
+        -576
       ],
       "id": "1d2ca40e-89c0-4927-9dbc-76659d9771cd",
       "name": "existe en manychat?"
@@ -962,7 +934,7 @@
     {
       "parameters": {
         "operation": "findOneAndUpdate",
-        "collection": "TD-L8",
+        "collection": "TD-L9",
         "updateKey": "_id",
         "fields": "=id_manychat",
         "options": {}
@@ -972,7 +944,7 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        1792,
+        1632,
         -384
       ],
       "credentials": {
@@ -1005,13 +977,13 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"flow_ns\": \"content20250801030701_545145\"\n}",
+        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"flow_ns\": \"content20251001044048_260950\"\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2128,
+        2032,
         -400
       ],
       "id": "1d081a52-80da-4818-bcf6-133237e46c72",
@@ -1055,8 +1027,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        720,
-        -608
+        624,
+        -560
       ],
       "id": "499342f3-c841-4c0d-ac36-31fdc6356be6",
       "name": "HTTP Request7",
@@ -1088,8 +1060,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1184,
-        -656
+        1136,
+        -624
       ],
       "id": "b45ab115-0d8e-4b9d-aca1-10624aa7c383",
       "name": "Edit Fields8"
@@ -1122,8 +1094,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1040,
-        -208
+        1072,
+        -144
       ],
       "id": "78628112-b7ae-4137-9512-107ef57c9254",
       "name": "If5"
@@ -1135,8 +1107,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        1232,
-        -256
+        1296,
+        -224
       ],
       "id": "5e8ca97d-5663-43f2-8629-98ffa45971a5",
       "name": "Merge7"
@@ -1164,8 +1136,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1184,
-        -1040
+        1136,
+        -976
       ],
       "id": "b6160ea1-c113-43d9-8abc-052c406f4f92",
       "name": "INSERTA FLODESK1",
@@ -1207,8 +1179,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        944,
-        -896
+        912,
+        -880
       ],
       "id": "f025fa89-4aed-45c5-8522-bfb28c024237",
       "name": "EXISTE FLODESK?1"
@@ -1232,8 +1204,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        752,
-        -896
+        688,
+        -880
       ],
       "id": "13a99f23-6568-4a2a-b4c5-b140600b86ed",
       "name": "BUSQUEDA EN FLODESK",
@@ -1258,7 +1230,7 @@
       "typeVersion": 2,
       "position": [
         -720,
-        576
+        1008
       ],
       "id": "17d06e8c-480d-40cd-88e5-9840cfb3c3f5",
       "name": "ENCUESTA",
@@ -1293,8 +1265,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -480,
-        336
+        -320,
+        784
       ],
       "id": "1dc6c5e9-fa22-4fe2-8e8a-2e9296290e98",
       "name": "Edit Fields1"
@@ -1310,8 +1282,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        1104,
-        512
+        768,
+        880
       ]
     },
     {
@@ -1323,8 +1295,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        800,
-        784
+        576,
+        992
       ],
       "id": "0b2dbc59-5465-4ba1-975f-1546b1875d81",
       "name": "Merge3"
@@ -1338,57 +1310,11 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -336,
-        816
+        -320,
+        1200
       ],
       "id": "3c3341c7-aab3-46dc-bb51-2109ee3bf850",
       "name": "Edit Fields3"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "a520e1b6-bb26-44a6-857f-770dac49655a",
-              "leftValue": "={{ $json.puntaje }}",
-              "rightValue": 500,
-              "operator": {
-                "type": "number",
-                "operation": "gt"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        1840,
-        560
-      ],
-      "id": "eeab77a4-78c1-43a5-8cf4-a4e7b8e7b405",
-      "name": "If2"
-    },
-    {
-      "parameters": {
-        "jsCode": "const crypto = require('crypto-js'); // Asegúrate de que la librería está disponible\n\nconst item = $input.first().json;\n\nfunction hashSHA256(value) {\n  return crypto.SHA256(value).toString(crypto.enc.Hex);\n}\n\nconst encryptedData = {\n  em: [hashSHA256(item.email)],  // Correo electrónico\n  ph: [hashSHA256(Number(item.whatsapp))],  // Número de teléfono\n  country: [hashSHA256(item.country)],  // País\n  zp: [hashSHA256(item.zip)], //zip\n  ct: [hashSHA256(item.city)], //ciudad\n  st: [hashSHA256(item.regionName)], //estado\n  // Datos no cifrados deben estar directamente accesibles\n  client_ip_address: item.query,\n  client_user_agent: item.userAgent,\n  fbc: item.fbc,\n  fbp: item.fbp,\n};\n\nconst facebookEvent = {\n  data: [\n    {\n      event_name: \"CompleteRegistration\",\n      event_time: Math.floor(Date.now() / 1000), // Tiempo actual en segundos\n      action_source: \"website\",\n      original_event_data: {\n        event_name: \"CompleteRegistration\",\n        event_time: Math.floor(Date.now() / 1000)\n      },\n      user_data: encryptedData,\n    }\n  ]\n};\n\nreturn facebookEvent;"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        2304,
-        480
-      ],
-      "id": "fc5dafc9-297b-4c19-bbbb-92b846500a20",
-      "name": "Code"
     },
     {
       "parameters": {
@@ -1461,8 +1387,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1552,
-        752
+        1072,
+        1120
       ],
       "id": "3c51d738-c476-4e1a-a665-bd38ba9c8094",
       "name": "Edit Fields7"
@@ -1496,8 +1422,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1680,
-        224
+        1072,
+        736
       ],
       "id": "4c25e575-f2b4-48a2-b2b3-ea6bd1feecf8",
       "name": "HTTP Request5",
@@ -1535,8 +1461,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1680,
-        64
+        1072,
+        544
       ],
       "id": "60be1649-72e7-4aab-9443-7b5389754b37",
       "name": "HTTP Request6",
@@ -1552,8 +1478,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -256,
-        336
+        -112,
+        784
       ],
       "id": "34216663-9d65-48ad-8ae2-5d7504d2dd1d",
       "name": "Code1"
@@ -1586,8 +1512,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1936,
-        848
+        1424,
+        1216
       ],
       "id": "443fd2ce-e155-426c-a59b-0c01e46081e4",
       "name": "If4"
@@ -1599,8 +1525,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        2112,
-        768
+        1600,
+        1136
       ],
       "id": "5b017b9d-44d6-4b90-8787-d8df4cc3370a",
       "name": "Merge6"
@@ -1614,8 +1540,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        512,
-        800
+        448,
+        1184
       ],
       "id": "64db96ec-f5f6-4ea9-ba26-672390cdbf55",
       "name": "Merge4"
@@ -1637,8 +1563,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        432,
-        560
+        288,
+        1024
       ],
       "id": "f6bfc76e-9f77-4809-ab83-4df155b78a1f",
       "name": "Edit Fields4"
@@ -1655,8 +1581,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        224,
-        560
+        96,
+        1024
       ],
       "id": "e27d5afd-6fbd-4b91-88ce-9bab2fb9a941",
       "name": "HTTP Request1",
@@ -1694,8 +1620,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        144,
-        336
+        336,
+        784
       ]
     },
     {
@@ -1707,8 +1633,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        -240,
-        560
+        -320,
+        1024
       ],
       "id": "3661d9ad-3d34-4c6d-8286-9853e8e0181a",
       "name": "Merge8"
@@ -1722,8 +1648,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -16,
-        560
+        -112,
+        1024
       ],
       "id": "1228be04-7aca-4f6a-8ba3-4f44b7447a46",
       "name": "Edit Fields9"
@@ -1752,8 +1678,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        912,
-        -208
+        848,
+        -144
       ],
       "id": "15c767d3-680a-4a04-b86a-ae1c149777e4",
       "name": "Select rows from a table",
@@ -1829,8 +1755,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        1392,
-        -256
+        1520,
+        -224
       ],
       "id": "966fc0d1-181e-4ed0-bccf-8464f6876116",
       "name": "Insert rows in a table",
@@ -1865,8 +1791,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        1776,
-        848
+        1264,
+        1216
       ],
       "id": "e81b7396-33a5-481a-a46b-af6177042f26",
       "name": "Select rows from a table1",
@@ -1941,8 +1867,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        2320,
-        768
+        1760,
+        1136
       ],
       "id": "04de681a-9297-43e1-8429-c3eb5033b6af",
       "name": "Update rows in a table",
@@ -1982,8 +1908,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1680,
-        384
+        1232,
+        928
       ],
       "id": "83d6948d-95ec-43c4-b2b0-f2a159b92217",
       "name": "HTTP Request8",
@@ -1999,65 +1925,11 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1520,
-        384
+        1072,
+        928
       ],
       "id": "43b274f7-8687-4ccb-866c-5498a1051e36",
       "name": "Code2"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": " https://graph.facebook.com/v21.0/1156253219623951/events",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "access_token",
-              "value": "EAAOAcBl41QIBPAbmJYzAk6gatq43TrZAbqWrgOWbOtzbHatJskrsRQ8R4seDAO3aRB0mZCLxAiFnR3FjnJVBZAZCJmfg0GD2E7GviM8Oa5hguHt1ZAxCf8ZCKg3ro2CfoO1brwouRQZAPQFdPglCHidXqhAttYZCcg1SNugkaOo1NVanZCnZBhhAynzS6Knl4x80fBEgZDZD"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={{ $json.toJsonString() }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2576,
-        352
-      ],
-      "id": "cbc474c9-5d00-4bab-a0fd-37793df0bc9f",
-      "name": "PIXEL1"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": " https://graph.facebook.com/v21.0/1345856240462322/events",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "access_token",
-              "value": "EAAOAcBl41QIBPIEtYxd2l3l2K3ktzd8hus5ZBpfHWUZAnGZBNGPcG7fjcMm9u4tUoMrlMzL93iqc60nHl1KFaEmwlISIurcMDHVkYP0CgYTrmLywockZAUBQWf3bFEpMQXZAdZBFrXMyRnMshOMQw7LlxckuRagLDJEZBLeVJEKAXNNRceNKtWEGZCuY2yCkZCx0QSwZDZD"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={{ $json.toJsonString() }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2576,
-        528
-      ],
-      "id": "7ec837a5-9bc6-49b3-bc44-9e73afb44b1a",
-      "name": "PIXEL2"
     },
     {
       "parameters": {
@@ -2082,8 +1954,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1184,
-        -880
+        1136,
+        -784
       ],
       "id": "2e2e99c6-e1b9-4c4b-a874-fa6399df8d58",
       "name": "MOVER A SEGMENT",
@@ -2111,8 +1983,8 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        -128,
-        -240
+        -288,
+        -176
       ],
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -2136,8 +2008,8 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        464,
-        -368
+        384,
+        -272
       ],
       "credentials": {
         "mongoDb": {
@@ -2145,22 +2017,6 @@
           "name": "BASE DE DATOS GERSSON"
         }
       }
-    },
-    {
-      "parameters": {
-        "content": "LISTO\n",
-        "height": 2112,
-        "width": 3552,
-        "color": 4
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -752,
-        -1056
-      ],
-      "id": "7a7bc06e-5f5d-4771-928c-6dcc7b865615",
-      "name": "Sticky Note"
     },
     {
       "parameters": {
@@ -2175,8 +2031,8 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        -48,
-        336
+        112,
+        784
       ],
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -2190,48 +2046,97 @@
     },
     {
       "parameters": {
-        "operation": "findOneAndUpdate",
-        "collection": "TD-L9",
-        "updateKey": "_id",
-        "fields": "tiempoencuesta,Edad, Edad_especifica,Nivel_de_estudios,Ocupación,Eliminar_dolor_para,Ingresos,puntaje",
-        "options": {}
+        "jsCode": "const crypto = require('crypto-js'); // Asegúrate de que la librería está disponible\n\nconst item = $input.first().json;\n\nfunction hashSHA256(value) {\n  return crypto.SHA256(value).toString(crypto.enc.Hex);\n}\n\nconst encryptedData = {\n  em: [hashSHA256(item.email)],  // Correo electrónico\n  ph: [hashSHA256(Number(item.whatsapp))],  // Número de teléfono\n  country: [hashSHA256(item.country)],  // País\n  zp: [hashSHA256(item.zip)], //zip\n  ct: [hashSHA256(item.city)], //ciudad\n  st: [hashSHA256(item.regionName)], //estado\n  // Datos no cifrados deben estar directamente accesibles\n  client_ip_address: item.query,\n  client_user_agent: item.userAgent,\n  fbc: item.fbc,\n  fbp: item.fbp,\n};\n\nconst facebookEvent = {\n  data: [\n    {\n      event_name: \"CompleteRegistration\",\n      event_time: Math.floor(Date.now() / 1000), // Tiempo actual en segundos\n      action_source: \"website\",\n      original_event_data: {\n        event_name: \"CompleteRegistration\",\n        event_time: Math.floor(Date.now() / 1000)\n      },\n      user_data: encryptedData,\n    }\n  ]\n};\n\nreturn facebookEvent;"
       },
-      "id": "054abf2b-89b1-4be2-b954-ee6345068191",
-      "name": "Find and update documents",
-      "type": "n8n-nodes-base.mongoDb",
-      "typeVersion": 1.1,
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
       "position": [
-        1680,
-        560
+        640,
+        192
       ],
-      "credentials": {
-        "mongoDb": {
-          "id": "vbsT0SoMA5A3acgH",
-          "name": "BASE DE DATOS GERSSON"
-        }
-      }
+      "id": "dc794491-4268-49c3-baa5-4f0b41ed1edc",
+      "name": "Code3"
     },
     {
       "parameters": {
-        "collection": "=TD-L9",
-        "options": {},
-        "query": "={\"_id\": \"{{ $('Merge1').item.json._id }}\"}"
+        "method": "POST",
+        "url": " https://graph.facebook.com/v21.0/1156253219623951/events",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "EAAOAcBl41QIBPAbmJYzAk6gatq43TrZAbqWrgOWbOtzbHatJskrsRQ8R4seDAO3aRB0mZCLxAiFnR3FjnJVBZAZCJmfg0GD2E7GviM8Oa5hguHt1ZAxCf8ZCKg3ro2CfoO1brwouRQZAPQFdPglCHidXqhAttYZCcg1SNugkaOo1NVanZCnZBhhAynzS6Knl4x80fBEgZDZD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.toJsonString() }}",
+        "options": {}
       },
-      "id": "7fca00ab-8d73-4189-910a-9728e1fb0b60",
-      "name": "Find documents2",
-      "type": "n8n-nodes-base.mongoDb",
-      "typeVersion": 1.1,
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
       "position": [
-        2080,
-        480
+        848,
+        32
       ],
-      "alwaysOutputData": true,
-      "credentials": {
-        "mongoDb": {
-          "id": "vbsT0SoMA5A3acgH",
-          "name": "BASE DE DATOS GERSSON"
-        }
-      }
+      "id": "5af6b004-a7b5-4ffc-93cd-1b9776b7237a",
+      "name": "PIXEL"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": " https://graph.facebook.com/v21.0/1345856240462322/events",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "EAAOAcBl41QIBPIEtYxd2l3l2K3ktzd8hus5ZBpfHWUZAnGZBNGPcG7fjcMm9u4tUoMrlMzL93iqc60nHl1KFaEmwlISIurcMDHVkYP0CgYTrmLywockZAUBQWf3bFEpMQXZAdZBFrXMyRnMshOMQw7LlxckuRagLDJEZBLeVJEKAXNNRceNKtWEGZCuY2yCkZCx0QSwZDZD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.toJsonString() }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        848,
+        192
+      ],
+      "id": "efec0138-e07a-4f7e-8f2c-74ceb0ffcec9",
+      "name": "PIXEL3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": " https://graph.facebook.com/v21.0/462720235654680/events",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "EAAOAcBl41QIBPpbWeVgkT81mZCgXpZBayQ0DPZAIYdLr2ZBOkwxzt9g4OhHK4jkvUwTMpoEojjYJGjM8zB0Rw4qBFYNeS5XviPWwzZCeZAkXsFL9qXrCCCY8ulZB0eBeojdlfyBDdFtcxKkKZAJylZBCwcvTi9pARyvVb0IhHzzoc667Aw8jsGOYZCn19pv8gcXrmFlwZDZD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.toJsonString() }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        848,
+        368
+      ],
+      "id": "f1461314-6a07-4b3a-9437-2727ca6e8c62",
+      "name": "PIXEL4"
     }
   ],
   "pinData": {
@@ -2240,39 +2145,40 @@
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
-            "user-agent": "Mozilla/5.0 (Linux; Android 15; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.7204.168 Mobile Safari/537.36",
-            "content-length": "515",
+            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6.2 Mobile/22G100 Safari/604.1",
+            "content-length": "433",
             "accept": "*/*",
-            "accept-encoding": "gzip, deflate, br, zstd",
-            "accept-language": "es-US,es;q=0.9,pt-BR;q=0.8,pt;q=0.7,en-US;q=0.6,en;q=0.5",
+            "accept-encoding": "gzip, br",
+            "accept-language": "es-419,es;q=0.9",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "2800:e6:5400:dec4:ecca:73dd:6a87:6e5f",
+            "cf-ipcountry": "CO",
+            "cf-ray": "98785ddc0866b08a-MIA",
+            "cf-visitor": "{\"scheme\":\"https\"}",
             "content-type": "application/json",
             "origin": "https://terapiasmagneticas.com",
-            "priority": "u=1, i",
+            "priority": "u=3, i",
             "referer": "https://terapiasmagneticas.com/",
-            "sec-ch-ua": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Android WebView\";v=\"138\"",
-            "sec-ch-ua-mobile": "?1",
-            "sec-ch-ua-platform": "\"Android\"",
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "179.33.224.143",
+            "x-forwarded-for": "2800:e6:5400:dec4:ecca:73dd:6a87:6e5f, 172.68.12.73",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "5e236941e778",
-            "x-real-ip": "179.33.224.143",
-            "x-requested-with": "org.telegram.messenger"
+            "x-forwarded-server": "3393e017d3a9",
+            "x-real-ip": "172.68.12.73"
           },
           "params": {},
           "query": {},
           "body": {
-            "answersJson": "{\n  \"Edad\": \"61-80\",\n  \"Edad_especifica\": 62,\n  \"Nivel_de_estudios\": \"Postgrado\",\n  \"Ocupación\": \"Tengo un negocio en áreas relacionadas con la salud (terapeuta, reiki, acupuntura, entrenamiento físico, masajista)\",\n  \"Ingresos\": \"1001-1500\",\n  \"Eliminar_dolor_para\": \"Para crear o ampliar tu negocio relacionado con la salud\"\n}",
-            "referrer": "https://terapiasmagneticas.com/reg-l8/",
-            "email": "jubal2107@gmail.com",
-            "whatsapp": "+573017817643",
-            "tiempoencuesta": 1754025141
+            "answersJson": "{\n  \"Edad\": \"Menor de 35\",\n  \"Edad_especifica\": \"Menor de 35\",\n  \"Nivel_de_estudios\": \"Postgrado\",\n  \"Ocupación\": \"Soy trabajador en un negocio no relacionado con la salud\",\n  \"Eliminar_dolor_para\": \"Para ti mismo\",\n  \"Ingresos\": \"+1500\"\n}",
+            "referrer": "https://terapiasmagneticas.com/reg-l9/",
+            "email": "frankgonzalezm21@gmail.com",
+            "whatsapp": "+573218504711",
+            "tiempoencuesta": 1759284028
           },
-          "webhookUrl": "https://n8n.automscc.com/webhook/l8-enc",
+          "webhookUrl": "https://n8n.automscc.com/webhook/l9-enc",
           "executionMode": "production"
         }
       }
@@ -2282,15 +2188,15 @@
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
-            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Mobile/23A341 Safari/604.1",
-            "content-length": "417",
+            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6.2 Mobile/22G100 Safari/604.1",
+            "content-length": "422",
             "accept": "*/*",
             "accept-encoding": "gzip, br",
             "accept-language": "es-419,es;q=0.9",
             "cdn-loop": "cloudflare; loops=1",
-            "cf-connecting-ip": "186.169.117.132",
+            "cf-connecting-ip": "2800:e6:5400:dec4:ecca:73dd:6a87:6e5f",
             "cf-ipcountry": "CO",
-            "cf-ray": "985f71a678db2786-MIA",
+            "cf-ray": "98785ce55babb08a-MIA",
             "cf-visitor": "{\"scheme\":\"https\"}",
             "content-type": "application/json",
             "origin": "https://terapiasmagneticas.com",
@@ -2299,26 +2205,26 @@
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "186.169.117.132, 104.23.248.73",
+            "x-forwarded-for": "2800:e6:5400:dec4:ecca:73dd:6a87:6e5f, 172.68.12.73",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
             "x-forwarded-server": "3393e017d3a9",
-            "x-real-ip": "104.23.248.73"
+            "x-real-ip": "172.68.12.73"
           },
           "params": {},
           "query": {},
           "body": {
-            "tiemporegistro": 1759022694,
-            "email": "santiagociiro12@gmail.com",
-            "whatsapp": "+573136298562",
+            "tiemporegistro": 1759283987,
+            "email": "frankgonzalezm21@gmail.com",
+            "whatsapp": "+573218504711",
             "utmCampaign": "-",
             "utmSource": "-",
             "utmMedium": "-",
             "utmContent": "-",
             "utmTerm": "-",
             "adid": "-",
-            "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Mobile/23A341 Safari/604.1",
+            "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6.2 Mobile/22G100 Safari/604.1",
             "platform": "iPhone",
             "language": "es-419",
             "fbc": "-",
@@ -2327,6 +2233,163 @@
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/reg-l9",
           "executionMode": "production"
+        }
+      }
+    ],
+    "Edit Fields": [
+      {
+        "json": {
+          "tiemporegistro": 1759283987,
+          "email": "frankgonzalezm21@gmail.com",
+          "whatsapp": "+573218504711",
+          "utmCampaign": "-",
+          "utmSource": "-",
+          "utmMedium": "-",
+          "utmContent": "-",
+          "utmTerm": "-",
+          "adid": "-",
+          "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6.2 Mobile/22G100 Safari/604.1",
+          "platform": "iPhone",
+          "language": "es-419",
+          "fbc": "-",
+          "fbp": "-",
+          "isFbcGenerated": false
+        }
+      }
+    ],
+    "If": [
+      {
+        "json": {}
+      }
+    ],
+    "Merge": [
+      {
+        "json": {
+          "status": "success",
+          "country": "United States",
+          "countryCode": "US",
+          "region": "FL",
+          "regionName": "Florida",
+          "city": "Miami",
+          "zip": "",
+          "lat": 25.7616,
+          "lon": -80.1917,
+          "timezone": "America/New_York",
+          "isp": "Cloudflare, Inc.",
+          "org": "Cloudflare WARP",
+          "as": "AS13335 Cloudflare, Inc.",
+          "query": "172.68.12.73",
+          "tiemporegistro": 1759283987,
+          "email": "frankgonzalezm21@gmail.com",
+          "whatsapp": "+573218504711",
+          "utmCampaign": "-",
+          "utmSource": "-",
+          "utmMedium": "-",
+          "utmContent": "-",
+          "utmTerm": "-",
+          "adid": "-",
+          "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6.2 Mobile/22G100 Safari/604.1",
+          "platform": "iPhone",
+          "language": "es-419",
+          "fbc": "-",
+          "fbp": "-",
+          "isFbcGenerated": false
+        }
+      }
+    ],
+    "Edit Fields2": [
+      {
+        "json": {
+          "ip": "172.68.12.73"
+        }
+      }
+    ],
+    "Merge2": [
+      {
+        "json": {
+          "status": "success",
+          "country": "United States",
+          "countryCode": "US",
+          "region": "FL",
+          "regionName": "Florida",
+          "city": "Miami",
+          "zip": "",
+          "lat": 25.7616,
+          "lon": -80.1917,
+          "timezone": "America/New_York",
+          "isp": "Cloudflare, Inc.",
+          "org": "Cloudflare WARP",
+          "as": "AS13335 Cloudflare, Inc.",
+          "query": "172.68.12.73",
+          "tiemporegistro": 1759283987,
+          "email": "frankgonzalezm21@gmail.com",
+          "whatsapp": "+573218504711",
+          "utmCampaign": "-",
+          "utmSource": "-",
+          "utmMedium": "-",
+          "utmContent": "-",
+          "utmTerm": "-",
+          "adid": "-",
+          "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6.2 Mobile/22G100 Safari/604.1",
+          "platform": "iPhone",
+          "language": "es-419",
+          "fbc": "-",
+          "fbp": "-",
+          "isFbcGenerated": false
+        }
+      }
+    ],
+    "HTTP Request": [
+      {
+        "json": {
+          "status": "success",
+          "country": "United States",
+          "countryCode": "US",
+          "region": "FL",
+          "regionName": "Florida",
+          "city": "Miami",
+          "zip": "",
+          "lat": 25.7616,
+          "lon": -80.1917,
+          "timezone": "America/New_York",
+          "isp": "Cloudflare, Inc.",
+          "org": "Cloudflare WARP",
+          "as": "AS13335 Cloudflare, Inc.",
+          "query": "172.68.12.73"
+        }
+      }
+    ],
+    "Find documents": [
+      {
+        "json": {}
+      }
+    ],
+    "Insert documents": [
+      {
+        "json": {
+          "query": "172.68.12.73",
+          "country": "United States",
+          "city": "Miami",
+          "zip": "",
+          "regionName": "Florida",
+          "timezone": "America/New_York",
+          "email": "frankgonzalezm21@gmail.com",
+          "whatsapp": "+573218504711",
+          "utmCampaign": "-",
+          "utmSource": "-",
+          "utmMedium": "-",
+          "utmContent": "-",
+          "utmTerm": "-",
+          "adid": "-",
+          "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6.2 Mobile/22G100 Safari/604.1",
+          "platform": "iPhone",
+          "language": "es-419",
+          "tiemporegistro": 1759283987,
+          "fbc": "-",
+          "fbp": "-",
+          "isFbcGenerated": false,
+          "_id": "68dc8b1647394f4b1a947842",
+          "id": "68dc8b1647394f4b1a947842"
         }
       }
     ]
@@ -2355,6 +2418,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-09-28T01:34:39.000Z",
-  "versionId": "621591b7-eef3-4642-ba5e-b61ebece149c"
+  "updatedAt": "2025-10-01T05:31:32.000Z",
+  "versionId": "f5884c64-4803-4395-8ea4-974b5838ec97"
 }
