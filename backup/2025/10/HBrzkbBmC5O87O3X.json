@@ -1,0 +1,165 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-02T00:44:48.907Z",
+  "id": "HBrzkbBmC5O87O3X",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "GRUPO ACTIVO",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "grupo-gersson",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -352,
+        -16
+      ],
+      "id": "e1171441-70cb-48d3-9bd0-7f87c99d064d",
+      "name": "Webhook",
+      "webhookId": "57a99dad-a232-469a-a199-5421663e50ac"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_LINKS",
+          "mode": "list",
+          "cachedResultName": "GERSSON_LINKS"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "Total",
+              "condition": "!=",
+              "value": "1000"
+            }
+          ]
+        },
+        "sort": {
+          "values": [
+            {
+              "column": "Total",
+              "direction": "DESC"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -80,
+        -112
+      ],
+      "id": "335027be-c761-408b-8cfa-535ec9b43e92",
+      "name": "Select rows from a table",
+      "credentials": {
+        "mySql": {
+          "id": "179b2UX7XsHkNW05",
+          "name": "REDIRECCIONES - LANZAMIENTOS"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -352,
+        -208
+      ],
+      "id": "8e1873a8-0c71-483c-b783-9c9a0f70da4b",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        128,
+        -112
+      ],
+      "id": "2f9f4eab-879e-4c52-a61b-6d0ad7d69970",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        336,
+        -112
+      ],
+      "id": "8669e727-c860-4a80-956f-03c2794f850c",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-02T00:46:45.000Z",
+  "versionId": "8d6d1505-cd71-4d55-88aa-9f53dc5a7acb"
+}
