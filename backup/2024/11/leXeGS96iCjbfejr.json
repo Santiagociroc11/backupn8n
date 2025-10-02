@@ -27,7 +27,7 @@
       "main": [
         [
           {
-            "node": "Edit Fields",
+            "node": "Switch",
             "type": "main",
             "index": 0
           }
@@ -176,6 +176,60 @@
           }
         ]
       ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-11-04T07:42:41.519Z",
@@ -223,7 +277,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1024,
+        1440,
         368
       ]
     },
@@ -256,7 +310,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1248,
+        1664,
         368
       ]
     },
@@ -271,8 +325,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        800,
-        368
+        608,
+        512
       ],
       "webhookId": "453d99b1-161b-46e8-8ac0-40581b8efbe2"
     },
@@ -301,7 +355,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        1472,
+        1888,
         352
       ],
       "alwaysOutputData": true,
@@ -325,7 +379,7 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        2144,
+        2560,
         160
       ],
       "alwaysOutputData": true,
@@ -365,7 +419,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2368,
+        2784,
         160
       ],
       "id": "f8d1b083-0e2c-4ddc-b657-deefee2de178",
@@ -405,7 +459,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1696,
+        2112,
         352
       ]
     },
@@ -438,7 +492,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2368,
+        2784,
         496
       ]
     },
@@ -465,7 +519,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2592,
+        3008,
         400
       ],
       "disabled": true
@@ -495,7 +549,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        1920,
+        2336,
         592
       ],
       "alwaysOutputData": true,
@@ -536,7 +590,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2144,
+        2560,
         592
       ]
     },
@@ -583,7 +637,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        2592,
+        3008,
         592
       ],
       "id": "e336df7d-0735-4e44-93b3-e970bbebde86",
@@ -600,7 +654,7 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        1920,
+        2336,
         256
       ],
       "id": "76663c87-dfae-480b-9109-03f2d4474363",
@@ -649,7 +703,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        2144,
+        2560,
         352
       ],
       "id": "a939b2bd-a7ae-4af6-a1fd-e54797e970d2",
@@ -690,7 +744,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2848,
+        3264,
         752
       ]
     },
@@ -737,7 +791,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        3072,
+        3488,
         848
       ],
       "id": "0f129ca4-7ceb-4585-8acf-6333d8d69913",
@@ -772,7 +826,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3072,
+        3488,
         656
       ],
       "disabled": true
@@ -807,7 +861,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2624,
+        3040,
         784
       ]
     },
@@ -836,7 +890,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        2400,
+        2816,
         784
       ],
       "alwaysOutputData": true,
@@ -846,6 +900,239 @@
           "name": "REDIRECCIONES - LANZAMIENTOS"
         }
       }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "group-participants.update",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "9b8a9d43-676c-4650-8bb4-8fdf83b75d19"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "GRUPO UPDATE"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ebcbf54b-9f2a-4246-9c50-9a0b6d4e6bf9",
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "messages.upsert",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "MENSAJE UPSERT"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "15f7959c-e7d2-48e1-9421-78ec104483b9",
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "send.message",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "MENSAJE SEND"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "92baeafa-e2ae-4170-b6a4-43fb14739f29",
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "messages.update",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ACTUALIZACION DE MENSAJE"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        864,
+        496
+      ],
+      "id": "d9dfdbb1-77fc-46ae-aab1-50aeb7f395ce",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1Al-VB3kQrkxMYJjbq4ek2Tz33g3UdjQJ6o7avtENX2o",
+          "mode": "list",
+          "cachedResultName": "Hoja de cálculo sin título",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Al-VB3kQrkxMYJjbq4ek2Tz33g3UdjQJ6o7avtENX2o/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Al-VB3kQrkxMYJjbq4ek2Tz33g3UdjQJ6o7avtENX2o/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "evento": "={{ $json.body.event }}",
+            "rawdata": "={{ $json.body.toJsonString() }}",
+            "time del evento": "={{ $json.tiempo }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "time del evento",
+              "displayName": "time del evento",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "evento",
+              "displayName": "evento",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "rawdata",
+              "displayName": "rawdata",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1488,
+        592
+      ],
+      "id": "a4a0a1af-f477-4e17-85ec-80d0918299c8",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.random() * 2 + 1 }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1312,
+        592
+      ],
+      "id": "3f69c115-425a-4b7d-bea5-8b1365efec83",
+      "name": "Wait",
+      "webhookId": "caa05a4b-36c4-4040-ba9e-1a9cebb2861b"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f8131f4f-c142-4852-8873-8a6db4899664",
+              "name": "tiempo",
+              "value": "={{$now.toSeconds() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1120,
+        592
+      ],
+      "id": "79cb1a6d-b1c9-4a3f-8e28-d163b10c527d",
+      "name": "Edit Fields1"
     }
   ],
   "pinData": {
@@ -854,35 +1141,42 @@
         "json": {
           "headers": {
             "host": "n8n.automscc.com",
-            "user-agent": "axios/1.7.7",
-            "content-length": "414",
-            "accept-encoding": "gzip, compress, deflate, br",
+            "user-agent": "axios/1.12.2",
+            "content-length": "553",
+            "accept": "application/json, text/plain, */*",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "92.112.184.72",
+            "cf-ipcountry": "US",
+            "cf-ray": "987f774f697c42b3-EWR",
+            "cf-visitor": "{\"scheme\":\"https\"}",
             "content-type": "application/json",
-            "x-forwarded-for": "172.18.0.1",
+            "x-forwarded-for": "92.112.184.72, 162.158.159.35",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "5e236941e778",
-            "x-real-ip": "172.18.0.1"
+            "x-forwarded-server": "3393e017d3a9",
+            "x-real-ip": "162.158.159.35"
           },
           "params": {},
           "query": {},
           "body": {
-            "event": "group-participants.update",
+            "event": "messages.update",
             "instance": "SANTIAGO-PERSONAL",
             "data": {
-              "id": "120363419222723092@g.us",
-              "author": "",
-              "participants": [
-                "573233336311@s.whatsapp.net"
-              ],
-              "action": "add"
+              "keyId": "3FF983B0FA712A6C2FBB",
+              "remoteJid": "573113282127:78@s.whatsapp.net",
+              "fromMe": true,
+              "participant": "573113282127:78@s.whatsapp.net",
+              "status": "DELIVERY_ACK",
+              "instanceId": "7a94e93c-6fd4-491e-a8c1-d945e8b769d6",
+              "messageId": "cmg8klwqo0qztqv5qed92tef9"
             },
             "destination": "https://n8n.automscc.com/webhook/webhooks-wha",
-            "date_time": "2025-06-02T16:15:44.736Z",
+            "date_time": "2025-10-01T19:41:11.529Z",
             "sender": "573136298562@s.whatsapp.net",
-            "server_url": "http://evolution.automscc.com",
-            "apikey": "F8B55F183A81-40CE-B1F1-623317461105"
+            "server_url": "https://evolution.automscc.com",
+            "apikey": "CA3F75737D94-4DE8-8249-ECA023A8FCBD"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/webhooks-wha",
           "executionMode": "production"
@@ -920,6 +1214,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-01T05:01:41.000Z",
-  "versionId": "f27c9914-6cf1-4c2e-887b-b4a97e412a4e"
+  "updatedAt": "2025-10-01T22:52:52.000Z",
+  "versionId": "5284e45b-5edb-4a32-b506-2a71488b9e9d"
 }
