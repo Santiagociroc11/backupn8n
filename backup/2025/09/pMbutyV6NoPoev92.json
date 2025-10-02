@@ -309,6 +309,11 @@
             "node": "Code2",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Find and update documents",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -522,11 +527,6 @@
             "node": "BUSQUEDA EN FLODESK",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "Code3",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -542,21 +542,54 @@
         ]
       ]
     },
-    "Code3": {
+    "If2": {
       "main": [
         [
           {
-            "node": "PIXEL",
+            "node": "Find documents2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "PIXEL1",
             "type": "main",
             "index": 0
           },
           {
-            "node": "PIXEL3",
+            "node": "PIXEL2",
             "type": "main",
             "index": 0
           },
           {
             "node": "PIXEL4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find and update documents": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find documents2": {
+      "main": [
+        [
+          {
+            "node": "Code",
             "type": "main",
             "index": 0
           }
@@ -1229,8 +1262,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -720,
-        1008
+        -736,
+        720
       ],
       "id": "17d06e8c-480d-40cd-88e5-9840cfb3c3f5",
       "name": "ENCUESTA",
@@ -1265,8 +1298,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -320,
-        784
+        -336,
+        496
       ],
       "id": "1dc6c5e9-fa22-4fe2-8e8a-2e9296290e98",
       "name": "Edit Fields1"
@@ -1282,8 +1315,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        768,
-        880
+        752,
+        592
       ]
     },
     {
@@ -1295,8 +1328,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        576,
-        992
+        560,
+        704
       ],
       "id": "0b2dbc59-5465-4ba1-975f-1546b1875d81",
       "name": "Merge3"
@@ -1310,8 +1343,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -320,
-        1200
+        -336,
+        912
       ],
       "id": "3c3341c7-aab3-46dc-bb51-2109ee3bf850",
       "name": "Edit Fields3"
@@ -1387,8 +1420,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1072,
-        1120
+        1056,
+        832
       ],
       "id": "3c51d738-c476-4e1a-a665-bd38ba9c8094",
       "name": "Edit Fields7"
@@ -1422,8 +1455,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1072,
-        736
+        1104,
+        272
       ],
       "id": "4c25e575-f2b4-48a2-b2b3-ea6bd1feecf8",
       "name": "HTTP Request5",
@@ -1461,8 +1494,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1072,
-        544
+        1104,
+        96
       ],
       "id": "60be1649-72e7-4aab-9443-7b5389754b37",
       "name": "HTTP Request6",
@@ -1478,8 +1511,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -112,
-        784
+        -128,
+        496
       ],
       "id": "34216663-9d65-48ad-8ae2-5d7504d2dd1d",
       "name": "Code1"
@@ -1512,8 +1545,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1424,
-        1216
+        1408,
+        928
       ],
       "id": "443fd2ce-e155-426c-a59b-0c01e46081e4",
       "name": "If4"
@@ -1525,8 +1558,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        1600,
-        1136
+        1584,
+        848
       ],
       "id": "5b017b9d-44d6-4b90-8787-d8df4cc3370a",
       "name": "Merge6"
@@ -1540,8 +1573,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        448,
-        1184
+        432,
+        896
       ],
       "id": "64db96ec-f5f6-4ea9-ba26-672390cdbf55",
       "name": "Merge4"
@@ -1563,8 +1596,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        288,
-        1024
+        272,
+        736
       ],
       "id": "f6bfc76e-9f77-4809-ab83-4df155b78a1f",
       "name": "Edit Fields4"
@@ -1581,8 +1614,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        96,
-        1024
+        80,
+        736
       ],
       "id": "e27d5afd-6fbd-4b91-88ce-9bab2fb9a941",
       "name": "HTTP Request1",
@@ -1620,8 +1653,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        336,
-        784
+        320,
+        496
       ]
     },
     {
@@ -1633,8 +1666,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        -320,
-        1024
+        -336,
+        736
       ],
       "id": "3661d9ad-3d34-4c6d-8286-9853e8e0181a",
       "name": "Merge8"
@@ -1648,8 +1681,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -112,
-        1024
+        -128,
+        736
       ],
       "id": "1228be04-7aca-4f6a-8ba3-4f44b7447a46",
       "name": "Edit Fields9"
@@ -1791,8 +1824,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        1264,
-        1216
+        1248,
+        928
       ],
       "id": "e81b7396-33a5-481a-a46b-af6177042f26",
       "name": "Select rows from a table1",
@@ -1867,8 +1900,8 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        1760,
-        1136
+        1744,
+        848
       ],
       "id": "04de681a-9297-43e1-8429-c3eb5033b6af",
       "name": "Update rows in a table",
@@ -1908,8 +1941,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1232,
-        928
+        1264,
+        448
       ],
       "id": "83d6948d-95ec-43c4-b2b0-f2a159b92217",
       "name": "HTTP Request8",
@@ -1925,8 +1958,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1072,
-        928
+        1104,
+        448
       ],
       "id": "43b274f7-8687-4ccb-866c-5498a1051e36",
       "name": "Code2"
@@ -2031,8 +2064,8 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        112,
-        784
+        96,
+        496
       ],
       "alwaysOutputData": true,
       "retryOnFail": true,
@@ -2046,16 +2079,49 @@
     },
     {
       "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a520e1b6-bb26-44a6-857f-770dac49655a",
+              "leftValue": "={{ $json.puntaje }}",
+              "rightValue": 500,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1264,
+        624
+      ],
+      "id": "a9807763-24d1-4c6c-a446-4a84956c126c",
+      "name": "If2"
+    },
+    {
+      "parameters": {
         "jsCode": "const crypto = require('crypto-js'); // Asegúrate de que la librería está disponible\n\nconst item = $input.first().json;\n\nfunction hashSHA256(value) {\n  return crypto.SHA256(value).toString(crypto.enc.Hex);\n}\n\nconst encryptedData = {\n  em: [hashSHA256(item.email)],  // Correo electrónico\n  ph: [hashSHA256(Number(item.whatsapp))],  // Número de teléfono\n  country: [hashSHA256(item.country)],  // País\n  zp: [hashSHA256(item.zip)], //zip\n  ct: [hashSHA256(item.city)], //ciudad\n  st: [hashSHA256(item.regionName)], //estado\n  // Datos no cifrados deben estar directamente accesibles\n  client_ip_address: item.query,\n  client_user_agent: item.userAgent,\n  fbc: item.fbc,\n  fbp: item.fbp,\n};\n\nconst facebookEvent = {\n  data: [\n    {\n      event_name: \"CompleteRegistration\",\n      event_time: Math.floor(Date.now() / 1000), // Tiempo actual en segundos\n      action_source: \"website\",\n      original_event_data: {\n        event_name: \"CompleteRegistration\",\n        event_time: Math.floor(Date.now() / 1000)\n      },\n      user_data: encryptedData,\n    }\n  ]\n};\n\nreturn facebookEvent;"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        640,
-        192
+        1616,
+        560
       ],
-      "id": "dc794491-4268-49c3-baa5-4f0b41ed1edc",
-      "name": "Code3"
+      "id": "9d680938-50bb-4443-b58a-0c2e6bc70382",
+      "name": "Code"
     },
     {
       "parameters": {
@@ -2078,11 +2144,11 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        848,
-        32
+        1872,
+        320
       ],
-      "id": "5af6b004-a7b5-4ffc-93cd-1b9776b7237a",
-      "name": "PIXEL"
+      "id": "7a170d9b-6007-44d3-80b7-d47e8430e261",
+      "name": "PIXEL1"
     },
     {
       "parameters": {
@@ -2105,11 +2171,56 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        848,
-        192
+        1872,
+        496
       ],
-      "id": "efec0138-e07a-4f7e-8f2c-74ceb0ffcec9",
-      "name": "PIXEL3"
+      "id": "0a1d44ef-dae9-4834-b44f-4ea25b982ca3",
+      "name": "PIXEL2"
+    },
+    {
+      "parameters": {
+        "operation": "findOneAndUpdate",
+        "collection": "TD-L9",
+        "updateKey": "_id",
+        "fields": "tiempoencuesta,Edad, Edad_especifica,Nivel_de_estudios,Ocupación,Eliminar_dolor_para,Ingresos,puntaje",
+        "options": {}
+      },
+      "id": "8ec3a2cc-22c0-4078-82b3-d2dfc02c4b7c",
+      "name": "Find and update documents",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        1104,
+        624
+      ],
+      "credentials": {
+        "mongoDb": {
+          "id": "vbsT0SoMA5A3acgH",
+          "name": "BASE DE DATOS GERSSON"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "collection": "=TD-L9",
+        "options": {},
+        "query": "={\"_id\": \"{{ $('Merge1').item.json._id }}\"}"
+      },
+      "id": "a867e4c5-5f71-4996-966f-2e211c61ab9f",
+      "name": "Find documents2",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        1456,
+        560
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "mongoDb": {
+          "id": "vbsT0SoMA5A3acgH",
+          "name": "BASE DE DATOS GERSSON"
+        }
+      }
     },
     {
       "parameters": {
@@ -2132,10 +2243,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        848,
-        368
+        1872,
+        672
       ],
-      "id": "f1461314-6a07-4b3a-9437-2727ca6e8c62",
+      "id": "23ef8b4d-d977-4943-a04d-dcd8f82f0430",
       "name": "PIXEL4"
     }
   ],
@@ -2418,6 +2529,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-10-01T05:31:32.000Z",
-  "versionId": "f5884c64-4803-4395-8ea4-974b5838ec97"
+  "updatedAt": "2025-10-02T00:28:03.000Z",
+  "versionId": "ff3808c5-54d1-4a24-b11d-fe92c2436671"
 }
