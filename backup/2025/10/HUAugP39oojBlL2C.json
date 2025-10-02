@@ -1,0 +1,69 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-02T06:08:44.116Z",
+  "id": "HUAugP39oojBlL2C",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 57",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -448,
+        -112
+      ],
+      "id": "085f868a-71d3-4fc8-8170-5f0395e0e49b",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://api.scrapecreators.com/v1/facebook/adLibrary/search/ads?query=drive acceso&search_type=keyword_unordered&ad_type=all&country=CO&status=ACTIVE&media_type=ALL&cursor=AQHSQndtbiYpEXQTUcHSnXJ8UXQibSHq67kKdIw4TeB1vRor71ksGYl9BUDpV-a5mFju&trim=true",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "32Bp24vLJHh1PwKf4dXagG5o5l83"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -240,
+        -112
+      ],
+      "id": "648bbec3-369a-4f5a-8351-fc1c924da5a6",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-02T06:08:44.116Z",
+  "versionId": "c285745f-d9b8-413a-9ea2-348b8241ce2d"
+}
