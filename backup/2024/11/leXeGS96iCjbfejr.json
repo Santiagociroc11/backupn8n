@@ -186,49 +186,9 @@
             "index": 0
           }
         ],
-        [
-          {
-            "node": "Edit Fields1",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Edit Fields1",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Edit Fields1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Wait": {
-      "main": [
-        [
-          {
-            "node": "Append row in sheet",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Edit Fields1": {
-      "main": [
-        [
-          {
-            "node": "Wait",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        [],
+        [],
+        []
       ]
     }
   },
@@ -325,8 +285,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        608,
-        512
+        848,
+        400
       ],
       "webhookId": "453d99b1-161b-46e8-8ac0-40581b8efbe2"
     },
@@ -1011,128 +971,11 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        864,
-        496
+        1104,
+        384
       ],
       "id": "d9dfdbb1-77fc-46ae-aab1-50aeb7f395ce",
       "name": "Switch"
-    },
-    {
-      "parameters": {
-        "operation": "append",
-        "documentId": {
-          "__rl": true,
-          "value": "1Al-VB3kQrkxMYJjbq4ek2Tz33g3UdjQJ6o7avtENX2o",
-          "mode": "list",
-          "cachedResultName": "Hoja de cálculo sin título",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Al-VB3kQrkxMYJjbq4ek2Tz33g3UdjQJ6o7avtENX2o/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "Hoja 1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Al-VB3kQrkxMYJjbq4ek2Tz33g3UdjQJ6o7avtENX2o/edit#gid=0"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "evento": "={{ $json.body.event }}",
-            "rawdata": "={{ $json.body.toJsonString() }}",
-            "time del evento": "={{ $json.tiempo }}"
-          },
-          "matchingColumns": [
-            "id"
-          ],
-          "schema": [
-            {
-              "id": "time del evento",
-              "displayName": "time del evento",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "evento",
-              "displayName": "evento",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "rawdata",
-              "displayName": "rawdata",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {
-          "useAppend": true
-        }
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.7,
-      "position": [
-        1488,
-        592
-      ],
-      "id": "a4a0a1af-f477-4e17-85ec-80d0918299c8",
-      "name": "Append row in sheet",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "CUENTA SANTIAGO"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "amount": "={{ Math.random() * 2 + 1 }}"
-      },
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
-      "position": [
-        1312,
-        592
-      ],
-      "id": "3f69c115-425a-4b7d-bea5-8b1365efec83",
-      "name": "Wait",
-      "webhookId": "caa05a4b-36c4-4040-ba9e-1a9cebb2861b"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "f8131f4f-c142-4852-8873-8a6db4899664",
-              "name": "tiempo",
-              "value": "={{$now.toSeconds() }}",
-              "type": "string"
-            }
-          ]
-        },
-        "includeOtherFields": true,
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        1120,
-        592
-      ],
-      "id": "79cb1a6d-b1c9-4a3f-8e28-d163b10c527d",
-      "name": "Edit Fields1"
     }
   ],
   "pinData": {
@@ -1195,25 +1038,13 @@
   "staticData": null,
   "tags": [
     {
-      "createdAt": "2025-02-04T22:36:35.108Z",
-      "updatedAt": "2025-02-04T22:36:35.108Z",
-      "id": "HjNWwvqlBnseDfSA",
-      "name": "GERSSON"
-    },
-    {
       "createdAt": "2025-02-20T03:14:39.493Z",
       "updatedAt": "2025-02-20T03:14:39.493Z",
       "id": "fMteddKWhaFhuYHk",
       "name": "MYSQL"
-    },
-    {
-      "createdAt": "2025-02-04T22:36:43.008Z",
-      "updatedAt": "2025-02-04T22:36:43.008Z",
-      "id": "ux9yUSYJLDIzqblK",
-      "name": "CARLOS ARZA"
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-01T22:52:52.000Z",
-  "versionId": "5284e45b-5edb-4a32-b506-2a71488b9e9d"
+  "updatedAt": "2025-10-03T19:14:06.000Z",
+  "versionId": "e9199777-7a3c-403a-9586-7e3b4b3c0e1f"
 }
