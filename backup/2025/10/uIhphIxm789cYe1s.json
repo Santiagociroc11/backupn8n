@@ -852,19 +852,6 @@
     },
     {
       "parameters": {
-        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        4416,
-        864
-      ],
-      "id": "cb6e0259-9776-4569-ae3e-cb6dd1de09f0",
-      "name": "Code1"
-    },
-    {
-      "parameters": {
         "method": "POST",
         "url": "=https://evolution.automscc.com/group/updateGroupPicture/{{ $('Form2').all()[0].json['Que instancia usarás?'] }}?groupJid={{ $('API-CREACOMUNIDAD').all()[0].json.id }}",
         "sendHeaders": true,
@@ -979,6 +966,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-10-02T23:25:05.000Z",
-  "versionId": "687d0358-df58-4197-a3e0-966594812d0e"
+  "updatedAt": "2025-10-03T08:06:01.000Z",
+  "versionId": "90b2348f-8001-45c0-9625-f7554ff7b63c"
 }
