@@ -1,352 +1,340 @@
 {
   "active": false,
   "connections": {
-    "When clicking ‘Test workflow’": {
+    "Schedule Trigger1": {
       "main": [
         [
           {
-            "node": "busqueda BD",
+            "node": "busqueda BD1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Schedule Trigger": {
+    "Loop Over Items1": {
       "main": [
         [
           {
-            "node": "busqueda BD",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Loop Over Items": {
-      "main": [
-        [
-          {
-            "node": "Summarize",
+            "node": "Summarize1",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "CreateGroup",
+            "node": "CreateGroup1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "contadorinciail": {
+    "contadorinciail1": {
       "main": [
         [
           {
-            "node": "ModificaNombres",
+            "node": "ModificaNombres1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "BodysCreate": {
+    "BodysCreate1": {
       "main": [
         [
           {
-            "node": "contadorinciail",
+            "node": "contadorinciail1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "ModificaNombres": {
+    "ModificaNombres1": {
       "main": [
         [
           {
-            "node": "Loop Over Items",
+            "node": "Loop Over Items1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "CreateGroup": {
+    "CreateGroup1": {
       "main": [
         [
           {
-            "node": "5 seg",
+            "node": "5 seg1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "5 seg": {
+    "5 seg1": {
       "main": [
         [
           {
-            "node": "ObtenerLink",
+            "node": "ObtenerLink1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "ObtenerLink": {
+    "ObtenerLink1": {
       "main": [
         [
           {
-            "node": "EscribirGrupo",
+            "node": "EscribirGrupo1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "EscribirGrupo": {
+    "EscribirGrupo1": {
       "main": [
         [
           {
-            "node": "PromoveAdmins",
+            "node": "PromoveAdmins1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "PromoveAdmins": {
+    "PromoveAdmins1": {
       "main": [
         [
           {
-            "node": "Config1",
+            "node": "Config",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Config1": {
+    "Config": {
       "main": [
         [
           {
-            "node": "Config2",
+            "node": "Config3",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Config2": {
+    "Config3": {
       "main": [
         [
           {
-            "node": "Setfoto",
+            "node": "Setfoto1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Setfoto": {
+    "Setfoto1": {
       "main": [
         [
           {
-            "node": "Encontrar participantes do grupo",
+            "node": "Encontrar participantes do grupo1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "busqueda BD": {
+    "busqueda BD1": {
       "main": [
         [
           {
-            "node": "grupos vacios",
+            "node": "grupos vacios1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "grupos vacios": {
+    "grupos vacios1": {
       "main": [
         [
           {
-            "node": "conteo grupos vacios",
+            "node": "conteo grupos vacios1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "conteo grupos vacios": {
+    "conteo grupos vacios1": {
       "main": [
         [
           {
-            "node": "# del ultimo grupo",
+            "node": "# del ultimo grupo1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "# del ultimo grupo": {
+    "# del ultimo grupo1": {
       "main": [
         [
           {
-            "node": "hay menos de 3 grupos?",
+            "node": "hay menos de 3 grupos?1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "hay menos de 3 grupos?": {
+    "hay menos de 3 grupos?1": {
       "main": [
         [
           {
-            "node": "obtener datos de creacion",
+            "node": "obtener datos de creacion1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "obtener datos de creacion1": {
+      "main": [
+        [
+          {
+            "node": "establecer variables1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "establecer variables1": {
+      "main": [
+        [
+          {
+            "node": "BodysCreate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "No Operation, do nothing1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize1": {
+      "main": [
+        [
+          {
+            "node": "Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Atualizar membros do grupo3": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Atualizar membros do grupo4",
             "type": "main",
             "index": 0
           }
         ],
-        []
-      ]
-    },
-    "obtener datos de creacion": {
-      "main": [
         [
           {
-            "node": "establecer variables",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "establecer variables": {
-      "main": [
-        [
-          {
-            "node": "BodysCreate",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "No Operation, do nothing": {
-      "main": [
-        [
-          {
-            "node": "Loop Over Items",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Summarize": {
-      "main": [
-        [
-          {
-            "node": "Telegram",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Code": {
-      "main": [
-        [
-          {
-            "node": "Switch",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Switch": {
-      "main": [
-        [
-          {
-            "node": "Atualizar membros do grupo1",
+            "node": "Atualizar membros do grupo5",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Atualizar membros do grupo2",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "No Operation, do nothing",
+            "node": "No Operation, do nothing1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Atualizar membros do grupo1": {
+    "Atualizar membros do grupo4": {
       "main": [
         [
           {
-            "node": "Wait",
+            "node": "Wait1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Wait": {
+    "Atualizar membros do grupo5": {
       "main": [
         [
           {
-            "node": "Atualizar membros do grupo",
+            "node": "No Operation, do nothing1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Encontrar participantes do grupo": {
+    "Wait1": {
       "main": [
         [
           {
-            "node": "Code",
+            "node": "Atualizar membros do grupo3",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Atualizar membros do grupo": {
+    "Encontrar participantes do grupo1": {
       "main": [
         [
           {
-            "node": "No Operation, do nothing",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Atualizar membros do grupo2": {
-      "main": [
-        [
-          {
-            "node": "No Operation, do nothing",
+            "node": "Code1",
             "type": "main",
             "index": 0
           }
@@ -363,17 +351,6 @@
   "name": "[GERSSON] AUTO CREACIÓN DE GRUPOS",
   "nodes": [
     {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        -576,
-        -176
-      ],
-      "id": "a7e14bf2-073e-4232-a4f7-9166041256af",
-      "name": "When clicking ‘Test workflow’"
-    },
-    {
       "parameters": {
         "rule": {
           "interval": [
@@ -387,69 +364,69 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -576,
-        -368
+        -3216,
+        272
       ],
-      "id": "719e6fd7-8bd5-4376-a344-147f0ff6d807",
-      "name": "Schedule Trigger"
+      "id": "44a39775-3167-46a7-bb09-dca200eb035b",
+      "name": "Schedule Trigger1"
     },
     {
       "parameters": {
         "batchSize": "=1",
         "options": {}
       },
-      "id": "d4470e17-75e8-459a-bd7c-ca98ab8c156f",
-      "name": "Loop Over Items",
+      "id": "cf44caab-bae2-449b-9db7-2e8c7e8aa07d",
+      "name": "Loop Over Items1",
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        1888,
-        -256
+        -752,
+        272
       ]
     },
     {
       "parameters": {
-        "jsCode": "\nconst inicia = $('# del ultimo grupo').first().json.conteo_grupo;\n\nreturn [{ contador: inicia + 1}];\n"
+        "jsCode": "\nconst inicia = $('# del ultimo grupo1').first().json.conteo_grupo;\n\nreturn [{ contador: inicia + 1}];\n"
       },
-      "id": "1c8b98a1-2502-43de-ab4f-093d7bfa87ee",
-      "name": "contadorinciail",
+      "id": "02de0610-a861-469b-8b9c-4aaec93b32b2",
+      "name": "contadorinciail1",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1440,
-        -256
+        -1200,
+        272
       ]
     },
     {
       "parameters": {
         "jsCode": "// Obtener todos los items de un nodo anterior\nconst adminsArray = $input.all();\n\n// Obtener el subject y la description del primer item\nconst subject = adminsArray[0]?.json['nombre'] || ''; // Usando el primer item\nconst description = adminsArray[0]?.json['descripcion'] || ''; // Usando el primer item\n\n// Extraer y dividir los participantes en un array\nconst participants = adminsArray.map(item => item.json['admins'] || '')\n                               .flatMap(admins => admins.split(',').map(participant => participant.trim()));\n\n// Crear el objeto con los datos\nconst data = {\n  subject: subject,\n  description: description,\n  participants: participants\n};\n\nreturn Array(adminsArray[0].json['cantidad']).fill({ json: data });\n"
       },
-      "id": "ca9106a2-e03c-4934-a4b6-7a2aaff4181a",
-      "name": "BodysCreate",
+      "id": "c3cc5943-61d1-42e1-8d90-581a581d3afe",
+      "name": "BodysCreate1",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1216,
-        -256
+        -1424,
+        272
       ]
     },
     {
       "parameters": {
-        "jsCode": "let contador = $('contadorinciail').all()[0].json['contador'];\n\nconst items = $('BodysCreate').all();\n\nconst updatedItems = items.map(item => {\n  const updatedItem = { ...item.json };  // Copia el contenido dentro de `json`\n  updatedItem.subject = `${updatedItem.subject} #${contador}`; // Actualiza el `subject`\n  contador++; \n  return { json: updatedItem };  // Envuelve en `json` para que n8n lo procese correctamente\n});\n\nreturn updatedItems;\n"
+        "jsCode": "// Obtener el contador inicial del nodo anterior\nconst contadorInicial = $('# del ultimo grupo1').first().json.conteo_grupo + 1;\n\n// Obtener los items del nodo BodysCreate1\nconst items = $('BodysCreate1').all();\n\n// Actualizar items con contador incremental\nconst updatedItems = items.map((item, index) => {\n  const updatedItem = { ...item.json };\n  updatedItem.subject = `${updatedItem.subject} #${contadorInicial + index}`;\n  return { json: updatedItem };\n});\n\nreturn updatedItems;"
       },
-      "id": "771e49df-b80f-4e2f-a4f7-e8a3240b410d",
-      "name": "ModificaNombres",
+      "id": "34587728-ee1d-4330-853d-13fb2e46fe1b",
+      "name": "ModificaNombres1",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1664,
-        -256
+        -976,
+        272
       ]
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://evolution.automscc.com/group/create/{{ $('establecer variables').first().json['sesion creadora'] }}",
+        "url": "=https://evolution.automscc.com/group/create/{{ $('establecer variables1').item.json['sesiones creadoras'].split(\",\")[$runIndex] }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -464,30 +441,30 @@
         "jsonBody": "={{ $json.toJsonString() }}",
         "options": {}
       },
-      "id": "4d8e5a9b-776c-45cd-af93-ebcbc945f898",
-      "name": "CreateGroup",
+      "id": "940c90f9-5784-4caa-9afe-938b7f7e8145",
+      "name": "CreateGroup1",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2112,
-        -256
+        -528,
+        272
       ]
     },
     {
       "parameters": {},
-      "id": "3c0e3f8c-fea3-4908-8eed-e57ca62526e5",
-      "name": "5 seg",
+      "id": "76466844-696c-4383-9a48-e71be7124284",
+      "name": "5 seg1",
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        2336,
-        -256
+        -304,
+        272
       ],
       "webhookId": "5a1e03a6-5052-4f92-b342-aee6ce6ce8ea"
     },
     {
       "parameters": {
-        "url": "=https://evolution.automscc.com/group/inviteCode/{{ $('establecer variables').first().json['sesion creadora'] }}?groupJid={{ $json.id }}",
+        "url": "=https://evolution.automscc.com/group/inviteCode/{{ $('establecer variables1').item.json['sesiones creadoras'].split(\",\")[$runIndex] }}?groupJid={{ $json.id }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -499,20 +476,20 @@
         },
         "options": {}
       },
-      "id": "7d1bcef0-b0a2-437c-83d7-479ab8330f04",
-      "name": "ObtenerLink",
+      "id": "c9be78dc-bfd0-46a5-a37b-92d539c78817",
+      "name": "ObtenerLink1",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2560,
-        -256
+        -80,
+        272
       ]
     },
     {
       "parameters": {
         "table": {
           "__rl": true,
-          "value": "={{ $('establecer variables').all()[0].json.TABLA_BD }}",
+          "value": "={{ $('establecer variables1').all()[0].json.TABLA_BD }}",
           "mode": "name"
         },
         "dataMode": "defineBelow",
@@ -520,7 +497,7 @@
           "values": [
             {
               "column": "nombre",
-              "value": "={{ $('CreateGroup').all()[0].json.subject }}"
+              "value": "={{ $('CreateGroup1').all()[0].json.subject }}"
             },
             {
               "column": "link",
@@ -528,7 +505,7 @@
             },
             {
               "column": "id",
-              "value": "={{ $('CreateGroup').item.json.id }}"
+              "value": "={{ $('CreateGroup1').item.json.id }}"
             },
             {
               "column": "Total",
@@ -537,18 +514,22 @@
             {
               "column": "bienvenida",
               "value": "no"
+            },
+            {
+              "column": "creador",
+              "value": "={{ $('establecer variables1').item.json['sesiones creadoras'].split(\",\")[$runIndex] }}"
             }
           ]
         },
         "options": {}
       },
-      "id": "f5e098f2-089f-4c4e-8b44-ba68bfcf4fcc",
-      "name": "EscribirGrupo",
+      "id": "8d501988-8134-4845-9649-af37f2447433",
+      "name": "EscribirGrupo1",
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        2784,
-        -256
+        144,
+        272
       ],
       "credentials": {
         "mySql": {
@@ -560,7 +541,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('establecer variables').first().json['sesion creadora'] }}?groupJid={{ $('CreateGroup').item.json.id }}",
+        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('establecer variables1').item.json['sesiones creadoras'].split(\",\")[$runIndex] }}?groupJid={{ $('CreateGroup1').item.json.id }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -572,22 +553,22 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"action\": \"promote\", \n  \n  \"participants\": {{ $('BodysCreate').all()[0].json['participants'].toJsonString() }}\n}",
+        "jsonBody": "={\n  \"action\": \"promote\", \n  \n  \"participants\": {{ $('BodysCreate1').all()[0].json['participants'].toJsonString() }}\n}",
         "options": {}
       },
-      "id": "3931d351-41b6-4ace-a8ef-190f4c8d6c50",
-      "name": "PromoveAdmins",
+      "id": "f78a1418-63ee-46ec-abd2-46cc8c2aeb97",
+      "name": "PromoveAdmins1",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3008,
-        -256
+        368,
+        272
       ]
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://evolution.automscc.com/group/updateSetting/{{ $('establecer variables').first().json['sesion creadora'] }}?groupJid={{ $('CreateGroup').item.json.id }}",
+        "url": "=https://evolution.automscc.com/group/updateSetting/{{ $('establecer variables1').item.json['sesiones creadoras'].split(\",\")[$runIndex] }}?groupJid={{ $('CreateGroup1').item.json.id }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -602,19 +583,19 @@
         "jsonBody": "={\n  \"action\": \"announcement\"\n}",
         "options": {}
       },
-      "id": "c8f0d238-d60f-4f60-bb7f-e1d3abf30996",
-      "name": "Config1",
+      "id": "effa279e-22a4-4d07-99a0-8b53a35a3181",
+      "name": "Config",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3232,
-        -256
+        592,
+        272
       ]
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://evolution.automscc.com/group/updateSetting/{{ $('establecer variables').first().json['sesion creadora'] }}?groupJid={{ $('CreateGroup').item.json.id }}",
+        "url": "=https://evolution.automscc.com/group/updateSetting/{{ $('establecer variables1').item.json['sesiones creadoras'].split(\",\")[$runIndex] }}?groupJid={{ $('CreateGroup1').item.json.id }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -629,19 +610,19 @@
         "jsonBody": "={\n  \"action\": \"locked\"\n}",
         "options": {}
       },
-      "id": "d985c536-fb6b-43bb-b993-6e6a987bbbca",
-      "name": "Config2",
+      "id": "fd429770-c09d-43e5-be5d-e417bd10fc22",
+      "name": "Config3",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3456,
-        -256
+        816,
+        272
       ]
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://evolution.automscc.com/group/updateGroupPicture/{{ $('establecer variables').first().json['sesion creadora'] }}?groupJid={{ $('CreateGroup').item.json.id }}",
+        "url": "=https://evolution.automscc.com/group/updateGroupPicture/{{ $('establecer variables1').item.json['sesiones creadoras'].split(\",\")[$runIndex] }}?groupJid={{ $('CreateGroup1').item.json.id }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -653,16 +634,16 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"image\": \"{{ $('establecer variables').first().json.url_imagen }}\"\n}",
+        "jsonBody": "={\n  \"image\": \"{{ $('establecer variables1').first().json.url_imagen }}\"\n}",
         "options": {}
       },
-      "id": "992472e3-c8a1-4a87-a344-932f7d4f6bfa",
-      "name": "Setfoto",
+      "id": "156c60ea-233b-46e5-ba18-9f379fbe56bc",
+      "name": "Setfoto1",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3680,
-        -256
+        1040,
+        272
       ]
     },
     {
@@ -688,11 +669,11 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        -352,
-        -256
+        -2992,
+        272
       ],
-      "id": "1a31f213-7b4d-457f-8608-27fc38be2cfe",
-      "name": "busqueda BD",
+      "id": "ad98c785-c1e8-4a85-8781-522b90e41820",
+      "name": "busqueda BD1",
       "credentials": {
         "mySql": {
           "id": "179b2UX7XsHkNW05",
@@ -712,11 +693,11 @@
           "conditions": [
             {
               "id": "573915c0-241e-4857-be6f-098c4b898057",
-              "leftValue": "={{ $json.Total }}",
-              "rightValue": 0,
+              "leftValue": "={{ 1000 - $json.Total }}",
+              "rightValue": 500,
               "operator": {
                 "type": "number",
-                "operation": "equals"
+                "operation": "gt"
               }
             }
           ],
@@ -727,11 +708,11 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
-        -128,
-        -256
+        -2768,
+        272
       ],
-      "id": "89525dc6-b39d-4816-9d38-0f02a37c799b",
-      "name": "grupos vacios",
+      "id": "1d067b5f-0985-4b74-a424-bc2237ee8e8e",
+      "name": "grupos vacios1",
       "alwaysOutputData": true
     },
     {
@@ -748,11 +729,11 @@
       "type": "n8n-nodes-base.summarize",
       "typeVersion": 1.1,
       "position": [
-        96,
-        -256
+        -2544,
+        272
       ],
-      "id": "3ca37b8c-e62e-4940-8e26-4d3a48a2868e",
-      "name": "conteo grupos vacios"
+      "id": "e441000b-ca52-449f-80eb-46c729bfcb5a",
+      "name": "conteo grupos vacios1"
     },
     {
       "parameters": {
@@ -761,7 +742,7 @@
             {
               "id": "2d7cdac5-d2b8-4566-8f63-3176f52ea52e",
               "name": "conteo_grupo",
-              "value": "={{ $('busqueda BD').first().json.nombre.match(/#(\\d+)/)[1] }}",
+              "value": "={{ $('busqueda BD1').first().json.nombre.match(/#(\\d+)/)[1] }}",
               "type": "number"
             }
           ]
@@ -771,11 +752,11 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        320,
-        -256
+        -2320,
+        272
       ],
-      "id": "7274b97b-a5c6-4f29-9733-88cbdb5e76c4",
-      "name": "# del ultimo grupo"
+      "id": "f7cc954a-1d8e-4c7d-aaf6-612aa6897fe0",
+      "name": "# del ultimo grupo1"
     },
     {
       "parameters": {
@@ -789,7 +770,7 @@
           "conditions": [
             {
               "id": "cd476138-de67-4790-b014-a96284459560",
-              "leftValue": "={{ $('conteo grupos vacios').first().json.count_id }}",
+              "leftValue": "={{ $('conteo grupos vacios1').first().json.count_id }}",
               "rightValue": 3,
               "operator": {
                 "type": "number",
@@ -804,11 +785,11 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        544,
-        -256
+        -2096,
+        272
       ],
-      "id": "e1f8384a-6cce-464e-8cef-65e04b818704",
-      "name": "hay menos de 3 grupos?"
+      "id": "1921a7a6-799e-4cbe-af90-6bccb99d9974",
+      "name": "hay menos de 3 grupos?1"
     },
     {
       "parameters": {
@@ -837,11 +818,11 @@
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
       "position": [
-        768,
-        -256
+        -1872,
+        272
       ],
-      "id": "ff354215-3b4c-4320-aeed-79ac685689d2",
-      "name": "obtener datos de creacion",
+      "id": "5ad878a3-0ceb-4f54-b522-3b8e1b9f1b1a",
+      "name": "obtener datos de creacion1",
       "credentials": {
         "notionApi": {
           "id": "96gd5czBYIXX6Aw7",
@@ -861,7 +842,7 @@
             },
             {
               "id": "0080bd4c-5a10-4a5f-aea0-da49cb470fb5",
-              "name": "sesion creadora",
+              "name": "sesiones creadoras",
               "value": "={{ $json.property_sesion_creadora }}",
               "type": "string"
             },
@@ -900,12 +881,6 @@
               "name": "TABLA_BD",
               "value": "={{ $json.property_tabla_bd }}",
               "type": "string"
-            },
-            {
-              "id": "33a9bb59-0a60-4602-ae85-7495b7cc1c34",
-              "name": "sesion admins",
-              "value": "={{ $json.property_sesion_admins }}",
-              "type": "string"
             }
           ]
         },
@@ -914,22 +889,22 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        992,
-        -256
+        -1648,
+        272
       ],
-      "id": "d6e0753e-b255-4509-88c5-3f579b57bf9b",
-      "name": "establecer variables"
+      "id": "3aec7bd5-887b-493c-9837-15c8a05465bc",
+      "name": "establecer variables1"
     },
     {
       "parameters": {},
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        5248,
-        -176
+        2608,
+        408
       ],
-      "id": "d7b08723-6e46-4e4e-96b1-bcb1ed36be40",
-      "name": "No Operation, do nothing"
+      "id": "b51c6241-2aff-4d58-9cba-eb67f9e8ce56",
+      "name": "No Operation, do nothing1"
     },
     {
       "parameters": {
@@ -943,11 +918,11 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        2336,
-        -448
+        -304,
+        80
       ],
-      "id": "edd937a2-1fb3-47da-9136-75f4094b9082",
-      "name": "Telegram",
+      "id": "7c744a01-0794-47a4-9347-fe186cec72e3",
+      "name": "Telegram1",
       "webhookId": "376e263b-2a85-4e61-b23d-9a28eb9ad795",
       "credentials": {
         "telegramApi": {
@@ -971,42 +946,42 @@
       "type": "n8n-nodes-base.summarize",
       "typeVersion": 1.1,
       "position": [
-        2112,
-        -448
+        -528,
+        80
       ],
-      "id": "9f5765ad-ec4f-4cd2-a2da-9fe1b5f04105",
-      "name": "Summarize"
+      "id": "98bf6b36-7113-4e03-a23f-2f0f4f821c48",
+      "name": "Summarize1"
     },
     {
       "parameters": {
-        "jsCode": "// --- Lista de Administradores Requeridos ---\n// Modifica esta cadena con los números que necesitas verificar, separados por comas.\nconst requiredAdminNumbersStr = $('establecer variables').first().json.admins;\n\n// --- Lógica de la Función (no necesitas modificar de aquí en adelante) ---\n\n// 1. Obtener la lista de participantes del primer item de entrada.\nconst inputData = items[0].json;\n\n// VALIDACIÓN: Accede a 'inputData.data' directamente.\nif (!inputData || !inputData.data || !inputData.data.participants) {\n  throw new Error(\"La estructura de datos de entrada no es la esperada. Asegúrate de que contenga '{ data: { participants: [...] } }'.\");\n}\n\n// ACCESO: Accede a 'inputData.data.participants' directamente.\nconst participants = inputData.data.participants;\nconst requiredAdminNumbers = requiredAdminNumbersStr.split(',');\n\n// 2. Crear un mapa para una búsqueda más eficiente.\nconst participantsMap = new Map();\nfor (const p of participants) {\n  const numberOnly = p.id.split('@')[0];\n  participantsMap.set(numberOnly, p);\n}\n\n// 3. Inicializar los arrays para guardar los resultados.\nlet numeros_faltantes_array = [];\nlet admins_faltantes_array = [];\n\n// 4. Iterar sobre la lista de admins requeridos y comparar.\nfor (const adminNumber of requiredAdminNumbers) {\n  if (participantsMap.has(adminNumber)) {\n    // El número está en el grupo, ahora verificamos si es admin.\n    const participant = participantsMap.get(adminNumber);\n    if (!participant.admin) {\n      admins_faltantes_array.push(adminNumber);\n    }\n  } else {\n    // El número no se encontró en la lista de participantes del grupo.\n    numeros_faltantes_array.push(adminNumber);\n  }\n}\n\n// 5. Determinar el estado final.\nconst completo = numeros_faltantes_array.length === 0 && admins_faltantes_array.length === 0;\n\n// 6. Construir el objeto de salida.\n// **AQUÍ ESTÁ EL CAMBIO**: Usamos .join(',') para convertir el array a un string.\nconst result = {\n  completo: completo,\n  numeros_faltantes: numeros_faltantes_array.join(','),\n  admins_faltantes: admins_faltantes_array.join(','),\n};\n\n// 7. Retornar el resultado para que n8n lo use en los siguientes nodos.\nreturn [{\n  json: result\n}];"
+        "jsCode": "// --- Lista de Administradores Requeridos ---\n// Modifica esta cadena con los números que necesitas verificar, separados por comas.\nconst requiredAdminNumbersStr = $('establecer variables1').first().json.admins;\n\n// --- Lógica de la Función (no necesitas modificar de aquí en adelante) ---\n\n// 1. Obtener la lista de participantes del primer item de entrada.\nconst inputData = items[0].json;\n\n// VALIDACIÓN: Accede a 'inputData.data' directamente.\nif (!inputData || !inputData.data || !inputData.data.participants) {\n  throw new Error(\"La estructura de datos de entrada no es la esperada. Asegúrate de que contenga '{ data: { participants: [...] } }'.\");\n}\n\n// ACCESO: Accede a 'inputData.data.participants' directamente.\nconst participants = inputData.data.participants;\nconst requiredAdminNumbers = requiredAdminNumbersStr.split(',');\n\n// 2. Crear un mapa para una búsqueda más eficiente.\nconst participantsMap = new Map();\nfor (const p of participants) {\n  const numberOnly = p.id.split('@')[0];\n  participantsMap.set(numberOnly, p);\n}\n\n// 3. Inicializar los arrays para guardar los resultados.\nlet numeros_faltantes_array = [];\nlet admins_faltantes_array = [];\n\n// 4. Iterar sobre la lista de admins requeridos y comparar.\nfor (const adminNumber of requiredAdminNumbers) {\n  if (participantsMap.has(adminNumber)) {\n    // El número está en el grupo, ahora verificamos si es admin.\n    const participant = participantsMap.get(adminNumber);\n    if (!participant.admin) {\n      admins_faltantes_array.push(adminNumber);\n    }\n  } else {\n    // El número no se encontró en la lista de participantes del grupo.\n    numeros_faltantes_array.push(adminNumber);\n  }\n}\n\n// 5. Determinar el estado final.\nconst completo = numeros_faltantes_array.length === 0 && admins_faltantes_array.length === 0;\n\n// 6. Construir el objeto de salida.\n// **AQUÍ ESTÁ EL CAMBIO**: Usamos .join(',') para convertir el array a un string.\nconst result = {\n  completo: completo,\n  numeros_faltantes: numeros_faltantes_array.join(','),\n  admins_faltantes: admins_faltantes_array.join(','),\n};\n\n// 7. Retornar el resultado para que n8n lo use en los siguientes nodos.\nreturn [{\n  json: result\n}];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        4128,
-        -256
+        1488,
+        272
       ],
-      "id": "c37e929f-040d-43a9-87f6-21d0c927a538",
-      "name": "Code"
+      "id": "b756ecf7-8801-4fd7-8522-1efc86d592cb",
+      "name": "Code1"
     },
     {
       "parameters": {
         "resource": "groups-api",
         "operation": "update-participants",
-        "instanceName": "={{ $('establecer variables').first().json['sesion admins'] }}",
-        "groupJid": "={{ $('CreateGroup').item.json.id }}",
+        "instanceName": "={{ $('establecer variables1').first().json['sesion admins'] }}",
+        "groupJid": "={{ $('CreateGroup1').item.json.id }}",
         "action": "promote",
-        "participants": "={{ $('Switch').item.json.numeros_faltantes }}"
+        "participants": "={{ $('Switch1').item.json.numeros_faltantes }}"
       },
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        5024,
-        -352
+        2384,
+        80
       ],
-      "id": "382eaea1-4876-4b2a-9ee2-c17fd9e8cafe",
-      "name": "Atualizar membros do grupo",
+      "id": "1ff1d9fb-e38b-413a-bf78-35001bbde32e",
+      "name": "Atualizar membros do grupo3",
       "credentials": {
         "evolutionApi": {
           "id": "Png3VbsnUeyqI5UL",
@@ -1100,28 +1075,28 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        4352,
-        -272
+        1712,
+        256
       ],
-      "id": "9ae886c6-031d-4607-b5a6-6b6b358b06c5",
-      "name": "Switch"
+      "id": "beb843da-841e-4cc3-8822-18ff71bd91c4",
+      "name": "Switch1"
     },
     {
       "parameters": {
         "resource": "groups-api",
         "operation": "update-participants",
-        "instanceName": "={{ $('establecer variables').first().json['sesion admins'] }}",
-        "groupJid": "={{ $('CreateGroup').item.json.id }}",
+        "instanceName": "={{ $('establecer variables1').first().json['sesion admins'] }}",
+        "groupJid": "={{ $('CreateGroup1').item.json.id }}",
         "participants": "={{ $json.numeros_faltantes }}"
       },
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        4576,
-        -352
+        1936,
+        80
       ],
-      "id": "2a3e44fb-f67d-4821-ad36-dce50a85e66f",
-      "name": "Atualizar membros do grupo1",
+      "id": "e7d400df-10d2-4098-92b5-ffe7c0ee6357",
+      "name": "Atualizar membros do grupo4",
       "credentials": {
         "evolutionApi": {
           "id": "Png3VbsnUeyqI5UL",
@@ -1133,19 +1108,19 @@
       "parameters": {
         "resource": "groups-api",
         "operation": "update-participants",
-        "instanceName": "={{ $('establecer variables').first().json['sesion admins'] }}",
-        "groupJid": "={{ $('CreateGroup').item.json.id }}",
+        "instanceName": "={{ $('establecer variables1').first().json['sesion admins'] }}",
+        "groupJid": "={{ $('CreateGroup1').item.json.id }}",
         "action": "promote",
         "participants": "={{ $json.admins_faltantes }}"
       },
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        4800,
-        -192
+        2384,
+        272
       ],
-      "id": "22b0c901-6bda-47be-803a-3d863c8ccf42",
-      "name": "Atualizar membros do grupo2",
+      "id": "3bbdf11a-4d5c-4691-94cc-ef991178403f",
+      "name": "Atualizar membros do grupo5",
       "credentials": {
         "evolutionApi": {
           "id": "Png3VbsnUeyqI5UL",
@@ -1158,28 +1133,28 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        4800,
-        -352
+        2160,
+        80
       ],
-      "id": "bbd7b851-b7cd-46f7-889c-0e17072823bc",
-      "name": "Wait",
+      "id": "208f2983-95b3-4d05-a957-4630c01e507b",
+      "name": "Wait1",
       "webhookId": "cf541d9f-e5d9-4817-9202-a8e8bff6860c"
     },
     {
       "parameters": {
         "resource": "groups-api",
         "operation": "find-participants",
-        "instanceName": "={{ $('establecer variables').first().json['sesion creadora'] }}",
-        "groupJid": "={{ $('CreateGroup').item.json.id }}"
+        "instanceName": "={{ $('establecer variables1').item.json['sesiones creadoras'].split(\",\")[$runIndex] }}",
+        "groupJid": "={{ $('CreateGroup1').item.json.id }}"
       },
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        3904,
-        -256
+        1264,
+        272
       ],
-      "id": "c121fb50-2f63-48cc-aee9-d28f5a0050c2",
-      "name": "Encontrar participantes do grupo",
+      "id": "d243ff84-5761-4c99-82c6-458c4d85deae",
+      "name": "Encontrar participantes do grupo1",
       "credentials": {
         "evolutionApi": {
           "id": "Png3VbsnUeyqI5UL",
@@ -1189,7 +1164,7 @@
     }
   ],
   "pinData": {
-    "Schedule Trigger": [
+    "Schedule Trigger1": [
       {
         "json": {
           "timestamp": "2025-08-05T18:00:24.005-05:00",
@@ -1222,6 +1197,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-10-02T06:39:38.000Z",
-  "versionId": "cc3763c0-c47e-4ef0-80cc-501fba3d165c"
+  "updatedAt": "2025-10-06T06:30:57.000Z",
+  "versionId": "2d7b213d-e079-40ed-b180-abdd56cf30e7"
 }
