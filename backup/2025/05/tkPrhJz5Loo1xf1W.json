@@ -30,22 +30,11 @@
         ]
       ]
     },
-    "contadorinciail1": {
-      "main": [
-        [
-          {
-            "node": "ModificaNombres1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "BodysCreate1": {
       "main": [
         [
           {
-            "node": "contadorinciail1",
+            "node": "ModificaNombres1",
             "type": "main",
             "index": 0
           }
@@ -380,26 +369,13 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        -752,
+        -976,
         272
       ]
     },
     {
       "parameters": {
-        "jsCode": "\nconst inicia = $('# del ultimo grupo1').first().json.conteo_grupo;\n\nreturn [{ contador: inicia + 1}];\n"
-      },
-      "id": "02de0610-a861-469b-8b9c-4aaec93b32b2",
-      "name": "contadorinciail1",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -1200,
-        272
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "// Obtener todos los items de un nodo anterior\nconst adminsArray = $input.all();\n\n// Obtener el subject y la description del primer item\nconst subject = adminsArray[0]?.json['nombre'] || ''; // Usando el primer item\nconst description = adminsArray[0]?.json['descripcion'] || ''; // Usando el primer item\n\n// Extraer y dividir los participantes en un array\nconst participants = adminsArray.map(item => item.json['admins'] || '')\n                               .flatMap(admins => admins.split(',').map(participant => participant.trim()));\n\n// Crear el objeto con los datos\nconst data = {\n  subject: subject,\n  description: description,\n  participants: participants\n};\n\nreturn Array(adminsArray[0].json['cantidad']).fill({ json: data });\n"
+        "jsCode": "// Obtener todos los items de un nodo anterior\nconst adminsArray = $input.all();\n\nconst subject = adminsArray[0]?.json['nombre'] || '';\nconst description = adminsArray[0]?.json['descripcion'] || '';\n\n// Obtener la lista de creadores (nombres de sesión)\nconst sesionesCreadores = adminsArray[0]?.json['sesiones creadoras'].split(',').map(s => s.trim());\n\n// Obtener el mapeo creador -> admin\nconst mapeoStr = adminsArray[0]?.json['mapeo_creador_admin'];\nconst mapeo = {};\nmapeoStr.split(',').forEach(par => {\n  const [creador, admin] = par.split(':');\n  mapeo[creador.trim()] = admin.trim();\n});\n\n// Extraer los admins\nconst todosLosAdmins = adminsArray[0]?.json['admins'].split(',').map(admin => admin.trim());\n\n// Crear array de datos\nconst items = [];\nconst cantidad = adminsArray[0].json['cantidad'];\n\nfor (let i = 0; i < cantidad; i++) {\n  const indiceCreador = i % sesionesCreadores.length;\n  const creadorActual = sesionesCreadores[indiceCreador];\n  \n  // Obtener el NÚMERO del creador desde el mapeo\n  const numeroCreador = mapeo[creadorActual];\n  \n  // Filtrar participantes: excluir al número del creador\n  const participantesFiltrados = todosLosAdmins.filter(admin => admin !== numeroCreador);\n  \n  items.push({\n    json: {\n      subject: subject,\n      description: description,\n      participants: participantesFiltrados,\n      _creador: creadorActual,\n      _indiceCreador: indiceCreador\n    }\n  });\n}\n\nreturn items;"
       },
       "id": "c3cc5943-61d1-42e1-8d90-581a581d3afe",
       "name": "BodysCreate1",
@@ -419,14 +395,14 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -976,
+        -1200,
         272
       ]
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://evolution.automscc.com/group/create/{{ $('establecer variables1').item.json['sesiones creadoras'].split(\",\")[$runIndex] }}",
+        "url": "=https://evolution.automscc.com/group/create/{{$('Loop Over Items1').item.json._creador}}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -446,7 +422,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -528,
+        -752,
         272
       ]
     },
@@ -457,14 +433,14 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        -304,
+        -528,
         272
       ],
       "webhookId": "5a1e03a6-5052-4f92-b342-aee6ce6ce8ea"
     },
     {
       "parameters": {
-        "url": "=https://evolution.automscc.com/group/inviteCode/{{ $('establecer variables1').item.json['sesiones creadoras'].split(\",\")[$runIndex] }}?groupJid={{ $json.id }}",
+        "url": "=https://evolution.automscc.com/group/inviteCode/{{$('Loop Over Items1').item.json._creador}}?groupJid={{ $json.id }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -481,7 +457,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -80,
+        -304,
         272
       ]
     },
@@ -528,7 +504,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        144,
+        -80,
         272
       ],
       "credentials": {
@@ -541,7 +517,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://evolution.automscc.com/group/updateParticipant/{{ $('establecer variables1').item.json['sesiones creadoras'].split(\",\")[$runIndex] }}?groupJid={{ $('CreateGroup1').item.json.id }}",
+        "url": "=https://evolution.automscc.com/group/updateParticipant/{{$('Loop Over Items1').item.json._creador}}?groupJid={{ $('CreateGroup1').item.json.id }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -553,7 +529,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"action\": \"promote\", \n  \n  \"participants\": {{ $('BodysCreate1').all()[0].json['participants'].toJsonString() }}\n}",
+        "jsonBody": "={\n  \"action\": \"promote\",\n  \"participants\": {{ $('Loop Over Items1').item.json['participants'].toJsonString() }}\n}",
         "options": {}
       },
       "id": "f78a1418-63ee-46ec-abd2-46cc8c2aeb97",
@@ -561,14 +537,14 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        368,
+        144,
         272
       ]
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://evolution.automscc.com/group/updateSetting/{{ $('establecer variables1').item.json['sesiones creadoras'].split(\",\")[$runIndex] }}?groupJid={{ $('CreateGroup1').item.json.id }}",
+        "url": "=https://evolution.automscc.com/group/updateSetting/{{$('Loop Over Items1').item.json._creador}}?groupJid={{ $('CreateGroup1').item.json.id }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -588,14 +564,14 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        592,
+        368,
         272
       ]
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://evolution.automscc.com/group/updateSetting/{{ $('establecer variables1').item.json['sesiones creadoras'].split(\",\")[$runIndex] }}?groupJid={{ $('CreateGroup1').item.json.id }}",
+        "url": "=https://evolution.automscc.com/group/updateSetting/{{$('Loop Over Items1').item.json._creador}}?groupJid={{ $('CreateGroup1').item.json.id }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -615,14 +591,14 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        816,
+        592,
         272
       ]
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://evolution.automscc.com/group/updateGroupPicture/{{ $('establecer variables1').item.json['sesiones creadoras'].split(\",\")[$runIndex] }}?groupJid={{ $('CreateGroup1').item.json.id }}",
+        "url": "=https://evolution.automscc.com/group/updateGroupPicture/{{$('Loop Over Items1').item.json._creador}}?groupJid={{ $('CreateGroup1').item.json.id }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -642,7 +618,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1040,
+        816,
         272
       ]
     },
@@ -881,6 +857,12 @@
               "name": "TABLA_BD",
               "value": "={{ $json.property_tabla_bd }}",
               "type": "string"
+            },
+            {
+              "id": "4c32d186-8616-475d-8eae-12b8cbe2f740",
+              "name": "mapeo_creador_admin",
+              "value": "SANTIAGO-PERSONAL:573136298562,JUANCA_CREADOR:573017817643,SANTIAGO2_CREADOR:573166620443,FRAN_CREADOR:573218504711,YEZDE_DOLOR:573245207576",
+              "type": "string"
             }
           ]
         },
@@ -900,8 +882,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        2608,
-        408
+        2384,
+        416
       ],
       "id": "b51c6241-2aff-4d58-9cba-eb67f9e8ce56",
       "name": "No Operation, do nothing1"
@@ -918,7 +900,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        -304,
+        -528,
         80
       ],
       "id": "7c744a01-0794-47a4-9347-fe186cec72e3",
@@ -946,7 +928,7 @@
       "type": "n8n-nodes-base.summarize",
       "typeVersion": 1.1,
       "position": [
-        -528,
+        -752,
         80
       ],
       "id": "98bf6b36-7113-4e03-a23f-2f0f4f821c48",
@@ -954,12 +936,12 @@
     },
     {
       "parameters": {
-        "jsCode": "// --- Lista de Administradores Requeridos ---\n// Modifica esta cadena con los números que necesitas verificar, separados por comas.\nconst requiredAdminNumbersStr = $('establecer variables1').first().json.admins;\n\n// --- Lógica de la Función (no necesitas modificar de aquí en adelante) ---\n\n// 1. Obtener la lista de participantes del primer item de entrada.\nconst inputData = items[0].json;\n\n// VALIDACIÓN: Accede a 'inputData.data' directamente.\nif (!inputData || !inputData.data || !inputData.data.participants) {\n  throw new Error(\"La estructura de datos de entrada no es la esperada. Asegúrate de que contenga '{ data: { participants: [...] } }'.\");\n}\n\n// ACCESO: Accede a 'inputData.data.participants' directamente.\nconst participants = inputData.data.participants;\nconst requiredAdminNumbers = requiredAdminNumbersStr.split(',');\n\n// 2. Crear un mapa para una búsqueda más eficiente.\nconst participantsMap = new Map();\nfor (const p of participants) {\n  const numberOnly = p.id.split('@')[0];\n  participantsMap.set(numberOnly, p);\n}\n\n// 3. Inicializar los arrays para guardar los resultados.\nlet numeros_faltantes_array = [];\nlet admins_faltantes_array = [];\n\n// 4. Iterar sobre la lista de admins requeridos y comparar.\nfor (const adminNumber of requiredAdminNumbers) {\n  if (participantsMap.has(adminNumber)) {\n    // El número está en el grupo, ahora verificamos si es admin.\n    const participant = participantsMap.get(adminNumber);\n    if (!participant.admin) {\n      admins_faltantes_array.push(adminNumber);\n    }\n  } else {\n    // El número no se encontró en la lista de participantes del grupo.\n    numeros_faltantes_array.push(adminNumber);\n  }\n}\n\n// 5. Determinar el estado final.\nconst completo = numeros_faltantes_array.length === 0 && admins_faltantes_array.length === 0;\n\n// 6. Construir el objeto de salida.\n// **AQUÍ ESTÁ EL CAMBIO**: Usamos .join(',') para convertir el array a un string.\nconst result = {\n  completo: completo,\n  numeros_faltantes: numeros_faltantes_array.join(','),\n  admins_faltantes: admins_faltantes_array.join(','),\n};\n\n// 7. Retornar el resultado para que n8n lo use en los siguientes nodos.\nreturn [{\n  json: result\n}];"
+        "jsCode": "// Obtener los participants del item actual del loop que viene en el flujo\n// Como estamos dentro del loop, el item actual viene con toda la info\nconst loopItem = $input.all()[0].json;\n\n// Los participants esperados deberían venir de algún nodo previo\n// Intentemos obtenerlos del nodo CreateGroup que tiene el item original\nconst requiredAdminData = loopItem.participants || $(\"Loop Over Items1\").first().json.participants;\n\n// Convertir a array si es string\nconst requiredAdminNumbers = Array.isArray(requiredAdminData) \n  ? requiredAdminData \n  : requiredAdminData.split(',').map(n => n.trim());\n\n// Los participants del grupo vienen de \"Encontrar participantes\"\nconst inputData = $input.all()[0].json;\n\nif (!inputData || !inputData.data || !inputData.data.participants) {\n  throw new Error(\"La estructura de datos no es la esperada.\");\n}\n\nconst participants = inputData.data.participants;\n\n// Crear mapa\nconst participantsMap = new Map();\nfor (const p of participants) {\n  const numberOnly = p.id.split('@')[0];\n  participantsMap.set(numberOnly, p);\n}\n\n// Comparar\nlet numeros_faltantes_array = [];\nlet admins_faltantes_array = [];\n\nfor (const adminNumber of requiredAdminNumbers) {\n  const cleanNumber = adminNumber.trim();\n  \n  if (participantsMap.has(cleanNumber)) {\n    const participant = participantsMap.get(cleanNumber);\n    if (!participant.admin) {\n      admins_faltantes_array.push(cleanNumber);\n    }\n  } else {\n    numeros_faltantes_array.push(cleanNumber);\n  }\n}\n\nconst completo = numeros_faltantes_array.length === 0 && admins_faltantes_array.length === 0;\n\nreturn [{\n  json: {\n    completo: completo,\n    numeros_faltantes: numeros_faltantes_array.join(','),\n    admins_faltantes: admins_faltantes_array.join(','),\n  }\n}];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1488,
+        1264,
         272
       ],
       "id": "b756ecf7-8801-4fd7-8522-1efc86d592cb",
@@ -977,7 +959,7 @@
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        2384,
+        2160,
         80
       ],
       "id": "1ff1d9fb-e38b-413a-bf78-35001bbde32e",
@@ -1075,7 +1057,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        1712,
+        1488,
         256
       ],
       "id": "beb843da-841e-4cc3-8822-18ff71bd91c4",
@@ -1092,7 +1074,7 @@
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        1936,
+        1712,
         80
       ],
       "id": "e7d400df-10d2-4098-92b5-ffe7c0ee6357",
@@ -1116,7 +1098,7 @@
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        2384,
+        2160,
         272
       ],
       "id": "3bbdf11a-4d5c-4691-94cc-ef991178403f",
@@ -1133,7 +1115,7 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        2160,
+        1936,
         80
       ],
       "id": "208f2983-95b3-4d05-a957-4630c01e507b",
@@ -1144,13 +1126,13 @@
       "parameters": {
         "resource": "groups-api",
         "operation": "find-participants",
-        "instanceName": "={{ $('establecer variables1').item.json['sesiones creadoras'].split(\",\")[$runIndex] }}",
+        "instanceName": "={{$('Loop Over Items1').item.json._creador}}",
         "groupJid": "={{ $('CreateGroup1').item.json.id }}"
       },
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        1264,
+        1040,
         272
       ],
       "id": "d243ff84-5761-4c99-82c6-458c4d85deae",
@@ -1193,10 +1175,13 @@
       "recurrenceRules": [
         0
       ]
+    },
+    "node:Schedule Trigger1": {
+      "recurrenceRules": []
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-10-06T06:30:57.000Z",
-  "versionId": "2d7b213d-e079-40ed-b180-abdd56cf30e7"
+  "updatedAt": "2025-10-07T00:21:19.000Z",
+  "versionId": "8759eb7d-ad5c-4b63-a846-a63c1c87baf7"
 }
