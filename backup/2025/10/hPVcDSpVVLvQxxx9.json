@@ -1,0 +1,636 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "BuscaVenta1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NUEVA TRANSACCION?": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "CREA VENTA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "BUSCA CLIENTE",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EXISTE?": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Create a customer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BuscaVenta1": {
+      "main": [
+        [
+          {
+            "node": "NUEVA TRANSACCION?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CREA VENTA": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Create a customer": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "BUSCA CLIENTE": {
+      "main": [
+        [
+          {
+            "node": "EXISTE?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "CREAR CLIENTE1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-09T01:01:13.238Z",
+  "id": "hPVcDSpVVLvQxxx9",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "HOTMART-QUICKBOOKS",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "webhook-prueba-hotmart",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -800,
+        96
+      ],
+      "id": "7c7593f2-eeee-47ee-8afa-707bcfc3c118",
+      "name": "Webhook",
+      "webhookId": "62358276-06ab-402b-b4d3-c8b5086705ac"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "displayName": "={{ $json.nombre }}",
+        "additionalFields": {
+          "PrimaryEmailAddr": "={{ $json.correo }}",
+          "PrimaryPhone": "={{ $json.telefono }}"
+        }
+      },
+      "type": "n8n-nodes-base.quickbooks",
+      "typeVersion": 1,
+      "position": [
+        832,
+        192
+      ],
+      "id": "65cc2a1b-cf23-48f6-8c92-900a48a4f351",
+      "name": "Create a customer",
+      "credentials": {
+        "quickBooksOAuth2Api": {
+          "id": "zqEJ85KroykpKbvG",
+          "name": "quickbooks BLACK DIGITAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3f749c1e-7a9d-4221-a33a-f358a7a399ba",
+              "name": "correo",
+              "value": "={{ $json.body.data.buyer.email }}",
+              "type": "string"
+            },
+            {
+              "id": "d6592a70-22c7-4b18-a856-53ee65ed7e40",
+              "name": "telefono",
+              "value": "={{ $json.body.data.buyer.checkout_phone }}",
+              "type": "string"
+            },
+            {
+              "id": "ed1ac629-e4c8-4eeb-abae-64082a84782f",
+              "name": "valor",
+              "value": "={{ $json.body.data.purchase.full_price.value }}",
+              "type": "string"
+            },
+            {
+              "id": "18612dba-711e-4221-abad-aa3c4b94a00e",
+              "name": "transaccion",
+              "value": "={{ $json.body.data.purchase.transaction }}",
+              "type": "string"
+            },
+            {
+              "id": "6a2bcc7f-a66e-4a37-bbaa-21b92030bcb7",
+              "name": "producto",
+              "value": "={{ $json.body.data.product.name }}",
+              "type": "string"
+            },
+            {
+              "id": "318fa565-59ad-49ba-bc78-fa43f62cd2a3",
+              "name": "moneda",
+              "value": "={{ $json.body.data.purchase.full_price.currency_value }}",
+              "type": "string"
+            },
+            {
+              "id": "e004a49a-b8ab-4d12-858c-c97a60c32912",
+              "name": "pais",
+              "value": "={{ $json.body.data.purchase.checkout_country.name }}",
+              "type": "string"
+            },
+            {
+              "id": "3b56580e-92d2-455c-8dc5-8c2c99d3b2e4",
+              "name": "pais_iso",
+              "value": "={{ $json.body.data.purchase.checkout_country.iso }}",
+              "type": "string"
+            },
+            {
+              "id": "0dcdb1f5-dcc7-4c61-85ae-0a347bf5219c",
+              "name": "nombre",
+              "value": "={{ $json.body.data.buyer.name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -576,
+        96
+      ],
+      "id": "5c7f85f4-bc99-40c5-b414-b537fdbbe116",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e37b21dd-3e78-4189-8549-cbedd7583d74",
+              "leftValue": "={{ $json.isEmpty() }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -128,
+        176
+      ],
+      "id": "14c621ac-a2db-41e2-ad07-8f310d3c86f2",
+      "name": "NUEVA TRANSACCION?"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        96,
+        112
+      ],
+      "id": "b3ae9181-1599-4261-8e60-c53c70275d44",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "47e7c1ef-8a78-4294-a742-1cee61fbbdfc",
+              "leftValue": "={{ $json.isEmpty() }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        512,
+        48
+      ],
+      "id": "6fb9a62a-568e-4037-9acc-34d447b4de06",
+      "name": "EXISTE?"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        640,
+        192
+      ],
+      "id": "d62f824c-399c-4e07-a05e-d5e1c2de3f4a",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "collection": "ventas",
+        "options": {},
+        "query": "={\"transaccion\":\"{{ $json.transaccion }}\"} "
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.2,
+      "position": [
+        -352,
+        176
+      ],
+      "id": "be2aaada-6988-4920-963f-e3fef4dc68d5",
+      "name": "BuscaVenta1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mongoDb": {
+          "id": "Lrh0qQ8ohSdpiarD",
+          "name": "mongo quickbooks black"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "collection": "ventas",
+        "fields": "nombre,correo,telefono,valor,producto,transaccion,moneda,pais,pais_iso",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.2,
+      "position": [
+        320,
+        208
+      ],
+      "id": "c483cebf-9ab3-43ff-80ee-5178f1a013a5",
+      "name": "CREA VENTA",
+      "credentials": {
+        "mongoDb": {
+          "id": "Lrh0qQ8ohSdpiarD",
+          "name": "mongo quickbooks black"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "collection": "clientes",
+        "fields": "=Id,correo,telefono,nombre",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.2,
+      "position": [
+        1200,
+        128
+      ],
+      "id": "ea22b278-2e23-444a-b000-c0d7b315e4e3",
+      "name": "CREAR CLIENTE1",
+      "credentials": {
+        "mongoDb": {
+          "id": "Lrh0qQ8ohSdpiarD",
+          "name": "mongo quickbooks black"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "collection": "clientes",
+        "options": {
+          "limit": 1
+        },
+        "query": "={\"correo\": \"{{ $json.correo }}\", \"telefono\": \"{{ $json.telefono }}\"} "
+      },
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.2,
+      "position": [
+        320,
+        48
+      ],
+      "id": "64f75eec-c88a-41cb-9784-53949e1f932a",
+      "name": "BUSCA CLIENTE",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mongoDb": {
+          "id": "Lrh0qQ8ohSdpiarD",
+          "name": "mongo quickbooks black"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1008,
+        128
+      ],
+      "id": "a6cb06fa-0492-4db5-9115-7d244b7af91d",
+      "name": "Merge2"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Jodd HTTP",
+            "content-length": "2206",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "3.89.58.34",
+            "cf-ipcountry": "US",
+            "cf-ray": "98ba0fa6ea3dc56e-IAD",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "content-type": "application/json",
+            "x-forwarded-for": "3.89.58.34, 172.70.134.245",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3393e017d3a9",
+            "x-hotmart-hottok": "rrQs3XPgg981iOyVxcVtzyVVA0kYsp1be22114-3144-4b81-9341-e1e30d733e88",
+            "x-real-ip": "172.70.134.245"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "data": {
+              "product": {
+                "support_email": "support@hotmart.com.br",
+                "has_co_production": false,
+                "name": "Produto test postback2",
+                "warranty_date": "2017-12-27T00:00:00Z",
+                "is_physical_product": false,
+                "id": 0,
+                "ucode": "fb056612-bcc6-4217-9e6d-2a5d1110ac2f",
+                "content": {
+                  "has_physical_products": true,
+                  "products": [
+                    {
+                      "name": "How to Make Clear Ice",
+                      "is_physical_product": false,
+                      "id": 4774438,
+                      "ucode": "559fef42-3406-4d82-b775-d09bd33936b1"
+                    },
+                    {
+                      "name": "Organizador de Poeira",
+                      "is_physical_product": true,
+                      "id": 4999597,
+                      "ucode": "099e7644-b7d1-43d6-82a9-ec6be0118a4b"
+                    }
+                  ]
+                }
+              },
+              "commissions": [
+                {
+                  "currency_value": "BRL",
+                  "source": "MARKETPLACE",
+                  "value": 149.5
+                },
+                {
+                  "currency_value": "BRL",
+                  "source": "PRODUCER",
+                  "value": 1350.5
+                }
+              ],
+              "purchase": {
+                "original_offer_price": {
+                  "currency_value": "BRL",
+                  "value": 1500
+                },
+                "checkout_country": {
+                  "iso": "BR",
+                  "name": "Brasil"
+                },
+                "sckPaymentLink": "sckPaymentLinkTest",
+                "order_bump": {
+                  "parent_purchase_transaction": "HP02316330308193",
+                  "is_order_bump": true
+                },
+                "approved_date": 1511783346000,
+                "offer": {
+                  "code": "test",
+                  "coupon_code": "SHHUHA"
+                },
+                "is_funnel": false,
+                "event_tickets": {
+                  "amount": 1759972884618
+                },
+                "order_date": 1511783344000,
+                "price": {
+                  "currency_value": "BRL",
+                  "value": 1500
+                },
+                "buyer_ip": "00.00.00.00",
+                "payment": {
+                  "installments_number": 12,
+                  "type": "CREDIT_CARD"
+                },
+                "full_price": {
+                  "currency_value": "BRL",
+                  "value": 1500
+                },
+                "business_model": "I",
+                "transaction": "HP16015479281022",
+                "status": "APPROVED"
+              },
+              "affiliates": [
+                {
+                  "affiliate_code": "Q58388177J",
+                  "name": "Affiliate name"
+                }
+              ],
+              "producer": {
+                "legal_nature": "Pessoa Física",
+                "document": "12345678965",
+                "name": "Producer Test Name"
+              },
+              "subscription": {
+                "subscriber": {
+                  "code": "I9OT62C3"
+                },
+                "plan": {
+                  "name": "plano de teste",
+                  "id": 123
+                },
+                "status": "ACTIVE"
+              },
+              "buyer": {
+                "checkout_phone_code": "999999999",
+                "address": {
+                  "zipcode": "38400123",
+                  "country": "Brasil",
+                  "number": "10",
+                  "address": "Avenida Francisco Galassi",
+                  "city": "Uberlândia",
+                  "state": "Minas Gerais",
+                  "neighborhood": "Tubalina",
+                  "complement": "Perto do shopping",
+                  "country_iso": "BR"
+                },
+                "document": "69526128664",
+                "name": "Teste Comprador",
+                "last_name": "Comprador",
+                "checkout_phone": "99999999900",
+                "first_name": "Teste",
+                "email": "testeComprador271101postman15@example.com",
+                "document_type": "CPF"
+              }
+            },
+            "id": "89be331d-0847-4890-8c39-2a80fd5bc143",
+            "creation_date": 1759972884646,
+            "event": "PURCHASE_APPROVED",
+            "version": "2.0.0"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/webhook-prueba-hotmart",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-09T02:46:12.000Z",
+  "versionId": "330cb7a4-5ec9-4ca7-adb8-75fe7be61fd5"
+}
