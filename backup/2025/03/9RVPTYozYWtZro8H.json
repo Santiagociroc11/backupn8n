@@ -712,15 +712,15 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1_A3pTDgETuZicFekn7v5vwkRl4287KEhGuyEiXEFCu8/edit?gid=0#gid=0",
+          "value": "https://docs.google.com/spreadsheets/d/11kfbYCQzK5baxO0Jk9tpzwQec8e2jrrbaqGEBjY__l4/edit?gid=0#gid=0",
           "mode": "url"
         },
         "sheetName": {
           "__rl": true,
-          "value": 1498857822,
+          "value": "gid=0",
           "mode": "list",
-          "cachedResultName": "L8",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_A3pTDgETuZicFekn7v5vwkRl4287KEhGuyEiXEFCu8/edit#gid=1498857822"
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/11kfbYCQzK5baxO0Jk9tpzwQec8e2jrrbaqGEBjY__l4/edit#gid=0"
         },
         "options": {}
       },
@@ -744,9 +744,9 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "GERSSON_L8",
+          "value": "ADRI_NY_L1_ORG",
           "mode": "list",
-          "cachedResultName": "GERSSON_L8"
+          "cachedResultName": "ADRI_NY_L1_ORG"
         },
         "limit": 1,
         "where": {
@@ -787,16 +787,16 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "GERSSON_L8_VENTAS",
+          "value": "ADRI_NY_L1_VENTAS",
           "mode": "list",
-          "cachedResultName": "GERSSON_L8_VENTAS"
+          "cachedResultName": "ADRI_NY_L1_VENTAS"
         },
         "returnAll": true,
         "where": {
           "values": [
             {
               "column": "transaccion",
-              "value": "={{ $('Get row(s) in sheet').item.json['Código de la transacción'] }}"
+              "value": "={{ $('Get row(s) in sheet').item.json['Transacción del Producto Principal'] }}"
             }
           ]
         },
@@ -822,9 +822,9 @@
       "parameters": {
         "table": {
           "__rl": true,
-          "value": "GERSSON_L8_VENTAS",
+          "value": "ADRI_NY_L1_VENTAS",
           "mode": "list",
-          "cachedResultName": "GERSSON_L8_VENTAS"
+          "cachedResultName": "ADRI_NY_L1_VENTAS"
         },
         "dataMode": "defineBelow",
         "valuesToSend": {
@@ -843,7 +843,7 @@
             },
             {
               "column": "monto",
-              "value": "={{ $('Get row(s) in sheet').item.json['Facturación bruta '] }}"
+              "value": "={{ $('Get row(s) in sheet').item.json['Facturación bruta'] + $('Get row(s) in sheet').item.json['Faturación neta del Productor(a)']  }}"
             },
             {
               "column": "transaccion",
@@ -851,7 +851,7 @@
             },
             {
               "column": "fuente",
-              "value": "L8-PAGO"
+              "value": "L1-ORG"
             }
           ]
         },
@@ -889,6 +889,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-17T17:23:27.000Z",
-  "versionId": "aa68c243-6445-44b6-b65c-87574015d5a9"
+  "updatedAt": "2025-10-14T23:35:12.000Z",
+  "versionId": "725cca18-f2a6-4fba-9df1-8fc1def460a6"
 }
