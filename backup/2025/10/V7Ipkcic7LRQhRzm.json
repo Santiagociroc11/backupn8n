@@ -1,12 +1,29 @@
 {
-  "active": false,
+  "active": true,
   "connections": {},
   "createdAt": "2025-10-11T03:21:04.629Z",
   "id": "V7Ipkcic7LRQhRzm",
   "isArchived": false,
   "meta": null,
   "name": "[SAN. MEND.][WEBHOOK-HOTMART] LANZ. PAGO",
-  "nodes": [],
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hotmart-lpago-smen",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -112,
+        48
+      ],
+      "id": "ea165da6-2eda-4b15-8f9f-736337ffeb65",
+      "name": "Webhook",
+      "webhookId": "a41b3c2f-574e-49e5-9f7b-06d0bf83d933"
+    }
+  ],
   "pinData": {},
   "repo_name": "backupn8n",
   "repo_owner": "Santiagociroc11",
@@ -16,7 +33,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-10-11T03:21:04.629Z",
-  "versionId": "a49f098f-a5ef-47d1-b039-6d393c58dc5c"
+  "triggerCount": 1,
+  "updatedAt": "2025-10-15T02:24:10.000Z",
+  "versionId": "914f3807-ed09-4287-b2f1-3f4342f8ab33"
 }
