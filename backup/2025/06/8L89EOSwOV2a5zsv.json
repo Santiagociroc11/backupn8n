@@ -97,6 +97,29 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "SUBLIMACIÓN",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SUBLIMACIÓN": {
+      "main": [
+        [
+          {
+            "node": "SUBLIMACIÓN PRINCIPAL",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "CORREO BIENVENIDA2",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     }
@@ -385,7 +408,9 @@
             }
           ]
         },
-        "options": {}
+        "options": {
+          "fallbackOutput": "extra"
+        }
       },
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
@@ -671,6 +696,102 @@
       ],
       "id": "5c8d61e1-b48b-4f62-bfcf-b240f53855ed",
       "name": "SUSCRIPCION1"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.body.data.buyer.email }}",
+        "subject": "Bienvenido(a) a PACK SUBLIMACIÓN 2025",
+        "message": "=<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Bienvenida a tu Curso</title>\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n    <link href=\"https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap\" rel=\"stylesheet\">\n    <style>\n        /* Estilos generales del cuerpo del correo */\n        body {\n            font-family: 'Montserrat', Arial, sans-serif;\n            background-color: #f4f7f6;\n            margin: 0;\n            padding: 0;\n            color: #333333;\n        }\n        /* Contenedor principal del correo */\n        .container {\n            max-width: 650px;\n            margin: 20px auto;\n            background-color: #ffffff;\n            border-radius: 12px;\n            overflow: hidden;\n            box-shadow: 0 10px 25px rgba(0,0,0,0.1);\n            border: 1px solid #e0e0e0;\n        }\n        /* Cabecera con imagen de fondo y título */\n        .header {\n            background-color: #004d40; /* Verde oscuro profesional */\n            color: #ffffff;\n            padding: 40px 20px;\n            text-align: center;\n        }\n        .header h1 {\n            margin: 0;\n            font-size: 36px;\n            font-weight: 700;\n            letter-spacing: 1px;\n        }\n        /* Contenido principal del correo */\n        .content {\n            padding: 35px 40px;\n            line-height: 1.8;\n            font-size: 18px;\n        }\n        .content h2 {\n            color: #004d40;\n            font-size: 28px;\n            margin-bottom: 15px;\n            font-weight: 700;\n        }\n        .content p {\n            margin-bottom: 20px;\n        }\n        /* Sección destacada para información crítica */\n        .highlight {\n            background-color: #e8f5e9;\n            border-left: 6px solid #4caf50;\n            padding: 20px;\n            margin: 25px 0;\n            border-radius: 8px;\n        }\n        .highlight p {\n            margin: 0;\n            font-weight: 500;\n            font-size: 19px;\n        }\n        \n        /* NUEVA: Sección de credenciales */\n        .credentials {\n            background: linear-gradient(135deg, #004d40, #00695c);\n            color: #ffffff;\n            border: 3px solid #ffc107;\n            padding: 30px;\n            border-radius: 12px;\n            margin: 30px 0;\n            text-align: center;\n        }\n        .credentials h3 {\n            color: #ffc107;\n            margin: 0 0 20px 0;\n            font-size: 24px;\n            font-weight: 700;\n        }\n        .credentials .credential-item {\n            background: rgba(255, 255, 255, 0.1);\n            padding: 15px;\n            margin: 15px 0;\n            border-radius: 8px;\n            text-align: left;\n        }\n        .credentials .credential-label {\n            color: #ffc107;\n            font-weight: 700;\n            font-size: 16px;\n            display: block;\n            margin-bottom: 5px;\n        }\n        .credentials .credential-value {\n            font-size: 18px;\n            font-weight: 500;\n            word-break: break-all;\n        }\n        \n        /* Estilos para la lista de pasos */\n        .steps ol {\n            padding-left: 25px;\n            list-style-type: none;\n            counter-reset: step-counter;\n        }\n        .steps li {\n            counter-increment: step-counter;\n            margin-bottom: 20px;\n            font-weight: 500;\n            position: relative;\n        }\n        .steps li::before {\n            content: counter(step-counter);\n            background: #ffc107;\n            color: #004d40;\n            font-weight: 700;\n            border-radius: 50%;\n            width: 35px;\n            height: 35px;\n            display: inline-block;\n            text-align: center;\n            line-height: 35px;\n            margin-right: 15px;\n        }\n        /* Botón de Llamada a la Acción (CTA) */\n        .cta-button {\n            display: block;\n            width: fit-content;\n            margin: 30px auto;\n            background: linear-gradient(90deg, #ffd60a, #ffc107);\n            color: #004d40;\n            padding: 18px 35px;\n            text-decoration: none;\n            font-weight: 700;\n            border-radius: 50px;\n            font-size: 20px;\n            text-align: center;\n            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);\n            transition: transform 0.2s;\n        }\n        .cta-button:hover {\n            transform: scale(1.05);\n        }\n        /* Sección del Certificado */\n        .certificate-info {\n            background: #004d40;\n            color: #ffffff;\n            border: 2px solid #ffc107;\n            padding: 30px;\n            border-radius: 12px;\n            margin-top: 40px;\n            text-align: center;\n        }\n        .certificate-info .icon {\n            margin-bottom: 15px;\n        }\n        .certificate-info h3 {\n            color: #ffc107;\n            margin: 0 0 20px 0;\n            font-size: 28px;\n            font-weight: 700;\n        }\n        .certificate-info p {\n            font-size: 18px;\n            margin-bottom: 25px;\n        }\n        .certificate-info ul {\n            list-style-type: none;\n            padding: 0;\n            margin: 0;\n            display: inline-block;\n            text-align: left;\n        }\n        .certificate-info li {\n            margin-bottom: 15px;\n            position: relative;\n            padding-left: 35px;\n            font-size: 17px;\n        }\n        .certificate-info li::before {\n            content: '✔';\n            color: #ffc107;\n            font-weight: bold;\n            font-size: 20px;\n            position: absolute;\n            left: 0;\n            top: 2px;\n        }\n        /* Pie de página */\n        .footer {\n            background-color: #f4f7f6;\n            color: #777777;\n            text-align: center;\n            padding: 25px;\n            font-size: 14px;\n        }\n        .footer a {\n            color: #00796b;\n            text-decoration: none;\n        }\n        \n        /* NUEVA: Sección de soporte */\n        .support-section {\n            background-color: #fff3e0;\n            border: 1px solid #ff9800;\n            border-radius: 8px;\n            padding: 20px;\n            margin: 25px 0;\n        }\n        .support-section h4 {\n            color: #e65100;\n            margin: 0 0 15px 0;\n            font-size: 20px;\n        }\n        .support-section p {\n            margin: 0;\n            color: #5d4037;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <div class=\"header\">\n            <h1>Tu Transformación Comienza AHORA</h1>\n        </div>\n        <div class=\"content\">\n            <!-- Saludo personalizado -->\n            <h2>{{full_name}}, ¡felicidades por dar el paso!</h2>\n            <p>Acabas de tomar una decisión que te separa del 99% de las personas. No has comprado un simple curso; has invertido en una habilidad de alto valor que tiene el poder de cambiar tu trayectoria profesional para siempre.</p>\n            <p>Mientras otros esperan, tú actúas. Esa es la diferencia entre los que sueñan con el éxito y los que lo construyen. Bienvenido al grupo de los constructores.</p>\n            \n            <div class=\"highlight\">\n                <p><strong>🎉 ¡TU ACCESO ESTÁ LISTO!</strong> Hemos creado tu cuenta personal en nuestra plataforma exclusiva.</p>\n            </div>\n\n            <!-- NUEVA SECCIÓN: Credenciales de Acceso -->\n            <div class=\"credentials\">\n                <h3>🔑 Tus Credenciales de Acceso Exclusivo</h3>\n                <p>Guarda esta información en un lugar seguro:</p>\n                \n                <div class=\"credential-item\">\n                    <span class=\"credential-label\">📧 Email de acceso:</span>\n                    <span class=\"credential-value\">{{ $json.body.data.buyer.email }}</span>\n                </div>\n                \n                <div class=\"credential-item\">\n                    <span class=\"credential-label\">🔒 Contraseña temporal:</span>\n                    <span class=\"credential-value\">{{ $json.body.data.buyer.email }}</span>\n                </div>\n                \n                <div class=\"credential-item\">\n                    <span class=\"credential-label\">🎯 Tu curso:</span>\n                    <span class=\"credential-value\">{{ $json.body.data.product.name }}</span>\n                </div>\n            </div>\n\n            <h2>Tu Plan de Acción Inmediato (Síguelo al pie de la letra)</h2>\n            <div class=\"steps\">\n                <ol>\n                    <li>\n                        <strong>Accede a tu Plataforma:</strong> Haz clic en el botón \"ENTRAR A MI CURSO\" que encontrarás más abajo. Te llevará directamente a tu área personal.\n                    </li>\n                    <li>\n                        <strong>Inicia Sesión:</strong> Usa tu <strong>email</strong> y la <strong>contraseña temporal</strong> que aparecen arriba. El sistema te pedirá crear una nueva contraseña personal en tu primer acceso.\n                    </li>\n                    <li>\n                        <strong>Explora tu Dashboard:</strong> Una vez dentro, tendrás acceso inmediato a todos los módulos, materiales descargables y recursos exclusivos de <strong>{{ $json.body.data.product.name }}</strong>.\n                    </li>\n                    <li>\n                        <strong>¡Comienza Ahora!</strong> No esperes al \"momento perfecto\". Los que triunfan actúan mientras otros dudan. Tu primer módulo te está esperando.\n                    </li>\n                </ol>\n            </div>\n            \n            <!-- Botón de llamada a la acción principal -->\n            <a href=\"https://cursos.automscc.com/login\" class=\"cta-button\">🚀 ENTRAR A MI CURSO</a>\n\n            <!-- Sección de Soporte -->\n            <div class=\"support-section\">\n                <h4>¿Necesitas Ayuda?</h4>\n                <p>Si tienes problemas para acceder, no te preocupes. Nuestro equipo de soporte está aquí para ayudarte. Responde a este correo con tu consulta y te asistiremos en menos de 24 horas.</p>\n            </div>\n\n            <!-- Sección del Certificado (ACTUALIZADA) -->\n            <div class=\"certificate-info\">\n                <div class=\"icon\">\n                    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"60\" height=\"60\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#ffc107\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"8\" r=\"7\"></circle><polyline points=\"8.21 13.89 7 23 12 20 17 23 15.79 13.88\"></polyline></svg>\n                </div>\n                <h3>🏆 Tu Certificado: El Sello de tu Maestría</h3>\n                <p>Al completar el curso, recibirás un certificado digital que validará tu nueva competencia profesional:</p>\n                <ul>\n                    <li>Completa todos los módulos del curso en tu plataforma personal</li>\n                    <li>Supera los ejercicios prácticos con evaluación automática</li>\n                    <li>Obtén tu certificado oficial descargable en formato PDF</li>\n                    <li>Compártelo en LinkedIn y potencia tu perfil profesional</li>\n                </ul>\n            </div>\n            \n            <p style=\"margin-top: 40px;\">Prepárate. Estás a punto de adquirir un conocimiento que muy pocos tienen. Úsalo para transformar tu vida y la de tus futuros clientes.</p>\n            <p><strong>Nos vemos dentro de la plataforma,</strong></p>\n            <p style=\"margin-top: 30px; font-style: italic; color: #666;\">PD: Este correo contiene información sensible. Mantenlo seguro y no lo compartas con terceros.</p>\n        </div>\n    </div>\n    <div class=\"footer\">\n        <p>Recibiste este correo porque te has inscrito en {{ $json.body.data.product.name }}.</p>\n        <p>&copy; 2025 Todos los derechos reservados.</p>\n        <p><a href=\"https://cursos.automscc.com/login\">Acceder a mi curso</a> | <a href=\"https://cursos.automscc.com/login\">Soporte técnico</a></p>\n    </div>\n</body>\n</html>\n",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "Soporte SUBLIMACIÓN"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -752,
+        1040
+      ],
+      "id": "a2ea54ac-2657-4ffb-b311-f17211ff5fd8",
+      "name": "CORREO BIENVENIDA2",
+      "webhookId": "7c320870-8f31-41ef-ae5d-695f1cb85b5e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "TQIc6MxJVwS0cvQg",
+          "name": "GMAIL JSD COMPANY"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://cursos.automscc.com/api/hotmart/process-purchase",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer hotmart"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"email\": \"{{ $json.body.data.buyer.email }}\",\n  \"full_name\": \"{{ $json.body.data.buyer.name }}\",\n  \"phone\": \"{{ $json.body.data.buyer.checkout_phone }}\",\n  \"course_id\": \"0856f029-4403-4c47-8a45-f9e32aefa8bc\",\n  \"transaction_id\": \"{{ $json.body.data.purchase.transaction }}\"\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -752,
+        1216
+      ],
+      "id": "93fe0fa0-c227-4d5d-8525-8edaf76f672d",
+      "name": "SUBLIMACIÓN PRINCIPAL"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.data.product.id }}",
+                    "rightValue": "6435910",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "7d3c7dba-f083-4297-a4b1-61dca3bf2eef"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "SUBLIMACIÓN"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -1088,
+        1152
+      ],
+      "id": "9e5791d8-35e4-4626-8db2-fe2d195d8d7c",
+      "name": "SUBLIMACIÓN"
     }
   ],
   "pinData": {
@@ -816,6 +937,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-09-17T05:36:12.000Z",
-  "versionId": "e41a0383-0c12-47e2-a225-e02c567496e4"
+  "updatedAt": "2025-10-14T17:39:21.000Z",
+  "versionId": "630a5945-7222-4aa7-b547-f817708eab56"
 }
