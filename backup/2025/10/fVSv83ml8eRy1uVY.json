@@ -1,0 +1,158 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-10-21T01:13:20.494Z",
+  "id": "fVSv83ml8eRy1uVY",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 59",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://gate.whapi.cloud/messages/video",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer HkL6ZkzysiBzvaC7kgHuBSeIdZRq5SW4"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "to",
+              "value": "120363404763245039@newsletter"
+            },
+            {
+              "name": "caption",
+              "value": "FRAN ES MKA"
+            },
+            {
+              "name": "media",
+              "value": "http://automscc.com/wp-content/uploads/2023/06/WhatsApp-Video-2023-06-02-at-2.20.21-PM-1.mp4"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        64,
+        0
+      ],
+      "id": "8a9955d6-54f2-49d2-8162-d6c51cc8844a",
+      "name": "VIDEO"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://gate.whapi.cloud/messages/image",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer HkL6ZkzysiBzvaC7kgHuBSeIdZRq5SW4"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "to",
+              "value": "120363404763245039@newsletter"
+            },
+            {
+              "name": "caption",
+              "value": "FRAN ES MKA"
+            },
+            {
+              "name": "media",
+              "value": "http://automscc.com/wp-content/uploads/2025/10/Captura-de-pantalla-1.png"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        64,
+        160
+      ],
+      "id": "e36b1983-99ee-4f46-88f2-1a6e19770537",
+      "name": "IMAGEN"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://gate.whapi.cloud/messages/voice",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer HkL6ZkzysiBzvaC7kgHuBSeIdZRq5SW4"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "to",
+              "value": "120363404763245039@newsletter"
+            },
+            {
+              "name": "caption",
+              "value": "FRAN ES MKA"
+            },
+            {
+              "name": "media",
+              "value": "http://minio.automscc.com/api/v1/download-shared-object/aHR0cHM6Ly9taW5pby1zdG9yYWdlLmF1dG9tc2NjLmNvbS9jaGF0d29vdC9BdWRpbyUyMGRlJTIwV2hhdHNBcHAlMjAyMDI1LTEwLTIwJTIwYSUyMGxhcyUyMDE5LjAzLjAzXzAyMmZkMTY2Lm9wdXM_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1HQVdCTVhQR05FN1BESlZWMFNMVSUyRjIwMjUxMDIxJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTAyMVQwMDA0NDNaJlgtQW16LUV4cGlyZXM9NDMyMDAmWC1BbXotU2VjdXJpdHktVG9rZW49ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmhZMk5sYzNOTFpYa2lPaUpIUVZkQ1RWaFFSMDVGTjFCRVNsWldNRk5NVlNJc0ltVjRjQ0k2TVRjMk1UQTBPREl5Tml3aWNHRnlaVzUwSWpvaVlXUnRhVzRpZlEuLXE2elpiQXE0SlY4cEMwSFk5cHNuUVF2cGFXbDFZdDItY1dyUWNjQmhIaFVoWF9ZSHVLZi02QXJaT3ZLVXhyakxjRjdaT2Nwb0tHOWUwdHVwUVgwUVEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnZlcnNpb25JZD1udWxsJlgtQW16LVNpZ25hdHVyZT1kNTQwMzg3ZjkyMmIyMjNlNzlhYTdlNmY4MmEyNTI2MTQzZjI4NzU3ODQyNzc3MTk4ZTUzNzZmNmQwOTRjM2M0"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        64,
+        -160
+      ],
+      "id": "a3f079f8-feb5-4b09-a510-9aef6e4d43e5",
+      "name": "NOTA DE VOZ"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-21T01:13:20.494Z",
+  "versionId": "ca7a8801-1712-4f78-92b1-cd06590e0db4"
+}
