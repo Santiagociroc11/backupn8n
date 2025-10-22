@@ -1,6 +1,12 @@
 {
   "active": false,
-  "connections": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        []
+      ]
+    }
+  },
   "createdAt": "2025-10-21T01:13:20.494Z",
   "id": "fVSv83ml8eRy1uVY",
   "isArchived": false,
@@ -119,15 +125,11 @@
           "parameters": [
             {
               "name": "to",
-              "value": "120363404763245039@newsletter"
-            },
-            {
-              "name": "caption",
-              "value": "FRAN ES MKA"
+              "value": "120363405018809354@newsletter"
             },
             {
               "name": "media",
-              "value": "http://minio.automscc.com/api/v1/download-shared-object/aHR0cHM6Ly9taW5pby1zdG9yYWdlLmF1dG9tc2NjLmNvbS9jaGF0d29vdC9BdWRpbyUyMGRlJTIwV2hhdHNBcHAlMjAyMDI1LTEwLTIwJTIwYSUyMGxhcyUyMDE5LjAzLjAzXzAyMmZkMTY2Lm9wdXM_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1HQVdCTVhQR05FN1BESlZWMFNMVSUyRjIwMjUxMDIxJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTAyMVQwMDA0NDNaJlgtQW16LUV4cGlyZXM9NDMyMDAmWC1BbXotU2VjdXJpdHktVG9rZW49ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmhZMk5sYzNOTFpYa2lPaUpIUVZkQ1RWaFFSMDVGTjFCRVNsWldNRk5NVlNJc0ltVjRjQ0k2TVRjMk1UQTBPREl5Tml3aWNHRnlaVzUwSWpvaVlXUnRhVzRpZlEuLXE2elpiQXE0SlY4cEMwSFk5cHNuUVF2cGFXbDFZdDItY1dyUWNjQmhIaFVoWF9ZSHVLZi02QXJaT3ZLVXhyakxjRjdaT2Nwb0tHOWUwdHVwUVgwUVEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnZlcnNpb25JZD1udWxsJlgtQW16LVNpZ25hdHVyZT1kNTQwMzg3ZjkyMmIyMjNlNzlhYTdlNmY4MmEyNTI2MTQzZjI4NzU3ODQyNzc3MTk4ZTUzNzZmNmQwOTRjM2M0"
+              "value": "http://minio.automscc.com/api/v1/download-shared-object/aHR0cHM6Ly9taW5pby1zdG9yYWdlLmF1dG9tc2NjLmNvbS9jaGF0d29vdC9hdWRpbzEub2dnP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9TDYzQzBBQUlNNzlYSVVCNENYV0YlMkYyMDI1MTAyMiUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTEwMjJUMDIwMTAyWiZYLUFtei1FeHBpcmVzPTQzMTk5JlgtQW16LVNlY3VyaXR5LVRva2VuPWV5SmhiR2NpT2lKSVV6VXhNaUlzSW5SNWNDSTZJa3BYVkNKOS5leUpoWTJObGMzTkxaWGtpT2lKTU5qTkRNRUZCU1UwM09WaEpWVUkwUTFoWFJpSXNJbVY0Y0NJNk1UYzJNVEUwTVRVME5pd2ljR0Z5Wlc1MElqb2lZV1J0YVc0aWZRLmpVYVNhOE5yaXJjRy1rT3JuZGtreGFBTmFYNU5GZmpiLUloZmFNWGI5NkFzVnYtOEdGaFVpcmZLRmR4X3V3YlM2a3NQQ2xueFN6bGJzVUh0eWhrX1RRJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZ2ZXJzaW9uSWQ9bnVsbCZYLUFtei1TaWduYXR1cmU9YWJhYzM5MTVlOTliYmQwYmQwOGY2NDZkYWVhYWY5MjJiMGI0ZWJjYmNmYTM5MDQ0MTc0ZTQ4NGU3Zjk2MmUxNg"
             }
           ]
         },
@@ -141,6 +143,58 @@
       ],
       "id": "a3f079f8-feb5-4b09-a510-9aef6e4d43e5",
       "name": "NOTA DE VOZ"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -368,
+        80
+      ],
+      "id": "103eb7b6-0d08-454e-ae2e-7f442be7ef62",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://gate.whapi.cloud/messages/image",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer HkL6ZkzysiBzvaC7kgHuBSeIdZRq5SW4"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "to",
+              "value": "120363404763245039@newsletter"
+            },
+            {
+              "name": "body",
+              "value": "="
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        64,
+        336
+      ],
+      "id": "291caa23-bacf-4d8d-8ebf-8b791c4c70e7",
+      "name": "TEXTO"
     }
   ],
   "pinData": {},
@@ -153,6 +207,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-10-21T01:13:20.494Z",
-  "versionId": "ca7a8801-1712-4f78-92b1-cd06590e0db4"
+  "updatedAt": "2025-10-22T02:04:02.000Z",
+  "versionId": "770ec344-5875-4096-a4e7-e0070369a904"
 }
