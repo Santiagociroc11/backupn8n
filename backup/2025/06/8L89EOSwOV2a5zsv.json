@@ -142,6 +142,11 @@
             "node": "CORREO BIENVENIDA3",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "OB VINO1",
+            "type": "main",
+            "index": 0
           }
         ],
         [
@@ -1063,8 +1068,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -448,
-        1872
+        -384,
+        1968
       ],
       "id": "946e433d-8c66-439b-b0cd-69171e82fa20",
       "name": "CORREO BIENVENIDA4",
@@ -1113,8 +1118,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -784,
-        1984
+        -720,
+        2080
       ],
       "id": "087f15a0-db18-442a-ab51-134bf01feb86",
       "name": "BOTANICA ANCESTRAL"
@@ -1132,8 +1137,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -320,
-        2304
+        -272,
+        2384
       ],
       "id": "4d35033d-5f8e-427e-a628-f7c25f228d4c",
       "name": "CORREO BIENVENIDA5",
@@ -1182,8 +1187,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -656,
-        2416
+        -608,
+        2496
       ],
       "id": "4294a283-34f8-4348-9b7f-d0170da75e7d",
       "name": "FARMACOLOGIA"
@@ -1209,8 +1214,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -448,
-        2048
+        -384,
+        2144
       ],
       "id": "d8b24159-9713-4a7c-ae84-eba5ab6fe88f",
       "name": "BOTANICA ANCESTRAL PRINCIPAL 1"
@@ -1236,8 +1241,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -320,
-        2480
+        -272,
+        2560
       ],
       "id": "2cca2755-7a03-450b-976f-b5b2d8faa319",
       "name": "FARMACOLOGIA PRINCIPAL 1"
@@ -1255,8 +1260,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -128,
-        2704
+        -64,
+        2864
       ],
       "id": "1505b773-8d7a-4f59-afe4-567dd4ed0295",
       "name": "CORREO BIENVENIDA6",
@@ -1305,8 +1310,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -464,
-        2816
+        -400,
+        2976
       ],
       "id": "52ca7c1b-a969-433f-a0fb-57d8a6ef3e15",
       "name": "MOLDES NAVIDEÑOS"
@@ -1332,8 +1337,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -128,
-        2880
+        -64,
+        3040
       ],
       "id": "ffc80f0b-05ab-451e-8b17-678aa83a1cad",
       "name": "MOLDES NAVIDEÑOS PRINCIPAL"
@@ -1625,6 +1630,33 @@
       ],
       "id": "6f234da4-1abc-4f93-a34b-d1882c456a22",
       "name": "CUADERNILLO NIÑOS"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://cursos.automscc.com/api/hotmart/process-purchase",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer hotmart"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"email\": \"{{ $json.body.data.buyer.email }}\",\n  \"full_name\": \"{{ $json.body.data.buyer.name }}\",\n  \"phone\": \"{{ $json.body.data.buyer.checkout_phone }}\",\n  \"course_id\": \"b3e7a8a2-e5e3-476c-9de7-1392967a46d2\",\n  \"transaction_id\": \"{{ $json.body.data.purchase.transaction }}\"\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -592,
+        1824
+      ],
+      "id": "84f5a674-ae99-4d23-92d8-ddfd97edda95",
+      "name": "OB VINO1"
     }
   ],
   "pinData": {
@@ -1770,6 +1802,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-10-23T04:43:43.000Z",
-  "versionId": "bef8bb2e-33d1-495e-aeeb-01a6dd97a44f"
+  "updatedAt": "2025-10-24T15:14:22.000Z",
+  "versionId": "779d6ebd-fe0e-4801-ac14-b826852ae119"
 }
