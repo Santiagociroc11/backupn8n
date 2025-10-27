@@ -3,7 +3,29 @@
   "connections": {
     "When clicking ‘Execute workflow’": {
       "main": [
-        []
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "NOTA DE VOZ1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "NOTA DE VOZ",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
@@ -116,7 +138,7 @@
             },
             {
               "name": "Authorization",
-              "value": "Bearer HkL6ZkzysiBzvaC7kgHuBSeIdZRq5SW4"
+              "value": "Bearer onshAzExzMB6efebwbkzOC9cWwH8GaRF"
             }
           ]
         },
@@ -129,7 +151,7 @@
             },
             {
               "name": "media",
-              "value": "http://minio.automscc.com/api/v1/download-shared-object/aHR0cHM6Ly9taW5pby1zdG9yYWdlLmF1dG9tc2NjLmNvbS9jaGF0d29vdC9BdWRpbyUyMGRlJTIwV2hhdHNBcHAlMjAyMDI1LTEwLTI1JTIwYSUyMGxhcyUyMDE5LjE4LjI4X2Y5NmE2MDNmLm9nZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPVJMVEtEMEJGUjdSOVQyQzJSWEMzJTJGMjAyNTEwMjYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMDI2VDAyMDUzM1omWC1BbXotRXhwaXJlcz00MzE5OSZYLUFtei1TZWN1cml0eS1Ub2tlbj1leUpoYkdjaU9pSklVelV4TWlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKaFkyTmxjM05MWlhraU9pSlNURlJMUkRCQ1JsSTNVamxVTWtNeVVsaERNeUlzSW1WNGNDSTZNVGMyTVRRNE56UTROQ3dpY0dGeVpXNTBJam9pWVdSdGFXNGlmUS5mM0FMLW84WHY2Nk10eG9BWmRQZU5GMGZRMlBrS0czZWhJb3V6TWQwRzFFWW9KbVpGOWNqUUY1azlRbm1tLTNWbzI5WnJ1eUZVNmZobUxZUGN2aEdWdyZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QmdmVyc2lvbklkPW51bGwmWC1BbXotU2lnbmF0dXJlPTdhMThkZGJlMGMzZWI3ZThmMjRkMmM2MDQxZjNmYmY0YjEyMDllNTg3NDkxZDkzNGRkMGZiMGVjYzcwMDNkN2I"
+              "value": "={{ $json.link }}"
             }
           ]
         },
@@ -149,8 +171,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -368,
-        80
+        -432,
+        -288
       ],
       "id": "103eb7b6-0d08-454e-ae2e-7f442be7ef62",
       "name": "When clicking ‘Execute workflow’"
@@ -209,7 +231,7 @@
             },
             {
               "name": "Authorization",
-              "value": "Bearer HkL6ZkzysiBzvaC7kgHuBSeIdZRq5SW4"
+              "value": "Bearer onshAzExzMB6efebwbkzOC9cWwH8GaRF"
             }
           ]
         },
@@ -222,7 +244,7 @@
             },
             {
               "name": "media",
-              "value": "http://minio.automscc.com/api/v1/download-shared-object/aHR0cHM6Ly9taW5pby1zdG9yYWdlLmF1dG9tc2NjLmNvbS9jaGF0d29vdC9BdWRpbyUyMGRlJTIwV2hhdHNBcHAlMjAyMDI1LTEwLTI1JTIwYSUyMGxhcyUyMDE5LjE4LjI4X2Y5NmE2MDNmLm9nZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPVJMVEtEMEJGUjdSOVQyQzJSWEMzJTJGMjAyNTEwMjYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMDI2VDAyMDUzM1omWC1BbXotRXhwaXJlcz00MzE5OSZYLUFtei1TZWN1cml0eS1Ub2tlbj1leUpoYkdjaU9pSklVelV4TWlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKaFkyTmxjM05MWlhraU9pSlNURlJMUkRCQ1JsSTNVamxVTWtNeVVsaERNeUlzSW1WNGNDSTZNVGMyTVRRNE56UTROQ3dpY0dGeVpXNTBJam9pWVdSdGFXNGlmUS5mM0FMLW84WHY2Nk10eG9BWmRQZU5GMGZRMlBrS0czZWhJb3V6TWQwRzFFWW9KbVpGOWNqUUY1azlRbm1tLTNWbzI5WnJ1eUZVNmZobUxZUGN2aEdWdyZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QmdmVyc2lvbklkPW51bGwmWC1BbXotU2lnbmF0dXJlPTdhMThkZGJlMGMzZWI3ZThmMjRkMmM2MDQxZjNmYmY0YjEyMDllNTg3NDkxZDkzNGRkMGZiMGVjYzcwMDNkN2I"
+              "value": "={{ $json.link }}"
             }
           ]
         },
@@ -236,6 +258,29 @@
       ],
       "id": "92f9dad5-f251-462c-bbda-155126931bf7",
       "name": "NOTA DE VOZ1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "55138692-f260-42a2-b162-056016bbea7d",
+              "name": "link",
+              "value": "http://minio.automscc.com/api/v1/download-shared-object/aHR0cHM6Ly9taW5pby1zdG9yYWdlLmF1dG9tc2NjLmNvbS9jaGF0d29vdC9XaGF0c0FwcCUyMEF1ZGlvJTIwMjAyNS0xMC0yNiUyMGF0JTIwNi4wOC41MSUyMFBNLm9nZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPVpQS09UUkI1RDRYRVNXWjBNVlA5JTJGMjAyNTEwMjclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMDI3VDAxMjk1NFomWC1BbXotRXhwaXJlcz00MzE5OSZYLUFtei1TZWN1cml0eS1Ub2tlbj1leUpoYkdjaU9pSklVelV4TWlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKaFkyTmxjM05MWlhraU9pSmFVRXRQVkZKQ05VUTBXRVZUVjFvd1RWWlFPU0lzSW1WNGNDSTZNVGMyTVRVM01UVTBOeXdpY0dGeVpXNTBJam9pWVdSdGFXNGlmUS5kdk5zZnAydWlhQzRaM2E5M1lEV1F2NUE1VTkxcnk1cFFlY1ZrTzE0VmJpUEVCUnRET2RDNUdRek1MeFVtdXF1NkcwVFhfeDE2QjlPSVBmcWNuMGR4QSZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QmdmVyc2lvbklkPW51bGwmWC1BbXotU2lnbmF0dXJlPTdkZDRiYTZmODUzY2M3MTNiN2EwOGQyZGVlODgwOTNhZGJjNWQzMTFmYmMyNDYzY2M4M2ZlYTE1MTgxMTVmODQ",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -224,
+        -288
+      ],
+      "id": "43422760-b6e1-47ec-a440-219d0eeee498",
+      "name": "Edit Fields"
     }
   ],
   "pinData": {},
@@ -248,6 +293,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-10-26T02:05:59.000Z",
-  "versionId": "1da3f286-511a-4a30-b69b-6acd9b4aeabc"
+  "updatedAt": "2025-10-27T01:40:32.000Z",
+  "versionId": "d9ea743f-1337-4c96-ac6c-0e0b1777ecd8"
 }
