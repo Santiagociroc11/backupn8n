@@ -49,6 +49,17 @@
       "main": [
         [
           {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
             "node": "Send a text message",
             "type": "main",
             "index": 0
@@ -155,9 +166,9 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "GERSSON_L8_CUPOSVIP",
+          "value": "GERSSON_L9_CUPOSVIP",
           "mode": "list",
-          "cachedResultName": "GERSSON_L8_CUPOSVIP"
+          "cachedResultName": "GERSSON_L9_CUPOSVIP"
         },
         "returnAll": true,
         "where": {
@@ -190,9 +201,9 @@
       "parameters": {
         "table": {
           "__rl": true,
-          "value": "GERSSON_L8_CUPOSVIP",
+          "value": "GERSSON_L9_CUPOSVIP",
           "mode": "list",
-          "cachedResultName": "GERSSON_L8_CUPOSVIP"
+          "cachedResultName": "GERSSON_L9_CUPOSVIP"
         },
         "dataMode": "defineBelow",
         "valuesToSend": {
@@ -241,7 +252,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        880,
+        1040,
         -208
       ],
       "id": "2f4e47c4-4bea-42ca-b402-92029f344765",
@@ -256,6 +267,20 @@
           "name": "HOTAPI"
         }
       }
+    },
+    {
+      "parameters": {
+        "amount": "={{ (Math.random() * 2 + 1).toFixed(2) }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        864,
+        -208
+      ],
+      "id": "a453dc08-9173-4bc6-a0d4-2c690f7d6941",
+      "name": "Wait",
+      "webhookId": "8c98ee69-5a09-4659-85a3-3da15549c924"
     }
   ],
   "pinData": {
@@ -308,6 +333,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-08-27T19:19:53.000Z",
-  "versionId": "1a8081fc-98a2-46d5-bc87-d727b619cfa5"
+  "updatedAt": "2025-10-28T21:08:01.000Z",
+  "versionId": "48b3e132-f2d3-4694-8bc1-9445a403687c"
 }
