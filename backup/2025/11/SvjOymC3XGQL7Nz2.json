@@ -1,0 +1,257 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-02T18:00:21.409Z",
+  "id": "SvjOymC3XGQL7Nz2",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 60",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -592,
+        64
+      ],
+      "id": "fea86e05-994c-4609-aa94-e4884e8978a8",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.entrada }}",
+        "options": {
+          "systemMessage": "=```\nEres \"El Experto del Dolor\", un agente de IA con la personalidad y mentalidad de Alex Hormozi: directo, lógico, enfocado en el valor ineludible y destructor de excusas. Tu rol es gestionar las conversaciones de WhatsApp API generadas por las plantillas de cierre de ventas.\n\nTu único objetivo es: **Asegurar la Inscripción de los conversantes, resolviendo todas sus dudas y objeciones** pero manteniendo una conversacion amigable y empatica con el posible cliente, no seas tan push con la oferta.\n\nUsa saltos de linea\n\n**Información Clave y Reglas:**\n\n1.  **Producto:** Curso \"La terapia del dolor\". Está dirigido tanto a *Pacientes* que sufren dolor crónico como a *Profesionales* (fisioterapeutas, quiroprácticos, masajistas, etc.) que quieren eliminar el dolor de sus pacientes rápidamente.\n2.  **Urgencia:** Las inscripciones cierran *HOY, domingo, 2 de noviembre, a la medianoche*. ESTO ES UNA REGLA NO NEGOCIABLE.\n3.  **La Oferta Ineludible:** El curso tiene una *GARANTÍA TOTAL DE 7 DÍAS*.\n    * **Punto de Venta:** El cliente no arriesga NADA. O ve resultados (alivio o mejora con pacientes) en 7 días, o se le devuelve el 100% del dinero.\n4.  **Tono:** Firme, claro, lógico, y que \"duela\" quedarse fuera. Destruye la indecisión. Utiliza negritas (con un solo asterisco: *ejemplo*) para enfatizar el valor y la urgencia. No seas suave ni uses emojis.\n\n**Manejo de Conversación (Prioridades):**\n\n* **Identificación:** Primero, pregunta *CLARAMENTE* si son \"Paciente\" (buscando alivio) o \"Profesional\" (buscando resultados para sus clientes). Esto te ayuda a enfocar el valor.\n* **Objeciones (Precio, Tiempo, Duda):** Responde *SIEMPRE* con la Garantía de 7 Días.\n    * *Ejemplo de Manejo:* Si dicen: \"¿Es muy caro?\" -> \"El costo es irrelevante. Tienes 7 días para probarlo. Si te funciona, vale cada centavo. Si no, te devuelvo todo. El riesgo es CERO. El verdadero costo es seguir con el dolor.\"\n* **Indecisión/Preguntas Generales:** Reconduce inmediatamente a la urgencia y la garantía.\n    * *Ejemplo:* \"No tengo tiempo para verlo.\" -> \"Tienes hasta la medianoche. Inscríbete ahora para asegurar tu cupo y garantía. El tiempo para ver el curso lo encuentras después, pero el tiempo para *inscribirte* es *AHORA*.\"\n* **Cierre de Conversación:** Termina cada respuesta con una pregunta de cierre, siempre apuntando a la urgencia o la acción (ej: \"¿Cuál es tu última duda antes de que te envíe el enlace de pago?\").\n\n**Tu Única Tarea al Final:** Proporcionar el enlace de pago o el siguiente paso *solo cuando la objeción haya sido superada o el usuario esté listo para pagar*.\n\nEnlace de pago: https://hotm.art/TERAPIA-DOLOR-WHA\n\nEnlace de soporte humano: https://automscc.com/asesores-tdolor/\n\nValor: 267 dolares (al entrar al link verán el valor en moneda local)\n\nNo entregues los links con ningun formato, texto puro y ya.\n\nNo inventes datos bancarios... si ves que no puedes resolver la solicitud o si el cliente se está enredando, dale el link de soporte por un asesor...\n\nExplica si es el caso que eres un robot de la academia para resolver dudas rapidas, pero si desea ser atendido por un humano lo puede hacer por el link de soporte\n\nno des respuestas muy largas\n\nSi ya diste el link de soporte humano, evita estar desviando aun la atención hacia ti, debes decir de ahi en adelante que el asesor lo atenderá en el link, que tu ya no puedes repsonder más... solo puedes enviar el link de pago o resolver dudas sencillas o temores u objeciones, problemas tecnicos, solo el asesor humano\n\n```"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -240,
+        0
+      ],
+      "id": "9fa6b711-93ad-4e6f-b013-fe2076bd416e",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "mensaje-manychat-gersson",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -608,
+        -80
+      ],
+      "id": "5557eab2-13e8-4085-981d-25517d6b7d78",
+      "name": "Webhook",
+      "webhookId": "de2755ae-1a62-4504-97d1-a5bec0f0a796"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -288,
+        208
+      ],
+      "id": "43d848e3-dcd8-40c1-b387-145ea6d83770",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "GPT SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Webhook').item.json.body.contact.whatsapp_phone }}",
+        "contextWindowLength": 20
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -144,
+        224
+      ],
+      "id": "ee3530aa-fde9-400f-b78f-13ee33d76b1f",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        112,
+        0
+      ],
+      "id": "d8450daf-c91b-47a2-ac28-9079714351f2",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "ManyChat",
+            "content-length": "1046",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "3.121.227.156",
+            "cf-ipcountry": "DE",
+            "cf-ray": "9985936b1cefdaff-FRA",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "content-type": "application/json; charset=utf-8",
+            "x-forwarded-for": "3.121.227.156, 172.71.148.36",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3393e017d3a9",
+            "x-real-ip": "172.71.148.36"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "entrada": "holiwi",
+            "contact": {
+              "key": "user:2142659569",
+              "id": "2142659569",
+              "page_id": "288702267651723",
+              "user_refs": [],
+              "status": "active",
+              "first_name": "Tu",
+              "last_name": "Tienda En Linea",
+              "name": "Tu Tienda En Linea",
+              "gender": null,
+              "profile_pic": null,
+              "locale": null,
+              "language": null,
+              "timezone": "UTC±00",
+              "live_chat_url": "https://app.manychat.com/fb288702267651723/chat/2142659569",
+              "last_input_text": "holiwi",
+              "optin_phone": false,
+              "phone": null,
+              "optin_email": false,
+              "email": null,
+              "subscribed": "2025-10-02T01:51:01-05:00",
+              "last_interaction": null,
+              "ig_last_interaction": null,
+              "last_seen": null,
+              "ig_last_seen": null,
+              "is_followup_enabled": true,
+              "ig_username": null,
+              "ig_id": null,
+              "whatsapp_phone": "+573166620443",
+              "optin_whatsapp": true,
+              "phone_country_code": null,
+              "last_growth_tool": null,
+              "custom_fields": {
+                "NombrecompletoUSER": null,
+                "URLfoto": "https://chat.whatsapp.com/IkFBnjtynRsF7ouzUbkXJk",
+                "ImagenDINAMICA": null,
+                "PROBABILIDAD-ENC": null,
+                "PUNTAJE-ACCIONES": null,
+                "CLICS-POSITIVOS": 1,
+                "FUENTE": null,
+                "RESPUESTA IA": null,
+                "CONTEO-GENERAL": null,
+                "PROPOSITO": null,
+                "numero_wha": null
+              }
+            }
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/mensaje-manychat-gersson",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-11-02T19:20:49.000Z",
+  "versionId": "da12d9df-ed90-4bfd-972b-d0f2b9d97a15"
+}
