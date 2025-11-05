@@ -60,7 +60,18 @@
       "main": [
         [
           {
-            "node": "Google Sheets",
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
             "type": "main",
             "index": 0
           }
@@ -76,70 +87,6 @@
   },
   "name": "[BACKEND] EXTRACTOR CODIGOS JSD",
   "nodes": [
-    {
-      "parameters": {
-        "operation": "append",
-        "documentId": {
-          "__rl": true,
-          "value": "1LWr9XZ0mr7C5SSvHU7K7tfMddMpSIT72-o-RKs4ygRs",
-          "mode": "list",
-          "cachedResultName": "CODIGOS JSD HOTMART",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LWr9XZ0mr7C5SSvHU7K7tfMddMpSIT72-o-RKs4ygRs/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "Hoja 1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LWr9XZ0mr7C5SSvHU7K7tfMddMpSIT72-o-RKs4ygRs/edit#gid=0"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "TIMESTAMP": "={{$now.toMillis()}}",
-            "CODIGO": "={{$json.snippet.match(/Tu código de verificación es: (\\d+)/)[1]}}"
-          },
-          "matchingColumns": [],
-          "schema": [
-            {
-              "id": "TIMESTAMP",
-              "displayName": "TIMESTAMP",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "CODIGO",
-              "displayName": "CODIGO",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        112,
-        -64
-      ],
-      "id": "de3e0a21-f5b3-449a-a7c3-3a038422b51a",
-      "name": "Google Sheets",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "CUENTA SANTIAGO"
-        }
-      }
-    },
     {
       "parameters": {
         "path": "codigos-jsd",
@@ -279,9 +226,124 @@
           "name": "GMAIL JSD COMPANY"
         }
       }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8000cd3c-2c77-4f78-b5a6-d015f4242ed4",
+              "leftValue": "={{ $json.snippet }}",
+              "rightValue": "código",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        112,
+        -64
+      ],
+      "id": "2663a113-bfb7-422f-a5e5-280b4114975a",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1LWr9XZ0mr7C5SSvHU7K7tfMddMpSIT72-o-RKs4ygRs",
+          "mode": "list",
+          "cachedResultName": "CODIGOS JSD HOTMART",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LWr9XZ0mr7C5SSvHU7K7tfMddMpSIT72-o-RKs4ygRs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LWr9XZ0mr7C5SSvHU7K7tfMddMpSIT72-o-RKs4ygRs/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "TIMESTAMP": "={{$now.toMillis()}}",
+            "CODIGO": "={{$json.snippet && ($json.snippet.match(/\\b(\\d{6})\\b/) || [])[1] || ''}}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "TIMESTAMP",
+              "displayName": "TIMESTAMP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CODIGO",
+              "displayName": "CODIGO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        336,
+        -64
+      ],
+      "id": "de3e0a21-f5b3-449a-a7c3-3a038422b51a",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Schedule Trigger": [
+      {
+        "json": {
+          "timestamp": "2025-11-04T14:57:22.002-05:00",
+          "Readable date": "November 4th 2025, 2:57:22 pm",
+          "Readable time": "2:57:22 pm",
+          "Day of week": "Tuesday",
+          "Year": "2025",
+          "Month": "November",
+          "Day of month": "04",
+          "Hour": "14",
+          "Minute": "57",
+          "Second": "22",
+          "Timezone": "America/Bogota (UTC-05:00)"
+        }
+      }
+    ]
+  },
   "repo_name": "backupn8n",
   "repo_owner": "Santiagociroc11",
   "repo_path": "backup/",
@@ -303,6 +365,6 @@
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-08-19T16:26:03.000Z",
-  "versionId": "84b8d9ab-9d52-44d4-bccb-d74af39325c7"
+  "updatedAt": "2025-11-04T20:00:18.000Z",
+  "versionId": "ef140396-ee65-4757-98f7-b6f83fc7bc74"
 }
