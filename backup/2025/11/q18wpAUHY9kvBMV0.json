@@ -1,0 +1,275 @@
+{
+  "active": true,
+  "connections": {
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-10T17:21:11.991Z",
+  "id": "q18wpAUHY9kvBMV0",
+  "isArchived": false,
+  "meta": null,
+  "name": "WH [ADFINDER]",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.smtp2go.com/v3/email/send",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Smtp2go-Api-Key",
+              "value": "api-0DC80E8295FD4AB097C4F3BB2B65FC10"
+            },
+            {
+              "name": "accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"sender\": \"soporte@adfinder.pro\",\n  \"to\": [\n    \"jerwinabril@gmail.com\"\n  ],\n  \"subject\": \"Te damos la Bienvenida a ADFINDER PRO\",\n  \"html_body\": {{ $json.html.toJsonString() }}\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        256,
+        176
+      ],
+      "id": "daed1c81-aa5c-4acb-aa13-f63b856f5d2a",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "295bb2d8-8308-4abd-bd15-03dcee714f6a",
+              "name": "html",
+              "value": "=<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n  <title>Bienvenido a AdFinder Pro</title>\n  <style>\n    body {\n      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n      background-color: #f6f9fc;\n      color: #333;\n      margin: 0;\n      padding: 0;\n    }\n    .container {\n      max-width: 600px;\n      margin: 40px auto;\n      background: #fff;\n      border-radius: 12px;\n      box-shadow: 0 4px 20px rgba(0,0,0,0.05);\n      overflow: hidden;\n    }\n    .header {\n      background-color: #0078ff;\n      color: #fff;\n      text-align: center;\n      padding: 30px 20px;\n    }\n    .header h1 {\n      margin: 0;\n      font-size: 28px;\n    }\n    .content {\n      padding: 30px 40px;\n      text-align: center;\n    }\n    .content p {\n      font-size: 16px;\n      line-height: 1.6;\n    }\n    .credentials {\n      background: #f0f4ff;\n      border-radius: 8px;\n      padding: 15px;\n      margin: 25px 0;\n      text-align: left;\n    }\n    .credentials p {\n      margin: 8px 0;\n      font-weight: 500;\n    }\n    .button {\n      display: inline-block;\n      background-color: #0078ff;\n      color: #fff;\n      padding: 12px 24px;\n      border-radius: 6px;\n      text-decoration: none;\n      font-weight: 600;\n      transition: background 0.3s;\n    }\n    .button:hover {\n      background-color: #005fcc;\n    }\n    .footer {\n      background: #f2f2f2;\n      padding: 15px;\n      text-align: center;\n      font-size: 13px;\n      color: #777;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"header\">\n      <h1>¡Bienvenido a AdFinder Pro!</h1>\n    </div>\n    <div class=\"content\">\n      <p>Hola <strong>{NOMBRE_USUARIO}</strong>,</p>\n      <p>Nos alegra darte la bienvenida a <strong>AdFinder Pro</strong>, tu nueva herramienta profesional para optimizar y analizar campañas publicitarias.</p>\n\n      <div class=\"credentials\">\n        <p><strong>Usuario:</strong> {USUARIO}</p>\n        <p><strong>Contraseña:</strong> {CONTRASEÑA}</p>\n      </div>\n\n      <p>Puedes acceder a la plataforma haciendo clic en el siguiente botón:</p>\n      <a href=\"https://adfinder.pro/login\" class=\"button\">Ingresar a AdFinder Pro</a>\n\n      <p style=\"margin-top: 25px;\">Por seguridad, te recomendamos cambiar tu contraseña después del primer inicio de sesión.</p>\n    </div>\n    <div class=\"footer\">\n      © 2025 AdFinder Pro. Todos los derechos reservados.\n    </div>\n  </div>\n</body>\n</html>",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        64,
+        176
+      ],
+      "id": "9f78467b-5cab-4044-a07a-eb0820e28e7d",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "adfinder-compra",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -256,
+        128
+      ],
+      "id": "2443d985-2aca-42a8-85dd-b674b3fe6762",
+      "name": "Webhook",
+      "webhookId": "fe6d1977-f401-4a9f-b356-9cc1c72bb984"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Jodd HTTP",
+            "content-length": "2206",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "34.228.219.184",
+            "cf-ipcountry": "US",
+            "cf-ray": "99c755250878c5a5-IAD",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "content-type": "application/json",
+            "x-forwarded-for": "34.228.219.184, 172.70.174.107",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3393e017d3a9",
+            "x-hotmart-hottok": "SjG8cwfUwz5UAdrxcqJWfNB7I4sFdZ79117206",
+            "x-real-ip": "172.70.174.107"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "data": {
+              "product": {
+                "support_email": "support@hotmart.com.br",
+                "has_co_production": false,
+                "name": "Produto test postback2",
+                "warranty_date": "2017-12-27T00:00:00Z",
+                "is_physical_product": false,
+                "id": 0,
+                "ucode": "fb056612-bcc6-4217-9e6d-2a5d1110ac2f",
+                "content": {
+                  "has_physical_products": true,
+                  "products": [
+                    {
+                      "name": "How to Make Clear Ice",
+                      "is_physical_product": false,
+                      "id": 4774438,
+                      "ucode": "559fef42-3406-4d82-b775-d09bd33936b1"
+                    },
+                    {
+                      "name": "Organizador de Poeira",
+                      "is_physical_product": true,
+                      "id": 4999597,
+                      "ucode": "099e7644-b7d1-43d6-82a9-ec6be0118a4b"
+                    }
+                  ]
+                }
+              },
+              "commissions": [
+                {
+                  "currency_value": "BRL",
+                  "source": "MARKETPLACE",
+                  "value": 149.5
+                },
+                {
+                  "currency_value": "BRL",
+                  "source": "PRODUCER",
+                  "value": 1350.5
+                }
+              ],
+              "purchase": {
+                "original_offer_price": {
+                  "currency_value": "BRL",
+                  "value": 1500
+                },
+                "checkout_country": {
+                  "iso": "BR",
+                  "name": "Brasil"
+                },
+                "sckPaymentLink": "sckPaymentLinkTest",
+                "order_bump": {
+                  "parent_purchase_transaction": "HP02316330308193",
+                  "is_order_bump": true
+                },
+                "approved_date": 1511783346000,
+                "offer": {
+                  "code": "test",
+                  "coupon_code": "SHHUHA"
+                },
+                "is_funnel": false,
+                "event_tickets": {
+                  "amount": 1762796400050
+                },
+                "order_date": 1511783344000,
+                "price": {
+                  "currency_value": "BRL",
+                  "value": 1500
+                },
+                "buyer_ip": "00.00.00.00",
+                "payment": {
+                  "installments_number": 12,
+                  "type": "CREDIT_CARD"
+                },
+                "full_price": {
+                  "currency_value": "BRL",
+                  "value": 1500
+                },
+                "business_model": "I",
+                "transaction": "HP16015479281022",
+                "status": "APPROVED"
+              },
+              "affiliates": [
+                {
+                  "affiliate_code": "Q58388177J",
+                  "name": "Affiliate name"
+                }
+              ],
+              "producer": {
+                "legal_nature": "Pessoa Física",
+                "document": "12345678965",
+                "name": "Producer Test Name"
+              },
+              "subscription": {
+                "subscriber": {
+                  "code": "I9OT62C3"
+                },
+                "plan": {
+                  "name": "plano de teste",
+                  "id": 123
+                },
+                "status": "ACTIVE"
+              },
+              "buyer": {
+                "checkout_phone_code": "999999999",
+                "address": {
+                  "zipcode": "38400123",
+                  "country": "Brasil",
+                  "number": "10",
+                  "address": "Avenida Francisco Galassi",
+                  "city": "Uberlândia",
+                  "state": "Minas Gerais",
+                  "neighborhood": "Tubalina",
+                  "complement": "Perto do shopping",
+                  "country_iso": "BR"
+                },
+                "document": "69526128664",
+                "name": "Teste Comprador",
+                "last_name": "Comprador",
+                "checkout_phone": "99999999900",
+                "first_name": "Teste",
+                "email": "testeComprador271101postman15@example.com",
+                "document_type": "CPF"
+              }
+            },
+            "id": "c470e10c-4094-4a97-b769-f6bdcffd5e83",
+            "creation_date": 1762796400058,
+            "event": "PURCHASE_APPROVED",
+            "version": "2.0.0"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/adfinder-compra",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-11-10T17:45:13.000Z",
+  "versionId": "0685081a-7322-4416-8b9f-9aa08689f218"
+}
