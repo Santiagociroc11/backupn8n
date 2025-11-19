@@ -1,0 +1,305 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "CACLULAR CODIGO",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "CODIGOS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "COINCIDE?": {
+      "main": [
+        [
+          {
+            "node": "OK",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "FALSE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CODIGOS": {
+      "main": [
+        [
+          {
+            "node": "COINCIDE?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CACLULAR CODIGO": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-18T07:34:17.410Z",
+  "id": "vKksoMuWDRuqAz7D",
+  "isArchived": false,
+  "meta": null,
+  "name": "CODIGOS MAGIS",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "boomtv-code",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -960,
+        16
+      ],
+      "id": "aa2bf45f-729d-46ac-baf1-2f124233e60d",
+      "name": "Webhook",
+      "webhookId": "90e33932-d8db-46dc-abe5-be565309d727"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -512,
+        0
+      ],
+      "id": "ee5785b4-b722-40b1-892f-4fcd5334436f",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "ACEPTADO",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        160,
+        -96
+      ],
+      "id": "23ba452b-8e14-4ba1-b27c-7f83c652dfc0",
+      "name": "OK"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "RECHAZADO",
+        "options": {
+          "responseCode": 500
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        160,
+        96
+      ],
+      "id": "c3abe2c1-e01d-45db-ba94-2d2e818c12a5",
+      "name": "FALSE"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "29008e6c-e3c0-41da-a812-d8d30f5f478e",
+              "leftValue": "={{ $json.codigoapp }}",
+              "rightValue": "={{ $json.codigodia }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -64,
+        0
+      ],
+      "id": "c442c611-85c6-4bee-8994-cfaef4350be7",
+      "name": "COINCIDE?"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2853bb8f-0565-4da7-b51c-c4a749e7539d",
+              "name": "codigoapp",
+              "value": "={{ $json.body.code }}",
+              "type": "string"
+            },
+            {
+              "id": "d1d0d38c-4156-413c-a386-6ae1cc498bbb",
+              "name": "codigodia",
+              "value": "={{ $json.generated_code }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -288,
+        0
+      ],
+      "id": "64286f60-5d1a-4491-b904-ff69639e14db",
+      "name": "CODIGOS"
+    },
+    {
+      "parameters": {
+        "jsCode": "const crypto = require('crypto');\n\n// 1. TU LLAVE MAESTRA (Debe ser idéntica en la App)\nconst sharedSecret = \"AUTOMSCC_SECRET_KEY_2025\";\n\n// 2. OBTENER LA FECHA ACTUAL (Formato YYYY-MM-DD)\n// IMPORTANTE: Usar UTC para evitar problemas de zona horaria entre servidor y cliente\nconst date = new Date().toISOString().split('T')[0]; \n\n// 3. GENERAR HASH (HMAC SHA256)\nconst hmac = crypto.createHmac('sha256', sharedSecret);\nhmac.update(date);\nconst hashHex = hmac.digest('hex');\n\n// 4. CONVERTIR A NÚMERO DE 6 DÍGITOS\n// Tomamos los últimos 8 caracteres del hash hexadecimal y los convertimos a número\nconst hashInt = parseInt(hashHex.substring(hashHex.length - 8), 16);\nconst code = (hashInt % 1000000).toString().padStart(6, '0');\n\nreturn {\n  json: {\n    generated_code: code,\n    date_used: date\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -736,
+        -80
+      ],
+      "id": "732c0533-5103-46d9-af25-8ded39d103b8",
+      "name": "CACLULAR CODIGO"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Dalvik/2.1.0 (Linux; U; Android 14; TECNO CK7n Build/UP1A.231005.007)",
+            "content-length": "17",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "181.235.103.43",
+            "cf-ipcountry": "CO",
+            "cf-ray": "9a09056718f2e74a-MIA",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "content-type": "application/json",
+            "x-forwarded-for": "181.235.103.43, 104.23.248.187",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3a6a6ec7bbe4",
+            "x-real-ip": "104.23.248.187"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "code": "254199"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/boomtv-code",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "OK": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Dalvik/2.1.0 (Linux; U; Android 14; TECNO CK7n Build/UP1A.231005.007)",
+            "content-length": "16",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "181.235.103.43",
+            "cf-ipcountry": "CO",
+            "cf-ray": "9a08f1fdb80eda6f-MIA",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "content-type": "application/json",
+            "x-forwarded-for": "181.235.103.43, 172.70.54.183",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3a6a6ec7bbe4",
+            "x-real-ip": "172.70.54.183"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "code": "12345"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/boomtv-code",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-18T07:34:17.416Z",
+      "createdAt": "2025-11-18T07:34:17.416Z",
+      "role": "workflow:owner",
+      "workflowId": "vKksoMuWDRuqAz7D",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-11-18T19:15:58.000Z",
+  "versionId": "ceaecb49-bd33-4a14-8e5f-c7d0d84d8be5"
+}
