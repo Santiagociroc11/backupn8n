@@ -67,6 +67,28 @@
           }
         ]
       ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "CACLULAR CODIGO1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CACLULAR CODIGO1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-11-18T07:34:17.410Z",
@@ -216,6 +238,48 @@
       ],
       "id": "732c0533-5103-46d9-af25-8ded39d103b8",
       "name": "CACLULAR CODIGO"
+    },
+    {
+      "parameters": {
+        "path": "codigo-magis",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -960,
+        -304
+      ],
+      "id": "36acbc1f-d5f9-4678-8f9a-fb7b8bc02513",
+      "name": "Webhook1",
+      "webhookId": "ee476e5a-1e2a-4b20-8b5e-835ef4afc981"
+    },
+    {
+      "parameters": {
+        "jsCode": "const crypto = require('crypto');\n\n// 1. TU LLAVE MAESTRA (Debe ser idéntica en la App)\nconst sharedSecret = \"AUTOMSCC_SECRET_KEY_2025\";\n\n// 2. OBTENER LA FECHA ACTUAL (Formato YYYY-MM-DD)\n// IMPORTANTE: Usar UTC para evitar problemas de zona horaria entre servidor y cliente\nconst date = new Date().toISOString().split('T')[0]; \n\n// 3. GENERAR HASH (HMAC SHA256)\nconst hmac = crypto.createHmac('sha256', sharedSecret);\nhmac.update(date);\nconst hashHex = hmac.digest('hex');\n\n// 4. CONVERTIR A NÚMERO DE 6 DÍGITOS\n// Tomamos los últimos 8 caracteres del hash hexadecimal y los convertimos a número\nconst hashInt = parseInt(hashHex.substring(hashHex.length - 8), 16);\nconst code = (hashInt % 1000000).toString().padStart(6, '0');\n\nreturn {\n  json: {\n    code: code,\n    fecha: date\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -752,
+        -304
+      ],
+      "id": "b2dc84cc-d657-4175-bf9b-4297d9978278",
+      "name": "CACLULAR CODIGO1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -544,
+        -304
+      ],
+      "id": "415da5b5-bc6a-4eff-ac98-94833cb2c125",
+      "name": "Respond to Webhook"
     }
   ],
   "pinData": {
@@ -299,7 +363,7 @@
   ],
   "staticData": null,
   "tags": [],
-  "triggerCount": 1,
-  "updatedAt": "2025-11-18T19:15:58.000Z",
-  "versionId": "ceaecb49-bd33-4a14-8e5f-c7d0d84d8be5"
+  "triggerCount": 2,
+  "updatedAt": "2025-11-19T18:52:52.000Z",
+  "versionId": "84ba5fbd-5f39-434f-bff9-96e4b3c5a570"
 }
