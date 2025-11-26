@@ -1,0 +1,79 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Facebook Graph API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-26T04:53:24.060Z",
+  "id": "w0HBZXY65rS1ws2Y",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 61",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -416,
+        -80
+      ],
+      "id": "342780d8-8df1-42e7-b445-8f065577f97b",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "node": "920794701112961",
+        "edge": "deregister",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        -208,
+        -80
+      ],
+      "id": "ada27e28-07bf-4d32-a7a3-795343751f26",
+      "name": "Facebook Graph API",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "rgvRld1yFYhN8QCU",
+          "name": "BOTS MOLDES"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-26T04:53:24.063Z",
+      "createdAt": "2025-11-26T04:53:24.063Z",
+      "role": "workflow:owner",
+      "workflowId": "w0HBZXY65rS1ws2Y",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-26T04:53:24.060Z",
+  "versionId": "fecfe8aa-ca0c-459d-8157-9e300129cd80"
+}
