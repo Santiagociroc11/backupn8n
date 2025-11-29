@@ -362,6 +362,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "OB3 FOTO",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     }
@@ -2004,6 +2011,31 @@
               },
               "renameOutput": true,
               "outputKey": "OB1"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f8de0013-7798-4383-927e-7ac828ad6400",
+                    "leftValue": "={{ $json.body.data.product.id }}",
+                    "rightValue": "6719748",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "OB3"
             }
           ]
         },
@@ -2073,6 +2105,33 @@
       ],
       "id": "fa39db73-1dc5-46bd-96b1-fe484c4056b0",
       "name": "OB FOTO1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://cursos.automscc.com/api/hotmart/process-purchase",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer hotmart"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"email\": \"{{ $json.body.data.buyer.email }}\",\n  \"full_name\": \"{{ $json.body.data.buyer.name }}\",\n  \"phone\": \"{{ $json.body.data.buyer.checkout_phone }}\",\n  \"course_id\": \"7b31dc9d-e84b-4c51-8601-bb33b116e6f3\",\n  \"transaction_id\": \"{{ $json.body.data.purchase.transaction }}\"\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1120,
+        5744
+      ],
+      "id": "47dc686e-70e6-457d-b19d-e647116bf63a",
+      "name": "OB3 FOTO"
     }
   ],
   "pinData": {
@@ -2227,6 +2286,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-27T05:12:22.000Z",
-  "versionId": "d0225ad8-29dd-40e0-8319-cd8310e386bd"
+  "updatedAt": "2025-11-28T20:48:37.000Z",
+  "versionId": "20d70992-196e-455a-9bf1-f4cf93bbcf24"
 }
