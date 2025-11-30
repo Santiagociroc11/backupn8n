@@ -358,14 +358,21 @@
         ],
         [
           {
-            "node": "OB FOTO1",
+            "node": "OB1 FOTO1",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "OB3 FOTO",
+            "node": "OB2 FOTO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "OB3 FOTO1",
             "type": "main",
             "index": 0
           }
@@ -2035,6 +2042,31 @@
                 "combinator": "and"
               },
               "renameOutput": true,
+              "outputKey": "OB2"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6fe5a14a-c126-48e7-9116-48a44f912202",
+                    "leftValue": "={{ $json.body.data.product.id }}",
+                    "rightValue": "6733560",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
               "outputKey": "OB3"
             }
           ]
@@ -2094,6 +2126,33 @@
         },
         "sendBody": true,
         "specifyBody": "json",
+        "jsonBody": "={\n  \"email\": \"{{ $json.body.data.buyer.email }}\",\n  \"full_name\": \"{{ $json.body.data.buyer.name }}\",\n  \"phone\": \"{{ $json.body.data.buyer.checkout_phone }}\",\n  \"course_id\": \"6c1ee089-3ff3-4aa0-9fdf-e3eea51b25cf\",\n  \"transaction_id\": \"{{ $json.body.data.purchase.transaction }}\"\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1120,
+        5952
+      ],
+      "id": "1ed4e9fb-dbfb-4249-b815-2efe510d7eaf",
+      "name": "OB3 FOTO1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://cursos.automscc.com/api/hotmart/process-purchase",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer hotmart"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
         "jsonBody": "={\n  \"email\": \"{{ $json.body.data.buyer.email }}\",\n  \"full_name\": \"{{ $json.body.data.buyer.name }}\",\n  \"phone\": \"{{ $json.body.data.buyer.checkout_phone }}\",\n  \"course_id\": \"abd69b10-f5f8-458f-ad6e-a0fbf79032e7\",\n  \"transaction_id\": \"{{ $json.body.data.purchase.transaction }}\"\n} ",
         "options": {}
       },
@@ -2104,7 +2163,7 @@
         5568
       ],
       "id": "fa39db73-1dc5-46bd-96b1-fe484c4056b0",
-      "name": "OB FOTO1"
+      "name": "OB1 FOTO1"
     },
     {
       "parameters": {
@@ -2131,7 +2190,7 @@
         5744
       ],
       "id": "47dc686e-70e6-457d-b19d-e647116bf63a",
-      "name": "OB3 FOTO"
+      "name": "OB2 FOTO"
     }
   ],
   "pinData": {
@@ -2286,6 +2345,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-11-28T20:48:37.000Z",
-  "versionId": "20d70992-196e-455a-9bf1-f4cf93bbcf24"
+  "updatedAt": "2025-11-29T22:02:29.000Z",
+  "versionId": "ac64c23a-0473-4ce9-93ae-c736c5f5b2a6"
 }
