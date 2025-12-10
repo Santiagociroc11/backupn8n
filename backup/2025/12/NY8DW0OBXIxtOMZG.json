@@ -1,0 +1,270 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-12-09T18:44:58.035Z",
+  "id": "NY8DW0OBXIxtOMZG",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 62",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -608,
+        -16
+      ],
+      "id": "348fed64-c1ee-4cef-bf9e-cceabf95409c",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1h4-PMa1Y2i7Sx9EmnWErb1ErAt0OdJyc0qxe49MoZcI",
+          "mode": "list",
+          "cachedResultName": "movimientos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1h4-PMa1Y2i7Sx9EmnWErb1ErAt0OdJyc0qxe49MoZcI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1h4-PMa1Y2i7Sx9EmnWErb1ErAt0OdJyc0qxe49MoZcI/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -400,
+        -16
+      ],
+      "id": "3852d7c6-eaf8-4dd5-a370-551917252160",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.snippet }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "transaction_type",
+              "description": "=sigue estas instrucciones:\n\n\"if (email.includes(\"Transferiste\")) {\n  transactionType = \"transferencia\";\n  description = `Transferencia desde ${cuentaOrigen} a ${cuentaDestino}`;\n} else if (email.includes(\"Compraste\")) {\n  transactionType = \"compra con tarjeta\";\n  description = `Compra en ${empresa} con tarjeta ${cuentaOrigen}`;\n} else if (email.includes(\"Pagaste\")) {\n  transactionType = \"pago por pse\";\n  description = `Pago por PSE a ${bancoDestino} desde ${cuentaOrigen}`;\n} else if (email.includes(\"Factura Programada\")) {\n  transactionType = \"pago programado\";\n  description = `Pago programado de ${factura} desde ${cuentaOrigen}`;\n}\"\n\npara determinar el tipo de transaccion",
+              "required": true
+            },
+            {
+              "name": "amount",
+              "type": "number",
+              "description": "el monto de la transaccion en formato plano, ejemplo: 15700",
+              "required": true
+            },
+            {
+              "name": "description",
+              "description": "descripcion de la transacción quitando cualquier caracter especial como asteriscos o cualquier otro",
+              "required": true
+            },
+            {
+              "name": "transaction_date",
+              "description": "=fecha en este formato: \"2025-03-22 13:25:00-05\"",
+              "required": true
+            },
+            {
+              "name": "type",
+              "description": "especificar en \"gasto\"",
+              "required": true
+            },
+            {
+              "name": "banco",
+              "description": "que banco reporta en minuscula",
+              "required": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1,
+      "position": [
+        64,
+        80
+      ],
+      "id": "1119782f-9b91-4b61-9c55-0d2843a63cfc",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -96,
+        144
+      ],
+      "id": "2dce0ba9-d90a-4d6d-a523-244b8f9c936e",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "nZ98FVO8dD6bJnEc",
+          "name": "GPT SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -192,
+        -16
+      ],
+      "id": "dff1d0fb-605a-4dab-9f68-c2d3eff6ac5d",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1h4-PMa1Y2i7Sx9EmnWErb1ErAt0OdJyc0qxe49MoZcI",
+          "mode": "list",
+          "cachedResultName": "movimientos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1h4-PMa1Y2i7Sx9EmnWErb1ErAt0OdJyc0qxe49MoZcI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 95482259,
+          "mode": "list",
+          "cachedResultName": "Hoja 2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1h4-PMa1Y2i7Sx9EmnWErb1ErAt0OdJyc0qxe49MoZcI/edit#gid=95482259"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        96,
+        -112
+      ],
+      "id": "86df8120-02da-456a-a37c-48bc214013eb",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-12-09T18:44:58.038Z",
+      "createdAt": "2025-12-09T18:44:58.038Z",
+      "role": "workflow:owner",
+      "workflowId": "NY8DW0OBXIxtOMZG",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-12-09T19:48:35.000Z",
+  "versionId": "7b74fd96-7fe4-49ee-aa0b-7a8180e57cc3"
+}
