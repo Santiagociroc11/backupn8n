@@ -5,12 +5,12 @@
       "main": [
         [
           {
-            "node": "Edit Fields",
+            "node": "Edit Fields2",
             "type": "main",
             "index": 0
           },
           {
-            "node": "Edit Fields2",
+            "node": "Edit Fields",
             "type": "main",
             "index": 0
           }
@@ -21,7 +21,7 @@
       "main": [
         [
           {
-            "node": "CONSULTAR MONGO",
+            "node": "Find documents",
             "type": "main",
             "index": 0
           },
@@ -48,7 +48,7 @@
       "main": [
         [
           {
-            "node": "INSERTAR EN MONGO",
+            "node": "Insert documents",
             "type": "main",
             "index": 0
           }
@@ -88,33 +88,11 @@
         ]
       ]
     },
-    "INSERTAR EN MONGO": {
+    "EXISTE FLODESK?1": {
       "main": [
         [
           {
-            "node": "BUSQUEDA EN FLODESK",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "CONSULTAR MONGO": {
-      "main": [
-        [
-          {
-            "node": "If",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If3": {
-      "main": [
-        [
-          {
-            "node": "ESCRITURA",
+            "node": "INSERTA FLODESK1",
             "type": "main",
             "index": 0
           }
@@ -132,7 +110,29 @@
       "main": [
         [
           {
-            "node": "If3",
+            "node": "EXISTE FLODESK?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find documents": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert documents": {
+      "main": [
+        [
+          {
+            "node": "BUSQUEDA EN FLODESK",
             "type": "main",
             "index": 0
           }
@@ -144,7 +144,7 @@
   "id": "yLpXd833Fy6yYWRq",
   "isArchived": false,
   "meta": null,
-  "name": "🟢 [GERSSON-L9] LISTA DE ESPERA",
+  "name": "🟢 [GERSSON-L10] LISTA DE ESPERA",
   "nodes": [
     {
       "parameters": {
@@ -174,7 +174,7 @@
         -336,
         -512
       ],
-      "id": "99204156-ca60-47d8-9fb0-7c5aef49dabc",
+      "id": "29436066-f5a4-426f-8c42-866c292caf5e",
       "name": "Edit Fields"
     },
     {
@@ -202,7 +202,7 @@
         },
         "options": {}
       },
-      "id": "6297f203-b365-4f70-8eb5-a28894c63e14",
+      "id": "c1ee4028-c479-48de-8add-99bbfd6c98ef",
       "name": "If",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
@@ -215,12 +215,12 @@
       "parameters": {
         "mode": "chooseBranch"
       },
-      "id": "a3a64812-0f78-4f99-92f9-c528a0aa6163",
+      "id": "b10fc5eb-14c8-42ad-9c71-c895a21d44ca",
       "name": "Merge",
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        320,
+        336,
         -608
       ]
     },
@@ -231,7 +231,7 @@
             {
               "id": "8a258913-16e5-4c77-bc40-13e5d18f740f",
               "name": "ip",
-              "value": "={{ $json.headers['x-real-ip'] }}",
+              "value": "={{ $json.headers[\"cf-connecting-ip\"] }}",
               "type": "string"
             }
           ]
@@ -242,9 +242,9 @@
       "typeVersion": 3.4,
       "position": [
         -336,
-        -784
+        -768
       ],
-      "id": "125f9d7e-cfc7-4a57-96e5-6b3cdd300691",
+      "id": "7431b805-83fd-468c-a7c5-77e757006851",
       "name": "Edit Fields2"
     },
     {
@@ -253,7 +253,7 @@
         "combineBy": "combineAll",
         "options": {}
       },
-      "id": "2f329f2b-45d0-4306-b5ee-8fb5ee4d1579",
+      "id": "5382feaf-02ab-4bd3-9f15-e2f568c0314c",
       "name": "Merge2",
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
@@ -270,10 +270,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -128,
-        -784
+        -112,
+        -768
       ],
-      "id": "3c815ca4-f9fa-494c-925f-d21f86241aef",
+      "id": "22adbb83-471d-40d3-a0d3-084278b78d8f",
       "name": "HTTP Request",
       "retryOnFail": true,
       "maxTries": 5,
@@ -281,51 +281,42 @@
     },
     {
       "parameters": {
-        "operation": "insert",
-        "collection": "espera-l9",
-        "fields": "=query,country,city,zip,regionName,timezone,email,whatsapp,utmCampaign,utmSource,utmMedium,utmContent,utmTerm,userAgent,platform,language,tiemporegistro,fbc,fbp,isFbcGenerated",
+        "method": "POST",
+        "url": "https://api.flodesk.com/v1/subscribers",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "n8n"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"email\": \"{{ $('Insert documents').item.json.email }}\",\n    \"segment_ids\": [\n       \"692e89839bffe297da38ea1a\"\n    ]\n}",
         "options": {}
       },
-      "id": "a0a11184-2874-4097-a44b-3d6a4e4a4974",
-      "name": "INSERTAR EN MONGO",
-      "type": "n8n-nodes-base.mongoDb",
-      "typeVersion": 1.1,
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
       "position": [
-        544,
-        -608
+        1232,
+        -704
       ],
-      "credentials": {
-        "mongoDb": {
-          "id": "vbsT0SoMA5A3acgH",
-          "name": "BASE DE DATOS GERSSON"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "collection": "=espera-l9",
-        "options": {
-          "limit": 1
-        },
-        "query": "={\"whatsapp\": \"{{ $json.whatsapp }}\", \"email\": \"{{$json.email}}\"}"
-      },
-      "id": "99aa3c7f-73ea-4eb8-aedb-ed5c50630f2a",
-      "name": "CONSULTAR MONGO",
-      "type": "n8n-nodes-base.mongoDb",
-      "typeVersion": 1.1,
-      "position": [
-        -128,
-        -416
-      ],
-      "alwaysOutputData": true,
+      "id": "7e1e4ef2-61ca-4f38-bb19-c6dfb2a4fbc0",
+      "name": "INSERTA FLODESK1",
       "retryOnFail": true,
+      "maxTries": 5,
       "waitBetweenTries": 5000,
       "credentials": {
-        "mongoDb": {
-          "id": "vbsT0SoMA5A3acgH",
-          "name": "BASE DE DATOS GERSSON"
+        "httpHeaderAuth": {
+          "id": "JzZ2saBcDbEsbcOC",
+          "name": "API FLODESK N8N GERSSON"
         }
-      }
+      },
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -354,11 +345,11 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        992,
+        1008,
         -608
       ],
-      "id": "01998ad4-66ec-499b-9e3c-f5328876ceb1",
-      "name": "If3"
+      "id": "9c4f1b2c-2ac9-4eec-834d-81d99f850353",
+      "name": "EXISTE FLODESK?1"
     },
     {
       "parameters": {
@@ -379,51 +370,12 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        768,
+        784,
         -608
       ],
-      "id": "871ace1f-35f2-4a2a-bf10-c00335023d88",
+      "id": "32a4cf61-966d-4574-84e4-7fdb0e18c8bc",
       "name": "BUSQUEDA EN FLODESK",
       "retryOnFail": false,
-      "maxTries": 5,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "JzZ2saBcDbEsbcOC",
-          "name": "API FLODESK N8N GERSSON"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.flodesk.com/v1/subscribers",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "User-Agent",
-              "value": "n8n"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n    \"email\": \"{{ $('INSERTAR EN MONGO').item.json.email }}\",\n    \"segment_ids\": [\n       \"68d866d39cf8a243bf0f5e53\"\n    ]\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        1248,
-        -720
-      ],
-      "id": "4fad4077-b303-424b-9778-35038c294fc8",
-      "name": "ESCRITURA",
-      "retryOnFail": true,
       "maxTries": 5,
       "waitBetweenTries": 5000,
       "credentials": {
@@ -451,16 +403,16 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"segment_ids\": [\n       \"68d866d39cf8a243bf0f5e53\"\n    ]\n}",
+        "jsonBody": "={\n    \"segment_ids\": [\n       \"692e89839bffe297da38ea1a\"\n    ]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1248,
-        -544
+        1232,
+        -512
       ],
-      "id": "13efbf9b-f57c-43c4-80f5-0e25b009b1a7",
+      "id": "50180785-1fcc-4d36-ae96-1639dcb0c9d4",
       "name": "MOVER A SEGMENT",
       "retryOnFail": true,
       "maxTries": 5,
@@ -472,6 +424,54 @@
         }
       },
       "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "collection": "=L10-ESPERA",
+        "options": {
+          "limit": 1
+        },
+        "query": "={\"whatsapp\": \"{{ $json.whatsapp }}\", \"email\": \"{{$json.email}}\"}"
+      },
+      "id": "7c7f13c2-f8c7-4c85-9fd5-aafeb4aabdf1",
+      "name": "Find documents",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        -112,
+        -432
+      ],
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "mongoDb": {
+          "id": "vbsT0SoMA5A3acgH",
+          "name": "BASE DE DATOS GERSSON"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "collection": "L10-ESPERA",
+        "fields": "=query,country,city,zip,regionName,timezone,email,whatsapp,utmCampaign,utmSource,utmMedium,utmContent,utmTerm,adid,userAgent,platform,language,tiemporegistro,fbc,fbp,isFbcGenerated",
+        "options": {}
+      },
+      "id": "6c0badbf-027f-4774-b6d7-54f69fe5821e",
+      "name": "Insert documents",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        560,
+        -608
+      ],
+      "credentials": {
+        "mongoDb": {
+          "id": "vbsT0SoMA5A3acgH",
+          "name": "BASE DE DATOS GERSSON"
+        }
+      }
     }
   ],
   "pinData": {
@@ -527,19 +527,19 @@
     "Edit Fields": [
       {
         "json": {
-          "tiemporegistro": 1743981854,
-          "email": "frankgonzalezm21@gmail.com",
-          "whatsapp": "+573218504711",
+          "tiemporegistro": 1764657675,
+          "email": "santiagociiro12@gmail.com",
+          "whatsapp": "+573136298562",
           "utmCampaign": "-",
           "utmSource": "-",
           "utmMedium": "-",
           "utmContent": "-",
           "utmTerm": "-",
-          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
           "platform": "Win32",
-          "language": "es-ES",
-          "fbc": "fb.1.1742832669178.PAZXh0bgNhZW0CMTEAAaaGeK1p29AQ4t0mAkdeQHFU5iLFO219CRvY3xKQjf9pmxISVmpKzdoraPU_aem_QMINrS4bLoSRflbaAAgf7A",
-          "fbp": "fb.1.1725231972150.160652841744841634"
+          "language": "es-US",
+          "fbc": "-",
+          "fbp": "-"
         }
       }
     ],
@@ -554,37 +554,37 @@
           "status": "success",
           "country": "Colombia",
           "countryCode": "CO",
-          "region": "LAG",
-          "regionName": "La Guajira Department",
-          "city": "Riohacha",
-          "zip": "440001",
-          "lat": 11.5424,
-          "lon": -72.9019,
+          "region": "MAG",
+          "regionName": "Magdalena Department",
+          "city": "Santa Marta",
+          "zip": "470003",
+          "lat": 11.2399,
+          "lon": -74.1951,
           "timezone": "America/Bogota",
-          "isp": "Colombia Móvil",
-          "org": "Colombia Móvil",
-          "as": "AS27831 Colombia Móvil",
-          "query": "181.68.8.38",
-          "tiemporegistro": 1743981854,
-          "email": "frankgonzalezm21@gmail.com",
-          "whatsapp": "+573218504711",
+          "isp": "Colombia Telecomunicaciones S.a. ESP",
+          "org": "Colombia Telecomunicaciones S.a. ESP BIC",
+          "as": "AS3816 COLOMBIA TELECOMUNICACIONES S.A. ESP BIC",
+          "query": "186.169.123.113",
+          "tiemporegistro": 1764657675,
+          "email": "santiagociiro12@gmail.com",
+          "whatsapp": "+573136298562",
           "utmCampaign": "-",
           "utmSource": "-",
           "utmMedium": "-",
           "utmContent": "-",
           "utmTerm": "-",
-          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
           "platform": "Win32",
-          "language": "es-ES",
-          "fbc": "fb.1.1742832669178.PAZXh0bgNhZW0CMTEAAaaGeK1p29AQ4t0mAkdeQHFU5iLFO219CRvY3xKQjf9pmxISVmpKzdoraPU_aem_QMINrS4bLoSRflbaAAgf7A",
-          "fbp": "fb.1.1725231972150.160652841744841634"
+          "language": "es-US",
+          "fbc": "-",
+          "fbp": "-"
         }
       }
     ],
     "Edit Fields2": [
       {
         "json": {
-          "ip": "181.68.8.38"
+          "ip": "186.169.123.113"
         }
       }
     ],
@@ -594,30 +594,30 @@
           "status": "success",
           "country": "Colombia",
           "countryCode": "CO",
-          "region": "LAG",
-          "regionName": "La Guajira Department",
-          "city": "Riohacha",
-          "zip": "440001",
-          "lat": 11.5424,
-          "lon": -72.9019,
+          "region": "MAG",
+          "regionName": "Magdalena Department",
+          "city": "Santa Marta",
+          "zip": "470003",
+          "lat": 11.2399,
+          "lon": -74.1951,
           "timezone": "America/Bogota",
-          "isp": "Colombia Móvil",
-          "org": "Colombia Móvil",
-          "as": "AS27831 Colombia Móvil",
-          "query": "181.68.8.38",
-          "tiemporegistro": 1743981854,
-          "email": "frankgonzalezm21@gmail.com",
-          "whatsapp": "+573218504711",
+          "isp": "Colombia Telecomunicaciones S.a. ESP",
+          "org": "Colombia Telecomunicaciones S.a. ESP BIC",
+          "as": "AS3816 COLOMBIA TELECOMUNICACIONES S.A. ESP BIC",
+          "query": "186.169.123.113",
+          "tiemporegistro": 1764657675,
+          "email": "santiagociiro12@gmail.com",
+          "whatsapp": "+573136298562",
           "utmCampaign": "-",
           "utmSource": "-",
           "utmMedium": "-",
           "utmContent": "-",
           "utmTerm": "-",
-          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
           "platform": "Win32",
-          "language": "es-ES",
-          "fbc": "fb.1.1742832669178.PAZXh0bgNhZW0CMTEAAaaGeK1p29AQ4t0mAkdeQHFU5iLFO219CRvY3xKQjf9pmxISVmpKzdoraPU_aem_QMINrS4bLoSRflbaAAgf7A",
-          "fbp": "fb.1.1725231972150.160652841744841634"
+          "language": "es-US",
+          "fbc": "-",
+          "fbp": "-"
         }
       }
     ],
@@ -627,51 +627,52 @@
           "status": "success",
           "country": "Colombia",
           "countryCode": "CO",
-          "region": "LAG",
-          "regionName": "La Guajira Department",
-          "city": "Riohacha",
-          "zip": "440001",
-          "lat": 11.5424,
-          "lon": -72.9019,
+          "region": "MAG",
+          "regionName": "Magdalena Department",
+          "city": "Santa Marta",
+          "zip": "470003",
+          "lat": 11.2399,
+          "lon": -74.1951,
           "timezone": "America/Bogota",
-          "isp": "Colombia Móvil",
-          "org": "Colombia Móvil",
-          "as": "AS27831 Colombia Móvil",
-          "query": "181.68.8.38"
+          "isp": "Colombia Telecomunicaciones S.a. ESP",
+          "org": "Colombia Telecomunicaciones S.a. ESP BIC",
+          "as": "AS3816 COLOMBIA TELECOMUNICACIONES S.A. ESP BIC",
+          "query": "186.169.123.113"
         }
       }
     ],
-    "INSERTAR EN MONGO": [
+    "Find documents": [
+      {
+        "json": {}
+      }
+    ],
+    "Insert documents": [
       {
         "json": {
-          "query": "181.68.8.38",
+          "query": "186.169.123.113",
           "country": "Colombia",
-          "city": "Riohacha",
-          "zip": "440001",
-          "regionName": "La Guajira Department",
+          "city": "Santa Marta",
+          "zip": "470003",
+          "regionName": "Magdalena Department",
           "timezone": "America/Bogota",
-          "email": "frankgonzalezm21@gmail.com",
-          "whatsapp": "+573218504711",
+          "email": "santiagociiro12@gmail.com",
+          "whatsapp": "+573136298562",
           "utmCampaign": "-",
           "utmSource": "-",
           "utmMedium": "-",
           "utmContent": "-",
           "utmTerm": "-",
-          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+          "adid": null,
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
           "platform": "Win32",
-          "language": "es-ES",
-          "tiemporegistro": 1743981854,
-          "fbc": "fb.1.1742832669178.PAZXh0bgNhZW0CMTEAAaaGeK1p29AQ4t0mAkdeQHFU5iLFO219CRvY3xKQjf9pmxISVmpKzdoraPU_aem_QMINrS4bLoSRflbaAAgf7A",
-          "fbp": "fb.1.1725231972150.160652841744841634",
+          "language": "es-US",
+          "tiemporegistro": 1764657675,
+          "fbc": "-",
+          "fbp": "-",
           "isFbcGenerated": null,
-          "_id": "67f30d1cd6f959bfa249e610",
-          "id": "67f30d1cd6f959bfa249e610"
+          "_id": "692e8a0cdd290a785abb1456",
+          "id": "692e8a0cdd290a785abb1456"
         }
-      }
-    ],
-    "CONSULTAR MONGO": [
-      {
-        "json": {}
       }
     ]
   },
@@ -706,6 +707,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-09-27T22:38:26.000Z",
-  "versionId": "b2a810b9-2cba-403e-89c8-9a984683178e"
+  "updatedAt": "2025-12-09T17:33:02.000Z",
+  "versionId": "20e1048b-5c2c-4934-bf97-07d49a457d0d"
 }
