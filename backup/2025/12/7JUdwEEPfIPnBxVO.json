@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "REGISTRO": {
       "main": [
@@ -745,7 +745,7 @@
           "parameters": [
             {
               "name": "Authorization",
-              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+              "value": "Bearer 417343:0df1fbec4fde1bef06f40cdc3244cfb1"
             },
             {
               "name": "Content-Type",
@@ -765,8 +765,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1056,
-        -480
+        1040,
+        -784
       ],
       "id": "68198f87-06f9-431e-9e0a-e8d9f33e99dc",
       "name": "HTTP Request4",
@@ -784,8 +784,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        1456,
-        -384
+        1440,
+        -688
       ],
       "id": "60a851a1-e3aa-400b-b907-f21cd50ff7c7",
       "name": "Merge5"
@@ -807,8 +807,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1264,
-        -496
+        1248,
+        -800
       ],
       "id": "a98531f2-3352-4490-aceb-5e98535590ba",
       "name": "Edit Fields5"
@@ -924,8 +924,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1808,
-        -384
+        1792,
+        -688
       ],
       "id": "16b2b583-fb7f-46bd-9958-738c07e4a2bc",
       "name": "existe?"
@@ -958,8 +958,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        848,
-        -576
+        832,
+        -880
       ],
       "id": "b6d1d37e-5916-4b39-a249-4d6e322de1d8",
       "name": "existe en manychat?"
@@ -967,7 +967,7 @@
     {
       "parameters": {
         "operation": "findOneAndUpdate",
-        "collection": "TD-L9",
+        "collection": "L1-REG-PRINCIPAL",
         "updateKey": "_id",
         "fields": "=id_manychat",
         "options": {}
@@ -977,13 +977,13 @@
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1.1,
       "position": [
-        1632,
-        -384
+        1616,
+        -688
       ],
       "credentials": {
         "mongoDb": {
-          "id": "vbsT0SoMA5A3acgH",
-          "name": "BASE DE DATOS GERSSON"
+          "id": "j2YBNujqV7oGjDE8",
+          "name": "DB REISY"
         }
       }
     },
@@ -996,7 +996,7 @@
           "parameters": [
             {
               "name": "Authorization",
-              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+              "value": "Bearer 417343:0df1fbec4fde1bef06f40cdc3244cfb1"
             },
             {
               "name": "Content-Type",
@@ -1016,8 +1016,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2032,
-        -400
+        2016,
+        -704
       ],
       "id": "b4555d01-106a-473b-b012-16e6c556b37d",
       "name": "ENVIAR FLUJO BV",
@@ -1043,7 +1043,7 @@
           "parameters": [
             {
               "name": "Authorization",
-              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+              "value": "Bearer 417343:0df1fbec4fde1bef06f40cdc3244cfb1"
             },
             {
               "name": "Content-Type",
@@ -1060,8 +1060,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        624,
-        -560
+        608,
+        -864
       ],
       "id": "d8c2aff6-739c-4782-809b-b17ad51f5d4a",
       "name": "HTTP Request7",
@@ -1093,8 +1093,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1136,
-        -624
+        1120,
+        -928
       ],
       "id": "789081e7-c565-439b-97f7-b9c01e998786",
       "name": "Edit Fields8"
@@ -1163,14 +1163,14 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"email\": \"{{ $('Insert documents').item.json.email }}\",\n    \"segment_ids\": [\n       \"68d86ccd9ed7706dcb434459\"\n    ]\n}",
+        "jsonBody": "={\n    \"email\": \"{{ $('Insert documents').item.json.email }}\",\n    \"segment_ids\": [\n       \"69436015d5e596cb1f45b108\"\n    ]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1136,
-        -976
+        1088,
+        -576
       ],
       "id": "387a7ecb-172c-4014-a9be-69480ac25cca",
       "name": "INSERTA FLODESK1",
@@ -1179,8 +1179,8 @@
       "waitBetweenTries": 5000,
       "credentials": {
         "httpHeaderAuth": {
-          "id": "JzZ2saBcDbEsbcOC",
-          "name": "API FLODESK N8N GERSSON"
+          "id": "twfMJj9RfOL5G2h1",
+          "name": "API FLODESK REISY"
         }
       },
       "onError": "continueRegularOutput"
@@ -1212,8 +1212,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        912,
-        -880
+        864,
+        -480
       ],
       "id": "ee860e23-e3d1-48be-86b6-c6bb3febafe0",
       "name": "EXISTE FLODESK?1"
@@ -1237,8 +1237,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        688,
-        -880
+        640,
+        -480
       ],
       "id": "ec229a51-e290-46f1-b424-663d67f97958",
       "name": "BUSQUEDA EN FLODESK",
@@ -1247,8 +1247,8 @@
       "waitBetweenTries": 5000,
       "credentials": {
         "httpHeaderAuth": {
-          "id": "JzZ2saBcDbEsbcOC",
-          "name": "API FLODESK N8N GERSSON"
+          "id": "twfMJj9RfOL5G2h1",
+          "name": "API FLODESK REISY"
         }
       },
       "onError": "continueRegularOutput"
@@ -1256,7 +1256,7 @@
     {
       "parameters": {
         "httpMethod": "POST",
-        "path": "a4d5ac30-7538-4947-b4b2-2005b84472d0",
+        "path": "l1-reisy-enc",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
@@ -1692,9 +1692,9 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "GERSSON_L9",
+          "value": "REISY-L1",
           "mode": "list",
-          "cachedResultName": "GERSSON_L9"
+          "cachedResultName": "REISY-L1"
         },
         "returnAll": true,
         "where": {
@@ -1728,9 +1728,9 @@
       "parameters": {
         "table": {
           "__rl": true,
-          "value": "GERSSON_L9",
+          "value": "REISY-L1",
           "mode": "list",
-          "cachedResultName": "GERSSON_L9"
+          "cachedResultName": "REISY-L1"
         },
         "dataMode": "defineBelow",
         "valuesToSend": {
@@ -1981,14 +1981,14 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"segment_ids\": [\n       \"68d86ccd9ed7706dcb434459\"\n    ]\n}",
+        "jsonBody": "={\n    \"segment_ids\": [\n       \"69436015d5e596cb1f45b108\"\n    ]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1136,
-        -784
+        1088,
+        -384
       ],
       "id": "339e4ca4-3d16-417e-8960-6c884b48eb04",
       "name": "MOVER A SEGMENT",
@@ -1997,15 +1997,15 @@
       "waitBetweenTries": 5000,
       "credentials": {
         "httpHeaderAuth": {
-          "id": "JzZ2saBcDbEsbcOC",
-          "name": "API FLODESK N8N GERSSON"
+          "id": "twfMJj9RfOL5G2h1",
+          "name": "API FLODESK REISY"
         }
       },
       "onError": "continueRegularOutput"
     },
     {
       "parameters": {
-        "collection": "=TD-L9",
+        "collection": "=L1-REG-PRINCIPAL",
         "options": {
           "limit": 1
         },
@@ -2024,15 +2024,15 @@
       "waitBetweenTries": 5000,
       "credentials": {
         "mongoDb": {
-          "id": "vbsT0SoMA5A3acgH",
-          "name": "BASE DE DATOS GERSSON"
+          "id": "j2YBNujqV7oGjDE8",
+          "name": "DB REISY"
         }
       }
     },
     {
       "parameters": {
         "operation": "insert",
-        "collection": "TD-L9",
+        "collection": "L1-REG-PRINCIPAL",
         "fields": "=query,country,city,zip,regionName,timezone,email,whatsapp,utmCampaign,utmSource,utmMedium,utmContent,utmTerm,adid,userAgent,platform,language,tiemporegistro,fbc,fbp,isFbcGenerated",
         "options": {}
       },
@@ -2046,8 +2046,8 @@
       ],
       "credentials": {
         "mongoDb": {
-          "id": "vbsT0SoMA5A3acgH",
-          "name": "BASE DE DATOS GERSSON"
+          "id": "j2YBNujqV7oGjDE8",
+          "name": "DB REISY"
         }
       }
     },
@@ -2525,6 +2525,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-12-17T02:31:53.000Z",
-  "versionId": "e313d65b-28f2-43f3-877f-f4ce46c678e5"
+  "updatedAt": "2025-12-18T05:26:14.000Z",
+  "versionId": "123c7cb8-3164-4148-a2bc-231d76fe6ee1"
 }
