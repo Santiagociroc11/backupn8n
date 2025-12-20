@@ -601,7 +601,7 @@
   "id": "pMbutyV6NoPoev92",
   "isArchived": false,
   "meta": null,
-  "name": "🟢 [GERSSON-L9] CAPTURA TD - REGISTRO Y ENCUESTAS",
+  "name": "🟢 [GERSSON-L10] CAPTURA TD - REGISTRO Y ENCUESTAS",
   "nodes": [
     {
       "parameters": {
@@ -967,7 +967,7 @@
     {
       "parameters": {
         "operation": "findOneAndUpdate",
-        "collection": "TD-L9",
+        "collection": "TD-L10",
         "updateKey": "_id",
         "fields": "=id_manychat",
         "options": {}
@@ -1163,7 +1163,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"email\": \"{{ $('Insert documents').item.json.email }}\",\n    \"segment_ids\": [\n       \"68d86ccd9ed7706dcb434459\"\n    ]\n}",
+        "jsonBody": "={\n    \"email\": \"{{ $('Insert documents').item.json.email }}\",\n    \"segment_ids\": [\n       \"6944fa5a6227fdcd589cd8d6\"\n    ]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -1488,7 +1488,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"tag_name\": \"ENCUESTA-L9\"\n}",
+        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"tag_name\": \"ENCUESTA-L10\"\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -1692,9 +1692,9 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "GERSSON_L9",
+          "value": "GERSSON_L10",
           "mode": "list",
-          "cachedResultName": "GERSSON_L9"
+          "cachedResultName": "GERSSON_L10"
         },
         "returnAll": true,
         "where": {
@@ -1728,9 +1728,9 @@
       "parameters": {
         "table": {
           "__rl": true,
-          "value": "GERSSON_L9",
+          "value": "GERSSON_L10",
           "mode": "list",
-          "cachedResultName": "GERSSON_L9"
+          "cachedResultName": "GERSSON_L10"
         },
         "dataMode": "defineBelow",
         "valuesToSend": {
@@ -1805,9 +1805,9 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "GERSSON_L9",
+          "value": "GERSSON_L10",
           "mode": "list",
-          "cachedResultName": "GERSSON_L9"
+          "cachedResultName": "GERSSON_L10"
         },
         "returnAll": true,
         "where": {
@@ -1842,9 +1842,9 @@
         "operation": "update",
         "table": {
           "__rl": true,
-          "value": "GERSSON_L9",
+          "value": "GERSSON_L10",
           "mode": "list",
-          "cachedResultName": "GERSSON_L9"
+          "cachedResultName": "GERSSON_L10"
         },
         "dataMode": "defineBelow",
         "columnToMatchOn": "ID",
@@ -1981,7 +1981,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"segment_ids\": [\n       \"68d86ccd9ed7706dcb434459\"\n    ]\n}",
+        "jsonBody": "={\n    \"segment_ids\": [\n       \"6944fa5a6227fdcd589cd8d6\"\n    ]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -2005,7 +2005,7 @@
     },
     {
       "parameters": {
-        "collection": "=TD-L9",
+        "collection": "=TD-L10",
         "options": {
           "limit": 1
         },
@@ -2032,7 +2032,7 @@
     {
       "parameters": {
         "operation": "insert",
-        "collection": "TD-L9",
+        "collection": "TD-L10",
         "fields": "=query,country,city,zip,regionName,timezone,email,whatsapp,utmCampaign,utmSource,utmMedium,utmContent,utmTerm,adid,userAgent,platform,language,tiemporegistro,fbc,fbp,isFbcGenerated",
         "options": {}
       },
@@ -2053,7 +2053,7 @@
     },
     {
       "parameters": {
-        "collection": "=TD-L9",
+        "collection": "=TD-L10",
         "options": {
           "limit": 1
         },
@@ -2180,7 +2180,7 @@
     {
       "parameters": {
         "operation": "findOneAndUpdate",
-        "collection": "TD-L9",
+        "collection": "TD-L10",
         "updateKey": "_id",
         "fields": "tiempoencuesta,Edad, Edad_especifica,Nivel_de_estudios,Ocupación,Eliminar_dolor_para,Ingresos,puntaje",
         "options": {}
@@ -2202,7 +2202,7 @@
     },
     {
       "parameters": {
-        "collection": "=TD-L9",
+        "collection": "=TD-L10",
         "options": {},
         "query": "={\"_id\": \"{{ $('Merge1').item.json._id }}\"}"
       },
@@ -2538,6 +2538,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-10-02T00:28:03.000Z",
-  "versionId": "ff3808c5-54d1-4a24-b11d-fe92c2436671"
+  "updatedAt": "2025-12-19T07:21:11.000Z",
+  "versionId": "1c77a144-37d3-488f-8c29-3ffd370e2c64"
 }
