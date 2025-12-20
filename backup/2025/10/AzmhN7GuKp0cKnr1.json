@@ -542,7 +542,7 @@
   "id": "AzmhN7GuKp0cKnr1",
   "isArchived": false,
   "meta": null,
-  "name": "🟢 [GERSSON-L9-ORG] CAPTURA TD - REGISTRO Y ENCUESTAS",
+  "name": "🟢 [GERSSON-10-ORG] CAPTURA TD - REGISTRO Y ENCUESTAS",
   "nodes": [
     {
       "parameters": {
@@ -908,7 +908,7 @@
     {
       "parameters": {
         "operation": "findOneAndUpdate",
-        "collection": "TD-L9-ORG",
+        "collection": "TD-L10-ORG",
         "updateKey": "_id",
         "fields": "=id_manychat",
         "options": {}
@@ -1104,7 +1104,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"email\": \"{{ $('Insert documents').item.json.email }}\",\n    \"segment_ids\": [\n       \"68d86cefe2997de2e272428e\"\n    ]\n}",
+        "jsonBody": "={\n    \"email\": \"{{ $('Insert documents').item.json.email }}\",\n    \"segment_ids\": [\n       \"6944fa7647501bf87f79dc2b\"\n    ]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -1429,7 +1429,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"tag_name\": \"ENCUESTA-L8\"\n}",
+        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"tag_name\": \"ENCUESTA-L10\"\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -1633,9 +1633,9 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "GERSSON_L9_ORG",
+          "value": "GERSSON_L10_ORG",
           "mode": "list",
-          "cachedResultName": "GERSSON_L9_ORG"
+          "cachedResultName": "GERSSON_L10_ORG"
         },
         "returnAll": true,
         "where": {
@@ -1669,9 +1669,9 @@
       "parameters": {
         "table": {
           "__rl": true,
-          "value": "GERSSON_L9_ORG",
+          "value": "GERSSON_L10_ORG",
           "mode": "list",
-          "cachedResultName": "GERSSON_L9_ORG"
+          "cachedResultName": "GERSSON_L10_ORG"
         },
         "dataMode": "defineBelow",
         "valuesToSend": {
@@ -1746,9 +1746,9 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "GERSSON_L9_ORG",
+          "value": "GERSSON_L10_ORG",
           "mode": "list",
-          "cachedResultName": "GERSSON_L9_ORG"
+          "cachedResultName": "GERSSON_L10_ORG"
         },
         "returnAll": true,
         "where": {
@@ -1783,9 +1783,9 @@
         "operation": "update",
         "table": {
           "__rl": true,
-          "value": "GERSSON_L9_ORG",
+          "value": "GERSSON_L10_ORG",
           "mode": "list",
-          "cachedResultName": "GERSSON_L9_ORG"
+          "cachedResultName": "GERSSON_L10_ORG"
         },
         "dataMode": "defineBelow",
         "columnToMatchOn": "ID",
@@ -1907,7 +1907,7 @@
     },
     {
       "parameters": {
-        "collection": "=TD-L-ORG",
+        "collection": "=TD-L10-ORG",
         "options": {
           "limit": 1
         },
@@ -1934,7 +1934,7 @@
     {
       "parameters": {
         "operation": "insert",
-        "collection": "TD-L9-ORG",
+        "collection": "TD-L10-ORG",
         "fields": "=query,country,city,zip,regionName,timezone,email,whatsapp,utmCampaign,utmSource,utmMedium,utmContent,utmTerm,adid,userAgent,platform,language,tiemporegistro,fbc,fbp,isFbcGenerated",
         "options": {}
       },
@@ -1955,7 +1955,7 @@
     },
     {
       "parameters": {
-        "collection": "=TD-L9-ORG",
+        "collection": "=TD-L10-ORG",
         "options": {
           "limit": 1
         },
@@ -1996,7 +1996,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"segment_ids\": [\n       \"68d86cefe2997de2e272428e\"\n    ]\n}",
+        "jsonBody": "={\n    \"segment_ids\": [\n       \"6944fa7647501bf87f79dc2b\"\n    ]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -2147,6 +2147,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-10-01T05:12:38.000Z",
-  "versionId": "2138eb24-40ac-4960-bd6b-bf846907a30c"
+  "updatedAt": "2025-12-19T07:21:41.000Z",
+  "versionId": "55d35c91-f58a-4f7d-9891-4e0bf028ccc2"
 }
