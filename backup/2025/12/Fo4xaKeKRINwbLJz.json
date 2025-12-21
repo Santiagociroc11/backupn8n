@@ -1,0 +1,204 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-12-20T15:25:48.416Z",
+  "id": "Fo4xaKeKRINwbLJz",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "ventas OSCAR RAMIREZ",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -528,
+        -48
+      ],
+      "id": "e03d04e3-c144-47e2-a144-46f68f7378bf",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1cTLSrAbhuCi4RKFN_sn12Vyt9AncfgAO208yo07oUi8",
+          "mode": "list",
+          "cachedResultName": "VENTAS OSCAR RAMIREZ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cTLSrAbhuCi4RKFN_sn12Vyt9AncfgAO208yo07oUi8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1685012003,
+          "mode": "list",
+          "cachedResultName": "f2f",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cTLSrAbhuCi4RKFN_sn12Vyt9AncfgAO208yo07oUi8/edit#gid=1685012003"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -320,
+        -48
+      ],
+      "id": "79661cf8-b860-41fc-8fc3-78edc9c237b4",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -112,
+        -48
+      ],
+      "id": "31f51131-9b4d-4a3e-a846-18040c9805ef",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  const row = item.json;\n\n  // 1. Convertir fecha string a Timestamp (milisegundos)\n  const parseDateToTimestamp = (dateStr) => {\n    if (!dateStr || dateStr === \"(none)\") return new Date().getTime();\n    // Asume formato DD/MM/YYYY HH:mm:ss\n    const [datePart, timePart] = dateStr.split(' ');\n    const [day, month, year] = datePart.split('/');\n    return new Date(`${year}-${month}-${day}T${timePart || '00:00:00'}`).getTime();\n  };\n\n  // 2. Separar Nombre y Apellido\n  const fullName = row[\"Comprador(a)\"] || \"Desconocido\";\n  const nameParts = fullName.split(\" \");\n  const firstName = nameParts[0] || \"\";\n  const lastName = nameParts.slice(1).join(\" \") || \"\";\n\n  // 3. Manejo de Valor (Para que no falle tu suma de comisiones)\n  // Tu workflow suma commissions[1] + commissions[0].\n  // Pondremos todo el valor en commissions[0] y 0 en el otro para que la suma de el total correcto.\n  const totalValue = parseFloat(row[\"Facturación bruta (sin impuestos)\"] || 0);\n\n  return {\n    json: {\n      \"body\": {\n        \"event\": row[\"Estatus de la transacción\"] === \"Completo\" ? \"PURCHASE_APPROVED\" : \n                 row[\"Estatus de la transacción\"] === \"Reembolsado\" ? \"PURCHASE_REFUNDED\" : \n                 row[\"Estatus de la transacción\"] === \"Contracargo\" ? \"PURCHASE_CHARGEBACK\" : \"UNKNOWN\",\n        \"data\": {\n          \"product\": {\n            \"id\": parseInt(row[\"Código del producto\"]), \n            \"name\": row[\"Producto\"],\n            \"ucode\": row[\"Código del precio\"]\n          },\n          // AQUI SIMULAMOS LA ESTRUCTURA QUE TU WORKFLOW ESPERA PARA CALCULAR EL VALOR\n          \"commissions\": [\n            {\n              \"currency_value\": row[\"Moneda de compra\"],\n              \"value\": totalValue, // Ponemos el total aquí\n              \"source\": \"MARKETPLACE\"\n            },\n            {\n              \"currency_conversion\": {\n                \"converted_value\": 0, // Ponemos 0 aquí\n                \"converted_to_currency\": row[\"Moneda de compra\"],\n                \"conversion_rate\": 1\n              },\n              \"value\": 0\n            }\n          ],\n          \"purchase\": {\n            \"transaction\": row[\"Código de la transacción\"],\n            \"status\": row[\"Estatus de la transacción\"] === \"Completo\" ? \"APPROVED\" : row[\"Estatus de la transacción\"],\n            \"order_date\": parseDateToTimestamp(row[\"Fecha de la transacción\"]),\n            \"approved_date\": parseDateToTimestamp(row[\"Confirmación del pago\"]),\n            \"full_price\": {\n               \"value\": totalValue,\n               \"currency_value\": row[\"Moneda de compra\"]\n            },\n            \"checkout_country\": {\n              \"name\": row[\"País\"],\n              \"iso\": \"CO\" // Ojo: Si tienes varios países en el sheet, necesitarás un mapa de ISOs\n            },\n            \"payment\": {\n               \"type\": row[\"Método de pago\"] || \"CREDIT_CARD\",\n               \"installments_number\": parseInt(row[\"Cantidad total de cuotas\"] || 1)\n            }\n          },\n          \"buyer\": {\n            \"email\": row[\"Email del Comprador(a)\"],\n            \"name\": fullName,\n            \"checkout_phone\": row[\"Teléfono\"],\n            \"address\": {\n                \"country_iso\": \"CO\" // Ajustar si el sheet no trae ISO\n            }\n          }\n        }\n      },\n      // Pasamos datos extra por si se necesitan directos\n      \"productid\": row[\"Código del producto\"] \n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        96,
+        48
+      ],
+      "id": "c7d577c4-1547-4f86-b290-e2915c19ab56",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://int.blackdigital.cloud/webhook/webhook-f2f",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        304,
+        48
+      ],
+      "id": "68bb76ce-e6df-4977-af13-806d905a9c40",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "amount": 0.5
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        512,
+        48
+      ],
+      "id": "b7fd817d-3f3f-49b8-949b-23a410129284",
+      "name": "Wait",
+      "webhookId": "7e2b3d1d-150e-4476-b3c7-06eeca1f3c27"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-12-20T15:25:48.420Z",
+      "createdAt": "2025-12-20T15:25:48.420Z",
+      "role": "workflow:owner",
+      "workflowId": "Fo4xaKeKRINwbLJz",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-12-20T16:23:03.000Z",
+  "versionId": "ad44f067-ee0e-4d95-af8c-4f78913d10cd"
+}
