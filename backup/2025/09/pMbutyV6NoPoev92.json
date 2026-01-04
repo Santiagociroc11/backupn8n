@@ -2126,7 +2126,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": " https://graph.facebook.com/v21.0/1156253219623951/events",
+        "url": "https://graph.facebook.com/v23.0/1156253219623951/events",
         "sendQuery": true,
         "queryParameters": {
           "parameters": [
@@ -2153,7 +2153,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": " https://graph.facebook.com/v21.0/1345856240462322/events",
+        "url": "https://graph.facebook.com/v23.0/1345856240462322/events",
         "sendQuery": true,
         "queryParameters": {
           "parameters": [
@@ -2225,7 +2225,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": " https://graph.facebook.com/v21.0/462720235654680/events",
+        "url": "https://graph.facebook.com/v23.0/462720235654680/events",
         "sendQuery": true,
         "queryParameters": {
           "parameters": [
@@ -2251,49 +2251,6 @@
     }
   ],
   "pinData": {
-    "ENCUESTA": [
-      {
-        "json": {
-          "headers": {
-            "host": "n8n.automscc.com",
-            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_6_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6.2 Mobile/22G100 Safari/604.1",
-            "content-length": "433",
-            "accept": "*/*",
-            "accept-encoding": "gzip, br",
-            "accept-language": "es-419,es;q=0.9",
-            "cdn-loop": "cloudflare; loops=1",
-            "cf-connecting-ip": "2800:e6:5400:dec4:ecca:73dd:6a87:6e5f",
-            "cf-ipcountry": "CO",
-            "cf-ray": "98785ddc0866b08a-MIA",
-            "cf-visitor": "{\"scheme\":\"https\"}",
-            "content-type": "application/json",
-            "origin": "https://terapiasmagneticas.com",
-            "priority": "u=3, i",
-            "referer": "https://terapiasmagneticas.com/",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "2800:e6:5400:dec4:ecca:73dd:6a87:6e5f, 172.68.12.73",
-            "x-forwarded-host": "n8n.automscc.com",
-            "x-forwarded-port": "443",
-            "x-forwarded-proto": "https",
-            "x-forwarded-server": "3393e017d3a9",
-            "x-real-ip": "172.68.12.73"
-          },
-          "params": {},
-          "query": {},
-          "body": {
-            "answersJson": "{\n  \"Edad\": \"Menor de 35\",\n  \"Edad_especifica\": \"Menor de 35\",\n  \"Nivel_de_estudios\": \"Postgrado\",\n  \"Ocupación\": \"Soy trabajador en un negocio no relacionado con la salud\",\n  \"Eliminar_dolor_para\": \"Para ti mismo\",\n  \"Ingresos\": \"+1500\"\n}",
-            "referrer": "https://terapiasmagneticas.com/reg-l9/",
-            "email": "frankgonzalezm21@gmail.com",
-            "whatsapp": "+573218504711",
-            "tiempoencuesta": 1759284028
-          },
-          "webhookUrl": "https://n8n.automscc.com/webhook/l9-enc",
-          "executionMode": "production"
-        }
-      }
-    ],
     "REGISTRO": [
       {
         "json": {
@@ -2503,6 +2460,53 @@
           "id": "68dc8b1647394f4b1a947842"
         }
       }
+    ],
+    "ENCUESTA": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (Linux; Android 10; STK-LX3 Build/HUAWEISTK-LX3; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/143.0.7499.143 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/543.0.0.55.73;IABMV/1;]",
+            "content-length": "936",
+            "accept": "*/*",
+            "accept-encoding": "gzip, br",
+            "accept-language": "es",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "186.189.111.244",
+            "cf-ipcountry": "CL",
+            "cf-ray": "9b82e540dce83398-MIA",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "content-type": "application/json",
+            "origin": "https://terapiasmagneticas.com",
+            "priority": "u=1, i",
+            "referer": "https://terapiasmagneticas.com/",
+            "sec-ch-ua": "\"Android WebView\";v=\"143\", \"Chromium\";v=\"143\", \"Not A(Brand\";v=\"24\"",
+            "sec-ch-ua-mobile": "?1",
+            "sec-ch-ua-platform": "\"Android\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "186.189.111.244, 104.23.248.187",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3a6a6ec7bbe4",
+            "x-real-ip": "104.23.248.187",
+            "x-requested-with": "com.facebook.katana"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "answersJson": "{\n  \"Edad\": \"61-80\",\n  \"Edad_especifica\": \"66-70\",\n  \"Nivel_de_estudios\": \"Técnico\",\n  \"Ocupación\": \"Retirado\",\n  \"Eliminar_dolor_para\": \"Para crear o ampliar tu negocio relacionado con la salud\",\n  \"Ingresos\": \"101-300\"\n}",
+            "referrer": "https://terapiasmagneticas.com/reg-l10/?utm_source=Facebook_Mobile_Reels&utm_campaign=%F0%9F%9F%A0%5B0126%5D+%5BJC%5D+%5BCAPTACION%5D+%5BREGISTRO.COMPLETADO%5D+%5BPQ%5D+%5BABO%5D+%5BL10%5D&utm_medium=%F0%9F%9F%A0PQ+%7C+FB%2BIG+%7C+Gersson+%7C+90D&utm_content=ANUN5-L10-GERSSON-CAPTACION-HERMANO+MIO%2C+DE+DONDE+VIENE+EL+DOLOR.mp4&utm_term=fb&ad_id=120236674179450590&fbclid=IwZXh0bgNhZW0BMABhZGlkAasqnj9abm5zcnRjBmFwcF9pZAwzNTA2ODU1MzE3MjgAAR7HiBygEUop_5fP31DWW2GLAvV4HFGWLEqbOIav7TEd9IFpjbRACEzNq5nf3A_aem_cbe8GGUlgtsNx6OGutGfCQ&utm_id=120236673625050590",
+            "email": "maria.eugenia.cj.op@gmail.com",
+            "whatsapp": "+56991215567",
+            "tiempoencuesta": 1767447494
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/l9-enc",
+          "executionMode": "production"
+        }
+      }
     ]
   },
   "repo_name": "backupn8n",
@@ -2538,6 +2542,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-12-19T07:21:11.000Z",
-  "versionId": "1c77a144-37d3-488f-8c29-3ffd370e2c64"
+  "updatedAt": "2026-01-03T15:53:37.000Z",
+  "versionId": "45f145f2-ff4b-44d2-9f98-b5cc4c36dc9e"
 }
