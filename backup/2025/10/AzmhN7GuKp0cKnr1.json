@@ -547,7 +547,7 @@
     {
       "parameters": {
         "httpMethod": "POST",
-        "path": "reg-org-l9",
+        "path": "reg-org-l10",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
@@ -681,13 +681,11 @@
       "parameters": {
         "method": "POST",
         "url": "https://api.manychat.com/fb/subscriber/createSubscriber",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
-            },
             {
               "name": "Content-Type",
               "value": "application/json"
@@ -714,6 +712,12 @@
       "retryOnFail": true,
       "waitBetweenTries": 5000,
       "maxTries": 5,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "aVCfOn2lhdFEpQqi",
+          "name": "MANYCHAT GERSSON"
+        }
+      },
       "onError": "continueErrorOutput"
     },
     {
@@ -932,13 +936,11 @@
       "parameters": {
         "method": "POST",
         "url": "https://api.manychat.com/fb/sending/sendFlow",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
-            },
             {
               "name": "Content-Type",
               "value": "application/json"
@@ -965,11 +967,19 @@
       "retryOnFail": true,
       "waitBetweenTries": 5000,
       "maxTries": 5,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "aVCfOn2lhdFEpQqi",
+          "name": "MANYCHAT GERSSON"
+        }
+      },
       "onError": "continueErrorOutput"
     },
     {
       "parameters": {
         "url": "https://api.manychat.com/fb/subscriber/findByName",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
         "sendQuery": true,
         "queryParameters": {
           "parameters": [
@@ -982,10 +992,6 @@
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
-            },
             {
               "name": "Content-Type",
               "value": "application/json"
@@ -1009,6 +1015,12 @@
       "retryOnFail": true,
       "waitBetweenTries": 5000,
       "maxTries": 5,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "aVCfOn2lhdFEpQqi",
+          "name": "MANYCHAT GERSSON"
+        }
+      },
       "onError": "continueErrorOutput"
     },
     {
@@ -1197,7 +1209,7 @@
     {
       "parameters": {
         "httpMethod": "POST",
-        "path": "enc-org-l9",
+        "path": "enc-org-l10",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
@@ -1371,13 +1383,11 @@
       "parameters": {
         "method": "POST",
         "url": "https://api.manychat.com/fb/subscriber/setCustomFieldByName",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
-            },
             {
               "name": "Content-Type",
               "value": "application/json"
@@ -1404,19 +1414,23 @@
       "retryOnFail": true,
       "waitBetweenTries": 5000,
       "maxTries": 5,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "aVCfOn2lhdFEpQqi",
+          "name": "MANYCHAT GERSSON"
+        }
+      },
       "onError": "continueErrorOutput"
     },
     {
       "parameters": {
         "method": "POST",
         "url": "https://api.manychat.com/fb/subscriber/addTagByName",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
-            },
             {
               "name": "Content-Type",
               "value": "application/json"
@@ -1443,6 +1457,12 @@
       "retryOnFail": true,
       "waitBetweenTries": 5000,
       "maxTries": 5,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "aVCfOn2lhdFEpQqi",
+          "name": "MANYCHAT GERSSON"
+        }
+      },
       "onError": "continueErrorOutput"
     },
     {
@@ -1857,13 +1877,11 @@
       "parameters": {
         "method": "POST",
         "url": "https://api.manychat.com/fb/subscriber/setCustomFieldByName",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
-            },
             {
               "name": "Content-Type",
               "value": "application/json"
@@ -1890,6 +1908,12 @@
       "retryOnFail": true,
       "waitBetweenTries": 5000,
       "maxTries": 5,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "aVCfOn2lhdFEpQqi",
+          "name": "MANYCHAT GERSSON"
+        }
+      },
       "onError": "continueErrorOutput"
     },
     {
@@ -2147,6 +2171,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-12-19T07:21:41.000Z",
-  "versionId": "55d35c91-f58a-4f7d-9891-4e0bf028ccc2"
+  "updatedAt": "2026-01-05T01:54:55.000Z",
+  "versionId": "9d656495-af8c-4463-bdd8-862e81166210"
 }
