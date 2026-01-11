@@ -1,0 +1,194 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Insert rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert rows in a table": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-10T17:14:11.585Z",
+  "id": "vJvjkxSHgWPjfEcs",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 65",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "1efc2870-f265-491a-a148-e5f982e9b41e",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "ADRI_RS_L2_WHA",
+          "mode": "list",
+          "cachedResultName": "ADRI_RS_L2_WHA"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "dia",
+              "value": "=2026-01-10"
+            },
+            {
+              "column": "hora",
+              "value": "={{ $json.hora }}"
+            },
+            {
+              "column": "whatsapp",
+              "value": "={{ $json.whatsapp }}"
+            },
+            {
+              "column": "grupo",
+              "value": "-"
+            },
+            {
+              "column": "nombre_grupo",
+              "value": "-"
+            },
+            {
+              "column": "fuente",
+              "value": "relleno"
+            }
+          ]
+        },
+        "options": {
+          "queryBatching": "transaction"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        672,
+        112
+      ],
+      "id": "c1e45ebd-e8c9-4f68-9e9b-b3c183edf68c",
+      "name": "Insert rows in a table",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 200,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        432,
+        80
+      ],
+      "id": "ce9fdd71-ab08-45c3-8405-e3f808b73586",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1EbQk7bSnyRBt25ufzrkP0E5FGduVgr4JL8ecpvJPNQ0",
+          "mode": "list",
+          "cachedResultName": "Hoja de cálculo sin título",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EbQk7bSnyRBt25ufzrkP0E5FGduVgr4JL8ecpvJPNQ0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EbQk7bSnyRBt25ufzrkP0E5FGduVgr4JL8ecpvJPNQ0/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        0
+      ],
+      "id": "d5ec1de5-8108-45b7-8a1d-0651dfaed068",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-10T17:14:11.591Z",
+      "createdAt": "2026-01-10T17:14:11.591Z",
+      "role": "workflow:owner",
+      "workflowId": "vJvjkxSHgWPjfEcs",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-10T18:18:02.000Z",
+  "versionId": "e408d119-89e6-405d-be7b-ff69f825ca79"
+}
