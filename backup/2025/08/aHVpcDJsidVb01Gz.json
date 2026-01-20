@@ -1,5 +1,1261 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "e0036c6f-ab69-483f-ae2f-8ed4d9c94b8e",
+    "workflowId": "aHVpcDJsidVb01Gz",
+    "nodes": [
+      {
+        "parameters": {
+          "multipleMethods": true,
+          "httpMethod": [
+            "POST",
+            "GET"
+          ],
+          "path": "wh-edu-online",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -1696,
+          -128
+        ],
+        "id": "e48d74b6-cd01-4e30-84bf-820ec6c142c7",
+        "name": "Webhook",
+        "webhookId": "8f5b5171-2815-4e49-b5a4-51f6fb357b8c"
+      },
+      {
+        "parameters": {
+          "agent": "conversationalAgent",
+          "promptType": "define",
+          "text": "={{ $json.comentario }}",
+          "options": {
+            "systemMessage": "=Eres el moderador de comentarios de una página llamada \"Tecnologia pal mundo\" que se encarga de dar los mejores productos tecnológicos al mejor precio. actúa como el mejor community manager del mundo, con experiencia de 10 años respondiendo comentarios y con un tono simpático, a veces hasta cómico para agradar más. Vendemos una app que vale 17.900 pesos el año, único pago, que sirve para ver tv, peliculas y series en celular y tv pero solo en dispositivos con android, tv con android, celulares android y pc, si preguntan aclaras, pero no des demasiadas explicaciones, mandalos al botón de whatsapp. Si preguntan el nombre de la app, no lo dices ni tampoco dices que es oculto o secreto, mandas directo al whatsapp por el botón. Tus respuestas no son abiertas, son definitivas, es decir, no esperas respuesta de los usuarios, das información y listo. NO HAGAS PREGUNTAS Tu tarea es identificar qué quiere la persona en ese único mensaje que recibes y responder en consecuencia... si piden información los mandas a presionar el botón de la publicación que dirige a whastapp. \n\nSi preguntan por algun dispositivo y es incompatible, dile que entren al chat igualmente porque hay opciones para los dispositivos incompatibles y que no se pierdan la promoción que es por poco tiempo\n\nSi dan gracias o dicen algo bueno asume que es un comprador, responde dando gracias inteligentemente y diciendo que nos recomiende.\n\nTrata de dar respuestas cortas.\n"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.7,
+        "position": [
+          224,
+          256
+        ],
+        "id": "b1b90718-1da2-4e91-aeaf-2a1bb73abd8a",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "value": "gpt-4.1-mini",
+            "mode": "list",
+            "cachedResultName": "gpt-4.1-mini"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          224,
+          464
+        ],
+        "id": "ba8436f3-bf99-4cf6-a514-3d788accc0e9",
+        "name": "OpenAI Chat Model",
+        "credentials": {
+          "openAiApi": {
+            "id": "nZ98FVO8dD6bJnEc",
+            "name": "GPT SANTIAGO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "inputText": "={{ $json.comentario }}",
+          "categories": {
+            "categories": [
+              {
+                "category": "info",
+                "description": "comentarios que indican que necesitan información o en busqueda de respuestas, NO DICE QUE ES MAGIS TV NI QUE ES GRATIS NI SARCASTICO"
+              },
+              {
+                "category": "malos",
+                "description": "Un mensaje debe clasificarse en esta categoría si contiene ataques, desprestigio o intención de dañar la reputación; enlaces o menciones de posibles estafas; afirmaciones de que el producto o servicio es gratuito, referencias a \"MagisTV\" o \"magis\" o \"magis tv\" o \"iptv\" o disponibilidad gratuita; burlas hacia compradores o comentarios sarcásticos o burlescos en general; o quejas sobre falta de entrega tras el pago o mala atención al cliente. Tambien si preguntan o afirman que es iptv o que ya la tienen hace tiempo sin pagar. En general cualquier queja o comentario que si otra persona lo lee, le genere dudas acerca de la compra o el servicio..."
+              },
+              {
+                "category": "buenos",
+                "description": "comentarios buenos de personas que aparentemente compraron, , NO DICE QUE ES MAGIS TV NI QUE ES GRATIS NI SARCASTICO"
+              },
+              {
+                "category": "ladrones",
+                "description": "comentarios intentando dar numeros de telefonos o diciendo que lo tienen mas barato, en general ladrones de clientes"
+              }
+            ]
+          },
+          "options": {
+            "fallback": "other",
+            "systemPromptTemplate": "Eres moderador de comentarios de una pagina de facebook que se dedica a vender productos digitales.\n\nlos comentarios son de personas que ven los anuncios y preguntan o felicitan o nos insultan, clasficalos."
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.textClassifier",
+        "typeVersion": 1,
+        "position": [
+          -160,
+          208
+        ],
+        "id": "f6e2cdef-0393-4744-9192-85fd0b531d52",
+        "name": "Text Classifier"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "value": "gpt-4.1",
+            "mode": "list",
+            "cachedResultName": "gpt-4.1"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          -160,
+          400
+        ],
+        "id": "b3ae7de6-0409-4fa9-8250-e4ab68b1afd4",
+        "name": "OpenAI Chat Model1",
+        "credentials": {
+          "openAiApi": {
+            "id": "nZ98FVO8dD6bJnEc",
+            "name": "GPT SANTIAGO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "DELETE",
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion').first().json.IDcomentario }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          816,
+          -96
+        ],
+        "id": "712b3f1a-e889-455a-8a62-f38ca0c8c102",
+        "name": "eliminar comentario",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "DDgwgXT0sfMmaGDN",
+            "name": "TOKEN[COMENTARIOS] SANTIAGO CIRO | EDUCACIÓN ONLINE"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "POST",
+          "graphApiVersion": "v22.0",
+          "node": "={{ $('asignacion').first().json.IDpagina }}",
+          "edge": "blocked",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "user",
+                  "value": "={{ $('asignacion').first().json.IDpersona }}"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          1040,
+          -96
+        ],
+        "id": "01a4d322-31d0-42e8-8f31-67c13eb4cc73",
+        "name": "bloquear persona",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "DDgwgXT0sfMmaGDN",
+            "name": "TOKEN[COMENTARIOS] SANTIAGO CIRO | EDUCACIÓN ONLINE"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion').first().json.IDcomentario }}",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "fields",
+                  "value": "can_hide,can_like,can_comment,can_remove,is_hidden,from,created_time,id,object"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          304,
+          -96
+        ],
+        "id": "f1ce39a9-64a2-4075-8364-5e88db870b22",
+        "name": "traer comentario",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "DDgwgXT0sfMmaGDN",
+            "name": "TOKEN[COMENTARIOS] SANTIAGO CIRO | EDUCACIÓN ONLINE"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion').first().json.IDcomentario }}",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "fields",
+                  "value": "can_hide,can_like,can_comment,can_remove,is_hidden,from,created_time,id,object"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          592,
+          256
+        ],
+        "id": "8ba56704-5ed2-48be-ae56-ab2c749872c4",
+        "name": "coment",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "DDgwgXT0sfMmaGDN",
+            "name": "TOKEN[COMENTARIOS] SANTIAGO CIRO | EDUCACIÓN ONLINE"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "07dc0b89-2475-47fe-be7a-02153d736969",
+                "leftValue": "={{ $json.can_remove }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          592,
+          -96
+        ],
+        "id": "0035df67-78fd-44b2-b02b-bb984d20423d",
+        "name": "puedo borrar?"
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "POST",
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion').first().json.IDcomentario }}",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "is_hidden",
+                  "value": "false"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          1040,
+          192
+        ],
+        "id": "4b06debd-1a06-48cc-8d44-25e63194f0aa",
+        "name": "mostrar comentario",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "DDgwgXT0sfMmaGDN",
+            "name": "TOKEN[COMENTARIOS] SANTIAGO CIRO | EDUCACIÓN ONLINE"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "26d78952-d630-4d9d-b1e2-60ab6e6f0771",
+                "name": "comentario",
+                "value": "={{ $json.body.entry[0].changes[0].value.message }}",
+                "type": "string"
+              },
+              {
+                "id": "3ea31217-f48c-416d-97bc-716b6757df5c",
+                "name": "IDpost",
+                "value": "={{ $json.body.entry[0].changes[0].value.post_id }}",
+                "type": "string"
+              },
+              {
+                "id": "4ed5409f-f2d7-4b0b-8e9c-1db056f0434f",
+                "name": "IDcomentario",
+                "value": "={{ $json.body.entry[0].changes[0].value.comment_id }}",
+                "type": "string"
+              },
+              {
+                "id": "d038f6ed-c5c7-43b5-9740-d246bbaa78da",
+                "name": "IDpersona",
+                "value": "={{ $json.body.entry[0].changes[0].value.from.id }}",
+                "type": "string"
+              },
+              {
+                "id": "a8d28fee-c2e0-426e-a128-d9171436e195",
+                "name": "IDpagina",
+                "value": "={{ $json.body.entry[0].id }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -608,
+          80
+        ],
+        "id": "528d40db-b399-4de1-8540-d7e52e563a4a",
+        "name": "asignacion"
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "POST",
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion').first().json.IDcomentario }}",
+          "edge": "comments",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "message",
+                  "value": "=@[{{ $('asignacion').first().json.IDpersona }}] {{ $('AI Agent').first().json.output }} "
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          1248,
+          288
+        ],
+        "id": "b2d3a474-5313-4418-b8a5-a5d0222104a7",
+        "name": "responder",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "DDgwgXT0sfMmaGDN",
+            "name": "TOKEN[COMENTARIOS] SANTIAGO CIRO | EDUCACIÓN ONLINE"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "POST",
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion').first().json.IDcomentario }}",
+          "edge": "likes",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          1440,
+          288
+        ],
+        "id": "b0d08e1c-717b-4656-b83b-9baf0ede08e0",
+        "name": "LIKE",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "DDgwgXT0sfMmaGDN",
+            "name": "TOKEN[COMENTARIOS] SANTIAGO CIRO | EDUCACIÓN ONLINE"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "b2fdec1a-3474-4c2a-a77e-4a4d90c03c1f",
+                "leftValue": "={{ $json.is_hidden }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          816,
+          256
+        ],
+        "id": "68032adf-5966-4a48-8828-1d841462bb75",
+        "name": "oculto?"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3ea31217-f48c-416d-97bc-716b6757df5c",
+                "name": "IDpost",
+                "value": "={{ $json.body.entry[0].changes[0].value.post_id }}",
+                "type": "string"
+              },
+              {
+                "id": "4ed5409f-f2d7-4b0b-8e9c-1db056f0434f",
+                "name": "IDcomentario",
+                "value": "={{ $json.body.entry[0].changes[0].value.comment_id }}",
+                "type": "string"
+              },
+              {
+                "id": "d038f6ed-c5c7-43b5-9740-d246bbaa78da",
+                "name": "IDpersona",
+                "value": "={{ $json.body.entry[0].changes[0].value.from.id }}",
+                "type": "string"
+              },
+              {
+                "id": "02e04b51-6f40-44bf-ae0e-e88511b6c424",
+                "name": "IDpagina",
+                "value": "={{ $json.body.entry[0].id }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -816,
+          -320
+        ],
+        "id": "3df99a77-9e39-40bb-8765-d02fc6a5ff9d",
+        "name": "asignacion1"
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "DELETE",
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion1').first().json.IDcomentario }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          -128,
+          -336
+        ],
+        "id": "134a554e-d188-4800-a21c-c9f4128f2a00",
+        "name": "eliminar comentario1",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "DDgwgXT0sfMmaGDN",
+            "name": "TOKEN[COMENTARIOS] SANTIAGO CIRO | EDUCACIÓN ONLINE"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "POST",
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion1').first().json.IDpagina }}",
+          "edge": "blocked",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "user",
+                  "value": "={{ $('asignacion1').first().json.IDpersona }}"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          112,
+          -336
+        ],
+        "id": "6e25ce6e-a920-4f28-af47-1c7a3b9535f0",
+        "name": "bloquear persona1",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "DDgwgXT0sfMmaGDN",
+            "name": "TOKEN[COMENTARIOS] SANTIAGO CIRO | EDUCACIÓN ONLINE"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion1').first().json.IDcomentario }}",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "fields",
+                  "value": "can_hide,can_like,can_comment,can_remove,is_hidden,from,created_time,id,object"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          -608,
+          -320
+        ],
+        "id": "dcbe1b3c-97c1-43df-acc6-905fa067b8cb",
+        "name": "traer comentario1",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "DDgwgXT0sfMmaGDN",
+            "name": "TOKEN[COMENTARIOS] SANTIAGO CIRO | EDUCACIÓN ONLINE"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "07dc0b89-2475-47fe-be7a-02153d736969",
+                "leftValue": "={{ $json.can_remove }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -384,
+          -320
+        ],
+        "id": "1019292e-1b5b-405c-ba84-fd7aae1afc6e",
+        "name": "puedo borrar?1"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3ea31217-f48c-416d-97bc-716b6757df5c",
+                "name": "IDpost",
+                "value": "={{ $json.body.entry[0].changes[0].value.post_id }}",
+                "type": "string"
+              },
+              {
+                "id": "d038f6ed-c5c7-43b5-9740-d246bbaa78da",
+                "name": "IDpersona",
+                "value": "={{ $json.body.entry[0].changes[0].value.from.id }}",
+                "type": "string"
+              },
+              {
+                "id": "afb58602-a395-4732-ac6e-df8b48559fed",
+                "name": "IDpagina",
+                "value": "={{ $json.body.entry[0].id }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -608,
+          -528
+        ],
+        "id": "7bf78d20-8a3f-4ec1-9bdd-18a1074ede53",
+        "name": "asignacion2"
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "POST",
+          "graphApiVersion": "v21.0",
+          "node": "={{ $json.IDpagina }}",
+          "edge": "blocked",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "user",
+                  "value": "={{ $('asignacion2').first().json.IDpersona }}"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          -384,
+          -528
+        ],
+        "id": "c94aa641-d37c-4382-949c-32c54239566f",
+        "name": "bloquear persona2",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "DDgwgXT0sfMmaGDN",
+            "name": "TOKEN[COMENTARIOS] SANTIAGO CIRO | EDUCACIÓN ONLINE"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "c1aa4651-cbf5-435b-b4f1-8841c04b4d30",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.photo }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -1040,
+          -16
+        ],
+        "id": "c8bc9d3c-a48d-4a45-8dc4-67d07ebeb2c3",
+        "name": "FOTO?"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "f9663ddb-7423-465d-969a-4f2c80ee83f1",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.reaction_type }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -1264,
+          -128
+        ],
+        "id": "3cc6e835-15ef-4957-9f75-fab393a45ae0",
+        "name": "REACCION?"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "48f0eb34-80de-4fbf-ab8d-669fa53bab70",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.message }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              },
+              {
+                "id": "f9c05b6c-0a07-4566-a1ef-f9a4ee32f3d8",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.from.id }}",
+                "rightValue": "761833953673429",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEquals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -816,
+          80
+        ],
+        "id": "e8784969-73df-4dd4-82e0-4e0a13d3993c",
+        "name": "COMENT? FROM ME?"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "15847941-b999-4bee-b8fd-8aa0e2c8238e",
+                "leftValue": "={{ $json.comentario.toLowerCase() }}",
+                "rightValue": "/magi|ip|estafa|mala|no sirve|ojo|rob/",
+                "operator": {
+                  "type": "string",
+                  "operation": "regex"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -384,
+          80
+        ],
+        "id": "73e21c2e-5d02-4b99-8f9a-6581fa59f4f5",
+        "name": "PALABRAS DIRECTAS?"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "8d0eccc5-1f1e-4575-a838-4bb603628ac8",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.reaction_type }}",
+                "rightValue": "haha",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              },
+              {
+                "id": "bb1c2f0d-2a6b-4424-a77b-a82c943f25a8",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.reaction_type }}",
+                "rightValue": "angry",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              }
+            ],
+            "combinator": "or"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -1040,
+          -528
+        ],
+        "id": "f837ae8c-7201-48d3-b6f9-b21723f89622",
+        "name": "ENOJA | RISA"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "f9c05b6c-0a07-4566-a1ef-f9a4ee32f3d8",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.from.id }}",
+                "rightValue": "761833953673429",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEquals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -816,
+          -528
+        ],
+        "id": "ba07a9e2-9a17-43fc-a46d-840440de5f4a",
+        "name": "FROM ME?"
+      },
+      {
+        "parameters": {
+          "respondWith": "text",
+          "responseBody": "={{ $json.query['hub.challenge'] }}",
+          "options": {
+            "responseCode": 200,
+            "responseHeaders": {
+              "entries": [
+                {
+                  "name": "Content-Type",
+                  "value": "text"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.4,
+        "position": [
+          -1488,
+          -16
+        ],
+        "id": "1830b047-ec7a-4864-a12e-24a99bcf1e8a",
+        "name": "Respond to Webhook"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "REACCION?",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Respond to Webhook",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent": {
+        "main": [
+          [
+            {
+              "node": "coment",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model1": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "Text Classifier",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Text Classifier": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "traer comentario",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "traer comentario",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "eliminar comentario": {
+        "main": [
+          [
+            {
+              "node": "bloquear persona",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "traer comentario": {
+        "main": [
+          [
+            {
+              "node": "puedo borrar?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "coment": {
+        "main": [
+          [
+            {
+              "node": "oculto?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "puedo borrar?": {
+        "main": [
+          [
+            {
+              "node": "eliminar comentario",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "mostrar comentario": {
+        "main": [
+          [
+            {
+              "node": "responder",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "asignacion": {
+        "main": [
+          [
+            {
+              "node": "PALABRAS DIRECTAS?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "responder": {
+        "main": [
+          [
+            {
+              "node": "LIKE",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "oculto?": {
+        "main": [
+          [
+            {
+              "node": "mostrar comentario",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "responder",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "eliminar comentario1": {
+        "main": [
+          [
+            {
+              "node": "bloquear persona1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "traer comentario1": {
+        "main": [
+          [
+            {
+              "node": "puedo borrar?1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "puedo borrar?1": {
+        "main": [
+          [
+            {
+              "node": "eliminar comentario1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "asignacion1": {
+        "main": [
+          [
+            {
+              "node": "traer comentario1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "asignacion2": {
+        "main": [
+          [
+            {
+              "node": "bloquear persona2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "FOTO?": {
+        "main": [
+          [
+            {
+              "node": "asignacion1",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "COMENT? FROM ME?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "REACCION?": {
+        "main": [
+          [
+            {
+              "node": "ENOJA | RISA",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "FOTO?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "COMENT? FROM ME?": {
+        "main": [
+          [
+            {
+              "node": "asignacion",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "PALABRAS DIRECTAS?": {
+        "main": [
+          [
+            {
+              "node": "traer comentario",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Text Classifier",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "ENOJA | RISA": {
+        "main": [
+          [
+            {
+              "node": "FROM ME?",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          []
+        ]
+      },
+      "FROM ME?": {
+        "main": [
+          [
+            {
+              "node": "asignacion2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "e0036c6f-ab69-483f-ae2f-8ed4d9c94b8e",
   "connections": {
     "Webhook": {
       "main": [
