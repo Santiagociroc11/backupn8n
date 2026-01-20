@@ -1,5 +1,664 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "23cac3da-ad34-46ad-b53a-10b3bf3045ab",
+    "workflowId": "DAdRonWHprDkfbfJ",
+    "nodes": [
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3ce61d2a-015a-452b-afd8-c993e37ce897",
+                "name": "Url Evolution API",
+                "value": "https://evolution.automscc.com/",
+                "type": "string"
+              },
+              {
+                "id": "5e949047-3af3-472c-b1ba-0141716387ee",
+                "name": "Apikey Evolution API",
+                "value": "429683C4C977415CAAFCCE10F7D57E11",
+                "type": "string"
+              },
+              {
+                "id": "5169ae17-73eb-4f0a-9c63-eef1aa533e65",
+                "name": "Instancia Evolution API",
+                "value": "={{ $json['Que instancia usarás?'] }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "b2cd4819-7f6b-4541-8da4-ed5e9f04fd17",
+        "name": "Variables",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.3,
+        "position": [
+          260,
+          560
+        ]
+      },
+      {
+        "parameters": {
+          "url": "={{ $node[\"Variables\"].json['Url Evolution API'].replace(/\\/$/, \"\") }}/group/fetchAllGroups/{{ $node[\"Variables\"].json['Instancia Evolution API'] }}?getParticipants=false",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "apikey",
+                "value": "={{ $node[\"Variables\"].json['Apikey Evolution API'] }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "030ba9d2-c296-4319-a75c-a02cf3ff37b4",
+        "name": "Obtener todos los grupos",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.1,
+        "position": [
+          560,
+          660
+        ]
+      },
+      {
+        "parameters": {
+          "mergeByFields": {
+            "values": [
+              {
+                "field1": "id",
+                "field2": "id"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "c2e35bed-0d80-4bb6-8e54-62bdb8a842ea",
+        "name": "Comparar registros",
+        "type": "n8n-nodes-base.compareDatasets",
+        "typeVersion": 2.3,
+        "position": [
+          1260,
+          520
+        ]
+      },
+      {
+        "parameters": {
+          "formTitle": "EXPLORACIÓN DE GRUPOS",
+          "formFields": {
+            "values": [
+              {
+                "fieldLabel": "Nombre de los grupos",
+                "requiredField": true
+              }
+            ]
+          },
+          "responseMode": "lastNode",
+          "options": {
+            "buttonLabel": "BUSCAR GRUPOS",
+            "path": "ExploraG",
+            "ignoreBots": true
+          }
+        },
+        "id": "3dc4c070-b501-440d-bdc6-91cc81991716",
+        "name": "form1",
+        "type": "n8n-nodes-base.formTrigger",
+        "typeVersion": 2.2,
+        "position": [
+          -1260,
+          560
+        ],
+        "webhookId": "a72b99b7-5dfb-4f38-be9d-28125c3d8308"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Extraer solo los nombres\nconst instanceNames = $('HTTP Request').all().map(item => ({option: item.json.name}));\n\n// Devolver el resultado como un único objeto JSON con un array de opciones\nreturn [{ json: { options: instanceNames } }];\n"
+        },
+        "id": "a405eec8-7e50-441c-ba19-1cfcd065ec5b",
+        "name": "TablaInst",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -920,
+          560
+        ]
+      },
+      {
+        "parameters": {
+          "defineForm": "json",
+          "jsonOutput": "=[ {{ $('BodyInst').all()[0].json.toJsonString() }} , {{ $('BodySql').all()[0].json.toJsonString() }}, {\"fieldLabel\": \"Si no vas a usar una tabla existente, pon el nombre abajo para crear una nueva\"}\n]",
+          "options": {
+            "buttonLabel": "ESCRIBIR GRUPOS"
+          }
+        },
+        "id": "63a9eea4-942f-415c-a106-9d1307f165fc",
+        "name": "Form2",
+        "type": "n8n-nodes-base.form",
+        "typeVersion": 1,
+        "position": [
+          60,
+          560
+        ],
+        "webhookId": "8a58e824-7ab2-44d8-86ed-7b1a021eb831"
+      },
+      {
+        "parameters": {
+          "url": "=https://evolution.automscc.com/instance/fetchInstances",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "apikey",
+                "value": "429683C4C977415CAAFCCE10F7D57E11"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "dd322332-fdd1-42ef-a423-377e3d22712f",
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          -1080,
+          560
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "// Accede a los datos de entrada desde los nodos anteriores\nconst inputData1 = $('TablaInst').first().json.options; // Primer conjunto de opciones\n\n// Inicializa un arreglo para las preguntas\nconst outputData = [];\n\n// Crea el objeto para la primera pregunta\nconst question1 = {\n  \"fieldLabel\": \"Que instancia usarás?\",\n  \"fieldType\": \"dropdown\",\n  \"fieldOptions\": {\n    \"values\": []\n  },\n  \"requiredField\": true\n};\n\n// Agrega las opciones de la primera pregunta\ninputData1.forEach(option => {\n  question1.fieldOptions.values.push( option ); // Asegúrate de que 'option' es el valor de la opción\n});\n\n\n// Agrega la pregunta al arreglo de salida\noutputData.push(question1);\n\n// Retorna el arreglo de objetos como una sola salida JSON\nreturn outputData;\n"
+        },
+        "id": "9515fc5f-6158-444a-87a1-2bb6efea3792",
+        "name": "BodyInst",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -760,
+          560
+        ]
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "c1021f50-e04c-410c-8692-70ed226804d4",
+                "leftValue": "={{ $json.subject.toLowerCase() }}",
+                "rightValue": "={{ $('form1').all()[0].json['Nombre de los grupos'].toLowerCase()}}",
+                "operator": {
+                  "type": "string",
+                  "operation": "contains"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "6e79d1b4-1dde-478b-b62a-cc14075eeb5c",
+        "name": "If2",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          780,
+          660
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "// Accede a los datos de entrada desde los nodos anteriores\nconst tables = $input.all(); // Obtiene todos los elementos de entrada\n\n// Verifica que 'tables' contenga al menos un elemento y extrae los nombres de las tablas\nconst tableNames = tables.map(item => item.json[\"Tables_in_n8n\"]);\n\n// Elimina duplicados usando un Set\nconst uniqueTableNames = [...new Set(tableNames)];\n\n// Crea un nuevo arreglo de salida con los nombres únicos\nconst outputData = uniqueTableNames.map(name => {\n  return {\n    table_name: name\n  };\n});\n\n// Retorna el arreglo de objetos como una salida JSON\nreturn outputData;\n"
+        },
+        "id": "c2aa10c0-2026-4415-990d-f81223a63d03",
+        "name": "UnicosSql",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -420,
+          560
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "// Extraer solo los nombres de las tablas y convertirlos al formato deseado\nconst tableNames = items.map(item => ({\n    option: item.json.table_name\n}));\n\n// Devolver el resultado como un único objeto JSON con un array de opciones\nreturn [{ json: { options: tableNames } }];\n"
+        },
+        "id": "e0d21386-6bd6-470c-bd6e-0e216c0c7c73",
+        "name": "JsonSql",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -240,
+          560
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "executeQuery",
+          "query": "show TABLES",
+          "options": {}
+        },
+        "id": "efe73e80-668d-4b7f-a4d4-47a0343edd73",
+        "name": "MySQL1",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          -600,
+          560
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "steiUYgtMeBLjkId",
+            "name": "N8N MYSQL"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "\nconst inputData2 = $('JsonSql').first().json.options; // Primer conjunto de opciones\n\n// Inicializa un arreglo para las preguntas\nconst outputData = [];\n\n\n// Crea el objeto para la primera pregunta\nconst question2 = {\n  \"fieldLabel\": \"Que tabla?\",\n  \"fieldType\": \"dropdown\",\n  \"fieldOptions\": {\n    \"values\": []\n  },\n  \"requiredField\": false\n};\n\n// Agrega las opciones de la primera pregunta\ninputData2.forEach(option => {\n  question2.fieldOptions.values.push( option ); // Asegúrate de que 'option' es el valor de la opción\n});\n\n// Agrega la pregunta al arreglo de salida\noutputData.push(question2);\n\n// Retorna el arreglo de objetos como una sola salida JSON\nreturn outputData;\n"
+        },
+        "id": "2da227b3-c0db-45f7-8821-57c515d98008",
+        "name": "BodySql",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -100,
+          560
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "={{ $('Form2').all()[0].json['Que tabla?']? $('Form2').all()[0].json['Que tabla?']: $('Form2').all()[0].json['Si no vas a usar una tabla existente, pon el nombre abajo para crear una nueva'] }}",
+            "mode": "name"
+          },
+          "returnAll": true,
+          "options": {}
+        },
+        "id": "d3476223-2c07-4e81-a1e1-4c195e2d741b",
+        "name": "MySQL",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          780,
+          480
+        ],
+        "alwaysOutputData": true,
+        "credentials": {
+          "mySql": {
+            "id": "steiUYgtMeBLjkId",
+            "name": "N8N MYSQL"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "table": {
+            "__rl": true,
+            "value": "={{ $('Form2').all()[0].json['Que tabla?']? $('Form2').all()[0].json['Que tabla?']: $('Form2').all()[0].json['Si no vas a usar una tabla existente, pon el nombre abajo para crear una nueva'] }}",
+            "mode": "name"
+          },
+          "dataMode": "defineBelow",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "nombre",
+                "value": "={{ $json.subject }}"
+              },
+              {
+                "column": "id",
+                "value": "={{ $json.id }}"
+              },
+              {
+                "column": "participantes",
+                "value": "={{ $json.size }}"
+              },
+              {
+                "column": "tipo",
+                "value": "={{ $json.isCommunity? \"comunidad\" : \"normal\" }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "e1fbce24-ea66-4fbb-ad44-147b29642170",
+        "name": "MySQL2",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          1820,
+          700
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "steiUYgtMeBLjkId",
+            "name": "N8N MYSQL"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "sortFieldsUi": {
+            "sortField": [
+              {
+                "fieldName": "creation"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "efd098e3-990f-44d2-90f5-54bd70d3abdb",
+        "name": "Sort",
+        "type": "n8n-nodes-base.sort",
+        "typeVersion": 1,
+        "position": [
+          1620,
+          700
+        ]
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "e56dc7e5-3557-4211-a454-8acf5d3aaecb",
+                "leftValue": "={{ $('Form2').all()[0].json['Si no vas a usar una tabla existente, pon el nombre abajo para crear una nueva'] }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "8c715470-3ba3-4a79-8271-4f7fc2e1ad4c",
+        "name": "If",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          560,
+          400
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "executeQuery",
+          "query": "CREATE TABLE {{ $('Form2').all()[0].json['Si no vas a usar una tabla existente, pon el nombre abajo para crear una nueva'] }} (`#` INT NOT NULL AUTO_INCREMENT , `nombre` VARCHAR(200) NOT NULL , `id` VARCHAR(200) NOT NULL , `participantes` INT NOT NULL , `tipo` VARCHAR(200) NOT NULL , PRIMARY KEY (`#`)) ENGINE = InnoDB;",
+          "options": {}
+        },
+        "id": "1eb853f2-a001-47c8-91e5-ce269221e990",
+        "name": "MySQL3",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          780,
+          280
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "steiUYgtMeBLjkId",
+            "name": "N8N MYSQL"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "completion",
+          "completionTitle": "EXPLORACIÓN Y ESCRITURA FINALIZADA",
+          "completionMessage": "Revise la BD",
+          "options": {}
+        },
+        "id": "257e1459-a7c0-4769-b61c-4b4b973acf53",
+        "name": "Form",
+        "type": "n8n-nodes-base.form",
+        "typeVersion": 1,
+        "position": [
+          2040,
+          700
+        ],
+        "webhookId": "2075d99c-d1c6-4771-a9ae-38e4966bdb43"
+      }
+    ],
+    "connections": {
+      "Variables": {
+        "main": [
+          [
+            {
+              "node": "Obtener todos los grupos",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Obtener todos los grupos": {
+        "main": [
+          [
+            {
+              "node": "If2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Comparar registros": {
+        "main": [
+          [],
+          [],
+          [],
+          [
+            {
+              "node": "Sort",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "form1": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "TablaInst": {
+        "main": [
+          [
+            {
+              "node": "BodyInst",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "TablaInst",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "BodyInst": {
+        "main": [
+          [
+            {
+              "node": "MySQL1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Form2": {
+        "main": [
+          [
+            {
+              "node": "Variables",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If2": {
+        "main": [
+          [
+            {
+              "node": "Comparar registros",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "UnicosSql": {
+        "main": [
+          [
+            {
+              "node": "JsonSql",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL1": {
+        "main": [
+          [
+            {
+              "node": "UnicosSql",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "JsonSql": {
+        "main": [
+          [
+            {
+              "node": "BodySql",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "BodySql": {
+        "main": [
+          [
+            {
+              "node": "Form2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL": {
+        "main": [
+          [
+            {
+              "node": "Comparar registros",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Sort": {
+        "main": [
+          [
+            {
+              "node": "MySQL2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "MySQL3",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "MySQL",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL3": {
+        "main": [
+          [
+            {
+              "node": "Comparar registros",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL2": {
+        "main": [
+          [
+            {
+              "node": "Form",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "23cac3da-ad34-46ad-b53a-10b3bf3045ab",
   "connections": {
     "Variables": {
       "main": [
