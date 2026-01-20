@@ -1,5 +1,2476 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "9a800232-9abf-4d43-8d0d-7ee35d6b3d75",
+    "workflowId": "SljrANTJZZVLjWB3",
+    "nodes": [
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "98d33b2f-213d-47f2-a371-eea6200da8ea",
+                "name": "numero",
+                "value": "={{ $json.body.data.buyer.checkout_phone?$json.body.data.buyer.checkout_phone:null  }}",
+                "type": "string"
+              },
+              {
+                "id": "793c14fc-8fad-40ff-b61d-74b8303d8345",
+                "name": "nombre",
+                "value": "={{ $json.body.data.buyer.name?$json.body.data.buyer.name:null  }}",
+                "type": "string"
+              },
+              {
+                "id": "91dd8687-0c5f-4500-be93-273d95b33fad",
+                "name": "correo",
+                "value": "={{ $json.body.data.buyer.email?$json.body.data.buyer.email:null  }}",
+                "type": "string"
+              },
+              {
+                "id": "7ee4aa65-ac76-4c9b-bd0c-464aa8b1f419",
+                "name": "flujo",
+                "value": "compras",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "fe1d6c76-328e-471e-a7e5-a5fd2155ebc1",
+        "name": "asignar datos COMPRA",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          560,
+          -120
+        ]
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "98d33b2f-213d-47f2-a371-eea6200da8ea",
+                "name": "numero",
+                "value": "={{ $json.body.data.buyer.phone?$json.body.data.buyer.phone:null  }}",
+                "type": "string"
+              },
+              {
+                "id": "793c14fc-8fad-40ff-b61d-74b8303d8345",
+                "name": "nombre",
+                "value": "={{ $json.body.data.buyer.name?$json.body.data.buyer.name:null  }}",
+                "type": "string"
+              },
+              {
+                "id": "91dd8687-0c5f-4500-be93-273d95b33fad",
+                "name": "correo",
+                "value": "={{ $json.body.data.buyer.email?$json.body.data.buyer.email:null  }}",
+                "type": "string"
+              },
+              {
+                "id": "bc97ae8d-0182-4e22-967c-23a116480230",
+                "name": "flujo",
+                "value": "abandonados",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "a91dd258-b923-445b-90b6-f6f65713d0f0",
+        "name": "Asignar datos CARRITO",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          560,
+          -300
+        ]
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "98d33b2f-213d-47f2-a371-eea6200da8ea",
+                "name": "numero",
+                "value": "={{ $json.body.data.buyer.checkout_phone?$json.body.data.buyer.checkout_phone:null  }}",
+                "type": "string"
+              },
+              {
+                "id": "793c14fc-8fad-40ff-b61d-74b8303d8345",
+                "name": "nombre",
+                "value": "={{ $json.body.data.buyer.name?$json.body.data.buyer.name:null  }}",
+                "type": "string"
+              },
+              {
+                "id": "91dd8687-0c5f-4500-be93-273d95b33fad",
+                "name": "correo",
+                "value": "={{ $json.body.data.buyer.email?$json.body.data.buyer.email:null  }}",
+                "type": "string"
+              },
+              {
+                "id": "fa1bd1b6-b606-4de1-a5cc-291bfa8ad403",
+                "name": "flujo",
+                "value": "rechazados",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "15d87207-cc9c-42fc-ad34-94336d5977ba",
+        "name": "Asignar datos RECHAZADOS",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          560,
+          60
+        ]
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "=https://evolution.automscc.com/message/sendText/JUAN CARLOS",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "apikey",
+                "value": "=429683C4C977415CAAFCCE10F7D57E11"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"number\": \"120363284384113085@g.us\",\n    \"text\": \"💸 COMPRA DEL PRODUCTO {{ $('Webhook').first().json.body.data.product.name}} REALIZADA POR: {{ $('Webhook').first().json.body.data.buyer.checkout_phone}}, nombre: {{ $('Webhook').first().json.body.data.buyer.name}} y correo: {{ $('Webhook').first().json.body.data.buyer.email}}\", \n    \"linkPreview\": false\n}\n",
+          "options": {}
+        },
+        "id": "2e1e6fbd-e11e-47eb-bfe6-f15c0a01f3ed",
+        "name": "Enviar texto SIN MENCION",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.1,
+        "position": [
+          860,
+          240
+        ]
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "a3c0f0d9-2a6c-432c-a73e-9ee7b51ebf14",
+                "leftValue": "={{ $json.numero }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "3149af3e-202a-4ca9-a93f-8f394e038c72",
+        "name": "If",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          740,
+          -300
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "asesoresc_tg",
+            "mode": "list",
+            "cachedResultName": "asesoresc_tg"
+          },
+          "returnAll": true,
+          "options": {}
+        },
+        "id": "85b17d92-3e6c-4dc8-9e18-edae925341f2",
+        "name": "MySQL",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          2440,
+          -120
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "bazYRWYpbGz9y3iC",
+            "name": "BD GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "sortFieldsUi": {
+            "sortField": [
+              {
+                "fieldName": "cuenta"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "262cf05f-39bf-42e8-9651-c1017f8cfe46",
+        "name": "Sort",
+        "type": "n8n-nodes-base.sort",
+        "typeVersion": 1,
+        "position": [
+          2600,
+          -120
+        ]
+      },
+      {
+        "parameters": {},
+        "id": "1b214643-5d77-4301-92ca-3e163e32c7ab",
+        "name": "Limit",
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          2760,
+          -120
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "table": {
+            "__rl": true,
+            "value": "asesoresc_tg",
+            "mode": "list",
+            "cachedResultName": "asesoresc_tg"
+          },
+          "dataMode": "defineBelow",
+          "columnToMatchOn": "id",
+          "valueToMatchOn": "={{ $json.id }}",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "cuenta",
+                "value": "={{ $json.cuenta + 1}}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "436d55f3-3aad-4afe-b380-3071b627c67e",
+        "name": "MySQL1",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          2920,
+          -120
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "bazYRWYpbGz9y3iC",
+            "name": "BD GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "e3631c6d-5dc0-40ee-8295-c5f186858dde",
+                "leftValue": "={{$json}}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "d9271c08-0aae-43c5-b0da-6225affad4fc",
+        "name": "If1",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          2220,
+          -240
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "phones_tg",
+            "mode": "list",
+            "cachedResultName": "phones_tg"
+          },
+          "limit": 1,
+          "where": {
+            "values": [
+              {
+                "column": "client",
+                "condition": "LIKE",
+                "value": "=%{{ $('Code').first().json.numero.slice(-6) }}%"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "fa88eb21-49d9-446e-9f2f-542a0ad0b067",
+        "name": "MySQL2",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          2040,
+          -240
+        ],
+        "alwaysOutputData": true,
+        "credentials": {
+          "mySql": {
+            "id": "bazYRWYpbGz9y3iC",
+            "name": "BD GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "phones_tg",
+            "mode": "list",
+            "cachedResultName": "phones_tg"
+          },
+          "limit": 1,
+          "where": {
+            "values": [
+              {
+                "column": "client",
+                "condition": "LIKE",
+                "value": "=%{{ $('Code').item.json.numero.slice(-6) }}%"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "81540562-e7ed-4950-8c7a-c8092775a62d",
+        "name": "MySQL3",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          3300,
+          -240
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "bazYRWYpbGz9y3iC",
+            "name": "BD GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "mode": "runOnceForEachItem",
+          "jsCode": "return {\n  json: {\n    numero: $json.numero,\n    nombre: $json.nombre,\n    correo: $json.correo,\n    flujo: $json.flujo\n  }\n};\n"
+        },
+        "id": "f1c230de-4532-403b-b854-a08ebeb796b8",
+        "name": "Code",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1060,
+          -300
+        ]
+      },
+      {
+        "parameters": {
+          "table": {
+            "__rl": true,
+            "value": "phones_tg",
+            "mode": "list",
+            "cachedResultName": "phones_tg"
+          },
+          "dataMode": "defineBelow",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "client",
+                "value": "={{ $('Code').item.json.numero }}"
+              },
+              {
+                "column": "assistant",
+                "value": "={{ $('Limit').item.json.id_tg }}"
+              },
+              {
+                "column": "source",
+                "value": "={{ $('Code').item.json.flujo }}"
+              },
+              {
+                "column": "product",
+                "value": "={{ $('Webhook').item.json.body.data.product.name }}"
+              },
+              {
+                "column": "asesor",
+                "value": "={{ $('Limit').item.json.nombre}}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "a35b9bad-cd97-4e27-a7bd-c01e9f6355cc",
+        "name": "MySQL4",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          3120,
+          -120
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "bazYRWYpbGz9y3iC",
+            "name": "BD GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"chat_id\": \"-1002416117341\",\n  \"message_thread_id\": \"{{ $('MySQL3').first().json.assistant}}\",\n  \"text\": \"{{ $('Code1').first().json.mensaje.replace(/\\\\/g, \"\\\\\\\\\").replace(/\\n/g, \"\\\\n\").replace(/\"/g, '\\\\\"') }}\",\n  \"reply_markup\": {\n    \"inline_keyboard\": [\n      [\n        {\n          \"text\": \"IR AL CHAT\",\n          \"url\": \"wa.me/{{ $('Code').first().json.numero }}\"\n        }\n      ]\n    ]\n  }\n}\n",
+          "options": {}
+        },
+        "id": "6e990416-f11b-4110-a97c-d1d5839d657c",
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          3680,
+          -240
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "runOnceForEachItem",
+          "jsCode": "const nombre = $('Code').item.json.nombre;\nconst correo = $('Code').item.json.correo;\nconst numero = $('Code').item.json.numero;\n\nconst valores = {\n  mensaje: {\n    abandonados: `🏃🏻‍♂️💨 CARRITO ABANDONADO: \\n\\nNombre: ${nombre}\\nNumero: ${numero}\\nCorreo: ${correo}\\n\\nCERRAR INMEDIATAMENTE 🫵🏻`,\n    rechazados: `🔴 COMPRA RECHAZADA: \\n\\nNombre: ${nombre}\\nNumero: ${numero}\\nCorreo: ${correo}\\n\\nCERRAR INMEDIATAMENTE 🫵🏻`,\n    tickets: `💰 TICKET GENERADO: \\n\\nNombre: ${nombre}\\nNumero: ${numero}\\nCorreo: ${correo}\\n\\nCERRAR INMEDIATAMENTE 🫵🏻`\n  }\n};\n\nconst flujo = $('Code').item.json.flujo; // Asegúrate de que flujo tiene un valor válido.\nconst mensaje = valores.mensaje[flujo] || \"Valor no definido\"; // Acceso seguro a valores.mensaje\n\nreturn {\n  json: {\n    mensaje\n  }\n};\n"
+        },
+        "id": "5551744a-4825-44ae-8abe-f8885bf0fa71",
+        "name": "Code1",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          3480,
+          -240
+        ]
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.body.event }}",
+                      "rightValue": "CART",
+                      "operator": {
+                        "type": "string",
+                        "operation": "contains"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "CARRITO"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "58cbfd42-520c-4408-b64c-bfcc89f08d2a",
+                      "leftValue": "={{ $json.body.event }}",
+                      "rightValue": "PURCHASE_APPROVED",
+                      "operator": {
+                        "type": "string",
+                        "operation": "contains"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "APROBADA"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "8fad3231-c87a-41f9-850b-9b2db22b39a4",
+                      "leftValue": "={{ $json.body.event }}",
+                      "rightValue": "PURCHASE_CANCELED",
+                      "operator": {
+                        "type": "string",
+                        "operation": "contains"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "RECHAZADOS"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "b0711423-e030-4b57-a815-244778bd0df1",
+        "name": "Switch",
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.2,
+        "position": [
+          280,
+          -140
+        ]
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "98d33b2f-213d-47f2-a371-eea6200da8ea",
+                "name": "numero",
+                "value": "={{ $json.body.cliente.toNumber() }}",
+                "type": "string"
+              },
+              {
+                "id": "9d0e6cef-60c0-4bdd-b6f1-ed08352038bd",
+                "name": "mensaje",
+                "value": "={{ $json.body.mensaje.replace(/\\\\/g, \"\\\\\\\\\").replace(/\\n/g, \"\\\\n\").replace(/\"/g, '\\\\\"') }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "81c9bc6c-454f-4dfe-9910-0711ea2e7615",
+        "name": "Asignar datos RECHAZADOS1",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          520,
+          680
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "phones_tg",
+            "mode": "list",
+            "cachedResultName": "phones_tg"
+          },
+          "limit": 1,
+          "where": {
+            "values": [
+              {
+                "column": "client",
+                "condition": "LIKE",
+                "value": "=%{{ $('Asignar datos RECHAZADOS1').first().json.numero.slice(-6)  }}%"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "fea9d2ef-1239-451a-994d-1f31bf89d52c",
+        "name": "MySQL5",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          740,
+          680
+        ],
+        "alwaysOutputData": true,
+        "credentials": {
+          "mySql": {
+            "id": "bazYRWYpbGz9y3iC",
+            "name": "BD GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "asesoresc_tg",
+            "mode": "list",
+            "cachedResultName": "asesoresc_tg"
+          },
+          "returnAll": true,
+          "options": {}
+        },
+        "id": "3daef935-8917-4dfa-a7a0-6bb27ff708ce",
+        "name": "MySQL6",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          1100,
+          840
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "bazYRWYpbGz9y3iC",
+            "name": "BD GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "sortFieldsUi": {
+            "sortField": [
+              {
+                "fieldName": "cuenta"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "64eb63de-cf97-4bcc-9890-784fcc205f8b",
+        "name": "Sort1",
+        "type": "n8n-nodes-base.sort",
+        "typeVersion": 1,
+        "position": [
+          1260,
+          840
+        ]
+      },
+      {
+        "parameters": {},
+        "id": "36a490c1-5c5a-420b-bef3-21baa9e54387",
+        "name": "Limit1",
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          1420,
+          840
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "table": {
+            "__rl": true,
+            "value": "asesoresc_tg",
+            "mode": "list",
+            "cachedResultName": "asesoresc_tg"
+          },
+          "dataMode": "defineBelow",
+          "columnToMatchOn": "id",
+          "valueToMatchOn": "={{ $json.id }}",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "cuenta",
+                "value": "={{ $json.cuenta + 1}}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "52c588d3-c30d-43db-be2b-b2b9fd5b0115",
+        "name": "MySQL7",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          1580,
+          840
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "bazYRWYpbGz9y3iC",
+            "name": "BD GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "e3631c6d-5dc0-40ee-8295-c5f186858dde",
+                "leftValue": "={{$json}}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "8fccb623-6cdf-4992-8c4a-60c377cd2e80",
+        "name": "If2",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          900,
+          680
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "phones_tg",
+            "mode": "list",
+            "cachedResultName": "phones_tg"
+          },
+          "limit": 1,
+          "where": {
+            "values": [
+              {
+                "column": "client",
+                "condition": "LIKE",
+                "value": "=%{{ $('Asignar datos RECHAZADOS1').first().json.numero.slice(-6)  }}%"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "ff81f7bc-9663-4c5d-8fdf-a434157aa2d1",
+        "name": "MySQL8",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          1960,
+          660
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "bazYRWYpbGz9y3iC",
+            "name": "BD GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "table": {
+            "__rl": true,
+            "value": "phones_tg",
+            "mode": "list",
+            "cachedResultName": "phones_tg"
+          },
+          "dataMode": "defineBelow",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "client",
+                "value": "={{ $('Asignar datos RECHAZADOS1').item.json.numero }}"
+              },
+              {
+                "column": "assistant",
+                "value": "={{ $('Limit1').item.json.id_tg }}"
+              },
+              {
+                "column": "source",
+                "value": "=link"
+              },
+              {
+                "column": "product",
+                "value": "=na"
+              },
+              {
+                "column": "asesor",
+                "value": "={{ $('Limit1').item.json.nombre}}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "5382dda4-55dc-495a-910b-e02e4fdaf782",
+        "name": "MySQL9",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          1760,
+          840
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "bazYRWYpbGz9y3iC",
+            "name": "BD GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"chat_id\": \"-1002416117341\",\n  \"message_thread_id\": \"{{ $('MySQL8').first().json.assistant}}\",\n  \"text\": \"🟢 *ESCRIBIERON POR LINK*: \\n\\nNumero: {{ $('Asignar datos RECHAZADOS1').first().json.numero }}\\nMensaje: {{ $('Asignar datos RECHAZADOS1').first().json.mensaje }}\\n\\nCONTACTAR DE INMEDIATO 🫵🏻\",\n  \"reply_markup\": {\n    \"inline_keyboard\": [\n      [\n        {\n          \"text\": \"IR AL CHAT\",\n          \"url\": \"wa.me/{{ $('Asignar datos RECHAZADOS1').first().json.numero }}\"\n        }\n      ]\n    ]\n  }\n}\n",
+          "options": {}
+        },
+        "id": "405766a8-6f58-4339-b130-351969bfff3e",
+        "name": "HTTP Request1",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          2200,
+          660
+        ]
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "98d33b2f-213d-47f2-a371-eea6200da8ea",
+                "name": "numero",
+                "value": "={{ $json.body.cliente.toNumber() }}",
+                "type": "string"
+              },
+              {
+                "id": "a1646aec-29c6-4f3d-bd2e-267be53d79c4",
+                "name": "mensaje",
+                "value": "={{ $json.body.mensaje.replace(/\\\\/g, \"\\\\\\\\\").replace(/\\n/g, \"\\\\n\").replace(/\"/g, '\\\\\"') }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "54170f75-f539-4019-8f60-5bacccedca59",
+        "name": "Asignar datos RECHAZADOS2",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          500,
+          1160
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "phones_tg",
+            "mode": "list",
+            "cachedResultName": "phones_tg"
+          },
+          "limit": 1,
+          "where": {
+            "values": [
+              {
+                "column": "client",
+                "condition": "LIKE",
+                "value": "=%{{ $('Asignar datos RECHAZADOS2').first().json.numero.slice(-6)  }}%"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "74ced487-d810-4337-a218-3adc624677de",
+        "name": "MySQL10",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          720,
+          1160
+        ],
+        "alwaysOutputData": true,
+        "credentials": {
+          "mySql": {
+            "id": "bazYRWYpbGz9y3iC",
+            "name": "BD GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "asesoresc_tg",
+            "mode": "list",
+            "cachedResultName": "asesoresc_tg"
+          },
+          "returnAll": true,
+          "options": {}
+        },
+        "id": "1f7cb32b-daee-4c75-8d46-400f0af32a8d",
+        "name": "MySQL11",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          1080,
+          1320
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "bazYRWYpbGz9y3iC",
+            "name": "BD GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "sortFieldsUi": {
+            "sortField": [
+              {
+                "fieldName": "cuenta"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "3ce90c29-3c05-4ca9-bf0b-c4b29ecfc215",
+        "name": "Sort2",
+        "type": "n8n-nodes-base.sort",
+        "typeVersion": 1,
+        "position": [
+          1240,
+          1320
+        ]
+      },
+      {
+        "parameters": {},
+        "id": "2575b1c8-b0ba-43f8-b51b-ed0745a8638a",
+        "name": "Limit2",
+        "type": "n8n-nodes-base.limit",
+        "typeVersion": 1,
+        "position": [
+          1400,
+          1320
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "table": {
+            "__rl": true,
+            "value": "asesoresc_tg",
+            "mode": "list",
+            "cachedResultName": "asesoresc_tg"
+          },
+          "dataMode": "defineBelow",
+          "columnToMatchOn": "id",
+          "valueToMatchOn": "={{ $json.id }}",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "cuenta",
+                "value": "={{ $json.cuenta + 1}}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "c5288b1a-5ed4-46b9-beb5-e9a0a2d9b778",
+        "name": "MySQL12",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          1560,
+          1320
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "bazYRWYpbGz9y3iC",
+            "name": "BD GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "e3631c6d-5dc0-40ee-8295-c5f186858dde",
+                "leftValue": "={{$json}}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "3e185ee9-f1b7-4413-85db-bde0a86ed48e",
+        "name": "If3",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          880,
+          1160
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "phones_tg",
+            "mode": "list",
+            "cachedResultName": "phones_tg"
+          },
+          "limit": 1,
+          "where": {
+            "values": [
+              {
+                "column": "client",
+                "condition": "LIKE",
+                "value": "=%{{ $('Asignar datos RECHAZADOS2').first().json.numero.slice(-6)  }}%"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "db7ec2ef-41b4-4695-904b-5eccd4b8ed73",
+        "name": "MySQL13",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          1940,
+          1140
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "bazYRWYpbGz9y3iC",
+            "name": "BD GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "table": {
+            "__rl": true,
+            "value": "phones_tg",
+            "mode": "list",
+            "cachedResultName": "phones_tg"
+          },
+          "dataMode": "defineBelow",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "client",
+                "value": "={{ $('Asignar datos RECHAZADOS2').item.json.numero }}"
+              },
+              {
+                "column": "assistant",
+                "value": "={{ $('Limit2').item.json.id_tg }}"
+              },
+              {
+                "column": "source",
+                "value": "=llamadas"
+              },
+              {
+                "column": "product",
+                "value": "=na"
+              },
+              {
+                "column": "asesor",
+                "value": "={{ $('Limit2').item.json.nombre}}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "70868af8-5299-4cbe-85e9-507b5b067917",
+        "name": "MySQL14",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          1740,
+          1320
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "bazYRWYpbGz9y3iC",
+            "name": "BD GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"chat_id\": \"-1002416117341\",\n  \"message_thread_id\": \"{{ $('MySQL13').first().json.assistant}}\",\n  \"text\": \"🔥🔥 *RESPONDIÓ LLAMADAS*: \\n\\nNumero: {{ $('Asignar datos RECHAZADOS2').first().json.numero }}\\nMensaje: {{ $('Asignar datos RECHAZADOS2').first().json.mensaje }}\\n\\nCONTACTAR *RAPIDAMENTE* 🏃🏻‍♂️💨\",\n  \"reply_markup\": {\n    \"inline_keyboard\": [\n      [\n        {\n          \"text\": \"IR AL CHAT\",\n          \"url\": \"wa.me/{{ $('Asignar datos RECHAZADOS2').first().json.numero }}\"\n        }\n      ]\n    ]\n  }\n}\n",
+          "options": {}
+        },
+        "id": "869cbcc1-62e2-46a7-9974-21419b6c3cc8",
+        "name": "HTTP Request2",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          2180,
+          1140
+        ]
+      },
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={\n  \"nombre\": \"{{$('MySQL8').first().json.asesor}}\"\n}",
+          "options": {}
+        },
+        "id": "b81e319a-744d-4db9-8d89-ec37e0b0c472",
+        "name": "Respond to Webhook",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          2420,
+          660
+        ]
+      },
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={\n  \"nombre\": \"{{$('MySQL13').first().json.asesor}}\"\n}",
+          "options": {}
+        },
+        "id": "f300673e-7030-46fb-bb61-6b6776b05772",
+        "name": "Respond to Webhook1",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          2360,
+          1140
+        ]
+      },
+      {
+        "parameters": {
+          "content": "## LINK",
+          "height": 417.09302325581393,
+          "width": 2455.9883720930216
+        },
+        "id": "91edc195-7c3d-4931-bc71-95bdda56b5e6",
+        "name": "Sticky Note",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          240,
+          640
+        ]
+      },
+      {
+        "parameters": {
+          "content": "## LLAMADAS",
+          "height": 417.09302325581393,
+          "width": 2455.9883720930216
+        },
+        "id": "3fadc2a5-b615-4e2c-ba8d-dbab0bdfa7aa",
+        "name": "Sticky Note1",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          240,
+          1080
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "runOnceForEachItem",
+          "jsCode": "const valores = {\n  numericos: {\n    abandonados: \"f129997s1063853\",\n    rechazados: \"f129997s1048609\",\n    compras: \"f129997s1049811\"\n  },\n  mailer: {\n    abandonados: \"112554445482493399\",\n    rechazados: \"112554438393071296\",\n    compras: \"112554427903116632\"\n  }\n};\n\nreturn {\n  json: {\n    numero: $json.numero,\n    nombre: $json.nombre,\n    correo: $json.correo,\n    flujo: valores.numericos[$json.flujo] || 0,\n    grupomailer: valores.mailer[$json.flujo] || 0\n  }\n};\n"
+        },
+        "id": "a5b837d6-01dd-4af4-90b9-746ad77689eb",
+        "name": "Code2",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1220,
+          120
+        ]
+      },
+      {
+        "parameters": {
+          "url": "=https://www.uchat.com.au/api/subscribers?phone=%2B{{ $json.numero }}",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "Bearer wotJVBUgJDmGjz4l0JCyToilK25AEHZTVPe1FRbMesI6THPVuRyuFTcL02W7"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "2827bf05-b35d-4758-855d-60e3905476ec",
+        "name": "HTTP Request3",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1380,
+          120
+        ]
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "83098b33-260f-4ea2-97ab-5c962a878dda",
+                "leftValue": "={{ $('HTTP Request3').all()[0].json.data }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "array",
+                  "operation": "empty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "ea440b88-9797-4058-9aab-e7139ff04ca5",
+        "name": "If5",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          1540,
+          120
+        ]
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "=https://www.uchat.com.au/api/subscriber/create",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "Bearer wotJVBUgJDmGjz4l0JCyToilK25AEHZTVPe1FRbMesI6THPVuRyuFTcL02W7"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "bodyParameters": {
+            "parameters": [
+              {
+                "name": "name",
+                "value": "={{ $('Code2').first().json.nombre }}"
+              },
+              {
+                "name": "phone",
+                "value": "={{ $('Code2').first().json.numero }}"
+              },
+              {
+                "name": "gender",
+                "value": "male"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "767abfb6-e927-44cc-8ca8-abe7fa242fbc",
+        "name": "HTTP Request4",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1800,
+          80
+        ]
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "=https://www.uchat.com.au/api/subscriber/send-sub-flow",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "Bearer wotJVBUgJDmGjz4l0JCyToilK25AEHZTVPe1FRbMesI6THPVuRyuFTcL02W7"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "bodyParameters": {
+            "parameters": [
+              {
+                "name": "user_ns",
+                "value": "={{$('HTTP Request4').first().json.data.user_ns}}"
+              },
+              {
+                "name": "sub_flow_ns",
+                "value": "={{ $('Code2').first().json.flujo }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "a0b3b6ce-edd3-4523-8268-daf005d85aba",
+        "name": "HTTP Request5",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1980,
+          80
+        ]
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "=https://connect.mailerlite.com/api/subscribers",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiNjJkOWNjNDIwNmY2MjU3NmNlODlkZjI0ZjI2YTY3Y2I2YzBlMDU1ZTUyNjI3Mzk3ZDI5YzY4YzQ1ZDQ5ODA1MGIwN2U3YmI2MzRjMTdlMWIiLCJpYXQiOjE3MDczNDE5NzMuMTk4MDI2LCJuYmYiOjE3MDczNDE5NzMuMTk4MDI4LCJleHAiOjQ4NjMwMTU1NzMuMTk0NjIzLCJzdWIiOiI3ODg1NjciLCJzY29wZXMiOltdfQ.szhVxEi-fFJkTPNuE5xraeYUUhH_mh4c0fsqQCUoZD7lWk4FEmiKtO6KzqETU9wOjGPYw0hf0i08UzHAXJShiktN-Jd-X6EodonxdgqIYFae4Mfc11BNx8kunRotBESUN7gxeA0yvVSjXv-AuCZ-jjNuRjWFtXrAK237WqIZQoMmGdyrkt6-BLU0FcnksVxLHdliocY1LDisSAjJ3kUKEAVF2OLjI3Ks3SFxsuDcb4zeUgjqACBiYCreoKQKwPlyr1srybwnrbXZL302QtiV-t4jYogole8SwDtQP4El0kVbqkgEiadFcBLF-wNg5K5RNrvTdk-YucFbbKwTVlXH_NdwzgRqNjw9LUl4u7i6FGeiECYVI6ufZ39QTLbwEMaQ4Q2lC6CDt7baSVnT4ahthxN3tlAm49L_5bjAz9UYP3dNHhNX5jh3SeR-qp86TAP3sSyiCQnrHx9HKeyGzmwkXpSdEAl8wCg4jEpX9a3ajJuqfTbcoANyMxJQgqjedep8tAYwOPpnkOmfo45qf4txzIDVE1eeqKrB5_Y1hexB2VZObRMYmGVDyKXnyqJgdWjzOlbkcnoegkXQEkp2t3EyzD2H6S41G9c_0nNjlqgu1elCMFFrMgRXLi9_Op87Y5tCEi52cTUNQ2WSHWMHibEySLzNa873Vop9Gc_tugl9M9g"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "bodyParameters": {
+            "parameters": [
+              {
+                "name": "email",
+                "value": "={{ $('Code2').first().json.correo }}"
+              },
+              {
+                "name": "groups",
+                "value": "={{ [$('Code2').first().json.grupomailer] }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "1cbde257-8e6b-4c00-bf4d-18ff2fed2d6d",
+        "name": "MAILERLITE",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          2240,
+          160
+        ]
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "=https://www.uchat.com.au/api/subscriber/send-sub-flow",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "Bearer wotJVBUgJDmGjz4l0JCyToilK25AEHZTVPe1FRbMesI6THPVuRyuFTcL02W7"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "bodyParameters": {
+            "parameters": [
+              {
+                "name": "user_ns",
+                "value": "={{$('If5').first().json.data.first().user_ns}}"
+              },
+              {
+                "name": "sub_flow_ns",
+                "value": "={{ $('Code2').first().json.flujo }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "80c483f4-0520-46e0-85d8-4c5f9e9e826a",
+        "name": "HTTP Request6",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1820,
+          280
+        ]
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "538a650d-2d39-47b6-8292-be3230646226",
+                "leftValue": "={{$('Code').first().json.flujo}}",
+                "rightValue": "compras",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "55b7f5c9-a5ae-482b-a3e6-d1dc15c2a34c",
+        "name": "If4",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          1260,
+          -300
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "phones_tg",
+            "mode": "list",
+            "cachedResultName": "phones_tg"
+          },
+          "limit": 1,
+          "where": {
+            "values": [
+              {
+                "column": "client",
+                "condition": "LIKE",
+                "value": "=%{{ $('Code').first().json.numero.slice(-6) }}%"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "74a45298-937e-4c09-a91a-d8c961e845bc",
+        "name": "MySQL16",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          1560,
+          -500
+        ],
+        "alwaysOutputData": true,
+        "credentials": {
+          "mySql": {
+            "id": "bazYRWYpbGz9y3iC",
+            "name": "BD GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "e3631c6d-5dc0-40ee-8295-c5f186858dde",
+                "leftValue": "={{$json}}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "2eb229fd-a522-4cab-a128-1cdd70a0a1bd",
+        "name": "If6",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          1740,
+          -500
+        ]
+      },
+      {
+        "parameters": {
+          "table": {
+            "__rl": true,
+            "value": "pagados_tg",
+            "mode": "list",
+            "cachedResultName": "pagados_tg"
+          },
+          "dataMode": "defineBelow",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "client",
+                "value": "={{$('Code').first().json.numero}}"
+              },
+              {
+                "column": "assistant",
+                "value": "={{$('MySQL16').first().json.asesor}}"
+              },
+              {
+                "column": "producto",
+                "value": "={{ $('Webhook').item.json.body.data.product.name }}"
+              },
+              {
+                "column": "observa",
+                "value": "-"
+              },
+              {
+                "column": "source",
+                "value": "={{$('MySQL16').first().json.source}}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "5cce687b-700c-48fc-ab2a-fb7d8aa9626a",
+        "name": "MySQL18",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          2020,
+          -620
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "bazYRWYpbGz9y3iC",
+            "name": "BD GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "table": {
+            "__rl": true,
+            "value": "pagados_tg",
+            "mode": "list",
+            "cachedResultName": "pagados_tg"
+          },
+          "dataMode": "defineBelow",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "client",
+                "value": "={{$('Code').first().json.numero}}"
+              },
+              {
+                "column": "assistant",
+                "value": "NO FUE ATENDIDO"
+              },
+              {
+                "column": "producto",
+                "value": "={{ $('Webhook').item.json.body.data.product.name }}"
+              },
+              {
+                "column": "observa",
+                "value": "-"
+              },
+              {
+                "column": "source",
+                "value": "DIRECTO"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "2fe67887-9a03-4f4e-9ed3-d1df19399ad6",
+        "name": "MySQL19",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          2020,
+          -440
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "bazYRWYpbGz9y3iC",
+            "name": "BD GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"chat_id\": \"-1002416117341\",\n  \"message_thread_id\": \"{{$('MySQL16').first().json.assistant}}\",\n  \"text\": \"🎉🎉 *COMPRA REALIZADA* por: \\n\\nNombre: {{ $('Code').first().json.nombre }}\\nNumero: {{ $('Code').first().json.numero }}\\nCorreo: {{ $('Code').first().json.correo }}\\n\\nConserva las pruebas de la venta 🫵🏻\"\n}\n",
+          "options": {}
+        },
+        "id": "e8bca87d-f346-42b2-9d3b-343b747d8be6",
+        "name": "HTTP Request7",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          2280,
+          -620
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "pagados_tg",
+            "mode": "list",
+            "cachedResultName": "pagados_tg"
+          },
+          "limit": 1,
+          "where": {
+            "values": [
+              {
+                "column": "client",
+                "condition": "LIKE",
+                "value": "=%{{ $('Code').first().json.numero.slice(-6) }}%"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "68e51fdc-f73c-42eb-a605-65daeb91413d",
+        "name": "MySQL15",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          1540,
+          -220
+        ],
+        "alwaysOutputData": true,
+        "credentials": {
+          "mySql": {
+            "id": "bazYRWYpbGz9y3iC",
+            "name": "BD GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "826f1c55-9810-4474-b1cd-138dc99999cc",
+                "leftValue": "={{$json}}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "empty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "2173471a-4653-4373-a4c2-3d4bd7b53423",
+        "name": "If7",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          1740,
+          -220
+        ]
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "hotmart",
+          "options": {}
+        },
+        "id": "68307f0d-307e-4921-9164-8d4533f73e1e",
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          60,
+          -140
+        ],
+        "webhookId": "6192ad52-6901-4c16-87aa-64bf7dcfddf0"
+      },
+      {
+        "parameters": {
+          "content": "## UCHAT Y MAILERLITE\n",
+          "height": 417.09302325581393,
+          "width": 1253.9723184342154,
+          "color": 4
+        },
+        "id": "7dc09512-d889-4eff-8016-301261152f6c",
+        "name": "Sticky Note3",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          1180,
+          40
+        ]
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "llamadas",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "id": "54ebde77-d37d-4b1e-ae15-24c3096673eb",
+        "name": "Webhook2",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          300,
+          1160
+        ],
+        "webhookId": "6192ad52-6901-4c16-87aa-64bf7dcfddf0"
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "uchat",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "id": "b6df46db-cc4a-47d6-ad6b-22f5b01d9245",
+        "name": "Webhook1",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          360,
+          720
+        ],
+        "webhookId": "6192ad52-6901-4c16-87aa-64bf7dcfddf0"
+      }
+    ],
+    "connections": {
+      "Asignar datos CARRITO": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "asignar datos COMPRA": {
+        "main": [
+          [
+            {
+              "node": "Enviar texto SIN MENCION",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Code2",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Code",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Asignar datos RECHAZADOS": {
+        "main": [
+          [
+            {
+              "node": "Code",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Code2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Code",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Code2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL": {
+        "main": [
+          [
+            {
+              "node": "Sort",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Sort": {
+        "main": [
+          [
+            {
+              "node": "Limit",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Limit": {
+        "main": [
+          [
+            {
+              "node": "MySQL1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If1": {
+        "main": [
+          [
+            {
+              "node": "MySQL3",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "MySQL",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL2": {
+        "main": [
+          [
+            {
+              "node": "If1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code": {
+        "main": [
+          [
+            {
+              "node": "If4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL1": {
+        "main": [
+          [
+            {
+              "node": "MySQL4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL3": {
+        "main": [
+          [
+            {
+              "node": "Code1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL4": {
+        "main": [
+          [
+            {
+              "node": "MySQL3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code1": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [
+            {
+              "node": "Asignar datos CARRITO",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "asignar datos COMPRA",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Asignar datos RECHAZADOS",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Asignar datos RECHAZADOS1": {
+        "main": [
+          [
+            {
+              "node": "MySQL5",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL6": {
+        "main": [
+          [
+            {
+              "node": "Sort1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Sort1": {
+        "main": [
+          [
+            {
+              "node": "Limit1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Limit1": {
+        "main": [
+          [
+            {
+              "node": "MySQL7",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL7": {
+        "main": [
+          [
+            {
+              "node": "MySQL9",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If2": {
+        "main": [
+          [
+            {
+              "node": "MySQL8",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "MySQL6",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL8": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL9": {
+        "main": [
+          [
+            {
+              "node": "MySQL8",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL5": {
+        "main": [
+          [
+            {
+              "node": "If2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Asignar datos RECHAZADOS2": {
+        "main": [
+          [
+            {
+              "node": "MySQL10",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL10": {
+        "main": [
+          [
+            {
+              "node": "If3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL11": {
+        "main": [
+          [
+            {
+              "node": "Sort2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Sort2": {
+        "main": [
+          [
+            {
+              "node": "Limit2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Limit2": {
+        "main": [
+          [
+            {
+              "node": "MySQL12",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL12": {
+        "main": [
+          [
+            {
+              "node": "MySQL14",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If3": {
+        "main": [
+          [
+            {
+              "node": "MySQL13",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "MySQL11",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL13": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL14": {
+        "main": [
+          [
+            {
+              "node": "MySQL13",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request1": {
+        "main": [
+          [
+            {
+              "node": "Respond to Webhook",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request2": {
+        "main": [
+          [
+            {
+              "node": "Respond to Webhook1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code2": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request3": {
+        "main": [
+          [
+            {
+              "node": "If5",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If5": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request4",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "HTTP Request6",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request4": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request5",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request5": {
+        "main": [
+          [
+            {
+              "node": "MAILERLITE",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request6": {
+        "main": [
+          [
+            {
+              "node": "MAILERLITE",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If4": {
+        "main": [
+          [
+            {
+              "node": "MySQL16",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "MySQL15",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL16": {
+        "main": [
+          [
+            {
+              "node": "If6",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If6": {
+        "main": [
+          [
+            {
+              "node": "MySQL18",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "MySQL19",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL18": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request7",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL15": {
+        "main": [
+          [
+            {
+              "node": "If7",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If7": {
+        "main": [
+          [
+            {
+              "node": "MySQL2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Webhook2": {
+        "main": [
+          [
+            {
+              "node": "Asignar datos RECHAZADOS2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Webhook1": {
+        "main": [
+          [
+            {
+              "node": "Asignar datos RECHAZADOS1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "9a800232-9abf-4d43-8d0d-7ee35d6b3d75",
   "connections": {
     "Asignar datos CARRITO": {
       "main": [
