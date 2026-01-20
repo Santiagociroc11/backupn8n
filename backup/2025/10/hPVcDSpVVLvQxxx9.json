@@ -1,5 +1,1400 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "54b18c74-e09e-4384-9ec9-2f15419896d0",
+    "workflowId": "hPVcDSpVVLvQxxx9",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "webhook-prueba-hotmart",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          -1920,
+          400
+        ],
+        "id": "7c7593f2-eeee-47ee-8afa-707bcfc3c118",
+        "name": "Webhook",
+        "webhookId": "62358276-06ab-402b-b4d3-c8b5086705ac"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3f749c1e-7a9d-4221-a33a-f358a7a399ba",
+                "name": "correo",
+                "value": "={{ $json.body.data.buyer.email }}",
+                "type": "string"
+              },
+              {
+                "id": "d6592a70-22c7-4b18-a856-53ee65ed7e40",
+                "name": "telefono",
+                "value": "={{ $json.body.data.buyer.checkout_phone }}",
+                "type": "string"
+              },
+              {
+                "id": "ed1ac629-e4c8-4eeb-abae-64082a84782f",
+                "name": "valor",
+                "value": "={{ $json.body.data.purchase.full_price.value }}",
+                "type": "string"
+              },
+              {
+                "id": "18612dba-711e-4221-abad-aa3c4b94a00e",
+                "name": "transaccion",
+                "value": "={{ $json.body.data.purchase.transaction }}",
+                "type": "string"
+              },
+              {
+                "id": "6a2bcc7f-a66e-4a37-bbaa-21b92030bcb7",
+                "name": "producto",
+                "value": "={{ $json.body.data.product.name }}",
+                "type": "string"
+              },
+              {
+                "id": "318fa565-59ad-49ba-bc78-fa43f62cd2a3",
+                "name": "moneda",
+                "value": "={{ $json.body.data.purchase.full_price.currency_value }}",
+                "type": "string"
+              },
+              {
+                "id": "e004a49a-b8ab-4d12-858c-c97a60c32912",
+                "name": "pais",
+                "value": "={{ $json.body.data.purchase.checkout_country.name }}",
+                "type": "string"
+              },
+              {
+                "id": "3b56580e-92d2-455c-8dc5-8c2c99d3b2e4",
+                "name": "pais_iso",
+                "value": "={{ $json.body.data.purchase.checkout_country.iso }}",
+                "type": "string"
+              },
+              {
+                "id": "0dcdb1f5-dcc7-4c61-85ae-0a347bf5219c",
+                "name": "nombre",
+                "value": "={{ $json.body.data.buyer.name }}",
+                "type": "string"
+              },
+              {
+                "id": "ef22d362-caec-48c4-ad84-ede358918472",
+                "name": "productoID",
+                "value": "={{ $json.productid }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -720,
+          144
+        ],
+        "id": "5c7f85f4-bc99-40c5-b414-b537fdbbe116",
+        "name": "Edit Fields"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "e37b21dd-3e78-4189-8549-cbedd7583d74",
+                "leftValue": "={{ $json.isEmpty() }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -400,
+          224
+        ],
+        "id": "14c621ac-a2db-41e2-ad07-8f310d3c86f2",
+        "name": "NUEVA TRANSACCION?"
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          -192,
+          160
+        ],
+        "id": "b3ae9181-1599-4261-8e60-c53c70275d44",
+        "name": "Merge"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "47e7c1ef-8a78-4294-a742-1cee61fbbdfc",
+                "leftValue": "={{ $json.isEmpty() }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "false",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          144,
+          96
+        ],
+        "id": "6fb9a62a-568e-4037-9acc-34d447b4de06",
+        "name": "EXISTE?"
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          304,
+          240
+        ],
+        "id": "d62f824c-399c-4e07-a05e-d5e1c2de3f4a",
+        "name": "Merge1"
+      },
+      {
+        "parameters": {
+          "collection": "ventas",
+          "options": {},
+          "query": "={\"transaccion\":\"{{ $json.transaccion }}\"} "
+        },
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.2,
+        "position": [
+          -560,
+          224
+        ],
+        "id": "be2aaada-6988-4920-963f-e3fef4dc68d5",
+        "name": "BuscaVenta1",
+        "alwaysOutputData": true,
+        "credentials": {
+          "mongoDb": {
+            "id": "Lrh0qQ8ohSdpiarD",
+            "name": "mongo quickbooks black"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "insert",
+          "collection": "ventas",
+          "fields": "nombre,correo,telefono,valor,producto,transaccion,moneda,pais,pais_iso",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.2,
+        "position": [
+          -32,
+          256
+        ],
+        "id": "c483cebf-9ab3-43ff-80ee-5178f1a013a5",
+        "name": "CREA VENTA",
+        "credentials": {
+          "mongoDb": {
+            "id": "Lrh0qQ8ohSdpiarD",
+            "name": "mongo quickbooks black"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "insert",
+          "collection": "clientes",
+          "fields": "=Id,correo,telefono,nombre",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.2,
+        "position": [
+          752,
+          176
+        ],
+        "id": "ea22b278-2e23-444a-b000-c0d7b315e4e3",
+        "name": "CREAR CLIENTE1",
+        "credentials": {
+          "mongoDb": {
+            "id": "Lrh0qQ8ohSdpiarD",
+            "name": "mongo quickbooks black"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "collection": "clientes",
+          "options": {
+            "limit": 1
+          },
+          "query": "={\"correo\": \"{{ $json.correo }}\", \"telefono\": \"{{ $json.telefono }}\"} "
+        },
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.2,
+        "position": [
+          -32,
+          96
+        ],
+        "id": "64f75eec-c88a-41cb-9784-53949e1f932a",
+        "name": "BUSCA CLIENTE",
+        "alwaysOutputData": true,
+        "credentials": {
+          "mongoDb": {
+            "id": "Lrh0qQ8ohSdpiarD",
+            "name": "mongo quickbooks black"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          608,
+          176
+        ],
+        "id": "a6cb06fa-0492-4db5-9115-7d244b7af91d",
+        "name": "Merge2"
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          -880,
+          144
+        ],
+        "id": "626057aa-71e2-4c66-beef-e3ff75e66532",
+        "name": "Merge3"
+      },
+      {
+        "parameters": {
+          "collection": "productos",
+          "options": {},
+          "query": "={\"hotmartID\":\"{{ $json.body.data.product.ucode }}\"} "
+        },
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.2,
+        "position": [
+          -1248,
+          208
+        ],
+        "id": "b54df502-d47c-435c-a1a9-39a473973d6d",
+        "name": "BuscaProducto",
+        "alwaysOutputData": true,
+        "credentials": {
+          "mongoDb": {
+            "id": "Lrh0qQ8ohSdpiarD",
+            "name": "mongo quickbooks black"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.body.event }}",
+                      "rightValue": "=PURCHASE_APPROVED",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      },
+                      "id": "f2501e34-56c0-401a-b6ff-998cab53d860"
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "APROBADAS"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "2aafde3d-c687-4194-982a-676416a47115",
+                      "leftValue": "={{ $json.body.event }}",
+                      "rightValue": "PURCHASE_REFUNDED",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "REEMBOLSADA"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "efb65e04-9bf6-4349-b2dd-523351f0ffe8",
+                      "leftValue": "={{ $json.body.event }}",
+                      "rightValue": "PURCHASE_CHARGEBACK",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "CHARGEBACK"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.2,
+        "position": [
+          -1696,
+          384
+        ],
+        "id": "210dc26e-7b1d-4fb9-8403-c0da0b4b7bf5",
+        "name": "Switch"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "469a0034-dfd8-41ee-87e5-412f9013d80b",
+                "name": "facturaID",
+                "value": "={{ $json.SalesReceipt.Id }}",
+                "type": "string"
+              },
+              {
+                "id": "a5506ec1-3fe4-4799-80f1-fd2cda16ff5a",
+                "name": "costumerID",
+                "value": "={{ $json.SalesReceipt.CustomerRef.value }}",
+                "type": "string"
+              },
+              {
+                "id": "888944ed-aeb2-405b-96f4-97b08582e545",
+                "name": "productoID",
+                "value": "={{ $json.SalesReceipt.Line[0].SalesItemLineDetail.ItemRef.value }}",
+                "type": "string"
+              },
+              {
+                "id": "5acafec6-1605-4e1d-a09b-cfa55c4e4542",
+                "name": "fechafactura",
+                "value": "={{ $json.SalesReceipt.MetaData.CreateTime }}",
+                "type": "string"
+              },
+              {
+                "id": "677775f9-9928-4f5c-87bd-5bbffd29a66a",
+                "name": "transaccion",
+                "value": "={{ $json.SalesReceipt.Line[0].Description }}",
+                "type": "string"
+              },
+              {
+                "id": "35bb1761-eaf9-422f-9ef9-d546dd0aabe4",
+                "name": "estado",
+                "value": "normal",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          1120,
+          80
+        ],
+        "id": "b28a89a2-7165-4f7c-b4b0-063093c61622",
+        "name": "DATOS FACTURA"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://quickbooks.api.intuit.com/v3/company/9341455102096003/salesreceipt?minorversion=70",
+          "authentication": "predefinedCredentialType",
+          "nodeCredentialType": "quickBooksOAuth2Api",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Accept",
+                "value": "application/json"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"Line\": [\n    {\n      \"Description\": \"{{ $('Edit Fields').item.json.transaccion }}\",\n      \"DetailType\": \"SalesItemLineDetail\",\n      \"SalesItemLineDetail\": {\n        \"ItemRef\": {\n          \"value\": \"{{ $('Edit Fields').item.json.productoID }}\"\n        }\n      },\n      \"Amount\": \"{{ $('Edit Fields').item.json.valor }}\"\n    }\n  ],\n  \"CustomerRef\": {\n    \"value\": \"{{ $json.Id }}\"\n  },\n  \"CurrencyRef\": {\n    \"value\": \"{{ $('Edit Fields').item.json.moneda }}\"\n  },\n  \"PrivateNote\": \"{{ $('Edit Fields').item.json.transaccion }}\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          928,
+          80
+        ],
+        "id": "85a6f1ac-16c1-4d88-b0ae-f68baa2eafbe",
+        "name": "CREAR FACTURA",
+        "credentials": {
+          "quickBooksOAuth2Api": {
+            "id": "zqEJ85KroykpKbvG",
+            "name": "quickbooks BLACK DIGITAL"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "=https://quickbooks.api.intuit.com/v3/company/9341455102096003/salesreceipt/{{ $json.facturaID }}/send?sendTo={{ $('Edit Fields').item.json.correo }}&minorversion=70",
+          "authentication": "predefinedCredentialType",
+          "nodeCredentialType": "quickBooksOAuth2Api",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1456,
+          80
+        ],
+        "id": "4ea09b69-1163-476e-a633-943f3d3217ce",
+        "name": "ENVIAR CORREO",
+        "credentials": {
+          "quickBooksOAuth2Api": {
+            "id": "zqEJ85KroykpKbvG",
+            "name": "quickbooks BLACK DIGITAL"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "create",
+          "displayName": "={{ $json.nombre }}",
+          "additionalFields": {
+            "PrimaryEmailAddr": "={{ $json.correo }}",
+            "PrimaryPhone": "={{ $json.telefono }}"
+          }
+        },
+        "type": "n8n-nodes-base.quickbooks",
+        "typeVersion": 1,
+        "position": [
+          448,
+          240
+        ],
+        "id": "65cc2a1b-cf23-48f6-8c92-900a48a4f351",
+        "name": "CREAR CLIENTE",
+        "credentials": {
+          "quickBooksOAuth2Api": {
+            "id": "zqEJ85KroykpKbvG",
+            "name": "quickbooks BLACK DIGITAL"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "f1eae91f-78a9-4e4d-b799-bc41341cf19f",
+                "leftValue": "={{ $json.isEmpty() }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "false",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -1088,
+          208
+        ],
+        "id": "d8a26192-2dd6-4e64-b71d-96f61f0c6a3e",
+        "name": "EXISTE PRODUCTO?"
+      },
+      {
+        "parameters": {
+          "content": "*COMPRAS APROBADAS*",
+          "height": 368,
+          "width": 2928,
+          "color": 4
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -1280,
+          64
+        ],
+        "id": "42baf643-6e60-4649-a1cb-3eb782b8c9f6",
+        "name": "Sticky Note"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3f749c1e-7a9d-4221-a33a-f358a7a399ba",
+                "name": "correo",
+                "value": "={{ $json.body.data.buyer.email }}",
+                "type": "string"
+              },
+              {
+                "id": "d6592a70-22c7-4b18-a856-53ee65ed7e40",
+                "name": "telefono",
+                "value": "={{ $json.body.data.buyer.checkout_phone }}",
+                "type": "string"
+              },
+              {
+                "id": "ed1ac629-e4c8-4eeb-abae-64082a84782f",
+                "name": "valor",
+                "value": "={{ $json.body.data.purchase.full_price.value }}",
+                "type": "string"
+              },
+              {
+                "id": "18612dba-711e-4221-abad-aa3c4b94a00e",
+                "name": "transaccion",
+                "value": "={{ $json.body.data.purchase.transaction }}",
+                "type": "string"
+              },
+              {
+                "id": "6a2bcc7f-a66e-4a37-bbaa-21b92030bcb7",
+                "name": "producto",
+                "value": "={{ $json.body.data.product.name }}",
+                "type": "string"
+              },
+              {
+                "id": "318fa565-59ad-49ba-bc78-fa43f62cd2a3",
+                "name": "moneda",
+                "value": "={{ $json.body.data.purchase.full_price.currency_value }}",
+                "type": "string"
+              },
+              {
+                "id": "e004a49a-b8ab-4d12-858c-c97a60c32912",
+                "name": "pais",
+                "value": "={{ $json.body.data.purchase.checkout_country.name }}",
+                "type": "string"
+              },
+              {
+                "id": "3b56580e-92d2-455c-8dc5-8c2c99d3b2e4",
+                "name": "pais_iso",
+                "value": "={{ $json.body.data.purchase.checkout_country.iso }}",
+                "type": "string"
+              },
+              {
+                "id": "0dcdb1f5-dcc7-4c61-85ae-0a347bf5219c",
+                "name": "nombre",
+                "value": "={{ $json.body.data.buyer.name }}",
+                "type": "string"
+              },
+              {
+                "id": "ef22d362-caec-48c4-ad84-ede358918472",
+                "name": "productoID",
+                "value": "={{ $json.productid }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -720,
+          560
+        ],
+        "id": "ffa292d5-f09f-46b2-a9af-8e4c8e5bfb97",
+        "name": "Edit Fields1"
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          -192,
+          576
+        ],
+        "id": "9b217c4a-cb1e-41fb-b0f4-77003662af03",
+        "name": "Merge4"
+      },
+      {
+        "parameters": {
+          "collection": "ventas",
+          "options": {},
+          "query": "={\"transaccion\":\"{{ $json.transaccion }}\"} "
+        },
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.2,
+        "position": [
+          -560,
+          640
+        ],
+        "id": "e5ae7196-b0f3-420d-861f-5e0b52cd74b9",
+        "name": "BuscaVenta",
+        "alwaysOutputData": true,
+        "credentials": {
+          "mongoDb": {
+            "id": "Lrh0qQ8ohSdpiarD",
+            "name": "mongo quickbooks black"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          -880,
+          560
+        ],
+        "id": "bd190292-2bcd-437f-9cc1-f1b3051380ed",
+        "name": "Merge7"
+      },
+      {
+        "parameters": {
+          "collection": "productos",
+          "options": {},
+          "query": "={\"hotmartID\":\"{{ $json.body.data.product.ucode }}\"} "
+        },
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.2,
+        "position": [
+          -1248,
+          624
+        ],
+        "id": "24220a96-b759-48a1-a555-ff5b0b49d284",
+        "name": "BuscaProducto1",
+        "alwaysOutputData": true,
+        "credentials": {
+          "mongoDb": {
+            "id": "Lrh0qQ8ohSdpiarD",
+            "name": "mongo quickbooks black"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "f1eae91f-78a9-4e4d-b799-bc41341cf19f",
+                "leftValue": "={{ $json.isEmpty() }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "false",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -1088,
+          624
+        ],
+        "id": "82ea322e-8221-4887-8bdd-0136ea200042",
+        "name": "EXISTE PRODUCTO?1"
+      },
+      {
+        "parameters": {
+          "content": "*COMPRAS REEMBOLSADAS Y CHARGEBACK*",
+          "height": 352,
+          "width": 1824,
+          "color": 3
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -1280,
+          496
+        ],
+        "id": "1a07a2cf-47d9-413d-b129-9b23bcc5a112",
+        "name": "Sticky Note1"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.noOp",
+        "typeVersion": 1,
+        "position": [
+          -1472,
+          128
+        ],
+        "id": "ce0055f5-d7a8-4ecd-94b8-31339f80ef0e",
+        "name": "No Operation, do nothing"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.noOp",
+        "typeVersion": 1,
+        "position": [
+          -1488,
+          544
+        ],
+        "id": "01924e96-aeea-4643-95a6-6e1d64192bdc",
+        "name": "No Operation, do nothing1"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "e37b21dd-3e78-4189-8549-cbedd7583d74",
+                "leftValue": "={{ $json.isEmpty() }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "false",
+                  "singleValue": true
+                }
+              },
+              {
+                "id": "68ede7b2-fdd0-4256-b978-8a17d3bbc275",
+                "leftValue": "={{ $json.estado }}",
+                "rightValue": "normal",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -400,
+          640
+        ],
+        "id": "a3e724b3-fe67-4206-b6cb-25a9937971e3",
+        "name": "EXISTE VENTA?"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://quickbooks.api.intuit.com/v3/company/9341455102096003/refundreceipt?minorversion=70",
+          "authentication": "predefinedCredentialType",
+          "nodeCredentialType": "quickBooksOAuth2Api",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Accept",
+                "value": "application/json"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"DepositToAccountRef\": {\n    \"value\": \"95\"\n  },\n  \"Line\": [\n    {\n      \"Description\": \"Reembolso: {{ $('Edit Fields1').item.json.transaccion }}\",\n      \"DetailType\": \"SalesItemLineDetail\",\n      \"SalesItemLineDetail\": {\n        \"ItemRef\": {\n          \"value\": \"{{ $('Edit Fields1').item.json.productoID }}\"\n        }\n      },\n      \"Amount\": \"{{ $('Edit Fields1').item.json.valor }}\"\n    }\n  ],\n  \"CustomerRef\": {\n    \"value\": \"{{ $('Merge4').item.json.costumerID }}\"\n  },\n  \"CurrencyRef\": {\n    \"value\": \"{{ $('Edit Fields1').item.json.moneda }}\"\n  },\n  \"PrivateNote\": \"Reembolso de {{ $('Edit Fields1').item.json.transaccion }}\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          320,
+          576
+        ],
+        "id": "a6a32b33-1955-4f5e-840f-4278d066dd59",
+        "name": "CREAR NOTA CREDITO",
+        "credentials": {
+          "quickBooksOAuth2Api": {
+            "id": "zqEJ85KroykpKbvG",
+            "name": "quickbooks BLACK DIGITAL"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "findOneAndUpdate",
+          "collection": "ventas",
+          "updateKey": "transaccion",
+          "fields": "=facturaID,costumerID,productoID,fechafactura,estado",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.2,
+        "position": [
+          1296,
+          80
+        ],
+        "id": "18ee7416-db1d-4e8f-8a7a-a419e45efcb3",
+        "name": "AÑADIR RELACION FACTURA",
+        "credentials": {
+          "mongoDb": {
+            "id": "Lrh0qQ8ohSdpiarD",
+            "name": "mongo quickbooks black"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "findOneAndUpdate",
+          "collection": "ventas",
+          "updateKey": "transaccion",
+          "fields": "estado",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.2,
+        "position": [
+          128,
+          576
+        ],
+        "id": "da23123b-1c13-4168-8720-3a668e0663bf",
+        "name": "AÑADIR NC A VENTA",
+        "credentials": {
+          "mongoDb": {
+            "id": "Lrh0qQ8ohSdpiarD",
+            "name": "mongo quickbooks black"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "386483cd-6fcf-4db7-9dae-1ccc1f1f39c5",
+                "name": "estado",
+                "value": "notacredito",
+                "type": "string"
+              },
+              {
+                "id": "1dd7e848-d76b-4e10-8b0d-8f6c413368fc",
+                "name": "transaccion",
+                "value": "={{ $json.transaccion }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -32,
+          576
+        ],
+        "id": "10fa71e8-b6a2-43f2-a0ae-39fb4543411b",
+        "name": "Edit Fields2"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "BuscaVenta1",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "NUEVA TRANSACCION?": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Merge": {
+        "main": [
+          [
+            {
+              "node": "CREA VENTA",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "BUSCA CLIENTE",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Merge2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "EXISTE?": {
+        "main": [
+          [
+            {
+              "node": "CREAR FACTURA",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge1": {
+        "main": [
+          [
+            {
+              "node": "CREAR CLIENTE",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "BuscaVenta1": {
+        "main": [
+          [
+            {
+              "node": "NUEVA TRANSACCION?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "CREA VENTA": {
+        "main": [
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "BUSCA CLIENTE": {
+        "main": [
+          [
+            {
+              "node": "EXISTE?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge2": {
+        "main": [
+          [
+            {
+              "node": "CREAR CLIENTE1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "CREAR CLIENTE1": {
+        "main": [
+          [
+            {
+              "node": "CREAR FACTURA",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge3": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "BuscaProducto": {
+        "main": [
+          [
+            {
+              "node": "EXISTE PRODUCTO?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [
+            {
+              "node": "No Operation, do nothing",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "No Operation, do nothing1",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "No Operation, do nothing1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "DATOS FACTURA": {
+        "main": [
+          [
+            {
+              "node": "AÑADIR RELACION FACTURA",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "CREAR FACTURA": {
+        "main": [
+          [
+            {
+              "node": "DATOS FACTURA",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "CREAR CLIENTE": {
+        "main": [
+          [
+            {
+              "node": "Merge2",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "EXISTE PRODUCTO?": {
+        "main": [
+          [
+            {
+              "node": "Merge3",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Edit Fields1": {
+        "main": [
+          [
+            {
+              "node": "BuscaVenta",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Merge4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge4": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "BuscaVenta": {
+        "main": [
+          [
+            {
+              "node": "EXISTE VENTA?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge7": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "BuscaProducto1": {
+        "main": [
+          [
+            {
+              "node": "EXISTE PRODUCTO?1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "EXISTE PRODUCTO?1": {
+        "main": [
+          [
+            {
+              "node": "Merge7",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "No Operation, do nothing": {
+        "main": [
+          [
+            {
+              "node": "Merge3",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "BuscaProducto",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "No Operation, do nothing1": {
+        "main": [
+          [
+            {
+              "node": "Merge7",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "BuscaProducto1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "EXISTE VENTA?": {
+        "main": [
+          [
+            {
+              "node": "Merge4",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "CREAR NOTA CREDITO": {
+        "main": [
+          []
+        ]
+      },
+      "AÑADIR RELACION FACTURA": {
+        "main": [
+          [
+            {
+              "node": "ENVIAR CORREO",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AÑADIR NC A VENTA": {
+        "main": [
+          [
+            {
+              "node": "CREAR NOTA CREDITO",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields2": {
+        "main": [
+          [
+            {
+              "node": "AÑADIR NC A VENTA",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "54b18c74-e09e-4384-9ec9-2f15419896d0",
   "connections": {
     "Webhook": {
       "main": [
