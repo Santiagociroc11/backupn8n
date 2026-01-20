@@ -1,5 +1,319 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "03bda9fc-b3e7-45a6-a4bf-44c9db880066",
+    "workflowId": "kHNdBaTIIpgZzde0",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "reasigna-cierres-cejas",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -340,
+          -60
+        ],
+        "id": "317351df-4fc7-4dec-ba51-83f293e9cd4d",
+        "name": "Webhook",
+        "webhookId": "86b5a7e5-e58f-4463-bd7e-311e996f1408"
+      },
+      {
+        "parameters": {
+          "chatId": "={{ $('asesor').item.json.ID_TG }}",
+          "text": "=*CLIENTE DESASIGNADO* ⚠️ \n\nnombre: {{ $json.NOMBRE }}\nWha: {{ $json.WHATSAPP }}\n\nSe reasignó tu cliente por decisión de la gerencia 🚨",
+          "additionalFields": {
+            "appendAttribution": false,
+            "parse_mode": "Markdown"
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          400,
+          -160
+        ],
+        "id": "93cb8f4d-406d-4c8e-ac4d-25a0685e1076",
+        "name": "Telegram",
+        "webhookId": "b02f2587-c150-42b7-aaf5-689cc3203e83",
+        "credentials": {
+          "telegramApi": {
+            "id": "pZuvWEceEP10tbiQ",
+            "name": "BOT CEJAS"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "chatId": "={{ $('asesor1').item.json.ID_TG }}",
+          "text": "=*CLIENTE REASIGNADO A TI* ⚠️ \n\nnombre: {{ $json.NOMBRE }}\nWha: {{ $json.WHATSAPP }}\n\nSe reasignó este cliente a ti por decisión de la gerencia 🚨",
+          "replyMarkup": "inlineKeyboard",
+          "inlineKeyboard": {
+            "rows": [
+              {
+                "row": {
+                  "buttons": [
+                    {
+                      "text": "IR AL CHAT",
+                      "additionalFields": {
+                        "url": "=wa.me/{{ $json.WHATSAPP }}"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "additionalFields": {
+            "appendAttribution": false,
+            "parse_mode": "Markdown"
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          400,
+          40
+        ],
+        "id": "8ecaf257-5181-4f45-ac37-c35299803517",
+        "name": "Telegram1",
+        "webhookId": "c4060b00-8c12-4810-9d10-8502d4b46cc5",
+        "credentials": {
+          "telegramApi": {
+            "id": "pZuvWEceEP10tbiQ",
+            "name": "BOT CEJAS"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "schema": {
+            "__rl": true,
+            "mode": "list",
+            "value": "public"
+          },
+          "table": {
+            "__rl": true,
+            "value": "GERSSON_ASESORES",
+            "mode": "list",
+            "cachedResultName": "GERSSON_ASESORES"
+          },
+          "where": {
+            "values": [
+              {
+                "column": "ID",
+                "value": "={{ $json.body.asesor_viejo_id }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.postgres",
+        "typeVersion": 2.5,
+        "position": [
+          -20,
+          -160
+        ],
+        "id": "46265663-933c-4474-9bc0-01537640eaed",
+        "name": "asesor",
+        "credentials": {
+          "postgres": {
+            "id": "ZfOE9MniAqSzUTvd",
+            "name": "POSTGRESS CEJAS"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "schema": {
+            "__rl": true,
+            "mode": "list",
+            "value": "public"
+          },
+          "table": {
+            "__rl": true,
+            "value": "GERSSON_CLIENTES",
+            "mode": "list",
+            "cachedResultName": "GERSSON_CLIENTES"
+          },
+          "where": {
+            "values": [
+              {
+                "column": "ID",
+                "value": "={{ $('Webhook').item.json.body.cliente_id }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.postgres",
+        "typeVersion": 2.5,
+        "position": [
+          200,
+          -160
+        ],
+        "id": "efa83864-f366-4d5d-a26c-4d71929fb25b",
+        "name": "cliente",
+        "credentials": {
+          "postgres": {
+            "id": "ZfOE9MniAqSzUTvd",
+            "name": "POSTGRESS CEJAS"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "schema": {
+            "__rl": true,
+            "mode": "list",
+            "value": "public"
+          },
+          "table": {
+            "__rl": true,
+            "value": "GERSSON_ASESORES",
+            "mode": "list",
+            "cachedResultName": "GERSSON_ASESORES"
+          },
+          "where": {
+            "values": [
+              {
+                "column": "ID",
+                "value": "={{ $json.body.asesor_nuevo_id }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.postgres",
+        "typeVersion": 2.5,
+        "position": [
+          -20,
+          40
+        ],
+        "id": "a5a6b653-23c4-4fd4-b7db-7ca14c5a2296",
+        "name": "asesor1",
+        "credentials": {
+          "postgres": {
+            "id": "ZfOE9MniAqSzUTvd",
+            "name": "POSTGRESS CEJAS"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "schema": {
+            "__rl": true,
+            "mode": "list",
+            "value": "public"
+          },
+          "table": {
+            "__rl": true,
+            "value": "GERSSON_CLIENTES",
+            "mode": "list",
+            "cachedResultName": "GERSSON_CLIENTES"
+          },
+          "where": {
+            "values": [
+              {
+                "column": "ID",
+                "value": "={{ $('Webhook').item.json.body.cliente_id }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.postgres",
+        "typeVersion": 2.5,
+        "position": [
+          200,
+          40
+        ],
+        "id": "84a2446b-26b0-4a7f-8e1a-16d3961a8064",
+        "name": "cliente1",
+        "credentials": {
+          "postgres": {
+            "id": "ZfOE9MniAqSzUTvd",
+            "name": "POSTGRESS CEJAS"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "asesor",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "asesor1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "asesor": {
+        "main": [
+          [
+            {
+              "node": "cliente",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "cliente": {
+        "main": [
+          [
+            {
+              "node": "Telegram",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "asesor1": {
+        "main": [
+          [
+            {
+              "node": "cliente1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "cliente1": {
+        "main": [
+          [
+            {
+              "node": "Telegram1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "03bda9fc-b3e7-45a6-a4bf-44c9db880066",
   "connections": {
     "Webhook": {
       "main": [
