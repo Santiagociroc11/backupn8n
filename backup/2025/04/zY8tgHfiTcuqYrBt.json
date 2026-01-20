@@ -1,5 +1,176 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "7c873790-af33-435d-97e1-17b37201d048",
+    "workflowId": "zY8tgHfiTcuqYrBt",
+    "nodes": [
+      {
+        "parameters": {
+          "path": "collage-win-pagos",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -320,
+          -64
+        ],
+        "id": "6fc1a990-9fa7-4a3b-8144-09720fbec418",
+        "name": "Webhook",
+        "webhookId": "7fae9b73-097f-4ca0-8755-6935672a10f5"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          304,
+          -64
+        ],
+        "id": "d59893b1-7567-4df9-8bff-f43e3e40463b",
+        "name": "Respond to Webhook"
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "hours",
+                "hoursInterval": 12
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          -320,
+          192
+        ],
+        "id": "c24d3095-3cc0-4249-ae9a-b8ba1ef1fe6b",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "command": "=rm -rf /root/bot-zdg/pagos_win/collage/*",
+          "cwd": "/root/bot-zdg/pagos_win/collage/"
+        },
+        "type": "n8n-nodes-base.ssh",
+        "typeVersion": 1,
+        "position": [
+          -144,
+          192
+        ],
+        "id": "57c52039-6a8d-474d-96ad-4bc60c5d7d34",
+        "name": "BORRAR",
+        "credentials": {
+          "sshPassword": {
+            "id": "oIzr4tKjBJJ4Gorn",
+            "name": "SSH Password account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "command": "=# 1) Timestamp de n8n\ntimestamp={{ $now.toMillis() }}\n\n# 2) Directorio destino\ncollagedir=/root/bot-zdg/pagos_win/collage\nmkdir -p \"$collagedir\"\n\n# 3) Lista los 6 JPG más recientes y guarda rutas en $files\nfiles=$(find /root/bot-zdg/pagos_win \\\n    -maxdepth 1 -type f -name '*.jpg' \\\n    -printf '%T@ %p\\n' | sort -nr \\\n    | head -n6 | cut -d' ' -f2-)\n\n# 4) Montaje + redimensionado\nmontage $files \\\n  -tile 3x2 -gravity center -geometry 540x1200+0+0 \\\n  -background none -border 0 \\\n  \"$collagedir/collage-$timestamp.jpg\" && \\\nconvert \"$collagedir/collage-$timestamp.jpg\" \\\n  -resize 1080x1500\\> \\\n  \"$collagedir/collage-$timestamp.jpg\" && \\\n# 5) Devolvemos la URL final\necho \"https://webhook-peru.automscc.com/pagos_win/collage/collage-$timestamp.jpg\"\n",
+          "cwd": "/root/bot-zdg/pagos_win"
+        },
+        "type": "n8n-nodes-base.ssh",
+        "typeVersion": 1,
+        "position": [
+          -96,
+          -64
+        ],
+        "id": "2218fd49-06fa-4d75-9f88-b41a403a4977",
+        "name": "CREAR",
+        "credentials": {
+          "sshPassword": {
+            "id": "oIzr4tKjBJJ4Gorn",
+            "name": "SSH Password account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "7fc6b8c8-a32d-472b-8ba6-2cb4bd7f4e38",
+                "name": "url_collage",
+                "value": "={{ $json.stdout }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          112,
+          -64
+        ],
+        "id": "290e8b00-f846-4abc-854a-5cd8c6d00287",
+        "name": "Edit Fields"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "CREAR",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "BORRAR",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "CREAR": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "Respond to Webhook",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "7c873790-af33-435d-97e1-17b37201d048",
   "connections": {
     "Webhook": {
       "main": [
