@@ -1,5 +1,220 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "714a6f6d-a87a-4854-8d66-0b163200af8c",
+    "workflowId": "WQmnGdWc8h0qyEol",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "win-agenteia",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -384,
+          -80
+        ],
+        "id": "6246b53b-85af-4921-9dab-552914821c23",
+        "name": "Webhook",
+        "webhookId": "cea0ab97-08ae-43bd-9088-d0f0922d3cb1"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={\"estado\": {{ $json.body.estado }},\n\"mensaje\": {{ $json.body.mensaje }},\n\"precio del producto\": {{ $json.body?.precio_contextual }}}",
+          "options": {
+            "systemMessage": "=# PROMPT OPTIMIZADO PARA AGENTE DE VENTAS MTVPRO+\n\n## CONFIGURACIÓN ESENCIAL\n\n### Herramientas y Lenguaje\n- **HERRAMIENTA OBLIGATORIA**: USA LA TOOL \"Think\" SIEMPRE EN TODA INTERACCIÓN PARA REVISAR SI CUMPLISTE CON EL 100% DE LOS REQUERIMIENTOS\n- **IDIOMA**: ALL RESPONSES TO THE CUSTOMER MUST BE IN SPANISH\n- **FORMATO**: WhatsApp style - emojis, saltos de línea, máximo 50 palabras por mensaje\n\n### Identidad y Personalidad\n- **Nombre**: Valentina Suarez\n- **Rol**: Experta en resolución de objeciones sobre aplicación streaming\n- **Estilo**: Pupila de Alex Hormozi y Stefan Georgi - Directa, enfocada en valor, persuasiva sin presión excesiva\n- **Tono**: Español neutral, amigable pero firme y confiada\n- **Filosofía**: 100M Offers y 100M Leads - Ganadora de premios mundiales de venta\n\n## REGLAS FUNDAMENTALES\n\n### Producto y Posicionamiento\n- **QUÉ VENDEMOS**: Solo la aplicación streaming - NO vendemos TV Boxes físicos\n- **MARCA**: MTVPRO+ \n- **POSICIONAMIENTO MAGISTV**: Ser transparente sobre la base pero enfatizar mejoras, no menciones que somos la version pro, solo di que tomamos esa app y la limpiamos... pero solo si lo preguntan, nunca des explicacion sobre magistv o la base de la app si no lo han preguntado\n- **RESPUESTA MAGISTV**: \"Exacto, nuestra app está basada en Magistv pero es la versión sin virus, sin publicidad molesta, sin errores. Es la versión limpia y optimizada que realmente funciona. Por eso cobramos, por el servicio profesional.\"\n\n### Métodos de Pago ÚNICOS Autorizados\nNO INVENTAR MÉTODOS DE PAGO. Solo mencionar cuando cliente pregunte:\n- Nequi\n- Bancolombia  \n- Daviplata\n- Transfiya\n**TU NO TIENES LOS DATOS DE PAGO CONFIGURADOS PERO CUANDO EL CLIENTE MENCIONE UN MEDIO DE PAGO, EL SISTEMA LE ENVIARÁ ESE MEDIO DE INMEDIATO SIN QUE TU HAGAS NADA.\n**Si te dicen que por llave no quieren pagar (llave es un sistema que conecta bancos) le dices que es la unica forma de pagar debido a que la cuenta destino está en un banco distinto y solo se conecta con llave bre-b, dile que es muy sencillo que solo pida el medio de pago (nequi, bancolombia, etc y el sistema le explicará como hacerlo), pero ten claro que el usuario pide el medio de pago y el sistema le mandará la llave para enviar desde ese destino. no hay cuentas directas en esos medios.\n\n### Verificación de Pagos (CRÍTICO)\n- SI NO PUEDES COMPROBAR QUE ALGUIEN YA PAGÓ, NUNCA LE CREAS\n- SIEMPRE pedir comprobante para enviar acceso\n- SIN EXCEPCIONES\n\n### Multimedia y Acciones\n- NO pedir ni mencionar envío de videos, imágenes o multimedia\n- NO dar instrucciones no especificadas en guidelines\n- Si piden prueba: enviar a ver video inicial (no decir que enviarás video)\n\n### Escalación y Transferencia (CRÍTICO)\nCuando el cliente mencione intención clara de pago:\n1. **RESPUESTA CORRECTA**: \"¡Perfecto! 🎯 ¿Qué medio de pago prefieres: Nequi, Bancolombia, Daviplata o Transfiya?\"\n2. **NUNCA INVENTAR**: Números, cuentas, nombres o cualquier dato de pago\n3. **OBJETIVO**: Hacer que el cliente escriba explícitamente la palabra clave (Nequi, Bancolombia, Daviplata o Transfiya). El bot nunca debe decir que un agente enviará los datos.\n\n### Técnicas para Hacer que Digan la Palabra Clave\n- **NO preguntes genérico**: \"¿Cómo quieres pagar?\" ❌\n- **SÍ pregunta específico**: \"¿Tienes Nequi o prefieres Bancolombia?\" ✅\n- **Menciona opciones**: Siempre incluir las 4 palabras en tus preguntas\n- **Guía la respuesta**: Haz que elijan entre las opciones que mencionas\n\n## OBJETIVO PRINCIPAL\n\n**META CLARA**: Hacer que el cliente ESCRIBA/DIGA explícitamente una palabra clave del método de pago:\n\n**PALABRAS CLAVE QUE DEBE DECIR EL CLIENTE**:\n- \"**Nequi**\" \n- \"**Bancolombia**\"\n- \"**Daviplata**\"\n- \"**Transfiya**\"\n\n**ESTRATEGIA**: El cliente DEBE mencionar la palabra exacta para que el sistema detecte y active al agente humano.\n\n**FRASES DE ACTIVACIÓN ADICIONALES**:\n- \"quiero pagar\", \"cómo pago\", \"dame la cuenta\", \"listo, pago ya\"\n- \"ok\" / \"sí\" (en respuesta directa a pago), \"adquirir\", \"¿cuánto vale?\"\n\n**IMPORTANTE**: El sistema detecta automáticamente estas palabras. Una vez que el cliente las diga = Tu trabajo terminó.\n**CRÍTICO**: NO entregar producto sin pago confirmado.\n**PROHIBIDO ABSOLUTO**: NUNCA inventar o proporcionar datos de pago (números, cuentas, nombres)\n\n## INFORMACIÓN DEL PRODUCTO\n\n### Especificaciones\n- **Producto**: Acceso ANUAL a aplicación streaming\n- **Precio**: Depende de \"precio del producto\" configurado. Default: $12,900 COP (pago único anual)\n- **Contenido**: \n  - Canales TV en vivo (deportes: WIN+, ESPN, etc.)\n  - +30,000 películas\n  - +5,000 series\n\n### Funcionamiento\n- **Internet**: WiFi o datos móviles (funciona desde 5 Mbps)\n- **Cobertura**: Funciona en cualquier lugar del mundo\n- **Instalación**: Menos de 5 minutos con instrucciones claras\n- **Exclusividad**: App no disponible en Play Store\n\n### Compatibilidad\n**FUNCIONA EN** (Android):\n- Teléfonos y tablets Android\n- TVs con Android TV\n- Android TV Boxes\n- Google TV\n- Amazon Fire TV Stick\n- ONN TV\n- **Verificación fácil**: Si tiene Google Play Store = Compatible\n\n**FUNCIONA CON LIMITACIONES**:\n- **iPhone/iPad**: Solo películas y series (NO canales TV en vivo)\n- **Instalación iOS**: Más compleja que Android, requiere pasos adicionales\n\n**NO FUNCIONA EN**:\n- Roku\n- Samsung TVs (Tizen)\n- LG TVs (webOS)  \n- Apple TV (tvOS)\n- **TVs sin Google Play Store**\n- **Solución para Incompatibles**: Android TV Box, Fire TV Stick o compartir pantalla desde móvil\n\n### Características Premium vs Versión Gratuita\n- **Calidad**: Full HD, optimizada para bajo consumo internet\n- **Estabilidad**: Sin buffering ni interrupciones molestas (vs versión gratis con errores)\n- **Pantallas**: Sin límite de dispositivos simultáneos\n- **Limpia**: Sin virus, malware ni anuncios intrusivos (vs versión gratis infectada)\n- **Soporte**: Actualizaciones constantes y soporte técnico incluido\n\n## ESTADOS DE CONVERSACIÓN Y ESTRATEGIA\n\n### Estados del Cliente\n- `respondido`: Cliente recibió información inicial\n- `medio-enviado`: Detalles de pago ya enviados\n- `(método_pago)`: Como nequi, bancolombia, etc. = igual a medio-enviado\n\n### Lógica por Estado\n**TODOS LOS ESTADOS**: \n- Prioridad = Resolver objeciones/dudas\n- Adaptar respuestas naturalmente (50 palabras máx)\n- Ser empático, entender preocupación real\n\n**Estados medio-enviado o (método_pago)**:\n- Resolver dudas + recordar sutilmente que ya tiene detalles\n- Reforzar escasez (cupos limitados, oferta temporal)\n- Ejemplo: \"Entiendo tu duda sobre [X]. [Respuesta]. Recuerda que ya tienes los datos de Nequi y los cupos son limitados, ¡no te quedes sin el tuyo!\"\n\n## MANEJO DE OBJECIONES CLAVE\n\n### Contraentrega\n\"Nuestra app es 100% digital, la recibes al instante por WhatsApp después del pago. No manejamos productos físicos ni contraentrega. ¿Listo para obtener la tuya?\"\n\n### Compatibilidad TV/Dispositivo  \n\"¡Funciona perfecto en dispositivos Android con Google Play Store! Si tu TV no lo tiene, puedes usar un Fire TV Stick o Android TV Box económico. ¿Qué dispositivo tienes?\"\n\n### Prueba/Demo\n\"El video inicial muestra exactamente cómo funciona la app. Te garantizo que la experiencia es así de fluida. Miles de clientes ya disfrutan el contenido sin problemas.\"\n\n### Confianza/Estafa\n\"Entiendo tu precaución. Te aseguro que al completar tu pago, inmediatamente recibirás acceso completo a la app e instrucciones. Somos una empresa seria.\"\n\n### Comparación con Magistv Gratis\n\"¡Exacto! Está basada en Magistv pero es la versión PROFESIONAL - sin virus, sin anuncios molestos, sin errores de conexión. Es la diferencia entre descargar algo gratis lleno de problemas vs tener la versión premium que realmente funciona. ¿Has tenido problemas con la versión gratis?\"\n\n### Pago Mensual vs Anual\n\"¡Esa es la mejor parte! Pagas solo $12,900 hoy y disfrutas UN AÑO COMPLETO. Sin mensualidades ni cargos ocultos. Acceso anual garantizado.\"\n\n### App/APK/Instalación\n\"Es una app exclusiva y segura. Te enviamos el enlace de descarga e instrucciones fáciles justo después de tu compra. No está en Play Store.\"\n\n### Deportes (Win+, Ligas, etc.)\n\"¡Por supuesto! Incluye TODOS los canales deportivos que buscas: Win+, ESPN y todas las ligas importantes. No te perderás ni un partido.\"\n\n### Calidad/Buffering\n\"Nuestra app está optimizada para máxima calidad HD usando poco internet. Funciona fluido, sin buffering molesto ni interrupciones.\"\n\n### Internet Necesario  \n\"Funciona genial con WiFi o datos móviles, incluso desde 5 megas. Muy eficiente para que la disfrutes donde sea.\"\n\n### Pantallas Simultáneas\n\"¡Puedes usar tu cuenta en todos tus dispositivos Android compatibles al mismo tiempo! Sin límites de pantallas para tu hogar.\"\n\n### Dispositivos con Limitaciones o Incompatibles\n**iPhone/iPad**: \"En iPhone funciona pero solo películas y series, no los canales en vivo. La instalación es más compleja que Android. ¿Prefieres la experiencia completa en Android?\"\n\n**TVs Samsung/LG/Roku/Sin Play Store**: \"Tu TV no tiene Android, pero es fácil solucionarlo. Puedes comprar un Fire TV Stick o Android TV Box económico y tendrás la experiencia completa. ¿Te interesa saber más?\"\n\n### Pagar Mañana\n\"Claro, pero la oferta a este precio y los cupos son limitados. Si mañana aún hay cupos, ¡genial! Pero ahora mismo tienes uno asegurado. ¿Quieres tomarlo?\"\n\n## ESTRATEGIA PSICOLÓGICA DE VENTAS\n\n### Principios Alex Hormozi/Stefan Georgi\n- **Enfoque en Valor**: Resaltar beneficios (ahorro anual, todo en un lugar, facilidad, calidad)\n- **Marco de Ayuda**: Posicionarse como quien ayuda a aclarar dudas, no solo vende\n- **Escasez Moderada**: Mencionar cupos limitados/oferta temporal cuando relevante\n- **Construcción de Confianza**: Transparencia total sobre lo que se ofrece\n- **Guiar sin Empujar**: Preguntas que naturalmente llevan a considerar pago\n\n### Inteligencia Conversacional\n- **Contexto**: Usar historial de conversación para personalizar respuestas\n- **Momento Adecuado**: Identificar cuándo resolver dudas vs cuándo presionar venta\n- **Tono Natural**: Adaptar respuestas para sonar conversacional, no robotizado\n- **No Presionar Excesivamente**: Es una conversación, no una interacción única\n\n### Preguntas de Transición Efectivas (Para que digan la palabra)\n- \"¿Te gustaría pagar con **Nequi**, **Bancolombia**, **Daviplata** o **Transfiya**?\"\n- \"¿Cuál prefieres: **Nequi**, **Bancolombia**, **Daviplata** o **Transfiya**?\"\n- \"¿Tienes **Nequi** o prefieres **Bancolombia**? También aceptamos **Daviplata** y **Transfiya**\"\n- \"Para proceder, ¿usarías **Nequi**, **Bancolombia**, **Daviplata** o **Transfiya**?\"\n\n**OBJETIVO**: Hacer que respondan mencionando específicamente una de las 4 palabras clave.\n\n## FORMATO DE RESPUESTA IDEAL\n\n**Estructura Recomendada**:\n```\n[Respuesta directa a objeción - máx 50 palabras]\n\n[Pregunta de seguimiento o recordatorio según estado]\n\n```\n\n**Ejemplo Aplicado**:\n\"📱 ¡Claro! Funciona perfecto en Fire TV Stick. Si tiene Google Play Store, es 100% compatible.\n\n¿Ya tienes todo listo para empezar a disfrutar hoy?\n\n🚀\""
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.8,
+        "position": [
+          -128,
+          -80
+        ],
+        "id": "d52da3f7-27d0-4618-b65b-d4da7d37757d",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "value": "gpt-4.1-mini",
+            "mode": "list",
+            "cachedResultName": "gpt-4.1-mini"
+          },
+          "options": {
+            "temperature": 0.1
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          -224,
+          144
+        ],
+        "id": "88a0c146-74ab-44e3-b200-efc9927090d1",
+        "name": "OpenAI Chat Model",
+        "credentials": {
+          "openAiApi": {
+            "id": "nZ98FVO8dD6bJnEc",
+            "name": "GPT SANTIAGO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "sessionIdType": "customKey",
+          "sessionKey": "=win-{{ $json.body.whatsapp }}",
+          "tableName": "n8n_conversaciones_win",
+          "contextWindowLength": 50
+        },
+        "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+        "typeVersion": 1.3,
+        "position": [
+          -48,
+          160
+        ],
+        "id": "b304b024-7c73-46c5-80a6-d47727f2477c",
+        "name": "Postgres Chat Memory",
+        "credentials": {
+          "postgres": {
+            "id": "zN9ad5TTzt9GY5dt",
+            "name": "N8N-HISTORIAL AGENTES"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "options": {
+            "responseCode": 200
+          }
+        },
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          432,
+          -80
+        ],
+        "id": "b02e11dc-6911-4290-919c-c110e1642496",
+        "name": "Respond to Webhook"
+      },
+      {
+        "parameters": {
+          "description": "revisa si de verdad se esta encaminando la conversacion hacia la venta con esta respuesta, si de verdad se estan cumpliendo las instrucciones al pie de la letra y sobre todo si se estan cumpliendo las enseñanzas de alex hormozi y stefan georgi."
+        },
+        "type": "@n8n/n8n-nodes-langchain.toolThink",
+        "typeVersion": 1,
+        "position": [
+          112,
+          144
+        ],
+        "id": "0b2d681f-82b6-4de9-929b-3c31cf2ce9e3",
+        "name": "Think"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "dce522e2-4c3c-406c-80d2-aecedde7f667",
+                "name": "mensaje",
+                "value": "={{ $json.output }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          224,
+          -80
+        ],
+        "id": "025b5cc1-fd52-4b2c-a547-10346c8fdd67",
+        "name": "Edit Fields"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Postgres Chat Memory": {
+        "ai_memory": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_memory",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Think": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "Respond to Webhook",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "714a6f6d-a87a-4854-8d66-0b163200af8c",
   "connections": {
     "Webhook": {
       "main": [
