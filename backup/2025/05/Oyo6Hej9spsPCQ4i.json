@@ -1,5 +1,1293 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "cae1a6b5-bc6b-4a19-81ce-200417178fe6",
+    "workflowId": "Oyo6Hej9spsPCQ4i",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "cejas-encuestas",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -760,
+          -140
+        ],
+        "id": "846e6002-1f36-4894-9e18-8f9ad6f614cd",
+        "name": "ENCUESTA",
+        "webhookId": "11fd8bd9-9998-4165-9f30-db4a88c7ead5"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "dfe23bab-7c1a-4462-ad5b-b7291ee8d7af",
+                "name": "whatsapp",
+                "value": "={{ $json.body.whatsapp }}",
+                "type": "string"
+              },
+              {
+                "id": "cfe28cc4-c69b-4a26-86b7-e3fcab392043",
+                "name": "email",
+                "value": "={{ $json.body.email }}",
+                "type": "string"
+              },
+              {
+                "id": "de3c730f-dcad-4ab6-af4c-2e96c75a6c8b",
+                "name": "tiempoencuesta",
+                "value": "={{ $json.body.tiempoencuesta }}",
+                "type": "number"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -540,
+          -240
+        ],
+        "id": "1acec762-3b78-4093-be04-7f256b4320b0",
+        "name": "Edit Fields1"
+      },
+      {
+        "parameters": {
+          "collection": "=CEJAS-L2",
+          "options": {
+            "limit": 1
+          },
+          "query": "={{ $json.toJsonString() }}"
+        },
+        "id": "ee8ec851-ccdd-497f-8698-356b2c8d3dcc",
+        "name": "MongoDB",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          -100,
+          -290
+        ],
+        "alwaysOutputData": true,
+        "retryOnFail": true,
+        "waitBetweenTries": 5000,
+        "credentials": {
+          "mongoDb": {
+            "id": "JAKPCevXk5GvKOt9",
+            "name": "MONGO CARLOS ARZA"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "findOneAndUpdate",
+          "collection": "CEJAS-L2",
+          "updateKey": "_id",
+          "fields": "q1,q2,q3,q4,q5,q6,tiempoencuesta",
+          "options": {}
+        },
+        "id": "d98ede1e-fd8c-4a74-a545-45c75c01a454",
+        "name": "MongoDB3",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          560,
+          -290
+        ],
+        "credentials": {
+          "mongoDb": {
+            "id": "JAKPCevXk5GvKOt9",
+            "name": "MONGO CARLOS ARZA"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "eb31eaf1-7f83-4773-a663-4213a227c9e8",
+                "leftValue": "={{ $json }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "empty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "8b1831f8-20c8-43c6-81d0-6ee178baace4",
+        "name": "If1",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          120,
+          -290
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "id": "6dbfb6ca-dc66-4fce-9f82-201b92dde183",
+        "name": "Merge1",
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          340,
+          -140
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          -320,
+          -40
+        ],
+        "id": "ff7bcb88-a013-402f-a39a-16808ec81692",
+        "name": "Merge3"
+      },
+      {
+        "parameters": {
+          "mode": "raw",
+          "jsonOutput": "={{ $json.body.answersJson }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -540,
+          10
+        ],
+        "id": "f13b34d7-4670-486d-adde-9ef88ec98dda",
+        "name": "Edit Fields3"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3df6352b-6489-4d01-9e8e-ad90cc547eda",
+                "name": "ID",
+                "value": "={{ $json._id.toString() }}",
+                "type": "string"
+              },
+              {
+                "id": "c3adebcf-1f39-46ce-9548-b1243262ba2d",
+                "name": "EDAD",
+                "value": "={{ $json.q1 }}",
+                "type": "string"
+              },
+              {
+                "id": "0ca6d2e7-d8c2-46a7-975a-09a456419cf3",
+                "name": "PROPOSITO",
+                "value": "={{ $json.q4 }}",
+                "type": "string"
+              },
+              {
+                "id": "0badb125-2290-4dc2-9eea-778d1dcb665b",
+                "name": "INGRESOS",
+                "value": "={{ $json.q5 }}",
+                "type": "string"
+              },
+              {
+                "id": "4eb1e6ab-b022-4cea-b94f-3120ba812fcb",
+                "name": "ESTUDIOS",
+                "value": "={{ $json.q2 }}",
+                "type": "string"
+              },
+              {
+                "id": "a0f82f8d-7f63-4d33-b894-2cba3b59adfd",
+                "name": "FECHA ENCUESTA",
+                "value": "={{ $now.format('yyyy-MM-dd') }}",
+                "type": "string"
+              },
+              {
+                "id": "703ee060-0a76-4436-8621-7a62f8e7db1a",
+                "name": "HORA ENCUESTA",
+                "value": "={{ $now.format('HH:mm:ss:s') }}",
+                "type": "string"
+              },
+              {
+                "id": "22842718-879e-4ed6-a855-880197a02b91",
+                "name": "OCUPACION",
+                "value": "={{ $json.q6 }}",
+                "type": "string"
+              },
+              {
+                "id": "3df05ca5-9c25-4e2e-918f-7172ada599da",
+                "name": "EXPERIENCIA",
+                "value": "={{ $json.q3 }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          560,
+          -40
+        ],
+        "id": "c6781528-5155-4682-942a-184fc9d9bbf6",
+        "name": "Edit Fields7"
+      },
+      {
+        "parameters": {
+          "jsCode": "return items.map(item => {\n  const whatsapp = item.json.whatsapp || \"\"; // Verifica si existe el campo WhatsApp\n  const email = item.json.email || \"\"; // Verifica si existe el campo email\n  \n  if (whatsapp && email) {\n    // Si existen ambos campos, retorna un JSON con ambos valores\n    return {\n      json: {\n        whatsapp: whatsapp,\n        email: email\n      }\n    };\n  } else if (whatsapp) {\n    // Si existe solo WhatsApp, genera un filtro con regex para los últimos 6 caracteres\n    return {\n      json: {\n        whatsapp: {\n          \"$regex\": `.*${whatsapp.slice(-6)}.*`,\n          \"$options\": \"i\"\n        }\n      }\n    };\n  } else if (email) {\n    // Si no existe WhatsApp, utiliza el correo electrónico para generar el filtro\n    return {\n      json: {\n        email: email\n      }\n    };\n  } else {\n    // Si no hay datos de WhatsApp ni correo, lanza un error\n    throw new Error(\"No se proporcionaron datos de WhatsApp ni correo electrónico.\");\n  }\n});\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -320,
+          -290
+        ],
+        "id": "037c0b09-5cd9-4d5e-a7d9-f2a3265f10d3",
+        "name": "Code1"
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "cejas-l2",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -760,
+          -725
+        ],
+        "id": "fe8357c5-ef1c-4f2e-8120-6c1b3a7bfe86",
+        "name": "REGISTRO",
+        "webhookId": "3dc3af18-9ccf-493a-97d5-2c636bf81d46"
+      },
+      {
+        "parameters": {
+          "mode": "chooseBranch"
+        },
+        "id": "5d38b00f-9a6d-41cf-81f2-d440e35647c7",
+        "name": "Merge",
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          120,
+          -725
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "id": "eade338e-a02a-4ed3-8da3-3dcb31b3d0c9",
+        "name": "Merge2",
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          -100,
+          -825
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "table": {
+            "__rl": true,
+            "value": "CEJAS_L2",
+            "mode": "list",
+            "cachedResultName": "CEJAS_L2"
+          },
+          "dataMode": "defineBelow",
+          "columnToMatchOn": "ID",
+          "valueToMatchOn": "={{ $json.ID }}",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "FECHA_ENCUESTA",
+                "value": "={{ $json[\"FECHA ENCUESTA\"] }}"
+              },
+              {
+                "column": "HORA_ENCUESTA",
+                "value": "={{ $json[\"HORA ENCUESTA\"] }}"
+              },
+              {
+                "column": "EDAD",
+                "value": "={{ $json.EDAD }}"
+              },
+              {
+                "column": "INGRESOS",
+                "value": "={{ $json.INGRESOS }}"
+              },
+              {
+                "column": "ESTUDIOS",
+                "value": "={{ $json.ESTUDIOS }}"
+              },
+              {
+                "column": "PROPOSITO",
+                "value": "={{ $json.PROPOSITO }}"
+              },
+              {
+                "column": "OCUPACION",
+                "value": "={{ $json.OCUPACION }}"
+              },
+              {
+                "column": "EXPERIENCIA",
+                "value": "={{ $json.EXPERIENCIA }}"
+              }
+            ]
+          },
+          "options": {
+            "detailedOutput": true
+          }
+        },
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          1440,
+          -40
+        ],
+        "id": "a1830f7a-22ef-4f2a-9d46-7050b41427c8",
+        "name": "MySQL",
+        "credentials": {
+          "mySql": {
+            "id": "n8fCALXWnGdmJkBN",
+            "name": "CAPTACIONES"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "CEJAS_L2",
+            "mode": "list",
+            "cachedResultName": "CEJAS_L2"
+          },
+          "returnAll": true,
+          "where": {
+            "values": [
+              {
+                "column": "ID",
+                "condition": "LIKE",
+                "value": "={{ $json.ID }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          780,
+          35
+        ],
+        "id": "057fcf52-aedd-4fa8-ac93-718ce985e68e",
+        "name": "MySQL1",
+        "alwaysOutputData": true,
+        "credentials": {
+          "mySql": {
+            "id": "n8fCALXWnGdmJkBN",
+            "name": "CAPTACIONES"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "7f3e8099-ae55-4534-a5be-217d413c0ff2",
+                "leftValue": "={{ $json }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          1000,
+          35
+        ],
+        "id": "9797d62f-3747-40ce-8189-3cde452304e8",
+        "name": "If4"
+      },
+      {
+        "parameters": {
+          "mode": "chooseBranch"
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          1220,
+          -40
+        ],
+        "id": "509fab87-3f72-4088-badc-c5b2dbcf7732",
+        "name": "Merge6"
+      },
+      {
+        "parameters": {
+          "mode": "chooseBranch"
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          1220,
+          -625
+        ],
+        "id": "1cf53b24-1f8e-4054-ab44-e49182ab5172",
+        "name": "Merge7"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "8a258913-16e5-4c77-bc40-13e5d18f740f",
+                "name": "ip",
+                "value": "={{ $json.headers['x-real-ip'] }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -540,
+          -900
+        ],
+        "id": "8d1223b3-9f08-4f93-9ca3-e6fab40bb4c1",
+        "name": "IP"
+      },
+      {
+        "parameters": {
+          "url": "=http://ip-api.com/json/{{ $json.ip }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          -320,
+          -900
+        ],
+        "id": "dcbd9768-72b6-4f26-91ad-e35d02ef9fee",
+        "name": "IP REAL",
+        "retryOnFail": true,
+        "maxTries": 5,
+        "waitBetweenTries": 5000
+      },
+      {
+        "parameters": {
+          "mode": "raw",
+          "jsonOutput": "={{ $json.body }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -540,
+          -625
+        ],
+        "id": "eef2b9ed-dbab-4023-8679-67b8e2e2a10e",
+        "name": "DATOS"
+      },
+      {
+        "parameters": {
+          "collection": "=CEJAS-L2",
+          "options": {
+            "limit": 1
+          },
+          "query": "={\"whatsapp\": \"{{ $json.whatsapp }}\", \"email\": \"{{$json.email}}\"}"
+        },
+        "id": "b7c4b2ab-a6a9-4425-a49c-3083e8b89109",
+        "name": "CONSULTA",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          -320,
+          -550
+        ],
+        "alwaysOutputData": true,
+        "retryOnFail": true,
+        "waitBetweenTries": 5000,
+        "credentials": {
+          "mongoDb": {
+            "id": "JAKPCevXk5GvKOt9",
+            "name": "MONGO CARLOS ARZA"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "eb31eaf1-7f83-4773-a663-4213a227c9e8",
+                "leftValue": "={{ $json }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "empty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "c0bca7f7-6130-4d22-b659-e26dc825dc6f",
+        "name": "EXISTE?",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -100,
+          -550
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "insert",
+          "collection": "CEJAS-L2",
+          "fields": "=query,country,city,zip,regionName,timezone,email,whatsapp,utmCampaign,utmSource,utmMedium,utmContent,utmTerm,userAgent,platform,language,tiemporegistro,fbc,fbp,isFbcGenerated",
+          "options": {}
+        },
+        "id": "28d2ace2-11e8-4183-8aec-b613cdd148bb",
+        "name": "INSERTAR",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          340,
+          -720
+        ],
+        "credentials": {
+          "mongoDb": {
+            "id": "JAKPCevXk5GvKOt9",
+            "name": "MONGO CARLOS ARZA"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "url": "=https://api.flodesk.com/v1/subscribers/{{ $json.email }}",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "Basic fd_key_78554cc9f6964172becd3ea08a9c3070.EYncvUKAUE4Y4W1TQzy0XcznXgZqLllXMAXXkAlmWNr1KmkBfJHXzIDZjitLwlqxgC09qE8H6tDEozhhj4coYSvMNv4DYY8wFfAhj0ZEWmUKCzNevcKmErj59yS7rXLBEmMuxd2u4EdnwNrkafWOlKKKFdkpuM23q0NaFO9G8I3q4Ou82KUMi9cZmLrXOnrv"
+              },
+              {
+                "name": "User-Agent",
+                "value": " n8n-l2"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          560,
+          -875
+        ],
+        "id": "41d522e9-1476-42f6-ae5f-224782b5ecc5",
+        "name": "CONSULTA FLODESK",
+        "retryOnFail": false,
+        "maxTries": 5,
+        "waitBetweenTries": 5000,
+        "disabled": true,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.flodesk.com/v1/subscribers",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Basic fd_key_78554cc9f6964172becd3ea08a9c3070.EYncvUKAUE4Y4W1TQzy0XcznXgZqLllXMAXXkAlmWNr1KmkBfJHXzIDZjitLwlqxgC09qE8H6tDEozhhj4coYSvMNv4DYY8wFfAhj0ZEWmUKCzNevcKmErj59yS7rXLBEmMuxd2u4EdnwNrkafWOlKKKFdkpuM23q0NaFO9G8I3q4Ou82KUMi9cZmLrXOnrv"
+              },
+              {
+                "name": "User-Agent",
+                "value": " n8n-l2"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"email\": \"{{ $('INSERTAR').item.json.email }}\",\n    \"segment_ids\": [\n       \"6819893e62904c6ccbcac33e\"\n    ]\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1000,
+          -875
+        ],
+        "id": "4ec931de-74d4-4a7a-b1d7-bee07f15f23f",
+        "name": "INSERTA FLODESK",
+        "retryOnFail": true,
+        "maxTries": 5,
+        "waitBetweenTries": 5000,
+        "disabled": true,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "ff9f56d5-3bdc-45e2-b7f3-5fec484a6f1c",
+                "leftValue": "={{ $json.error.status }}",
+                "rightValue": 404,
+                "operator": {
+                  "type": "number",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          780,
+          -875
+        ],
+        "id": "ed6f4c2e-fc72-4b4a-8603-bbc17ffac805",
+        "name": "EXISTE FLODESK?",
+        "disabled": true
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "86552321-4bbc-4aa5-afc7-5ce6278c72d2",
+                "name": "CORREO",
+                "value": "={{ $json.email }}",
+                "type": "string"
+              },
+              {
+                "id": "ef1606bf-68e5-4717-a225-708529dcad05",
+                "name": "WHATSAPP",
+                "value": "={{ $json.whatsapp }}",
+                "type": "string"
+              },
+              {
+                "id": "0f13f81b-905a-4e1e-815c-3bcb4932bb77",
+                "name": "CAMPAÑA",
+                "value": "={{ $json.utmCampaign }}",
+                "type": "string"
+              },
+              {
+                "id": "b008676e-7f3b-46eb-9c3f-13f4757b8977",
+                "name": "PLATAFORMA",
+                "value": "={{ $json.utmSource }}",
+                "type": "string"
+              },
+              {
+                "id": "0fa1b73e-3467-49e9-af06-7a4d94901a7b",
+                "name": "SEGMENTACION",
+                "value": "={{ $json.utmMedium }}",
+                "type": "string"
+              },
+              {
+                "id": "50bd88a7-ded2-46df-a377-6c529be00917",
+                "name": "ANUNCIO",
+                "value": "={{ $json.utmContent }}",
+                "type": "string"
+              },
+              {
+                "id": "4747c5a6-da7e-4da9-9a86-fe23003d5adf",
+                "name": "PAIS",
+                "value": "={{ $json.country }}",
+                "type": "string"
+              },
+              {
+                "id": "3df6352b-6489-4d01-9e8e-ad90cc547eda",
+                "name": "ID",
+                "value": "={{ $json.id.toString() }}",
+                "type": "string"
+              },
+              {
+                "id": "c3adebcf-1f39-46ce-9548-b1243262ba2d",
+                "name": "FECHA REGISTRO",
+                "value": "={{ $now.format('yyyy-MM-dd') }}",
+                "type": "string"
+              },
+              {
+                "id": "d42a68f2-323f-4337-b37f-ec1b9a9e65c4",
+                "name": "HORA",
+                "value": "={{ $now.format('HH:mm:ss:s') }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          560,
+          -625
+        ],
+        "id": "af2ebf6f-5e00-46e6-b457-919ff00d2751",
+        "name": "DATOS PARA SQL"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "7f3e8099-ae55-4534-a5be-217d413c0ff2",
+                "leftValue": "={{ $json }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "empty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          1000,
+          -550
+        ],
+        "id": "c404aa85-44b3-45f6-81f6-4e3735a8c6c9",
+        "name": "EXISTE SQL"
+      },
+      {
+        "parameters": {
+          "table": {
+            "__rl": true,
+            "value": "CEJAS_L2",
+            "mode": "list",
+            "cachedResultName": "CEJAS_L2"
+          },
+          "dataMode": "defineBelow",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "FECHA_REGISTRO",
+                "value": "={{ $json[\"FECHA REGISTRO\"] }}"
+              },
+              {
+                "column": "HORA_REGISTRO",
+                "value": "={{ $json.HORA }}"
+              },
+              {
+                "column": "CORREO",
+                "value": "={{ $json.CORREO }}"
+              },
+              {
+                "column": "WHATSAPP",
+                "value": "={{ $json.WHATSAPP }}"
+              },
+              {
+                "column": "PLATAFORMA",
+                "value": "={{ $json.PLATAFORMA }}"
+              },
+              {
+                "column": "SEGMENTACION",
+                "value": "={{ $json.SEGMENTACION }}"
+              },
+              {
+                "column": "ANUNCIO",
+                "value": "={{ $json.ANUNCIO }}"
+              },
+              {
+                "column": "CAMPAÑA",
+                "value": "={{ $json[\"CAMPAÑA\"] }}"
+              },
+              {
+                "column": "PAIS",
+                "value": "={{ $json.PAIS }}"
+              },
+              {
+                "column": "ID",
+                "value": "={{ $json.ID }}"
+              }
+            ]
+          },
+          "options": {
+            "detailedOutput": true
+          }
+        },
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          1440,
+          -625
+        ],
+        "id": "f1a7f7d3-22ff-4d46-8b55-6cc360f8bc40",
+        "name": "INSERTAR SQL",
+        "credentials": {
+          "mySql": {
+            "id": "n8fCALXWnGdmJkBN",
+            "name": "CAPTACIONES"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "CEJAS_L2",
+            "mode": "list",
+            "cachedResultName": "CEJAS_L2"
+          },
+          "returnAll": true,
+          "where": {
+            "values": [
+              {
+                "column": "ID",
+                "condition": "LIKE",
+                "value": "={{ $json.ID }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          780,
+          -550
+        ],
+        "id": "da63df83-d851-40a0-92ed-abfb922ee94d",
+        "name": "CONSULTA SQL",
+        "alwaysOutputData": true,
+        "credentials": {
+          "mySql": {
+            "id": "n8fCALXWnGdmJkBN",
+            "name": "CAPTACIONES"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Edit Fields1": {
+        "main": [
+          [
+            {
+              "node": "Merge3",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Code1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MongoDB": {
+        "main": [
+          [
+            {
+              "node": "If1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If1": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge1": {
+        "main": [
+          [
+            {
+              "node": "MongoDB3",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Edit Fields7",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "ENCUESTA": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields1",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Edit Fields3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge3": {
+        "main": [
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Edit Fields3": {
+        "main": [
+          [
+            {
+              "node": "Merge3",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "MongoDB3": {
+        "main": [
+          []
+        ]
+      },
+      "Edit Fields7": {
+        "main": [
+          [
+            {
+              "node": "MySQL1",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Merge6",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code1": {
+        "main": [
+          [
+            {
+              "node": "MongoDB",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "REGISTRO": {
+        "main": [
+          [
+            {
+              "node": "DATOS",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "IP",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge": {
+        "main": [
+          [
+            {
+              "node": "INSERTAR",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge2": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL1": {
+        "main": [
+          [
+            {
+              "node": "If4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If4": {
+        "main": [
+          [
+            {
+              "node": "Merge6",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Merge6": {
+        "main": [
+          [
+            {
+              "node": "MySQL",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge7": {
+        "main": [
+          [
+            {
+              "node": "INSERTAR SQL",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "IP": {
+        "main": [
+          [
+            {
+              "node": "IP REAL",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "IP REAL": {
+        "main": [
+          [
+            {
+              "node": "Merge2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "DATOS": {
+        "main": [
+          [
+            {
+              "node": "CONSULTA",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Merge2",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "CONSULTA": {
+        "main": [
+          [
+            {
+              "node": "EXISTE?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "EXISTE?": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "INSERTAR": {
+        "main": [
+          [
+            {
+              "node": "DATOS PARA SQL",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "CONSULTA FLODESK",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "CONSULTA FLODESK": {
+        "main": [
+          [
+            {
+              "node": "EXISTE FLODESK?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "EXISTE FLODESK?": {
+        "main": [
+          [
+            {
+              "node": "INSERTA FLODESK",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "DATOS PARA SQL": {
+        "main": [
+          [
+            {
+              "node": "Merge7",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "CONSULTA SQL",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "EXISTE SQL": {
+        "main": [
+          [
+            {
+              "node": "Merge7",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "CONSULTA SQL": {
+        "main": [
+          [
+            {
+              "node": "EXISTE SQL",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "cae1a6b5-bc6b-4a19-81ce-200417178fe6",
   "connections": {
     "Edit Fields1": {
       "main": [
