@@ -1,5 +1,379 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "955f7018-c2ce-46e5-9f62-276f8d18662b",
+    "workflowId": "oZ2YYXpMZBu5TOBf",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "subir-pagos-bizum",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -400,
+          140
+        ],
+        "id": "da505d87-3916-40cf-bea1-d31f8edb2d4b",
+        "name": "Webhook",
+        "webhookId": "7fb343f5-f436-4e2f-95d7-de42da0e384c"
+      },
+      {
+        "parameters": {
+          "resource": "image",
+          "operation": "analyze",
+          "modelId": {
+            "__rl": true,
+            "value": "chatgpt-4o-latest",
+            "mode": "list",
+            "cachedResultName": "CHATGPT-4O-LATEST"
+          },
+          "text": "INSTRUCCIÓN DETALLADA: Analiza la imagen proporcionada y sigue las indicaciones según el contenido detectado:\n\n1. Número de cuenta:\n   - Si la imagen muestra la cuenta de Bizum 643212356 o los ultimos 4 digitos (2356), responde: \"PAGO APROBADO\".\n   - Si se menciona \"transferencia pendiente por aceptar\" o \"aprobar\", también responde: \"PAGO APROBADO\".\n- si se muestra el nombre o el fragmento del nombre maria amalfi criollo, es pago aprobado\n\n2. Acción requerida:\n   - Si aparecen las palabras \"enviar\", \"sigue\", \"continuar\", \"siguiente\": responde con \"COMPROBANTE RECHAZADO: por favor, dele en enviar y vuelva a enviar\". Esto indica que el pago aún no se ha completado.\n\n3. Errores en la transacción:\n   - Ante mensajes como \"no se pudo enviar\", \"error en la transferencia\" o \"transacción fallida\", responde: \"COMPROBANTE RECHAZADO: por favor, verifique su información y vuelva a intentar\".\n\n4. Detalles del pago faltantes:\n   - Si hay una confirmación de pago sin incluir el monto ni las cuentas: responde con \"COMPROBANTE RECHAZADO: por favor, envíe una captura que muestre claramente el número de cuenta y el monto indicado\".\n   - Si hay un número de cuenta que no coincide exactamente: responde: \"COMPROBANTE RECHAZADO: el número de cuenta proporcionado no es válido. Por favor, envíe una captura que contenga el número correcto\".\n\n5. Calidad de la imagen:\n   - Si la imagen es borrosa o ilegible, comenta: \"COMPROBANTE RECHAZADO: la imagen no es clara. Por favor, envíe una captura más legible\".\n\n6. Formato incorrecto:\n   - Si la captura no es de un pago (ej. captura del chat): responde: \"COMPROBANTE RECHAZADO: por favor, envíe una captura desde la aplicación que muestre el pago\".\n\n7. Condiciones no especificadas:\n   - En cualquier otro caso no mencionado que no permita verificar la información, responde: \"COMPROBANTE RECHAZADO\", dando la razón aparente.\n\nAsegúrate de que todas las respuestas sean claras y concisas, reflejando correctamente el contenido analizado.",
+          "imageUrls": "={{ $json.url }}",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.openAi",
+        "typeVersion": 1.7,
+        "position": [
+          180,
+          140
+        ],
+        "id": "2c678397-fafe-48d0-bd5c-6106095e739d",
+        "name": "OpenAI",
+        "credentials": {
+          "openAiApi": {
+            "id": "nZ98FVO8dD6bJnEc",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "upload",
+          "bucketName": "n8n",
+          "fileName": "={{ $('Webhook').item.binary.file.fileName }}",
+          "binaryPropertyName": "=file",
+          "additionalFields": {}
+        },
+        "id": "707e68af-ec87-4a4f-8dce-12a09d1eeff0",
+        "name": "SUBIR",
+        "type": "n8n-nodes-base.s3",
+        "typeVersion": 1,
+        "position": [
+          -200,
+          140
+        ],
+        "credentials": {
+          "s3": {
+            "id": "Y7pBuiQHG1mb91C8",
+            "name": "S3 account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "9ecd0f46-9b4c-406d-94af-61dae04fe420",
+                "name": "=url",
+                "value": "=https://n8n-minio.wc2hpx.easypanel.host/n8n/{{ $('Webhook').item.binary.file.fileName }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "dae972b9-10d9-4a6a-9cbc-852b2ac60845",
+        "name": "Edit Fields",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -20,
+          140
+        ]
+      },
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={\n  \"compra\": true\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          640,
+          60
+        ],
+        "id": "3ae0ebb8-8142-4b84-8341-63f5e47c0053",
+        "name": "Respond to Webhook"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "5268f067-8bdb-4d93-af13-a10ff177eea1",
+                "leftValue": "={{ $json.content.normalize(\"NFD\")\n      .replace(/[\\u0300-\\u036f]/g, \"\")\n      .toLowerCase(); }}",
+                "rightValue": "/aprobado/",
+                "operator": {
+                  "type": "string",
+                  "operation": "regex"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          380,
+          140
+        ],
+        "id": "5fb079ae-27dc-4b03-9334-1a486880367a",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={\n  \"compra\": false\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          640,
+          220
+        ],
+        "id": "243771ba-dd88-4dc7-ab49-a4c31a496cdf",
+        "name": "Respond to Webhook1"
+      },
+      {
+        "parameters": {
+          "operation": "appendOrUpdate",
+          "documentId": {
+            "__rl": true,
+            "value": "https://docs.google.com/spreadsheets/d/1h4VIWYEfBufOeuJfDcwVFFf7cY-I4U6ZOv7effjAThg/edit?gid=0#gid=0",
+            "mode": "url"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "https://docs.google.com/spreadsheets/d/1h4VIWYEfBufOeuJfDcwVFFf7cY-I4U6ZOv7effjAThg/edit?gid=0#gid=0",
+            "mode": "url"
+          },
+          "columns": {
+            "mappingMode": "autoMapInputData",
+            "value": {},
+            "matchingColumns": [
+              "CORREO"
+            ],
+            "schema": [
+              {
+                "id": "URL",
+                "displayName": "URL",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "NOMBRE",
+                "displayName": "NOMBRE",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "CORREO",
+                "displayName": "CORREO",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "WHATSAPP",
+                "displayName": "WHATSAPP",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.5,
+        "position": [
+          980,
+          60
+        ],
+        "id": "2a987ec1-c195-4f5f-bd1b-19b2e9e94f84",
+        "name": "Google Sheets",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "zruD3ONGC9HU2i7s",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "86552321-4bbc-4aa5-afc7-5ce6278c72d2",
+                "name": "URL",
+                "value": "={{ $('Edit Fields').item.json.url }}",
+                "type": "string"
+              },
+              {
+                "id": "ef1606bf-68e5-4717-a225-708529dcad05",
+                "name": "NOMBRE",
+                "value": "={{ $('Webhook').item.json.body.name }}",
+                "type": "string"
+              },
+              {
+                "id": "0f13f81b-905a-4e1e-815c-3bcb4932bb77",
+                "name": "CORREO",
+                "value": "={{ $('Webhook').item.json.body.email }}",
+                "type": "string"
+              },
+              {
+                "id": "b008676e-7f3b-46eb-9c3f-13f4757b8977",
+                "name": "WHATSAPP",
+                "value": "={{ $('Webhook').item.json.body.whatsapp }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          820,
+          60
+        ],
+        "id": "4ba5d44c-3de3-48b4-8ff3-a8f9e4e3e2dd",
+        "name": "Edit Fields6"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "SUBIR",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "SUBIR": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "OpenAI",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Respond to Webhook",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Respond to Webhook1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields6": {
+        "main": [
+          [
+            {
+              "node": "Google Sheets",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Respond to Webhook": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields6",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "955f7018-c2ce-46e5-9f62-276f8d18662b",
   "connections": {
     "Webhook": {
       "main": [
