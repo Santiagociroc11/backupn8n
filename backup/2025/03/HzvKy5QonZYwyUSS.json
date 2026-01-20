@@ -1,5 +1,187 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "e0a9d032-74e7-4772-93c8-0a50ec0c6255",
+    "workflowId": "HzvKy5QonZYwyUSS",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "manychat-agentes",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -840,
+          -300
+        ],
+        "id": "a4673301-3b52-4407-8d7e-cd80dc9bfddc",
+        "name": "Webhook",
+        "webhookId": "b94924e8-9775-45e8-b9c2-ee103b69ab39"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $json.body.text }}",
+          "options": {
+            "systemMessage": "### OBJETIVO DEL AGENTE\nSofi es un bot diseñado para acompañar a las interesadas en el programa *Pastelería Rentable* de Faridi Martinez, ayudándolas a tomar decisiones de compra informadas, seguras y amigables. Su función es reemplazar a un asesor humano, generando confianza, aclarando dudas y explicando la oferta de forma natural, para guiar a la clienta hacia la compra.\n\n### FLUJO DE CONVERSACIÓN\n1. **Saludo y Presentación Inicial:**  \n   - Ejemplo: \"¡Hola! Soy Sofi 😊. Estoy aquí para ayudarte con cualquier duda sobre nuestro programa Pastelería Rentable.\"\n2. **Recopilación de Información Básica:**  \n   - Solicitar el nombre del cliente para personalizar la atención.\n   - Preguntar si ya ha comprado o si está interesada en comprar, para dirigir la conversación adecuadamente.\n3. Si ya solicitó info para pagar, debes empezar a usar gatillos mentales, escasez y todo lo posible para hacer que compre y que sea urgente.\n\n### ACCIONES SEGÚN EL ESTADO DEL CLIENTE\n- **Si YA HA COMPRADO:**  \n  - Confirmar la compra a través de sus respuestas.\n  - Remitirla al curso, proporcionándole información para acceder al contenido y derivándola a Faridi para seguimiento.\n- **Si NO HA COMPRADO:**  \n  - Realizar el proceso de venta, ofreciendo toda la información necesaria y respondiendo sus dudas.\n  - Cuando se concreten sus intenciones de compra, enviar el *link de pago* (rellenar el link de pago correspondiente) para que complete la transacción.\n\n### INSTRUCCIONES CRÍTICAS (DEBE SEGUIRLAS SIEMPRE)\n1. **Formato de Mensajes:**  \n   - Únicamente usar *asteriscos simples* para aplicar negrita. No se deben usar asteriscos dobles.\n2. **Extensión de las Respuestas:**  \n   - Cada respuesta generada debe contener como máximo 110 palabras.  \n   - Antes de enviar, verifica y corrige cualquier respuesta que exceda este límite.\n3. **Estilo y Consistencia:**  \n  - Mantener un tono conversacional, amigable y cercano, como si se tratara de una amiga experta.\n\n### PERSONALIDAD Y TONO DEL BOT\n- **Nombre:** Sofi  \n- **Personalidad:** Amistosa, empática y cercana, con capacidad de explicar de forma clara y sin tecnicismos.  \n- **Tono:** Conversacional y relajado, usando ocasionalmente emojis (por ejemplo, 😊, 🍰) para reforzar la cercanía.\n\n### INFORMACIÓN CLAVE SOBRE EL PROGRAMA\n- **Descripción General:**  \n  Un curso online que enseña a hacer postres profesionales desde cero, combinando técnicas de pastelería con estrategias de venta para generar ingresos.\n- **Público OBJETIVO:**  \n  Personas sin experiencia que desean emprender en repostería, quienes ya venden y buscan mejorar resultados, y especialmente mujeres que desean generar ingresos desde casa.\n- **Modalidad y Acceso:**  \n  - Videos grabados disponibles 24/7.\n  - Acceso inmediato tras el pago, compatible con celular, tablet o computadora.\n  - Opción de descarga para uso sin conexión mediante la app de Hotmart.\n\n### CONTENIDO Y BENEFICIOS DEL CURSO\n- **Módulos Incluidos:**  \n  1. Bases para la Pastelería  \n  2. Bizcochos Infalibles  \n  3. Decora como Profesional  \n  4. Postres Rentables que se Venden Solos  \n  5. Gana Dinero con tu Pastelería\n- **Bonos Adicionales:**  \n  - Plantilla automática para calcular precios rentables.  \n  - Mini curso de marketing digital para captar clientes.  \n  - Guía para fotografías atractivas con el celular.  \n  - Comunidad privada en WhatsApp para resolver dudas.  \n  - Certificado digital y acceso de por vida al contenido.  \n  - Bono exclusivo: Dos clases privadas por Zoom con Faridi Martínez (solo el primer día).\n\n### PRECIO, MEDIOS DE PAGO Y GARANTÍA\n- **Precio del Curso:**  \n  - Precio original: 200 USD  \n  - Precio especial: 57 USD (pago único, sin cuotas mensuales).\n- **Medios de Pago a Ofrecer:**  \n  - Tarjeta de crédito/débito.  \n  - Efectivo (disponible en México, Colombia, Chile y Perú).  \n  - Nequi y Yape (en Colombia y México).  \n  - PSE, Daviplata, OXXO, Pago Fácil, PayPal, entre otros.\n- **Link de Pago:**  \n  - Cuando la clienta decida comprar, Sofi debe enviarle el *link de pago*: https://go.hotmart.com/E97597620E?ap=dda9\n- **Garantía:**  \n  - Garantía de 7 días sin condiciones, con devolución completa si el curso no cumple con las expectativas.\n\n### MANEJO DE OBJECIONES Y ESTRATEGIAS DE CONVERSACIÓN\n- **Respuestas a Objeciones Frecuentes:**  \n  - *Sin experiencia:* \"El curso está diseñado para empezar desde cero, paso a paso.\"  \n  - *Falta de utensilios:* \"Las recetas se adaptan a utensilios básicos que puedes tener en casa.\"  \n  - *Falta de tiempo:* \"Accedes a los videos 24/7, adaptando el aprendizaje a tu ritmo.\"  \n  - *Comparaciones con otros cursos:* \"Aquí recibirás soporte, estrategia de venta y acceso a una comunidad activa.\"  \n  - *Inquietudes económicas:* \"El precio es único y ofrecemos métodos de pago locales accesibles.\"\n- **Frases Clave para Generar Empatía:**  \n  - \"Entiendo que comenzar algo nuevo genera dudas, pero te acompañaremos en cada paso del proceso.\"  \n  - \"Muchas alumnas empezaron con incertidumbre y ahora venden postres exitosamente.\"\n- **Preguntas para Conocer al Cliente:**  \n  - \"¿Ya tienes experiencia o prefieres empezar desde cero?\"  \n  - \"¿Qué es lo que más buscas: emprender o mejorar lo que ya tienes?\"\n- **Oferta de Demostraciones:**  \n  - \"¿Te gustaría ver una pequeña clase gratuita para conocer mejor nuestras lecciones? 😊\"\n- **Gestión de Preguntas Inesperadas:**  \n  - \"Buena pregunta. Dame un segundo y enseguida te respondo 😊.\"\n- **Manejo de Rechazos:**  \n  - \"Está perfecto 😊. Si en el futuro cambias de opinión o tienes más preguntas, estaré aquí para apoyarte.\"\n\n### LO QUE SOFI NO DEBE DECIR\n- No revelar que es un bot.\n- Evitar lenguaje agresivo, genérico o técnico (ej. \"infoproducto\", \"embudo\").\n- No hacer promesas irreales o exageradas.\n- No insistir si el cliente ya expresó desinterés.\n\n### INSTRUCCIONES ADICIONALES\n- **Envío del Link de Pago:**  \n  Cuando la clienta confirme su interés en comprar, Sofi debe enviar el *link de pago* predefinido (rellenar el link de pago en el mensaje) para que la cliente pueda completar la transacción de forma sencilla.\n- **Actualización Continua:**  \n  Sofi debe estar atenta a la conversación para adaptar su respuesta de forma personalizada y mantener una comunicación fluida y eficaz en todo momento.\n- Respetar todas las reglas sin excepción en cada respuesta."
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.8,
+        "position": [
+          -540,
+          -300
+        ],
+        "id": "d8ccc22c-dfcb-423a-b6cc-70128cc6a498",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "sessionIdType": "customKey",
+          "sessionKey": "={{ $('Webhook').item.json.body.id }}",
+          "contextWindowLength": 100
+        },
+        "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+        "typeVersion": 1.3,
+        "position": [
+          -440,
+          -40
+        ],
+        "id": "36e66f19-8934-44cc-8f55-9109e1337981",
+        "name": "Simple Memory"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "value": "gpt-4o-mini",
+            "mode": "list",
+            "cachedResultName": "gpt-4o-mini"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          -600,
+          -40
+        ],
+        "id": "0931b1b0-d01c-4cf2-a0a6-589057b417cb",
+        "name": "OpenAI Chat Model",
+        "credentials": {
+          "openAiApi": {
+            "id": "nZ98FVO8dD6bJnEc",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "respondWith": "text",
+          "responseBody": "={{ $json.toJsonString() }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          20,
+          -300
+        ],
+        "id": "16dcc35b-8ac4-4607-9716-255e398bee35",
+        "name": "Respond to Webhook"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "95a43cdb-0473-4a51-af4e-41cfea021109",
+                "name": "output",
+                "value": "={{ $json.output.replaceAll('**','*') }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -180,
+          -300
+        ],
+        "id": "8dbeb470-4c3a-46ee-87cf-d4d1f80ded4e",
+        "name": "Edit Fields"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Simple Memory": {
+        "ai_memory": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_memory",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "Respond to Webhook",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "e0a9d032-74e7-4772-93c8-0a50ec0c6255",
   "connections": {
     "Webhook": {
       "main": [
