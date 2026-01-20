@@ -1,5 +1,166 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "25d3ea0f-d3e3-494d-a8ea-ae1b2c809061",
+    "workflowId": "AWMtgR6Vimf3QRNE",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "gtm-avisos",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -928,
+          -144
+        ],
+        "id": "c344e2a9-6836-4c98-a5d5-51059da6671f",
+        "name": "Webhook",
+        "webhookId": "21506694-a2b3-4421-95a2-7d7d6b1c26b2"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.telegram.org/bot8117750846:AAHReV8EiTWTI3mloh-o8fgXLbmfVwpv0Iw/sendMessage",
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"chat_id\": \"-1002176532359\",\n  \"message_thread_id\": 697,\n  \"text\": \"🚨 *GRUPOS*: \\n\\n {{ $json.body.mensaje }}\",\n  \"parse_mode\": \"Markdown\"\n}\n",
+          "options": {}
+        },
+        "id": "7fffb4db-b129-4c1c-a82f-272bbeef09da",
+        "name": "HTTP Request1",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          -416,
+          -240
+        ]
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.body.tipo }}",
+                      "rightValue": "llenado",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "LLENADO DE GRUPOS"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "7f54525c-fd25-48ee-9df2-63bc6f4dbcef",
+                      "leftValue": "={{ $json.body.tipo }}",
+                      "rightValue": "emergencia",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "EMERGENCIA"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.2,
+        "position": [
+          -704,
+          -144
+        ],
+        "id": "9fd63f16-5b61-4439-9bad-eaa9f8b3d1d2",
+        "name": "Switch"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.telegram.org/bot8117750846:AAHReV8EiTWTI3mloh-o8fgXLbmfVwpv0Iw/sendMessage",
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"chat_id\": \"-1002176532359\",\n  \"message_thread_id\": 697,\n  \"text\": \"⚠️ *EMERGENCIA*: \\n\\n {{ $json.body.mensaje }}\",\n  \"parse_mode\": \"Markdown\"\n}",
+          "options": {}
+        },
+        "id": "680705ca-23b8-474a-850b-8b26b23de626",
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          -416,
+          -48
+        ]
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request1",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "25d3ea0f-d3e3-494d-a8ea-ae1b2c809061",
   "connections": {
     "Webhook": {
       "main": [
