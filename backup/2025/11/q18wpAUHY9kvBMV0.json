@@ -1,5 +1,112 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "0685081a-7322-4416-8b9f-9aa08689f218",
+    "workflowId": "q18wpAUHY9kvBMV0",
+    "nodes": [
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.smtp2go.com/v3/email/send",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "X-Smtp2go-Api-Key",
+                "value": "api-0DC80E8295FD4AB097C4F3BB2B65FC10"
+              },
+              {
+                "name": "accept",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"sender\": \"soporte@adfinder.pro\",\n  \"to\": [\n    \"jerwinabril@gmail.com\"\n  ],\n  \"subject\": \"Te damos la Bienvenida a ADFINDER PRO\",\n  \"html_body\": {{ $json.html.toJsonString() }}\n} ",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          256,
+          176
+        ],
+        "id": "daed1c81-aa5c-4acb-aa13-f63b856f5d2a",
+        "name": "HTTP Request"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "295bb2d8-8308-4abd-bd15-03dcee714f6a",
+                "name": "html",
+                "value": "=<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n  <title>Bienvenido a AdFinder Pro</title>\n  <style>\n    body {\n      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n      background-color: #f6f9fc;\n      color: #333;\n      margin: 0;\n      padding: 0;\n    }\n    .container {\n      max-width: 600px;\n      margin: 40px auto;\n      background: #fff;\n      border-radius: 12px;\n      box-shadow: 0 4px 20px rgba(0,0,0,0.05);\n      overflow: hidden;\n    }\n    .header {\n      background-color: #0078ff;\n      color: #fff;\n      text-align: center;\n      padding: 30px 20px;\n    }\n    .header h1 {\n      margin: 0;\n      font-size: 28px;\n    }\n    .content {\n      padding: 30px 40px;\n      text-align: center;\n    }\n    .content p {\n      font-size: 16px;\n      line-height: 1.6;\n    }\n    .credentials {\n      background: #f0f4ff;\n      border-radius: 8px;\n      padding: 15px;\n      margin: 25px 0;\n      text-align: left;\n    }\n    .credentials p {\n      margin: 8px 0;\n      font-weight: 500;\n    }\n    .button {\n      display: inline-block;\n      background-color: #0078ff;\n      color: #fff;\n      padding: 12px 24px;\n      border-radius: 6px;\n      text-decoration: none;\n      font-weight: 600;\n      transition: background 0.3s;\n    }\n    .button:hover {\n      background-color: #005fcc;\n    }\n    .footer {\n      background: #f2f2f2;\n      padding: 15px;\n      text-align: center;\n      font-size: 13px;\n      color: #777;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"header\">\n      <h1>¡Bienvenido a AdFinder Pro!</h1>\n    </div>\n    <div class=\"content\">\n      <p>Hola <strong>{NOMBRE_USUARIO}</strong>,</p>\n      <p>Nos alegra darte la bienvenida a <strong>AdFinder Pro</strong>, tu nueva herramienta profesional para optimizar y analizar campañas publicitarias.</p>\n\n      <div class=\"credentials\">\n        <p><strong>Usuario:</strong> {USUARIO}</p>\n        <p><strong>Contraseña:</strong> {CONTRASEÑA}</p>\n      </div>\n\n      <p>Puedes acceder a la plataforma haciendo clic en el siguiente botón:</p>\n      <a href=\"https://adfinder.pro/login\" class=\"button\">Ingresar a AdFinder Pro</a>\n\n      <p style=\"margin-top: 25px;\">Por seguridad, te recomendamos cambiar tu contraseña después del primer inicio de sesión.</p>\n    </div>\n    <div class=\"footer\">\n      © 2025 AdFinder Pro. Todos los derechos reservados.\n    </div>\n  </div>\n</body>\n</html>",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          64,
+          176
+        ],
+        "id": "9f78467b-5cab-4044-a07a-eb0820e28e7d",
+        "name": "Edit Fields"
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "adfinder-compra",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          -256,
+          128
+        ],
+        "id": "2443d985-2aca-42a8-85dd-b674b3fe6762",
+        "name": "Webhook",
+        "webhookId": "fe6d1977-f401-4a9f-b356-9cc1c72bb984"
+      }
+    ],
+    "connections": {
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "0685081a-7322-4416-8b9f-9aa08689f218",
   "connections": {
     "Edit Fields": {
       "main": [
