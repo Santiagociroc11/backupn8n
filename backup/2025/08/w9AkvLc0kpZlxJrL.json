@@ -1,5 +1,1047 @@
 {
-  "active": false,
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "879970be-2681-4cdf-a282-e373f9f35bdf",
+    "workflowId": "w9AkvLc0kpZlxJrL",
+    "nodes": [
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "dfe23bab-7c1a-4462-ad5b-b7291ee8d7af",
+                "name": "whatsapp",
+                "value": "={{ $json.whatsapp }}",
+                "type": "string"
+              },
+              {
+                "id": "cfe28cc4-c69b-4a26-86b7-e3fcab392043",
+                "name": "email",
+                "value": "={{ $json.email }}",
+                "type": "string"
+              },
+              {
+                "id": "de3c730f-dcad-4ab6-af4c-2e96c75a6c8b",
+                "name": "tiempoencuesta",
+                "value": "={{ $json.tiemporegistro }}",
+                "type": "number"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -2304,
+          224
+        ],
+        "id": "36b9c782-a3c9-4ad7-b74f-7e6bf0a842dc",
+        "name": "Edit Fields1"
+      },
+      {
+        "parameters": {
+          "operation": "findOneAndUpdate",
+          "collection": "TD-L8",
+          "updateKey": "_id",
+          "fields": "tiempoencuesta,Edad, Edad_especifica,Nivel_de_estudios,Ocupación,Eliminar_dolor_para,Ingresos,puntaje",
+          "options": {}
+        },
+        "id": "b5abd6f6-7e26-4d22-b335-d827f6352791",
+        "name": "MongoDB3",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          -144,
+          448
+        ],
+        "credentials": {
+          "mongoDb": {
+            "id": "vbsT0SoMA5A3acgH",
+            "name": "BASE DE DATOS GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "id": "d87fe6e0-0117-40eb-a6b9-5f33023a9a53",
+        "name": "Merge1",
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          -720,
+          400
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          -1024,
+          672
+        ],
+        "id": "de990fe1-2474-46c0-b6eb-fda729c74209",
+        "name": "Merge3"
+      },
+      {
+        "parameters": {
+          "mode": "raw",
+          "jsonOutput": "={{ $json.json_encuesta }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -2160,
+          704
+        ],
+        "id": "86df545b-03f3-4c2a-8558-ae457ed5a6ec",
+        "name": "Edit Fields3"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "a520e1b6-bb26-44a6-857f-770dac49655a",
+                "leftValue": "={{ $json.puntaje }}",
+                "rightValue": 500,
+                "operator": {
+                  "type": "number",
+                  "operation": "gt"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          16,
+          448
+        ],
+        "id": "abc2fec0-4581-4536-9715-38b04fed25a0",
+        "name": "If2"
+      },
+      {
+        "parameters": {
+          "collection": "=TD-L8",
+          "options": {},
+          "query": "={\"_id\": \"{{ $('Merge1').item.json._id }}\"}"
+        },
+        "id": "cca4890b-d5d9-4092-a74c-0586e8a343d8",
+        "name": "MongoDB4",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          208,
+          384
+        ],
+        "alwaysOutputData": true,
+        "credentials": {
+          "mongoDb": {
+            "id": "vbsT0SoMA5A3acgH",
+            "name": "BASE DE DATOS GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": " https://graph.facebook.com/v21.0/1156253219623951/events",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "access_token",
+                "value": "EAAOAcBl41QIBPAbmJYzAk6gatq43TrZAbqWrgOWbOtzbHatJskrsRQ8R4seDAO3aRB0mZCLxAiFnR3FjnJVBZAZCJmfg0GD2E7GviM8Oa5hguHt1ZAxCf8ZCKg3ro2CfoO1brwouRQZAPQFdPglCHidXqhAttYZCcg1SNugkaOo1NVanZCnZBhhAynzS6Knl4x80fBEgZDZD"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={{ $json.toJsonString() }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          544,
+          384
+        ],
+        "id": "00ff2697-be5d-4242-b4b1-a9513064dbb9",
+        "name": "HTTP Request2"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3df6352b-6489-4d01-9e8e-ad90cc547eda",
+                "name": "ID",
+                "value": "={{ $json._id.toString() }}",
+                "type": "string"
+              },
+              {
+                "id": "c3adebcf-1f39-46ce-9548-b1243262ba2d",
+                "name": "EDAD",
+                "value": "={{ $json.Edad }}",
+                "type": "string"
+              },
+              {
+                "id": "0ca6d2e7-d8c2-46a7-975a-09a456419cf3",
+                "name": "PROPOSITO",
+                "value": "={{ $json.Eliminar_dolor_para }}",
+                "type": "string"
+              },
+              {
+                "id": "0badb125-2290-4dc2-9eea-778d1dcb665b",
+                "name": "INGRESOS",
+                "value": "={{ $json.Ingresos }}",
+                "type": "string"
+              },
+              {
+                "id": "26ed51be-6c4d-4c6c-9233-496b7b476fdb",
+                "name": "ESTUDIOS",
+                "value": "={{ $json.Nivel_de_estudios }}",
+                "type": "string"
+              },
+              {
+                "id": "4eb1e6ab-b022-4cea-b94f-3120ba812fcb",
+                "name": "OCUPACION",
+                "value": "={{ $json['Ocupación'] }}",
+                "type": "string"
+              },
+              {
+                "id": "e8240118-b101-46ae-ba85-736ba448cef6",
+                "name": "PUNTAJE",
+                "value": "={{ $json.puntaje }}",
+                "type": "number"
+              },
+              {
+                "id": "a0f82f8d-7f63-4d33-b894-2cba3b59adfd",
+                "name": "FECHA ENCUESTA",
+                "value": "={{ $now.format('yyyy-MM-dd') }}",
+                "type": "string"
+              },
+              {
+                "id": "703ee060-0a76-4436-8621-7a62f8e7db1a",
+                "name": "HORA ENCUESTA",
+                "value": "={{ $now.format('HH:mm:ss:s') }}",
+                "type": "string"
+              },
+              {
+                "id": "8b8c5b70-460d-437f-a8cb-8ec1e381d382",
+                "name": "EDAD_ESPECIFICA",
+                "value": "={{ $json.Edad_especifica }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -272,
+          640
+        ],
+        "id": "4efe8900-bd2b-4cc1-8c38-2139f5b6ca61",
+        "name": "Edit Fields7"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.manychat.com/fb/subscriber/setCustomFieldByName",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Accept",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"field_name\": \"PROBABILIDAD-ENC\",\n  \"field_value\": {{ $json.puntaje.round() }}\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          -144,
+          112
+        ],
+        "id": "cb8789df-2905-431d-a815-1fd52f59f1bd",
+        "name": "HTTP Request5",
+        "retryOnFail": true,
+        "waitBetweenTries": 5000,
+        "maxTries": 5,
+        "onError": "continueErrorOutput"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.manychat.com/fb/subscriber/addTagByName",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Accept",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"tag_name\": \"ENCUESTA-L8\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          -144,
+          -48
+        ],
+        "id": "d6b7a02b-441e-4780-a0d2-53c0f664c07b",
+        "name": "HTTP Request6",
+        "retryOnFail": true,
+        "waitBetweenTries": 5000,
+        "maxTries": 5,
+        "onError": "continueErrorOutput"
+      },
+      {
+        "parameters": {
+          "jsCode": "return items.map(item => {\n  const whatsapp = item.json.whatsapp || \"\"; // Verifica si existe el campo WhatsApp\n  const email = item.json.email || \"\"; // Verifica si existe el campo email\n  \n  if (whatsapp && email) {\n    // Si existen ambos campos, retorna un JSON con ambos valores\n    return {\n      json: {\n        whatsapp: whatsapp,\n        email: email\n      }\n    };\n  } else if (whatsapp) {\n    // Si existe solo WhatsApp, genera un filtro con regex para los últimos 6 caracteres\n    return {\n      json: {\n        whatsapp: {\n          \"$regex\": `.*${whatsapp.slice(-6)}.*`,\n          \"$options\": \"i\"\n        }\n      }\n    };\n  } else if (email) {\n    // Si no existe WhatsApp, utiliza el correo electrónico para generar el filtro\n    return {\n      json: {\n        email: email\n      }\n    };\n  } else {\n    // Si no hay datos de WhatsApp ni correo, lanza un error\n    throw new Error(\"No se proporcionaron datos de WhatsApp ni correo electrónico.\");\n  }\n});\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -2080,
+          224
+        ],
+        "id": "68b530fe-8b42-450b-b2c2-a7e7c32b55b4",
+        "name": "Code1"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "7f3e8099-ae55-4534-a5be-217d413c0ff2",
+                "leftValue": "={{ $json }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          112,
+          736
+        ],
+        "id": "6fc21c1f-6621-4dd9-9e9b-8d59e8c49efb",
+        "name": "If4"
+      },
+      {
+        "parameters": {
+          "mode": "chooseBranch"
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          288,
+          656
+        ],
+        "id": "df17e8ce-fe2f-425b-9b8e-c4841266fb23",
+        "name": "Merge6"
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          -1312,
+          688
+        ],
+        "id": "52f23930-29bd-4552-b764-c8f181476126",
+        "name": "Merge4"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "ee2f3d54-34a2-40bd-a09a-dcb81b934770",
+                "name": "puntaje",
+                "value": "={{ $json.score[0].round() }}",
+                "type": "number"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -1392,
+          448
+        ],
+        "id": "7d54a210-633f-4e0e-b81d-625ae70e842f",
+        "name": "Edit Fields4"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "http://82.180.130.193:6969/predecir/",
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={{ $json.toJsonString() }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          -1600,
+          448
+        ],
+        "id": "1a5799c8-56f3-482e-bf4e-8a92a34e8e64",
+        "name": "HTTP Request1",
+        "retryOnFail": true,
+        "maxTries": 5,
+        "waitBetweenTries": 5000
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "eb31eaf1-7f83-4773-a663-4213a227c9e8",
+                "leftValue": "={{ $json }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "empty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "9fd9007f-0dcc-46d1-a532-64f58857c3dd",
+        "name": "If1",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -1680,
+          224
+        ]
+      },
+      {
+        "parameters": {
+          "collection": "=TD-L8",
+          "options": {
+            "limit": 1
+          },
+          "query": "={{ $json.toJsonString() }}"
+        },
+        "id": "1cad1808-87ca-404b-a1da-cc09c84bd582",
+        "name": "MongoDB",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          -1872,
+          224
+        ],
+        "alwaysOutputData": true,
+        "retryOnFail": true,
+        "waitBetweenTries": 5000,
+        "credentials": {
+          "mongoDb": {
+            "id": "vbsT0SoMA5A3acgH",
+            "name": "BASE DE DATOS GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          -2064,
+          448
+        ],
+        "id": "b061a822-e2e0-4643-b569-3d38b5546a0c",
+        "name": "Merge8"
+      },
+      {
+        "parameters": {
+          "mode": "raw",
+          "jsonOutput": "={{ (() => {\n \n  // 1. Convierte el texto de las respuestas (answersJson) en un objeto.\n  const ans = JSON.parse($json.json_encuesta || '{}');\n\n  // 2. Elimina la propiedad 'Edad_especifica' del objeto.\n  delete ans.Edad_especifica;\n\n  // 3. Devuelve el objeto ya modificado (sin 'Edad_especifica').\n  return {\n    ...ans\n   \n  };\n})() }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -1840,
+          448
+        ],
+        "id": "1fd1a4e1-f8f0-4ee8-b458-5007c2d7900c",
+        "name": "Edit Fields9"
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "GERSSON_L8",
+            "mode": "list",
+            "cachedResultName": "GERSSON_L8"
+          },
+          "returnAll": true,
+          "where": {
+            "values": [
+              {
+                "column": "ID",
+                "condition": "LIKE",
+                "value": "={{ $json.ID }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          -48,
+          736
+        ],
+        "id": "d1ff412c-3038-4915-b1d8-902b16872b3b",
+        "name": "Select rows from a table1",
+        "alwaysOutputData": true,
+        "credentials": {
+          "mySql": {
+            "id": "n8fCALXWnGdmJkBN",
+            "name": "CAPTACIONES"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "table": {
+            "__rl": true,
+            "value": "GERSSON_L8",
+            "mode": "list",
+            "cachedResultName": "GERSSON_L8"
+          },
+          "dataMode": "defineBelow",
+          "columnToMatchOn": "ID",
+          "valueToMatchOn": "={{ $json.ID }}",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "FECHA_ENCUESTA",
+                "value": "={{ $json[\"FECHA ENCUESTA\"] }}"
+              },
+              {
+                "column": "HORA_ENCUESTA",
+                "value": "={{ $json[\"HORA ENCUESTA\"] }}"
+              },
+              {
+                "column": "EDAD",
+                "value": "={{ $json.EDAD }}"
+              },
+              {
+                "column": "INGRESOS",
+                "value": "={{ $json.INGRESOS }}"
+              },
+              {
+                "column": "ESTUDIOS",
+                "value": "={{ $json.ESTUDIOS }}"
+              },
+              {
+                "column": "OCUPACION",
+                "value": "={{ $json.OCUPACION }}"
+              },
+              {
+                "column": "PROPOSITO",
+                "value": "={{ $json.PROPOSITO }}"
+              },
+              {
+                "column": "PUNTAJE",
+                "value": "={{ $json.PUNTAJE }}"
+              },
+              {
+                "column": "QLEAD",
+                "value": "={{ $json.PUNTAJE > 500 ? \"si\": null }}"
+              },
+              {
+                "column": "EDAD_ESPECIFICA",
+                "value": "={{ $json.EDAD_ESPECIFICA }}"
+              }
+            ]
+          },
+          "options": {
+            "detailedOutput": true
+          }
+        },
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          496,
+          656
+        ],
+        "id": "2181423b-4e97-4aed-9609-d671fcc5d1f3",
+        "name": "Update rows in a table",
+        "credentials": {
+          "mySql": {
+            "id": "n8fCALXWnGdmJkBN",
+            "name": "CAPTACIONES"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.manychat.com/fb/subscriber/setCustomFieldByName",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Accept",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"field_name\": \"PROPOSITO\",\n  \"field_value\": \"{{ $json.PROPOSITO }}\" \n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          -144,
+          272
+        ],
+        "id": "cccd8fcd-de51-445a-b756-d99ac5e08f44",
+        "name": "HTTP Request8",
+        "retryOnFail": true,
+        "waitBetweenTries": 5000,
+        "maxTries": 5,
+        "onError": "continueErrorOutput"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Obtiene TODOS los items que llegan al nodo.\nconst items = $input.all();\n\n// Itera sobre cada item para procesarlo.\nfor (const item of items) {\n  \n  // Extrae el valor de la respuesta del item actual.\n  const respuestaProposito = item.json.Eliminar_dolor_para;\n  \n  // Variable para almacenar el resultado con un valor por defecto.\n  let valorProposito = 'NO_ESPECIFICADO'; \n\n  // Asigna el valor a la variable PROPOSITO según la respuesta.\n  switch (respuestaProposito) {\n    case 'Para crear o ampliar tu negocio relacionado con la salud':\n      valorProposito = 'NEGOCIO';\n      break;\n    case 'Para ti mismo':\n      valorProposito = 'PERSONAL';\n      break;\n    case 'Para tu familia o amigos':\n      valorProposito = 'FAMILIA';\n      break;\n  }\n  \n  // Agrega el nuevo campo 'PROPOSITO' al objeto json del item.\n  item.json.PROPOSITO = valorProposito;\n}\n\n// Retorna los items ya modificados.\nreturn items;"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -304,
+          272
+        ],
+        "id": "260ec70e-1a5c-4709-9f1e-2a2cd72fe8a8",
+        "name": "Code2"
+      },
+      {
+        "parameters": {
+          "jsCode": "const crypto = require('crypto-js'); // Asegúrate de que la librería está disponible\n\nconst item = $input.first().json;\n\nfunction hashSHA256(value) {\n  return crypto.SHA256(value).toString(crypto.enc.Hex);\n}\n\nconst encryptedData = {\n  em: [hashSHA256(item.email)],  // Correo electrónico\n  ph: [hashSHA256(Number(item.whatsapp))],  // Número de teléfono\n  country: [hashSHA256(item.country)],  // País\n  zp: [hashSHA256(item.zip)], //zip\n  ct: [hashSHA256(item.city)], //ciudad\n  st: [hashSHA256(item.regionName)], //estado\n  // Datos no cifrados deben estar directamente accesibles\n  client_ip_address: item.query,\n  client_user_agent: item.userAgent,\n  fbc: item.fbc,\n  fbp: item.fbp,\n};\n\nconst facebookEvent = {\n  data: [\n    {\n      event_name: \"CompleteRegistration\",\n      event_time: Math.floor(Date.now() / 1000), // Tiempo actual en segundos\n      action_source: \"website\",\n      original_event_data: {\n        event_name: \"CompleteRegistration\",\n        event_time: Math.floor(Date.now() / 1000)\n      },\n      user_data: encryptedData,\n    }\n  ]\n};\n\nreturn facebookEvent;"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          368,
+          384
+        ],
+        "id": "d997a9a1-2748-4c76-919e-5f93da04aac4",
+        "name": "Code3"
+      },
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          -2752,
+          496
+        ],
+        "id": "4efb7bd8-a847-453e-8b22-7f744682e50b",
+        "name": "When Executed by Another Workflow"
+      }
+    ],
+    "connections": {
+      "Edit Fields1": {
+        "main": [
+          [
+            {
+              "node": "Merge3",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Code1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MongoDB3": {
+        "main": [
+          [
+            {
+              "node": "If2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge1": {
+        "main": [
+          [
+            {
+              "node": "MongoDB3",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Edit Fields7",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "HTTP Request5",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "HTTP Request6",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Code2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge3": {
+        "main": [
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Edit Fields3": {
+        "main": [
+          [
+            {
+              "node": "Merge4",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "If2": {
+        "main": [
+          [
+            {
+              "node": "MongoDB4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MongoDB4": {
+        "main": [
+          [
+            {
+              "node": "Code3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields7": {
+        "main": [
+          [
+            {
+              "node": "Select rows from a table1",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Merge6",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code1": {
+        "main": [
+          [
+            {
+              "node": "MongoDB",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If4": {
+        "main": [
+          [
+            {
+              "node": "Merge6",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Merge6": {
+        "main": [
+          [
+            {
+              "node": "Update rows in a table",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge4": {
+        "main": [
+          [
+            {
+              "node": "Merge3",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Edit Fields4": {
+        "main": [
+          [
+            {
+              "node": "Merge4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request1": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If1": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Merge8",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MongoDB": {
+        "main": [
+          [
+            {
+              "node": "If1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge8": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields9",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields9": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Select rows from a table1": {
+        "main": [
+          [
+            {
+              "node": "If4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code2": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request8",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code3": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields1",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Edit Fields3",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Merge8",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "879970be-2681-4cdf-a282-e373f9f35bdf",
   "connections": {
     "Edit Fields1": {
       "main": [
