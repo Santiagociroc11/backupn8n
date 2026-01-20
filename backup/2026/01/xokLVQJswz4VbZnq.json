@@ -1,5 +1,247 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "672c435f-988f-4bac-b47c-3b85004221f0",
+    "workflowId": "xokLVQJswz4VbZnq",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "adri-rs-l2-wha",
+          "options": {}
+        },
+        "id": "dca4d79e-07e5-45e7-ac3f-4b18966b4767",
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -528,
+          -80
+        ],
+        "webhookId": "221a09d2-987d-437b-aa16-22958d2c9a4d"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.noOp",
+        "typeVersion": 1,
+        "position": [
+          144,
+          -80
+        ],
+        "id": "f9236169-a42f-4aff-9957-31f12c4db480",
+        "name": "No Operation, do nothing"
+      },
+      {
+        "parameters": {
+          "operation": "upsert",
+          "table": {
+            "__rl": true,
+            "value": "ADRI_RS_L2_WHA",
+            "mode": "list",
+            "cachedResultName": "ADRI_RS_L2_WHA"
+          },
+          "dataMode": "defineBelow",
+          "columnToMatchOn": "whatsapp",
+          "valueToMatchOn": "={{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "dia",
+                "value": "={{ $now.format('yyyy-MM-dd') }}"
+              },
+              {
+                "column": "hora",
+                "value": "={{ $now.format('HH:mm:ss') }}"
+              },
+              {
+                "column": "grupo",
+                "value": "={{ $('Edit Fields').item.json.grupo }}"
+              },
+              {
+                "column": "nombre_grupo",
+                "value": "={{ $('Webhook').item.json.body.data.groupName }}"
+              },
+              {
+                "column": "fuente",
+                "value": "FB ADS"
+              }
+            ]
+          },
+          "options": {
+            "detailedOutput": true
+          }
+        },
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          352,
+          -80
+        ],
+        "id": "ca557b0c-bc62-4de2-9c57-1b6cd193609d",
+        "name": "escritura",
+        "credentials": {
+          "mySql": {
+            "id": "n8fCALXWnGdmJkBN",
+            "name": "CAPTACIONES"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.body.event }}",
+                      "rightValue": "group.updated.members.added",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      },
+                      "id": "9b8a9d43-676c-4650-8bb4-8fdf83b75d19"
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "MIEMBRO AÑADIDO"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "ebcbf54b-9f2a-4246-9c50-9a0b6d4e6bf9",
+                      "leftValue": "={{ $json.body.event }}",
+                      "rightValue": "messages.upsert",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "MIEMBRO ELIMINADO"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.2,
+        "position": [
+          -304,
+          -80
+        ],
+        "id": "01b60bb2-77ee-4a97-9556-3735297ff8c5",
+        "name": "Switch"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "ffaf95ee-b40d-432a-9617-9c7a4dff4ed5",
+                "name": "grupo",
+                "value": "={{ $json.body.data.groupJid }}",
+                "type": "string"
+              },
+              {
+                "id": "e3a70e61-aa10-4899-baff-8492afba8c37",
+                "name": "numero",
+                "value": "={{ $json.body.data.number }}",
+                "type": "string"
+              },
+              {
+                "id": "05f7d46c-8fc2-4fc3-8cfe-c7cc00bed18b",
+                "name": "accion",
+                "value": "=INGRESO",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "103a51e5-6a74-4e6f-aa6c-5b514dbef735",
+        "name": "Edit Fields",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -80,
+          -80
+        ]
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "No Operation, do nothing": {
+        "main": [
+          [
+            {
+              "node": "escritura",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "No Operation, do nothing",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "672c435f-988f-4bac-b47c-3b85004221f0",
   "connections": {
     "Webhook": {
       "main": [
