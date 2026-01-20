@@ -1,5 +1,335 @@
 {
-  "active": false,
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "6e1b7719-64f9-4e73-b55a-be711cd6840a",
+    "workflowId": "OJGmK9DNMy7rTKfw",
+    "nodes": [
+      {
+        "parameters": {
+          "jsCode": "let jsonACTUAL = $('OBTENER GRUPO').first().json\nlet linkNUEVO = $('LINK').first().json.data.inviteUrl\nlet tabla = $('Loop Over Items').first().json.tablaIPS\n\n// Generar la consulta SQL\nconst query = `\n  UPDATE ${tabla}\n  SET grupo = '${linkNUEVO}'\n  WHERE grupo = '${jsonACTUAL.link}';\n`;\n\n// Devolver el resultado\nreturn [\n  {\n    json: {\n      query: query\n    }\n  }\n];"
+        },
+        "id": "8105dee4-06c7-4be6-9022-9272253d7421",
+        "name": "Code",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          200,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "={{ $('Loop Over Items').item.json.tablaLINK }}",
+            "mode": "name"
+          },
+          "returnAll": true,
+          "where": {
+            "values": [
+              {
+                "column": "id",
+                "value": "={{$('Loop Over Items').item.json.id}}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "feafbc56-15be-47a3-8f19-8821aa4c7de8",
+        "name": "OBTENER GRUPO",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          40,
+          0
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "179b2UX7XsHkNW05",
+            "name": "REDIRECCIONES - LANZAMIENTOS"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "executeQuery",
+          "query": "{{ $('Code').first().json.query }}",
+          "options": {}
+        },
+        "id": "a0a0fc28-e2c1-499a-8918-4823f74f1710",
+        "name": "UPDATE IPS",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          360,
+          0
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "179b2UX7XsHkNW05",
+            "name": "REDIRECCIONES - LANZAMIENTOS"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "table": {
+            "__rl": true,
+            "value": "={{ $('Loop Over Items').item.json.tablaLINK }}",
+            "mode": "name"
+          },
+          "dataMode": "defineBelow",
+          "columnToMatchOn": "id",
+          "valueToMatchOn": "={{$('Loop Over Items').item.json.id}}",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "link",
+                "value": "={{ $('LINK').first().json.data.inviteUrl }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "c3b31366-b05c-4582-8aa3-417b8d71454c",
+        "name": "UPDATE LINKS",
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          540,
+          0
+        ],
+        "credentials": {
+          "mySql": {
+            "id": "179b2UX7XsHkNW05",
+            "name": "REDIRECCIONES - LANZAMIENTOS"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "bb5a03d3-49fb-4a7d-82b8-b82e4051e36c",
+                "leftValue": "={{ $json.data.inviteUrl }}",
+                "rightValue": "={{ $('Loop Over Items').item.json.link }}",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEquals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -220,
+          0
+        ],
+        "id": "dae558c0-e16e-4fb2-98ba-786e677f6f75",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          -620,
+          80
+        ],
+        "id": "a6b8c7cf-18a5-4bf9-b822-af705c1493c8",
+        "name": "Loop Over Items"
+      },
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          -840,
+          60
+        ],
+        "id": "3f23dac2-94ff-4fd1-b40b-4c458e13bf12",
+        "name": "When Executed by Another Workflow"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.wait",
+        "typeVersion": 1.1,
+        "position": [
+          160,
+          260
+        ],
+        "id": "8d16c95d-8777-4d84-aa77-a1057de1e417",
+        "name": "Wait",
+        "webhookId": "f19289d9-f3ca-4abf-9ff3-56806fd55698"
+      },
+      {
+        "parameters": {
+          "resource": "groups-api",
+          "operation": "fetch-invite-code",
+          "instanceName": "={{ $json.SESION }}",
+          "groupJid": "={{ $json.id }}"
+        },
+        "type": "n8n-nodes-evolution-api.evolutionApi",
+        "typeVersion": 1,
+        "position": [
+          -420,
+          100
+        ],
+        "id": "7a617895-a6f4-4457-a058-967d15d3469f",
+        "name": "LINK",
+        "retryOnFail": true,
+        "maxTries": 5,
+        "waitBetweenTries": 5000,
+        "credentials": {
+          "evolutionApi": {
+            "id": "Png3VbsnUeyqI5UL",
+            "name": "VPS-EASYPANEL"
+          }
+        },
+        "onError": "continueErrorOutput"
+      }
+    ],
+    "connections": {
+      "Code": {
+        "main": [
+          [
+            {
+              "node": "UPDATE IPS",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OBTENER GRUPO": {
+        "main": [
+          [
+            {
+              "node": "Code",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "UPDATE IPS": {
+        "main": [
+          [
+            {
+              "node": "UPDATE LINKS",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "UPDATE LINKS": {
+        "main": [
+          [
+            {
+              "node": "Wait",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "OBTENER GRUPO",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Wait",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Loop Over Items": {
+        "main": [
+          [],
+          [
+            {
+              "node": "LINK",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Wait": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "LINK": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Wait",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "6e1b7719-64f9-4e73-b55a-be711cd6840a",
   "connections": {
     "Code": {
       "main": [
