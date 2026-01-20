@@ -1,5 +1,377 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "d44a44ea-96d1-4046-a86d-0a6c470f6e72",
+    "workflowId": "c16iWWyezRKFuSuQ",
+    "nodes": [
+      {
+        "parameters": {
+          "path": "form-nelly",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -460,
+          -360
+        ],
+        "id": "15f747bf-f2f7-4caa-8914-eca5abcbb533",
+        "name": "BOTÓN CONTACTAR FORM",
+        "webhookId": "7e8894b7-58e7-4e95-a3c3-529d3557ba8c"
+      },
+      {
+        "parameters": {
+          "respondWith": "redirect",
+          "redirectURL": "wa.me/17869297979?text=Vengo+del+formulario+y+quiero+obtener+la+compensacion+por+mi+caso.",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          -240,
+          -360
+        ],
+        "id": "f838cb9d-0d76-4c07-be75-e54b9ba036a5",
+        "name": "DIRECCIÓN A WHA"
+      },
+      {
+        "parameters": {
+          "page": {
+            "__rl": true,
+            "value": "599511043237826",
+            "mode": "list",
+            "cachedResultName": "Road Compensation Experts",
+            "cachedResultUrl": "https://facebook.com/599511043237826"
+          },
+          "form": {
+            "__rl": true,
+            "value": "2636665656695872",
+            "mode": "list",
+            "cachedResultName": "CAPTURA NELLY-copy"
+          },
+          "options": {
+            "simplifyOutput": true
+          }
+        },
+        "type": "n8n-nodes-base.facebookLeadAdsTrigger",
+        "typeVersion": 1,
+        "position": [
+          -460,
+          -120
+        ],
+        "id": "4a61d0d8-3421-4656-9e85-3647ebe4f897",
+        "name": "OBTENER FORMULARIO",
+        "webhookId": "5b270ed1-240d-4734-a6c7-895a1dda02e4",
+        "credentials": {
+          "facebookLeadAdsOAuth2Api": {
+            "id": "JUBnFhhwNB19tcsK",
+            "name": "APP WHACOL1 + ROAD COMPENSATION"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "append",
+          "documentId": {
+            "__rl": true,
+            "value": "https://docs.google.com/spreadsheets/d/1yBBuE58YiVmp86FkoFsSBd7TGxlYES9FczKBTdy4gBg/edit?gid=0#gid=0",
+            "mode": "url"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "https://docs.google.com/spreadsheets/d/1yBBuE58YiVmp86FkoFsSBd7TGxlYES9FczKBTdy4gBg/edit?gid=0#gid=0",
+            "mode": "url"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "NOMBRE": "={{ $json.data.nombre_y_apellidos }}",
+              "CORREO": "={{ $json.data[\"correo_electrónico\"] }}",
+              "TELEFONO": "={{ $json.data[\"número_de_teléfono\"] }}",
+              "CULPA": "={{ $json.data[\"¿el_accidente_fue_tu_culpa?\"] }}",
+              "HACE CUANTO": "={{ $json.data[\"¿hace_cuanto_ocurrió_el_accidente?\"] }}",
+              "REPORTE": "={{ $json.data[\"¿tienes_reporte_policial_del_accidente?\"] }}",
+              "TRATAMIENTO": "={{ $json.data[\"¿ha_recibido_tratamiento_médico_después_del_accidente?\"] }}",
+              "FOTOS": "={{ $json.data[\"¿tienes_fotos_del_accidente?\"] }}",
+              "REPRESENTADO": "={{ $json.data[\"¿estás_actualmente_representado_por_un_abogado?\"] }}",
+              "FECHA": "={{ $json.created_time.toDateTime().toLocal().format('yyyy-MM-dd HH:mm:ss') }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "FECHA",
+                "displayName": "FECHA",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "NOMBRE",
+                "displayName": "NOMBRE",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "CORREO",
+                "displayName": "CORREO",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "TELEFONO",
+                "displayName": "TELEFONO",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "CULPA",
+                "displayName": "CULPA",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "HACE CUANTO",
+                "displayName": "HACE CUANTO",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "REPORTE",
+                "displayName": "REPORTE",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "TRATAMIENTO",
+                "displayName": "TRATAMIENTO",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "FOTOS",
+                "displayName": "FOTOS",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "REPRESENTADO",
+                "displayName": "REPRESENTADO",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.5,
+        "position": [
+          -240,
+          -200
+        ],
+        "id": "b242c22c-1f7f-402a-a210-562ca4cf1a72",
+        "name": "ESCRIBIR EN SHEET",
+        "retryOnFail": true,
+        "maxTries": 5,
+        "waitBetweenTries": 5000,
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "zruD3ONGC9HU2i7s",
+            "name": "CUENTA SANTIAGO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $json.data }}",
+          "options": {
+            "systemMessage": "explica el caso brevemente"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.8,
+        "position": [
+          -240,
+          -40
+        ],
+        "id": "aae15f13-0c0d-4030-95aa-34e0f0f022ba",
+        "name": "DESCRIPCION"
+      },
+      {
+        "parameters": {
+          "chatId": "-1002272722989",
+          "text": "=*NUEVO LEAD - ROAD COMPENSATION* ⚡\n\nNOMBRE: {{ $('OBTENER FORMULARIO').item.json.data.nombre_y_apellidos }}\nCORREO: {{ $('OBTENER FORMULARIO').item.json.data[\"correo_electrónico\"] }}\nNUMERO: {{ $('OBTENER FORMULARIO').item.json.data[\"número_de_teléfono\"] }}\n\n*DESCRIPCION*: {{ $json.output }}\n\nAD: {{ $('OBTENER FORMULARIO').item.json.ad.name }}\nADSET: {{ $('OBTENER FORMULARIO').item.json.adset.name }}\n\nCONTACTAR DE INMEDIATO Y *RESPONDER A ESTE MENSAJE CON LA INFORMACIÓN DEL CASO Y COMO SE VA DANDO*",
+          "replyMarkup": "inlineKeyboard",
+          "inlineKeyboard": {
+            "rows": [
+              {
+                "row": {
+                  "buttons": [
+                    {
+                      "text": "CONTACTAR LEAD",
+                      "additionalFields": {
+                        "url": "=wa.me/{{ $('OBTENER FORMULARIO').item.json.data[\"número_de_teléfono\"].replace('+','') }}"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "additionalFields": {
+            "appendAttribution": false,
+            "message_thread_id": 30
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          80,
+          -40
+        ],
+        "id": "91ac958e-8a97-4500-8694-d8cf6f1d8693",
+        "name": "MENSAJE TG",
+        "webhookId": "c4daa65e-0ea6-4b1e-a223-812b16463413",
+        "credentials": {
+          "telegramApi": {
+            "id": "rK0QJ342M9we9Z8O",
+            "name": "BOT LEADS ROAD COMPENSATION"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "value": "gpt-4.1-nano",
+            "mode": "list",
+            "cachedResultName": "gpt-4.1-nano"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          -240,
+          160
+        ],
+        "id": "ec298eb5-1053-46cc-8a27-48c933eb04c6",
+        "name": "CHATGPT",
+        "credentials": {
+          "openAiApi": {
+            "id": "nZ98FVO8dD6bJnEc",
+            "name": "GPT SANTIAGO"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "BOTÓN CONTACTAR FORM": {
+        "main": [
+          [
+            {
+              "node": "DIRECCIÓN A WHA",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OBTENER FORMULARIO": {
+        "main": [
+          [
+            {
+              "node": "ESCRIBIR EN SHEET",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "DESCRIPCION",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "ESCRIBIR EN SHEET": {
+        "main": [
+          []
+        ]
+      },
+      "DESCRIPCION": {
+        "main": [
+          [
+            {
+              "node": "MENSAJE TG",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "CHATGPT": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "DESCRIPCION",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "d44a44ea-96d1-4046-a86d-0a6c470f6e72",
   "connections": {
     "BOTÓN CONTACTAR FORM": {
       "main": [
