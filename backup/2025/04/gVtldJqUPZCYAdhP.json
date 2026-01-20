@@ -1,5 +1,304 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "5c5e8721-727a-4034-ba8c-d7f981727b35",
+    "workflowId": "gVtldJqUPZCYAdhP",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "win-audio",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -200,
+          -20
+        ],
+        "id": "f88e1867-2f76-4030-8017-67877af2ef2a",
+        "name": "Webhook",
+        "webhookId": "cc8a0e2e-8366-4144-ae67-d7642aa73758"
+      },
+      {
+        "parameters": {
+          "resource": "media",
+          "operation": "mediaUrlGet",
+          "mediaGetId": "={{ $json.body.mediaId }}"
+        },
+        "type": "n8n-nodes-base.whatsApp",
+        "typeVersion": 1,
+        "position": [
+          20,
+          -20
+        ],
+        "id": "3dba4ffd-1dfe-4467-8944-3041f8bbdc7d",
+        "name": "OBTENER LINK AUDIO",
+        "webhookId": "5f82ed99-11da-4fac-896c-acb9918b2570",
+        "credentials": {
+          "whatsAppApi": {
+            "id": "R3jUik9yyKq8nx17",
+            "name": "API VALENTINA X | BUSINESS NIKO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "url": "={{ $json.url }}",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer {{ $('Webhook').item.json.body.token }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          240,
+          -20
+        ],
+        "id": "c0b42878-16ee-415c-baa7-c60dfa9f37fc",
+        "name": "DESCARGAR AUDIO"
+      },
+      {
+        "parameters": {
+          "resource": "audio",
+          "operation": "transcribe",
+          "options": {
+            "language": "Es"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.openAi",
+        "typeVersion": 1.8,
+        "position": [
+          460,
+          -20
+        ],
+        "id": "401da69e-47ac-48fb-9f1c-f134fc39fe2d",
+        "name": "AI_AUDIO",
+        "credentials": {
+          "openAiApi": {
+            "id": "nZ98FVO8dD6bJnEc",
+            "name": "GPT SANTIAGO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={\n  \"text\": \"{{ $('AI_AUDIO').item.json.text }}\"\n} ",
+          "options": {
+            "responseCode": 200
+          }
+        },
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          1340,
+          -120
+        ],
+        "id": "6048d09e-f7f6-4908-a141-df3aed967fdf",
+        "name": "Respond to Webhook"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $json.text }}",
+          "messages": {
+            "messageValues": [
+              {
+                "message": "=revisa si es una frase coherente e inteligible, es decir que se pueda entender, no una cancion o una audio que no sea una voz\n\nResponde en JSON:\n\ncorrecto: true/false"
+              }
+            ]
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.chainLlm",
+        "typeVersion": 1.6,
+        "position": [
+          680,
+          -20
+        ],
+        "id": "ea4fa947-7977-45c0-b2c4-b656b0bd608b",
+        "name": "Basic LLM Chain"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "value": "gpt-4.1-mini",
+            "mode": "list",
+            "cachedResultName": "gpt-4.1-mini"
+          },
+          "options": {
+            "responseFormat": "json_object"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          680,
+          160
+        ],
+        "id": "3a94990f-257c-4d26-ae1c-8b457dc30493",
+        "name": "OpenAI Chat Model",
+        "credentials": {
+          "openAiApi": {
+            "id": "nZ98FVO8dD6bJnEc",
+            "name": "GPT SANTIAGO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "be6609ef-08ef-4b52-b4a8-ec273d1a8f61",
+                "leftValue": "={{ $json.correcto }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          1040,
+          -20
+        ],
+        "id": "f4e9bb41-4216-417b-94c2-d2fcef916442",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "respondWith": "noData",
+          "options": {
+            "responseCode": 100
+          }
+        },
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          1340,
+          60
+        ],
+        "id": "56dadf53-f731-429d-af78-03a509e667cf",
+        "name": "Respond to Webhook1"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "OBTENER LINK AUDIO",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OBTENER LINK AUDIO": {
+        "main": [
+          [
+            {
+              "node": "DESCARGAR AUDIO",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "DESCARGAR AUDIO": {
+        "main": [
+          [
+            {
+              "node": "AI_AUDIO",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI_AUDIO": {
+        "main": [
+          [
+            {
+              "node": "Basic LLM Chain",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Basic LLM Chain": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "Basic LLM Chain",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Respond to Webhook",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Respond to Webhook1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "5c5e8721-727a-4034-ba8c-d7f981727b35",
   "connections": {
     "Webhook": {
       "main": [
