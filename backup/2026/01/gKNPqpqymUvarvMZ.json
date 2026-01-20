@@ -1,0 +1,360 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "asesor",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "asesor1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "asesor": {
+      "main": [
+        [
+          {
+            "node": "cliente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "cliente": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "asesor1": {
+      "main": [
+        [
+          {
+            "node": "cliente1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "cliente1": {
+      "main": [
+        [
+          {
+            "node": "Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-19T17:11:37.280Z",
+  "id": "gKNPqpqymUvarvMZ",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "🟢 [BACKEND-CIERRES] REASIGNACION REISY",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "319a3b09-47ec-45bc-93e9-65ff8e96eb0c",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -340,
+        -60
+      ],
+      "id": "16bbbf16-d797-4bc1-9312-ad0cf5676767",
+      "name": "Webhook",
+      "webhookId": "319a3b09-47ec-45bc-93e9-65ff8e96eb0c"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('asesor').item.json.ID_TG }}",
+        "text": "=*CLIENTE DESASIGNADO* ⚠️ \n\nnombre: {{ $json.NOMBRE }}\nWha: {{ $json.WHATSAPP }}\n\nSe reasignó tu cliente por decisión de la gerencia 🚨",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        },
+        "path": "580c9d57-a29a-496c-9761-a2977f275a49"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        400,
+        -160
+      ],
+      "id": "09c45b6d-71dc-4647-8c4f-9675e44a580d",
+      "name": "Telegram",
+      "webhookId": "580c9d57-a29a-496c-9761-a2977f275a49",
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('asesor1').item.json.ID_TG }}",
+        "text": "=*CLIENTE REASIGNADO A TI* ⚠️ \n\nnombre: {{ $json.NOMBRE }}\nWha: {{ $json.WHATSAPP }}\n\nSe reasignó este cliente a ti por decisión de la gerencia 🚨",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "IR AL CHAT",
+                    "additionalFields": {
+                      "url": "=wa.me/{{ $json.WHATSAPP }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        },
+        "path": "ab173b53-0e81-450f-a828-b72dc42d90eb"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        400,
+        40
+      ],
+      "id": "b9318e63-0c03-485f-b82e-59c203c2e0e2",
+      "name": "Telegram1",
+      "webhookId": "ab173b53-0e81-450f-a828-b72dc42d90eb",
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_ASESORES",
+          "mode": "list",
+          "cachedResultName": "GERSSON_ASESORES"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "ID",
+              "value": "={{ $json.body.asesor_viejo_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        -20,
+        -160
+      ],
+      "id": "ae2f383a-2d8e-4038-a220-a943e61a8c92",
+      "name": "asesor",
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_CLIENTES",
+          "mode": "list",
+          "cachedResultName": "GERSSON_CLIENTES"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "ID",
+              "value": "={{ $('Webhook').item.json.body.cliente_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        200,
+        -160
+      ],
+      "id": "c3d4b93a-b537-4b7a-9058-1e8b39ad0977",
+      "name": "cliente",
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_ASESORES",
+          "mode": "list",
+          "cachedResultName": "GERSSON_ASESORES"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "ID",
+              "value": "={{ $json.body.asesor_nuevo_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        -20,
+        40
+      ],
+      "id": "412ee9da-7fb7-43ba-bee2-659490ac3272",
+      "name": "asesor1",
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_CLIENTES",
+          "mode": "list",
+          "cachedResultName": "GERSSON_CLIENTES"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "ID",
+              "value": "={{ $('Webhook').item.json.body.cliente_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        200,
+        40
+      ],
+      "id": "0153da40-3a54-48e6-9e34-b157d62eb9d1",
+      "name": "cliente1",
+      "credentials": {}
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
+            "content-length": "59",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "es-419,es;q=0.9,pt;q=0.8,en;q=0.7",
+            "content-type": "application/json",
+            "origin": "https://cierresger-gvfo--5173--7f809d15.local-credentialless.webcontainer.io",
+            "priority": "u=1, i",
+            "referer": "https://cierresger-gvfo--5173--7f809d15.local-credentialless.webcontainer.io/",
+            "sec-ch-ua": "\"Not(A:Brand\";v=\"99\", \"Google Chrome\";v=\"133\", \"Chromium\";v=\"133\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "186.98.232.252",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3051a3bb6625",
+            "x-real-ip": "186.98.232.252"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "cliente_id": 50,
+            "asesor_viejo_id": 1,
+            "asesor_nuevo_id": "1"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/reasigna-cierres",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-19T17:11:37.294Z",
+      "createdAt": "2026-01-19T17:11:37.294Z",
+      "role": "workflow:owner",
+      "workflowId": "gKNPqpqymUvarvMZ",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2025-02-21T17:25:59.004Z",
+      "createdAt": "2025-02-21T17:25:59.004Z",
+      "id": "7jH9G2p443i4FpIv",
+      "name": "WEBHOOK"
+    },
+    {
+      "updatedAt": "2025-03-01T20:15:16.011Z",
+      "createdAt": "2025-03-01T20:15:02.889Z",
+      "id": "lxeXBAFtbakepnEg",
+      "name": "BACKEND-CIERRES"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-01-19T17:11:37.000Z",
+  "versionId": "d3285dbb-012d-4f37-8ce0-64a5cfc98b8e"
+}
