@@ -1,5 +1,227 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "00e1ce76-6570-4bf1-b093-3f90086c66f9",
+    "workflowId": "8be7Mimf6xIXWtEQ",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "webhooks-chatwoot",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -544,
+          -240
+        ],
+        "id": "fd738e1c-d16e-4d1d-8924-8b1f9e49d6c5",
+        "name": "Webhook",
+        "webhookId": "236fb834-e778-4865-8fc4-641dc84ccdf2"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://webhook-facebook.automscc.com/compra-manual-win",
+          "sendBody": true,
+          "bodyParameters": {
+            "parameters": [
+              {
+                "name": "from",
+                "value": "={{ $json.body.messages[0].conversation.contact_inbox.source_id }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          -320,
+          -240
+        ],
+        "id": "b20cd80f-6989-473d-b4fa-4b1aeec5e782",
+        "name": "HTTP Request"
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "conversacion_actualizada_chatwoot",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          -544,
+          80
+        ],
+        "id": "7858efba-a80d-4c3f-8615-ec63fcbdcfde",
+        "name": "Webhook2",
+        "webhookId": "094b867b-0058-4581-81d5-5ff99a74af35"
+      },
+      {
+        "parameters": {
+          "jsCode": "const body = items[0].json.body;\nconst labelChange = body.changed_attributes.find(a => a.label_list);\n\nif (labelChange) {\n  const { previous_value, current_value } = labelChange.label_list;\n  const added = current_value.filter(x => !previous_value.includes(x));\n  const removed = previous_value.filter(x => !current_value.includes(x));\n  \n  return [{ json: { \n    conversationId: body.messages[0].sender.phone_number,\n    addedLabels: added,\n    removedLabels: removed\n  }}];\n}\n\n// Si no hay cambio de etiquetas, no devuelve nada\nreturn [];\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -320,
+          80
+        ],
+        "id": "a4ec27fc-89fd-4a3c-bff5-e316d4200d98",
+        "name": "Code"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "loose",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "leftValue": "={{ $json.addedLabels }}",
+                "rightValue": "pausar-bot",
+                "operator": {
+                  "type": "array",
+                  "operation": "contains",
+                  "rightType": "string"
+                },
+                "id": "8f23f489-5725-4d93-872e-dbbbd43f46fe"
+              },
+              {
+                "leftValue": "={{ $json.addedLabels }}",
+                "rightValue": "pausar-bot",
+                "operator": {
+                  "type": "string",
+                  "operation": "contains",
+                  "rightType": "string"
+                },
+                "id": "2587b8cb-e57d-40c8-b680-e4d93924f3a1"
+              }
+            ],
+            "combinator": "or"
+          },
+          "looseTypeValidation": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -96,
+          80
+        ],
+        "id": "abf757fe-5427-4511-9d5a-e5952650e5c2",
+        "name": "If3"
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "collection": "bot-win+4",
+          "query": "={\"whatsapp\":\"{{ $json.conversationId.replace(/\\+/g, '') }}\"}\n",
+          "update": "={\"$set\":{\"estado\":\"pausado\"}}\n"
+        },
+        "type": "n8n-nodes-mongodb.mongoDbOperations",
+        "typeVersion": 1,
+        "position": [
+          288,
+          -128
+        ],
+        "id": "808c3094-2214-4e07-85df-43fa6b81c091",
+        "name": "MongoDB Operations",
+        "credentials": {
+          "mongoDb": {
+            "id": "euGOf8QGZoVDU3rO",
+            "name": "BD WIN+4"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "collection": "bot-win+2",
+          "query": "={\"whatsapp\":\"{{ $json.conversationId.replace(/\\+/g, '') }}\"}\n",
+          "update": "={\"$set\":{\"estado\":\"pausado\"}}\n"
+        },
+        "type": "n8n-nodes-mongodb.mongoDbOperations",
+        "typeVersion": 1,
+        "position": [
+          288,
+          64
+        ],
+        "id": "320ea847-e8b8-4cfa-b620-1e0f2468172d",
+        "name": "MongoDB Operations1",
+        "credentials": {
+          "mongoDb": {
+            "id": "jDujtIdwD5ws13s0",
+            "name": "BD WIN+2"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Webhook2": {
+        "main": [
+          [
+            {
+              "node": "Code",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code": {
+        "main": [
+          [
+            {
+              "node": "If3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If3": {
+        "main": [
+          [
+            {
+              "node": "MongoDB Operations",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "MongoDB Operations1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "00e1ce76-6570-4bf1-b093-3f90086c66f9",
   "connections": {
     "Webhook": {
       "main": [
