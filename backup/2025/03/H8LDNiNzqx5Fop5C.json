@@ -1,5 +1,110 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "4896bf5a-0cae-41fe-8a54-d85e26c964f0",
+    "workflowId": "H8LDNiNzqx5Fop5C",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "manychat-clase1",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -420,
+          -80
+        ],
+        "id": "c1de5270-0985-484c-ae96-7e36fad70a08",
+        "name": "Webhook",
+        "webhookId": "b470693c-e4b3-42ff-b29e-2f81f9547b56"
+      },
+      {
+        "parameters": {
+          "operation": "findOneAndUpdate",
+          "collection": "TD-l6",
+          "updateKey": "whatsapp",
+          "fields": "clics-positivos",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          20,
+          -80
+        ],
+        "id": "07f92f3c-c6f6-4713-98f6-f921bdfc2b64",
+        "name": "MongoDB",
+        "credentials": {
+          "mongoDb": {
+            "id": "vbsT0SoMA5A3acgH",
+            "name": "BASE DE DATOS GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "4223756b-8453-4575-9f26-4b707e1e64c3",
+                "name": "whatsapp",
+                "value": "={{ $json.body.first_name }}",
+                "type": "string"
+              },
+              {
+                "id": "327adeca-ed58-4575-8944-5c5720455fb8",
+                "name": "clics-positivos",
+                "value": "={{ $json.body.custom_fields[\"CLICS-POSITIVOS\"]>0?$json.body.custom_fields[\"CLICS-POSITIVOS\"]:0 }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -200,
+          -80
+        ],
+        "id": "ef800086-3092-459b-89e6-87b595cc86c5",
+        "name": "Edit Fields1"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields1": {
+        "main": [
+          [
+            {
+              "node": "MongoDB",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "4896bf5a-0cae-41fe-8a54-d85e26c964f0",
   "connections": {
     "Webhook": {
       "main": [
