@@ -1,5 +1,73 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "7dc13972-0bb1-41ca-971b-38f34e640fde",
+    "workflowId": "EwqMOrKNmDyf5O9h",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "psicologia-hotmart",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -560,
+          -120
+        ],
+        "id": "e7b281db-4141-4da4-b739-7cb606270f0d",
+        "name": "WH - HOTMART",
+        "webhookId": "62b05a8b-f05b-4c45-9bef-d9c22981d242"
+      },
+      {
+        "parameters": {
+          "sendTo": "={{ $json.body.data.buyer.email }}",
+          "subject": "Bienvenido(a) a PACK-PSICOLOGIA 2025",
+          "message": "=<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Bienvenida al Curso de Sueroterapia</title>\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n    <link href=\"https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap\" rel=\"stylesheet\">\n    <style>\n        /* Estilos generales del cuerpo del correo */\n        body {\n            font-family: 'Montserrat', Arial, sans-serif;\n            background-color: #f4f7f6;\n            margin: 0;\n            padding: 0;\n            color: #333333;\n        }\n        /* Contenedor principal del correo */\n        .container {\n            max-width: 650px;\n            margin: 20px auto;\n            background-color: #ffffff;\n            border-radius: 12px;\n            overflow: hidden;\n            box-shadow: 0 10px 25px rgba(0,0,0,0.1);\n            border: 1px solid #e0e0e0;\n        }\n        /* Cabecera con imagen de fondo y título */\n        .header {\n            background-color: #004d40; /* Verde oscuro profesional */\n            color: #ffffff;\n            padding: 40px 20px;\n            text-align: center;\n        }\n        .header h1 {\n            margin: 0;\n            font-size: 32px;\n            font-weight: 700;\n            letter-spacing: 1px;\n        }\n        /* Contenido principal del correo */\n        .content {\n            padding: 35px 40px;\n            line-height: 1.7;\n            font-size: 16px;\n        }\n        .content h2 {\n            color: #004d40;\n            font-size: 24px;\n            margin-bottom: 15px;\n            font-weight: 700;\n        }\n        .content p {\n            margin-bottom: 20px;\n        }\n        /* Sección destacada para información crítica */\n        .highlight {\n            background-color: #e8f5e9; /* Verde muy claro */\n            border-left: 6px solid #4caf50; /* Verde de acento */\n            padding: 20px;\n            margin: 25px 0;\n            border-radius: 8px;\n        }\n        .highlight p {\n            margin: 0;\n            font-weight: 500;\n        }\n        /* Estilos para la lista de pasos */\n        .steps ol {\n            padding-left: 25px;\n            list-style-type: none;\n            counter-reset: step-counter;\n        }\n        .steps li {\n            counter-increment: step-counter;\n            margin-bottom: 20px;\n            font-weight: 500;\n            position: relative;\n        }\n        .steps li::before {\n            content: counter(step-counter);\n            background: #ffc107; /* Amarillo/Dorado para los números */\n            color: #004d40;\n            font-weight: 700;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: inline-block;\n            text-align: center;\n            line-height: 30px;\n            margin-right: 15px;\n        }\n        /* Botón de Llamada a la Acción (CTA) */\n        .cta-button {\n            display: block;\n            width: fit-content;\n            margin: 30px auto;\n            background: linear-gradient(90deg, #ffd60a, #ffc107);\n            color: #004d40;\n            padding: 18px 35px;\n            text-decoration: none;\n            font-weight: 700;\n            border-radius: 50px;\n            font-size: 18px;\n            text-align: center;\n            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);\n            transition: transform 0.2s;\n        }\n        .cta-button:hover {\n            transform: scale(1.05);\n        }\n        /* Sección de información sobre el certificado */\n        .certificate-info {\n            background-color: #fff8e1; /* Amarillo pálido */\n            border: 1px dashed #ffab00;\n            padding: 25px;\n            border-radius: 8px;\n            margin-top: 30px;\n        }\n        .certificate-info h3 {\n            color: #e65100; /* Naranja oscuro */\n            margin-top: 0;\n            font-size: 20px;\n        }\n        /* Pie de página */\n        .footer {\n            background-color: #f4f7f6;\n            color: #777777;\n            text-align: center;\n            padding: 25px;\n            font-size: 12px;\n        }\n        .footer a {\n            color: #00796b;\n            text-decoration: none;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <div class=\"header\">\n            <!-- Título principal que genera impacto -->\n            <h1>Tu Transformación Comienza AHORA</h1>\n        </div>\n        <div class=\"content\">\n            <!-- Saludo personalizado -->\n            <h2>{{ $json.body.data.buyer.name }}, ¡felicidades por dar el paso!</h2>\n            <p>Acabas de tomar una decisión que te separa del 99% de las personas. No has comprado un simple curso; has invertido en una habilidad de alto valor que tiene el poder de cambiar tu trayectoria profesional para siempre.</p>\n            <p>Mientras otros esperan, tú actúas. Esa es la diferencia entre los que sueñan con el éxito y los que lo construyen. Bienvenido al grupo de los constructores.</p>\n            \n            <div class=\"highlight\">\n                <p><strong>ATENCIÓN: Tu acceso al conocimiento te espera.</strong> Esto es lo que debes hacer.</p>\n            </div>\n\n            <h2>Tu Plan de Acción Inmediato (Síguelo al pie de la letra)</h2>\n            <div class=\"steps\">\n                <ol>\n                    <li>\n                        <strong>Vigila tu Correo Electrónico:</strong> La plataforma <strong>Hotmart</strong> te enviará <strong>DOS (2) correos</strong>. Uno es la factura de tu inversión (guárdala). El otro, y más importante, tiene el asunto <strong>\"Tu acceso a {{ $json.body.data.product.name }}\"</strong>. ¡Ese es tu boleto de entrada!\n                    </li>\n                    <li>\n                        <strong>Activa tu Cuenta:</strong> Dentro de ese correo encontrarás tu enlace de acceso. Haz clic y <strong>crea tu contraseña</strong> para tu cuenta de Hotmart. Si ya tienes una, simplemente inicia sesión. Todo el material, los videos y los bonus te esperan allí.\n                    </li>\n                    <li>\n                        <strong>¿No ves el correo?</strong> ¡Que no cunda el pánico! Los que estamos decididos no dejamos que un obstáculo tan pequeño nos detenga. Revisa tu carpeta de <strong>SPAM o Promociones</strong>. A veces los filtros se equivocan.\n                    </li>\n                </ol>\n            </div>\n\n            <h2>PLAN B: Acceso Directo (Porque no hay excusas)</h2>\n            <p>Si después de 15 minutos el correo de Hotmart sigue sin aparecer, no te preocupes. Hemos adjuntado a <strong>ESTE MISMO CORREO</strong> un archivo <strong>PDF</strong> con un enlace de acceso directo e instrucciones claras para que entres al portal AHORA MISMO.</p>\n            \n            <!-- Botón de llamada a la acción principal -->\n            <a href=\"http://automscc.com/wp-content/uploads/2025/06/ACCESO-PSICOLOGIA.pdf\" class=\"cta-button\">ENTRAR AL ÁREA DE MIEMBROS</a>\n\n            \n            <p>Prepárate. Estás a punto de adquirir un conocimiento que muy pocos tienen. Úsalo para transformar tu vida y la de tus futuros clientes.</p>\n            <p>Nos vemos dentro,<br>\n        </div>\n    </div>\n    <div class=\"footer\">\n        <p>Recibiste este correo porque te has inscrito en el curso de Sueroterapia.</p>\n        <p>&copy; 2024 Agencia X SAS. Todos los derechos reservados.<br>\n    </div>\n</body>\n</html>\n",
+          "options": {
+            "appendAttribution": false,
+            "senderName": "Soporte Psicologia"
+          }
+        },
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.1,
+        "position": [
+          -300,
+          -120
+        ],
+        "id": "544235b6-8d05-4b69-ac4e-481299917988",
+        "name": "CORREO BIENVENIDA",
+        "webhookId": "ed26e4a6-3a3d-4dd7-93a0-e69485fe696f",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "TQIc6MxJVwS0cvQg",
+            "name": "GMAIL JSD COMPANY"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "WH - HOTMART": {
+        "main": [
+          [
+            {
+              "node": "CORREO BIENVENIDA",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "7dc13972-0bb1-41ca-971b-38f34e640fde",
   "connections": {
     "WH - HOTMART": {
       "main": [
