@@ -1,5 +1,145 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "caef1134-5b34-4d5e-a933-1c1f1b2daa44",
+    "workflowId": "BtcpTZhsmi2ARvuK",
+    "nodes": [
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          -20,
+          140
+        ],
+        "id": "0026f536-a4f7-4ca8-9c71-b4b6cdc37877",
+        "name": "When clicking ‘Execute workflow’"
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "avisos-fran",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -20,
+          -60
+        ],
+        "id": "8d5afebd-171e-4095-a666-fd8218e74fe3",
+        "name": "Webhook",
+        "webhookId": "3bd4246b-8fb2-4af2-a49c-07a33ee004f2"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "b682ec54-193c-4409-a9d4-45227b3b7d32",
+                "name": "body.whatsapp",
+                "value": "={{ $json.body.whatsapp }}",
+                "type": "string"
+              },
+              {
+                "id": "5118b808-91f8-4d62-b3d0-98161fb3cd9c",
+                "name": "body.source_url",
+                "value": "={{ $json.body.source_url }}",
+                "type": "string"
+              },
+              {
+                "id": "b994656a-837b-43d2-8df1-5936f2a44411",
+                "name": "body.image_url",
+                "value": "={{ $json.body.image_url }}",
+                "type": "string"
+              },
+              {
+                "id": "e0120f39-3dde-4cf6-a1a0-068046771f4e",
+                "name": "body.producto",
+                "value": "={{ $json.body.producto }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          280,
+          40
+        ],
+        "id": "05944f8c-4c37-4a8f-b3ae-152f1e8d2069",
+        "name": "Edit Fields"
+      },
+      {
+        "parameters": {
+          "chatId": "1168710108",
+          "text": "=💵 *COMPRA REALIZADA*\n\nWHATSAPP: {{ $json.body.whatsapp }}\nPRODUCTO: {{ $json.body.producto }}\nFUENTE: {{ $json.body.source_url }}",
+          "additionalFields": {
+            "appendAttribution": false
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          500,
+          40
+        ],
+        "id": "89475617-6fae-4348-92cd-62423db74efa",
+        "name": "Telegram",
+        "webhookId": "ffc15400-25c7-4c76-a54f-a0b8fb538cc6",
+        "credentials": {
+          "telegramApi": {
+            "id": "71o9DQe5tCOu17F5",
+            "name": "BOT AVISOS WHA"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "When clicking ‘Execute workflow’": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "Telegram",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "caef1134-5b34-4d5e-a933-1c1f1b2daa44",
   "connections": {
     "Webhook": {
       "main": [
