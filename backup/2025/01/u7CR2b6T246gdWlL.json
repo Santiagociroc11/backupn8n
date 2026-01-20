@@ -1,5 +1,574 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "decde2fc-1c07-4583-be9e-998f1ed6cdd2",
+    "workflowId": "u7CR2b6T246gdWlL",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "hotmart-gersson-ventas",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -500,
+          -200
+        ],
+        "id": "e0e94a10-c406-40f9-959a-3cf5d0b656f3",
+        "name": "Webhook",
+        "webhookId": "d7c48085-5290-468a-bdb8-f9828d72a831"
+      },
+      {
+        "parameters": {
+          "operation": "appendOrUpdate",
+          "documentId": {
+            "__rl": true,
+            "value": "https://docs.google.com/spreadsheets/d/1SRp6OiE0XlAfLh1Zn_DXPOfy9wA_yPqatGAnELG3KLE/edit?gid=487045029#gid=487045029",
+            "mode": "url"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "https://docs.google.com/spreadsheets/d/1SRp6OiE0XlAfLh1Zn_DXPOfy9wA_yPqatGAnELG3KLE/edit?gid=487045029#gid=487045029",
+            "mode": "url"
+          },
+          "columns": {
+            "mappingMode": "autoMapInputData",
+            "value": {},
+            "matchingColumns": [
+              "Transacción"
+            ],
+            "schema": [
+              {
+                "id": "producto",
+                "displayName": "producto",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "coproducción activa",
+                "displayName": "coproducción activa",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "correo",
+                "displayName": "correo",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "nombre",
+                "displayName": "nombre",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "telefono",
+                "displayName": "telefono",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "pais",
+                "displayName": "pais",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "comision hotmart",
+                "displayName": "comision hotmart",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "parte productor",
+                "displayName": "parte productor",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "valor producto",
+                "displayName": "valor producto",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "VALOR",
+                "displayName": "VALOR",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "VALOR DESPUES DE HOTMART",
+                "displayName": "VALOR DESPUES DE HOTMART",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Transacción",
+                "displayName": "Transacción",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Comisión Coproductor",
+                "displayName": "Comisión Coproductor",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "fecha",
+                "displayName": "fecha",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "TIMESTAMP",
+                "displayName": "TIMESTAMP",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "ORDERBUMP",
+                "displayName": "ORDERBUMP",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "oferta",
+                "displayName": "oferta",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.5,
+        "position": [
+          380,
+          -100
+        ],
+        "id": "c5af5793-07f9-4628-b819-7ab5cb172c5f",
+        "name": "Google Sheets",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "zruD3ONGC9HU2i7s",
+            "name": "CUENTA SANTIAGO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "mode": "raw",
+          "jsonOutput": "={{ $json.body }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -280,
+          -200
+        ],
+        "id": "e9cf4c05-dc66-4cb0-9443-e683f31967bc",
+        "name": "Edit Fields"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "25f4a5ff-c1d6-4209-953a-7c18ef4ddc99",
+                "name": "producto",
+                "value": "={{ $json.data.product.name }}",
+                "type": "string"
+              },
+              {
+                "id": "a7f92ef5-3505-491d-98e0-b69c2beeb858",
+                "name": "coproducción activa",
+                "value": "={{ $json.data.product.has_co_production }}",
+                "type": "boolean"
+              },
+              {
+                "id": "5890810b-53a9-4b5d-b23a-35b627d445ff",
+                "name": "correo",
+                "value": "={{ $json.data.buyer.email }}",
+                "type": "string"
+              },
+              {
+                "id": "b4033946-f611-442d-8a4a-12368dc5549f",
+                "name": "nombre",
+                "value": "={{ $json.data.buyer.name }}",
+                "type": "string"
+              },
+              {
+                "id": "9ea3ff08-1a8d-489a-bef7-2c7807473059",
+                "name": "telefono",
+                "value": "={{ $json.data.buyer.checkout_phone }}",
+                "type": "string"
+              },
+              {
+                "id": "97558f09-72cb-45d6-9b0c-88b4156e4814",
+                "name": "pais",
+                "value": "={{ $json.data.buyer.address.country }}",
+                "type": "string"
+              },
+              {
+                "id": "68a8ce18-fc89-476c-a314-df126129c832",
+                "name": "comision hotmart",
+                "value": "={{ $json.data.commissions[0].value }}",
+                "type": "number"
+              },
+              {
+                "id": "8bbb5436-13db-46a1-a010-38df9b0a0389",
+                "name": "parte productor",
+                "value": "={{ $json.data.commissions[1].value }}",
+                "type": "number"
+              },
+              {
+                "id": "cb21091d-3c56-46f1-92ec-008bca9d4858",
+                "name": "valor producto",
+                "value": "={{ $json.data.purchase.original_offer_price.value }}",
+                "type": "number"
+              },
+              {
+                "id": "29122817-28ff-4dde-a831-c41c95bae0a0",
+                "name": "Transacción",
+                "value": "={{ $json.data.purchase.transaction }}",
+                "type": "string"
+              },
+              {
+                "id": "c9105dd0-a611-458e-90ea-067a0538b62a",
+                "name": "fecha",
+                "value": "={{ $json.data.purchase.approved_date.toDateTime('ms').format('dd-MM-yyyy HH:mm:ss') }}",
+                "type": "string"
+              },
+              {
+                "id": "60169604-8475-429b-b65b-08da02e5d8c8",
+                "name": "oferta",
+                "value": "={{ $json.data.purchase.offer.code }}",
+                "type": "string"
+              },
+              {
+                "id": "ecaebebc-8d49-496c-8b1e-d1c731333eec",
+                "name": "TIMESTAMP",
+                "value": "={{ $json.data.purchase.approved_date.toDateTime().toMillis() }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -60,
+          -200
+        ],
+        "id": "b1ed6d9c-b16f-40b9-8385-4af2e371c097",
+        "name": "Edit Fields1"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "86765f19-f5cf-43a7-a3f7-de1ddce62933",
+                "leftValue": "={{ $json[\"coproducción activa\"] }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          160,
+          -200
+        ],
+        "id": "c208df9d-71e1-4deb-af42-73153c4b5677",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.producto }}",
+                      "rightValue": "Sanar con Imanes",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      },
+                      "id": "f31dbd42-efea-4ce9-9f82-224c074612a8"
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "SANAR CON IMANES"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "616ce06c-c0a5-47a4-bf46-9c8328887122",
+                      "leftValue": "={{ $json.producto }}",
+                      "rightValue": "Cero Dolor",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "CERO DOLOR"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.2,
+        "position": [
+          380,
+          -300
+        ],
+        "id": "945fa065-04d3-4ce8-9252-630f4ab731a2",
+        "name": "Switch"
+      },
+      {
+        "parameters": {
+          "chatId": "-1002557397507",
+          "text": "=Notificación de VENTA\n\nProducto: {{ $('If').item.json.producto }}\nPaís: {{ $('If').item.json.pais }}\nComprador: {{ $('If').item.json.nombre }}\nCorreo: {{ $('If').item.json.correo }}\nTransacción: {{ $('If').item.json['Transacción'] }}\nvalor: {{ $('If').item.json['valor producto'] }}\nFecha de compra: {{ $('If').item.json.fecha }}",
+          "additionalFields": {
+            "appendAttribution": false,
+            "message_thread_id": 4
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          600,
+          -400
+        ],
+        "id": "57068fc6-432b-499d-a594-f77d6600514a",
+        "name": "Telegram",
+        "webhookId": "0344b7fa-87f9-42cd-80a3-975523622bb7",
+        "credentials": {
+          "telegramApi": {
+            "id": "QruLAfRq4u80XCVX",
+            "name": "BOT AGENCIA X"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "chatId": "-1002557397507",
+          "text": "=Notificación de VENTA\n\nProducto: {{ $('If').item.json.producto }}\nPaís: {{ $('If').item.json.pais }}\nComprador: {{ $('If').item.json.nombre }}\nCorreo: {{ $('If').item.json.correo }}\nTransacción: {{ $('If').item.json['Transacción'] }}\nvalor: {{ $('If').item.json['valor producto'] }}\nFecha de compra: {{ $('If').item.json.fecha }}",
+          "additionalFields": {
+            "appendAttribution": false,
+            "message_thread_id": 2
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          600,
+          -240
+        ],
+        "id": "181bed36-ad18-4464-8ded-a56c87f0562a",
+        "name": "Telegram1",
+        "webhookId": "0344b7fa-87f9-42cd-80a3-975523622bb7",
+        "credentials": {
+          "telegramApi": {
+            "id": "QruLAfRq4u80XCVX",
+            "name": "BOT AGENCIA X"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields1": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Google Sheets",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [
+            {
+              "node": "Telegram",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Telegram1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "decde2fc-1c07-4583-be9e-998f1ed6cdd2",
   "connections": {
     "Webhook": {
       "main": [
