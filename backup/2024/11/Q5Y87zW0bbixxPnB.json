@@ -1,5 +1,660 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "c30636a4-9611-4f3a-acea-58000b8162bf",
+    "workflowId": "Q5Y87zW0bbixxPnB",
+    "nodes": [
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={\n  \"estado\": \"\"\n} ",
+          "options": {}
+        },
+        "id": "e3e0191f-375f-4871-9ccb-7ea96712fff0",
+        "name": "NO ENCONTRADO",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          640,
+          800
+        ]
+      },
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={\n  \"estado\": \"{{ $json.estado }}\"\n} ",
+          "options": {}
+        },
+        "id": "7b5126b5-401f-4781-aab3-97ec1b0f3767",
+        "name": "ENCONTRADO",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          640,
+          640
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "appendOrUpdate",
+          "documentId": {
+            "__rl": true,
+            "value": "https://docs.google.com/spreadsheets/d/1v4fEvqnWfUsdtoFYieKAb6hMLNdzKDJAnyyI5byAlK0/edit?gid=0#gid=0",
+            "mode": "url"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "https://docs.google.com/spreadsheets/d/1v4fEvqnWfUsdtoFYieKAb6hMLNdzKDJAnyyI5byAlK0/edit?gid=0#gid=0",
+            "mode": "url"
+          },
+          "columns": {
+            "mappingMode": "autoMapInputData",
+            "value": {
+              "whatsapp": "={{ $json.body.whatsapp }}",
+              "estado": "={{ $json.body.estado}}"
+            },
+            "matchingColumns": [
+              "whatsapp"
+            ],
+            "schema": [
+              {
+                "id": "whatsapp",
+                "displayName": "whatsapp",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "producto",
+                "displayName": "producto",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "precio",
+                "displayName": "precio",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "estado",
+                "displayName": "estado",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "ingreso_at",
+                "displayName": "ingreso_at",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "medio_at",
+                "displayName": "medio_at",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "medio",
+                "displayName": "medio",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "pagado_at",
+                "displayName": "pagado_at",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "FECHA INGRESO",
+                "displayName": "FECHA INGRESO",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "FECHA PAGO",
+                "displayName": "FECHA PAGO",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "60284903-373a-4c5b-bf1a-1f21ea407249",
+        "name": "ESCRIBIR SHEET1",
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.5,
+        "position": [
+          480,
+          -120
+        ],
+        "alwaysOutputData": true,
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "zruD3ONGC9HU2i7s",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "36d4e592-51b3-4fa6-b624-e08efb600018",
+                "name": "whatsapp",
+                "value": "={{ $json.body.whatsapp }}",
+                "type": "string"
+              },
+              {
+                "id": "4e6b00db-0a9b-4c36-ab57-9e9c6e5f5ed6",
+                "name": "estado",
+                "value": "={{ $json.body.estado }}",
+                "type": "string"
+              },
+              {
+                "id": "20363b8a-0f96-4410-bed5-fd95cb480800",
+                "name": "ingreso_at",
+                "value": "={{ $json.body.ingreso_at }}",
+                "type": "string"
+              },
+              {
+                "id": "51dbbbaf-70b8-426e-b5f6-000a73e411da",
+                "name": "medio",
+                "value": "={{ $json.body.medio }}",
+                "type": "string"
+              },
+              {
+                "id": "25672fa1-d838-4c3e-93e3-bdc63508dbd0",
+                "name": "medio_at",
+                "value": "={{ $json.body.medio_at }}",
+                "type": "string"
+              },
+              {
+                "id": "8ef124cc-f269-4575-92f3-6bb8300e7f06",
+                "name": "pagado_at",
+                "value": "={{ $json.body.pagado_at }}",
+                "type": "string"
+              },
+              {
+                "id": "f8bdcbba-6d2a-4246-a18f-6708b9a0ac3a",
+                "name": "producto",
+                "value": "={{ $json.body.producto }}",
+                "type": "string"
+              },
+              {
+                "id": "ee03f45e-abd8-4bc1-9c99-b39eaaec1e90",
+                "name": "precio",
+                "value": "={{ $json.body.precio}}",
+                "type": "string"
+              },
+              {
+                "id": "87bb0d39-7775-4587-924f-ef5ef3eb15f9",
+                "name": "",
+                "value": "",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "64d9a427-14cf-453f-8f56-12125be367b4",
+        "name": "Edit Fields",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          280,
+          -120
+        ]
+      },
+      {
+        "parameters": {
+          "collection": "bot1",
+          "options": {},
+          "query": "={\"whatsapp\": \"{{ $json.body.whatsapp }}\", \"producto\": \"{{$json.body.producto}}\"}"
+        },
+        "id": "b9ec9614-81d2-41ff-85ba-2a6cb61e5bb3",
+        "name": "MongoDB",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          220,
+          660
+        ],
+        "alwaysOutputData": true,
+        "credentials": {
+          "mongoDb": {
+            "id": "B8RXkL6BMY0cNjpU",
+            "name": "MongoDB account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "6cf0651b-67b4-42a3-a0f4-ecbf1b9bb797",
+                "leftValue": "={{ $json.estado }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "af749fb0-eef0-4113-93ea-f7bffd37e409",
+        "name": "EXISTE?1",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          380,
+          660
+        ]
+      },
+      {
+        "parameters": {
+          "collection": "=bot1",
+          "options": {},
+          "query": "={\"whatsapp\": \"{{ $json.whatsapp }}\", \"producto\": \"{{$json.producto}}\"}"
+        },
+        "id": "99020bec-f766-45ef-b24d-c554b2accfe8",
+        "name": "MongoDB1",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          660,
+          160
+        ],
+        "alwaysOutputData": true,
+        "credentials": {
+          "mongoDb": {
+            "id": "B8RXkL6BMY0cNjpU",
+            "name": "MongoDB account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "const responseData = {};\n\n// Recorre cada propiedad del cuerpo del webhook\nfor (const key in items[0].json.body) {\n    // Verifica que el campo tenga un valor no vacío\n    if (items[0].json.body[key]) {\n        // Asigna el valor directamente a responseData usando el nombre del campo\n        responseData[key] = items[0].json.body[key];\n    }\n}\n\n// Convierte el array de nombres en una cadena separada por comas (si es necesario)\nconst fieldNamesString = Object.keys(responseData).join(\", \");\n\nreturn [{ json: { ...responseData, fieldNamesString } }];\n"
+        },
+        "id": "3305cd92-4f94-4564-a733-3006de5b8046",
+        "name": "Code",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          240,
+          140
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "raw",
+          "jsonOutput": "={{ $json }}",
+          "options": {}
+        },
+        "id": "1a245bb2-bf05-4bd0-9a73-23fd7ab9a2a1",
+        "name": "Edit Fields1",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          400,
+          140
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "insert",
+          "collection": "bot1",
+          "fields": "={{$('Edit Fields1').all()[0].json.fieldNamesString}}",
+          "options": {}
+        },
+        "id": "11320e7d-5318-40b7-832b-95c2be9ad2d8",
+        "name": "MongoDB2",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          1200,
+          20
+        ],
+        "credentials": {
+          "mongoDb": {
+            "id": "B8RXkL6BMY0cNjpU",
+            "name": "MongoDB account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "eb31eaf1-7f83-4773-a663-4213a227c9e8",
+                "leftValue": "={{ $json }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "empty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "fc6a410c-f3eb-498a-a45a-b8b39ddb24c2",
+        "name": "If",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          840,
+          160
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "chooseBranch"
+        },
+        "id": "6e6d87eb-a745-40d3-a119-e8510a538809",
+        "name": "Merge",
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          980,
+          20
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "collection": "bot1",
+          "updateKey": "_id",
+          "fields": "={{$('Edit Fields1').all()[0].json.fieldNamesString}}",
+          "options": {}
+        },
+        "id": "f749dd3c-7ece-4571-ad9d-5f4bf8a8de73",
+        "name": "MongoDB3",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          1020,
+          380
+        ],
+        "credentials": {
+          "mongoDb": {
+            "id": "B8RXkL6BMY0cNjpU",
+            "name": "MongoDB account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "fieldsToMatchString": "whatsapp",
+          "joinMode": "keepEverything",
+          "options": {}
+        },
+        "id": "865c8912-316f-4dba-bf18-ca4b61314d94",
+        "name": "Merge1",
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          800,
+          380
+        ]
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "sheet-lectura",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "id": "dfa7d3c4-dc94-414f-bcd5-748ea85fa05a",
+        "name": "LECTURA",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          0,
+          660
+        ],
+        "webhookId": "a6f11987-c20a-4895-ba6f-dc0484b6e36f"
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "sheet-escritura",
+          "options": {}
+        },
+        "id": "3560b682-deee-4e77-912e-3104d5697c2c",
+        "name": "ESCRITURA",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          20,
+          80
+        ],
+        "webhookId": "a6f11987-c20a-4895-ba6f-dc0484b6e36f"
+      }
+    ],
+    "connections": {
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "ESCRIBIR SHEET1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MongoDB": {
+        "main": [
+          [
+            {
+              "node": "EXISTE?1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "EXISTE?1": {
+        "main": [
+          [
+            {
+              "node": "ENCONTRADO",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "NO ENCONTRADO",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields1": {
+        "main": [
+          [
+            {
+              "node": "MongoDB1",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "MongoDB1": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 1
+            }
+          ],
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge": {
+        "main": [
+          [
+            {
+              "node": "MongoDB2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge1": {
+        "main": [
+          [
+            {
+              "node": "MongoDB3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "LECTURA": {
+        "main": [
+          [
+            {
+              "node": "MongoDB",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "ESCRITURA": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Code",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "c30636a4-9611-4f3a-acea-58000b8162bf",
   "connections": {
     "Edit Fields": {
       "main": [
