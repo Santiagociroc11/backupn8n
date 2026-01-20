@@ -1,5 +1,99 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "1adcea52-0af6-468c-85c4-dffbfff86591",
+    "workflowId": "0U8Kr7fMTHR25MRZ",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "enviar-pdf",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -400,
+          -60
+        ],
+        "id": "7246b844-421c-45c0-a59b-bc98d1fb016f",
+        "name": "Webhook",
+        "webhookId": "7865eaa2-bca0-4192-9935-b2efd6e445f9"
+      },
+      {
+        "parameters": {
+          "amount": 9
+        },
+        "type": "n8n-nodes-base.wait",
+        "typeVersion": 1.1,
+        "position": [
+          -180,
+          -60
+        ],
+        "id": "b16fca70-a9ab-4337-8f9b-dd29287de88c",
+        "name": "Wait",
+        "webhookId": "f976cee1-0904-4957-8d59-b70baabb9d3c"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://evolution.automscc.com/message/sendMedia/[EMP]-WHA1",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "apikey",
+                "value": "429683C4C977415CAAFCCE10F7D57E11"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"number\": \"{{ $json.body.number }}\",\n    \"mediatype\": \"document\", \n    \"media\": \"http://automscc.com/wp-content/uploads/2025/01/Temario_MEGAPACK_Recetario__Herramientas_para_acelerar_ventas_1.pdf\", \n    \"fileName\": \"temario\"\n   \n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          40,
+          -60
+        ],
+        "id": "42264eb8-2c47-4d9a-8e9c-1648f654b0c0",
+        "name": "HTTP Request"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Wait",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Wait": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "1adcea52-0af6-468c-85c4-dffbfff86591",
   "connections": {
     "Webhook": {
       "main": [
