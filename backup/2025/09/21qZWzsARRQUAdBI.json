@@ -1,5 +1,524 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "dcfc3286-ac87-4385-a8a7-e95bb6d17fa1",
+    "workflowId": "21qZWzsARRQUAdBI",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "adriana-l2-hotmart",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          -352,
+          -16
+        ],
+        "id": "2e0bf983-412a-4329-8952-239579be0cc6",
+        "name": "Webhook",
+        "webhookId": "f2cc5652-91bc-42b7-a7a4-ced18917477c"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "98d33b2f-213d-47f2-a371-eea6200da8ea",
+                "name": "numero",
+                "value": "={{ $json.body.data.buyer.checkout_phone?$json.body.data.buyer.checkout_phone:null  }}",
+                "type": "string"
+              },
+              {
+                "id": "793c14fc-8fad-40ff-b61d-74b8303d8345",
+                "name": "nombre",
+                "value": "={{ $json.body.data.buyer.name?$json.body.data.buyer.name:null  }}",
+                "type": "string"
+              },
+              {
+                "id": "91dd8687-0c5f-4500-be93-273d95b33fad",
+                "name": "correo",
+                "value": "={{ $json.body.data.buyer.email?$json.body.data.buyer.email:null  }}",
+                "type": "string"
+              },
+              {
+                "id": "7ee4aa65-ac76-4c9b-bd0c-464aa8b1f419",
+                "name": "flujo",
+                "value": "COMPRAS",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "9a3ac367-3692-4a35-bf7e-0d9b6e5bb38c",
+        "name": "asignar datos COMPRA",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          224,
+          -32
+        ]
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.body.event }}",
+                      "rightValue": "CART",
+                      "operator": {
+                        "type": "string",
+                        "operation": "contains"
+                      },
+                      "id": "fd884392-f94b-4362-9bee-034d61d4d808"
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "CARRITO"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "58cbfd42-520c-4408-b64c-bfcc89f08d2a",
+                      "leftValue": "={{ $json.body.event }}",
+                      "rightValue": "PURCHASE_APPROVED",
+                      "operator": {
+                        "type": "string",
+                        "operation": "contains"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "APROBADA"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "8fad3231-c87a-41f9-850b-9b2db22b39a4",
+                      "leftValue": "={{ $json.body.event }}",
+                      "rightValue": "PURCHASE_CANCELED",
+                      "operator": {
+                        "type": "string",
+                        "operation": "contains"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "RECHAZADOS"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "0bd0ff8a-3e8e-4d40-90a6-b439356e4503",
+                      "leftValue": "={{ $json.body.event }}",
+                      "rightValue": "PURCHASE_BILLET_PRINTED",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "TICKET"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "4bf8a7a6-2244-4dae-9ba9-f8d869320a2a",
+        "name": "Switch",
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.2,
+        "position": [
+          -112,
+          -48
+        ]
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "bdbedabd-650a-4c77-aafe-61f48231f405",
+                "leftValue": "={{ $json.data[0].id }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          800,
+          -48
+        ],
+        "id": "31e47f80-560f-4d85-8888-3e12c2570b88",
+        "name": "existe en manychat?"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.manychat.com/fb/sending/sendFlow",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "Bearer 2321500:3645964c63380240ed7d9d310052e070"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Accept",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"flow_ns\": \"content20250916011856_447790\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1648,
+          -80
+        ],
+        "id": "1b4fe015-a0b1-4351-bfa0-418b8e2f1b80",
+        "name": "ENVIAR FLUJO BV",
+        "retryOnFail": true,
+        "waitBetweenTries": 5000,
+        "maxTries": 5,
+        "onError": "continueErrorOutput"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "17104ede-50c0-4ff6-b16b-5ec89d177da7",
+                "name": "id_manychat",
+                "value": "={{ $json.data.id }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          1376,
+          80
+        ],
+        "id": "407642f3-86fe-4f9c-acef-553b6a9d2fa9",
+        "name": "id"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "17104ede-50c0-4ff6-b16b-5ec89d177da7",
+                "name": "id_manychat",
+                "value": "={{ $json.data[0].id }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          1200,
+          -112
+        ],
+        "id": "bfe7dd3b-f2b5-4520-adbe-4595d5e28dbb",
+        "name": "id1"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.manychat.com/fb/subscriber/createSubscriber",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "Bearer 2321500:3645964c63380240ed7d9d310052e070"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Accept",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"first_name\": \"+{{ $('asignar datos COMPRA').item.json.numero }}\",\n  \"whatsapp_phone\": \"+{{ $('asignar datos COMPRA').item.json.numero }}\"\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1088,
+          80
+        ],
+        "id": "c515d48f-ae51-4d50-8313-656b71021487",
+        "name": "CREAR",
+        "retryOnFail": true,
+        "waitBetweenTries": 5000,
+        "maxTries": 5,
+        "onError": "continueErrorOutput"
+      },
+      {
+        "parameters": {
+          "url": "https://api.manychat.com/fb/subscriber/findByName",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "name",
+                "value": "=+{{ $json.numero }}"
+              }
+            ]
+          },
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "Bearer 2321500:3645964c63380240ed7d9d310052e070"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Accept",
+                "value": "application/json"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          512,
+          -32
+        ],
+        "id": "d98d0e53-ab7c-436e-91aa-a7edaef7dacb",
+        "name": "BUSQUEDA",
+        "retryOnFail": true,
+        "waitBetweenTries": 5000,
+        "maxTries": 5,
+        "onError": "continueErrorOutput"
+      },
+      {
+        "parameters": {
+          "chatId": "-1002459933143",
+          "text": "=COMPRA APROBADA - {{ $('Webhook').item.json.body.data.product.name }}\n\nNOMBRE: {{ $('Webhook').item.json.body.data.buyer.name }}\nNUMERO: {{ $('Webhook').item.json.body.data.buyer.checkout_phone }}\nCORREO: {{ $('Webhook').item.json.body.data.buyer.email }}",
+          "additionalFields": {
+            "appendAttribution": false,
+            "parse_mode": "HTML",
+            "message_thread_id": 1103
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          512,
+          -224
+        ],
+        "id": "38712c2d-6abc-4627-ab41-5ac892b201b6",
+        "name": "Send a text message",
+        "webhookId": "81db5811-f0b9-41f8-a112-8bd9831285f1",
+        "retryOnFail": false,
+        "credentials": {
+          "telegramApi": {
+            "id": "E6OyWuRww3Q1Xk4k",
+            "name": "HOTAPI"
+          }
+        },
+        "onError": "continueRegularOutput"
+      }
+    ],
+    "connections": {
+      "asignar datos COMPRA": {
+        "main": [
+          [
+            {
+              "node": "BUSQUEDA",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Send a text message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [],
+          [
+            {
+              "node": "asignar datos COMPRA",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [],
+          []
+        ]
+      },
+      "existe en manychat?": {
+        "main": [
+          [
+            {
+              "node": "id1",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "CREAR",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "id": {
+        "main": [
+          [
+            {
+              "node": "ENVIAR FLUJO BV",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "id1": {
+        "main": [
+          [
+            {
+              "node": "ENVIAR FLUJO BV",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "CREAR": {
+        "main": [
+          [
+            {
+              "node": "id",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "BUSQUEDA": {
+        "main": [
+          [
+            {
+              "node": "existe en manychat?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "dcfc3286-ac87-4385-a8a7-e95bb6d17fa1",
   "connections": {
     "asignar datos COMPRA": {
       "main": [
