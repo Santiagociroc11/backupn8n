@@ -1,5 +1,1313 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "14accaeb-76fe-4498-b0ca-455755ca8e03",
+    "workflowId": "qw7Hp74IeKesPIDt",
+    "nodes": [
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3d1a8601-a27c-4fcf-af60-e1a0d0368216",
+                "name": "ip",
+                "value": "={{ $json.headers['x-real-ip'] }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -640,
+          -570
+        ],
+        "id": "eac02168-060d-4a9a-88b4-db866d245107",
+        "name": "Edit Fields"
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          -420,
+          -695
+        ],
+        "id": "5b3a6b83-35b4-47b4-8af2-67651c512565",
+        "name": "Merge"
+      },
+      {
+        "parameters": {
+          "mode": "raw",
+          "jsonOutput": "={{ $json.body }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -640,
+          -770
+        ],
+        "id": "3724ed0a-faec-42cb-b0e5-569e6af28424",
+        "name": "Edit Fields1"
+      },
+      {
+        "parameters": {
+          "collection": "=tracking",
+          "options": {},
+          "query": "={\"uniqueIdentifier\": \"{{ $json.uniqueIdentifier }}\"}"
+        },
+        "id": "d1a805f1-9c75-4b53-b646-2f54d3cdacc1",
+        "name": "MongoDB1",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          -200,
+          -695
+        ],
+        "alwaysOutputData": true,
+        "credentials": {
+          "mongoDb": {
+            "id": "euGOf8QGZoVDU3rO",
+            "name": "BD WIN+4"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "insert",
+          "collection": "tracking",
+          "fields": "=uniqueIdentifier,utm_campaign,utm_source,utm_medium,utm_content,utm_term,userAgent,platform,language,fbc,fbp,ip,tiemporegistro",
+          "options": {}
+        },
+        "id": "cb21863d-92d2-440d-bd70-7fe66585cedf",
+        "name": "MongoDB2",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          460,
+          -820
+        ],
+        "credentials": {
+          "mongoDb": {
+            "id": "euGOf8QGZoVDU3rO",
+            "name": "BD WIN+4"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "eb31eaf1-7f83-4773-a663-4213a227c9e8",
+                "leftValue": "={{ $json }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "empty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "6ca61a49-67fb-46e5-bd20-fd672bc84665",
+        "name": "If",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          20,
+          -695
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "chooseBranch"
+        },
+        "id": "da2376ae-88f6-49bc-ad38-fe267c79f999",
+        "name": "Merge1",
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          240,
+          -820
+        ]
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": " https://graph.facebook.com/v21.0/823731829860705/events",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "access_token",
+                "value": "EAAZAJ6L12ZCSUBOxaEzgLyU3IscBgpxq75aHWjs6gsBXinCWZBY1S8bBBtZCqhRvd5diRGNnZA0HvbHkIFdC9ZBbWhoZBnWxNwuFRrZAt6SatHnCXvtygHsukakBUbMMXohqBv7lt2gUz17yOsqXClyhe331s094FZA2X46lhDZAWtkdDqFY4B0tuXBZBoFgsyFoIuL5AZDZD"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={{ $json.toJsonString() }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          680,
+          685
+        ],
+        "id": "ecb06d59-de73-411b-b4f9-a900781357db",
+        "name": "HTTP Request"
+      },
+      {
+        "parameters": {
+          "collection": "=tracking",
+          "options": {},
+          "query": "={\"uniqueIdentifier\": \"{{ $json.identificador }}\"}"
+        },
+        "id": "3ac96a7e-559a-475a-bf81-d9e16747cd9e",
+        "name": "MongoDB",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          -200,
+          710
+        ],
+        "alwaysOutputData": true,
+        "credentials": {
+          "mongoDb": {
+            "id": "euGOf8QGZoVDU3rO",
+            "name": "BD WIN+4"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "eb31eaf1-7f83-4773-a663-4213a227c9e8",
+                "leftValue": "={{ $json }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "empty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "0aa8ba3d-37b9-4d5f-adfd-71fe750677f8",
+        "name": "If1",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          20,
+          710
+        ]
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "b2f5cef9-b190-4228-a36d-8672a7649c31",
+                "name": "identificador",
+                "value": "={{ $json.body.cupo_id.replaceAll(\"#\",\"\") }}",
+                "type": "string"
+              },
+              {
+                "id": "1f4f7e90-6a9c-463e-878b-f40934928311",
+                "name": "telefono",
+                "value": "={{ $json.body.whatsapp }}",
+                "type": "string"
+              },
+              {
+                "id": "83a8753f-2dc7-4b14-83d9-a0486db37ca3",
+                "name": "tiempo",
+                "value": "={{ $now.toMillis() }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -640,
+          785
+        ],
+        "id": "6baa1c5e-55cd-4828-a8bd-9ebc036652f8",
+        "name": "Edit Fields2"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "7f6bd895-d3de-4fc3-aa65-16f523ad470a",
+                "leftValue": "={{ $json.identificador }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -420,
+          710
+        ],
+        "id": "5d3d42d9-232f-4184-b672-95f37fc7eff7",
+        "name": "If2"
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          240,
+          785
+        ],
+        "id": "726254a4-6205-44d8-94da-a118e21e0968",
+        "name": "Merge2"
+      },
+      {
+        "parameters": {
+          "jsCode": "const crypto = require('crypto-js'); // Asegúrate de que la librería está disponible\n\nconst item = $input.first().json;\n\nconst price = 18000/4200;\n\nfunction hashSHA256(value) {\n  return crypto.SHA256(value).toString(crypto.enc.Hex);\n}\n\nconst encryptedData = {\n  ph: [hashSHA256(item.telefono)],  // Número de teléfono\n  country: [hashSHA256(\"colombia\")],  // País\n  // Datos no cifrados deben estar directamente accesibles\n  client_ip_address: item.ip,\n  client_user_agent: item.userAgent,\n};\n\n\nif (item.fbc) {\n  encryptedData.fbc = item.fbc;\n}\n\nif (item.fbp && item.fbp !== \"-\") {\n  encryptedData.fbp = item.fbp;\n}\n\n\nconst facebookEvent = {\n  data: [\n    {\n      event_name: \"Purchase\",\n      event_time: Math.floor(Date.now() / 1000), // Tiempo actual en segundos\n      action_source: \"website\",\n      original_event_data: {\n        event_name: \"Purchase\",\n        event_time: Math.floor(Date.now() / 1000)\n      },\n      user_data: encryptedData,\n      custom_data: {\n        currency: \"USD\",\n        value: price\n      }\n    }\n  ]\n};\n\nreturn facebookEvent;"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          460,
+          685
+        ],
+        "id": "5874f2e3-02b7-4b62-9301-e7a8d3856a3c",
+        "name": "Code"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": " https://graph.facebook.com/v21.0/823731829860705/events",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "access_token",
+                "value": "EAAZAJ6L12ZCSUBOxaEzgLyU3IscBgpxq75aHWjs6gsBXinCWZBY1S8bBBtZCqhRvd5diRGNnZA0HvbHkIFdC9ZBbWhoZBnWxNwuFRrZAt6SatHnCXvtygHsukakBUbMMXohqBv7lt2gUz17yOsqXClyhe331s094FZA2X46lhDZAWtkdDqFY4B0tuXBZBoFgsyFoIuL5AZDZD"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={{ $json.toJsonString() }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          240,
+          -35
+        ],
+        "id": "125cb6cd-5aa0-4f4b-a8d4-a0d1fbd6b101",
+        "name": "HTTP Request1"
+      },
+      {
+        "parameters": {
+          "jsCode": "const item = $input.first().json;\n\nconst encryptedData = {\n  client_ip_address: item.ip,\n  client_user_agent: item.userAgent,\n};\n\nif (item.fbc) {\n  encryptedData.fbc = item.fbc;\n}\n\nif (item.fbp && item.fbp !== \"-\") {\n  encryptedData.fbp = item.fbp;\n}\n\nconst facebookEvent = {\n  data: [\n    {\n      event_name: \"InitiateCheckout\",\n      event_time: Math.floor(Date.now() / 1000), // Tiempo actual en segundos\n      action_source: \"website\",\n      original_event_data: {\n        event_name: \"InitiateCheckout\",\n        event_time: Math.floor(Date.now() / 1000)\n      },\n      user_data: encryptedData,\n    }\n  ]\n};\n\nreturn facebookEvent;\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          20,
+          -40
+        ],
+        "id": "9e6e5a13-9e0b-441d-a324-206edc0b8251",
+        "name": "Code1"
+      },
+      {
+        "parameters": {
+          "collection": "=tracking",
+          "options": {},
+          "query": "={\"uniqueIdentifier\": \"{{ $json.uniqueIdentifier }}\"}"
+        },
+        "id": "d415dad3-59f9-4cd8-b35a-3ad1a98c9dda",
+        "name": "MongoDB3",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          -420,
+          -135
+        ],
+        "alwaysOutputData": true,
+        "credentials": {
+          "mongoDb": {
+            "id": "euGOf8QGZoVDU3rO",
+            "name": "BD WIN+4"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "eb31eaf1-7f83-4773-a663-4213a227c9e8",
+                "leftValue": "={{ $json }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "empty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "b066eade-239e-4afd-bfcd-fc7031b49457",
+        "name": "If3",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -200,
+          -135
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "raw",
+          "jsonOutput": "={{ $json.body }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -640,
+          -135
+        ],
+        "id": "f863131d-f58d-4e44-847d-564a36f065bd",
+        "name": "Edit Fields3"
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "pi-win-vsl",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -860,
+          -135
+        ],
+        "id": "63a090fe-dde4-41bf-bf59-f1c0f36a0bca",
+        "name": "PAGOS INICIADOS",
+        "webhookId": "5026969d-a049-4782-890e-1886815467d5",
+        "notesInFlow": false
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "captura-utm-win",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -860,
+          -695
+        ],
+        "id": "44e6b042-e950-4953-8e6a-06931c6bb1f7",
+        "name": "CAPTURA",
+        "webhookId": "642336df-7318-4315-9314-d8f93f939ed1"
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "compra-cupo-pagina-win",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -860,
+          785
+        ],
+        "id": "79fa73b4-9630-4578-8c89-45ebf3897332",
+        "name": "VENTAS HOTMART",
+        "webhookId": "f735c972-e9c4-41db-b4ce-d16af6ab9a00"
+      },
+      {
+        "parameters": {
+          "operation": "findOneAndUpdate",
+          "collection": "tracking",
+          "updateKey": "uniqueIdentifier",
+          "fields": "=utm_campaign,utm_source,utm_medium,utm_content,utm_term,userAgent,platform,language,fbc,fbp,ip",
+          "options": {}
+        },
+        "id": "6f544e26-3258-43dd-8969-68719e64915e",
+        "name": "MongoDB5",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          460,
+          -545
+        ],
+        "credentials": {
+          "mongoDb": {
+            "id": "euGOf8QGZoVDU3rO",
+            "name": "BD WIN+4"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "mode": "chooseBranch",
+          "useDataOfInput": "={{ $if($('Merge').item.json.utmCampaign == \"-\", 1 , 2) }}"
+        },
+        "id": "3485cf7c-dc81-4be2-a1a7-d979f06f145a",
+        "name": "Merge5",
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          240,
+          -545
+        ]
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "a7d1f77f-9585-45c0-baf9-433bb5851dfd",
+                "leftValue": "={{ $json.utm_campaign }}",
+                "rightValue": "-",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEquals"
+                }
+              }
+            ],
+            "combinator": "or"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          20,
+          -495
+        ],
+        "id": "a7469253-7ad5-4c43-936c-fb834c5ccde1",
+        "name": "If5"
+      },
+      {
+        "parameters": {
+          "operation": "upsert",
+          "table": {
+            "__rl": true,
+            "value": "ADS_WIN",
+            "mode": "list",
+            "cachedResultName": "ADS_WIN"
+          },
+          "dataMode": "defineBelow",
+          "columnToMatchOn": "IDENTIFICADOR",
+          "valueToMatchOn": "={{ $json.uniqueIdentifier }}",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "CAMPAÑA",
+                "value": "={{ $json.utm_campaign }}"
+              },
+              {
+                "column": "FUENTE",
+                "value": "={{ $json.utm_source }}"
+              },
+              {
+                "column": "SEGMENTACIÓN",
+                "value": "={{ $json.utm_medium }}"
+              },
+              {
+                "column": "ANUNCIO",
+                "value": "={{ $json.utm_content }}"
+              },
+              {
+                "column": "TERM",
+                "value": "={{ $json.utm_term }}"
+              },
+              {
+                "column": "REGISTRO",
+                "value": "={{ $now.format('yyyy-MM-dd HH:mm:ss') }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          680,
+          -670
+        ],
+        "id": "510e1e69-5c93-4c8b-9fed-5ec08a5947b1",
+        "name": "MySQL1",
+        "credentials": {
+          "mySql": {
+            "id": "steiUYgtMeBLjkId",
+            "name": "N8N"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "table": {
+            "__rl": true,
+            "value": "ADS_WIN",
+            "mode": "list",
+            "cachedResultName": "ADS_WIN"
+          },
+          "dataMode": "defineBelow",
+          "columnToMatchOn": "IDENTIFICADOR",
+          "valueToMatchOn": "={{ $json.uniqueIdentifier }}",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "PAGO INICIADO",
+                "value": "={{ $now.format('yyyy-MM-dd HH:mm:ss') }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          20,
+          -235
+        ],
+        "id": "c01bd2f4-a1c5-4815-af7b-0e0f49d33446",
+        "name": "MySQL",
+        "credentials": {
+          "mySql": {
+            "id": "steiUYgtMeBLjkId",
+            "name": "N8N"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "table": {
+            "__rl": true,
+            "value": "ADS_WIN",
+            "mode": "list",
+            "cachedResultName": "ADS_WIN"
+          },
+          "dataMode": "defineBelow",
+          "columnToMatchOn": "IDENTIFICADOR",
+          "valueToMatchOn": "={{ $json.uniqueIdentifier }}",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "COMPRA",
+                "value": "={{ $now.format('yyyy-MM-dd HH:mm:ss') }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          460,
+          885
+        ],
+        "id": "6a161046-f73c-4125-ac36-83d624bc0bde",
+        "name": "MySQL2",
+        "credentials": {
+          "mySql": {
+            "id": "steiUYgtMeBLjkId",
+            "name": "N8N"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": " https://graph.facebook.com/v21.0/823731829860705/events",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "access_token",
+                "value": "EAAZAJ6L12ZCSUBOxaEzgLyU3IscBgpxq75aHWjs6gsBXinCWZBY1S8bBBtZCqhRvd5diRGNnZA0HvbHkIFdC9ZBbWhoZBnWxNwuFRrZAt6SatHnCXvtygHsukakBUbMMXohqBv7lt2gUz17yOsqXClyhe331s094FZA2X46lhDZAWtkdDqFY4B0tuXBZBoFgsyFoIuL5AZDZD"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={{ $json.toJsonString() }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          680,
+          425
+        ],
+        "id": "94411a08-549a-4178-b1e4-9efad898d405",
+        "name": "HTTP Request2"
+      },
+      {
+        "parameters": {
+          "jsCode": "const item = $input.first().json;\n\nconst encryptedData = {\n  client_ip_address: item.ip,\n  client_user_agent: item.userAgent,\n};\n\nif (item.fbc) {\n  encryptedData.fbc = item.fbc;\n}\n\nif (item.fbp && item.fbp !== \"-\") {\n  encryptedData.fbp = item.fbp;\n}\n\nconst facebookEvent = {\n  data: [\n    {\n      event_name: \"Lead\",\n      event_time: Math.floor(Date.now() / 1000), // Tiempo actual en segundos\n      action_source: \"website\",\n      original_event_data: {\n        event_name: \"Lead\",\n        event_time: Math.floor(Date.now() / 1000)\n      },\n      user_data: encryptedData,\n    }\n  ]\n};\n\nreturn facebookEvent;"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          460,
+          420
+        ],
+        "id": "1ee94343-c33b-45f7-bec8-45a73d74d27a",
+        "name": "Code2"
+      },
+      {
+        "parameters": {
+          "operation": "findOneAndUpdate",
+          "collection": "=tracking",
+          "updateKey": "=uniqueIdentifier",
+          "fields": "whatsapp",
+          "options": {}
+        },
+        "id": "42482b23-1aca-487c-a587-72837fd01d8b",
+        "name": "MongoDB4",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          -200,
+          325
+        ],
+        "alwaysOutputData": true,
+        "credentials": {
+          "mongoDb": {
+            "id": "euGOf8QGZoVDU3rO",
+            "name": "BD WIN+4"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "eb31eaf1-7f83-4773-a663-4213a227c9e8",
+                "leftValue": "={{ $json }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "empty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "409f5ea6-7ee1-4021-8629-77fa7bb5d768",
+        "name": "If4",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          240,
+          325
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "raw",
+          "jsonOutput": "={{ $json.body }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -640,
+          325
+        ],
+        "id": "bc8359ea-8297-455a-89d6-2b3ffe55f79d",
+        "name": "Edit Fields4"
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "table": {
+            "__rl": true,
+            "value": "ADS_WIN",
+            "mode": "list",
+            "cachedResultName": "ADS_WIN"
+          },
+          "dataMode": "defineBelow",
+          "columnToMatchOn": "IDENTIFICADOR",
+          "valueToMatchOn": "={{ $json.uniqueIdentifier }}",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "INGRESO_CHAT",
+                "value": "={{ $now.format('yyyy-MM-dd HH:mm:ss') }}"
+              },
+              {
+                "column": "WHATSAPP",
+                "value": "={{ $json.whatsapp }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          460,
+          220
+        ],
+        "id": "93142e53-a6a9-4c8c-bf8c-3907d508498c",
+        "name": "MySQL3",
+        "credentials": {
+          "mySql": {
+            "id": "steiUYgtMeBLjkId",
+            "name": "N8N"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "ingresochat-pagina-win",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -860,
+          325
+        ],
+        "id": "85a4db4d-c75f-4e89-ae80-1250cce4283c",
+        "name": "CHAT INICIADO",
+        "webhookId": "5026969d-a049-4782-890e-1886815467d5",
+        "notesInFlow": false
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "0d0578de-c499-424e-ab74-01c87b0b06df",
+                "name": "whatsapp",
+                "value": "={{ $json.whatsapp }}",
+                "type": "string"
+              },
+              {
+                "id": "c349cc10-60e3-4268-9e91-59074ee3bf75",
+                "name": "uniqueIdentifier",
+                "value": "={{ $json.uniqueIdentifier.replaceAll(\"#\",\"\") }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -420,
+          325
+        ],
+        "id": "5fa63dc4-ff1c-4c83-9995-bd93ef24f38e",
+        "name": "Edit Fields5"
+      },
+      {
+        "parameters": {
+          "collection": "=tracking",
+          "options": {},
+          "query": "={\"uniqueIdentifier\": \"{{ $json.uniqueIdentifier }}\"}"
+        },
+        "id": "1d4f37e8-3066-494d-a564-1f8a027e26df",
+        "name": "MongoDB6",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          20,
+          320
+        ],
+        "alwaysOutputData": true,
+        "credentials": {
+          "mongoDb": {
+            "id": "euGOf8QGZoVDU3rO",
+            "name": "BD WIN+4"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Edit Fields1": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge": {
+        "main": [
+          [
+            {
+              "node": "MongoDB1",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "If5",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MongoDB1": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 1
+            }
+          ],
+          [
+            {
+              "node": "Merge5",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge1": {
+        "main": [
+          [
+            {
+              "node": "MongoDB2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MongoDB2": {
+        "main": [
+          [
+            {
+              "node": "MySQL1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MongoDB": {
+        "main": [
+          [
+            {
+              "node": "If1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If1": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Merge2",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Edit Fields2": {
+        "main": [
+          [
+            {
+              "node": "If2",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Merge2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If2": {
+        "main": [
+          [
+            {
+              "node": "MongoDB",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge2": {
+        "main": [
+          [
+            {
+              "node": "Code",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "MySQL2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code1": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MongoDB3": {
+        "main": [
+          [
+            {
+              "node": "If3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields3": {
+        "main": [
+          [
+            {
+              "node": "MongoDB3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If3": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Code1",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "MySQL",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "PAGOS INICIADOS": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "CAPTURA": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Edit Fields1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "VENTAS HOTMART": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge5": {
+        "main": [
+          [
+            {
+              "node": "MongoDB5",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If5": {
+        "main": [
+          [
+            {
+              "node": "Merge5",
+              "type": "main",
+              "index": 1
+            }
+          ],
+          []
+        ]
+      },
+      "HTTP Request1": {
+        "main": [
+          []
+        ]
+      },
+      "MongoDB5": {
+        "main": [
+          [
+            {
+              "node": "MySQL1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          []
+        ]
+      },
+      "Code2": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MongoDB4": {
+        "main": [
+          [
+            {
+              "node": "MongoDB6",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If4": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Code2",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "MySQL3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields4": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields5",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "CHAT INICIADO": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields5": {
+        "main": [
+          [
+            {
+              "node": "MongoDB4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MongoDB6": {
+        "main": [
+          [
+            {
+              "node": "If4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "14accaeb-76fe-4498-b0ca-455755ca8e03",
   "connections": {
     "Edit Fields": {
       "main": [
