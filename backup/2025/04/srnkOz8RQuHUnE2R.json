@@ -1,5 +1,149 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "67312f8c-3b4f-4939-bdfa-e4b55c3c0e9e",
+    "workflowId": "srnkOz8RQuHUnE2R",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "avisos-tg-giorgio",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -920,
+          -140
+        ],
+        "id": "d9e1129a-3e7c-44b1-a81c-d03c84738b85",
+        "name": "Webhook",
+        "webhookId": "4f1d5396-c84c-49f1-9c0a-34f93213c16e"
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.body.tipo }}",
+                      "rightValue": "llenado",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "LLENADO DE GRUPOS"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "7f54525c-fd25-48ee-9df2-63bc6f4dbcef",
+                      "leftValue": "={{ $json.body.tipo }}",
+                      "rightValue": "emergencia",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "EMERGENCIA"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.2,
+        "position": [
+          -700,
+          -140
+        ],
+        "id": "8d03b970-646b-40b0-a929-a331237fcc5c",
+        "name": "Switch"
+      },
+      {
+        "parameters": {
+          "chatId": "-1002557874370",
+          "text": "=🚨 *GRUPOS*:\n\n{{ $json.body.mensaje }}",
+          "additionalFields": {
+            "appendAttribution": false,
+            "message_thread_id": 139
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          -420,
+          -200
+        ],
+        "id": "853a4294-f606-4928-b76a-3167aa511f34",
+        "name": "Telegram",
+        "webhookId": "a77a6784-0845-47be-93ff-a9689039c7bf",
+        "credentials": {
+          "telegramApi": {
+            "id": "QruLAfRq4u80XCVX",
+            "name": "BOT AGENCIA X"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [
+            {
+              "node": "Telegram",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          []
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "67312f8c-3b4f-4939-bdfa-e4b55c3c0e9e",
   "connections": {
     "Webhook": {
       "main": [
