@@ -1,5 +1,1513 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "363822af-71d2-4fb1-9624-44f2938ef05a",
+    "workflowId": "sfYUHRwbsCe3GqE8",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "encuesta-vcapital",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -660,
+          0
+        ],
+        "id": "0b1371d6-31bb-46f6-9748-39bb1b6e2d40",
+        "name": "ENCUESTA",
+        "webhookId": "2a473b70-b4a2-4341-b08d-f6bf43fd4b10"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "dfe23bab-7c1a-4462-ad5b-b7291ee8d7af",
+                "name": "whatsapp",
+                "value": "={{ $json.body.whatsapp }}",
+                "type": "string"
+              },
+              {
+                "id": "cfe28cc4-c69b-4a26-86b7-e3fcab392043",
+                "name": "email",
+                "value": "={{ $json.body.email }}",
+                "type": "string"
+              },
+              {
+                "id": "de3c730f-dcad-4ab6-af4c-2e96c75a6c8b",
+                "name": "tiempoencuesta",
+                "value": "={{ $json.body.tiempoencuesta }}",
+                "type": "number"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -440,
+          -275
+        ],
+        "id": "3c5ae4cc-c6e1-4cd0-9dec-2ae763d3aded",
+        "name": "Edit Fields1"
+      },
+      {
+        "parameters": {
+          "collection": "=VCAPITAL-L1",
+          "options": {
+            "limit": 1
+          },
+          "query": "={{ $json.toJsonString() }}"
+        },
+        "id": "b9dad0e9-5080-4f4b-a384-555de71d8b33",
+        "name": "MongoDB",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          0,
+          -350
+        ],
+        "alwaysOutputData": true,
+        "retryOnFail": true,
+        "waitBetweenTries": 5000,
+        "credentials": {
+          "mongoDb": {
+            "id": "hz4IXA3OoMp5QuC5",
+            "name": "VCAPITAL"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "findOneAndUpdate",
+          "collection": "VCAPITAL-L1",
+          "updateKey": "_id",
+          "fields": "tiempoencuesta,q1,q2,q3,q4,q5,puntaje",
+          "options": {}
+        },
+        "id": "d700c7d8-7054-4d13-8ec6-1914ddfac38b",
+        "name": "MongoDB3",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          660,
+          -225
+        ],
+        "credentials": {
+          "mongoDb": {
+            "id": "hz4IXA3OoMp5QuC5",
+            "name": "VCAPITAL"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "eb31eaf1-7f83-4773-a663-4213a227c9e8",
+                "leftValue": "={{ $json }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "empty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "f73cc8d5-4f24-4f16-a946-fa8357f64090",
+        "name": "If1",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          220,
+          -350
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "id": "33d00e54-932a-4095-b815-9184372b8eea",
+        "name": "Merge1",
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          440,
+          -75
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          220,
+          25
+        ],
+        "id": "b4209f43-a217-4bbb-9820-415097f39741",
+        "name": "Merge3"
+      },
+      {
+        "parameters": {
+          "mode": "raw",
+          "jsonOutput": "={{ $json.body.answersJson }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -220,
+          200
+        ],
+        "id": "0d64220d-e3a6-4771-8065-f97498b03ff9",
+        "name": "Edit Fields3"
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          0,
+          100
+        ],
+        "id": "3e1e983a-ed9c-4708-9078-5b6cf89e6478",
+        "name": "Merge4"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "ee2f3d54-34a2-40bd-a09a-dcb81b934770",
+                "name": "puntaje",
+                "value": "={{ $json.puntaje }}",
+                "type": "number"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -220,
+          0
+        ],
+        "id": "b71d9cfc-44f1-4641-aec8-71478ba02cf9",
+        "name": "Edit Fields4"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "a520e1b6-bb26-44a6-857f-770dac49655a",
+                "leftValue": "={{ $json.puntaje }}",
+                "rightValue": 500,
+                "operator": {
+                  "type": "number",
+                  "operation": "gt"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          880,
+          -225
+        ],
+        "id": "f5ea8471-2f80-46fc-91ce-08371763df26",
+        "name": "If2"
+      },
+      {
+        "parameters": {
+          "collection": "=VCAPITAL-L1",
+          "options": {},
+          "query": "={\"_id\": \"{{ $('Merge1').item.json._id }}\"}"
+        },
+        "id": "130e16ab-57cf-48d9-bded-fb1a08fc7320",
+        "name": "MongoDB4",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          1100,
+          -225
+        ],
+        "alwaysOutputData": true,
+        "credentials": {
+          "mongoDb": {
+            "id": "hz4IXA3OoMp5QuC5",
+            "name": "VCAPITAL"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "const crypto = require('crypto-js'); // Asegúrate de que la librería está disponible\n\nconst item = $input.first().json;\n\nfunction hashSHA256(value) {\n  return crypto.SHA256(value).toString(crypto.enc.Hex);\n}\n\nconst encryptedData = {\n  em: [hashSHA256(item.email)],  // Correo electrónico\n  ph: [hashSHA256(Number(item.whatsapp))],  // Número de teléfono\n  country: [hashSHA256(item.country)],  // País\n  zp: [hashSHA256(item.zip)], //zip\n  ct: [hashSHA256(item.city)], //ciudad\n  st: [hashSHA256(item.regionName)], //estado\n  // Datos no cifrados deben estar directamente accesibles\n  client_ip_address: item.query,\n  client_user_agent: item.userAgent,\n  fbc: item.fbc,\n  fbp: item.fbp,\n};\n\nconst facebookEvent = {\n  data: [\n    {\n      event_name: \"QLEAD\",\n      event_time: Math.floor(Date.now() / 1000), // Tiempo actual en segundos\n      action_source: \"website\",\n      original_event_data: {\n        event_name: \"QLEAD\",\n        event_time: Math.floor(Date.now() / 1000)\n      },\n      user_data: encryptedData,\n    }\n  ]\n};\n\nreturn facebookEvent;"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1320,
+          -225
+        ],
+        "id": "7fc0943a-0260-44de-a2b6-b8b670fbe28d",
+        "name": "Code"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": " https://graph.facebook.com/v21.0/9905959946090673/events",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "access_token",
+                "value": "EAAQ0vn5fFSIBO0ZCd4CHjUsVZA1f3TwfyyZCrSnaSQ5LoziUuJlpeXDsZAVzQZCnhZCICeNtPX90dUfLoXKzjLNY6xjxGpR765DZB8rNZCx9RzPBW4TJtePhAcMxWAxnKONDYj0M1ZCKJfqdQNuE5QErO9BIJYZAjXVc3GwKeAIIEOdY621ufEBCba3q9JA0xVEhjkTgZDZD"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={{ $json.toJsonString() }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1540,
+          -225
+        ],
+        "id": "b89ee643-af9f-4e52-bdb9-31730d25e19c",
+        "name": "HTTP Request2"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3df6352b-6489-4d01-9e8e-ad90cc547eda",
+                "name": "ID",
+                "value": "={{ $json._id.toString() }}",
+                "type": "string"
+              },
+              {
+                "id": "c3adebcf-1f39-46ce-9548-b1243262ba2d",
+                "name": "EDAD",
+                "value": "={{ $json.q1 }}",
+                "type": "string"
+              },
+              {
+                "id": "0ca6d2e7-d8c2-46a7-975a-09a456419cf3",
+                "name": "PROPOSITO",
+                "value": "={{ $json.q4 }}",
+                "type": "string"
+              },
+              {
+                "id": "0badb125-2290-4dc2-9eea-778d1dcb665b",
+                "name": "INGRESOS",
+                "value": "={{ $json.q5 }}",
+                "type": "string"
+              },
+              {
+                "id": "4eb1e6ab-b022-4cea-b94f-3120ba812fcb",
+                "name": "ESTUDIOS",
+                "value": "={{ $json.q2 }}",
+                "type": "string"
+              },
+              {
+                "id": "e8240118-b101-46ae-ba85-736ba448cef6",
+                "name": "PUNTAJE",
+                "value": "={{ $json.puntaje }}",
+                "type": "number"
+              },
+              {
+                "id": "a0f82f8d-7f63-4d33-b894-2cba3b59adfd",
+                "name": "FECHA ENCUESTA",
+                "value": "={{ $now.format('yyyy-MM-dd') }}",
+                "type": "string"
+              },
+              {
+                "id": "703ee060-0a76-4436-8621-7a62f8e7db1a",
+                "name": "HORA ENCUESTA",
+                "value": "={{ $now.format('HH:mm:ss:s') }}",
+                "type": "string"
+              },
+              {
+                "id": "22842718-879e-4ed6-a855-880197a02b91",
+                "name": "DINERO",
+                "value": "={{ $json.q3 }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          660,
+          25
+        ],
+        "id": "5c8e6802-c7f6-455b-aedc-eb8b4b4dda60",
+        "name": "Edit Fields7"
+      },
+      {
+        "parameters": {
+          "jsCode": "return items.map(item => {\n  // Extraemos y normalizamos: quitamos espacios del WhatsApp\n  const rawWhatsapp = item.json.whatsapp || \"\";\n  const whatsapp = rawWhatsapp.replace(/\\s+/g, \"\");\n  const email = item.json.email || \"\";\n\n  if (whatsapp) {\n    // Filtro regex para los últimos 7 caracteres del WhatsApp limpio\n    const whatsappFilter = {\n      \"$regex\": `.*${whatsapp.slice(-7)}`,\n      \"$options\": \"i\"\n    };\n\n    if (email) {\n      // Si hay email, lo incluimos junto al filtro de WhatsApp\n      return {\n        json: {\n          whatsapp: whatsappFilter,\n          email: email\n        }\n      };\n    } else {\n      // Solo WhatsApp → devolvemos el filtro\n      return {\n        json: {\n          whatsapp: whatsappFilter\n        }\n      };\n    }\n  } else if (email) {\n    // Si solo hay email, lo devolvemos directamente\n    return {\n      json: {\n        email: email\n      }\n    };\n  } else {\n    // Ni WhatsApp ni email → error\n    throw new Error(\"No se proporcionaron datos de WhatsApp ni correo electrónico.\");\n  }\n});\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -220,
+          -350
+        ],
+        "id": "c609475b-f5fd-43a4-a5e1-370f03d0e6a5",
+        "name": "Code1"
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "captura-vcapital",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -660,
+          -785
+        ],
+        "id": "7e1a8667-ee00-48cb-b52e-146ccb9d280b",
+        "name": "REGISTRO",
+        "webhookId": "6e4c4a00-7405-4ec9-a851-b8cd32b13973"
+      },
+      {
+        "parameters": {
+          "mode": "chooseBranch"
+        },
+        "id": "c37d06cf-8c86-4289-9626-a9a16aa6eff2",
+        "name": "Merge",
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          220,
+          -785
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "id": "f0a556e0-22a3-4798-95ef-c9cd8d12d051",
+        "name": "Merge2",
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          0,
+          -885
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "table": {
+            "__rl": true,
+            "value": "VCAPITAL_L1",
+            "mode": "list",
+            "cachedResultName": "VCAPITAL_L1"
+          },
+          "dataMode": "defineBelow",
+          "columnToMatchOn": "ID",
+          "valueToMatchOn": "={{ $json.ID }}",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "FECHA_ENCUESTA",
+                "value": "={{ $json[\"FECHA ENCUESTA\"] }}"
+              },
+              {
+                "column": "HORA_ENCUESTA",
+                "value": "={{ $json[\"HORA ENCUESTA\"] }}"
+              },
+              {
+                "column": "EDAD",
+                "value": "={{ $json.EDAD }}"
+              },
+              {
+                "column": "INGRESOS",
+                "value": "={{ $json.INGRESOS }}"
+              },
+              {
+                "column": "ESTUDIOS",
+                "value": "={{ $json.ESTUDIOS }}"
+              },
+              {
+                "column": "PROPOSITO",
+                "value": "={{ $json.PROPOSITO }}"
+              },
+              {
+                "column": "PUNTAJE",
+                "value": "={{ $json.PUNTAJE }}"
+              },
+              {
+                "column": "QLEAD",
+                "value": "={{ $json.PUNTAJE > 500 ? \"si\": null }}"
+              },
+              {
+                "column": "DINERO",
+                "value": "={{ $json.DINERO }}"
+              }
+            ]
+          },
+          "options": {
+            "detailedOutput": true
+          }
+        },
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          1540,
+          25
+        ],
+        "id": "a60e6bc7-fe92-4a36-a209-315b1c65c9a7",
+        "name": "MySQL",
+        "credentials": {
+          "mySql": {
+            "id": "n8fCALXWnGdmJkBN",
+            "name": "CAPTACIONES"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "VCAPITAL_L1",
+            "mode": "list",
+            "cachedResultName": "VCAPITAL_L1"
+          },
+          "returnAll": true,
+          "where": {
+            "values": [
+              {
+                "column": "ID",
+                "condition": "LIKE",
+                "value": "={{ $json.ID }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          880,
+          100
+        ],
+        "id": "84404c04-5b5b-400e-8b3f-b19c3009ae84",
+        "name": "MySQL1",
+        "alwaysOutputData": true,
+        "credentials": {
+          "mySql": {
+            "id": "n8fCALXWnGdmJkBN",
+            "name": "CAPTACIONES"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "7f3e8099-ae55-4534-a5be-217d413c0ff2",
+                "leftValue": "={{ $json }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "notEmpty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          1100,
+          100
+        ],
+        "id": "5355e261-796f-47f0-9f16-902c7373abb1",
+        "name": "If4"
+      },
+      {
+        "parameters": {
+          "mode": "chooseBranch"
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          1320,
+          25
+        ],
+        "id": "31d2334f-303d-465a-b223-05c9864eecc5",
+        "name": "Merge6"
+      },
+      {
+        "parameters": {
+          "mode": "chooseBranch"
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          1320,
+          -685
+        ],
+        "id": "6a45523d-ccfa-44a8-8fb8-fd9b72cb9aba",
+        "name": "Merge7"
+      },
+      {
+        "parameters": {
+          "jsCode": "// ---------- 1. PARSEO ROBUSTO ----------\nlet answersJsonOptions = {};\nconst inputData = $input.first();\nconst rawBody   = inputData.json.body;\n\nfunction extractAnswers(body) {\n  if (typeof body === 'string') return JSON.parse(body);\n  if (body && typeof body === 'object') {\n    if (body.answersJsonOptions)\n      return typeof body.answersJsonOptions === 'string'\n        ? JSON.parse(body.answersJsonOptions)\n        : body.answersJsonOptions;\n    if ('q1' in body) return body;\n  }\n  throw new Error('Formato de entrada no reconocido');\n}\n\ntry { answersJsonOptions = extractAnswers(rawBody); }\ncatch (e) {\n  return [{ json: { error: `Error procesando JSON: ${e.message}` } }];\n}\n\n// ---------- 2. RESPUESTAS ----------\nconst q1 = (answersJsonOptions.q1 || '').trim(); // Edad\nconst q2 = (answersJsonOptions.q2 || '').trim(); // Estudios\nconst q3 = (answersJsonOptions.q3 || '').trim(); // Experiencia uñas\nconst q4 = (answersJsonOptions.q4 || '').trim(); // Objetivo\nconst q5 = (answersJsonOptions.q5 || '').trim(); // Ingresos\n\n// ---------- 3. PUNTAJES ----------\nconst SCORE_TABLE = {\n  q1: { a:  90, b:150, c:120, d: 75, e: 30 },\n  q2: { a:   0, b: 20, c: 40, d: 60, e: 80, f:100 },\n  q3: { a:  0, b: 200 },\n  q4: { a: 350, b:280, c:140 },\n  q5: { a:   0, b: 50, c:125, d:200, e:250 },\n};\n\nconst get = (field, ans) => SCORE_TABLE[field]?.[ans] || 0;\n\n// ---------- 4. TOTAL ----------\nlet total =\n  get('q1', q1) +\n  get('q2', q2) +\n  get('q3', q3) +\n  get('q4', q4) +\n  get('q5', q5);\n\ntotal = Math.min(Math.max(total, 0), 1000);\n\n// ---------- 5. RETORNO ----------\nreturn [{ json: { puntaje: total } }];\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -440,
+          0
+        ],
+        "id": "91aa9f63-4047-4983-9c4a-a5fb4139b15d",
+        "name": "Code2"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "8a258913-16e5-4c77-bc40-13e5d18f740f",
+                "name": "ip",
+                "value": "={{ $json.headers['x-real-ip'] }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -440,
+          -960
+        ],
+        "id": "dc39ee90-3956-41ad-b865-5968e19edef3",
+        "name": "IP"
+      },
+      {
+        "parameters": {
+          "url": "=http://ip-api.com/json/{{ $json.ip }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          -220,
+          -960
+        ],
+        "id": "60ff59f5-617b-4a47-a584-639bcdf628cf",
+        "name": "IP REAL",
+        "retryOnFail": true,
+        "maxTries": 5,
+        "waitBetweenTries": 5000
+      },
+      {
+        "parameters": {
+          "mode": "raw",
+          "jsonOutput": "={{ $json.body }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -440,
+          -685
+        ],
+        "id": "70dee92e-9a95-4ec8-a376-b22b77c17aba",
+        "name": "DATOS"
+      },
+      {
+        "parameters": {
+          "collection": "=VCAPITAL-L1",
+          "options": {
+            "limit": 1
+          },
+          "query": "={\"email\": \"{{$json.email}}\"}"
+        },
+        "id": "14b6cbe2-913f-4d27-9fd6-d1858a3eb491",
+        "name": "CONSULTA",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          -220,
+          -610
+        ],
+        "alwaysOutputData": true,
+        "retryOnFail": true,
+        "waitBetweenTries": 5000,
+        "credentials": {
+          "mongoDb": {
+            "id": "hz4IXA3OoMp5QuC5",
+            "name": "VCAPITAL"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "eb31eaf1-7f83-4773-a663-4213a227c9e8",
+                "leftValue": "={{ $json }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "empty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "4b424cc3-b276-4937-81c1-411a51dbfbb0",
+        "name": "EXISTE?",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          0,
+          -610
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "insert",
+          "collection": "VCAPITAL-L1",
+          "fields": "=query,country,city,zip,regionName,timezone,email,utmCampaign,utmSource,utmMedium,utmContent,utmTerm,userAgent,platform,language,tiemporegistro,fbc,fbp,isFbcGenerated",
+          "options": {}
+        },
+        "id": "3bf547e2-356b-43f9-8298-e2f887c2a139",
+        "name": "INSERTAR",
+        "type": "n8n-nodes-base.mongoDb",
+        "typeVersion": 1.1,
+        "position": [
+          440,
+          -785
+        ],
+        "credentials": {
+          "mongoDb": {
+            "id": "hz4IXA3OoMp5QuC5",
+            "name": "VCAPITAL"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "url": "=https://api.flodesk.com/v1/subscribers/{{ $json.email }}",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "Basic fd_key_41414c492eed4e848cab8ede25805007.5XWcPcP2n9TpBTdfgqGGrtUu9IiKNE7oc7htks1ALgk9RhHY0hun1UhEvWjs88rEB6Z5TkrHlv4Uy40CphPccLkWyYlo4lE84cFQc2EbheJsiRWwent73VAqVQ8yqOR73Ls5iQLAibUPBtRQRCiWBjzYMj72OETmEdkstygX59NfptA7fkDENb1pXLvgC1us"
+              },
+              {
+                "name": "User-Agent",
+                "value": "n8n"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          660,
+          -935
+        ],
+        "id": "dab5506b-285d-49b8-9c50-9b106c17f581",
+        "name": "CONSULTA FLODESK",
+        "retryOnFail": false,
+        "maxTries": 5,
+        "waitBetweenTries": 5000,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.flodesk.com/v1/subscribers",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Basic fd_key_41414c492eed4e848cab8ede25805007.5XWcPcP2n9TpBTdfgqGGrtUu9IiKNE7oc7htks1ALgk9RhHY0hun1UhEvWjs88rEB6Z5TkrHlv4Uy40CphPccLkWyYlo4lE84cFQc2EbheJsiRWwent73VAqVQ8yqOR73Ls5iQLAibUPBtRQRCiWBjzYMj72OETmEdkstygX59NfptA7fkDENb1pXLvgC1us"
+              },
+              {
+                "name": "User-Agent",
+                "value": "n8n"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"email\": \"{{ $('INSERTAR').item.json.email }}\",\n    \"segment_ids\": [\n       \"680951a56a906413c7d64501\"\n    ]\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1100,
+          -935
+        ],
+        "id": "f6d13d0e-a3b2-46a2-8df1-4d649c796574",
+        "name": "INSERTA FLODESK",
+        "retryOnFail": true,
+        "maxTries": 5,
+        "waitBetweenTries": 5000,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "ff9f56d5-3bdc-45e2-b7f3-5fec484a6f1c",
+                "leftValue": "={{ $json.error.status }}",
+                "rightValue": 404,
+                "operator": {
+                  "type": "number",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          880,
+          -935
+        ],
+        "id": "0bfb86f0-7ddd-4688-b26f-1cc17499600e",
+        "name": "EXISTE FLODESK?"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "86552321-4bbc-4aa5-afc7-5ce6278c72d2",
+                "name": "CORREO",
+                "value": "={{ $json.email }}",
+                "type": "string"
+              },
+              {
+                "id": "ef1606bf-68e5-4717-a225-708529dcad05",
+                "name": "WHATSAPP",
+                "value": "={{ $json.whatsapp }}",
+                "type": "string"
+              },
+              {
+                "id": "0f13f81b-905a-4e1e-815c-3bcb4932bb77",
+                "name": "CAMPAÑA",
+                "value": "={{ $json.utmCampaign }}",
+                "type": "string"
+              },
+              {
+                "id": "b008676e-7f3b-46eb-9c3f-13f4757b8977",
+                "name": "PLATAFORMA",
+                "value": "={{ $json.utmSource }}",
+                "type": "string"
+              },
+              {
+                "id": "0fa1b73e-3467-49e9-af06-7a4d94901a7b",
+                "name": "SEGMENTACION",
+                "value": "={{ $json.utmMedium }}",
+                "type": "string"
+              },
+              {
+                "id": "50bd88a7-ded2-46df-a377-6c529be00917",
+                "name": "ANUNCIO",
+                "value": "={{ $json.utmContent }}",
+                "type": "string"
+              },
+              {
+                "id": "4747c5a6-da7e-4da9-9a86-fe23003d5adf",
+                "name": "PAIS",
+                "value": "={{ $json.country }}",
+                "type": "string"
+              },
+              {
+                "id": "3df6352b-6489-4d01-9e8e-ad90cc547eda",
+                "name": "ID",
+                "value": "={{ $json.id.toString() }}",
+                "type": "string"
+              },
+              {
+                "id": "c3adebcf-1f39-46ce-9548-b1243262ba2d",
+                "name": "FECHA REGISTRO",
+                "value": "={{ $now.format('yyyy-MM-dd') }}",
+                "type": "string"
+              },
+              {
+                "id": "d42a68f2-323f-4337-b37f-ec1b9a9e65c4",
+                "name": "HORA",
+                "value": "={{ $now.format('HH:mm:ss:s') }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          660,
+          -685
+        ],
+        "id": "0b3a35b4-cc81-45e4-9941-e287816a03fa",
+        "name": "DATOS PARA SQL"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "7f3e8099-ae55-4534-a5be-217d413c0ff2",
+                "leftValue": "={{ $json }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "empty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          1100,
+          -610
+        ],
+        "id": "106efc34-80f1-4a86-b50c-eb03c2f1b9cc",
+        "name": "EXISTE SQL"
+      },
+      {
+        "parameters": {
+          "table": {
+            "__rl": true,
+            "value": "VCAPITAL_L1",
+            "mode": "list",
+            "cachedResultName": "VCAPITAL_L1"
+          },
+          "dataMode": "defineBelow",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "FECHA_REGISTRO",
+                "value": "={{ $json[\"FECHA REGISTRO\"] }}"
+              },
+              {
+                "column": "HORA_REGISTRO",
+                "value": "={{ $json.HORA }}"
+              },
+              {
+                "column": "CORREO",
+                "value": "={{ $json.CORREO }}"
+              },
+              {
+                "column": "PLATAFORMA",
+                "value": "={{ $json.PLATAFORMA }}"
+              },
+              {
+                "column": "SEGMENTACION",
+                "value": "={{ $json.SEGMENTACION }}"
+              },
+              {
+                "column": "ANUNCIO",
+                "value": "={{ $json.ANUNCIO }}"
+              },
+              {
+                "column": "CAMPAÑA",
+                "value": "={{ $json[\"CAMPAÑA\"] }}"
+              },
+              {
+                "column": "PAIS",
+                "value": "={{ $json.PAIS }}"
+              },
+              {
+                "column": "ID",
+                "value": "={{ $json.ID }}"
+              }
+            ]
+          },
+          "options": {
+            "detailedOutput": true
+          }
+        },
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          1540,
+          -685
+        ],
+        "id": "08c4ff6b-9232-4a1a-a39b-075ef9f7c0fb",
+        "name": "INSERTAR SQL",
+        "credentials": {
+          "mySql": {
+            "id": "n8fCALXWnGdmJkBN",
+            "name": "CAPTACIONES"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "VCAPITAL_L1",
+            "mode": "list",
+            "cachedResultName": "VCAPITAL_L1"
+          },
+          "returnAll": true,
+          "where": {
+            "values": [
+              {
+                "column": "ID",
+                "condition": "LIKE",
+                "value": "={{ $json.ID }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          880,
+          -610
+        ],
+        "id": "20f12dc7-4d85-48ce-b45e-f048cde0f33e",
+        "name": "CONSULTA SQL",
+        "alwaysOutputData": true,
+        "credentials": {
+          "mySql": {
+            "id": "n8fCALXWnGdmJkBN",
+            "name": "CAPTACIONES"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Edit Fields1": {
+        "main": [
+          [
+            {
+              "node": "Merge3",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Code1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MongoDB": {
+        "main": [
+          [
+            {
+              "node": "If1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If1": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge1": {
+        "main": [
+          [
+            {
+              "node": "MongoDB3",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Edit Fields7",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "ENCUESTA": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields1",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Edit Fields3",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Code2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge3": {
+        "main": [
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Edit Fields3": {
+        "main": [
+          [
+            {
+              "node": "Merge4",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Edit Fields4": {
+        "main": [
+          [
+            {
+              "node": "Merge4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge4": {
+        "main": [
+          [
+            {
+              "node": "Merge3",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "MongoDB3": {
+        "main": [
+          [
+            {
+              "node": "If2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If2": {
+        "main": [
+          [
+            {
+              "node": "MongoDB4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MongoDB4": {
+        "main": [
+          [
+            {
+              "node": "Code",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields7": {
+        "main": [
+          [
+            {
+              "node": "MySQL1",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Merge6",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code1": {
+        "main": [
+          [
+            {
+              "node": "MongoDB",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "REGISTRO": {
+        "main": [
+          [
+            {
+              "node": "DATOS",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "IP",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge": {
+        "main": [
+          [
+            {
+              "node": "INSERTAR",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge2": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "MySQL1": {
+        "main": [
+          [
+            {
+              "node": "If4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If4": {
+        "main": [
+          [
+            {
+              "node": "Merge6",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Merge6": {
+        "main": [
+          [
+            {
+              "node": "MySQL",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge7": {
+        "main": [
+          [
+            {
+              "node": "INSERTAR SQL",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code2": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "IP": {
+        "main": [
+          [
+            {
+              "node": "IP REAL",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "IP REAL": {
+        "main": [
+          [
+            {
+              "node": "Merge2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "DATOS": {
+        "main": [
+          [
+            {
+              "node": "CONSULTA",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Merge2",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "CONSULTA": {
+        "main": [
+          [
+            {
+              "node": "EXISTE?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "EXISTE?": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "INSERTAR": {
+        "main": [
+          [
+            {
+              "node": "DATOS PARA SQL",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "CONSULTA FLODESK",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "CONSULTA FLODESK": {
+        "main": [
+          [
+            {
+              "node": "EXISTE FLODESK?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "EXISTE FLODESK?": {
+        "main": [
+          [
+            {
+              "node": "INSERTA FLODESK",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "DATOS PARA SQL": {
+        "main": [
+          [
+            {
+              "node": "Merge7",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "CONSULTA SQL",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "EXISTE SQL": {
+        "main": [
+          [
+            {
+              "node": "Merge7",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "CONSULTA SQL": {
+        "main": [
+          [
+            {
+              "node": "EXISTE SQL",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "363822af-71d2-4fb1-9624-44f2938ef05a",
   "connections": {
     "Edit Fields1": {
       "main": [
