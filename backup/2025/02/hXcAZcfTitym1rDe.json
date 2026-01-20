@@ -1,5 +1,454 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "87c89a8d-b60e-4f81-b135-a238d79f6922",
+    "workflowId": "hXcAZcfTitym1rDe",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "captura-cejas1",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -320,
+          -180
+        ],
+        "id": "6d3ffc4e-6b56-48e7-a7c1-6be7870ae3c0",
+        "name": "Webhook",
+        "webhookId": "c15ff2fc-c331-4b8e-bd40-a1127d1666b6"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3e017d9f-2e10-4096-b742-f29f90050d12",
+                "name": "CORREO",
+                "value": "={{ $json.body.email }}",
+                "type": "string"
+              },
+              {
+                "id": "404b1a16-7c5c-48d2-8e9a-d272cd85648c",
+                "name": "CAMPAÑA",
+                "value": "={{ $json.body.utmCampaign }}",
+                "type": "string"
+              },
+              {
+                "id": "a60bdde3-f659-4ed3-ab93-695b824c4095",
+                "name": "PLATAFORMA",
+                "value": "={{ $json.body.utmSource }}",
+                "type": "string"
+              },
+              {
+                "id": "efdf6533-c3b2-45d1-8f08-e84e5179b8f8",
+                "name": "SEGMENTACION",
+                "value": "={{ $json.body.utmMedium }}",
+                "type": "string"
+              },
+              {
+                "id": "0edbf33b-43a2-4ff4-83d4-e3d775649db6",
+                "name": "ANUNCIO",
+                "value": "={{ $json.body.utmContent }}",
+                "type": "string"
+              },
+              {
+                "id": "e6c54583-3fff-40ef-977f-b4a4d87a14f1",
+                "name": "FECHA REGISTRO",
+                "value": "={{ $now.format('yyyy-MM-dd') }}",
+                "type": "string"
+              },
+              {
+                "id": "cda1c4b2-820a-4e68-a365-e797b1d02526",
+                "name": "HORA",
+                "value": "={{ $now.format('HH:mm:ss:s') }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          100,
+          -220
+        ],
+        "id": "06462cd4-6878-44b4-9df2-5518fd994176",
+        "name": "Edit Fields"
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.body.pagina }}",
+                      "rightValue": "PRINCIPAL",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "PRINCIPAL"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "608d00e0-4bcc-4ac0-b01d-36122eb35c73",
+                      "leftValue": "={{ $json.body.pagina }}",
+                      "rightValue": "ORG",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "ORG"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.2,
+        "position": [
+          -120,
+          -180
+        ],
+        "id": "2fd13eb8-fb8a-4cbc-8f85-600f76016451",
+        "name": "Switch"
+      },
+      {
+        "parameters": {
+          "table": {
+            "__rl": true,
+            "value": "ARZA_CEJAS",
+            "mode": "list",
+            "cachedResultName": "ARZA_CEJAS"
+          },
+          "dataMode": "defineBelow",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "fecha_registro",
+                "value": "={{ $json[\"FECHA REGISTRO\"] }}"
+              },
+              {
+                "column": "hora",
+                "value": "={{ $json.HORA }}"
+              },
+              {
+                "column": "campaña",
+                "value": "={{ $json[\"CAMPAÑA\"] }}"
+              },
+              {
+                "column": "segmentacion",
+                "value": "={{ $json.SEGMENTACION }}"
+              },
+              {
+                "column": "anuncio",
+                "value": "={{ $json.ANUNCIO }}"
+              },
+              {
+                "column": "plataforma",
+                "value": "={{ $json.PLATAFORMA }}"
+              },
+              {
+                "column": "fuente",
+                "value": "={{ $('Switch').item.json.body.pagina }}"
+              },
+              {
+                "column": "correo",
+                "value": "={{ $json.CORREO }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          880,
+          -200
+        ],
+        "id": "cd29522c-2928-49e5-81e9-c926bc3f98e4",
+        "name": "MySQL",
+        "credentials": {
+          "mySql": {
+            "id": "n8fCALXWnGdmJkBN",
+            "name": "CAPTACIONES"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "table": {
+            "__rl": true,
+            "value": "ARZA_CEJAS",
+            "mode": "list",
+            "cachedResultName": "ARZA_CEJAS"
+          },
+          "returnAll": true,
+          "where": {
+            "values": [
+              {
+                "column": "correo",
+                "condition": "LIKE",
+                "value": "={{ $json.CORREO }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          320,
+          -140
+        ],
+        "id": "139e3331-b640-48ae-8b71-4aca40a62e7c",
+        "name": "MySQL1",
+        "alwaysOutputData": true,
+        "credentials": {
+          "mySql": {
+            "id": "n8fCALXWnGdmJkBN",
+            "name": "CAPTACIONES"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "7f3e8099-ae55-4534-a5be-217d413c0ff2",
+                "leftValue": "={{ $json }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "empty",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          500,
+          -140
+        ],
+        "id": "b02a9cc7-f9cd-4452-8c63-e9c56c9dd9a3",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "mode": "combine",
+          "combineBy": "combineAll",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3,
+        "position": [
+          700,
+          -200
+        ],
+        "id": "5164901d-e6ec-4c16-9111-d4e4561a3686",
+        "name": "Merge"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.flodesk.com/v1/subscribers",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Basic {{ $json.apikey.base64Encode() }}"
+              },
+              {
+                "name": "User-Agent",
+                "value": "n8n"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n    \"email\": \"{{ $('Edit Fields').first().json.CORREO }}\",\n    \"segment_ids\": [\n       \"67c86472bf867dc6f82248f7\"\n    ]\n}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          440,
+          -380
+        ],
+        "id": "3561c95c-7d64-49db-9aa8-84a55173b112",
+        "name": "HTTP Request",
+        "retryOnFail": true,
+        "maxTries": 5,
+        "waitBetweenTries": 5000,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3b792b00-e2cb-45c0-a46c-58fa474c5e45",
+                "name": "apikey",
+                "value": "fd_key_bed3808a2b6748a396f136e0d372f967.Q5pfUMnJ7PEyyqUTZQ39TLIQPrjzjR2AXOG0hWsHPbqmUP38Sd0WPpUkivr4WAgGEjFJYLpY7z8g3xjNfUJaDjkTNXj5SZ8GgRfR075zrPN2RIZ0vXwsagyhtjyLlUZ9zJ7nGqtuHrBCfyKL24LtUwMmcFC6Zr8YLC2M9UwImXKwpJ8SaNs5ktdXVMQcDYIk",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          280,
+          -380
+        ],
+        "id": "39799b76-eb74-494c-8a79-7b97cf091cc1",
+        "name": "Edit Fields2"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields2",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "MySQL1",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          []
+        ]
+      },
+      "MySQL1": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Merge": {
+        "main": [
+          [
+            {
+              "node": "MySQL",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields2": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "87c89a8d-b60e-4f81-b135-a238d79f6922",
   "connections": {
     "Webhook": {
       "main": [
