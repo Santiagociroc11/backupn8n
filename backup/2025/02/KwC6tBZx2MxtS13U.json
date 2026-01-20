@@ -1,5 +1,317 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "b7d9d120-e494-4c29-8e16-ff74c8a690fa",
+    "workflowId": "KwC6tBZx2MxtS13U",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "reasigna-cierres",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -340,
+          -60
+        ],
+        "id": "7e050a49-6b8f-4627-b1e5-f9b66c21dfd9",
+        "name": "Webhook",
+        "webhookId": "bfa190c3-5bcc-4540-9bf4-e277760326f4"
+      },
+      {
+        "parameters": {
+          "chatId": "={{ $('asesor').item.json.ID_TG }}",
+          "text": "=*CLIENTE DESASIGNADO* ⚠️ \n\nnombre: {{ $json.NOMBRE }}\nWha: {{ $json.WHATSAPP }}\n\nSe reasignó tu cliente por decisión de la gerencia 🚨",
+          "additionalFields": {
+            "parse_mode": "Markdown"
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          400,
+          -160
+        ],
+        "id": "4ee6b0d8-74c9-409a-9aa4-c9f314f5fbf1",
+        "name": "Telegram",
+        "webhookId": "497098d3-7d07-4620-a5f0-b6b9c242df52",
+        "credentials": {
+          "telegramApi": {
+            "id": "QruLAfRq4u80XCVX",
+            "name": "Telegram account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "chatId": "={{ $('asesor1').item.json.ID_TG }}",
+          "text": "=*CLIENTE REASIGNADO A TI* ⚠️ \n\nnombre: {{ $json.NOMBRE }}\nWha: {{ $json.WHATSAPP }}\n\nSe reasignó este cliente a ti por decisión de la gerencia 🚨",
+          "replyMarkup": "inlineKeyboard",
+          "inlineKeyboard": {
+            "rows": [
+              {
+                "row": {
+                  "buttons": [
+                    {
+                      "text": "IR AL CHAT",
+                      "additionalFields": {
+                        "url": "=wa.me/{{ $json.WHATSAPP }}"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "additionalFields": {
+            "parse_mode": "Markdown"
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          400,
+          40
+        ],
+        "id": "dba86abc-0656-4bda-8fda-49bf58e0a28f",
+        "name": "Telegram1",
+        "webhookId": "497098d3-7d07-4620-a5f0-b6b9c242df52",
+        "credentials": {
+          "telegramApi": {
+            "id": "QruLAfRq4u80XCVX",
+            "name": "Telegram account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "schema": {
+            "__rl": true,
+            "mode": "list",
+            "value": "public"
+          },
+          "table": {
+            "__rl": true,
+            "value": "GERSSON_ASESORES",
+            "mode": "list",
+            "cachedResultName": "GERSSON_ASESORES"
+          },
+          "where": {
+            "values": [
+              {
+                "column": "ID",
+                "value": "={{ $json.body.asesor_viejo_id }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.postgres",
+        "typeVersion": 2.5,
+        "position": [
+          -20,
+          -160
+        ],
+        "id": "5abf535d-8e4f-4832-9f8b-3527432651d7",
+        "name": "asesor",
+        "credentials": {
+          "postgres": {
+            "id": "Y9DYFWSCuPRQbP2H",
+            "name": "POSTGRESS PROPIO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "schema": {
+            "__rl": true,
+            "mode": "list",
+            "value": "public"
+          },
+          "table": {
+            "__rl": true,
+            "value": "GERSSON_CLIENTES",
+            "mode": "list",
+            "cachedResultName": "GERSSON_CLIENTES"
+          },
+          "where": {
+            "values": [
+              {
+                "column": "ID",
+                "value": "={{ $('Webhook').item.json.body.cliente_id }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.postgres",
+        "typeVersion": 2.5,
+        "position": [
+          200,
+          -160
+        ],
+        "id": "edaaf343-25ee-466c-85f4-d8dac16be4b1",
+        "name": "cliente",
+        "credentials": {
+          "postgres": {
+            "id": "Y9DYFWSCuPRQbP2H",
+            "name": "POSTGRESS PROPIO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "schema": {
+            "__rl": true,
+            "mode": "list",
+            "value": "public"
+          },
+          "table": {
+            "__rl": true,
+            "value": "GERSSON_ASESORES",
+            "mode": "list",
+            "cachedResultName": "GERSSON_ASESORES"
+          },
+          "where": {
+            "values": [
+              {
+                "column": "ID",
+                "value": "={{ $json.body.asesor_nuevo_id }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.postgres",
+        "typeVersion": 2.5,
+        "position": [
+          -20,
+          40
+        ],
+        "id": "1a4ae4ff-b7c0-4c9a-a9d2-86afd3aa7dfb",
+        "name": "asesor1",
+        "credentials": {
+          "postgres": {
+            "id": "Y9DYFWSCuPRQbP2H",
+            "name": "POSTGRESS PROPIO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "schema": {
+            "__rl": true,
+            "mode": "list",
+            "value": "public"
+          },
+          "table": {
+            "__rl": true,
+            "value": "GERSSON_CLIENTES",
+            "mode": "list",
+            "cachedResultName": "GERSSON_CLIENTES"
+          },
+          "where": {
+            "values": [
+              {
+                "column": "ID",
+                "value": "={{ $('Webhook').item.json.body.cliente_id }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.postgres",
+        "typeVersion": 2.5,
+        "position": [
+          200,
+          40
+        ],
+        "id": "b0b9618f-0c32-46a5-a41d-b8e711f8d40e",
+        "name": "cliente1",
+        "credentials": {
+          "postgres": {
+            "id": "Y9DYFWSCuPRQbP2H",
+            "name": "POSTGRESS PROPIO"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "asesor",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "asesor1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "asesor": {
+        "main": [
+          [
+            {
+              "node": "cliente",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "cliente": {
+        "main": [
+          [
+            {
+              "node": "Telegram",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "asesor1": {
+        "main": [
+          [
+            {
+              "node": "cliente1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "cliente1": {
+        "main": [
+          [
+            {
+              "node": "Telegram1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "b7d9d120-e494-4c29-8e16-ff74c8a690fa",
   "connections": {
     "Webhook": {
       "main": [
