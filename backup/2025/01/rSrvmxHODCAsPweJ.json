@@ -1,5 +1,389 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "34eb9ac0-6396-4b88-ab2e-e2e892d15a3e",
+    "workflowId": "rSrvmxHODCAsPweJ",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "rastreo-productos-typebot-wha1",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -300,
+          -40
+        ],
+        "id": "e47d1ba4-172c-476c-be06-9cee9f7e0da7",
+        "name": "Webhook",
+        "webhookId": "9fe45dd8-f08d-402f-b798-118c1fe74738"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "f0467a17-778d-4c85-83f4-17bcfed4f4a9",
+                "leftValue": "={{ $json.body.data.contextInfo.externalAdReply }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "object",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          100,
+          -40
+        ],
+        "id": "8019d14c-f6f3-4d7a-abd2-1fd0b241bf9a",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "operation": "appendOrUpdate",
+          "documentId": {
+            "__rl": true,
+            "value": "https://docs.google.com/spreadsheets/d/1v4fEvqnWfUsdtoFYieKAb6hMLNdzKDJAnyyI5byAlK0/edit?gid=0#gid=0",
+            "mode": "url"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "https://docs.google.com/spreadsheets/d/1v4fEvqnWfUsdtoFYieKAb6hMLNdzKDJAnyyI5byAlK0/edit?gid=0#gid=0",
+            "mode": "url"
+          },
+          "columns": {
+            "mappingMode": "autoMapInputData",
+            "value": {
+              "whatsapp": "={{ $json.body.whatsapp }}",
+              "estado": "={{ $json.body.estado}}"
+            },
+            "matchingColumns": [
+              "whatsapp"
+            ],
+            "schema": [
+              {
+                "id": "whatsapp",
+                "displayName": "whatsapp",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "producto",
+                "displayName": "producto",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "precio",
+                "displayName": "precio",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "estado",
+                "displayName": "estado",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "ingreso_at",
+                "displayName": "ingreso_at",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "medio_at",
+                "displayName": "medio_at",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "medio",
+                "displayName": "medio",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "pagado_at",
+                "displayName": "pagado_at",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "FECHA INGRESO",
+                "displayName": "FECHA INGRESO",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "FECHA PAGO",
+                "displayName": "FECHA PAGO",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "ID ANUNCIO",
+                "displayName": "ID ANUNCIO",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "URL ANUNCIO",
+                "displayName": "URL ANUNCIO",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "TIPO DE ANUNCIO",
+                "displayName": "TIPO DE ANUNCIO",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "RED",
+                "displayName": "RED",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "URL MEDIA",
+                "displayName": "URL MEDIA",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "UBICACION",
+                "displayName": "UBICACION",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "fbf56948-9465-4413-b861-ece63f8548d7",
+        "name": "ESCRIBIR SHEET1",
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.5,
+        "position": [
+          500,
+          -160
+        ],
+        "alwaysOutputData": true,
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "zruD3ONGC9HU2i7s",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "36d4e592-51b3-4fa6-b624-e08efb600018",
+                "name": "whatsapp",
+                "value": "={{ $json.body.data.key.remoteJid }}",
+                "type": "string"
+              },
+              {
+                "id": "eaf538e9-cba4-4021-be17-d27cbeb1e7b0",
+                "name": "ID ANUNCIO",
+                "value": "={{ $json.body.data.contextInfo.externalAdReply.sourceId }}",
+                "type": "string"
+              },
+              {
+                "id": "ef870112-85b5-4545-ad7e-0673fb229fc9",
+                "name": "URL ANUNCIO",
+                "value": "={{ $json.body.data.contextInfo.externalAdReply.sourceUrl }}",
+                "type": "string"
+              },
+              {
+                "id": "02beacee-8461-402b-b4d1-5d50d8e7e851",
+                "name": "TIPO DE ANUNCIO",
+                "value": "={{ $json.body.data.contextInfo.externalAdReply.mediaType }}",
+                "type": "string"
+              },
+              {
+                "id": "51b33f04-dcc4-41d4-867a-8fe779713a6e",
+                "name": "RED",
+                "value": "={{ $json.body.data.contextInfo.entryPointConversionApp }}",
+                "type": "string"
+              },
+              {
+                "id": "5234ce03-e14a-4256-8600-8840cda75606",
+                "name": "URL MEDIA",
+                "value": "={{ $json.body.data.contextInfo.externalAdReply.mediaUrl }}",
+                "type": "string"
+              },
+              {
+                "id": "c845670d-9d26-4e05-96a4-895afb5d43d0",
+                "name": "UBICACION",
+                "value": "={{ $json.body.data.contextInfo.conversionSource }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "47310a7b-3f05-430c-aef6-e57467b7c6f8",
+        "name": "Edit Fields",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          300,
+          -160
+        ]
+      },
+      {
+        "parameters": {
+          "amount": 10
+        },
+        "type": "n8n-nodes-base.wait",
+        "typeVersion": 1.1,
+        "position": [
+          -100,
+          -40
+        ],
+        "id": "40ff5edc-2372-4785-a3f0-d43b56d76f02",
+        "name": "Wait",
+        "webhookId": "8101fbab-2d56-483b-a946-a42b8594bd8a"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Wait",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "ESCRIBIR SHEET1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Wait": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "34eb9ac0-6396-4b88-ab2e-e2e892d15a3e",
   "connections": {
     "Webhook": {
       "main": [
