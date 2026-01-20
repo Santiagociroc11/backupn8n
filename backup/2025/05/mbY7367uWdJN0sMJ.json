@@ -1,5 +1,176 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "c39d85d1-5f54-49d7-82a7-377a1d3823a9",
+    "workflowId": "mbY7367uWdJN0sMJ",
+    "nodes": [
+      {
+        "parameters": {
+          "updates": [
+            "*"
+          ],
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.telegramTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          -560,
+          -80
+        ],
+        "id": "38e61d6e-6af1-4b72-84e2-43230ff1830d",
+        "name": "Telegram Trigger",
+        "webhookId": "f4e88cab-c797-4059-9828-4d000e6109e4",
+        "credentials": {
+          "telegramApi": {
+            "id": "QruLAfRq4u80XCVX",
+            "name": "BOT AGENCIA X"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.message.entities[0].type }}",
+                      "rightValue": "=bot_command",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      },
+                      "id": "0567c629-aab7-4777-867e-2e37b20bccd8"
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "COMANDO"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.2,
+        "position": [
+          -340,
+          -80
+        ],
+        "id": "16d901e2-ea70-4d8f-9ebb-58a4e87a3349",
+        "name": "Switch"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "0be84c4c-dca1-4e93-9789-edb1ef8d5891",
+                "leftValue": "={{ $json.message.text }}",
+                "rightValue": "/autoid",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -120,
+          -80
+        ],
+        "id": "1895f1e1-fda9-40a1-8ad3-1a8d29623412",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "chatId": "={{ $json.message.from.id }}",
+          "text": "=Tu ID es 👇🏻\n\n<pre>{{ $json.message.from.id }}</pre> \nDale copiar y ve a la plataforma a pegarlo.",
+          "additionalFields": {
+            "appendAttribution": false,
+            "parse_mode": "HTML"
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          120,
+          -180
+        ],
+        "id": "f923d675-3dd3-45d1-a6b8-6b952db8a9a2",
+        "name": "Telegram",
+        "webhookId": "e161186b-42bd-474e-981a-75e5e8a8c969",
+        "credentials": {
+          "telegramApi": {
+            "id": "QruLAfRq4u80XCVX",
+            "name": "BOT AGENCIA X"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Telegram Trigger": {
+        "main": [
+          [
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Telegram",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "c39d85d1-5f54-49d7-82a7-377a1d3823a9",
   "connections": {
     "Telegram Trigger": {
       "main": [
