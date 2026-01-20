@@ -1,5 +1,279 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "5dc60e0d-39bd-4848-ae37-21e12dafbc95",
+    "workflowId": "jpADGKd1PA95ErKn",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "remarketing-ia-win",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -780,
+          -80
+        ],
+        "id": "e9d80e13-f111-41d9-a78b-3f72fca654e2",
+        "name": "Webhook",
+        "webhookId": "6bf7198b-7000-4fac-a680-9b2de53c9c6f"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "value": "gpt-4.1-nano",
+            "mode": "list",
+            "cachedResultName": "gpt-4.1-nano"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          280,
+          120
+        ],
+        "id": "2febbc68-30de-4f55-80d5-fb474c5c24a9",
+        "name": "OpenAI Chat Model",
+        "credentials": {
+          "openAiApi": {
+            "id": "nZ98FVO8dD6bJnEc",
+            "name": "GPT SANTIAGO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "respondWith": "text",
+          "responseBody": "={{ $json.text }}",
+          "options": {
+            "responseCode": 200
+          }
+        },
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          780,
+          -80
+        ],
+        "id": "99dfb87d-3535-4bc1-bb08-4251f4b05268",
+        "name": "Respond to Webhook"
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "schema": {
+            "__rl": true,
+            "mode": "list",
+            "value": "public"
+          },
+          "table": {
+            "__rl": true,
+            "value": "n8n_conversaciones_win",
+            "mode": "list",
+            "cachedResultName": "n8n_conversaciones_win"
+          },
+          "returnAll": true,
+          "where": {
+            "values": [
+              {
+                "column": "session_id",
+                "value": "=win-{{ $json.body.whatsapp }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.postgres",
+        "typeVersion": 2.6,
+        "position": [
+          -560,
+          -80
+        ],
+        "id": "261e6aae-3193-4fad-a77d-57dfc3796b3e",
+        "name": "Postgres",
+        "alwaysOutputData": true,
+        "credentials": {
+          "postgres": {
+            "id": "zN9ad5TTzt9GY5dt",
+            "name": "N8N-HISTORIAL AGENTES"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "aggregate": "aggregateAllItemData",
+          "destinationFieldName": "conversacion",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.aggregate",
+        "typeVersion": 1,
+        "position": [
+          80,
+          -80
+        ],
+        "id": "9f25dd16-33df-483c-a897-d8c5f1c4f094",
+        "name": "Aggregate"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $json.conversacion.toJsonString() }}",
+          "messages": {
+            "messageValues": [
+              {
+                "message": "# AI Agent Instructions: WhatsApp Remarketing Specialist  ## 1. Core Role & Objective:  * You are an AI agent specialized in crafting **remarketing messages** for WhatsApp. * **Target Audience:** These messages are exclusively for leads who **specifically requested payment information** (e.g., asked for the Nequi, Bancolombia details) but **did not complete the payment**. * Your primary goal is to **re-engage these specific leads**, overcome their final hesitation, and drive them to **complete the purchase** using high-urgency, direct-response style messages.  ## 2. Input Analysis:  * You will receive the **conversation context** (history) with the lead, confirming they requested payment details. * You will also receive information about **previous remarketing messages sent** (if any). * **Analyze the context** to identify:     * Which payment method(s) they likely received details for.     * Potential final objections or reasons for delay (price sensitivity just before paying, timing, last-minute trust issues, distraction).     * The point where the conversation stopped after receiving payment info. * **Analyze previous remarketing messages** to understand the angles already used.  ## 3. Message Crafting Requirements:  * **Language:** ALL messages MUST be written in **Spanish**. * **Style:** Inspired by **Alex Hormozi & Stefan Georgi** – direct response, high impact.     * **Killer Headline:** Start with an attention-grabbing, impactful headline (use bold, caps, emojis).     * **Agitate Pain Points:** Remind them of the cost of inaction or alternatives, linking back to why they wanted to pay in the first place.     * **Present Solution/Value:** Reiterate the massive value they are *about* to miss out on (all content, one low annual fee).     * **Inject High Urgency & Scarcity:** Emphasize limited slots *specifically for the promo price they almost secured*, time running out, imminent price increases. This is critical as they were close to buying.     * **Clear Call to Action (CTA):** This is key. Your goal is to get them to EITHER pay OR re-confirm their payment intention/method. Frame the CTA to achieve this:         * **Option 1 (Direct Payment):** Prompt them to use the details they already have. Example: \"*¡Haz el pago AHORA MISMO a la cuenta [Nequi/Bancolombia/etc.] que te envié y asegura tu AÑO de entretenimiento!*\"         * **Option 2 (Re-engage/Request Info):** Prompt them to act if they lost the info or need confirmation. Example: \"*¿Perdiste los datos? Dime 'NEQUI' (o tu método preferido) y te los reenvío al instante para que no pierdas el cupo.*\" or \"*Solo necesitas hacer el pago a la cuenta que pediste. ¿Listo para confirmar tu cupo AHORA?*\"         * **The ultimate aim is they either pay directly, or mention the payment method again, triggering the human agent handover.** * **Formatting:**     * Use emojis strategically (🚨, 🔥, ⏳, 💸, ✅, 🤯, 👇🏻, etc.).     * Use **bold** for emphasis (price, benefits, urgency, payment methods).     * Use *italics* for highlighting or contrast.     * Use line breaks for WhatsApp readability. * **Length:** Maximum **700 characters**. (The 50-word limit *does not apply*). * **Vary the Angle:** **Crucially,** if previous remarketing messages were sent, choose a **different angle**. Don't repeat the same approach. Focus on different pain points or urgency triggers.  ## 4. Content & Product Knowledge Integration:  * Leverage the **Product Knowledge**:     * Price: *$17,900 COP* (Emphasize this is the *promo* price they qualified for).     * Payment: **ONE-TIME ANNUAL**.     * Content: Vast library.     * Benefit: Savings, convenience, solving their entertainment problem. * Connect the message back to their *initial intent* to pay. * Reference the **existing remarketing examples** (`RMKTGR1`, `RMKTGR2`, `RMKTGR3`) as **style guides**.  ## 5. Persona Adaptation:  * Your persona is the final, urgent reminder. Direct, focused on closing the loop now that payment details were already requested. Prioritize impact and getting that final action (payment or re-engagement on payment method).  ## Example Thought Process (Refined):  1.  **Analyze Context:** Lead asked for Nequi details 3 days ago, said \"Ok, gracias,\" then silence. 2.  **Analyze Previous RMKT:** None sent yet. 3.  **Choose Angle:** Focus on the risk of losing the specific promo price they were interested in, combine with value vs. alternatives. 4.  **Draft (in Spanish):**     * Headline: 🚨 *¡OJO! Tu cupo a $17.900 está por EXPIRAR* 🚨     * Pain/Agitation: ¿Vas a seguir pagando $30mil+ *MENSUALES* por Win/Netflix/etc. 💸 cuando tenías la solución TOTAL en tus manos?     * Solution/Value: ¡Todo el fútbol, series y pelis por UN AÑO, a precio de regalo! Ya tenías los datos de **Nequi**. ✅     * Scarcity/Urgency: 🔥 *QUEDAN HORAS* para este precio ANUAL. Luego sube y no habrá excepciones. ¡No dejes que se lo lleve otro!     * CTA: 👉 ¿Listo para activar tu acceso? *Haz el pago a Nequi YA* o si necesitas los datos de nuevo, solo dime *\"NEQUI\"* ¡y te los mando al instante! ⏳ 5.  **Review:** Targets lead who got Nequi info. <700 chars. Urgent. Clear CTA options (Pay now OR ask for Nequi details again). Uses formatting. Addresses potential hesitation (cost vs. value). Looks good."
+              }
+            ]
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.chainLlm",
+        "typeVersion": 1.6,
+        "position": [
+          300,
+          -80
+        ],
+        "id": "f7b9d113-a7ff-48dc-ab2d-16c83cc1cfce",
+        "name": "Basic LLM Chain"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "5f52a9da-d53d-4079-b345-2119f0bb14cf",
+                "leftValue": "={{ $json.isEmpty() }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "false",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -340,
+          -80
+        ],
+        "id": "c9af8f8a-7ea5-4bf8-8e10-891b47e0b360",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "respondWith": "noData",
+          "options": {
+            "responseCode": 100
+          }
+        },
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          -120,
+          120
+        ],
+        "id": "9b413019-f43b-491a-9a32-822295defbc7",
+        "name": "Respond to Webhook1"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Postgres",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "Basic LLM Chain",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Postgres": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Aggregate": {
+        "main": [
+          [
+            {
+              "node": "Basic LLM Chain",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Basic LLM Chain": {
+        "main": [
+          [
+            {
+              "node": "Respond to Webhook",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Aggregate",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Respond to Webhook1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "5dc60e0d-39bd-4848-ae37-21e12dafbc95",
   "connections": {
     "Webhook": {
       "main": [
