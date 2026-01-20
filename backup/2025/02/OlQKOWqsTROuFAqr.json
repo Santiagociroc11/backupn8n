@@ -1,5 +1,181 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "18ac7bd9-4daf-42ae-bcd3-ca4b403e26c3",
+    "workflowId": "OlQKOWqsTROuFAqr",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "reporte-venta-tg",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -688,
+          -144
+        ],
+        "id": "1d0f4835-dd3d-445a-a566-ce7eb22e7514",
+        "name": "Webhook",
+        "webhookId": "4b8a6c3b-db35-4a95-acc9-37d42869ccfd"
+      },
+      {
+        "parameters": {
+          "operation": "sendPhoto",
+          "chatId": "-1002117516396",
+          "binaryData": true,
+          "additionalFields": {
+            "caption": "=Nombre: {{ $('Postgres').item.json.NOMBRE }}\nPais: {{ $('Webhook').item.json.body.pais }}\nMedio: {{ $('Webhook').item.json.body.medioPago }}\nTelefono: {{ $('Webhook').item.json.body.telefono }}\nCorreo inscripción:  {{ $('Webhook').item.json.body.correoInscripcion }}\nCorreo Pago (stripe):  {{ $('Webhook').item.json.body.correoPago?$('Webhook').item.json.body.correoPago: \"no aplica\" }}\nCEDULA: {{ $('Webhook').item.json.body.cedulaComprador?$('Webhook').item.json.body.cedulaComprador: \"no aplica\" }}\nActividad economica: {{ $('Webhook').item.json.body.actividadEconomica?$('Webhook').item.json.body.actividadEconomica: \"no aplica\" }}\nASESOR QUE REPORTA: {{ $('Webhook').item.json.body.nombreAsesor }}\n\n-> CONFIRMAR INGRESO E INSCRIBIR <- 🔥",
+            "message_thread_id": 3
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          -80,
+          -240
+        ],
+        "id": "ee05c63a-c16c-4220-9b59-b4943cb2df39",
+        "name": "Telegram",
+        "webhookId": "8a7e1ec8-5194-4e5a-88ed-217a9abefb57",
+        "credentials": {
+          "telegramApi": {
+            "id": "QruLAfRq4u80XCVX",
+            "name": "BOT AGENCIA X"
+          }
+        },
+        "disabled": true
+      },
+      {
+        "parameters": {
+          "operation": "select",
+          "schema": {
+            "__rl": true,
+            "mode": "list",
+            "value": "public"
+          },
+          "table": {
+            "__rl": true,
+            "value": "GERSSON_CLIENTES",
+            "mode": "list",
+            "cachedResultName": "GERSSON_CLIENTES"
+          },
+          "limit": 1,
+          "where": {
+            "values": [
+              {
+                "column": "ID",
+                "value": "={{ $json.body.clienteID }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.postgres",
+        "typeVersion": 2.5,
+        "position": [
+          -496,
+          -144
+        ],
+        "id": "e4a691c7-42b5-4fd3-bd17-9213c9de9390",
+        "name": "Postgres",
+        "credentials": {
+          "postgres": {
+            "id": "Y9DYFWSCuPRQbP2H",
+            "name": "POSTGRESS GERSSON"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "url": "={{ $('Webhook').item.json.body.imagenPagoUrl }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          -304,
+          -144
+        ],
+        "id": "6e3d3cb6-4609-4069-8572-8b1048dad87a",
+        "name": "HTTP Request"
+      },
+      {
+        "parameters": {
+          "operation": "sendPhoto",
+          "chatId": "-1003426839797",
+          "binaryData": true,
+          "additionalFields": {
+            "caption": "=Nombre: {{ $('Postgres').item.json.NOMBRE }}\nPais: {{ $('Webhook').item.json.body.pais }}\nMedio: {{ $('Webhook').item.json.body.medioPago }}\nTelefono: {{ $('Webhook').item.json.body.telefono }}\nCorreo inscripción:  {{ $('Webhook').item.json.body.correoInscripcion }}\nCorreo Pago (stripe):  {{ $('Webhook').item.json.body.correoPago?$('Webhook').item.json.body.correoPago: \"no aplica\" }}\nCEDULA: {{ $('Webhook').item.json.body.cedulaComprador?$('Webhook').item.json.body.cedulaComprador: \"no aplica\" }}\nActividad economica: {{ $('Webhook').item.json.body.actividadEconomica?$('Webhook').item.json.body.actividadEconomica: \"no aplica\" }}\nASESOR QUE REPORTA: {{ $('Webhook').item.json.body.nombreAsesor }}\n\n-> CONFIRMAR INGRESO E INSCRIBIR <- 🔥",
+            "message_thread_id": 7
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          -80,
+          -64
+        ],
+        "id": "6802682b-ddce-4a32-92f3-81b7deef7fe5",
+        "name": "Telegram1",
+        "webhookId": "8a7e1ec8-5194-4e5a-88ed-217a9abefb57",
+        "credentials": {
+          "telegramApi": {
+            "id": "QruLAfRq4u80XCVX",
+            "name": "BOT AGENCIA X"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Postgres",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Postgres": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "Telegram",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Telegram1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "18ac7bd9-4daf-42ae-bcd3-ca4b403e26c3",
   "connections": {
     "Webhook": {
       "main": [
