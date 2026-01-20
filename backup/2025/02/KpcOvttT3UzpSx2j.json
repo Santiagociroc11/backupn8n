@@ -1,5 +1,995 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "70bd75d4-be66-418a-a64a-6e98b056d982",
+    "workflowId": "KpcOvttT3UzpSx2j",
+    "nodes": [
+      {
+        "parameters": {
+          "multipleMethods": true,
+          "httpMethod": [
+            "POST"
+          ],
+          "path": "comentariosfb",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -800,
+          -380
+        ],
+        "id": "6ce222b1-7ab8-427c-ae21-2aa11c2e2779",
+        "name": "Webhook",
+        "webhookId": "3e5803b5-bd52-41a5-af3d-841e963be428"
+      },
+      {
+        "parameters": {
+          "agent": "conversationalAgent",
+          "promptType": "define",
+          "text": "={{ $json.comentario }}",
+          "options": {
+            "systemMessage": "Eres el moderador de comentarios de una página llamada \"tu software seguro\" que se encarga de dar los mejores productos tecnológicos al mejor precio. actúa como el mejor community manager del mundo, con experiencia de 10 años respondiendo comentarios y con un tono simpático, a veces hasta cómico para agradar más. Vendemos una app que vale 17.900 pesos el año, único pago, que sirve para ver tv, peliculas y series en celular y tv pero solo en dispositivos con android, tv con android, celulares android y pc, si preguntan aclaras, pero no des demasiadas explicaciones, mandalos al botón de whatsapp. Si preguntan el nombre de la app, no lo dices ni tampoco dices que es oculto o secreto, mandas directo al whatsapp por el botón. Tus respuestas no son abiertas, son definitivas, es decir, no esperas respuesta de los usuarios, das información y listo. NO HAGAS PREGUNTAS Tu tarea es identificar qué quiere la persona en ese único mensaje que recibes y responder en consecuencia... si piden información los mandas a presionar el botón de la publicación que dirige a whastapp. \n\nSi dan gracias o dicen algo bueno asume que es un comprador, responde dando gracias inteligentemente y diciendo que nos recomiende.\n\nTrata de dar respuestas cortas.\n"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.7,
+        "position": [
+          780,
+          -160
+        ],
+        "id": "ef541453-271f-4a79-ba72-aacdc40610a8",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "value": "gpt-4o-mini",
+            "mode": "list",
+            "cachedResultName": "gpt-4o-mini"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          780,
+          40
+        ],
+        "id": "615a8507-7d01-4eef-8786-8b9d72f97b83",
+        "name": "OpenAI Chat Model",
+        "credentials": {
+          "openAiApi": {
+            "id": "nZ98FVO8dD6bJnEc",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "48f0eb34-80de-4fbf-ab8d-669fa53bab70",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.message }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              },
+              {
+                "id": "f9c05b6c-0a07-4566-a1ef-f9a4ee32f3d8",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.from.id }}",
+                "rightValue": "234154656454626",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEquals"
+                }
+              },
+              {
+                "id": "88ab43b2-ee08-4479-a529-8a55d05e35a0",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.from.name }}",
+                "rightValue": "tu software seguro",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEquals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -380,
+          -340
+        ],
+        "id": "a7c63025-29a1-4338-9c81-40e0f5321270",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "inputText": "={{ $json.comentario }}",
+          "categories": {
+            "categories": [
+              {
+                "category": "info",
+                "description": "comentarios que indican que necesitan información o en busqueda de respuestas, NO DICE QUE ES MAGIS TV NI QUE ES GRATIS NI SARCASTICO"
+              },
+              {
+                "category": "malos",
+                "description": "Un mensaje debe clasificarse en esta categoría si contiene ataques, desprestigio o intención de dañar la reputación; enlaces o menciones de posibles estafas; afirmaciones de que el producto o servicio es gratuito, referencias a \"MagisTV\" o \"magis\" o \"magis tv\" o \"iptv\" o disponibilidad gratuita; burlas hacia compradores o comentarios sarcásticos o burlescos en general; o quejas sobre falta de entrega tras el pago o mala atención al cliente. Tambien si preguntan o afirman que es iptv o que ya la tienen hace tiempo sin pagar."
+              },
+              {
+                "category": "buenos",
+                "description": "comentarios buenos de personas que aparentemente compraron, , NO DICE QUE ES MAGIS TV NI QUE ES GRATIS NI SARCASTICO"
+              },
+              {
+                "category": "ladrones",
+                "description": "comentarios intentando dar numeros de telefonos o diciendo que lo tienen mas barato, en general ladrones de clientes"
+              }
+            ]
+          },
+          "options": {
+            "fallback": "other",
+            "systemPromptTemplate": "Eres moderador de comentarios de una pagina de facebook que se dedica a vender productos digitales.\n\nlos comentarios son de personas que ven los anuncios y preguntan o felicitan o nos insultan, clasficalos."
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.textClassifier",
+        "typeVersion": 1,
+        "position": [
+          380,
+          -160
+        ],
+        "id": "b664eb85-9f8b-4d65-8e04-5d8609898043",
+        "name": "Text Classifier"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "mode": "list",
+            "value": "gpt-4o-mini"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          380,
+          20
+        ],
+        "id": "3b652948-f00a-400e-971e-8cf64ab1da53",
+        "name": "OpenAI Chat Model1",
+        "credentials": {
+          "openAiApi": {
+            "id": "nZ98FVO8dD6bJnEc",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "DELETE",
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion').first().json.IDcomentario }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          860,
+          -460
+        ],
+        "id": "5419edeb-fa1e-4d4c-9110-89f20faaf704",
+        "name": "eliminar comentario",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "4iHCs0jnWOKmz6vc",
+            "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "POST",
+          "graphApiVersion": "v21.0",
+          "node": "=234154656454626",
+          "edge": "blocked",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "user",
+                  "value": "={{ $('asignacion').first().json.IDpersona }}"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          1040,
+          -460
+        ],
+        "id": "76ad8b10-35b9-4341-b7d1-a6a42d710fa3",
+        "name": "bloquear persona",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "4iHCs0jnWOKmz6vc",
+            "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion').first().json.IDcomentario }}",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "fields",
+                  "value": "can_hide,can_like,can_comment,can_remove,is_hidden,from,created_time,id,object"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          400,
+          -420
+        ],
+        "id": "2db0fb3d-ee40-4109-971c-d88d33bf9cfb",
+        "name": "traer comentario",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "4iHCs0jnWOKmz6vc",
+            "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion').first().json.IDcomentario }}",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "fields",
+                  "value": "can_hide,can_like,can_comment,can_remove,is_hidden,from,created_time,id,object"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          1120,
+          -160
+        ],
+        "id": "d3dc57aa-8af1-4fd5-a0a5-31a158f61fd0",
+        "name": "coment",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "4iHCs0jnWOKmz6vc",
+            "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "07dc0b89-2475-47fe-be7a-02153d736969",
+                "leftValue": "={{ $json.can_remove }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          600,
+          -420
+        ],
+        "id": "1c6e5c64-3b0c-4552-b49c-cfcf989e1469",
+        "name": "puedo borrar?"
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "POST",
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion').first().json.IDcomentario }}",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "is_hidden",
+                  "value": "false"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          1460,
+          -240
+        ],
+        "id": "44e5d356-7c35-453f-ab55-e560fc90acb6",
+        "name": "mostrar comentario",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "4iHCs0jnWOKmz6vc",
+            "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "26d78952-d630-4d9d-b1e2-60ab6e6f0771",
+                "name": "comentario",
+                "value": "={{ $json.body.entry[0].changes[0].value.message }}",
+                "type": "string"
+              },
+              {
+                "id": "3ea31217-f48c-416d-97bc-716b6757df5c",
+                "name": "IDpost",
+                "value": "={{ $json.body.entry[0].changes[0].value.post_id }}",
+                "type": "string"
+              },
+              {
+                "id": "4ed5409f-f2d7-4b0b-8e9c-1db056f0434f",
+                "name": "IDcomentario",
+                "value": "={{ $json.body.entry[0].changes[0].value.comment_id }}",
+                "type": "string"
+              },
+              {
+                "id": "d038f6ed-c5c7-43b5-9740-d246bbaa78da",
+                "name": "IDpersona",
+                "value": "={{ $json.body.entry[0].changes[0].value.from.id }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -160,
+          -360
+        ],
+        "id": "17f8303c-4892-4163-bb99-dfa7b9cb7389",
+        "name": "asignacion"
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "POST",
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion').first().json.IDcomentario }}",
+          "edge": "comments",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "message",
+                  "value": "=@[{{ $('asignacion').first().json.IDpersona }}] {{ $('AI Agent').first().json.output }} "
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          1620,
+          -140
+        ],
+        "id": "43e5a340-00d9-4842-aa0e-57e03a963028",
+        "name": "responder",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "4iHCs0jnWOKmz6vc",
+            "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "POST",
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion').first().json.IDcomentario }}",
+          "edge": "likes",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          1800,
+          -140
+        ],
+        "id": "597aa43a-47fe-4b7f-a7d1-5e95800cec9b",
+        "name": "LIKE",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "4iHCs0jnWOKmz6vc",
+            "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "b2fdec1a-3474-4c2a-a77e-4a4d90c03c1f",
+                "leftValue": "={{ $json.is_hidden }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          1280,
+          -160
+        ],
+        "id": "803cd3c6-a4cb-470d-abd2-3f2bfd277122",
+        "name": "oculto?"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "c1aa4651-cbf5-435b-b4f1-8841c04b4d30",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.photo }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -560,
+          -380
+        ],
+        "id": "ab9ab524-fdc5-4ba6-aa09-19e156a57000",
+        "name": "If1"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3ea31217-f48c-416d-97bc-716b6757df5c",
+                "name": "IDpost",
+                "value": "={{ $json.body.entry[0].changes[0].value.post_id }}",
+                "type": "string"
+              },
+              {
+                "id": "4ed5409f-f2d7-4b0b-8e9c-1db056f0434f",
+                "name": "IDcomentario",
+                "value": "={{ $json.body.entry[0].changes[0].value.comment_id }}",
+                "type": "string"
+              },
+              {
+                "id": "d038f6ed-c5c7-43b5-9740-d246bbaa78da",
+                "name": "IDpersona",
+                "value": "={{ $json.body.entry[0].changes[0].value.from.id }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -260,
+          -640
+        ],
+        "id": "35c7a331-3da9-4a34-9f36-00b35ea51ccb",
+        "name": "asignacion1"
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "DELETE",
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion1').first().json.IDcomentario }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          380,
+          -680
+        ],
+        "id": "aa24581f-7925-48e8-84d8-7a16c1f02a46",
+        "name": "eliminar comentario1",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "4iHCs0jnWOKmz6vc",
+            "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "POST",
+          "graphApiVersion": "v21.0",
+          "node": "=234154656454626",
+          "edge": "blocked",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "user",
+                  "value": "={{ $('asignacion1').first().json.IDpersona }}"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          560,
+          -680
+        ],
+        "id": "8df01b0a-0fa1-453b-8e9f-87eb3af5789e",
+        "name": "bloquear persona1",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "4iHCs0jnWOKmz6vc",
+            "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion1').first().json.IDcomentario }}",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "fields",
+                  "value": "can_hide,can_like,can_comment,can_remove,is_hidden,from,created_time,id,object"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          -80,
+          -640
+        ],
+        "id": "577c2d3e-1b7c-4a48-b08a-621ca17044dc",
+        "name": "traer comentario1",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "4iHCs0jnWOKmz6vc",
+            "name": "ACCES TOKEN - TU SOFTWARE SEGURO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "07dc0b89-2475-47fe-be7a-02153d736969",
+                "leftValue": "={{ $json.can_remove }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          120,
+          -640
+        ],
+        "id": "c4220d34-45ea-4dd3-b238-be2be5938a41",
+        "name": "puedo borrar?1"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "15847941-b999-4bee-b8fd-8aa0e2c8238e",
+                "leftValue": "={{ $json.comentario.toLowerCase() }}",
+                "rightValue": "/magi|ip|estafa|mala|no sirve|ojo/",
+                "operator": {
+                  "type": "string",
+                  "operation": "regex"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          60,
+          -360
+        ],
+        "id": "d3d1a6ac-04a7-4a24-a2ba-99abe3380236",
+        "name": "If2"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "If1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "asignacion",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          []
+        ]
+      },
+      "AI Agent": {
+        "main": [
+          [
+            {
+              "node": "coment",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model1": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "Text Classifier",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Text Classifier": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "traer comentario",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "traer comentario",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "eliminar comentario": {
+        "main": [
+          [
+            {
+              "node": "bloquear persona",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "traer comentario": {
+        "main": [
+          [
+            {
+              "node": "puedo borrar?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "coment": {
+        "main": [
+          [
+            {
+              "node": "oculto?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "puedo borrar?": {
+        "main": [
+          [
+            {
+              "node": "eliminar comentario",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          []
+        ]
+      },
+      "mostrar comentario": {
+        "main": [
+          [
+            {
+              "node": "responder",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "asignacion": {
+        "main": [
+          [
+            {
+              "node": "If2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "responder": {
+        "main": [
+          [
+            {
+              "node": "LIKE",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "oculto?": {
+        "main": [
+          [
+            {
+              "node": "mostrar comentario",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "responder",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If1": {
+        "main": [
+          [
+            {
+              "node": "asignacion1",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "eliminar comentario1": {
+        "main": [
+          [
+            {
+              "node": "bloquear persona1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "traer comentario1": {
+        "main": [
+          [
+            {
+              "node": "puedo borrar?1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "puedo borrar?1": {
+        "main": [
+          [
+            {
+              "node": "eliminar comentario1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "asignacion1": {
+        "main": [
+          [
+            {
+              "node": "traer comentario1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If2": {
+        "main": [
+          [
+            {
+              "node": "traer comentario",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Text Classifier",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "70bd75d4-be66-418a-a64a-6e98b056d982",
   "connections": {
     "Webhook": {
       "main": [
