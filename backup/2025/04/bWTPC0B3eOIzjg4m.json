@@ -1,5 +1,126 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "365d45fe-bee0-49f8-86aa-2d2835f8b9ff",
+    "workflowId": "bWTPC0B3eOIzjg4m",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "ai-analisis-backend",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -400,
+          -80
+        ],
+        "id": "d66b8615-a2a8-4f88-a709-91aaa6531d96",
+        "name": "Webhook",
+        "webhookId": "58c54ad1-0481-4c43-aaab-55bf8c9b70af"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $json.body.toJsonString() }}",
+          "options": {
+            "systemMessage": "Revisa toda la información y los datos proporcionados y determina si se recomienda aumentar o reducir el presupuesto. Proporciona una respuesta breve y directa basada en la data.\n\nDando prioridad al dia de hoy y los ultimos 3 dias\n\nEntendiendo que todo funciona con audiencias en facebook y que qquizas hoye stamos en un segmento ganador... basicamente el historico lo debes usar para saber si en dias pasados trajo roas altos en algun dia, con mas de 4 ventas. en los dias de roas alto\n"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.8,
+        "position": [
+          -180,
+          -80
+        ],
+        "id": "ef344243-a410-4d2f-a2a8-20b6aa5ed299",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "mode": "list",
+            "value": "gpt-4o-mini"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          -200,
+          120
+        ],
+        "id": "eec173a2-c0ad-41cf-b8a6-be903ccf8236",
+        "name": "OpenAI Chat Model",
+        "credentials": {
+          "openAiApi": {
+            "id": "nZ98FVO8dD6bJnEc",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "respondWith": "text",
+          "responseBody": "={{ $json.output }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          180,
+          -80
+        ],
+        "id": "5ea33d07-4533-4c0f-ad42-a86950247719",
+        "name": "Respond to Webhook"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent": {
+        "main": [
+          [
+            {
+              "node": "Respond to Webhook",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "365d45fe-bee0-49f8-86aa-2d2835f8b9ff",
   "connections": {
     "Webhook": {
       "main": [
