@@ -1,5 +1,311 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "aa1b3f27-4347-459e-8ca5-98d46f66ec67",
+    "workflowId": "XnAma4LTufHb4LFM",
+    "nodes": [
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          -128,
+          432
+        ],
+        "id": "40a5b008-79f2-41f6-9538-4ba4adb73683",
+        "name": "When clicking ‘Execute workflow’"
+      },
+      {
+        "parameters": {
+          "url": "https://evolution.automscc.com/group/newsletterMetadata/DANIEL",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "type",
+                "value": "invite"
+              },
+              {
+                "name": "key",
+                "value": "0029VbBybMA3bbUzUaigWa1d"
+              }
+            ]
+          },
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "apikey",
+                "value": "429683C4C977415CAAFCCE10F7D57E11"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          240,
+          96
+        ],
+        "id": "cea9fb36-468c-46c2-b865-4985614a96fb",
+        "name": "HTTP Request"
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "minutes",
+                "minutesInterval": 30
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          -48,
+          96
+        ],
+        "id": "eb714462-24b0-4c19-859c-58f212520518",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "table": {
+            "__rl": true,
+            "value": "GERSSON_L9_WHA_CANAL",
+            "mode": "list",
+            "cachedResultName": "GERSSON_L9_WHA_CANAL"
+          },
+          "dataMode": "defineBelow",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "grupo_id",
+                "value": "={{ $json.id }}"
+              },
+              {
+                "column": "total_ingresos",
+                "value": "={{ $json.thread_metadata.subscribers_count }}"
+              },
+              {
+                "column": "dia",
+                "value": "={{ $now.format('yyyy-MM-dd') }}"
+              },
+              {
+                "column": "hora",
+                "value": "={{ $now.format('HH:mm:ss') }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.5,
+        "position": [
+          512,
+          96
+        ],
+        "id": "bfea5f25-223a-45b8-90d3-f5d24b3035f9",
+        "name": "Insert rows in a table",
+        "credentials": {
+          "mySql": {
+            "id": "n8fCALXWnGdmJkBN",
+            "name": "CAPTACIONES"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://gate.whapi.cloud/messages/video",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "accept",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": "Bearer HkL6ZkzysiBzvaC7kgHuBSeIdZRq5SW4"
+              }
+            ]
+          },
+          "sendBody": true,
+          "bodyParameters": {
+            "parameters": [
+              {
+                "name": "to",
+                "value": "120363404763245039@newsletter"
+              },
+              {
+                "name": "caption",
+                "value": "FRAN ES MKA"
+              },
+              {
+                "name": "media",
+                "value": "http://automscc.com/wp-content/uploads/2023/06/WhatsApp-Video-2023-06-02-at-2.20.21-PM-1.mp4"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          192,
+          464
+        ],
+        "id": "b51c8a76-25ed-4d27-8c83-5ed21ff7bffc",
+        "name": "VIDEO"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://gate.whapi.cloud/messages/image",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "accept",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": "Bearer HkL6ZkzysiBzvaC7kgHuBSeIdZRq5SW4"
+              }
+            ]
+          },
+          "sendBody": true,
+          "bodyParameters": {
+            "parameters": [
+              {
+                "name": "to",
+                "value": "120363404763245039@newsletter"
+              },
+              {
+                "name": "caption",
+                "value": "FRAN ES MKA"
+              },
+              {
+                "name": "media",
+                "value": "http://automscc.com/wp-content/uploads/2025/10/Captura-de-pantalla-1.png"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          192,
+          640
+        ],
+        "id": "df06623f-67f8-4464-be57-55a4de3c195f",
+        "name": "IMAGEN"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://gate.whapi.cloud/messages/voice",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "accept",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": "Bearer HkL6ZkzysiBzvaC7kgHuBSeIdZRq5SW4"
+              }
+            ]
+          },
+          "sendBody": true,
+          "bodyParameters": {
+            "parameters": [
+              {
+                "name": "to",
+                "value": "120363404763245039@newsletter"
+              },
+              {
+                "name": "caption",
+                "value": "FRAN ES MKA"
+              },
+              {
+                "name": "media",
+                "value": "http://minio.automscc.com/api/v1/download-shared-object/aHR0cHM6Ly9taW5pby1zdG9yYWdlLmF1dG9tc2NjLmNvbS9jaGF0d29vdC9BdWRpbyUyMGRlJTIwV2hhdHNBcHAlMjAyMDI1LTEwLTIwJTIwYSUyMGxhcyUyMDE5LjAzLjAzXzAyMmZkMTY2Lm9wdXM_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1HQVdCTVhQR05FN1BESlZWMFNMVSUyRjIwMjUxMDIxJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTAyMVQwMDA0NDNaJlgtQW16LUV4cGlyZXM9NDMyMDAmWC1BbXotU2VjdXJpdHktVG9rZW49ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmhZMk5sYzNOTFpYa2lPaUpIUVZkQ1RWaFFSMDVGTjFCRVNsWldNRk5NVlNJc0ltVjRjQ0k2TVRjMk1UQTBPREl5Tml3aWNHRnlaVzUwSWpvaVlXUnRhVzRpZlEuLXE2elpiQXE0SlY4cEMwSFk5cHNuUVF2cGFXbDFZdDItY1dyUWNjQmhIaFVoWF9ZSHVLZi02QXJaT3ZLVXhyakxjRjdaT2Nwb0tHOWUwdHVwUVgwUVEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnZlcnNpb25JZD1udWxsJlgtQW16LVNpZ25hdHVyZT1kNTQwMzg3ZjkyMmIyMjNlNzlhYTdlNmY4MmEyNTI2MTQzZjI4NzU3ODQyNzc3MTk4ZTUzNzZmNmQwOTRjM2M0"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          192,
+          304
+        ],
+        "id": "beff1832-afed-4e2a-a841-30c111f05078",
+        "name": "NOTA DE VOZ"
+      }
+    ],
+    "connections": {
+      "When clicking ‘Execute workflow’": {
+        "main": [
+          [
+            {
+              "node": "IMAGEN",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "VIDEO",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "NOTA DE VOZ",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "Insert rows in a table",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "aa1b3f27-4347-459e-8ca5-98d46f66ec67",
   "connections": {
     "When clicking ‘Execute workflow’": {
       "main": [
