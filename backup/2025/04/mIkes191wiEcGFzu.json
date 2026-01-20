@@ -1,5 +1,1245 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-19T11:00:42.653Z",
+    "createdAt": "2026-01-19T11:00:42.653Z",
+    "versionId": "ae00781a-c022-4e40-b02a-1715238c939f",
+    "workflowId": "mIkes191wiEcGFzu",
+    "nodes": [
+      {
+        "parameters": {
+          "multipleMethods": true,
+          "httpMethod": [
+            "POST"
+          ],
+          "path": "comentariosfb",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -1488,
+          -128
+        ],
+        "id": "ec66b299-eefe-416e-8c12-ccdf4a429fc9",
+        "name": "Webhook",
+        "webhookId": "3e5803b5-bd52-41a5-af3d-841e963be428"
+      },
+      {
+        "parameters": {
+          "agent": "conversationalAgent",
+          "promptType": "define",
+          "text": "={{ $json.comentario }}",
+          "options": {
+            "systemMessage": "=Eres el moderador de comentarios de una página llamada \"Tecnologia pal mundo\" que se encarga de dar los mejores productos tecnológicos al mejor precio. actúa como el mejor community manager del mundo, con experiencia de 10 años respondiendo comentarios y con un tono simpático, a veces hasta cómico para agradar más. Vendemos una app que vale 17.900 pesos el año, único pago, que sirve para ver tv, peliculas y series en celular y tv pero solo en dispositivos con android, tv con android, celulares android y pc, si preguntan aclaras, pero no des demasiadas explicaciones, mandalos al botón de whatsapp. Si preguntan el nombre de la app, no lo dices ni tampoco dices que es oculto o secreto, mandas directo al whatsapp por el botón. Tus respuestas no son abiertas, son definitivas, es decir, no esperas respuesta de los usuarios, das información y listo. NO HAGAS PREGUNTAS Tu tarea es identificar qué quiere la persona en ese único mensaje que recibes y responder en consecuencia... si piden información los mandas a presionar el botón de la publicación que dirige a whastapp. \n\nSi preguntan por algun dispositivo y es incompatible, dile que entren al chat igualmente porque hay opciones para los dispositivos incompatibles y que no se pierdan la promoción que es por poco tiempo\n\nSi dan gracias o dicen algo bueno asume que es un comprador, responde dando gracias inteligentemente y diciendo que nos recomiende.\n\nTrata de dar respuestas cortas.\n"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.7,
+        "position": [
+          224,
+          256
+        ],
+        "id": "65f74abf-8dbe-4dbb-b421-623e8c2ac89f",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "value": "gpt-4.1-mini",
+            "mode": "list",
+            "cachedResultName": "gpt-4.1-mini"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          224,
+          464
+        ],
+        "id": "ecb8c4fc-1553-460b-a2ea-090ac0fb885b",
+        "name": "OpenAI Chat Model",
+        "credentials": {
+          "openAiApi": {
+            "id": "nZ98FVO8dD6bJnEc",
+            "name": "GPT SANTIAGO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "inputText": "={{ $json.comentario }}",
+          "categories": {
+            "categories": [
+              {
+                "category": "info",
+                "description": "comentarios que indican que necesitan información o en busqueda de respuestas, NO DICE QUE ES MAGIS TV NI QUE ES GRATIS NI SARCASTICO"
+              },
+              {
+                "category": "malos",
+                "description": "Un mensaje debe clasificarse en esta categoría si contiene ataques, desprestigio o intención de dañar la reputación; enlaces o menciones de posibles estafas; afirmaciones de que el producto o servicio es gratuito, referencias a \"MagisTV\" o \"magis\" o \"magis tv\" o \"iptv\" o disponibilidad gratuita; burlas hacia compradores o comentarios sarcásticos o burlescos en general; o quejas sobre falta de entrega tras el pago o mala atención al cliente. Tambien si preguntan o afirman que es iptv o que ya la tienen hace tiempo sin pagar. En general cualquier queja o comentario que si otra persona lo lee, le genere dudas acerca de la compra o el servicio..."
+              },
+              {
+                "category": "buenos",
+                "description": "comentarios buenos de personas que aparentemente compraron, , NO DICE QUE ES MAGIS TV NI QUE ES GRATIS NI SARCASTICO"
+              },
+              {
+                "category": "ladrones",
+                "description": "comentarios intentando dar numeros de telefonos o diciendo que lo tienen mas barato, en general ladrones de clientes"
+              }
+            ]
+          },
+          "options": {
+            "fallback": "other",
+            "systemPromptTemplate": "Eres moderador de comentarios de una pagina de facebook que se dedica a vender productos digitales.\n\nlos comentarios son de personas que ven los anuncios y preguntan o felicitan o nos insultan, clasficalos."
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.textClassifier",
+        "typeVersion": 1,
+        "position": [
+          -160,
+          208
+        ],
+        "id": "a5752689-f805-4fbd-a7b4-e1b52c5bd2ba",
+        "name": "Text Classifier"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "value": "gpt-4.1",
+            "mode": "list",
+            "cachedResultName": "gpt-4.1"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          -160,
+          400
+        ],
+        "id": "01529cc6-6325-4fec-b294-cb55692b7ffc",
+        "name": "OpenAI Chat Model1",
+        "credentials": {
+          "openAiApi": {
+            "id": "nZ98FVO8dD6bJnEc",
+            "name": "GPT SANTIAGO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "DELETE",
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion').first().json.IDcomentario }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          816,
+          -96
+        ],
+        "id": "e3c5ad47-7641-4f78-8257-f45e118a3787",
+        "name": "eliminar comentario",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "GM8zNuaVwbm7HkAP",
+            "name": "San. Ciro TOKEN PERMANENTE [ENTRETENIMIENTO]"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "POST",
+          "graphApiVersion": "v22.0",
+          "node": "={{ $('asignacion').first().json.IDpagina }}",
+          "edge": "blocked",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "user",
+                  "value": "={{ $('asignacion').first().json.IDpersona }}"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          1040,
+          -96
+        ],
+        "id": "2ff68216-6ca1-4bd0-a842-0be234fbdec2",
+        "name": "bloquear persona",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "GM8zNuaVwbm7HkAP",
+            "name": "San. Ciro TOKEN PERMANENTE [ENTRETENIMIENTO]"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion').first().json.IDcomentario }}",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "fields",
+                  "value": "can_hide,can_like,can_comment,can_remove,is_hidden,from,created_time,id,object"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          304,
+          -96
+        ],
+        "id": "437fb595-84b4-4f1f-aac2-5c3217dc1358",
+        "name": "traer comentario",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "GM8zNuaVwbm7HkAP",
+            "name": "San. Ciro TOKEN PERMANENTE [ENTRETENIMIENTO]"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion').first().json.IDcomentario }}",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "fields",
+                  "value": "can_hide,can_like,can_comment,can_remove,is_hidden,from,created_time,id,object"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          592,
+          256
+        ],
+        "id": "5bd0ea7b-78c6-4c20-a8b5-60c0bff5853e",
+        "name": "coment",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "GM8zNuaVwbm7HkAP",
+            "name": "San. Ciro TOKEN PERMANENTE [ENTRETENIMIENTO]"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "07dc0b89-2475-47fe-be7a-02153d736969",
+                "leftValue": "={{ $json.can_remove }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          592,
+          -96
+        ],
+        "id": "a183ddbe-8671-4e73-b83f-f9f73eee9fc7",
+        "name": "puedo borrar?"
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "POST",
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion').first().json.IDcomentario }}",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "is_hidden",
+                  "value": "false"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          1040,
+          192
+        ],
+        "id": "74bae142-dfbf-4f26-8de7-3b96392149a7",
+        "name": "mostrar comentario",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "GM8zNuaVwbm7HkAP",
+            "name": "San. Ciro TOKEN PERMANENTE [ENTRETENIMIENTO]"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "26d78952-d630-4d9d-b1e2-60ab6e6f0771",
+                "name": "comentario",
+                "value": "={{ $json.body.entry[0].changes[0].value.message }}",
+                "type": "string"
+              },
+              {
+                "id": "3ea31217-f48c-416d-97bc-716b6757df5c",
+                "name": "IDpost",
+                "value": "={{ $json.body.entry[0].changes[0].value.post_id }}",
+                "type": "string"
+              },
+              {
+                "id": "4ed5409f-f2d7-4b0b-8e9c-1db056f0434f",
+                "name": "IDcomentario",
+                "value": "={{ $json.body.entry[0].changes[0].value.comment_id }}",
+                "type": "string"
+              },
+              {
+                "id": "d038f6ed-c5c7-43b5-9740-d246bbaa78da",
+                "name": "IDpersona",
+                "value": "={{ $json.body.entry[0].changes[0].value.from.id }}",
+                "type": "string"
+              },
+              {
+                "id": "a8d28fee-c2e0-426e-a128-d9171436e195",
+                "name": "IDpagina",
+                "value": "={{ $json.body.entry[0].id }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -608,
+          80
+        ],
+        "id": "50e830ad-c714-42f4-bce3-9b3c13bfe952",
+        "name": "asignacion"
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "POST",
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion').first().json.IDcomentario }}",
+          "edge": "comments",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "message",
+                  "value": "=@[{{ $('asignacion').first().json.IDpersona }}] {{ $('AI Agent').first().json.output }} "
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          1248,
+          288
+        ],
+        "id": "0a0ab9c3-8272-4eba-8f40-1e358f786029",
+        "name": "responder",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "GM8zNuaVwbm7HkAP",
+            "name": "San. Ciro TOKEN PERMANENTE [ENTRETENIMIENTO]"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "POST",
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion').first().json.IDcomentario }}",
+          "edge": "likes",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          1440,
+          288
+        ],
+        "id": "4eceff2e-c443-466d-8af7-e70108dc59e7",
+        "name": "LIKE",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "GM8zNuaVwbm7HkAP",
+            "name": "San. Ciro TOKEN PERMANENTE [ENTRETENIMIENTO]"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "b2fdec1a-3474-4c2a-a77e-4a4d90c03c1f",
+                "leftValue": "={{ $json.is_hidden }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          816,
+          256
+        ],
+        "id": "22326df1-e22a-4f20-a68b-1d6517edd905",
+        "name": "oculto?"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3ea31217-f48c-416d-97bc-716b6757df5c",
+                "name": "IDpost",
+                "value": "={{ $json.body.entry[0].changes[0].value.post_id }}",
+                "type": "string"
+              },
+              {
+                "id": "4ed5409f-f2d7-4b0b-8e9c-1db056f0434f",
+                "name": "IDcomentario",
+                "value": "={{ $json.body.entry[0].changes[0].value.comment_id }}",
+                "type": "string"
+              },
+              {
+                "id": "d038f6ed-c5c7-43b5-9740-d246bbaa78da",
+                "name": "IDpersona",
+                "value": "={{ $json.body.entry[0].changes[0].value.from.id }}",
+                "type": "string"
+              },
+              {
+                "id": "02e04b51-6f40-44bf-ae0e-e88511b6c424",
+                "name": "IDpagina",
+                "value": "={{ $json.body.entry[0].id }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -816,
+          -320
+        ],
+        "id": "c1844c6a-ff41-42c2-8280-de799b44bf8c",
+        "name": "asignacion1"
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "DELETE",
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion1').first().json.IDcomentario }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          -128,
+          -336
+        ],
+        "id": "f01077ab-8a7a-4be0-ad67-fdb65a8f6713",
+        "name": "eliminar comentario1",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "GM8zNuaVwbm7HkAP",
+            "name": "San. Ciro TOKEN PERMANENTE [ENTRETENIMIENTO]"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "POST",
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion1').first().json.IDpagina }}",
+          "edge": "blocked",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "user",
+                  "value": "={{ $('asignacion1').first().json.IDpersona }}"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          112,
+          -336
+        ],
+        "id": "f4053bfa-885a-4910-b515-0efc1833ce84",
+        "name": "bloquear persona1",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "GM8zNuaVwbm7HkAP",
+            "name": "San. Ciro TOKEN PERMANENTE [ENTRETENIMIENTO]"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "graphApiVersion": "v21.0",
+          "node": "={{ $('asignacion1').first().json.IDcomentario }}",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "fields",
+                  "value": "can_hide,can_like,can_comment,can_remove,is_hidden,from,created_time,id,object"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          -608,
+          -320
+        ],
+        "id": "efee5850-50bf-4beb-8a45-6706d2cf930b",
+        "name": "traer comentario1",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "GM8zNuaVwbm7HkAP",
+            "name": "San. Ciro TOKEN PERMANENTE [ENTRETENIMIENTO]"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "07dc0b89-2475-47fe-be7a-02153d736969",
+                "leftValue": "={{ $json.can_remove }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -384,
+          -320
+        ],
+        "id": "e78fea23-f213-488d-a748-20403fa7a14d",
+        "name": "puedo borrar?1"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "3ea31217-f48c-416d-97bc-716b6757df5c",
+                "name": "IDpost",
+                "value": "={{ $json.body.entry[0].changes[0].value.post_id }}",
+                "type": "string"
+              },
+              {
+                "id": "d038f6ed-c5c7-43b5-9740-d246bbaa78da",
+                "name": "IDpersona",
+                "value": "={{ $json.body.entry[0].changes[0].value.from.id }}",
+                "type": "string"
+              },
+              {
+                "id": "afb58602-a395-4732-ac6e-df8b48559fed",
+                "name": "IDpagina",
+                "value": "={{ $json.body.entry[0].id }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -608,
+          -528
+        ],
+        "id": "df49162f-c4f0-4ef9-b183-3b648455be3c",
+        "name": "asignacion2"
+      },
+      {
+        "parameters": {
+          "httpRequestMethod": "POST",
+          "graphApiVersion": "v21.0",
+          "node": "={{ $json.IDpagina }}",
+          "edge": "blocked",
+          "options": {
+            "queryParameters": {
+              "parameter": [
+                {
+                  "name": "user",
+                  "value": "={{ $('asignacion2').first().json.IDpersona }}"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.facebookGraphApi",
+        "typeVersion": 1,
+        "position": [
+          -384,
+          -528
+        ],
+        "id": "b45951dc-cffb-47a4-a25c-58bf74c4b4d1",
+        "name": "bloquear persona2",
+        "credentials": {
+          "facebookGraphApi": {
+            "id": "GM8zNuaVwbm7HkAP",
+            "name": "San. Ciro TOKEN PERMANENTE [ENTRETENIMIENTO]"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "c1aa4651-cbf5-435b-b4f1-8841c04b4d30",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.photo }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -1040,
+          -16
+        ],
+        "id": "3588a167-2746-4071-a075-bfffcf0a3c61",
+        "name": "FOTO?"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "f9663ddb-7423-465d-969a-4f2c80ee83f1",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.reaction_type }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -1264,
+          -128
+        ],
+        "id": "a1b0eea1-e814-4473-9b52-5f17c36a466d",
+        "name": "REACCION?"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "48f0eb34-80de-4fbf-ab8d-669fa53bab70",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.message }}",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "exists",
+                  "singleValue": true
+                }
+              },
+              {
+                "id": "f9c05b6c-0a07-4566-a1ef-f9a4ee32f3d8",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.from.id }}",
+                "rightValue": "108665132148749",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEquals"
+                }
+              },
+              {
+                "id": "88ab43b2-ee08-4479-a529-8a55d05e35a0",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.from.name }}",
+                "rightValue": "Entretenimieno Sin Frontera",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEquals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -816,
+          80
+        ],
+        "id": "609ca73a-283e-4049-adc5-e46ab1b0d8ee",
+        "name": "COMENT? FROM ME?"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "15847941-b999-4bee-b8fd-8aa0e2c8238e",
+                "leftValue": "={{ $json.comentario.toLowerCase() }}",
+                "rightValue": "/magi|ip|estafa|mala|no sirve|ojo|rob/",
+                "operator": {
+                  "type": "string",
+                  "operation": "regex"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -384,
+          80
+        ],
+        "id": "d5f1f96f-f4aa-4993-966d-9a68031d9d6b",
+        "name": "PALABRAS DIRECTAS?"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "8d0eccc5-1f1e-4575-a838-4bb603628ac8",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.reaction_type }}",
+                "rightValue": "haha",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              },
+              {
+                "id": "bb1c2f0d-2a6b-4424-a77b-a82c943f25a8",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.reaction_type }}",
+                "rightValue": "angry",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              }
+            ],
+            "combinator": "or"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -1040,
+          -528
+        ],
+        "id": "3abba7f6-c058-47ba-888d-71912cf7fd64",
+        "name": "ENOJA | RISA"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "f9c05b6c-0a07-4566-a1ef-f9a4ee32f3d8",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.from.id }}",
+                "rightValue": "108665132148749",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEquals"
+                }
+              },
+              {
+                "id": "88ab43b2-ee08-4479-a529-8a55d05e35a0",
+                "leftValue": "={{ $json.body.entry[0].changes[0].value.from.name }}",
+                "rightValue": "Entretenimieno Sin Frontera",
+                "operator": {
+                  "type": "string",
+                  "operation": "notEquals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          -816,
+          -528
+        ],
+        "id": "5d7399e3-2478-4dd0-85e3-51a8e7e46ca4",
+        "name": "FROM ME?"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "REACCION?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent": {
+        "main": [
+          [
+            {
+              "node": "coment",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model1": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "Text Classifier",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Text Classifier": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "traer comentario",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "traer comentario",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "eliminar comentario": {
+        "main": [
+          [
+            {
+              "node": "bloquear persona",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "traer comentario": {
+        "main": [
+          [
+            {
+              "node": "puedo borrar?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "coment": {
+        "main": [
+          [
+            {
+              "node": "oculto?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "puedo borrar?": {
+        "main": [
+          [
+            {
+              "node": "eliminar comentario",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "mostrar comentario": {
+        "main": [
+          [
+            {
+              "node": "responder",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "asignacion": {
+        "main": [
+          [
+            {
+              "node": "PALABRAS DIRECTAS?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "responder": {
+        "main": [
+          [
+            {
+              "node": "LIKE",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "oculto?": {
+        "main": [
+          [
+            {
+              "node": "mostrar comentario",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "responder",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "eliminar comentario1": {
+        "main": [
+          [
+            {
+              "node": "bloquear persona1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "traer comentario1": {
+        "main": [
+          [
+            {
+              "node": "puedo borrar?1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "puedo borrar?1": {
+        "main": [
+          [
+            {
+              "node": "eliminar comentario1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "asignacion1": {
+        "main": [
+          [
+            {
+              "node": "traer comentario1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "asignacion2": {
+        "main": [
+          [
+            {
+              "node": "bloquear persona2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "FOTO?": {
+        "main": [
+          [
+            {
+              "node": "asignacion1",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "COMENT? FROM ME?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "REACCION?": {
+        "main": [
+          [
+            {
+              "node": "ENOJA | RISA",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "FOTO?",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "COMENT? FROM ME?": {
+        "main": [
+          [
+            {
+              "node": "asignacion",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "PALABRAS DIRECTAS?": {
+        "main": [
+          [
+            {
+              "node": "traer comentario",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Text Classifier",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "ENOJA | RISA": {
+        "main": [
+          [
+            {
+              "node": "FROM ME?",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          []
+        ]
+      },
+      "FROM ME?": {
+        "main": [
+          [
+            {
+              "node": "asignacion2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "activeVersionId": "ae00781a-c022-4e40-b02a-1715238c939f",
   "connections": {
     "Webhook": {
       "main": [
