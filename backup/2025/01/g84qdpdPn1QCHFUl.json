@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-01-19T11:00:42.653Z",
-    "createdAt": "2026-01-19T11:00:42.653Z",
-    "versionId": "6fffc5a5-6e51-4ca3-990e-0a3975f1bde1",
+    "updatedAt": "2026-01-21T00:19:42.000Z",
+    "createdAt": "2026-01-21T00:19:39.631Z",
+    "versionId": "2784d5e5-61c4-473d-a8f1-978037e09154",
     "workflowId": "g84qdpdPn1QCHFUl",
     "nodes": [
       {
@@ -15,347 +15,12 @@
         "type": "n8n-nodes-base.webhook",
         "typeVersion": 2,
         "position": [
-          -1660,
-          1070
+          -1664,
+          1072
         ],
         "id": "2f2ba063-c8e4-4906-87c2-c1342facb58c",
         "name": "Webhook",
         "webhookId": "984e9380-49c8-4e37-9c78-d8de04bd9c10"
-      },
-      {
-        "parameters": {
-          "mode": "raw",
-          "jsonOutput": "={{ $json.body }}",
-          "options": {}
-        },
-        "type": "n8n-nodes-base.set",
-        "typeVersion": 3.4,
-        "position": [
-          -1000,
-          1270
-        ],
-        "id": "f3fa9e4e-903b-435c-afa9-064efaee4428",
-        "name": "Edit Fields"
-      },
-      {
-        "parameters": {
-          "assignments": {
-            "assignments": [
-              {
-                "id": "25f4a5ff-c1d6-4209-953a-7c18ef4ddc99",
-                "name": "producto",
-                "value": "={{ $json.data.product.name }}",
-                "type": "string"
-              },
-              {
-                "id": "a7f92ef5-3505-491d-98e0-b69c2beeb858",
-                "name": "coproducción activa",
-                "value": "={{ $json.data.product.has_co_production }}",
-                "type": "boolean"
-              },
-              {
-                "id": "5890810b-53a9-4b5d-b23a-35b627d445ff",
-                "name": "correo",
-                "value": "={{ $json.data.buyer.email }}",
-                "type": "string"
-              },
-              {
-                "id": "b4033946-f611-442d-8a4a-12368dc5549f",
-                "name": "nombre",
-                "value": "={{ $json.data.buyer.name }}",
-                "type": "string"
-              },
-              {
-                "id": "9ea3ff08-1a8d-489a-bef7-2c7807473059",
-                "name": "telefono",
-                "value": "={{ $json.data.buyer.checkout_phone }}",
-                "type": "string"
-              },
-              {
-                "id": "97558f09-72cb-45d6-9b0c-88b4156e4814",
-                "name": "pais",
-                "value": "={{ $json.data.buyer.address.country }}",
-                "type": "string"
-              },
-              {
-                "id": "68a8ce18-fc89-476c-a314-df126129c832",
-                "name": "comision hotmart",
-                "value": "={{ $json.data.commissions[0].value }}",
-                "type": "number"
-              },
-              {
-                "id": "8bbb5436-13db-46a1-a010-38df9b0a0389",
-                "name": "parte productor",
-                "value": "={{ $json.data.commissions[1].value }}",
-                "type": "number"
-              },
-              {
-                "id": "cb21091d-3c56-46f1-92ec-008bca9d4858",
-                "name": "valor producto",
-                "value": "={{ $json.data.purchase.original_offer_price.value }}",
-                "type": "number"
-              },
-              {
-                "id": "29122817-28ff-4dde-a831-c41c95bae0a0",
-                "name": "Transacción",
-                "value": "={{ $json.data.purchase.transaction }}",
-                "type": "string"
-              },
-              {
-                "id": "c9105dd0-a611-458e-90ea-067a0538b62a",
-                "name": "fecha",
-                "value": "={{ $json.data.purchase.approved_date.toDateTime('ms').format('dd-MM-yyyy HH:mm:ss') }}",
-                "type": "string"
-              },
-              {
-                "id": "60169604-8475-429b-b65b-08da02e5d8c8",
-                "name": "oferta",
-                "value": "={{ $json.data.purchase.offer.code }}",
-                "type": "string"
-              },
-              {
-                "id": "5b71cb74-4f3d-4765-9d69-66c18f2e4623",
-                "name": "ORDERBUMP",
-                "value": "NO",
-                "type": "string"
-              }
-            ]
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.set",
-        "typeVersion": 3.4,
-        "position": [
-          -780,
-          1270
-        ],
-        "id": "fe75c888-97de-4dac-bb82-d5c0bb502656",
-        "name": "Edit Fields1"
-      },
-      {
-        "parameters": {
-          "operation": "appendOrUpdate",
-          "documentId": {
-            "__rl": true,
-            "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-            "mode": "url"
-          },
-          "sheetName": {
-            "__rl": true,
-            "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-            "mode": "url"
-          },
-          "columns": {
-            "mappingMode": "autoMapInputData",
-            "value": {},
-            "matchingColumns": [
-              "Transacción"
-            ],
-            "schema": [
-              {
-                "id": "producto",
-                "displayName": "producto",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "coproducción activa",
-                "displayName": "coproducción activa",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "correo",
-                "displayName": "correo",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "nombre",
-                "displayName": "nombre",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "telefono",
-                "displayName": "telefono",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "pais",
-                "displayName": "pais",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "comision hotmart",
-                "displayName": "comision hotmart",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": false
-              },
-              {
-                "id": "parte productor",
-                "displayName": "parte productor",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "valor producto",
-                "displayName": "valor producto",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "VALOR",
-                "displayName": "VALOR",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "VALOR DESPUES DE HOTMART",
-                "displayName": "VALOR DESPUES DE HOTMART",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "Transacción",
-                "displayName": "Transacción",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": false
-              },
-              {
-                "id": "Comisión Coproductor",
-                "displayName": "Comisión Coproductor",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "fecha",
-                "displayName": "fecha",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "ORDERBUMP",
-                "displayName": "ORDERBUMP",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "oferta",
-                "displayName": "oferta",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              }
-            ],
-            "attemptToConvertTypes": false,
-            "convertFieldsToString": false
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.googleSheets",
-        "typeVersion": 4.5,
-        "position": [
-          -340,
-          1270
-        ],
-        "id": "5646eea9-817e-47d2-a9f2-ce52bc7b53db",
-        "name": "Google Sheets8",
-        "retryOnFail": true,
-        "maxTries": 5,
-        "waitBetweenTries": 5000,
-        "credentials": {
-          "googleSheetsOAuth2Api": {
-            "id": "zruD3ONGC9HU2i7s",
-            "name": "CUENTA SANTIAGO"
-          }
-        },
-        "onError": "continueErrorOutput"
-      },
-      {
-        "parameters": {
-          "conditions": {
-            "options": {
-              "caseSensitive": true,
-              "leftValue": "",
-              "typeValidation": "strict",
-              "version": 2
-            },
-            "conditions": [
-              {
-                "id": "86765f19-f5cf-43a7-a3f7-de1ddce62933",
-                "leftValue": "={{ $json[\"coproducción activa\"] }}",
-                "rightValue": "",
-                "operator": {
-                  "type": "boolean",
-                  "operation": "true",
-                  "singleValue": true
-                }
-              }
-            ],
-            "combinator": "and"
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.if",
-        "typeVersion": 2.2,
-        "position": [
-          -560,
-          1270
-        ],
-        "id": "5a36e01c-0527-405b-95b5-7864e0943a3d",
-        "name": "If4"
       },
       {
         "parameters": {
@@ -385,7 +50,7 @@
         "typeVersion": 2.2,
         "position": [
           -1440,
-          1070
+          1072
         ],
         "id": "2896b574-e7f1-4fc9-9b67-34a9ff462696",
         "name": "If5"
@@ -397,667 +62,37 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          -1220,
-          820
+          -1136,
+          1024
         ],
         "id": "5461c6b8-dd22-4c9c-abb7-e5fc1315c245",
         "name": "Code2"
       },
       {
         "parameters": {
-          "method": "POST",
-          "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
-          "sendBody": true,
-          "specifyBody": "json",
-          "jsonBody": "={\n  \"chat_id\": \"-1002459933143\",\n  \"message_thread_id\": 63,\n  {{ $json.toJsonString().replace(/^\\{|\\}$/g, \"\")\n }},\n  \"parse_mode\": \"Markdown\"\n}\n",
-          "options": {}
-        },
-        "id": "866c7e7c-7730-4a80-9296-25b1939cafc2",
-        "name": "HTTP Request4",
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 4.2,
-        "position": [
-          -1000,
-          820
-        ]
-      },
-      {
-        "parameters": {
-          "conditions": {
-            "options": {
-              "caseSensitive": true,
-              "leftValue": "",
-              "typeValidation": "strict",
-              "version": 2
-            },
-            "conditions": [
-              {
-                "id": "8d359df0-f6f6-4054-a499-377618dae6f4",
-                "leftValue": "={{ $json.body.data.purchase.order_bump?.is_order_bump }}",
-                "rightValue": "true",
-                "operator": {
-                  "type": "boolean",
-                  "operation": "true",
-                  "singleValue": true
-                }
-              }
-            ],
-            "combinator": "and"
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.if",
-        "typeVersion": 2.2,
-        "position": [
-          -1220,
-          1170
-        ],
-        "id": "34bb4fec-8576-49e0-bcf1-c67bcf64d9d1",
-        "name": "If"
-      },
-      {
-        "parameters": {
-          "mode": "raw",
-          "jsonOutput": "={{ $json.body }}",
-          "options": {}
-        },
-        "type": "n8n-nodes-base.set",
-        "typeVersion": 3.4,
-        "position": [
-          -1000,
-          1020
-        ],
-        "id": "d58777f0-d9a4-4e9d-a180-13a66ddf3a37",
-        "name": "Edit Fields2"
-      },
-      {
-        "parameters": {
-          "assignments": {
-            "assignments": [
-              {
-                "id": "25f4a5ff-c1d6-4209-953a-7c18ef4ddc99",
-                "name": "producto",
-                "value": "={{ $json.data.product.name }}",
-                "type": "string"
-              },
-              {
-                "id": "a7f92ef5-3505-491d-98e0-b69c2beeb858",
-                "name": "coproducción activa",
-                "value": "={{ $json.data.product.has_co_production }}",
-                "type": "boolean"
-              },
-              {
-                "id": "5890810b-53a9-4b5d-b23a-35b627d445ff",
-                "name": "correo",
-                "value": "={{ $json.data.buyer.email }}",
-                "type": "string"
-              },
-              {
-                "id": "b4033946-f611-442d-8a4a-12368dc5549f",
-                "name": "nombre",
-                "value": "={{ $json.data.buyer.name }}",
-                "type": "string"
-              },
-              {
-                "id": "9ea3ff08-1a8d-489a-bef7-2c7807473059",
-                "name": "telefono",
-                "value": "={{ $json.data.buyer.checkout_phone }}",
-                "type": "string"
-              },
-              {
-                "id": "97558f09-72cb-45d6-9b0c-88b4156e4814",
-                "name": "pais",
-                "value": "={{ $json.data.buyer.address.country }}",
-                "type": "string"
-              },
-              {
-                "id": "68a8ce18-fc89-476c-a314-df126129c832",
-                "name": "comision hotmart",
-                "value": "={{ $json.data.commissions[0].value }}",
-                "type": "number"
-              },
-              {
-                "id": "8bbb5436-13db-46a1-a010-38df9b0a0389",
-                "name": "parte productor",
-                "value": "={{ $json.data.commissions[1].value }}",
-                "type": "number"
-              },
-              {
-                "id": "cb21091d-3c56-46f1-92ec-008bca9d4858",
-                "name": "valor producto",
-                "value": "={{ $json.data.purchase.original_offer_price.value }}",
-                "type": "number"
-              },
-              {
-                "id": "29122817-28ff-4dde-a831-c41c95bae0a0",
-                "name": "Transacción",
-                "value": "={{ $json.data.purchase.transaction }}",
-                "type": "string"
-              },
-              {
-                "id": "c9105dd0-a611-458e-90ea-067a0538b62a",
-                "name": "fecha",
-                "value": "={{ $json.data.purchase.approved_date.toDateTime('ms').format('dd-MM-yyyy HH:mm:ss') }}",
-                "type": "string"
-              },
-              {
-                "id": "60169604-8475-429b-b65b-08da02e5d8c8",
-                "name": "oferta",
-                "value": "={{ $json.data.purchase.offer.code }}",
-                "type": "string"
-              }
-            ]
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.set",
-        "typeVersion": 3.4,
-        "position": [
-          -780,
-          1020
-        ],
-        "id": "c006f90f-14d7-4194-9584-9d8060c28ab0",
-        "name": "Edit Fields3"
-      },
-      {
-        "parameters": {
-          "conditions": {
-            "options": {
-              "caseSensitive": true,
-              "leftValue": "",
-              "typeValidation": "strict",
-              "version": 2
-            },
-            "conditions": [
-              {
-                "id": "86765f19-f5cf-43a7-a3f7-de1ddce62933",
-                "leftValue": "={{ $json[\"coproducción activa\"] }}",
-                "rightValue": "",
-                "operator": {
-                  "type": "boolean",
-                  "operation": "true",
-                  "singleValue": true
-                }
-              }
-            ],
-            "combinator": "and"
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.if",
-        "typeVersion": 2.2,
-        "position": [
-          -560,
-          1020
-        ],
-        "id": "78fd1c6d-02c3-41f6-80be-ff8db5bac7c5",
-        "name": "If6"
-      },
-      {
-        "parameters": {
-          "operation": "update",
-          "documentId": {
-            "__rl": true,
-            "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-            "mode": "url"
-          },
-          "sheetName": {
-            "__rl": true,
-            "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-            "mode": "url"
-          },
-          "columns": {
-            "mappingMode": "defineBelow",
-            "value": {
-              "Transacción": "={{ $('If').item.json.body.data.purchase.transaction }}",
-              "ORDERBUMP": "={{ $json.producto }}"
-            },
-            "matchingColumns": [
-              "Transacción"
-            ],
-            "schema": [
-              {
-                "id": "producto",
-                "displayName": "producto",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "coproducción activa",
-                "displayName": "coproducción activa",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "correo",
-                "displayName": "correo",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "nombre",
-                "displayName": "nombre",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "telefono",
-                "displayName": "telefono",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "pais",
-                "displayName": "pais",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "comision hotmart",
-                "displayName": "comision hotmart",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "parte productor",
-                "displayName": "parte productor",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "valor producto",
-                "displayName": "valor producto",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "VALOR",
-                "displayName": "VALOR",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "VALOR DESPUES DE HOTMART",
-                "displayName": "VALOR DESPUES DE HOTMART",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "Transacción",
-                "displayName": "Transacción",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": false
-              },
-              {
-                "id": "Comisión Coproductor",
-                "displayName": "Comisión Coproductor",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "fecha",
-                "displayName": "fecha",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "ORDERBUMP",
-                "displayName": "ORDERBUMP",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "oferta",
-                "displayName": "oferta",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "dia",
-                "displayName": "dia",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              }
-            ],
-            "attemptToConvertTypes": false,
-            "convertFieldsToString": false
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.googleSheets",
-        "typeVersion": 4.5,
-        "position": [
-          380,
-          780
-        ],
-        "id": "5b47800a-b30d-4ee8-9eea-863affa7669f",
-        "name": "Google Sheets",
-        "retryOnFail": true,
-        "maxTries": 5,
-        "waitBetweenTries": 5000,
-        "alwaysOutputData": true,
-        "credentials": {
-          "googleSheetsOAuth2Api": {
-            "id": "zruD3ONGC9HU2i7s",
-            "name": "CUENTA SANTIAGO"
+          "chatId": "-1002459933143",
+          "text": "={{ $json.text }}",
+          "additionalFields": {
+            "appendAttribution": false,
+            "parse_mode": "Markdown",
+            "message_thread_id": 1944
           }
         },
-        "onError": "continueErrorOutput"
-      },
-      {
-        "parameters": {
-          "operation": "appendOrUpdate",
-          "documentId": {
-            "__rl": true,
-            "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-            "mode": "url"
-          },
-          "sheetName": {
-            "__rl": true,
-            "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-            "mode": "url"
-          },
-          "columns": {
-            "mappingMode": "autoMapInputData",
-            "value": {},
-            "matchingColumns": [
-              "Transacción"
-            ],
-            "schema": [
-              {
-                "id": "producto",
-                "displayName": "producto",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "coproducción activa",
-                "displayName": "coproducción activa",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "correo",
-                "displayName": "correo",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "nombre",
-                "displayName": "nombre",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "telefono",
-                "displayName": "telefono",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "pais",
-                "displayName": "pais",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "comision hotmart",
-                "displayName": "comision hotmart",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": false
-              },
-              {
-                "id": "parte productor",
-                "displayName": "parte productor",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "valor producto",
-                "displayName": "valor producto",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "VALOR",
-                "displayName": "VALOR",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "VALOR DESPUES DE HOTMART",
-                "displayName": "VALOR DESPUES DE HOTMART",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "Transacción",
-                "displayName": "Transacción",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": false
-              },
-              {
-                "id": "Comisión Coproductor",
-                "displayName": "Comisión Coproductor",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "fecha",
-                "displayName": "fecha",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "ORDERBUMP",
-                "displayName": "ORDERBUMP",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "oferta",
-                "displayName": "oferta",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              }
-            ],
-            "attemptToConvertTypes": false,
-            "convertFieldsToString": false
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.googleSheets",
-        "typeVersion": 4.5,
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
         "position": [
-          -340,
-          980
+          -928,
+          1024
         ],
-        "id": "b4037b1a-5752-4005-b379-762f6647359b",
-        "name": "Google Sheets9",
-        "retryOnFail": true,
-        "maxTries": 5,
-        "waitBetweenTries": 5000,
+        "id": "4105336b-ddcb-413c-9731-cdbe3b62def1",
+        "name": "Send a text message",
+        "webhookId": "cb2d4d0a-0c96-407e-b06c-4652d5622d62",
         "credentials": {
-          "googleSheetsOAuth2Api": {
-            "id": "zruD3ONGC9HU2i7s",
-            "name": "CUENTA SANTIAGO"
+          "telegramApi": {
+            "id": "wty5axEthys317UK",
+            "name": "ADRIANA"
           }
-        },
-        "onError": "continueErrorOutput"
-      },
-      {
-        "parameters": {
-          "documentId": {
-            "__rl": true,
-            "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-            "mode": "url"
-          },
-          "sheetName": {
-            "__rl": true,
-            "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-            "mode": "url"
-          },
-          "filtersUI": {
-            "values": [
-              {
-                "lookupColumn": "Transacción",
-                "lookupValue": "={{ $('If').item.json.body.data.purchase.order_bump?.parent_purchase_transaction }}"
-              }
-            ]
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.googleSheets",
-        "typeVersion": 4.5,
-        "position": [
-          120,
-          860
-        ],
-        "id": "05bc756a-66c6-4ac3-a21f-6ec87be3974d",
-        "name": "Google Sheets1",
-        "retryOnFail": true,
-        "maxTries": 5,
-        "waitBetweenTries": 5000,
-        "alwaysOutputData": true,
-        "credentials": {
-          "googleSheetsOAuth2Api": {
-            "id": "zruD3ONGC9HU2i7s",
-            "name": "CUENTA SANTIAGO"
-          }
-        },
-        "onError": "continueErrorOutput"
-      },
-      {
-        "parameters": {
-          "amount": 2,
-          "unit": "minutes"
-        },
-        "type": "n8n-nodes-base.wait",
-        "typeVersion": 1.1,
-        "position": [
-          -120,
-          870
-        ],
-        "id": "da8b0889-9221-4892-90b8-438379738718",
-        "name": "Wait3",
-        "webhookId": "b0e7088f-8eff-45b7-97cb-84dbf13054bf"
+        }
       }
     ],
     "connections": {
@@ -1072,39 +107,6 @@
           ]
         ]
       },
-      "Edit Fields": {
-        "main": [
-          [
-            {
-              "node": "Edit Fields1",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Edit Fields1": {
-        "main": [
-          [
-            {
-              "node": "If4",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "If4": {
-        "main": [
-          [
-            {
-              "node": "Google Sheets8",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
       "If5": {
         "main": [
           [
@@ -1112,118 +114,15 @@
               "node": "Code2",
               "type": "main",
               "index": 0
-            },
-            {
-              "node": "If",
-              "type": "main",
-              "index": 0
             }
           ]
-        ]
-      },
-      "Google Sheets8": {
-        "main": [
-          [],
-          []
         ]
       },
       "Code2": {
         "main": [
           [
             {
-              "node": "HTTP Request4",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "If": {
-        "main": [
-          [
-            {
-              "node": "Edit Fields2",
-              "type": "main",
-              "index": 0
-            }
-          ],
-          [
-            {
-              "node": "Edit Fields",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Edit Fields2": {
-        "main": [
-          [
-            {
-              "node": "Edit Fields3",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Edit Fields3": {
-        "main": [
-          [
-            {
-              "node": "If6",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "If6": {
-        "main": [
-          [
-            {
-              "node": "Google Sheets9",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Google Sheets9": {
-        "main": [
-          [
-            {
-              "node": "Wait3",
-              "type": "main",
-              "index": 0
-            }
-          ],
-          []
-        ]
-      },
-      "Google Sheets1": {
-        "main": [
-          [
-            {
-              "node": "Google Sheets",
-              "type": "main",
-              "index": 0
-            }
-          ],
-          []
-        ]
-      },
-      "Google Sheets": {
-        "main": [
-          [],
-          []
-        ]
-      },
-      "Wait3": {
-        "main": [
-          [
-            {
-              "node": "Google Sheets1",
+              "node": "Send a text message",
               "type": "main",
               "index": 0
             }
@@ -1231,51 +130,18 @@
         ]
       }
     },
-    "authors": "system migration",
-    "name": null,
-    "description": null,
+    "authors": "Santiago ciro",
+    "name": "Version 2784d5e5",
+    "description": "",
     "autosaved": false
   },
-  "activeVersionId": "6fffc5a5-6e51-4ca3-990e-0a3975f1bde1",
+  "activeVersionId": "2784d5e5-61c4-473d-a8f1-978037e09154",
   "connections": {
     "Webhook": {
       "main": [
         [
           {
             "node": "If5",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Edit Fields": {
-      "main": [
-        [
-          {
-            "node": "Edit Fields1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Edit Fields1": {
-      "main": [
-        [
-          {
-            "node": "If4",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If4": {
-      "main": [
-        [
-          {
-            "node": "Google Sheets8",
             "type": "main",
             "index": 0
           }
@@ -1289,118 +155,15 @@
             "node": "Code2",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "If",
-            "type": "main",
-            "index": 0
           }
         ]
-      ]
-    },
-    "Google Sheets8": {
-      "main": [
-        [],
-        []
       ]
     },
     "Code2": {
       "main": [
         [
           {
-            "node": "HTTP Request4",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If": {
-      "main": [
-        [
-          {
-            "node": "Edit Fields2",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Edit Fields",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Edit Fields2": {
-      "main": [
-        [
-          {
-            "node": "Edit Fields3",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Edit Fields3": {
-      "main": [
-        [
-          {
-            "node": "If6",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If6": {
-      "main": [
-        [
-          {
-            "node": "Google Sheets9",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Sheets9": {
-      "main": [
-        [
-          {
-            "node": "Wait3",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        []
-      ]
-    },
-    "Google Sheets1": {
-      "main": [
-        [
-          {
-            "node": "Google Sheets",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        []
-      ]
-    },
-    "Google Sheets": {
-      "main": [
-        [],
-        []
-      ]
-    },
-    "Wait3": {
-      "main": [
-        [
-          {
-            "node": "Google Sheets1",
+            "node": "Send a text message",
             "type": "main",
             "index": 0
           }
@@ -1425,347 +188,12 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -1660,
-        1070
+        -1664,
+        1072
       ],
       "id": "2f2ba063-c8e4-4906-87c2-c1342facb58c",
       "name": "Webhook",
       "webhookId": "984e9380-49c8-4e37-9c78-d8de04bd9c10"
-    },
-    {
-      "parameters": {
-        "mode": "raw",
-        "jsonOutput": "={{ $json.body }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        -1000,
-        1270
-      ],
-      "id": "f3fa9e4e-903b-435c-afa9-064efaee4428",
-      "name": "Edit Fields"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "25f4a5ff-c1d6-4209-953a-7c18ef4ddc99",
-              "name": "producto",
-              "value": "={{ $json.data.product.name }}",
-              "type": "string"
-            },
-            {
-              "id": "a7f92ef5-3505-491d-98e0-b69c2beeb858",
-              "name": "coproducción activa",
-              "value": "={{ $json.data.product.has_co_production }}",
-              "type": "boolean"
-            },
-            {
-              "id": "5890810b-53a9-4b5d-b23a-35b627d445ff",
-              "name": "correo",
-              "value": "={{ $json.data.buyer.email }}",
-              "type": "string"
-            },
-            {
-              "id": "b4033946-f611-442d-8a4a-12368dc5549f",
-              "name": "nombre",
-              "value": "={{ $json.data.buyer.name }}",
-              "type": "string"
-            },
-            {
-              "id": "9ea3ff08-1a8d-489a-bef7-2c7807473059",
-              "name": "telefono",
-              "value": "={{ $json.data.buyer.checkout_phone }}",
-              "type": "string"
-            },
-            {
-              "id": "97558f09-72cb-45d6-9b0c-88b4156e4814",
-              "name": "pais",
-              "value": "={{ $json.data.buyer.address.country }}",
-              "type": "string"
-            },
-            {
-              "id": "68a8ce18-fc89-476c-a314-df126129c832",
-              "name": "comision hotmart",
-              "value": "={{ $json.data.commissions[0].value }}",
-              "type": "number"
-            },
-            {
-              "id": "8bbb5436-13db-46a1-a010-38df9b0a0389",
-              "name": "parte productor",
-              "value": "={{ $json.data.commissions[1].value }}",
-              "type": "number"
-            },
-            {
-              "id": "cb21091d-3c56-46f1-92ec-008bca9d4858",
-              "name": "valor producto",
-              "value": "={{ $json.data.purchase.original_offer_price.value }}",
-              "type": "number"
-            },
-            {
-              "id": "29122817-28ff-4dde-a831-c41c95bae0a0",
-              "name": "Transacción",
-              "value": "={{ $json.data.purchase.transaction }}",
-              "type": "string"
-            },
-            {
-              "id": "c9105dd0-a611-458e-90ea-067a0538b62a",
-              "name": "fecha",
-              "value": "={{ $json.data.purchase.approved_date.toDateTime('ms').format('dd-MM-yyyy HH:mm:ss') }}",
-              "type": "string"
-            },
-            {
-              "id": "60169604-8475-429b-b65b-08da02e5d8c8",
-              "name": "oferta",
-              "value": "={{ $json.data.purchase.offer.code }}",
-              "type": "string"
-            },
-            {
-              "id": "5b71cb74-4f3d-4765-9d69-66c18f2e4623",
-              "name": "ORDERBUMP",
-              "value": "NO",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        -780,
-        1270
-      ],
-      "id": "fe75c888-97de-4dac-bb82-d5c0bb502656",
-      "name": "Edit Fields1"
-    },
-    {
-      "parameters": {
-        "operation": "appendOrUpdate",
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "columns": {
-          "mappingMode": "autoMapInputData",
-          "value": {},
-          "matchingColumns": [
-            "Transacción"
-          ],
-          "schema": [
-            {
-              "id": "producto",
-              "displayName": "producto",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "coproducción activa",
-              "displayName": "coproducción activa",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "correo",
-              "displayName": "correo",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "nombre",
-              "displayName": "nombre",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "telefono",
-              "displayName": "telefono",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "pais",
-              "displayName": "pais",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "comision hotmart",
-              "displayName": "comision hotmart",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "parte productor",
-              "displayName": "parte productor",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "valor producto",
-              "displayName": "valor producto",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "VALOR",
-              "displayName": "VALOR",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "VALOR DESPUES DE HOTMART",
-              "displayName": "VALOR DESPUES DE HOTMART",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Transacción",
-              "displayName": "Transacción",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "Comisión Coproductor",
-              "displayName": "Comisión Coproductor",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "fecha",
-              "displayName": "fecha",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "ORDERBUMP",
-              "displayName": "ORDERBUMP",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "oferta",
-              "displayName": "oferta",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        -340,
-        1270
-      ],
-      "id": "5646eea9-817e-47d2-a9f2-ce52bc7b53db",
-      "name": "Google Sheets8",
-      "retryOnFail": true,
-      "maxTries": 5,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "CUENTA SANTIAGO"
-        }
-      },
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "86765f19-f5cf-43a7-a3f7-de1ddce62933",
-              "leftValue": "={{ $json[\"coproducción activa\"] }}",
-              "rightValue": "",
-              "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        -560,
-        1270
-      ],
-      "id": "5a36e01c-0527-405b-95b5-7864e0943a3d",
-      "name": "If4"
     },
     {
       "parameters": {
@@ -1795,7 +223,7 @@
       "typeVersion": 2.2,
       "position": [
         -1440,
-        1070
+        1072
       ],
       "id": "2896b574-e7f1-4fc9-9b67-34a9ff462696",
       "name": "If5"
@@ -1807,667 +235,37 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1220,
-        820
+        -1136,
+        1024
       ],
       "id": "5461c6b8-dd22-4c9c-abb7-e5fc1315c245",
       "name": "Code2"
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "https://api.telegram.org/bot8117750846:AAExGxB3Mbwv2YBb6b7rMAvP6vsIPeH8EIM/sendMessage",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"chat_id\": \"-1002459933143\",\n  \"message_thread_id\": 63,\n  {{ $json.toJsonString().replace(/^\\{|\\}$/g, \"\")\n }},\n  \"parse_mode\": \"Markdown\"\n}\n",
-        "options": {}
-      },
-      "id": "866c7e7c-7730-4a80-9296-25b1939cafc2",
-      "name": "HTTP Request4",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        -1000,
-        820
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "8d359df0-f6f6-4054-a499-377618dae6f4",
-              "leftValue": "={{ $json.body.data.purchase.order_bump?.is_order_bump }}",
-              "rightValue": "true",
-              "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        -1220,
-        1170
-      ],
-      "id": "34bb4fec-8576-49e0-bcf1-c67bcf64d9d1",
-      "name": "If"
-    },
-    {
-      "parameters": {
-        "mode": "raw",
-        "jsonOutput": "={{ $json.body }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        -1000,
-        1020
-      ],
-      "id": "d58777f0-d9a4-4e9d-a180-13a66ddf3a37",
-      "name": "Edit Fields2"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "25f4a5ff-c1d6-4209-953a-7c18ef4ddc99",
-              "name": "producto",
-              "value": "={{ $json.data.product.name }}",
-              "type": "string"
-            },
-            {
-              "id": "a7f92ef5-3505-491d-98e0-b69c2beeb858",
-              "name": "coproducción activa",
-              "value": "={{ $json.data.product.has_co_production }}",
-              "type": "boolean"
-            },
-            {
-              "id": "5890810b-53a9-4b5d-b23a-35b627d445ff",
-              "name": "correo",
-              "value": "={{ $json.data.buyer.email }}",
-              "type": "string"
-            },
-            {
-              "id": "b4033946-f611-442d-8a4a-12368dc5549f",
-              "name": "nombre",
-              "value": "={{ $json.data.buyer.name }}",
-              "type": "string"
-            },
-            {
-              "id": "9ea3ff08-1a8d-489a-bef7-2c7807473059",
-              "name": "telefono",
-              "value": "={{ $json.data.buyer.checkout_phone }}",
-              "type": "string"
-            },
-            {
-              "id": "97558f09-72cb-45d6-9b0c-88b4156e4814",
-              "name": "pais",
-              "value": "={{ $json.data.buyer.address.country }}",
-              "type": "string"
-            },
-            {
-              "id": "68a8ce18-fc89-476c-a314-df126129c832",
-              "name": "comision hotmart",
-              "value": "={{ $json.data.commissions[0].value }}",
-              "type": "number"
-            },
-            {
-              "id": "8bbb5436-13db-46a1-a010-38df9b0a0389",
-              "name": "parte productor",
-              "value": "={{ $json.data.commissions[1].value }}",
-              "type": "number"
-            },
-            {
-              "id": "cb21091d-3c56-46f1-92ec-008bca9d4858",
-              "name": "valor producto",
-              "value": "={{ $json.data.purchase.original_offer_price.value }}",
-              "type": "number"
-            },
-            {
-              "id": "29122817-28ff-4dde-a831-c41c95bae0a0",
-              "name": "Transacción",
-              "value": "={{ $json.data.purchase.transaction }}",
-              "type": "string"
-            },
-            {
-              "id": "c9105dd0-a611-458e-90ea-067a0538b62a",
-              "name": "fecha",
-              "value": "={{ $json.data.purchase.approved_date.toDateTime('ms').format('dd-MM-yyyy HH:mm:ss') }}",
-              "type": "string"
-            },
-            {
-              "id": "60169604-8475-429b-b65b-08da02e5d8c8",
-              "name": "oferta",
-              "value": "={{ $json.data.purchase.offer.code }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        -780,
-        1020
-      ],
-      "id": "c006f90f-14d7-4194-9584-9d8060c28ab0",
-      "name": "Edit Fields3"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "86765f19-f5cf-43a7-a3f7-de1ddce62933",
-              "leftValue": "={{ $json[\"coproducción activa\"] }}",
-              "rightValue": "",
-              "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        -560,
-        1020
-      ],
-      "id": "78fd1c6d-02c3-41f6-80be-ff8db5bac7c5",
-      "name": "If6"
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "Transacción": "={{ $('If').item.json.body.data.purchase.transaction }}",
-            "ORDERBUMP": "={{ $json.producto }}"
-          },
-          "matchingColumns": [
-            "Transacción"
-          ],
-          "schema": [
-            {
-              "id": "producto",
-              "displayName": "producto",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "coproducción activa",
-              "displayName": "coproducción activa",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "correo",
-              "displayName": "correo",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "nombre",
-              "displayName": "nombre",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "telefono",
-              "displayName": "telefono",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "pais",
-              "displayName": "pais",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "comision hotmart",
-              "displayName": "comision hotmart",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "parte productor",
-              "displayName": "parte productor",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "valor producto",
-              "displayName": "valor producto",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "VALOR",
-              "displayName": "VALOR",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "VALOR DESPUES DE HOTMART",
-              "displayName": "VALOR DESPUES DE HOTMART",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "Transacción",
-              "displayName": "Transacción",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "Comisión Coproductor",
-              "displayName": "Comisión Coproductor",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "fecha",
-              "displayName": "fecha",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "ORDERBUMP",
-              "displayName": "ORDERBUMP",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "oferta",
-              "displayName": "oferta",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "dia",
-              "displayName": "dia",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        380,
-        780
-      ],
-      "id": "5b47800a-b30d-4ee8-9eea-863affa7669f",
-      "name": "Google Sheets",
-      "retryOnFail": true,
-      "maxTries": 5,
-      "waitBetweenTries": 5000,
-      "alwaysOutputData": true,
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "CUENTA SANTIAGO"
+        "chatId": "-1002459933143",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown",
+          "message_thread_id": 1944
         }
       },
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
-        "operation": "appendOrUpdate",
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "columns": {
-          "mappingMode": "autoMapInputData",
-          "value": {},
-          "matchingColumns": [
-            "Transacción"
-          ],
-          "schema": [
-            {
-              "id": "producto",
-              "displayName": "producto",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "coproducción activa",
-              "displayName": "coproducción activa",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "correo",
-              "displayName": "correo",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "nombre",
-              "displayName": "nombre",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "telefono",
-              "displayName": "telefono",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "pais",
-              "displayName": "pais",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "comision hotmart",
-              "displayName": "comision hotmart",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "parte productor",
-              "displayName": "parte productor",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "valor producto",
-              "displayName": "valor producto",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "VALOR",
-              "displayName": "VALOR",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "VALOR DESPUES DE HOTMART",
-              "displayName": "VALOR DESPUES DE HOTMART",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Transacción",
-              "displayName": "Transacción",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "Comisión Coproductor",
-              "displayName": "Comisión Coproductor",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "fecha",
-              "displayName": "fecha",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "ORDERBUMP",
-              "displayName": "ORDERBUMP",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "oferta",
-              "displayName": "oferta",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
       "position": [
-        -340,
-        980
+        -928,
+        1024
       ],
-      "id": "b4037b1a-5752-4005-b379-762f6647359b",
-      "name": "Google Sheets9",
-      "retryOnFail": true,
-      "maxTries": 5,
-      "waitBetweenTries": 5000,
+      "id": "4105336b-ddcb-413c-9731-cdbe3b62def1",
+      "name": "Send a text message",
+      "webhookId": "cb2d4d0a-0c96-407e-b06c-4652d5622d62",
       "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "CUENTA SANTIAGO"
+        "telegramApi": {
+          "id": "wty5axEthys317UK",
+          "name": "ADRIANA"
         }
-      },
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1mGoZ75f9D731ySLqXdLwFsba2fslo8ia-z88GrGHYHM/edit?gid=0#gid=0",
-          "mode": "url"
-        },
-        "filtersUI": {
-          "values": [
-            {
-              "lookupColumn": "Transacción",
-              "lookupValue": "={{ $('If').item.json.body.data.purchase.order_bump?.parent_purchase_transaction }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [
-        120,
-        860
-      ],
-      "id": "05bc756a-66c6-4ac3-a21f-6ec87be3974d",
-      "name": "Google Sheets1",
-      "retryOnFail": true,
-      "maxTries": 5,
-      "waitBetweenTries": 5000,
-      "alwaysOutputData": true,
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "zruD3ONGC9HU2i7s",
-          "name": "CUENTA SANTIAGO"
-        }
-      },
-      "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
-        "amount": 2,
-        "unit": "minutes"
-      },
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
-      "position": [
-        -120,
-        870
-      ],
-      "id": "da8b0889-9221-4892-90b8-438379738718",
-      "name": "Wait3",
-      "webhookId": "b0e7088f-8eff-45b7-97cb-84dbf13054bf"
+      }
     }
   ],
   "pinData": {
@@ -2477,121 +275,158 @@
           "headers": {
             "host": "n8n.automscc.com",
             "user-agent": "Jodd HTTP",
-            "content-length": "1665",
+            "content-length": "2206",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "3.230.142.119",
+            "cf-ipcountry": "US",
+            "cf-ray": "9c129900cee6c93c-IAD",
+            "cf-visitor": "{\"scheme\":\"https\"}",
             "content-type": "application/json",
-            "x-forwarded-for": "44.192.32.241",
+            "x-forwarded-for": "3.230.142.119, 172.68.245.111",
             "x-forwarded-host": "n8n.automscc.com",
             "x-forwarded-port": "443",
             "x-forwarded-proto": "https",
-            "x-forwarded-server": "5e236941e778",
+            "x-forwarded-server": "3a6a6ec7bbe4",
             "x-hotmart-hottok": "ab1MBqgzWoBGjHPbjIZRreIJv1kidlf17097fe-a50d-4ba0-83a7-d6dba52a1d6d",
-            "x-real-ip": "44.192.32.241",
-            "accept-encoding": "gzip"
+            "x-real-ip": "172.68.245.111"
           },
           "params": {},
           "query": {},
           "body": {
             "data": {
               "product": {
-                "has_co_production": true,
-                "name": "Galletas Saludables",
-                "warranty_date": "2025-06-25T00:00:00Z",
+                "support_email": "support@hotmart.com.br",
+                "has_co_production": false,
+                "name": "Produto test postback2",
+                "warranty_date": "2017-12-27T00:00:00Z",
                 "is_physical_product": false,
-                "id": 5072184,
-                "ucode": "877cf7fe-e193-419a-b4e8-66c450f8915c"
+                "id": 0,
+                "ucode": "fb056612-bcc6-4217-9e6d-2a5d1110ac2f",
+                "content": {
+                  "has_physical_products": true,
+                  "products": [
+                    {
+                      "name": "How to Make Clear Ice",
+                      "is_physical_product": false,
+                      "id": 4774438,
+                      "ucode": "559fef42-3406-4d82-b775-d09bd33936b1"
+                    },
+                    {
+                      "name": "Organizador de Poeira",
+                      "is_physical_product": true,
+                      "id": 4999597,
+                      "ucode": "099e7644-b7d1-43d6-82a9-ec6be0118a4b"
+                    }
+                  ]
+                }
               },
               "commissions": [
                 {
-                  "currency_value": "USD",
+                  "currency_value": "BRL",
                   "source": "MARKETPLACE",
-                  "value": 2.28
+                  "value": 149.5
                 },
                 {
-                  "currency_conversion": {
-                    "converted_value": 43747,
-                    "converted_to_currency": "COP",
-                    "conversion_rate": 4100
-                  },
-                  "currency_value": "USD",
+                  "currency_value": "BRL",
                   "source": "PRODUCER",
-                  "value": 10.67
+                  "value": 1350.5
                 }
               ],
               "purchase": {
                 "original_offer_price": {
-                  "currency_value": "USD",
-                  "value": 18
+                  "currency_value": "BRL",
+                  "value": 1500
                 },
-                "subscription_anticipation_purchase": false,
                 "checkout_country": {
-                  "iso": "US",
-                  "name": "United States"
+                  "iso": "BR",
+                  "name": "Brasil"
                 },
+                "sckPaymentLink": "sckPaymentLinkTest",
                 "order_bump": {
-                  "parent_purchase_transaction": "HP0523612289",
+                  "parent_purchase_transaction": "HP02316330308193",
                   "is_order_bump": true
                 },
-                "approved_date": 1750258377000,
+                "approved_date": 1511783346000,
                 "offer": {
-                  "code": "lizh6p6i"
+                  "code": "test",
+                  "coupon_code": "SHHUHA"
                 },
                 "is_funnel": false,
-                "order_date": 1750258375000,
-                "price": {
-                  "currency_value": "USD",
-                  "value": 18
+                "event_tickets": {
+                  "amount": 1768954321521
                 },
-                "buyer_ip": "162.203.95.78",
+                "order_date": 1511783344000,
+                "price": {
+                  "currency_value": "BRL",
+                  "value": 1500
+                },
+                "buyer_ip": "00.00.00.00",
                 "payment": {
-                  "installments_number": 1,
+                  "installments_number": 12,
                   "type": "CREDIT_CARD"
                 },
                 "full_price": {
-                  "currency_value": "USD",
-                  "value": 18
+                  "currency_value": "BRL",
+                  "value": 1500
                 },
-                "business_model": "A",
-                "invoice_by": "SELLER",
-                "transaction": "HP0510915575",
+                "business_model": "I",
+                "transaction": "HP16015479281022",
                 "status": "APPROVED"
               },
               "affiliates": [
                 {
-                  "affiliate_code": "",
-                  "name": ""
+                  "affiliate_code": "Q58388177J",
+                  "name": "Affiliate name"
                 }
               ],
               "producer": {
                 "legal_nature": "Pessoa Física",
-                "document": "26946295",
-                "name": "Adriana Maria Rueda Cabarcas"
+                "document": "12345678965",
+                "name": "Producer Test Name"
+              },
+              "subscription": {
+                "subscriber": {
+                  "code": "I9OT62C3"
+                },
+                "plan": {
+                  "name": "plano de teste",
+                  "id": 123
+                },
+                "status": "ACTIVE"
               },
               "buyer": {
+                "checkout_phone_code": "999999999",
                 "address": {
-                  "zipcode": "33012",
-                  "country": "United States",
-                  "address": "3455 w 10 ave ",
-                  "city": "Hialeah ",
-                  "state": "Florida",
-                  "complement": "208 ",
-                  "country_iso": "US"
+                  "zipcode": "38400123",
+                  "country": "Brasil",
+                  "number": "10",
+                  "address": "Avenida Francisco Galassi",
+                  "city": "Uberlândia",
+                  "state": "Minas Gerais",
+                  "neighborhood": "Tubalina",
+                  "complement": "Perto do shopping",
+                  "country_iso": "BR"
                 },
-                "document": "",
-                "name": "Ana Delia Martin",
-                "last_name": "Martin",
-                "checkout_phone": "17862560465",
-                "first_name": "Ana",
-                "email": "luxecleanin@gmail.com",
-                "document_type": ""
+                "document": "69526128664",
+                "name": "Teste Comprador",
+                "last_name": "Comprador",
+                "checkout_phone": "99999999900",
+                "first_name": "Teste",
+                "email": "testeComprador271101postman15@example.com",
+                "document_type": "CPF"
               }
             },
-            "id": "8ac0ba46-c3c0-46e0-b122-2a95cf4594e4",
-            "creation_date": 1750258382957,
+            "id": "d9b614cc-b9de-46f9-95bc-0f1f21a5a72d",
+            "creation_date": 1768954321557,
             "event": "PURCHASE_APPROVED",
             "version": "2.0.0"
           },
           "webhookUrl": "https://n8n.automscc.com/webhook/adriana-webhooks-hotmart",
           "executionMode": "production"
+        },
+        "pairedItem": {
+          "item": 0
         }
       }
     ]
@@ -2645,6 +480,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-07-15T04:05:56.000Z",
-  "versionId": "6fffc5a5-6e51-4ca3-990e-0a3975f1bde1"
+  "updatedAt": "2026-01-21T00:19:39.630Z",
+  "versionId": "2784d5e5-61c4-473d-a8f1-978037e09154"
 }
