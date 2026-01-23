@@ -1,0 +1,401 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [
+          {
+            "node": "Insert rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table1": {
+      "main": [
+        [
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert rows in a table": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-22T23:43:58.857Z",
+  "id": "lUxIuKGzeXhr6XnXeGyaf",
+  "isArchived": false,
+  "meta": null,
+  "name": "ESCRITURA VENTAS MYSQL LANZAMIENTOS",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -672,
+        32
+      ],
+      "id": "bc4c5745-fcb9-4a3c-bd4a-5a65406ef428",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4b919dab-0f77-47ee-832e-e104a79dbace",
+              "leftValue": "={{$json.isEmpty()}}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        240,
+        -80
+      ],
+      "id": "600508f8-ba63-4574-b66c-5a1bce5db095",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -208,
+        32
+      ],
+      "id": "8f0e8241-06ad-4178-b7ef-98822fbcbc05",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4b919dab-0f77-47ee-832e-e104a79dbace",
+              "leftValue": "={{$json.isEmpty()}}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        768,
+        0
+      ],
+      "id": "0f4ebb50-e7f8-408f-99a8-e8efc0420ad9",
+      "name": "If5"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1UVu5mB3bAYROozUy_nlPHBGXQEPyF8Uupr8anEtm_B8/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1UVu5mB3bAYROozUy_nlPHBGXQEPyF8Uupr8anEtm_B8/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -448,
+        32
+      ],
+      "id": "3a544280-9660-41ef-9741-798b2ddfa188",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "REISY_L1_ORG",
+          "mode": "list",
+          "cachedResultName": "REISY_L1_ORG"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "WHATSAPP",
+              "condition": "LIKE",
+              "value": "=%{{ $json[\"Teléfono\"].toString().slice(-7) }}"
+            },
+            {
+              "column": "CORREO",
+              "condition": "LIKE",
+              "value": "={{ $json[\"Email del Comprador(a)\"] }}"
+            }
+          ]
+        },
+        "combineConditions": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        16,
+        -80
+      ],
+      "id": "4f2da4ea-ebb9-4602-873d-e5944d1f91de",
+      "name": "Select rows from a table",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "REISY_L1_VENTAS",
+          "mode": "list",
+          "cachedResultName": "REISY_L1_VENTAS"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "transaccion",
+              "value": "={{ $('Get row(s) in sheet').item.json[\"Código de la transacción\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        576,
+        0
+      ],
+      "id": "a30dc387-745c-4759-a8ad-6f9b7dca3da4",
+      "name": "Select rows from a table1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "REISY_L1_VENTAS",
+          "mode": "list",
+          "cachedResultName": "REISY_L1_VENTAS"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "cliente_id",
+              "value": "={{ $('If').item.json['#'] }}"
+            },
+            {
+              "column": "producto_nombre",
+              "value": "={{ $('Loop Over Items').item.json.Producto }}"
+            },
+            {
+              "column": "fecha",
+              "value": "={{ \n(()=>{ const s=$(\"Loop Over Items\").item.json[\"Confirmación del pago\"].split(\" \"); const [d,m,y]=s[0].split(\"/\").map(Number); const [H,Mi,S]=s[1].split(\":\").map(Number); return Date.UTC(y, m-1, d, H+5, Mi, S); })()\n}}\n"
+            },
+            {
+              "column": "monto",
+              "value": "={{ $('Get row(s) in sheet').item.json['Facturación bruta'] + $('Get row(s) in sheet').item.json['Faturación neta del Productor(a)']  }}"
+            },
+            {
+              "column": "transaccion",
+              "value": "={{ $('Get row(s) in sheet').item.json['Código de la transacción'] }}"
+            },
+            {
+              "column": "fuente",
+              "value": "L1-ORG"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1120,
+        0
+      ],
+      "id": "3a2116a1-7716-449f-af57-7c59340fc5d4",
+      "name": "Insert rows in a table",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "When clicking ‘Test workflow’": [
+      {
+        "json": {}
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-22T23:43:58.861Z",
+      "createdAt": "2026-01-22T23:43:58.861Z",
+      "role": "workflow:owner",
+      "workflowId": "lUxIuKGzeXhr6XnXeGyaf",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-23T00:01:00.662Z",
+  "versionId": "0044062d-82ef-4950-81a8-dacd332fdbc2"
+}
