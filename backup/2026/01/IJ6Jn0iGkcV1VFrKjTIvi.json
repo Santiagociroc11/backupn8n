@@ -1,0 +1,205 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Update rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-23T00:08:03.078Z",
+  "id": "IJ6Jn0iGkcV1VFrKjTIvi",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 67",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "ccabec2b-bd20-4b05-af41-79fb4dc0a2f4",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "REISY_L1",
+          "mode": "list",
+          "cachedResultName": "REISY_L1"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        208,
+        0
+      ],
+      "id": "6182fb23-0641-473a-913a-d40b7da73696",
+      "name": "Select rows from a table",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9d1ca64a-9ba9-42d8-9120-8a58407c21b1",
+              "name": "ANUNCIO",
+              "value": "={{ $json.ANUNCIO.split('||')[1] }}",
+              "type": "string"
+            },
+            {
+              "id": "fcfc800a-6dfc-4ca1-9073-42c1a4871ec4",
+              "name": "#",
+              "value": "={{ $json[\"#\"] }}",
+              "type": "number"
+            },
+            {
+              "id": "ded1d89c-5e43-450d-9185-41960292b987",
+              "name": "CAMPAÑA",
+              "value": "={{ $json.CAMPAÑA.split('120')[0].replace('||', '').trim() }}",
+              "type": "string"
+            },
+            {
+              "id": "ded06c21-655e-4a3f-aa98-738bdb53d3af",
+              "name": "SEGMENTACION",
+              "value": "={{ $json.SEGMENTACION.split('120')[0].replace('||', '').trim() }}",
+              "type": "string"
+            },
+            {
+              "id": "44642150-5eb9-4570-9ef7-c75ebecce962",
+              "name": "ANUNCIO1",
+              "value": "={{ $json.ANUNCIO.split('||120')[0].replace('||', '').trim() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        0
+      ],
+      "id": "9f52c1c8-6500-40c9-9f61-533c9f9f4022",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "table": {
+          "__rl": true,
+          "value": "REISY_L1",
+          "mode": "list",
+          "cachedResultName": "REISY_L1"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "#",
+        "valueToMatchOn": "={{ $json[\"#\"] }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "AD_ID",
+              "value": "={{ $json.ANUNCIO }}"
+            },
+            {
+              "column": "CAMPAÑA",
+              "value": "={{ $json[\"CAMPAÑA\"] }}"
+            },
+            {
+              "column": "SEGMENTACION",
+              "value": "={{ $json.SEGMENTACION }}"
+            },
+            {
+              "column": "ANUNCIO",
+              "value": "={{ $json.ANUNCIO1 }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        624,
+        0
+      ],
+      "id": "32a51af2-eb68-4a13-9d72-8db25b3a9c79",
+      "name": "Update rows in a table",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-23T00:08:03.084Z",
+      "createdAt": "2026-01-23T00:08:03.084Z",
+      "role": "workflow:owner",
+      "workflowId": "IJ6Jn0iGkcV1VFrKjTIvi",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-23T00:29:50.997Z",
+  "versionId": "5d8c910e-485d-42a1-b9bd-30f2bb7d9805"
+}
