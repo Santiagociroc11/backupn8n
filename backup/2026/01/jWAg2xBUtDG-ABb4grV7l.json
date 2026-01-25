@@ -1,0 +1,132 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-24T19:19:48.860Z",
+  "id": "jWAg2xBUtDG-ABb4grV7l",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 69",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -368,
+        0
+      ],
+      "id": "dddba799-33f4-4b02-83f2-63480ff6ab3a",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.manychat.com/fb/subscriber/setCustomFieldByName",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 288702267651723:f96a1f26344892df99c98292741de8c9"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"subscriber_id\": {{ $json.id_manychat }},\n  \"field_name\": \"PROBABILIDAD-ENC\",\n  \"field_value\": {{ $json.puntaje.round() }}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        144,
+        16
+      ],
+      "id": "8de6af1b-ede7-4953-8d81-13524dca6242",
+      "name": "HTTP Request5",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "maxTries": 5,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1pWfxdeyl6uq9HLeAMUv_dUVEQRZMvYN6gHsR_Mgq1ro",
+          "mode": "list",
+          "cachedResultName": "LEADS RECUPERACION GERSSON L10",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pWfxdeyl6uq9HLeAMUv_dUVEQRZMvYN6gHsR_Mgq1ro/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 684452864,
+          "mode": "list",
+          "cachedResultName": "SendFlow - Histórico de atividade - 24-1-2026,_18-50-03",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pWfxdeyl6uq9HLeAMUv_dUVEQRZMvYN6gHsR_Mgq1ro/edit#gid=684452864"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -160,
+        0
+      ],
+      "id": "ca6066e0-7bbc-44f8-af61-9ab50a3d335a",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-24T19:19:48.866Z",
+      "createdAt": "2026-01-24T19:19:48.866Z",
+      "role": "workflow:owner",
+      "workflowId": "jWAg2xBUtDG-ABb4grV7l",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-01-24T19:19:48.860Z",
+  "versionId": "1d80ce82-c6a8-42ff-9857-608cb6fe594e"
+}
