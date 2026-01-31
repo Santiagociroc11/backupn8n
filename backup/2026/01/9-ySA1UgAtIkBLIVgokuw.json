@@ -1,0 +1,365 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-30T16:17:59.000Z",
+    "createdAt": "2026-01-30T16:17:57.334Z",
+    "versionId": "6c919371-4cbc-4304-adea-e5397e478704",
+    "workflowId": "9-ySA1UgAtIkBLIVgokuw",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "exporta-many2",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          -400,
+          -64
+        ],
+        "id": "81e18bc6-4b84-4d56-a758-73c54b4032a2",
+        "name": "Webhook",
+        "webhookId": "bc088d3b-02f5-4103-a3db-32c52fe53e70"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "a7748863-0793-47d5-9fd7-c26e3687d895",
+                "name": "WHATSAPP",
+                "value": "={{ $json.body.whatsapp_phone }}",
+                "type": "string"
+              },
+              {
+                "id": "61bb8c0b-3c17-4336-826e-dc4b5660f46a",
+                "name": "NOMBRE",
+                "value": "={{ $json.body.whatsapp_phone }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -192,
+          -64
+        ],
+        "id": "60d3432b-50b3-4fce-b754-a1ace2725a20",
+        "name": "Edit Fields"
+      },
+      {
+        "parameters": {
+          "dataTableId": {
+            "__rl": true,
+            "value": "cd7Huwh4WuPxsNn9",
+            "mode": "list",
+            "cachedResultName": "MANYCHAT-GERS",
+            "cachedResultUrl": "/projects/703bt8e3CRxfBTYZ/datatables/cd7Huwh4WuPxsNn9"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "WHATSAPP": "={{ $json.WHATSAPP }}",
+              "NOMBRE": "={{ $json.NOMBRE }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "NOMBRE",
+                "displayName": "NOMBRE",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "WHATSAPP",
+                "displayName": "WHATSAPP",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          16,
+          -64
+        ],
+        "id": "b898e8f7-e14f-4ecf-92be-a20a06d74565",
+        "name": "Insert row"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "Insert row",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Santiago ciro",
+    "name": "Version 6c919371",
+    "description": "",
+    "autosaved": false
+  },
+  "activeVersionId": "6c919371-4cbc-4304-adea-e5397e478704",
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-30T15:32:57.094Z",
+  "id": "9-ySA1UgAtIkBLIVgokuw",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 70",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "exporta-many2",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -400,
+        -64
+      ],
+      "id": "81e18bc6-4b84-4d56-a758-73c54b4032a2",
+      "name": "Webhook",
+      "webhookId": "bc088d3b-02f5-4103-a3db-32c52fe53e70"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a7748863-0793-47d5-9fd7-c26e3687d895",
+              "name": "WHATSAPP",
+              "value": "={{ $json.body.whatsapp_phone }}",
+              "type": "string"
+            },
+            {
+              "id": "61bb8c0b-3c17-4336-826e-dc4b5660f46a",
+              "name": "NOMBRE",
+              "value": "={{ $json.body.whatsapp_phone }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -192,
+        -64
+      ],
+      "id": "60d3432b-50b3-4fce-b754-a1ace2725a20",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "cd7Huwh4WuPxsNn9",
+          "mode": "list",
+          "cachedResultName": "MANYCHAT-GERS",
+          "cachedResultUrl": "/projects/703bt8e3CRxfBTYZ/datatables/cd7Huwh4WuPxsNn9"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "WHATSAPP": "={{ $json.WHATSAPP }}",
+            "NOMBRE": "={{ $json.NOMBRE }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "NOMBRE",
+              "displayName": "NOMBRE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "WHATSAPP",
+              "displayName": "WHATSAPP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        16,
+        -64
+      ],
+      "id": "b898e8f7-e14f-4ecf-92be-a20a06d74565",
+      "name": "Insert row"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "ManyChat",
+            "content-length": "969",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "18.194.82.34",
+            "cf-ipcountry": "DE",
+            "cf-ray": "9c6206cd3a6ed375-FRA",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "content-type": "application/json; charset=utf-8",
+            "x-forwarded-for": "18.194.82.34, 172.71.172.16",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3a6a6ec7bbe4",
+            "x-real-ip": "172.71.172.16"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "key": "user:226575535",
+            "id": "226575535",
+            "page_id": "288702267651723",
+            "user_refs": [],
+            "status": "active",
+            "first_name": "+573136298562",
+            "last_name": "",
+            "name": "+573136298562",
+            "gender": null,
+            "profile_pic": null,
+            "locale": null,
+            "language": null,
+            "timezone": "UTC±00",
+            "live_chat_url": "https://app.manychat.com/fb288702267651723/chat/226575535",
+            "last_input_text": "Obtener Enlace",
+            "optin_phone": false,
+            "phone": null,
+            "optin_email": false,
+            "email": null,
+            "subscribed": "2025-12-19T22:23:01-05:00",
+            "last_interaction": null,
+            "ig_last_interaction": null,
+            "last_seen": null,
+            "ig_last_seen": null,
+            "is_followup_enabled": true,
+            "ig_username": null,
+            "ig_id": null,
+            "whatsapp_phone": "+573136298562",
+            "optin_whatsapp": true,
+            "phone_country_code": null,
+            "last_growth_tool": null,
+            "custom_fields": {
+              "NombrecompletoUSER": null,
+              "URLfoto": null,
+              "ImagenDINAMICA": null,
+              "PROBABILIDAD-ENC": 3,
+              "PUNTAJE-ACCIONES": null,
+              "CLICS-POSITIVOS": null,
+              "FUENTE": null,
+              "RESPUESTA IA": null,
+              "CONTEO-GENERAL": null,
+              "PROPOSITO": "PERSONAL",
+              "numero_wha": null
+            }
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/exporta-many",
+          "executionMode": "production"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-30T15:32:57.098Z",
+      "createdAt": "2026-01-30T15:32:57.098Z",
+      "role": "workflow:owner",
+      "workflowId": "9-ySA1UgAtIkBLIVgokuw",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-01-30T16:17:57.330Z",
+  "versionId": "6c919371-4cbc-4304-adea-e5397e478704"
+}
