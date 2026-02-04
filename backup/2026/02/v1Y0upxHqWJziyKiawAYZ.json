@@ -1,0 +1,192 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert row": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-03T18:47:19.132Z",
+  "id": "v1Y0upxHqWJziyKiawAYZ",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 71",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -784,
+        16
+      ],
+      "id": "265c1fde-b4f1-4875-96e4-0ab82b38bffd",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1sVgYuii_vCEvHO1vmmvi99DtmO-0QFZC2B8svY3WWN0",
+          "mode": "list",
+          "cachedResultName": "GRUPOS REAPERTURA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1sVgYuii_vCEvHO1vmmvi99DtmO-0QFZC2B8svY3WWN0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2004564787,
+          "mode": "list",
+          "cachedResultName": "SendFlow - Leads da Campanha.csv",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1sVgYuii_vCEvHO1vmmvi99DtmO-0QFZC2B8svY3WWN0/edit#gid=2004564787"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -576,
+        16
+      ],
+      "id": "6a9a6533-dacf-4580-a00d-eca1e5a974dd",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -368,
+        16
+      ],
+      "id": "226720bf-456d-4089-bbe2-0f4a08d2c9bd",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "NQ8GFHT6CSqL0Tbm",
+          "mode": "list",
+          "cachedResultName": "ger-reape",
+          "cachedResultUrl": "/projects/703bt8e3CRxfBTYZ/datatables/NQ8GFHT6CSqL0Tbm"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "NOMBRE": "=+{{ $json.WHASTAPP }}",
+            "WHATSAPP": "=+{{ $json.WHASTAPP }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "NOMBRE",
+              "displayName": "NOMBRE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "WHATSAPP",
+              "displayName": "WHATSAPP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        -112,
+        176
+      ],
+      "id": "a5755ba0-1462-4056-acfc-558c65fb8df5",
+      "name": "Insert row"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-03T18:47:19.140Z",
+      "createdAt": "2026-02-03T18:47:19.140Z",
+      "role": "workflow:owner",
+      "workflowId": "v1Y0upxHqWJziyKiawAYZ",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-02-03T19:00:53.047Z",
+  "versionId": "a0150be5-f0a9-414a-bdb1-f9f7998e3525"
+}
