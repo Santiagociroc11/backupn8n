@@ -1,0 +1,151 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "Delete table or rows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-03T19:03:29.808Z",
+  "id": "sA-Cjud_gZ0Sk5nkVu0nf",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 72",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -368,
+        -16
+      ],
+      "id": "d23710da-2214-4adc-a15d-47fb5a1d0432",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_CUPOS_VIP",
+          "mode": "list",
+          "cachedResultName": "GERSSON_CUPOS_VIP"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "YA_ES_CLIENTE",
+              "value": "false"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -160,
+        -16
+      ],
+      "id": "681bfea8-a207-4909-9fd2-70e3700c41d2",
+      "name": "Select rows from a table",
+      "credentials": {
+        "postgres": {
+          "id": "Y9DYFWSCuPRQbP2H",
+          "name": "POSTGRESS GERSSON"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteTable",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "GERSSON_CUPOS_VIP",
+          "mode": "list",
+          "cachedResultName": "GERSSON_CUPOS_VIP"
+        },
+        "deleteCommand": "delete",
+        "where": {
+          "values": [
+            {
+              "column": "YA_ES_CLIENTE",
+              "value": "false"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        48,
+        -16
+      ],
+      "id": "6eaef340-ee45-4caa-88b6-ff94f4919db4",
+      "name": "Delete table or rows",
+      "credentials": {
+        "postgres": {
+          "id": "Y9DYFWSCuPRQbP2H",
+          "name": "POSTGRESS GERSSON"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-03T19:03:29.810Z",
+      "createdAt": "2026-02-03T19:03:29.810Z",
+      "role": "workflow:owner",
+      "workflowId": "sA-Cjud_gZ0Sk5nkVu0nf",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-02-03T19:05:30.106Z",
+  "versionId": "78a0e61f-26f5-491a-b958-38816b32b174"
+}
