@@ -209,7 +209,7 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1UVu5mB3bAYROozUy_nlPHBGXQEPyF8Uupr8anEtm_B8/edit?gid=0#gid=0",
+          "value": "https://docs.google.com/spreadsheets/d/1wwRq2v_i1BzfOHkp5OrNVjb3NYLbLp9nPGdJl54vkwc/edit?gid=0#gid=0",
           "mode": "url"
         },
         "sheetName": {
@@ -217,7 +217,7 @@
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "Hoja 1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1UVu5mB3bAYROozUy_nlPHBGXQEPyF8Uupr8anEtm_B8/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wwRq2v_i1BzfOHkp5OrNVjb3NYLbLp9nPGdJl54vkwc/edit#gid=0"
         },
         "options": {}
       },
@@ -241,18 +241,13 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "REISY_L1_ORG",
+          "value": "ADRI_RS_L2_ORG",
           "mode": "list",
-          "cachedResultName": "REISY_L1_ORG"
+          "cachedResultName": "ADRI_RS_L2_ORG"
         },
         "limit": 1,
         "where": {
           "values": [
-            {
-              "column": "WHATSAPP",
-              "condition": "LIKE",
-              "value": "=%{{ $json[\"Teléfono\"].toString().slice(-7) }}"
-            },
             {
               "column": "CORREO",
               "condition": "LIKE",
@@ -260,7 +255,6 @@
             }
           ]
         },
-        "combineConditions": "OR",
         "options": {}
       },
       "type": "n8n-nodes-base.mySql",
@@ -284,9 +278,9 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "REISY_L1_VENTAS",
+          "value": "ADRI_RS_L2_VENTAS",
           "mode": "list",
-          "cachedResultName": "REISY_L1_VENTAS"
+          "cachedResultName": "ADRI_RS_L2_VENTAS"
         },
         "returnAll": true,
         "where": {
@@ -319,9 +313,9 @@
       "parameters": {
         "table": {
           "__rl": true,
-          "value": "REISY_L1_VENTAS",
+          "value": "ADRI_RS_L2_VENTAS",
           "mode": "list",
-          "cachedResultName": "REISY_L1_VENTAS"
+          "cachedResultName": "ADRI_RS_L2_VENTAS"
         },
         "dataMode": "defineBelow",
         "valuesToSend": {
@@ -396,6 +390,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-01-23T00:01:00.662Z",
-  "versionId": "0044062d-82ef-4950-81a8-dacd332fdbc2"
+  "updatedAt": "2026-02-04T18:40:23.066Z",
+  "versionId": "98a0ad19-f614-4d45-98fd-eb9991af36d6"
 }
