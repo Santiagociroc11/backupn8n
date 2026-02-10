@@ -1,0 +1,551 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-02-09T17:11:04.000Z",
+    "createdAt": "2026-02-09T17:11:02.933Z",
+    "versionId": "feec1d01-1f47-4282-b4a2-1abdda23da09",
+    "workflowId": "RFwMOT7FZopvKfIG",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "terence-grupo",
+          "options": {}
+        },
+        "id": "4bb40fb4-2fa6-4ebd-8163-49128865a66d",
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -528,
+          -80
+        ],
+        "webhookId": "a289d300-b673-4d2f-b984-d503e4e9e61a"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.noOp",
+        "typeVersion": 1,
+        "position": [
+          144,
+          -80
+        ],
+        "id": "e42c0e45-db2f-4b8b-bb70-476d1b4588bd",
+        "name": "No Operation, do nothing"
+      },
+      {
+        "parameters": {
+          "operation": "upsert",
+          "table": {
+            "__rl": true,
+            "value": "TERENCE_L2_WHA",
+            "mode": "list",
+            "cachedResultName": "TERENCE_L2_WHA"
+          },
+          "dataMode": "defineBelow",
+          "columnToMatchOn": "whatsapp",
+          "valueToMatchOn": "={{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}",
+          "valuesToSend": {
+            "values": [
+              {
+                "column": "dia",
+                "value": "={{ $now.format('yyyy-MM-dd') }}"
+              },
+              {
+                "column": "hora",
+                "value": "={{ $now.format('HH:mm:ss') }}"
+              },
+              {
+                "column": "grupo",
+                "value": "={{ $('Edit Fields').item.json.grupo }}"
+              },
+              {
+                "column": "nombre_grupo",
+                "value": "={{ $('Webhook').item.json.body.data.groupName }}"
+              },
+              {
+                "column": "fuente",
+                "value": "FB ADS"
+              }
+            ]
+          },
+          "options": {
+            "detailedOutput": true
+          }
+        },
+        "type": "n8n-nodes-base.mySql",
+        "typeVersion": 2.4,
+        "position": [
+          368,
+          -80
+        ],
+        "id": "4b99e92e-e52a-42a1-977a-45487eff0d9d",
+        "name": "escritura",
+        "credentials": {
+          "mySql": {
+            "id": "n8fCALXWnGdmJkBN",
+            "name": "CAPTACIONES"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.body.event }}",
+                      "rightValue": "group.updated.members.added",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      },
+                      "id": "9b8a9d43-676c-4650-8bb4-8fdf83b75d19"
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "MIEMBRO AÑADIDO"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "ebcbf54b-9f2a-4246-9c50-9a0b6d4e6bf9",
+                      "leftValue": "={{ $json.body.event }}",
+                      "rightValue": "messages.upsert",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "MIEMBRO ELIMINADO"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.2,
+        "position": [
+          -304,
+          -80
+        ],
+        "id": "a6fbbe22-8e30-4b22-a11d-65563121cb23",
+        "name": "Switch"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "ffaf95ee-b40d-432a-9617-9c7a4dff4ed5",
+                "name": "grupo",
+                "value": "={{ $json.body.data.groupJid }}",
+                "type": "string"
+              },
+              {
+                "id": "e3a70e61-aa10-4899-baff-8492afba8c37",
+                "name": "numero",
+                "value": "={{ $json.body.data.number }}",
+                "type": "string"
+              },
+              {
+                "id": "05f7d46c-8fc2-4fc3-8cfe-c7cc00bed18b",
+                "name": "accion",
+                "value": "=INGRESO",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "0450a8f4-cdb3-4a7e-92df-825624dfcf8e",
+        "name": "Edit Fields",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          -80,
+          -80
+        ]
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "No Operation, do nothing": {
+        "main": [
+          [
+            {
+              "node": "escritura",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "No Operation, do nothing",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Santiago ciro",
+    "name": "Version feec1d01",
+    "description": "",
+    "autosaved": false
+  },
+  "activeVersionId": "feec1d01-1f47-4282-b4a2-1abdda23da09",
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "No Operation, do nothing": {
+      "main": [
+        [
+          {
+            "node": "escritura",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-09T17:09:52.166Z",
+  "id": "RFwMOT7FZopvKfIG",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[TERENCE] INGRESOS WHA SENDFLOW",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "terence-grupo",
+        "options": {}
+      },
+      "id": "4bb40fb4-2fa6-4ebd-8163-49128865a66d",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -528,
+        -80
+      ],
+      "webhookId": "a289d300-b673-4d2f-b984-d503e4e9e61a"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        144,
+        -80
+      ],
+      "id": "e42c0e45-db2f-4b8b-bb70-476d1b4588bd",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "table": {
+          "__rl": true,
+          "value": "TERENCE_L2_WHA",
+          "mode": "list",
+          "cachedResultName": "TERENCE_L2_WHA"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "whatsapp",
+        "valueToMatchOn": "={{ $('Edit Fields').item.json.numero.replace(/\\D/g, '') }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "dia",
+              "value": "={{ $now.format('yyyy-MM-dd') }}"
+            },
+            {
+              "column": "hora",
+              "value": "={{ $now.format('HH:mm:ss') }}"
+            },
+            {
+              "column": "grupo",
+              "value": "={{ $('Edit Fields').item.json.grupo }}"
+            },
+            {
+              "column": "nombre_grupo",
+              "value": "={{ $('Webhook').item.json.body.data.groupName }}"
+            },
+            {
+              "column": "fuente",
+              "value": "FB ADS"
+            }
+          ]
+        },
+        "options": {
+          "detailedOutput": true
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        368,
+        -80
+      ],
+      "id": "4b99e92e-e52a-42a1-977a-45487eff0d9d",
+      "name": "escritura",
+      "credentials": {
+        "mySql": {
+          "id": "n8fCALXWnGdmJkBN",
+          "name": "CAPTACIONES"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "group.updated.members.added",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "9b8a9d43-676c-4650-8bb4-8fdf83b75d19"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "MIEMBRO AÑADIDO"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "ebcbf54b-9f2a-4246-9c50-9a0b6d4e6bf9",
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "messages.upsert",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "MIEMBRO ELIMINADO"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -304,
+        -80
+      ],
+      "id": "a6fbbe22-8e30-4b22-a11d-65563121cb23",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ffaf95ee-b40d-432a-9617-9c7a4dff4ed5",
+              "name": "grupo",
+              "value": "={{ $json.body.data.groupJid }}",
+              "type": "string"
+            },
+            {
+              "id": "e3a70e61-aa10-4899-baff-8492afba8c37",
+              "name": "numero",
+              "value": "={{ $json.body.data.number }}",
+              "type": "string"
+            },
+            {
+              "id": "05f7d46c-8fc2-4fc3-8cfe-c7cc00bed18b",
+              "name": "accion",
+              "value": "=INGRESO",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0450a8f4-cdb3-4a7e-92df-825624dfcf8e",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -80,
+        -80
+      ]
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "axios/0.27.2",
+            "content-length": "387",
+            "accept": "application/json, text/plain, */*",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "2600:1900:0:2a02::900",
+            "cf-ipcountry": "BR",
+            "cf-ray": "9afc12f34b70ac02-GRU",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "content-type": "application/json",
+            "sendtok": "00EC1A82DDDCFC6A1E9311AF25F6F19A506FD131D3",
+            "x-forwarded-for": "2600:1900:0:2a02::900, 104.23.254.183",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "3a6a6ec7bbe4",
+            "x-real-ip": "104.23.254.183"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "id": "esvcZf5VrismbfroIlxS",
+            "event": "group.updated.members.added",
+            "data": {
+              "campaignId": "AAAAAAAAAAAAAAAAAAAA",
+              "campaignName": "Campanha Natal",
+              "createdAt": "2025-12-18T04:56:29.882Z",
+              "createdAt_with_timezone_br": "2021-10-01T00:00:00.000-03:00",
+              "groupId": "000000000000000000",
+              "groupJid": "000000000000000000@g.us",
+              "groupName": "Grupo de Natal #1",
+              "number": "0000000000000"
+            },
+            "version": "1.0.0"
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/sendflow-hook-reisy",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-09T17:09:52.175Z",
+      "createdAt": "2026-02-09T17:09:52.175Z",
+      "role": "workflow:owner",
+      "workflowId": "RFwMOT7FZopvKfIG",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-02-09T17:11:02.931Z",
+  "versionId": "feec1d01-1f47-4282-b4a2-1abdda23da09"
+}
