@@ -7,18 +7,18 @@
       "main": [
         [
           {
-            "node": "YouTube1",
+            "node": "CPL3",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "YouTube1": {
+    "CPL3": {
       "main": [
         [
           {
-            "node": "Google Sheets1",
+            "node": "ESCRITURA",
             "type": "main",
             "index": 0
           }
@@ -55,28 +55,6 @@
     },
     {
       "parameters": {
-        "resource": "video",
-        "operation": "get",
-        "videoId": "TSH_C5S4RsM",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.youTube",
-      "typeVersion": 1,
-      "position": [
-        -224,
-        48
-      ],
-      "id": "e4cd016d-09ed-4c49-ad54-e6cd547874da",
-      "name": "YouTube1",
-      "credentials": {
-        "youTubeOAuth2Api": {
-          "id": "5W5n9xSquUs25Tc5",
-          "name": "YouTube account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "operation": "appendOrUpdate",
         "documentId": {
           "__rl": true,
@@ -95,8 +73,8 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "CPL1": "={{ $json.liveStreamingDetails.concurrentViewers }}",
-            "HORA": "={{$now.format('HH:mm')}}"
+            "HORA": "={{$now.format('HH:mm')}}",
+            "CPL2": "={{ $json.liveStreamingDetails.concurrentViewers }}"
           },
           "matchingColumns": [
             "HORA"
@@ -120,7 +98,7 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true,
-              "removed": false
+              "removed": true
             },
             {
               "id": "CPL2",
@@ -130,7 +108,7 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true,
-              "removed": true
+              "removed": false
             },
             {
               "id": "CPL3",
@@ -175,12 +153,36 @@
         48
       ],
       "id": "774dffb9-41f8-4a36-a367-891e11c96ef2",
-      "name": "Google Sheets1",
+      "name": "ESCRITURA",
       "alwaysOutputData": true,
+      "retryOnFail": true,
+      "maxTries": 5,
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "zruD3ONGC9HU2i7s",
           "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "video",
+        "operation": "get",
+        "videoId": "UWu2qlHjc30",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.youTube",
+      "typeVersion": 1,
+      "position": [
+        -224,
+        48
+      ],
+      "id": "e4cd016d-09ed-4c49-ad54-e6cd547874da",
+      "name": "CPL3",
+      "credentials": {
+        "youTubeOAuth2Api": {
+          "id": "5W5n9xSquUs25Tc5",
+          "name": "YouTube account"
         }
       }
     }
@@ -208,6 +210,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-02-17T00:00:51.308Z",
-  "versionId": "541678cc-83a8-4bf6-8629-4093ac6a318c"
+  "updatedAt": "2026-02-18T01:32:11.904Z",
+  "versionId": "e216c365-67b6-4280-981c-b5ef2ebdd26f"
 }
