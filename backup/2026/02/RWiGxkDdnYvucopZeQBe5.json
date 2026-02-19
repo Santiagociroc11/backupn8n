@@ -1,0 +1,76 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-18T23:29:48.482Z",
+  "id": "RWiGxkDdnYvucopZeQBe5",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 73",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        0
+      ],
+      "id": "1dae0137-d108-489a-9830-de9c542dc5a6",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://whabot.automscc.com/api/hotapi/hotmart/webhook",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"id\": \"3204d036-f46d-46cc-a05d-2e704c3c1532\",\n  \"creation_date\": 1771406844015,\n  \"event\": \"PURCHASE_APPROVED\",\n  \"version\": \"2.0.0\",\n  \"data\": {\n    \"product\": {\n      \"id\": 5636749,\n      \"ucode\": \"73cd9815-52b8-45c8-89ea-1e3959b6bc05\",\n      \"name\": \"SueroTerapia - Curso Completo\",\n      \"warranty_date\": \"2026-02-25T00:00:00Z\",\n      \"support_email\": \"\",\n      \"has_co_production\": false,\n      \"is_physical_product\": false\n    },\n    \"affiliates\": [\n      {\n        \"affiliate_code\": \"\",\n        \"name\": \"\"\n      }\n    ],\n    \"buyer\": {\n      \"email\": \"aidadelacruz66@gmail.com\",\n      \"name\": \"Aida Araceli De La Cruz\",\n      \"first_name\": \"Aida\",\n      \"last_name\": \"Cruz\",\n      \"checkout_phone\": \"116193257057\",\n      \"address\": {\n        \"city\": \"San Ysidro \",\n        \"country\": \"United States\",\n        \"country_iso\": \"US\",\n        \"state\": \"California\",\n        \"zipcode\": \"92173\",\n        \"address\": \"325 Hill St\"\n      },\n      \"document\": \"\",\n      \"document_type\": \"\"\n    },\n    \"producer\": {\n      \"name\": \"JSD COMPANY S.A.S.\",\n      \"document\": \"9016205721\",\n      \"legal_nature\": \"Pessoa Jurídica\"\n    },\n    \"commissions\": [\n      {\n        \"value\": 1.19,\n        \"source\": \"MARKETPLACE\",\n        \"currency_value\": \"USD\"\n      },\n      {\n        \"value\": 9.78,\n        \"source\": \"PRODUCER\",\n        \"currency_value\": \"USD\",\n        \"currency_conversion\": {\n          \"converted_value\": 35807.42,\n          \"converted_to_currency\": \"COP\",\n          \"conversion_rate\": 3661.29\n        }\n      }\n    ],\n    \"purchase\": {\n      \"approved_date\": 1771406832000,\n      \"full_price\": {\n        \"value\": 10.97,\n        \"currency_value\": \"USD\"\n      },\n      \"price\": {\n        \"value\": 10.97,\n        \"currency_value\": \"USD\"\n      },\n      \"checkout_country\": {\n        \"name\": \"United States\",\n        \"iso\": \"US\"\n      },\n      \"order_bump\": {\n        \"is_order_bump\": true\n      },\n      \"origin\": {\n        \"src\": \"%7B%22utm_campaign%22%3A%2218.02%20%7C%20ABO%20%7C%20SUEROTERAPIA%20%7C%20VID%7C%7C120239433812950298%22%2C%22utm_medium%22%3A%22ADS%2035%7C%7C120239433812900298%22%2C%22utm_content%22%3A%22ANUN2-FEBRERO-SUEROTERAPIA.mp4%7C%7C120239433812980298%22%7D\",\n        \"xcod\": \"4da90e6c-1d61-4343-8a70-3d11cdc4c59e\"\n      },\n      \"buyer_ip\": \"98.176.74.179\",\n      \"original_offer_price\": {\n        \"value\": 10.97,\n        \"currency_value\": \"USD\"\n      },\n      \"order_date\": 1771406813000,\n      \"status\": \"APPROVED\",\n      \"transaction\": \"HP2220157229\",\n      \"payment\": {\n        \"installments_number\": 1,\n        \"type\": \"PAYPAL\"\n      },\n      \"offer\": {\n        \"code\": \"wvlkwqmc\",\n        \"name\": \"-4\",\n        \"description\": \"ÚLTIMOS CUPOS 🔥\"\n      },\n      \"invoice_by\": \"HOTMART\",\n      \"subscription_anticipation_purchase\": false,\n      \"is_funnel\": false,\n      \"business_model\": \"A\"\n    }\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -48,
+        0
+      ],
+      "id": "6bd950ba-06dd-41e6-ab4f-ba4159250e91",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-18T23:29:48.489Z",
+      "createdAt": "2026-02-18T23:29:48.489Z",
+      "role": "workflow:owner",
+      "workflowId": "RWiGxkDdnYvucopZeQBe5",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-02-18T23:29:48.482Z",
+  "versionId": "46a3e838-6eb9-45ac-b366-29be6f2a66e0"
+}
