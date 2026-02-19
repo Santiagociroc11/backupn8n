@@ -1,7 +1,194 @@
 {
-  "active": false,
-  "activeVersion": null,
-  "activeVersionId": null,
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-02-18T23:46:47.000Z",
+    "createdAt": "2026-02-18T23:46:45.428Z",
+    "versionId": "feba97b5-51e6-45e1-a765-6a14e19f402a",
+    "workflowId": "mWrc58XOL9Y0u6Ah",
+    "nodes": [
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "minutes"
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          -448,
+          48
+        ],
+        "id": "5b012214-b1ad-4249-bd1c-4974baeb2c1d",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "operation": "appendOrUpdate",
+          "documentId": {
+            "__rl": true,
+            "value": "1EJ4hXX7b2xAXO90ny5MPq4afHFDxL___dGFHi-qmKKw",
+            "mode": "list",
+            "cachedResultName": "ASISTENCIA TERENCE L1",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EJ4hXX7b2xAXO90ny5MPq4afHFDxL___dGFHi-qmKKw/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "ASISTENCIA TERENCE",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EJ4hXX7b2xAXO90ny5MPq4afHFDxL___dGFHi-qmKKw/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "HORA": "={{$now.format('HH:mm')}}",
+              "CPL3": "={{ $json.liveStreamingDetails.concurrentViewers }}"
+            },
+            "matchingColumns": [
+              "HORA"
+            ],
+            "schema": [
+              {
+                "id": "HORA",
+                "displayName": "HORA",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "CPL1",
+                "displayName": "CPL1",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "CPL2",
+                "displayName": "CPL2",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "CPL3",
+                "displayName": "CPL3",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "CPL2 - CPL1",
+                "displayName": "CPL2 - CPL1",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "CPL3 - CPL2",
+                "displayName": "CPL3 - CPL2",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.6,
+        "position": [
+          0,
+          48
+        ],
+        "id": "774dffb9-41f8-4a36-a367-891e11c96ef2",
+        "name": "ESCRITURA",
+        "alwaysOutputData": true,
+        "retryOnFail": true,
+        "maxTries": 5,
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "zruD3ONGC9HU2i7s",
+            "name": "CUENTA SANTIAGO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "resource": "video",
+          "operation": "get",
+          "videoId": "U-EtODrUepk",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.youTube",
+        "typeVersion": 1,
+        "position": [
+          -224,
+          48
+        ],
+        "id": "e4cd016d-09ed-4c49-ad54-e6cd547874da",
+        "name": "CPL3",
+        "credentials": {
+          "youTubeOAuth2Api": {
+            "id": "5W5n9xSquUs25Tc5",
+            "name": "YouTube account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "CPL3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "CPL3": {
+        "main": [
+          [
+            {
+              "node": "ESCRITURA",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Santiago ciro",
+    "name": "Version feba97b5",
+    "description": "",
+    "autosaved": false
+  },
+  "activeVersionId": "feba97b5-51e6-45e1-a765-6a14e19f402a",
   "connections": {
     "Schedule Trigger": {
       "main": [
@@ -74,7 +261,7 @@
           "mappingMode": "defineBelow",
           "value": {
             "HORA": "={{$now.format('HH:mm')}}",
-            "CPL2": "={{ $json.liveStreamingDetails.concurrentViewers }}"
+            "CPL3": "={{ $json.liveStreamingDetails.concurrentViewers }}"
           },
           "matchingColumns": [
             "HORA"
@@ -108,7 +295,7 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true,
-              "removed": false
+              "removed": true
             },
             {
               "id": "CPL3",
@@ -118,7 +305,7 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true,
-              "removed": true
+              "removed": false
             },
             {
               "id": "CPL2 - CPL1",
@@ -168,7 +355,7 @@
       "parameters": {
         "resource": "video",
         "operation": "get",
-        "videoId": "UWu2qlHjc30",
+        "videoId": "U-EtODrUepk",
         "options": {}
       },
       "type": "n8n-nodes-base.youTube",
@@ -210,6 +397,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-02-18T01:32:11.904Z",
-  "versionId": "e216c365-67b6-4280-981c-b5ef2ebdd26f"
+  "updatedAt": "2026-02-18T23:46:45.428Z",
+  "versionId": "feba97b5-51e6-45e1-a765-6a14e19f402a"
 }
