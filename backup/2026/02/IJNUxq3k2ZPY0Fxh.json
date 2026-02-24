@@ -1,0 +1,171 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "L6",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "VD",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VD": {
+      "main": [
+        [
+          {
+            "node": "Compare Datasets",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "L6": {
+      "main": [
+        [
+          {
+            "node": "Compare Datasets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-23T19:46:51.970Z",
+  "id": "IJNUxq3k2ZPY0Fxh",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 74",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -704,
+        -96
+      ],
+      "id": "eaf4b43f-531e-4845-b7f8-db665c035a5c",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "Email del Comprador(a)",
+              "field2": "Email del Comprador(a)"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.compareDatasets",
+      "typeVersion": 2.3,
+      "position": [
+        -144,
+        -128
+      ],
+      "id": "9798a933-1f94-4605-abb0-3f80a4a05b57",
+      "name": "Compare Datasets"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1TX9mS_O2TTSxvyQqvSeUQUILS09VNUIe8xcW2G9rtqM/edit?gid=375082744#gid=375082744",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 375082744,
+          "mode": "list",
+          "cachedResultName": "vd.csv",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1TX9mS_O2TTSxvyQqvSeUQUILS09VNUIe8xcW2G9rtqM/edit#gid=375082744"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -432,
+        -16
+      ],
+      "id": "f2c9e6d6-61b6-4737-8fcf-6e18f1cfe5d6",
+      "name": "VD",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1Yhg3koCIB8nC1gT1icZWZbRWbn7zrTC6-pd_fr8lClM/edit?gid=1125477107#gid=1125477107",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1125477107,
+          "mode": "list",
+          "cachedResultName": "l6.csv",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Yhg3koCIB8nC1gT1icZWZbRWbn7zrTC6-pd_fr8lClM/edit#gid=1125477107"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -432,
+        -224
+      ],
+      "id": "9e03c3b6-4fe1-41a3-bf57-33b018f23fc7",
+      "name": "L6",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-23T19:46:51.973Z",
+      "createdAt": "2026-02-23T19:46:51.973Z",
+      "role": "workflow:owner",
+      "workflowId": "IJNUxq3k2ZPY0Fxh",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-02-23T19:53:56.362Z",
+  "versionId": "a24d51e5-9fc5-4e8f-8ecc-dbc16aa9ddc5"
+}
