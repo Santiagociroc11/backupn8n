@@ -209,17 +209,15 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1KYjgniUbf-bVoIUOW_ZRKsCrxKsvvlhEGSO3ydJ3ugI",
-          "mode": "list",
-          "cachedResultName": "VENTAS REISY 4 FEB",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1KYjgniUbf-bVoIUOW_ZRKsCrxKsvvlhEGSO3ydJ3ugI/edit?usp=drivesdk"
+          "value": "https://docs.google.com/spreadsheets/d/1Dg6AKlBNO5lo9WlEp0S5qhEuKnkFlwsquDHUJ_eCMmw/edit?gid=0#gid=0",
+          "mode": "url"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "Hoja 1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1KYjgniUbf-bVoIUOW_ZRKsCrxKsvvlhEGSO3ydJ3ugI/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Dg6AKlBNO5lo9WlEp0S5qhEuKnkFlwsquDHUJ_eCMmw/edit#gid=0"
         },
         "options": {}
       },
@@ -243,9 +241,9 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "REISY_L1_ORG",
+          "value": "GERSSON_L10_ORG",
           "mode": "list",
-          "cachedResultName": "REISY_L1_ORG"
+          "cachedResultName": "GERSSON_L10_ORG"
         },
         "limit": 1,
         "where": {
@@ -257,6 +255,7 @@
             }
           ]
         },
+        "combineConditions": "OR",
         "options": {}
       },
       "type": "n8n-nodes-base.mySql",
@@ -280,9 +279,9 @@
         "operation": "select",
         "table": {
           "__rl": true,
-          "value": "REISY_L1_VENTAS",
+          "value": "GERSSON_L10_VENTAS",
           "mode": "list",
-          "cachedResultName": "REISY_L1_VENTAS"
+          "cachedResultName": "GERSSON_L10_VENTAS"
         },
         "returnAll": true,
         "where": {
@@ -315,9 +314,9 @@
       "parameters": {
         "table": {
           "__rl": true,
-          "value": "REISY_L1_VENTAS",
+          "value": "GERSSON_L10_VENTAS",
           "mode": "list",
-          "cachedResultName": "REISY_L1_VENTAS"
+          "cachedResultName": "GERSSON_L10_VENTAS"
         },
         "dataMode": "defineBelow",
         "valuesToSend": {
@@ -344,7 +343,7 @@
             },
             {
               "column": "fuente",
-              "value": "L1-ORG"
+              "value": "L10-ORG"
             }
           ]
         },
@@ -392,6 +391,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2026-02-23T17:31:15.251Z",
-  "versionId": "77db00b8-89d5-4be4-91ce-a2855688933a"
+  "updatedAt": "2026-02-24T16:29:43.476Z",
+  "versionId": "fd11527d-3564-4da2-9523-c1f30d6675a6"
 }
