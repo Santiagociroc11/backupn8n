@@ -1,0 +1,488 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-03-01T21:37:21.280Z",
+  "id": "LelytmlDKpo86qJ8",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 77",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -304,
+        -192
+      ],
+      "id": "d0377e65-1a5b-49fa-8fc8-6fd5822e8c0f",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "text": "={{ $('Loop Over Items').item.toJsonString() }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "Categoria",
+              "description": "Categoria (Cuenta Contable) Instrucción: Determina la categoría macro del gasto. REGLA DE ORO: Nunca pongas el nombre de un software o marca aquí. Debe ser una \"bolsa\" contable.  Opciones permitidas: SOFTWARE & SUSCRIPCIONES, PUBLICIDAD (ADS), NOMINA Y HONORARIOS, IMPUESTOS, GASTOS OPERATIVOS, ENTRETENIMIENTO, VIAJES.  Ejemplo Correcto: Si el texto dice \"PAGO CHATGPT\", la categoría es SOFTWARE & SUSCRIPCIONES.  Ejemplo Incorrecto: CHATGPT (Esto es un Detalle, no una Categoría).",
+              "required": true
+            },
+            {
+              "name": "Descripcion",
+              "description": "Descripcion Instrucción: Extrae el texto original o \"sucio\" que identifica la transacción en el extracto bancario o nota. No resumas, mantén la referencia original para trazabilidad.  Ejemplo: \"CARD CHARGE (OPENAI *CHATGPT SUBSCR) CD 1234\", \"PAGO NOMINA ENERO - SANTIAGO\".",
+              "required": true
+            },
+            {
+              "name": "Detalle",
+              "description": "Detalle (Proveedor/Entidad) Instrucción: Identifica específicamente a quién se le pagó o quién envió el dinero. Limpia el nombre de códigos bancarios o asteriscos.  Ejemplo: De \"GOOGLE *ADS 12345\" extrae solo \"GOOGLE ADS\". De \"RESTAURANTE LA BIFERIA SAS\" extrae solo \"LA BIFERIA\".  Casos Especiales: Si es un pago interno o transferencia entre cuentas, pon el nombre de la persona o el banco destino.",
+              "required": true
+            },
+            {
+              "name": "tipo",
+              "description": "tipo Instrucción: Clasifica el flujo del dinero estrictamente en una de estas tres etiquetas.  EGRESO: Salida de dinero, compras, pagos.  INGRESO: Entrada de dinero por ventas o servicios.  MOVIMIENTO CONTABLE: Transferencias entre tus propias cuentas o ajustes internos donde el dinero no \"sale\" de la empresa.",
+              "required": true
+            }
+          ]
+        },
+        "options": {
+          "systemPromptTemplate": "You are a professional accounting assistant for a marketing agency. \nYour goal is to classify financial data with 100% accuracy for tax purposes.\n\nSTRICT RULES:\n1. All output values must be in UPPERCASE (MAYÚSCULAS).\n2. If a value is unknown, return an empty string.\n3. Priority: Categoría must be a generic accounting group, Detalle must be the specific brand/person.\n\nPROHIBIDO dejar campos vacíos. debes reemplazar hasta los que existen por unos mejores.",
+          "batching": {}
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        496,
+        -128
+      ],
+      "id": "eac59ff2-db78-44a5-8c05-8f299c8f5235",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        272,
+        -176
+      ],
+      "id": "7322d519-a3e4-492a-8f28-62c73f671eb0",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "18daylXBNiygrzjBFpXQCnKNjJnoZph_8j54YSPogQT0",
+          "mode": "list",
+          "cachedResultName": "cuentas AGENCIA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18daylXBNiygrzjBFpXQCnKNjJnoZph_8j54YSPogQT0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18daylXBNiygrzjBFpXQCnKNjJnoZph_8j54YSPogQT0/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -64,
+        -192
+      ],
+      "id": "f8b07500-9586-4c6d-9ce1-974e4e06b7ba",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8d553f88-0265-42b3-a106-08e20b9b361e",
+              "name": "CATEGORIA",
+              "value": "={{ $json.output.Categoria }}",
+              "type": "string"
+            },
+            {
+              "id": "afdda07b-8243-422d-be71-ee850a1aa4cf",
+              "name": "DESCRIPCION",
+              "value": "={{ $json.output.Descripcion }}",
+              "type": "string"
+            },
+            {
+              "id": "c4f4049e-1ecc-4c9a-b965-599ccf51af46",
+              "name": "TIPO DE MOVIMIENTO",
+              "value": "={{ $json.output.tipo }}",
+              "type": "string"
+            },
+            {
+              "id": "6835f6cf-f5ae-4d5f-8a49-1f55257cbc51",
+              "name": "DETALLE",
+              "value": "={{ $json.output.Detalle }}",
+              "type": "string"
+            },
+            {
+              "id": "6811fca4-708d-4abf-9060-5074d342d051",
+              "name": "row_number",
+              "value": "={{ $('Loop Over Items').item.json.row_number }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        864,
+        -128
+      ],
+      "id": "d2ec13dd-da57-4c28-a541-9d37ad54079f",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "model": "deepseek/deepseek-v3.2",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        480,
+        48
+      ],
+      "id": "268d7fb3-3454-4dc2-ade8-b785ba9bccfd",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "GFI3rVgz9b4bThML",
+          "name": "OPENROUTER SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "18daylXBNiygrzjBFpXQCnKNjJnoZph_8j54YSPogQT0",
+          "mode": "list",
+          "cachedResultName": "cuentas AGENCIA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18daylXBNiygrzjBFpXQCnKNjJnoZph_8j54YSPogQT0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18daylXBNiygrzjBFpXQCnKNjJnoZph_8j54YSPogQT0/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $json.row_number }}",
+            "CATEGORIA": "={{ $json.CATEGORIA }}",
+            "DESCRIPCION": "={{ $json.DESCRIPCION }}",
+            "TIPO DE MOVIMIENTO": "={{ $json['TIPO DE MOVIMIENTO'] }}",
+            "DETALLE": "={{ $json.DETALLE }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "FECHA",
+              "displayName": "FECHA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "TIPO DE MOVIMIENTO",
+              "displayName": "TIPO DE MOVIMIENTO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "PROYECTO",
+              "displayName": "PROYECTO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "CATEGORIA",
+              "displayName": "CATEGORIA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "DETALLE",
+              "displayName": "DETALLE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "DESCRIPCION",
+              "displayName": "DESCRIPCION",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "IMPORTE CONTABLE",
+              "displayName": "IMPORTE CONTABLE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "CUENTA JUAN CARLOS",
+              "displayName": "CUENTA JUAN CARLOS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "PAYO SANTIAGO",
+              "displayName": "PAYO SANTIAGO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "BANCOLOMBIA",
+              "displayName": "BANCOLOMBIA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "HOTMART JSD",
+              "displayName": "HOTMART JSD",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "PAYO JSD",
+              "displayName": "PAYO JSD",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "PAYO FRAN",
+              "displayName": "PAYO FRAN",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "JERWIN PERÚ",
+              "displayName": "JERWIN PERÚ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "BINANCE",
+              "displayName": "BINANCE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        528,
+        -304
+      ],
+      "id": "8d6f0e88-4097-4658-9b4e-7c238660ce01",
+      "name": "Update row in sheet1",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zruD3ONGC9HU2i7s",
+          "name": "CUENTA SANTIAGO"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-03-01T21:37:21.284Z",
+      "createdAt": "2026-03-01T21:37:21.284Z",
+      "role": "workflow:owner",
+      "workflowId": "LelytmlDKpo86qJ8",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-02T05:15:03.843Z",
+  "versionId": "f853627f-0b05-4eab-941a-d73a455744d5"
+}
