@@ -1,0 +1,134 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-03-13T21:45:54.000Z",
+    "createdAt": "2026-03-13T21:45:50.500Z",
+    "versionId": "e358fdc3-fc53-44a1-b06a-186b81d69097",
+    "workflowId": "Cj8KWCdxWmoBRFOF",
+    "nodes": [
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          -480,
+          48
+        ],
+        "id": "bf863194-65c2-4308-826f-8b7ac0467a4a",
+        "name": "When clicking ‘Execute workflow’"
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "polar-automscc",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          -480,
+          -112
+        ],
+        "id": "dd8d1977-e861-4b65-9e14-cb821fa13422",
+        "name": "Webhook",
+        "webhookId": "9940929f-4626-411c-be18-3006ca0f6b30"
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "polar-automsccsandbox",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          -368,
+          -304
+        ],
+        "id": "75ba7ba1-57e5-468c-ab85-2a71e36e117b",
+        "name": "sandbox",
+        "webhookId": "9940929f-4626-411c-be18-3006ca0f6b30"
+      }
+    ],
+    "connections": {},
+    "authors": "Santiago ciro",
+    "name": "Version e358fdc3",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "e358fdc3-fc53-44a1-b06a-186b81d69097",
+  "connections": {},
+  "createdAt": "2026-03-13T21:41:10.046Z",
+  "id": "Cj8KWCdxWmoBRFOF",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 78",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        48
+      ],
+      "id": "bf863194-65c2-4308-826f-8b7ac0467a4a",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "polar-automscc",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -480,
+        -112
+      ],
+      "id": "dd8d1977-e861-4b65-9e14-cb821fa13422",
+      "name": "Webhook",
+      "webhookId": "9940929f-4626-411c-be18-3006ca0f6b30"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "polar-automsccsandbox",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -368,
+        -304
+      ],
+      "id": "75ba7ba1-57e5-468c-ab85-2a71e36e117b",
+      "name": "sandbox",
+      "webhookId": "9940929f-4626-411c-be18-3006ca0f6b30"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-03-13T21:41:10.053Z",
+      "createdAt": "2026-03-13T21:41:10.053Z",
+      "role": "workflow:owner",
+      "workflowId": "Cj8KWCdxWmoBRFOF",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2026-03-13T21:45:50.499Z",
+  "versionId": "e358fdc3-fc53-44a1-b06a-186b81d69097"
+}
