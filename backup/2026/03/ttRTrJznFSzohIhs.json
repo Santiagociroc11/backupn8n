@@ -1,0 +1,160 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-03-27T21:45:43.012Z",
+  "id": "ttRTrJznFSzohIhs",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 80",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -688,
+        -80
+      ],
+      "id": "624b8f82-ffc9-4ffe-9df1-07d9dc1b9474",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api-sec-vlc.hotmart.com/security/oauth/token",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "grant_type",
+              "value": "client_credentials"
+            },
+            {
+              "name": "client_id",
+              "value": "b45d5d01-0619-40c7-ab8f-03941e358802"
+            },
+            {
+              "name": "client_secret",
+              "value": "0dd51032-54d7-42bd-9052-6a251209f788"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Basic YjQ1ZDVkMDEtMDYxOS00MGM3LWFiOGYtMDM5NDFlMzU4ODAyOjBkZDUxMDMyLTU0ZDctNDJiZC05MDUyLTZhMjUxMjA5Zjc4OA=="
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -480,
+        -80
+      ],
+      "id": "c8ae81c0-e152-42da-bfdb-0b537b1225ed",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "url": "https://developers.hotmart.com/payments/api/v1/sales/commissions",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=bearer H4sIAAAAAAAAAA3MyZJDQAAA0C8yJQhxRIIm2tbWiwqxdpsQIdrXz9xfvZpaXWlUvdtbYXSAE%2BzBAn6Dc6UBEeApjTVL%2FqmpRWpT6d3hxsPDF5xBEZyjWsA4sY%2FwHw56n1%2BDMU%2F8%2FY4yCsfoA68tC7VTlyHM3VE3OFwm5CjGDuqIG%2F6n6WTTNkIVKTeno8SeJ2IFgoXjoqbRFIm8YZlK6rvvuT7WuTDvpSquUq9HnN4KKNNquc2fEj4zfEvOaHs1sLGGJl28QE%2BCF92Fz6%2FS2WRUI680nyw5ZAYYSS4P7G4rrWaHDpvfI4%2FrEvkxO5496Gsh6iK7T1%2FDHbhHpNnNbq%2BdtwXMeck%2FSN1r5sSHG%2BZRrvJkN%2BV5lIuFMo7EghGYNJFwoEz4Jq06mCr8CNtqsV49iS18aWcmLrSNJpMWl6IMgNO3e%2FX0pQaWWbNdPKS25fOacvJySJ%2F3O80CVd6ajrDszYN2sZdXn689rMPCsVUOzvsF0CnT%2FJVqb%2BP7Bt8u6avS%2FwPQvumW0AEAAA%3D%3D"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -272,
+        -80
+      ],
+      "id": "204af571-1396-4210-8e77-f64100cae2a3",
+      "name": "HTTP Request1"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-03-27T21:45:43.019Z",
+      "createdAt": "2026-03-27T21:45:43.019Z",
+      "role": "workflow:owner",
+      "workflowId": "ttRTrJznFSzohIhs",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-27T21:51:54.615Z",
+  "versionId": "eed68d92-d572-4363-ba90-5e7ad1434178"
+}
