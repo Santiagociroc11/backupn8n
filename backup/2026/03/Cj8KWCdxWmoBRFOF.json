@@ -57,7 +57,19 @@
     "autosaved": true
   },
   "activeVersionId": "e358fdc3-fc53-44a1-b06a-186b81d69097",
-  "connections": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
   "createdAt": "2026-03-13T21:41:10.046Z",
   "id": "Cj8KWCdxWmoBRFOF",
   "isArchived": false,
@@ -106,9 +118,324 @@
       "id": "75ba7ba1-57e5-468c-ab85-2a71e36e117b",
       "name": "sandbox",
       "webhookId": "9940929f-4626-411c-be18-3006ca0f6b30"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a81c470e-afa6-4acb-a09b-53cae6825ecd",
+              "name": "body.data.product.name",
+              "value": "={{ $json.body.data.product.name }}",
+              "type": "string"
+            },
+            {
+              "id": "c5ef7d8b-a74f-41ca-8d83-d9821e1e5930",
+              "name": "body.data.subtotal_amount",
+              "value": "={{ $json.body.data.subtotal_amount }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -272,
+        -112
+      ],
+      "id": "ebf00ae8-ca7b-42fa-93b6-47bba321fe27",
+      "name": "Edit Fields"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.automscc.com",
+            "user-agent": "polar.sh webhooks",
+            "content-length": "6902",
+            "accept": "*/*",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "74.220.50.2",
+            "cf-ipcountry": "US",
+            "cf-ray": "9e49d2787fd8cf57-CMH",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "content-type": "application/json",
+            "traceparent": "00-019d4068c6fe52a985aee129d9b49cc0-69b7ba8069f96e3d-01",
+            "webhook-id": "f3d17f2c-f02e-41df-9b61-b4fc385f48b0",
+            "webhook-signature": "v1,Y2FEN9IPnq9HwkzTsLk219m1Tpuvaj1yweUVJRO+Sic=",
+            "webhook-timestamp": "1774902101",
+            "x-forwarded-for": "74.220.50.2, 172.71.28.143",
+            "x-forwarded-host": "n8n.automscc.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "e95301badd01",
+            "x-real-ip": "172.71.28.143"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "type": "checkout.updated",
+            "timestamp": "2026-03-30T20:21:41.722824Z",
+            "data": {
+              "id": "374e3da8-07c7-4925-bf48-3826592c73f6",
+              "created_at": "2026-03-30T20:16:26.708975Z",
+              "modified_at": "2026-03-30T20:16:28.244268Z",
+              "custom_field_data": {},
+              "payment_processor": "stripe",
+              "status": "open",
+              "client_secret": "polar_c_ZFweHINaLqPpGqHHK71PmTXNUuS4399iHbOw72tStZG",
+              "url": "https://polar.sh/checkout/polar_c_ZFweHINaLqPpGqHHK71PmTXNUuS4399iHbOw72tStZG",
+              "expires_at": "2026-03-31T20:16:26.708941Z",
+              "success_url": "https://polar.sh/checkout/polar_c_ZFweHINaLqPpGqHHK71PmTXNUuS4399iHbOw72tStZG/confirmation",
+              "return_url": null,
+              "embed_origin": null,
+              "amount": 1497,
+              "seats": null,
+              "min_seats": null,
+              "max_seats": null,
+              "discount_amount": 0,
+              "net_amount": 1497,
+              "tax_amount": 0,
+              "total_amount": 1497,
+              "currency": "usd",
+              "allow_trial": true,
+              "active_trial_interval": null,
+              "active_trial_interval_count": null,
+              "trial_end": null,
+              "organization_id": "f3b1a6ac-7c4d-48c1-87e0-00d4ebc933bb",
+              "product_id": "1d60780e-8c6c-46e0-b571-0982ecb997b6",
+              "product_price_id": "26d81caa-a0b8-4ee6-aa4d-72b1045a6cec",
+              "discount_id": null,
+              "allow_discount_codes": false,
+              "require_billing_address": false,
+              "is_discount_applicable": true,
+              "is_free_product_price": false,
+              "is_payment_required": true,
+              "is_payment_setup_required": false,
+              "is_payment_form_required": true,
+              "customer_id": null,
+              "is_business_customer": false,
+              "customer_name": null,
+              "customer_email": null,
+              "customer_ip_address": "186.119.175.194",
+              "customer_billing_name": null,
+              "customer_billing_address": {
+                "line1": null,
+                "line2": null,
+                "postal_code": null,
+                "city": null,
+                "state": null,
+                "country": "CO"
+              },
+              "customer_tax_id": null,
+              "locale": null,
+              "payment_processor_metadata": {
+                "publishable_key": "pk_live_51LzIVeDG1jUQrXwC7sH96FM58ydVBDw9KQ1Vaw4lXZFGGFRK3DKBorOPM86PkutdUyLdH7TbwS9QAVWI1igFiVCZ00fGmx9bnF"
+              },
+              "customer_billing_address_fields": {
+                "country": true,
+                "state": false,
+                "city": false,
+                "postal_code": false,
+                "line1": false,
+                "line2": false
+              },
+              "billing_address_fields": {
+                "country": "required",
+                "state": "disabled",
+                "city": "disabled",
+                "postal_code": "disabled",
+                "line1": "disabled",
+                "line2": "disabled"
+              },
+              "trial_interval": null,
+              "trial_interval_count": null,
+              "metadata": {},
+              "external_customer_id": null,
+              "customer_external_id": null,
+              "products": [
+                {
+                  "id": "1d60780e-8c6c-46e0-b571-0982ecb997b6",
+                  "created_at": "2026-03-30T19:49:51.579074Z",
+                  "modified_at": null,
+                  "trial_interval": null,
+                  "trial_interval_count": null,
+                  "name": "Canva PRO / AÑO",
+                  "description": null,
+                  "visibility": "public",
+                  "recurring_interval": null,
+                  "recurring_interval_count": null,
+                  "is_recurring": false,
+                  "is_archived": false,
+                  "organization_id": "f3b1a6ac-7c4d-48c1-87e0-00d4ebc933bb",
+                  "prices": [
+                    {
+                      "created_at": "2026-03-30T20:07:17.394762Z",
+                      "modified_at": null,
+                      "id": "26d81caa-a0b8-4ee6-aa4d-72b1045a6cec",
+                      "source": "catalog",
+                      "amount_type": "fixed",
+                      "price_currency": "usd",
+                      "tax_behavior": null,
+                      "is_archived": false,
+                      "product_id": "1d60780e-8c6c-46e0-b571-0982ecb997b6",
+                      "type": "one_time",
+                      "recurring_interval": null,
+                      "price_amount": 1497
+                    }
+                  ],
+                  "benefits": [],
+                  "medias": [
+                    {
+                      "id": "012c3aa6-73ea-4b2f-a35e-76a648fb4ff7",
+                      "organization_id": "f3b1a6ac-7c4d-48c1-87e0-00d4ebc933bb",
+                      "name": "WhatsApp Image 2026-03-30 at 2.29.35 PM.jpeg",
+                      "path": "product_media/f3b1a6ac-7c4d-48c1-87e0-00d4ebc933bb/012c3aa6-73ea-4b2f-a35e-76a648fb4ff7/WhatsApp Image 2026-03-30 at 2.29.35 PM.jpeg",
+                      "mime_type": "image/jpeg",
+                      "size": 79669,
+                      "storage_version": "TU53gQpDUtdmNto3cstGpbKjiIl.zJKf",
+                      "checksum_etag": "\"21ceb37550ae7e0e0d49492071e512d3-1\"",
+                      "checksum_sha256_base64": "+Sytg3x+UvLxH37u6HaTCwz9FlF+FmzgHsNbccZScQQ=",
+                      "checksum_sha256_hex": "f92cad837c7e52f2f11f7eeee876930b0cfd16517e166ce01ec35b71c6527104",
+                      "last_modified_at": "2026-03-30T19:49:50Z",
+                      "version": null,
+                      "service": "product_media",
+                      "is_uploaded": true,
+                      "created_at": "2026-03-30T19:49:49.128050Z",
+                      "size_readable": "77.8 KB",
+                      "public_url": "https://polar-public-files.s3.amazonaws.com/product_media/f3b1a6ac-7c4d-48c1-87e0-00d4ebc933bb/012c3aa6-73ea-4b2f-a35e-76a648fb4ff7/WhatsApp%20Image%202026-03-30%20at%202.29.35%20PM.jpeg"
+                    }
+                  ]
+                }
+              ],
+              "product": {
+                "id": "1d60780e-8c6c-46e0-b571-0982ecb997b6",
+                "created_at": "2026-03-30T19:49:51.579074Z",
+                "modified_at": null,
+                "trial_interval": null,
+                "trial_interval_count": null,
+                "name": "Canva PRO / AÑO",
+                "description": null,
+                "visibility": "public",
+                "recurring_interval": null,
+                "recurring_interval_count": null,
+                "is_recurring": false,
+                "is_archived": false,
+                "organization_id": "f3b1a6ac-7c4d-48c1-87e0-00d4ebc933bb",
+                "prices": [
+                  {
+                    "created_at": "2026-03-30T20:07:17.394762Z",
+                    "modified_at": null,
+                    "id": "26d81caa-a0b8-4ee6-aa4d-72b1045a6cec",
+                    "source": "catalog",
+                    "amount_type": "fixed",
+                    "price_currency": "usd",
+                    "tax_behavior": null,
+                    "is_archived": false,
+                    "product_id": "1d60780e-8c6c-46e0-b571-0982ecb997b6",
+                    "type": "one_time",
+                    "recurring_interval": null,
+                    "price_amount": 1497
+                  }
+                ],
+                "benefits": [],
+                "medias": [
+                  {
+                    "id": "012c3aa6-73ea-4b2f-a35e-76a648fb4ff7",
+                    "organization_id": "f3b1a6ac-7c4d-48c1-87e0-00d4ebc933bb",
+                    "name": "WhatsApp Image 2026-03-30 at 2.29.35 PM.jpeg",
+                    "path": "product_media/f3b1a6ac-7c4d-48c1-87e0-00d4ebc933bb/012c3aa6-73ea-4b2f-a35e-76a648fb4ff7/WhatsApp Image 2026-03-30 at 2.29.35 PM.jpeg",
+                    "mime_type": "image/jpeg",
+                    "size": 79669,
+                    "storage_version": "TU53gQpDUtdmNto3cstGpbKjiIl.zJKf",
+                    "checksum_etag": "\"21ceb37550ae7e0e0d49492071e512d3-1\"",
+                    "checksum_sha256_base64": "+Sytg3x+UvLxH37u6HaTCwz9FlF+FmzgHsNbccZScQQ=",
+                    "checksum_sha256_hex": "f92cad837c7e52f2f11f7eeee876930b0cfd16517e166ce01ec35b71c6527104",
+                    "last_modified_at": "2026-03-30T19:49:50Z",
+                    "version": null,
+                    "service": "product_media",
+                    "is_uploaded": true,
+                    "created_at": "2026-03-30T19:49:49.128050Z",
+                    "size_readable": "77.8 KB",
+                    "public_url": "https://polar-public-files.s3.amazonaws.com/product_media/f3b1a6ac-7c4d-48c1-87e0-00d4ebc933bb/012c3aa6-73ea-4b2f-a35e-76a648fb4ff7/WhatsApp%20Image%202026-03-30%20at%202.29.35%20PM.jpeg"
+                  }
+                ]
+              },
+              "product_price": {
+                "created_at": "2026-03-30T20:07:17.394762Z",
+                "modified_at": null,
+                "id": "26d81caa-a0b8-4ee6-aa4d-72b1045a6cec",
+                "source": "catalog",
+                "amount_type": "fixed",
+                "price_currency": "usd",
+                "tax_behavior": null,
+                "is_archived": false,
+                "product_id": "1d60780e-8c6c-46e0-b571-0982ecb997b6",
+                "type": "one_time",
+                "recurring_interval": null,
+                "price_amount": 1497
+              },
+              "prices": {
+                "1d60780e-8c6c-46e0-b571-0982ecb997b6": [
+                  {
+                    "created_at": "2026-03-30T20:07:17.394762Z",
+                    "modified_at": null,
+                    "id": "26d81caa-a0b8-4ee6-aa4d-72b1045a6cec",
+                    "source": "catalog",
+                    "amount_type": "fixed",
+                    "price_currency": "usd",
+                    "tax_behavior": null,
+                    "is_archived": false,
+                    "product_id": "1d60780e-8c6c-46e0-b571-0982ecb997b6",
+                    "type": "one_time",
+                    "recurring_interval": null,
+                    "price_amount": 1497
+                  }
+                ]
+              },
+              "discount": null,
+              "subscription_id": null,
+              "attached_custom_fields": [
+                {
+                  "custom_field_id": "505289fd-9945-4272-9382-aa31917d225e",
+                  "custom_field": {
+                    "created_at": "2026-03-30T20:20:51.362560Z",
+                    "modified_at": null,
+                    "id": "505289fd-9945-4272-9382-aa31917d225e",
+                    "metadata": {},
+                    "type": "text",
+                    "slug": "cell",
+                    "name": "Telefono",
+                    "organization_id": "f3b1a6ac-7c4d-48c1-87e0-00d4ebc933bb",
+                    "properties": {
+                      "form_label": "Teléfono",
+                      "form_help_text": "Whastapp con indicativo",
+                      "form_placeholder": "+573136...",
+                      "min_length": 6
+                    }
+                  },
+                  "order": 0,
+                  "required": true
+                }
+              ],
+              "customer_metadata": {},
+              "subtotal_amount": 1497
+            }
+          },
+          "webhookUrl": "https://n8n.automscc.com/webhook/polar-automscc",
+          "executionMode": "production"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
   "repo_name": "backupn8n",
   "repo_owner": "Santiagociroc11",
   "repo_path": "backup/",
@@ -129,6 +456,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2026-03-13T21:45:50.499Z",
-  "versionId": "e358fdc3-fc53-44a1-b06a-186b81d69097"
+  "updatedAt": "2026-03-30T20:23:29.103Z",
+  "versionId": "655e65a8-dceb-45aa-afec-49670cfe2ebd"
 }
