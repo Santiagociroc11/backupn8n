@@ -1,139 +1,7 @@
 {
-  "active": true,
-  "activeVersion": {
-    "updatedAt": "2026-01-30T16:17:59.000Z",
-    "createdAt": "2026-01-30T16:17:57.334Z",
-    "versionId": "6c919371-4cbc-4304-adea-e5397e478704",
-    "workflowId": "9-ySA1UgAtIkBLIVgokuw",
-    "nodes": [
-      {
-        "parameters": {
-          "httpMethod": "POST",
-          "path": "exporta-many2",
-          "options": {}
-        },
-        "type": "n8n-nodes-base.webhook",
-        "typeVersion": 2.1,
-        "position": [
-          -400,
-          -64
-        ],
-        "id": "81e18bc6-4b84-4d56-a758-73c54b4032a2",
-        "name": "Webhook",
-        "webhookId": "bc088d3b-02f5-4103-a3db-32c52fe53e70"
-      },
-      {
-        "parameters": {
-          "assignments": {
-            "assignments": [
-              {
-                "id": "a7748863-0793-47d5-9fd7-c26e3687d895",
-                "name": "WHATSAPP",
-                "value": "={{ $json.body.whatsapp_phone }}",
-                "type": "string"
-              },
-              {
-                "id": "61bb8c0b-3c17-4336-826e-dc4b5660f46a",
-                "name": "NOMBRE",
-                "value": "={{ $json.body.whatsapp_phone }}",
-                "type": "string"
-              }
-            ]
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.set",
-        "typeVersion": 3.4,
-        "position": [
-          -192,
-          -64
-        ],
-        "id": "60d3432b-50b3-4fce-b754-a1ace2725a20",
-        "name": "Edit Fields"
-      },
-      {
-        "parameters": {
-          "dataTableId": {
-            "__rl": true,
-            "value": "cd7Huwh4WuPxsNn9",
-            "mode": "list",
-            "cachedResultName": "MANYCHAT-GERS",
-            "cachedResultUrl": "/projects/703bt8e3CRxfBTYZ/datatables/cd7Huwh4WuPxsNn9"
-          },
-          "columns": {
-            "mappingMode": "defineBelow",
-            "value": {
-              "WHATSAPP": "={{ $json.WHATSAPP }}",
-              "NOMBRE": "={{ $json.NOMBRE }}"
-            },
-            "matchingColumns": [],
-            "schema": [
-              {
-                "id": "NOMBRE",
-                "displayName": "NOMBRE",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "readOnly": false,
-                "removed": false
-              },
-              {
-                "id": "WHATSAPP",
-                "displayName": "WHATSAPP",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "readOnly": false,
-                "removed": false
-              }
-            ],
-            "attemptToConvertTypes": false,
-            "convertFieldsToString": false
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.dataTable",
-        "typeVersion": 1.1,
-        "position": [
-          16,
-          -64
-        ],
-        "id": "b898e8f7-e14f-4ecf-92be-a20a06d74565",
-        "name": "Insert row"
-      }
-    ],
-    "connections": {
-      "Webhook": {
-        "main": [
-          [
-            {
-              "node": "Edit Fields",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Edit Fields": {
-        "main": [
-          [
-            {
-              "node": "Insert row",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      }
-    },
-    "authors": "Santiago ciro",
-    "name": "Version 6c919371",
-    "description": "",
-    "autosaved": false
-  },
-  "activeVersionId": "6c919371-4cbc-4304-adea-e5397e478704",
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
   "connections": {
     "Webhook": {
       "main": [
@@ -160,7 +28,7 @@
   },
   "createdAt": "2026-01-30T15:32:57.094Z",
   "id": "9-ySA1UgAtIkBLIVgokuw",
-  "isArchived": false,
+  "isArchived": true,
   "meta": null,
   "name": "My workflow 70",
   "nodes": [
@@ -360,6 +228,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-01-30T16:17:57.330Z",
-  "versionId": "6c919371-4cbc-4304-adea-e5397e478704"
+  "updatedAt": "2026-04-09T19:19:22.000Z",
+  "versionId": "f09eeffd-46a9-4983-b146-ddc5482bb8c2"
 }
