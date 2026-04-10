@@ -1,0 +1,110 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get many messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many messages": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-04-09T18:55:08.763Z",
+  "id": "iGJig22JAHqsFcoY",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 82",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -432,
+        -32
+      ],
+      "id": "a34729e9-375b-4764-971a-8970deda42f1",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 200,
+        "filters": {
+          "labelIds": [
+            "Label_5009391565458069770"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        -224,
+        -32
+      ],
+      "id": "93bf23de-e11d-4c12-9f6f-5ab35dcb6925",
+      "name": "Get many messages",
+      "webhookId": "d47b0310-1924-4fe5-a86c-4c754e427765",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "DOPWTzPin0EZKjQY",
+          "name": "GMAIL SANTIAGO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -16,
+        -32
+      ],
+      "id": "a0c415c6-523e-4fe8-91b2-992a54a45b97",
+      "name": "Convert to File"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-04-09T18:55:08.794Z",
+      "createdAt": "2026-04-09T18:55:08.794Z",
+      "role": "workflow:owner",
+      "workflowId": "iGJig22JAHqsFcoY",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-04-09T19:04:12.283Z",
+  "versionId": "d4fec1f9-e2ca-4601-9905-e669136012a4"
+}
