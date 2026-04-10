@@ -1,27 +1,38 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-03-03T18:59:26.000Z",
-    "createdAt": "2026-03-03T18:58:19.667Z",
-    "versionId": "ff200747-4a78-47d7-9fcd-42454b97ea22",
+    "updatedAt": "2026-04-09T21:10:47.000Z",
+    "createdAt": "2026-04-09T21:07:34.363Z",
+    "versionId": "3a2d731a-f97c-49e2-9b11-5f5cd965b9ab",
     "workflowId": "NtbkpXUWY5RAQ1tW",
     "nodes": [
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          -1360,
+          480
+        ],
+        "id": "9c85fa6f-1a0b-40dc-85d7-98055c5cf92f",
+        "name": "When clicking ‘Execute workflow’"
+      },
       {
         "parameters": {
           "method": "POST",
           "url": "https://auto-finanzas.automscc.com/api/transactions/from-notification",
           "sendBody": true,
           "specifyBody": "json",
-          "jsonBody": "={{ JSON.stringify({ amount: $json.output.amount, description: $json.output.description, transaction_date: $json.output.transaction_date, transaction_type: $json.output.transaction_type, type: $json.output.type, notification_email: $('Gmail Trigger1').item.json.To, banco: $json.output.banco || 'bancolombia' }) }}",
+          "jsonBody": "={{ JSON.stringify({ amount: $json.output?.amount ?? $json.amount, description: $json.output?.description ?? $json.description, transaction_date: $json.output?.transaction_date ?? $json.transaction_date, transaction_type: $json.output?.transaction_type ?? $json.transaction_type, type: $json.output?.type ?? $json.type, notification_email: $('Edit Fields').item.json.to_email || $('Edit Fields').item.json.To || $('Gmail Trigger1').item.json.To, banco: ($json.output?.banco ?? $json.banco) || 'bancolombia', notification_snippet: $('Edit Fields').item.json.correo || '', destination_account: $json.output?.destination_account ?? '' }) }}",
           "options": {}
         },
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.2,
         "position": [
-          -160,
-          656
+          -144,
+          480
         ],
-        "id": "dc1f019f-1781-4be0-88ad-584d9205acaa",
+        "id": "2cadc81e-1649-4db9-a967-e5925419bf02",
         "name": "API MongoDB"
       },
       {
@@ -43,10 +54,10 @@
         "type": "n8n-nodes-base.gmailTrigger",
         "typeVersion": 1.2,
         "position": [
-          -960,
-          560
+          -1120,
+          768
         ],
-        "id": "4a7402b2-da7b-4b8a-b158-288ab86bbf3b",
+        "id": "cd241b1a-d1e9-4f6b-b2c8-6726f03e09a4",
         "name": "Gmail Trigger1",
         "credentials": {
           "gmailOAuth2": {
@@ -57,31 +68,8 @@
       },
       {
         "parameters": {
-          "assignments": {
-            "assignments": [
-              {
-                "id": "8a09502d-cbfd-437a-ae53-96089ceb6cc4",
-                "name": "correo",
-                "value": "={{ $json.snippet }}",
-                "type": "string"
-              }
-            ]
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.set",
-        "typeVersion": 3.4,
-        "position": [
-          -736,
-          560
-        ],
-        "id": "ccfb4919-6599-40fc-8d02-882f73ca57c8",
-        "name": "Edit Fields"
-      },
-      {
-        "parameters": {
           "chatId": "552780004",
-          "text": "=⚡ *NUEVO MOVIMIENTO DETECTADO EN: {{ $json.output.banco.toUpperCase() }}*\n\nSe acaba de registrar un nuevo movimiento con estos datos:\n\n*VALOR*: ${{ $json.output.amount.format() }}\n*DESCRIPCIÓN*: {{ $json.output.description }}\n*TIPO*: {{ $json.output.transaction_type }}\n*FECHA*: {{ $json.output.transaction_date.toDateTime().format('yyyy-MM-dd hh:mm a') }}",
+          "text": "=⚡ *NUEVO MOVIMIENTO DETECTADO EN: {{ ($json.output?.banco ?? $json.banco ?? 'bancolombia').toString().toUpperCase() }}*\n\nSe acaba de registrar un nuevo movimiento con estos datos:\n\n*VALOR*: ${{ ($json.output?.amount ?? $json.amount).toLocaleString('es-CO') }}\n*DESCRIPCIÓN*: {{ $json.output?.description ?? $json.description }}\n*TIPO*: {{ $json.output?.transaction_type ?? $json.transaction_type }}\n*CUENTA DESTINO*: {{ $json.output?.destination_account || '—' }}\n*FECHA*: {{ ($json.output?.transaction_date ?? $json.transaction_date).toString() }}",
           "replyMarkup": "inlineKeyboard",
           "inlineKeyboard": {
             "rows": [
@@ -100,16 +88,17 @@
             ]
           },
           "additionalFields": {
-            "appendAttribution": false
+            "appendAttribution": false,
+            "parse_mode": "Markdown"
           }
         },
         "type": "n8n-nodes-base.telegram",
         "typeVersion": 1.2,
         "position": [
-          -160,
-          464
+          -144,
+          640
         ],
-        "id": "8d80df17-5a4a-4200-8849-aa65ea00c7ec",
+        "id": "2f6afdf7-8060-4d9a-8e73-591847800026",
         "name": "Telegram1",
         "webhookId": "709cc4b4-8ba5-428c-8b5d-0b00c99b23d5",
         "credentials": {
@@ -154,6 +143,11 @@
                 "name": "banco",
                 "description": "que banco reporta en minuscula",
                 "required": true
+              },
+              {
+                "name": "destination_account",
+                "description": "Si el correo menciona destino del dinero: número de cuenta enmascarado o completo (ej *3009937799, 6138 como origen no cuenta). En transferencia saliente: cuenta a la que Transferiste. En PSE: referencia o identificador de destino si aparece. En compras o sin dato claro: cadena vacía.",
+                "required": true
               }
             ]
           },
@@ -162,39 +156,137 @@
         "type": "@n8n/n8n-nodes-langchain.informationExtractor",
         "typeVersion": 1,
         "position": [
-          -512,
-          560
+          -528,
+          608
         ],
-        "id": "bb85beda-889b-4f94-b515-dc1ed21cbc8e",
+        "id": "34f717a1-b7e0-4e54-ae13-4b8b5272f573",
         "name": "Information Extractor1"
       },
       {
         "parameters": {
-          "model": {
-            "__rl": true,
-            "value": "gpt-4.1-mini",
-            "mode": "list",
-            "cachedResultName": "gpt-4.1-mini"
+          "operation": "getAll",
+          "limit": 300,
+          "filters": {
+            "labelIds": [
+              "Label_5009391565458069770"
+            ],
+            "receivedAfter": "2026-02-02T00:00:00",
+            "receivedBefore": "2026-02-25T00:00:00"
+          }
+        },
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.2,
+        "position": [
+          -1152,
+          480
+        ],
+        "id": "c4bb8042-501a-483a-8e4c-118fc15f647a",
+        "name": "Get many messages",
+        "webhookId": "6e289746-da82-4bb0-8b33-998044177473",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "DOPWTzPin0EZKjQY",
+            "name": "GMAIL SANTIAGO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "model": "deepseek/deepseek-v3.2",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+        "typeVersion": 1,
+        "position": [
+          -544,
+          784
+        ],
+        "id": "9b455df0-ffc0-4122-97cc-aa022ad3d35d",
+        "name": "OpenRouter Chat Model",
+        "credentials": {
+          "openRouterApi": {
+            "id": "GFI3rVgz9b4bThML",
+            "name": "OPENROUTER SANTIAGO"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          -896,
+          528
+        ],
+        "id": "473f6895-ff40-4d4b-9a13-44a46d24fa50",
+        "name": "Loop Over Items"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "8a09502d-cbfd-437a-ae53-96089ceb6cc4",
+                "name": "correo",
+                "value": "={{ $json.snippet }}",
+                "type": "string"
+              },
+              {
+                "id": "to-email-assign",
+                "name": "to_email",
+                "value": "={{ $json.To || $json.to || $json.payload?.headers?.find(h => h.name === 'To')?.value || '' }}",
+                "type": "string"
+              }
+            ]
           },
           "options": {}
         },
-        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-        "typeVersion": 1.2,
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
         "position": [
-          -528,
-          736
+          -752,
+          608
         ],
-        "id": "acc99445-4938-4308-b4a5-4e638789880b",
-        "name": "OpenAI Chat Model1",
-        "credentials": {
-          "openAiApi": {
-            "id": "nZ98FVO8dD6bJnEc",
-            "name": "GPT SANTIAGO"
-          }
-        }
+        "id": "020cd095-5023-4e84-a32f-c90b017b8224",
+        "name": "Edit Fields"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          96,
+          576
+        ],
+        "id": "4e76429a-4459-4e5b-82de-6e63134732d2",
+        "name": "Merge"
       }
     ],
     "connections": {
+      "When clicking ‘Execute workflow’": {
+        "main": [
+          [
+            {
+              "node": "Get many messages",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "API MongoDB": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
       "Gmail Trigger1": {
         "main": [
           [
@@ -206,13 +298,13 @@
           ]
         ]
       },
-      "Edit Fields": {
+      "Telegram1": {
         "main": [
           [
             {
-              "node": "Information Extractor1",
+              "node": "Merge",
               "type": "main",
-              "index": 0
+              "index": 1
             }
           ]
         ]
@@ -233,7 +325,18 @@
           ]
         ]
       },
-      "OpenAI Chat Model1": {
+      "Get many messages": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenRouter Chat Model": {
         "ai_languageModel": [
           [
             {
@@ -243,143 +346,159 @@
             }
           ]
         ]
+      },
+      "Loop Over Items": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "Information Extractor1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "authors": "Santiago ciro",
-    "name": "Version ff200747",
+    "name": "Version 3a2d731a",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "ff200747-4a78-47d7-9fcd-42454b97ea22",
+  "activeVersionId": "3a2d731a-f97c-49e2-9b11-5f5cd965b9ab",
   "connections": {
-    "API MongoDB1": {
+    "When clicking ‘Execute workflow’": {
       "main": [
         [
           {
-            "node": "Merge1",
+            "node": "Get many messages",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Gmail Trigger": {
+    "API MongoDB": {
       "main": [
         [
           {
-            "node": "Edit Fields1",
+            "node": "Merge",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Telegram": {
+    "Gmail Trigger1": {
       "main": [
         [
           {
-            "node": "Merge1",
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
             "type": "main",
             "index": 1
           }
         ]
       ]
     },
-    "Information Extractor": {
+    "Information Extractor1": {
       "main": [
         [
           {
-            "node": "If",
+            "node": "API MongoDB",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Telegram1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Get many messages1": {
+    "Get many messages": {
       "main": [
         [
           {
-            "node": "Loop Over Items1",
+            "node": "Loop Over Items",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "OpenRouter Chat Model1": {
+    "OpenRouter Chat Model": {
       "ai_languageModel": [
         [
           {
-            "node": "Information Extractor",
+            "node": "Information Extractor1",
             "type": "ai_languageModel",
             "index": 0
           }
         ]
       ]
     },
-    "Loop Over Items1": {
+    "Loop Over Items": {
       "main": [
         [],
         [
           {
-            "node": "Edit Fields1",
+            "node": "Edit Fields",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Edit Fields1": {
+    "Edit Fields": {
       "main": [
         [
           {
-            "node": "Information Extractor",
+            "node": "Information Extractor1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Merge1": {
+    "Merge": {
       "main": [
         [
           {
-            "node": "Loop Over Items1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "When clicking ‘Execute workflow’": {
-      "main": [
-        [
-          {
-            "node": "Get many messages1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If": {
-      "main": [
-        [
-          {
-            "node": "Loop Over Items1",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "API MongoDB1",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Telegram",
+            "node": "Loop Over Items",
             "type": "main",
             "index": 0
           }
@@ -396,22 +515,33 @@
   "name": "Transacciones Bancolombia (MongoDB) - Corregido",
   "nodes": [
     {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1360,
+        480
+      ],
+      "id": "9c85fa6f-1a0b-40dc-85d7-98055c5cf92f",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
       "parameters": {
         "method": "POST",
         "url": "https://auto-finanzas.automscc.com/api/transactions/from-notification",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify({ amount: $json.output?.amount ?? $json.amount, description: $json.output?.description ?? $json.description, transaction_date: $json.output?.transaction_date ?? $json.transaction_date, transaction_type: $json.output?.transaction_type ?? $json.transaction_type, type: $json.output?.type ?? $json.type, notification_email: $('Edit Fields1').item.json.to_email || $('Edit Fields1').item.json.To || $('Gmail Trigger').item.json.To, banco: ($json.output?.banco ?? $json.banco) || 'bancolombia' }) }}",
+        "jsonBody": "={{ JSON.stringify({ amount: $json.output?.amount ?? $json.amount, description: $json.output?.description ?? $json.description, transaction_date: $json.output?.transaction_date ?? $json.transaction_date, transaction_type: $json.output?.transaction_type ?? $json.transaction_type, type: $json.output?.type ?? $json.type, notification_email: $('Edit Fields').item.json.to_email || $('Edit Fields').item.json.To || $('Gmail Trigger1').item.json.To, banco: ($json.output?.banco ?? $json.banco) || 'bancolombia', notification_snippet: $('Edit Fields').item.json.correo || '', destination_account: $json.output?.destination_account ?? '' }) }}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -32,
-        448
+        -144,
+        480
       ],
-      "id": "f41c077f-01da-458a-98d5-9483bc23d06f",
-      "name": "API MongoDB1"
+      "id": "2cadc81e-1649-4db9-a967-e5925419bf02",
+      "name": "API MongoDB"
     },
     {
       "parameters": {
@@ -432,11 +562,11 @@
       "type": "n8n-nodes-base.gmailTrigger",
       "typeVersion": 1.2,
       "position": [
-        -1152,
-        704
+        -1120,
+        768
       ],
-      "id": "98d83808-285c-4a80-b4f3-62e33dc5daf0",
-      "name": "Gmail Trigger",
+      "id": "cd241b1a-d1e9-4f6b-b2c8-6726f03e09a4",
+      "name": "Gmail Trigger1",
       "credentials": {
         "gmailOAuth2": {
           "id": "DOPWTzPin0EZKjQY",
@@ -447,7 +577,7 @@
     {
       "parameters": {
         "chatId": "552780004",
-        "text": "=⚡ *NUEVO MOVIMIENTO DETECTADO EN: {{ ($json.output?.banco ?? $json.banco ?? 'bancolombia').toString().toUpperCase() }}*\n\nSe acaba de registrar un nuevo movimiento con estos datos:\n\n*VALOR*: ${{ ($json.output?.amount ?? $json.amount).toLocaleString('es-CO') }}\n*DESCRIPCIÓN*: {{ $json.output?.description ?? $json.description }}\n*TIPO*: {{ $json.output?.transaction_type ?? $json.transaction_type }}\n*FECHA*: {{ ($json.output?.transaction_date ?? $json.transaction_date).toString() }}",
+        "text": "=⚡ *NUEVO MOVIMIENTO DETECTADO EN: {{ ($json.output?.banco ?? $json.banco ?? 'bancolombia').toString().toUpperCase() }}*\n\nSe acaba de registrar un nuevo movimiento con estos datos:\n\n*VALOR*: ${{ ($json.output?.amount ?? $json.amount).toLocaleString('es-CO') }}\n*DESCRIPCIÓN*: {{ $json.output?.description ?? $json.description }}\n*TIPO*: {{ $json.output?.transaction_type ?? $json.transaction_type }}\n*CUENTA DESTINO*: {{ $json.output?.destination_account || '—' }}\n*FECHA*: {{ ($json.output?.transaction_date ?? $json.transaction_date).toString() }}",
         "replyMarkup": "inlineKeyboard",
         "inlineKeyboard": {
           "rows": [
@@ -467,18 +597,18 @@
         },
         "additionalFields": {
           "appendAttribution": false,
-          "parse_mode": "HTML"
+          "parse_mode": "Markdown"
         }
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        -32,
-        608
+        -144,
+        640
       ],
-      "id": "d7db9f81-85aa-4f03-8de5-b5c1c386406e",
-      "name": "Telegram",
-      "webhookId": "709cc4b4-8ba5-428c-8d1836ba9a5acd",
+      "id": "2f6afdf7-8060-4d9a-8e73-591847800026",
+      "name": "Telegram1",
+      "webhookId": "709cc4b4-8ba5-428c-8b5d-0b00c99b23d5",
       "credentials": {
         "telegramApi": {
           "id": "D5fwEGb7XJShZzzS",
@@ -521,6 +651,11 @@
               "name": "banco",
               "description": "que banco reporta en minuscula",
               "required": true
+            },
+            {
+              "name": "destination_account",
+              "description": "Si el correo menciona destino del dinero: número de cuenta enmascarado o completo (ej *3009937799, 6138 como origen no cuenta). En transferencia saliente: cuenta a la que Transferiste. En PSE: referencia o identificador de destino si aparece. En compras o sin dato claro: cadena vacía.",
+              "required": true
             }
           ]
         },
@@ -529,11 +664,11 @@
       "type": "@n8n/n8n-nodes-langchain.informationExtractor",
       "typeVersion": 1,
       "position": [
-        -560,
-        544
+        -528,
+        608
       ],
-      "id": "52ffb2a3-e15b-432b-aba1-1d7da3f6b567",
-      "name": "Information Extractor"
+      "id": "34f717a1-b7e0-4e54-ae13-4b8b5272f573",
+      "name": "Information Extractor1"
     },
     {
       "parameters": {
@@ -550,11 +685,11 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        -1136,
-        448
+        -1152,
+        480
       ],
-      "id": "b91c91ad-ba7c-4255-b6bc-ff69131f2bd4",
-      "name": "Get many messages1",
+      "id": "c4bb8042-501a-483a-8e4c-118fc15f647a",
+      "name": "Get many messages",
       "webhookId": "6e289746-da82-4bb0-8b33-998044177473",
       "credentials": {
         "gmailOAuth2": {
@@ -565,17 +700,17 @@
     },
     {
       "parameters": {
-        "model": "google/gemini-3.1-flash-lite-preview",
+        "model": "deepseek/deepseek-v3.2",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        -576,
-        720
+        -544,
+        784
       ],
-      "id": "98e9b73d-ae99-4a73-93c5-3fd03a2d1e76",
-      "name": "OpenRouter Chat Model1",
+      "id": "9b455df0-ffc0-4122-97cc-aa022ad3d35d",
+      "name": "OpenRouter Chat Model",
       "credentials": {
         "openRouterApi": {
           "id": "GFI3rVgz9b4bThML",
@@ -590,11 +725,11 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        -928,
-        464
+        -896,
+        528
       ],
-      "id": "2660f5a5-d4bd-4309-9ec0-03c5523f054d",
-      "name": "Loop Over Items1"
+      "id": "473f6895-ff40-4d4b-9a13-44a46d24fa50",
+      "name": "Loop Over Items"
     },
     {
       "parameters": {
@@ -619,66 +754,22 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -768,
-        544
+        -752,
+        608
       ],
-      "id": "c2f26378-6a04-4b2c-bc5a-97a08c746247",
-      "name": "Edit Fields1"
+      "id": "020cd095-5023-4e84-a32f-c90b017b8224",
+      "name": "Edit Fields"
     },
     {
       "parameters": {},
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        208,
-        544
+        96,
+        576
       ],
-      "id": "97b7e66c-d9aa-4fdd-8d73-43d067d4dd0e",
-      "name": "Merge1"
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        -1328,
-        432
-      ],
-      "id": "9c85fa6f-1a0b-40dc-85d7-98055c5cf92f",
-      "name": "When clicking ‘Execute workflow’"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 3
-          },
-          "conditions": [
-            {
-              "id": "4e2bcd26-f7a3-42a6-b946-22047879fee5",
-              "leftValue": "={{ $json.output.amount }}",
-              "rightValue": 0,
-              "operator": {
-                "type": "number",
-                "operation": "equals"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.3,
-      "position": [
-        -240,
-        528
-      ],
-      "id": "dcb6fc30-e473-4d94-8a67-e11800816230",
-      "name": "If"
+      "id": "4e76429a-4459-4e5b-82de-6e63134732d2",
+      "name": "Merge"
     }
   ],
   "pinData": {},
@@ -686,7 +777,8 @@
   "repo_owner": "Santiagociroc11",
   "repo_path": "backup/",
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "binaryMode": "separate"
   },
   "shared": [
     {
@@ -709,16 +801,16 @@
     },
     "node:Gmail Trigger1": {
       "Gmail Trigger1": {
-        "lastTimeChecked": 1775702792,
+        "lastTimeChecked": 1775793250,
         "possibleDuplicates": [
-          "19d70226243e7038",
-          "19d6fdd4c2ba8f77"
+          "19d7586a7b5b8d4c",
+          "19d7546be12eafdf"
         ]
       }
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-03-03T21:42:50.039Z",
-  "versionId": "04d676ae-aa08-45cb-bfcc-95ebee43f286"
+  "updatedAt": "2026-04-09T21:07:34.362Z",
+  "versionId": "3a2d731a-f97c-49e2-9b11-5f5cd965b9ab"
 }
