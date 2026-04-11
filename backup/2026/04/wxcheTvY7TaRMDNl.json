@@ -1,0 +1,101 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-04-11T01:17:16.000Z",
+    "createdAt": "2026-04-11T01:17:13.986Z",
+    "versionId": "82937825-a852-4653-8b54-c5e0d46df1bb",
+    "workflowId": "wxcheTvY7TaRMDNl",
+    "nodes": [
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          -384,
+          128
+        ],
+        "id": "24b38211-c4b7-49ce-a5c9-c87196403b81",
+        "name": "When clicking ‘Execute workflow’"
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "prueba-ghl",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          -320,
+          -80
+        ],
+        "id": "e5718358-83ef-4f3d-a327-76649cb8eed8",
+        "name": "Webhook",
+        "webhookId": "e6352200-2dfb-4c89-836a-d440d6c9b80e"
+      }
+    ],
+    "connections": {},
+    "authors": "Santiago ciro",
+    "name": "Version 82937825",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "82937825-a852-4653-8b54-c5e0d46df1bb",
+  "connections": {},
+  "createdAt": "2026-04-11T01:16:43.297Z",
+  "id": "wxcheTvY7TaRMDNl",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 83",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -384,
+        128
+      ],
+      "id": "24b38211-c4b7-49ce-a5c9-c87196403b81",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "prueba-ghl",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -320,
+        -80
+      ],
+      "id": "e5718358-83ef-4f3d-a327-76649cb8eed8",
+      "name": "Webhook",
+      "webhookId": "e6352200-2dfb-4c89-836a-d440d6c9b80e"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "backupn8n",
+  "repo_owner": "Santiagociroc11",
+  "repo_path": "backup/",
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-04-11T01:16:43.303Z",
+      "createdAt": "2026-04-11T01:16:43.303Z",
+      "role": "workflow:owner",
+      "workflowId": "wxcheTvY7TaRMDNl",
+      "projectId": "703bt8e3CRxfBTYZ"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-04-11T01:17:13.985Z",
+  "versionId": "82937825-a852-4653-8b54-c5e0d46df1bb"
+}
